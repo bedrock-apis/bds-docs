@@ -21,7 +21,7 @@ let version_registred = {
 const OSSYSTEM = os.platform() === "win32"?"win":"linux";
 
 CompareLatestVersions();
- 
+  
 async function Finish(v,version){
     console.log("Versions registred");
     await promises.writeFile("exist.json",JSON.stringify(version_registred,null,"  "));
