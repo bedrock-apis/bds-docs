@@ -7,13 +7,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Configure Git
-      run: |
-        git config --global user.name "Your Name"
-        git config --global user.email "you@example.com"
-        git config --global url."https://$GH_PAT@github.com/".insteadOf "https://github.com/"
-      env:
-        GH_PAT: ${{ secrets.GH_TOKEN_1 }}
     - name: Checkout repository
       uses: actions/checkout@v3
       with: 
@@ -24,6 +17,11 @@ jobs:
         node-version: '18'  # replace '14' with your desired Node.js version
         cache: 'npm'
         cache-dependency-path: './package-lock.json'
+    - name: Configure Git
+      run: |
+        git config --global user.name "Your Name"
+        git config --global user.email "you@example.com"
+        git config --global url."https://$GH_PAT@github.com/".insteadOf "https://github.com/"
     - name: Install NPM
       run: |
         npm ci
