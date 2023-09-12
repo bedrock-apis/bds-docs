@@ -172,6 +172,7 @@ async function CheckForExist(v,version,console){
         exit(1);
     }
     const {"build-version":bv,"version":vv} = SafeParse(response,console);
+    console.log(`Version compare: ${vv} === ${version}`);
     return version==vv;
 }
 function GetEngine(v){
