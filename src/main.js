@@ -136,6 +136,7 @@ async function CompareLatestVersions(){
         Generate("preview",preview);
         return;
     }
+    console.log("Docs are up to date");
 }
 async function System(cmd,cwd = ".",timeout=undefined,prefix=""){
     return new Promise((resolve, reject) => {
