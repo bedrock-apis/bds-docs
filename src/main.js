@@ -168,7 +168,7 @@ function Logger(text,console=globalThis.console){
         warn:warn.bind(console,text),
     });
 }
-function *FileTree(base,paths){
+function *FileTree(base,paths = []){
     for (const entry of readdirSync([base,...paths].join("/"),{withFileTypes:true})) {
         if(entry.isFile()) yield [base,...paths,entry.name].join("/");
         else if(entry.isDirectory()) yield*FileTree(base,[...paths,entry.name]);
