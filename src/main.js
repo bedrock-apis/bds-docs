@@ -21,10 +21,9 @@ let version_registred = {
 const OSSYSTEM = os.platform() === "win32"?"win":"linux";
 
 CompareLatestVersions();
-   
+    
 async function Finish(v,version){
     console.log("Versions registred");
-    console.log(env.GITHUB_TOKEN);
     await promises.writeFile("exist.json",JSON.stringify(version_registred,null,"  "));
     console.log("Loggin as Con's Pet")
     await System('git config --global user.name "Cons Pet"');
@@ -33,9 +32,13 @@ async function Finish(v,version){
     await System("git add .");
     await System(`git commit -m \"New ${v} v${GetEngine(version)}\"`);
     console.log("Push");
-    await System("git push origin " + v);
-    if(v==="stable") await System("git checkout -b stable-" + GetEngine(version));
-    console.log("Done...");
+    await System("git push --force origin " + v);
+    if(v==="stable") {
+        console.log("New Branch stable-" + GetEngine(version));
+        await System("git checkout -b stable-" + GetEngine(version));
+        await System("git push -u origin stable-" + GetEngine(version));
+    }
+    console.log("Done..."); 
 }
 async function Generate(v,version){
     globalThis.console.log("Moving from main branch to " + v);
@@ -133,6 +136,7 @@ async function CompareLatestVersions(){
         Generate("preview",preview);
         return;
     }
+    console.log("Docs are up to date");
 }
 async function System(cmd,cwd = ".",timeout=undefined,prefix=""){
     return new Promise((resolve, reject) => {
@@ -169,6 +173,7 @@ async function CheckForExist(v,version,console){
         exit(1);
     }
     const {"build-version":bv,"version":vv} = SafeParse(response,console);
+    console.log(`Version compare: ${vv} === ${version}`);
     return version==vv;
 }
 function GetEngine(v){

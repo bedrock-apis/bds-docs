@@ -1,8 +1,8 @@
 name: Check for New Docs
-on: # schedule: - cron: '*/30 * * * *'
-  push:
-    branches:
-        - development
+on:
+  schedule: - cron: '*/30 * * * *'
+permissions:
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -10,7 +10,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
       with: 
-        ref: "development"
+        ref: "main"
     - name: Setup Node.js environment
       uses: actions/setup-node@v3
       with:
@@ -23,5 +23,3 @@ jobs:
     - name: Check Build Commit
       run: |
         node .
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
