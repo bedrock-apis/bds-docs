@@ -13,5 +13,13 @@ module.exports = {
     async DownloadContent(url, header={}) {
         const {default: fetch,Headers} = await import("node-fetch");
         return Buffer.from(await (await fetch(url,{headers:new Headers(header),redirect:"follow",follow:5})).arrayBuffer());
+    },
+    async SafeDownloadContent(url, header={}) {
+        try {
+            const {default: fetch,Headers} = await import("node-fetch");
+            return {data:Buffer.from(await (await fetch(url,{headers:new Headers(header),redirect:"follow",follow:5})).arrayBuffer())};
+        } catch (error) {
+            return {error:error};
+        }
     }
 }
