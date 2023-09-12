@@ -2,7 +2,8 @@ const { exit } = require("process");
 const {exec} = require("node:child_process");
 const { Download, SafeDownloadContent}= require("./download.js");
 const os = require("os");
-const { promises, existsSync, readdir, readdirSync } = require("fs");
+const { promises, existsSync, readdirSync } = require("fs");
+const path = require("path");
 const bds_versions_link = "https://raw.githubusercontent.com/Bedrock-OSS/BDS-Versions/main/versions.json";
 const exist_link = (branch) => `https://raw.githubusercontent.com/Bedrock-APIs/bds-docs/${branch}/exist.json`;
 const github_notfound = "404: Not Found";
@@ -11,13 +12,30 @@ const test_config = "test_config.json";
 const test_config_data = JSON.stringify({
     generate_documentation: true
 });
-
+const docs_generated = [bin,"docs"].join("/");
+const docs_cleaned = "./docs";
+let version_registred = {
+    "build-version":"1.0.0.0",
+    "version":"1.0.0.0",
+};
 const OSSYSTEM = os.platform() === "win32"?"win":"linux";
 
-Generate("stable","1.20.15.01");
+CompareLatestVersions();
 
-
+async function Finish(v,version){
+    console.log("Versions registred");
+    await promises.writeFile("exist.json",JSON.stringify(version_registred,null,"  "));
+    console.log("Commit");
+    await System("git add .");
+    await System(`git commit -m \"New ${v} v${GetEngine(version)}\"`);
+    console.log("Push");
+    await System("git push origin " + v);
+    if(v==="stable") await System("git checkout stable-" + GetEngine(version));
+    console.log("Done...");
+}
 async function Generate(v,version){
+    globalThis.console.log("Moving from main branch to " + v);
+    await System(`git checkout ${v} || git checkout -b ${v}`);
     const console = Logger("[BDS Downloader]");
     console.log("Downloading started. . .");
     await Download("bin",version,OSSYSTEM,v.toLowerCase() === "preview").catch(er=>{
@@ -28,13 +46,12 @@ async function Generate(v,version){
     console.log("Successfully Downloaded: " + OSSYSTEM);
     runDocs(v,version).catch(er=>{globalThis.console.error(er.message); exit(1);});
 }
-//runDocs("stable","version").catch(er=>{globalThis.console.error(er.message); exit(1);});
-async function runDocs(){
+async function runDocs(v,version){
     const console = Logger("[Docs Generator]");
     console.log("Writing test_config.json");
     await promises.writeFile([bin,test_config].join("/"),test_config_data);
     console.log("Executing BDS in " + OSSYSTEM);
-    globalThis.console.log("////////////////////////////////////////////////////");
+    globalThis.console.log("///////////////////////// Bedrock Dedicated Server ///////////////////////////");
     const time = Date.now();
     if(OSSYSTEM === "win"){
         await System("call bedrock_server.exe",bin,60_000,"   ").catch(er=>{
@@ -51,12 +68,28 @@ async function runDocs(){
             exit(1);
         });
     }
-    globalThis.console.log("////////////////////////////////////////////////////");
-    if(existsSync([bin,"docs"].join("/"))) {
+    globalThis.console.log("///////////////////////// Bedrock Dedicated Server ///////////////////////////");
+    if(existsSync(docs_generated)) {
         console.log("Successfully Generated in " + (Date.now() - time) + "ms");
-        for (let file of FileTree([bin,"docs"].join("/"))) console.log(file); 
+        CopyFiles(v,version).catch(er=>{
+            global.console.error(er.message);
+            exit(1);
+        });
+    }else{
+        console.error("Generating Docs doesn't success, folder not found './bin/docs'");
+        exit(1);
     }
     //console.log((await promises.readFile(".\\bin\\docs\\script_modules\\@minecraft\\server-ui_1.0.0.json")).toString());
+}
+async function CopyFiles(v,version){
+    const console = Logger("[Moving Files]");
+    for (let file of FileTree(docs_generated)) {
+        console.log(file);
+        const data = await promises.readFile([docs_generated,file].join("/"));
+        const makedir = await promises.mkdir(path.dirname([docs_cleaned,file].join("/")),{recursive:true});
+        await promises.writeFile([docs_cleaned,file].join("/"),data);
+    }
+    Finish(v,version);
 }
 async function CompareLatestVersions(){
     const console = Logger("[Checking Versions]");
@@ -77,26 +110,26 @@ async function CompareLatestVersions(){
 
     //----------------------------------------------------------------------------------
     if(!await CheckForExist("stable",engine,console)) {
+        version_registred = {
+            "build-version":stable,
+            "version":engine
+        }
+        _preview = false;
         console.log("New Stable Version Found: " + engine);
         Generate("stable",stable);
         return;
     }
     if(!await CheckForExist("preview",preview,console)) {
+        version_registred = {
+            "build-version":preview,
+            "version":preview
+        }
+        _preview = true;
         console.log("New Stable Version Found: " + preview);
         Generate("preview",preview);
         return;
     }
 }
-/*
-console.log("Downloading . . .");
-Download("./bin/","1.20.40.20","linux",true)
-.then(()=>{
-    console.log("done...")
-})
-.catch(er=>{
-    console.error(er);
-    process.exit(1);
-});*/
 async function System(cmd,cwd = ".",timeout=undefined,prefix=""){
     return new Promise((resolve, reject) => {
         const child = exec(cmd, {cwd, windowsHide: true,timeout}, function(){});
@@ -170,7 +203,7 @@ function Logger(text,console=globalThis.console){
 }
 function *FileTree(base,paths = []){
     for (const entry of readdirSync([base,...paths].join("/"),{withFileTypes:true})) {
-        if(entry.isFile()) yield [base,...paths,entry.name].join("/");
+        if(entry.isFile()) yield [...paths,entry.name].join("/");
         else if(entry.isDirectory()) yield*FileTree(base,[...paths,entry.name]);
     }
 }
