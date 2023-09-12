@@ -32,8 +32,11 @@ async function Finish(v,version){
     await System("git add .");
     await System(`git commit -m \"New ${v} v${GetEngine(version)}\"`);
     console.log("Push");
-    await System("git push origin " + v);
-    if(v==="stable") await System("git checkout -b stable-" + GetEngine(version));
+    await System("git push --force origin " + v);
+    if(v==="stable") {
+        console.log("New Branch");
+        await System("git checkout -b stable-" + GetEngine(version));
+    }
     console.log("Done...");
 }
 async function Generate(v,version){
