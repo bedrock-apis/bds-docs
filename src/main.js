@@ -2,7 +2,7 @@ const { exit } = require("process");
 const {exec} = require("node:child_process");
 const { Download, SafeDownloadContent}= require("./download.js");
 const os = require("os");
-const { promises, existsSync } = require("fs");
+const { promises, existsSync, readdir, readdirSync } = require("fs");
 const bds_versions_link = "https://raw.githubusercontent.com/Bedrock-OSS/BDS-Versions/main/versions.json";
 const exist_link = (branch) => `https://raw.githubusercontent.com/Bedrock-APIs/bds-docs/${branch}/exist.json`;
 const github_notfound = "404: Not Found";
@@ -52,9 +52,11 @@ async function runDocs(){
         });
     }
     globalThis.console.log("////////////////////////////////////////////////////");
-    if(existsSync([bin,"docs"].join("/"))) 
-    console.log("Successfully Generated in " + (Date.now() - time) + "ms");
-    console.log((await promises.readFile(".\\bin\\docs\\script_modules\\@minecraft\\server-ui_1.0.0.json")).toString());
+    if(existsSync([bin,"docs"].join("/"))) {
+        console.log("Successfully Generated in " + (Date.now() - time) + "ms");
+        for (let file of FileTree([bin,"docs"].join("/"))) console.log(file); 
+    }
+    //console.log((await promises.readFile(".\\bin\\docs\\script_modules\\@minecraft\\server-ui_1.0.0.json")).toString());
 }
 async function CompareLatestVersions(){
     const console = Logger("[Checking Versions]");
@@ -165,4 +167,10 @@ function Logger(text,console=globalThis.console){
         error:error.bind(console,text),
         warn:warn.bind(console,text),
     });
+}
+function *FileTree(base,paths){
+    for (const entry of readdirSync([base,...paths].join("/"),{withFileTypes:true})) {
+        if(entry.isFile()) yield [base,...paths,entry.name].join("/");
+        else if(entry.isDirectory()) yield*FileTree(base,[...paths,entry.name]);
+    }
 }
