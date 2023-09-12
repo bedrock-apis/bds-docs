@@ -21,7 +21,7 @@ let version_registred = {
 const OSSYSTEM = os.platform() === "win32"?"win":"linux";
 
 CompareLatestVersions();
-   
+    
 async function Finish(v,version){
     console.log("Versions registred");
     console.log(env.GITHUB_TOKEN);
