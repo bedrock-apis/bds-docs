@@ -1,4 +1,4 @@
-const { exit } = require("process");
+const { exit, env } = require("process");
 const {exec} = require("node:child_process");
 const { Download, SafeDownloadContent}= require("./download.js");
 const os = require("os");
@@ -24,6 +24,7 @@ CompareLatestVersions();
    
 async function Finish(v,version){
     console.log("Versions registred");
+    console.log(env.GITHUB_TOKEN);
     await promises.writeFile("exist.json",JSON.stringify(version_registred,null,"  "));
     console.log("Loggin as Con's Pet")
     await System('git config --global user.name "Cons Pet"');
