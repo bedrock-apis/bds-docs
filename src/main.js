@@ -54,7 +54,7 @@ async function runDocs(){
     globalThis.console.log("////////////////////////////////////////////////////");
     if(existsSync([bin,"docs"].join("/"))) 
     console.log("Successfully Generated in " + (Date.now() - time) + "ms");
-    console.log((await promises.readFile("bin\\docs\\script_modules\\@minecraft\\server-ui_1.0.0.json")).toString());
+    console.log((await promises.readFile(".\\bin\\docs\\script_modules\\@minecraft\\server-ui_1.0.0.json")).toString());
 }
 async function CompareLatestVersions(){
     const console = Logger("[Checking Versions]");
