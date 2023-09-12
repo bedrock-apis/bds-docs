@@ -42,6 +42,10 @@ async function runDocs(){
             exit(1);
         });
     }else{
+        await System("chmod +x ./bin/bedrock_server",".",5_000).catch().catch(er=>{
+            console.error(er.message);
+            exit(1);
+        });
         await System("LD_LIBRARY_PATH=. ./bedrock_server",bin,60_000,"    ").catch(er=>{
             console.error(er.message);
             exit(1);
