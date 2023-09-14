@@ -25,12 +25,12 @@ CompareLatestVersions();
 async function Finish(v,version){
     console.log("Versions registred");
     await promises.writeFile("exist.json",JSON.stringify(version_registred,null,"  "));
-    console.log("Loggin as Con's Pet")
-    await System('git config --global user.name "Cons Pet"');
+    console.log("Loggin as 'Documentation Manager Bot'")
+    await System('git config --global user.name "Documentation Manager Bot"');
     await System('git config --global user.email "conmaster2112@gmail.com"');
     console.log("Commit");
     await System("git add .");
-    await System(`git commit -m \"New ${v} v${GetEngine(version)}\"`);
+    await System(`git commit -m \"New ${v} v${v==="stable"?GetEngine(version):version}\"`);
     console.log("Push");
     await System("git push --force origin " + v);
     if(v==="stable") {
