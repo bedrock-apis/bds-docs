@@ -1,9 +1,10 @@
-const { exit, env } = require("process");
+const { exit } = require("process");
 const {exec} = require("node:child_process");
 const { Download, SafeDownloadContent}= require("./download.js");
 const os = require("os");
 const { promises, existsSync, readdirSync } = require("fs");
 const path = require("path");
+const { ScriptModule } = require("./d.tsGenerator.js");
 const bds_versions_link = "https://raw.githubusercontent.com/Bedrock-OSS/BDS-Versions/main/versions.json";
 const exist_link = (branch) => `https://raw.githubusercontent.com/Bedrock-APIs/bds-docs/${branch}/exist.json`;
 const github_notfound = "404: Not Found";
@@ -14,11 +15,16 @@ const test_config_data = JSON.stringify({
 });
 const docs_generated = [bin,"docs"].join("/");
 const docs_cleaned = "./docs";
-let version_registred = {
+const declarations = "./script_types";
+const version_registred = {
     "build-version":"1.0.0.0",
     "version":"1.0.0.0",
+    "glags":[
+        "generated_types"
+    ]
 };
 const OSSYSTEM = os.platform() === "win32"?"win":"linux";
+
 
 CompareLatestVersions();
     
@@ -82,6 +88,14 @@ async function runDocs(v,version){
             global.console.error(er.message);
             exit(1);
         });
+        DoFiles(docs_generated + "/script_modules",declarations, (file, data)=>{
+            const Json = JSON.parse(data.toString());
+            const script_module = new ScriptModule(Json);
+            return [file.replace(".json",".d.ts"),script_module.toString()];
+        }).then(()=>Finish(v,version)).catch(er=>{
+            global.console.error(er.message);
+            exit(1);
+        });
     }else{
         console.error("Generating Docs doesn't success, folder not found './bin/docs'");
         exit(1);
@@ -96,7 +110,16 @@ async function CopyFiles(v,version){
         const makedir = await promises.mkdir(path.dirname([docs_cleaned,file].join("/")),{recursive:true});
         await promises.writeFile([docs_cleaned,file].join("/"),data);
     }
-    Finish(v,version);
+}
+async function DoFiles(fr,to,changeMethod){
+    const console = Logger("[Generating Docs Files]");
+    for (let file of FileTree(fr)) {
+        const data = await promises.readFile([fr,file].join("/"));
+        const makedir = await promises.mkdir(path.dirname([to,file].join("/")),{recursive:true});
+        const [newF,newData] = changeMethod(file,data);
+        console.log("Generated types  ->  " + newF);
+        await promises.writeFile([to,newF].join("/"),newData);
+    }
 }
 async function CompareLatestVersions(){
     const console = Logger("[Checking Versions]");
@@ -117,20 +140,20 @@ async function CompareLatestVersions(){
 
     //----------------------------------------------------------------------------------
     if(!await CheckForExist("stable",engine,console)) {
-        version_registred = {
+        Object.assign(version_registred, {
             "build-version":stable,
             "version":engine
-        }
+        })
         _preview = false;
         console.log("New Stable Version Found: " + engine);
         Generate("stable",stable);
         return;
     }
     if(!await CheckForExist("preview",preview,console)) {
-        version_registred = {
+        Object.assign(version_registred, {
             "build-version":preview,
             "version":preview
-        }
+        })
         _preview = true;
         console.log("New Stable Version Found: " + preview);
         Generate("preview",preview);
