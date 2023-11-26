@@ -1,0 +1,31 @@
+name: Overwrite
+on:
+  workflow_dispatch:
+    inputs:
+      add_version:
+        description: "Version to overwrite"
+        required: true
+permissions:
+    contents: write
+jobs:
+  build:
+    runs-on: windows-latest
+    env:
+        DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with: 
+          ref: "main"
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: './package-lock.json'
+      - name: Install NPM
+        run: |
+          npm ci
+      - name: Check Build Commit
+        run: |
+          node . debug ${{ github.event.inputs.add_version }} 

@@ -1,241 +1,100 @@
-const { exit } = require("process");
-const {exec} = require("node:child_process");
-const { Download, SafeDownloadContent}= require("./download.js");
-const os = require("os");
-const { promises, existsSync, readdirSync } = require("fs");
-const path = require("path");
-const { ScriptModule } = require("./d.tsGenerator.js");
-const bds_versions_link = "https://raw.githubusercontent.com/Bedrock-OSS/BDS-Versions/main/versions.json";
-const exist_link = (branch) => `https://raw.githubusercontent.com/Bedrock-APIs/bds-docs/${branch}/exist.json`;
-const github_notfound = "404: Not Found";
-const bin = "./bin";
-const test_config = "test_config.json";
-const test_config_data = JSON.stringify({
-    generate_documentation: true
-});
-const docs_generated = [bin,"docs"].join("/");
-const docs_cleaned = "./docs";
-const declarations = "./script_types";
-const version_registred = {
-    "build-version":"1.0.0.0",
-    "version":"1.0.0.0",
-    "glags":[
-        "generated_types"
-    ]
-};
-const OSSYSTEM = os.platform() === "win32"?"win":"linux";
+const { ScriptModule } = require("./docs_types");
+const data = require("./data");
+const { promises, writeFile, existsSync } = require("fs");
+const { Download: DownloadBDS } = require("./download");
+const { NBTFile } = require("./NBT_Reader");
+const {
+    GetEngine,
+    GetGithubFile,
+    System,
+    LoadScriptModules,
+    Data
+} = data;
+async function Main(){
+    /*
+    for (const n of data.LoadScriptModules("docs/script_modules/@minecraft").values()) {
+        const m = new ScriptModule(JSON.parse((await promises.readFile("docs/script_modules/@minecraft/" + n.fileName + ".json")).toString()));
+        await promises.writeFile("types/" + n.fileName + ".d.ts",m.toString());
+    }*/
+}
+class Updater{
+    constructor(res){this.resources = res;}
+    async _setup(){
+        const tasks = [];
+        const {cache_data,bin_path} = this.resources;
+        if(existsSync(bin_path)) tasks.push(promises.rm(bin_path,{recursive:true,force:true}));
+        if(!existsSync("./cache.json")) tasks.push(Data.setCache(cache_data));
+        if(!existsSync("./preview_types")) tasks.push(promises.mkdir("./preview_types"));
+        if(!existsSync("./types")) tasks.push(promises.mkdir("./types"));
+        if(!existsSync("./preview_metadata")) tasks.push(promises.mkdir("./preview_metadata"));
+        if(!existsSync("./changelogs")) tasks.push(promises.mkdir("./changelogs"));
+        Promise.all(tasks);
+    }
+    async _versionCheck(){
+        const {
+            gitlink_bds_versions,
+            current_os_long
+        } = this.resources;
+        ///async Tasks
+        const linkTask = GetGithubFile(gitlink_bds_versions);
+        const cacheTask = Data.getCache();
+        ///source
+        const a = await linkTask;
+        if(a == null) throw new Error("Can't target the current bds versions: " + gitlink_bds_versions);
+        const data = JSON.parse(a.toString());
+        const cache = await cacheTask;
+        if(cache["preview-version"] != data[current_os_long].preview) return {version:data[current_os_long].preview,isPreview:true};
+        else if(cache["version"] != GetEngine(data[current_os_long].stable)) return {version:data[current_os_long].stable,isPreview:false};
+        else return null;
+    }
+    async _downloadBDS(check){
+        const {version,isPreview} = check;
+        const {bin_path,current_os} = this.resources;
+        await DownloadBDS(bin_path,version,current_os,isPreview);
+        return true;
+    }
+    async _setupBDS(){
+        const {bin_path,test_config_data,test_config_fileName} = this.resources;
+        await promises.writeFile(bin_path + "/" + test_config_fileName,test_config_data);
+    }
+    async _runBDS(prefix = ""){
+        const {current_os,bin_path} = this.resources;
+        if(current_os === "win"){
+            await System("call bedrock_server.exe",bin_path,120_000,prefix);
+        }else{
+            await System("chmod +x ./bin/bedrock_server",".",5_000);
+            await System("LD_LIBRARY_PATH=. ./bedrock_server",bin_path,120_000,prefix);;
+        }
+    }
+    async _generateChanges(check){
 
+    }
+    async _cloneMetadata(check){
 
-CompareLatestVersions();
-    
-async function Finish(v,version){
-    console.log("Versions registred");
-    await promises.writeFile("exist.json",JSON.stringify(version_registred,null,"  "));
-    console.log("Loggin as Con's Pet")
-    await System('git config --global user.name "Cons Pet"');
-    await System('git config --global user.email "conmaster2112@gmail.com"');
-    console.log("Commit");
-    await System("git add .");
-    await System(`git commit -m \"New ${v} v${GetEngine(version)}\"`);
-    console.log("Push");
-    await System("git push --force origin " + v);
-    if(v==="stable") {
-        console.log("New Branch stable-" + GetEngine(version));
-        await System("git checkout -b stable-" + GetEngine(version));
-        await System("git push -u origin stable-" + GetEngine(version));
     }
-    console.log("Done..."); 
-}
-async function Generate(v,version){
-    globalThis.console.log("Moving from main branch to " + v);
-    await System(`git checkout ${v} || git checkout -b ${v}`);
-    const console = Logger("[BDS Downloader]");
-    console.log("Downloading started. . .");
-    await Download("bin",version,OSSYSTEM,v.toLowerCase() === "preview").catch(er=>{
-        console.error(er.message);
-        console.error("Fails to download bds: " + version);
-        exit(1);
-    });
-    console.log("Successfully Downloaded: " + OSSYSTEM);
-    runDocs(v,version).catch(er=>{globalThis.console.error(er.message); exit(1);});
-}
-async function runDocs(v,version){
-    const console = Logger("[Docs Generator]");
-    console.log("Writing test_config.json");
-    await promises.writeFile([bin,test_config].join("/"),test_config_data);
-    console.log("Executing BDS in " + OSSYSTEM);
-    globalThis.console.log("///////////////////////// Bedrock Dedicated Server ///////////////////////////");
-    const time = Date.now();
-    if(OSSYSTEM === "win"){
-        await System("call bedrock_server.exe",bin,60_000,"   ").catch(er=>{
-            console.error(er.message);
-            exit(1);
-        });
-    }else{
-        await System("chmod +x ./bin/bedrock_server",".",5_000).catch().catch(er=>{
-            console.error(er.message);
-            exit(1);
-        });
-        await System("LD_LIBRARY_PATH=. ./bedrock_server",bin,60_000,"    ").catch(er=>{
-            console.error(er.message);
-            exit(1);
-        });
-    }
-    globalThis.console.log("///////////////////////// Bedrock Dedicated Server ///////////////////////////");
-    if(existsSync(docs_generated)) {
-        console.log("Successfully Generated in " + (Date.now() - time) + "ms");
-        CopyFiles(v,version).catch(er=>{
-            global.console.error(er.message);
-            exit(1);
-        });
-        DoFiles(docs_generated + "/script_modules",declarations, (file, data)=>{
-            const Json = JSON.parse(data.toString());
-            const script_module = new ScriptModule(Json);
-            return [file.replace(".json",".d.ts"),script_module.toString()];
-        }).then(()=>Finish(v,version)).catch(er=>{
-            global.console.error(er.message);
-            exit(1);
-        });
-    }else{
-        console.error("Generating Docs doesn't success, folder not found './bin/docs'");
-        exit(1);
-    }
-    //console.log((await promises.readFile(".\\bin\\docs\\script_modules\\@minecraft\\server-ui_1.0.0.json")).toString());
-}
-async function CopyFiles(v,version){
-    const console = Logger("[Moving Files]");
-    for (let file of FileTree(docs_generated)) {
-        console.log(file);
-        const data = await promises.readFile([docs_generated,file].join("/"));
-        const makedir = await promises.mkdir(path.dirname([docs_cleaned,file].join("/")),{recursive:true});
-        await promises.writeFile([docs_cleaned,file].join("/"),data);
-    }
-}
-async function DoFiles(fr,to,changeMethod){
-    const console = Logger("[Generating Docs Files]");
-    for (let file of FileTree(fr)) {
-        const data = await promises.readFile([fr,file].join("/"));
-        const makedir = await promises.mkdir(path.dirname([to,file].join("/")),{recursive:true});
-        const [newF,newData] = changeMethod(file,data);
-        console.log("Generated types  ->  " + newF);
-        await promises.writeFile([to,newF].join("/"),newData);
-    }
-}
-async function CompareLatestVersions(){
-    const console = Logger("[Checking Versions]");
-    console.log("Checking for Updates . . .");
-    
-    //----------------------------------------------------------------------------------
-    
-    console.log("Getting versions"); 
-    let response = (await SafeDownload(bds_versions_link,console)).toString();
-    if(response == github_notfound) {
-        console.error("File not found: " + bds_versions_link);
-        process.exit(1);
-    }
-    const {linux:{stable,preview}} = SafeParse(response);
-    const engine = GetEngine(stable);
-    console.log("Stable Version: " + engine);
-    console.log("Preview Version: " + preview);
+    async _generateTypes(check){
 
-    //----------------------------------------------------------------------------------
-    if(!await CheckForExist("stable",engine,console)) {
-        Object.assign(version_registred, {
-            "build-version":stable,
-            "version":engine
-        })
-        _preview = false;
-        console.log("New Stable Version Found: " + engine);
-        Generate("stable",stable);
-        return;
     }
-    if(!await CheckForExist("preview",preview,console)) {
-        Object.assign(version_registred, {
-            "build-version":preview,
-            "version":preview
-        })
-        _preview = true;
-        console.log("New Stable Version Found: " + preview);
-        Generate("preview",preview);
-        return;
-    }
-    console.log("Docs are up to date");
-}
-async function System(cmd,cwd = ".",timeout=undefined,prefix=""){
-    return new Promise((resolve, reject) => {
-        const child = exec(cmd, {cwd, windowsHide: true,timeout}, function(){});
-        process.stdout.write(prefix);
-        child.stdout.on('data', (data) => {
-            process.stdout.write(data.replaceAll("\n","\n" + prefix));
-        });
-      
-        child.stderr.on('data', (data) => {
-            process.stderr.write(data.replaceAll("\n","\n" + prefix));
-        });
-      
-        child.on('error', (error) => {
-          console.error(`exec error: ${error.message}`);
-          reject(error);
-        });
-      
-        child.on('exit', (code, signal) => {
-          if (code !== 0) {
-            reject(new Error(`Process exited with code ${code} and signal ${signal}`));
-          } else {
-            resolve();
-          }
-        });
-      }).then(()=>process.stdout.write("\n"));
-}
-async function CheckForExist(v,version,console){
-    console.log("Checking for " + v);
-    let versionLink = exist_link(v);
-    let response = (await SafeDownload(versionLink,console)).toString();
-    if(response === github_notfound) {
-        console.error(`Can't target to ${v} -> exist.json`);
-        exit(1);
-    }
-    const {"build-version":bv,"version":vv} = SafeParse(response,console);
-    console.log(`Version compare: ${vv} === ${version}`);
-    return version==vv;
-}
-function GetEngine(v){
-    const [major,minor,base] = v.split(".");
-    return [major,minor,StableVersion(base)].join(".");
-}
-function SafeParse(data,console = globalThis.console){
-    try {
-        return JSON.parse(data);
-    } catch (error) {
-        console.error(error.message);
-        exit(1);
+    async Start(){
+        await this._setup();
+        const check = await this._versionCheck();
+        if(!check) return console.log("No version available");
+        const {version,isPreview} = check;
+        console.log(isPreview?"Preview:":"Stable:",isPreview?version:GetEngine(version));
+        console.log("Downloading BDS");
+        if(!await this._downloadBDS(check)) return;
+        console.log("Setup BDS");
+        await this._setupBDS();
+        console.log("Running BDS");
+        await this._runBDS("//// ");
+        console.log("Running types");
+        for (const n of LoadScriptModules("bin/docs/script_modules/@minecraft").values()) {
+            const m = new ScriptModule(JSON.parse((await promises.readFile("bin/docs/script_modules/@minecraft/" + n.fileName + ".json")).toString()));
+            await promises.writeFile("types/" + n.fileName + ".d.ts",m.toString());
+        }
+        console.log("Done");
     }
 }
-async function SafeDownload(link,console = globalThis.console){
-    const {error,data} = await SafeDownloadContent(link);
-    if(error){
-        console.error(error.message);
-        exit(1);
-    }
-    return data;
-}
-function StableVersion(num){
-    if(num.length === 1) return "0";
-    else {
-        return num[0] + "0".repeat(num.length - 1);
-    }
-}
-function Logger(text,console=globalThis.console){
-    const {log,error,warn} = console;
-    return Object.assign({},{
-        log:log.bind(console,text),
-        error:error.bind(console,text),
-        warn:warn.bind(console,text),
-    });
-}
-function *FileTree(base,paths = []){
-    for (const entry of readdirSync([base,...paths].join("/"),{withFileTypes:true})) {
-        if(entry.isFile()) yield [...paths,entry.name].join("/");
-        else if(entry.isDirectory()) yield*FileTree(base,[...paths,entry.name]);
-    }
-}
+
+const updater = new Updater(data.resources);
+updater.Start().catch(er=>console.error(er,er.stack));

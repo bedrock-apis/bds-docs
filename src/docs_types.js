@@ -211,7 +211,7 @@ class ModuleInterface extends ModuleMemberHasProperties{
     exportFrom(m){return `export interface ${this.name} {${this.properties.length?`${this.properties.map(e=>`${e.isStatic?"static ":""}${e.isReadOnly?"readonly ":""}${safePropertyName(e.name)}${e.type instanceof OptionalType?"?":""}: ${e.type.toString(m)}`).join(", ")}`:" "}}`;}
 }
 class ModuleError extends ModuleMemberHasProperties{
-    exportFrom(m){return `export class ${this.name} extends Error { private constructor()${this.properties.length?`, ${this.properties.map(e=>`${e.isStatic?"static ":""}${e.isReadOnly?"readonly ":""}${safePropertyName(e.name)}${e.type instanceof OptionalType?"?":""}: ${e.type.toString(m)}`).join(", ")}`:" "}}`}
+    exportFrom(m){return `export class ${this.name} extends Error { private constructor()${this.properties.length?`; ${this.properties.map(e=>`${e.isStatic?"static ":""}${e.isReadOnly?"readonly ":""}${safePropertyName(e.name)}${e.type instanceof OptionalType?"?":""}: ${e.type.toString(m)}`).join("; ")}`:" "}}`}
 }
 class ModuleValue extends ModuleMember{
     constructor(data){
