@@ -82,7 +82,7 @@ class Type{
 }
 class StringType extends Type{toString(m){return "string";}; fromValue(m,v){return `"${v}"`;}}
 class NumberType extends Type{toString(m){return "number";}; fromValue(m,v){return `${v}`;}}
-class BooleanType extends Type{toString(m){return "number";}; fromValue(m,v){return `${v}`;}}
+class BooleanType extends Type{toString(m){return "boolean";}; fromValue(m,v){return `${v}`;}}
 
 class AnyType extends Type{toString(m){return "any"}}
 class UndefinedType extends Type{toString(m){return "void"}}

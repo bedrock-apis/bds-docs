@@ -1,8 +1,9 @@
 const { ScriptModule } = require("./docs_types");
 const data = require("./data");
-const { promises, writeFile, existsSync } = require("fs");
+const { promises, writeFile, existsSync, readFile, readFileSync } = require("fs");
 const { Download: DownloadBDS } = require("./download");
 const { NBTFile } = require("./NBT_Reader");
+
 const {
     GetEngine,
     GetGithubFile,
