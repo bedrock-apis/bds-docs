@@ -85,7 +85,7 @@ class NumberType extends Type{toString(m){return "number";}; fromValue(m,v){retu
 class BooleanType extends Type{toString(m){return "boolean";}; fromValue(m,v){return `${v}`;}}
 
 class AnyType extends Type{toString(m){return "any"}}
-class UndefinedType extends Type{toString(m){return "void"}}
+class UndefinedType extends Type{toString(m){return this.isReturnType?"void":"undefined"}}
 class ComplexType extends Type{
     constructor(type,complexProperty){
         super(type);
@@ -105,6 +105,15 @@ class PromiseType extends ComplexType{
         super(type,"promise_type");
     }
     toString(m){return `Promise<${this.type.toString(m)}>`}
+}
+class GeneratorType extends Type{
+    constructor(type){
+        super(type);
+        this.nextType = TypeResolver(type.generator_type.next_type);
+        this.returnType = TypeResolver(type.generator_type.return_type);
+        this.yieldType = TypeResolver(type.generator_type.yield_type);
+    }
+    toString(m){return `Generator<${this.nextType.toString(m)},${this.returnType.toString(m)},${this.yieldType.toString(m)}>`}
 }
 class ClosureType extends Type{
     constructor(data){
@@ -174,8 +183,9 @@ const KnownTypeContructors = {
     'closure':ClosureType,
     'undefined':UndefinedType,
     'promise':PromiseType,
+    'generator':GeneratorType,
     'map':RecordType,
-    'any':AnyType
+    'any':AnyType,
 }
 
 
@@ -249,6 +259,7 @@ class ModuleFunction extends ModuleValue{
         this.privilege = data.privilege;
         this.arguments = data.arguments.map(a=>new ModuleFunctionParams(a));
         this.returnType = TypeResolver(data.return_type);
+        this.returnType.isReturnType = true;
     }
     exportFrom(m){return `export function ${this.name}(${this.buildParams(m)}): ${this.returnType.toString(m)}`}
     buildParams(m){
