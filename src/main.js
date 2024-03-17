@@ -29,13 +29,21 @@ const OSSYSTEM = os.platform() === "win32"?"win":"linux";
 
 // CompareLatestVersions();
 runDocs("preview","1.20.80.22");
-    
+
+async function Preload(v){
+    console.log("Loggin as 'Documentation Manager Bot'")
+    await System('git config --global user.name "Documentation Manager Bot"');
+    await System('git config --global user.email "conmaster2112@gmail.com"');
+    await System(`git checkout ${v}`);
+}
+
 async function Finish(v,version){
     console.log("Versions registred");
     await promises.writeFile("exist.json",JSON.stringify(version_registred,null,"  "));
     console.log("Loggin as 'Documentation Manager Bot'")
     await System('git config --global user.name "Documentation Manager Bot"');
     await System('git config --global user.email "conmaster2112@gmail.com"');
+    await System(`git checkout ${v}`);
     console.log("Commit");
     await System("git add .");
     await System(`git commit -m \"New ${v} v${v==="stable"?GetEngine(version):version}\"`);
@@ -149,6 +157,7 @@ async function CompareLatestVersions(){
         })
         _preview = false;
         console.log("New Stable Version Found: " + engine);
+        await Preload("stable");
         Generate("stable",stable);
         return;
     }
@@ -159,6 +168,7 @@ async function CompareLatestVersions(){
         })
         _preview = true;
         console.log("New Stable Version Found: " + preview);
+        await Preload("preview");
         Generate("preview",preview);
         return;
     }
