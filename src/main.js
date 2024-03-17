@@ -43,7 +43,8 @@ async function Preload(v){
     await System('git config --global user.name "Documentation Manager Bot"');
     await System('git config --global user.email "conmaster2112@gmail.com"');
     await System(`git checkout ${v}`);
-    writeFile(".gitignore", git_ignore);
+    await writeFile(".gitignore", git_ignore);
+    console.log("GIT INGORE WRITTEN!");
 }
 
 async function Finish(v,version){
