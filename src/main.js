@@ -5,6 +5,7 @@ const os = require("os");
 const { promises, existsSync, readdirSync } = require("fs");
 const path = require("path");
 const { ScriptModule } = require("./d.tsGenerator.js");
+const { writeFile } = require("fs/promises");
 const bds_versions_link = "https://raw.githubusercontent.com/Bedrock-OSS/BDS-Versions/main/versions.json";
 const exist_link = (branch) => `https://raw.githubusercontent.com/Bedrock-APIs/bds-docs/${branch}/exist.json`;
 const github_notfound = "404: Not Found";
@@ -25,6 +26,13 @@ const version_registred = {
     ],
     "script_modules":[]
 };
+const git_ignore = `
+bin/
+bds/
+node_modules/
+private/
+test/
+`;
 const OSSYSTEM = os.platform() === "win32"?"win":"linux";
 
 
@@ -35,6 +43,7 @@ async function Preload(v){
     await System('git config --global user.name "Documentation Manager Bot"');
     await System('git config --global user.email "conmaster2112@gmail.com"');
     await System(`git checkout ${v}`);
+    writeFile(".gitignore", git_ignore);
 }
 
 async function Finish(v,version){
