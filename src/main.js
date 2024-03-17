@@ -206,7 +206,7 @@ async function CheckForExist(v,version,console){
     let response = (await SafeDownload(versionLink,console)).toString();
     if(response === github_notfound) {
         console.error(`Can't target to ${v} -> exist.json`);
-        exit(1);
+        return false;
     }
     const {"build-version":bv,"version":vv} = SafeParse(response,console);
     console.log(`Version compare: ${vv} === ${version}`);
