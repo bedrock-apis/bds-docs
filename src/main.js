@@ -19,21 +19,31 @@ const declarations = "./script_types";
 const version_registred = {
     "build-version":"1.0.0.0",
     "version":"1.0.0.0",
-    "glags":[
-        "generated_types"
-    ]
+    "flags":[
+        "generated_types",
+        "script_module_list"
+    ],
+    "script_modules":[]
 };
 const OSSYSTEM = os.platform() === "win32"?"win":"linux";
 
 
 CompareLatestVersions();
-    
+
+async function Preload(v){
+    console.log("Loggin as 'Documentation Manager Bot'")
+    await System('git config --global user.name "Documentation Manager Bot"');
+    await System('git config --global user.email "conmaster2112@gmail.com"');
+    await System(`git checkout ${v}`);
+}
+
 async function Finish(v,version){
     console.log("Versions registred");
     await promises.writeFile("exist.json",JSON.stringify(version_registred,null,"  "));
     console.log("Loggin as 'Documentation Manager Bot'")
     await System('git config --global user.name "Documentation Manager Bot"');
     await System('git config --global user.email "conmaster2112@gmail.com"');
+    await System(`git checkout ${v}`);
     console.log("Commit");
     await System("git add .");
     await System(`git commit -m \"New ${v} v${v==="stable"?GetEngine(version):version}\"`);
@@ -91,6 +101,7 @@ async function runDocs(v,version){
         DoFiles(docs_generated + "/script_modules",declarations, (file, data)=>{
             const Json = JSON.parse(data.toString());
             const script_module = new ScriptModule(Json);
+            version_registred.script_modules.push(file);
             return [file.replace(".json",".d.ts"),script_module.toString()];
         }).then(()=>Finish(v,version)).catch(er=>{
             global.console.error(er.message);
@@ -146,6 +157,7 @@ async function CompareLatestVersions(){
         })
         _preview = false;
         console.log("New Stable Version Found: " + engine);
+        await Preload("stable");
         Generate("stable",stable);
         return;
     }
@@ -156,6 +168,7 @@ async function CompareLatestVersions(){
         })
         _preview = true;
         console.log("New Stable Version Found: " + preview);
+        await Preload("preview");
         Generate("preview",preview);
         return;
     }
