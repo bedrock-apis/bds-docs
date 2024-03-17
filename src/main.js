@@ -20,15 +20,15 @@ const version_registred = {
     "build-version":"1.0.0.0",
     "version":"1.0.0.0",
     "flags":[
-        "generated_types"
+        "generated_types",
+        "script_module_list"
     ],
     "script_modules":[]
 };
 const OSSYSTEM = os.platform() === "win32"?"win":"linux";
 
 
-// CompareLatestVersions();
-runDocs("preview","1.20.80.22");
+CompareLatestVersions();
 
 async function Preload(v){
     console.log("Loggin as 'Documentation Manager Bot'")
