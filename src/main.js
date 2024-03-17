@@ -22,9 +22,11 @@ const version_registred = {
     "version":"1.0.0.0",
     "flags":[
         "generated_types",
-        "script_module_list"
+        "script_module_list",
+        "module_mapping"
     ],
-    "script_modules":[]
+    "script_modules":[],
+    "script_modules_mapping":{},
 };
 const git_ignore = `
 bin/
@@ -111,6 +113,10 @@ async function runDocs(v,version){
         DoFiles(docs_generated + "/script_modules",declarations, (file, data)=>{
             const Json = JSON.parse(data.toString());
             const script_module = new ScriptModule(Json);
+            const {name, uuid, version} = script_module;
+            const data = version_registred.script_modules_mapping[name] =  version_registred.script_modules_mapping[name]??{versions:[]};
+            data.uuid = uuid;
+            data.versions.push(version);
             version_registred.script_modules.push(file);
             return [file.replace(".json",".d.ts"),script_module.toString()];
         }).then(()=>Finish(v,version)).catch(er=>{
