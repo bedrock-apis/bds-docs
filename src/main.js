@@ -19,14 +19,16 @@ const declarations = "./script_types";
 const version_registred = {
     "build-version":"1.0.0.0",
     "version":"1.0.0.0",
-    "glags":[
+    "flags":[
         "generated_types"
-    ]
+    ],
+    "script_modules":[]
 };
 const OSSYSTEM = os.platform() === "win32"?"win":"linux";
 
 
-CompareLatestVersions();
+// CompareLatestVersions();
+Generate("preview","1.20.80.22");
     
 async function Finish(v,version){
     console.log("Versions registred");
@@ -91,6 +93,7 @@ async function runDocs(v,version){
         DoFiles(docs_generated + "/script_modules",declarations, (file, data)=>{
             const Json = JSON.parse(data.toString());
             const script_module = new ScriptModule(Json);
+            console.log("HERE the files: " + file);
             return [file.replace(".json",".d.ts"),script_module.toString()];
         }).then(()=>Finish(v,version)).catch(er=>{
             global.console.error(er.message);
