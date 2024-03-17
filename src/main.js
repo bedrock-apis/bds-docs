@@ -28,7 +28,7 @@ const OSSYSTEM = os.platform() === "win32"?"win":"linux";
 
 
 // CompareLatestVersions();
-Generate("preview","1.20.80.22");
+runDocs("preview","1.20.80.22");
     
 async function Finish(v,version){
     console.log("Versions registred");
@@ -93,7 +93,7 @@ async function runDocs(v,version){
         DoFiles(docs_generated + "/script_modules",declarations, (file, data)=>{
             const Json = JSON.parse(data.toString());
             const script_module = new ScriptModule(Json);
-            console.log("HERE the files: " + file);
+            version_registred.script_modules.push(file);
             return [file.replace(".json",".d.ts"),script_module.toString()];
         }).then(()=>Finish(v,version)).catch(er=>{
             global.console.error(er.message);
