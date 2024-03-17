@@ -114,9 +114,9 @@ async function runDocs(v,version){
             const Json = JSON.parse(data.toString());
             const script_module = new ScriptModule(Json);
             const {name, uuid, version} = script_module;
-            const data = version_registred.script_modules_mapping[name] =  version_registred.script_modules_mapping[name]??{versions:[]};
-            data.uuid = uuid;
-            data.versions.push(version);
+            const ddd = version_registred.script_modules_mapping[name] =  version_registred.script_modules_mapping[name]??{versions:[]};
+            ddd.uuid = uuid;
+            ddd.versions.push(version);
             version_registred.script_modules.push(file);
             return [file.replace(".json",".d.ts"),script_module.toString()];
         }).then(()=>Finish(v,version)).catch(er=>{
