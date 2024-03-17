@@ -217,16 +217,20 @@ async function System(cmd,cwd = ".",timeout=undefined,prefix=""){
       }).then(()=>process.stdout.write("\n"));
 }
 async function CheckForExist(v,version,console){
-    console.log("Checking for " + v);
-    let versionLink = exist_link(v);
-    let response = (await SafeDownload(versionLink,console)).toString();
-    if(response === github_notfound) {
-        console.error(`Can't target to ${v} -> exist.json`);
+    try {
+        console.log("Checking for " + v);
+        let versionLink = exist_link(v);
+        let response = (await SafeDownload(versionLink,console)).toString();
+        if(response === github_notfound) {
+            console.error(`Can't target to ${v} -> exist.json`);
+            return false;
+        }
+        const {"build-version":bv,"version":vv} = JSON.parse(response,console);
+        console.log(`Version compare: ${vv} === ${version}`);
+        return version==vv;
+    } catch (error) {
         return false;
     }
-    const {"build-version":bv,"version":vv} = SafeParse(response,console);
-    console.log(`Version compare: ${vv} === ${version}`);
-    return version==vv;
 }
 function GetEngine(v){
     const [major,minor,base] = v.split(".");
@@ -237,7 +241,6 @@ function SafeParse(data,console = globalThis.console){
         return JSON.parse(data);
     } catch (error) {
         console.error(error.message);
-        exit(1);
     }
 }
 async function SafeDownload(link,console = globalThis.console){
