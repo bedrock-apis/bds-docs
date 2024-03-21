@@ -41,11 +41,24 @@ export class Block { private constructor(); readonly dimension: Dimension; reado
 //@ts-ignore allow class inheritance for native classes
 export class BlockComponent extends Component{ private constructor(); readonly block: Block}
 //@ts-ignore allow class inheritance for native classes
+export class BlockComponentEntityFallOnEvent extends BlockEvent{ private constructor(); readonly entity?: Entity; readonly fallDistance: number}
+//@ts-ignore allow class inheritance for native classes
+export class BlockComponentOnPlaceEvent extends BlockEvent{ private constructor(); readonly previousBlock: BlockPermutation}
+//@ts-ignore allow class inheritance for native classes
+export class BlockComponentPlayerDestroyEvent extends BlockEvent{ private constructor(); readonly destroyedBlockPermutation: BlockPermutation; readonly player?: Player}
+//@ts-ignore allow class inheritance for native classes
+export class BlockComponentPlayerInteractEvent extends BlockEvent{ private constructor(); readonly face: Direction; readonly faceLocation?: Vector3; readonly player?: Player}
+//@ts-ignore allow class inheritance for native classes
+export class BlockComponentPlayerPlaceBeforeEvent extends BlockEvent{ private constructor(); cancel: boolean; readonly face: Direction; permutationToPlace: BlockPermutation; readonly player?: Player}
+//@ts-ignore allow class inheritance for native classes
 export class BlockComponentRandomTickEvent extends BlockEvent{ private constructor()}
+export class BlockComponentRegistry { private constructor(); registerCustomComponent(name: string, customComponent: BlockCustomComponent): void}
 //@ts-ignore allow class inheritance for native classes
 export class BlockComponentStepOffEvent extends BlockEvent{ private constructor(); readonly entity?: Entity}
 //@ts-ignore allow class inheritance for native classes
 export class BlockComponentStepOnEvent extends BlockEvent{ private constructor(); readonly entity?: Entity}
+//@ts-ignore allow class inheritance for native classes
+export class BlockComponentTickEvent extends BlockEvent{ private constructor()}
 export class BlockEvent { private constructor(); readonly block: Block; readonly dimension: Dimension}
 //@ts-ignore allow class inheritance for native classes
 export class BlockExplodeAfterEvent extends BlockEvent{ private constructor(); readonly explodedBlockPermutation: BlockPermutation; readonly source?: Entity}
@@ -71,7 +84,6 @@ export class BlockSnowContainerComponent extends BlockLiquidContainerComponent{ 
 export class BlockStates { private constructor(); static get(stateName: string): BlockStateType; static getAll(): BlockStateType[]}
 export class BlockStateType { private constructor(); readonly id: string; readonly validValues: boolean | number | string[]}
 export class BlockType { private constructor(); readonly canBeWaterlogged: boolean; readonly id: string}
-export class BlockTypeRegistry { private constructor(); registerCustomComponent(name: string, customComponent: BlockCustomComponent): void}
 export class BlockTypes { private constructor(); static get(typeName: string): BlockType; static getAll(): BlockType[]}
 //@ts-ignore allow class inheritance for native classes
 export class BlockVolume extends BlockVolumeBase{ constructor(from: Vector3, to: Vector3); from: Vector3; to: Vector3; doesLocationTouchFaces(pos: Vector3): boolean; doesVolumeTouchFaces(other: BlockVolume): boolean; intersects(other: BlockVolume): BlockVolumeIntersection}
@@ -95,7 +107,7 @@ export class Container { private constructor(); readonly emptySlotsCount: number
 export class ContainerSlot { private constructor(); amount: number; readonly isStackable: boolean; keepOnDeath: boolean; lockMode: ItemLockMode; readonly maxAmount: number; nameTag?: string; readonly 'type': ItemType; readonly typeId: string; clearDynamicProperties(): void; getCanDestroy(): string[]; getCanPlaceOn(): string[]; getDynamicProperty(identifier: string): boolean | number | number | string | Vector3; getDynamicPropertyIds(): string[]; getDynamicPropertyTotalByteCount(): number; getItem(): ItemStack; getLore(): string[]; getTags(): string[]; hasItem(): boolean; hasTag(tag: string): boolean; isStackableWith(itemStack: ItemStack): boolean; isValid(): boolean; setCanDestroy(blockIdentifiers?: string[]): void; setCanPlaceOn(blockIdentifiers?: string[]): void; setDynamicProperty(identifier: string, value?: boolean | number | number | string | Vector3): void; setItem(itemStack?: ItemStack): void; setLore(loreList?: string[]): void}
 export class DataDrivenEntityTriggerAfterEvent { private constructor(); readonly entity: Entity; readonly eventId: string; getModifiers(): DefinitionModifier[]}
 export class DataDrivenEntityTriggerAfterEventSignal { private constructor(); subscribe(callback: (arg0: DataDrivenEntityTriggerAfterEvent)=>undefined, options?: EntityDataDrivenTriggerEventOptions): (arg0: DataDrivenEntityTriggerAfterEvent)=>undefined; unsubscribe(callback: (arg0: DataDrivenEntityTriggerAfterEvent)=>undefined): void}
-export class Dimension { private constructor(); readonly heightRange: _00.NumberRange; readonly id: string; containsBlock(volume: BlockVolumeBase, filter: BlockFilter, allowUnloadedChunks: boolean): boolean; createExplosion(location: Vector3, radius: number, explosionOptions?: ExplosionOptions): boolean; fillBlocks(begin: Vector3, end: Vector3, block: BlockPermutation | BlockType | string, options?: BlockFillOptions): number; findClosestBiome(pos: Vector3, biomeToFind: BiomeType | string, options?: BiomeSearchOptions): Vector3; getBlock(location: Vector3): Block; getBlockFromRay(location: Vector3, direction: Vector3, options?: BlockRaycastOptions): BlockRaycastHit; getBlocks(volume: BlockVolumeBase, filter: BlockFilter, allowUnloadedChunks: boolean): ListBlockVolume; getEntities(options?: EntityQueryOptions): Entity[]; getEntitiesAtBlockLocation(location: Vector3): Entity[]; getEntitiesFromRay(location: Vector3, direction: Vector3, options?: EntityRaycastOptions): EntityRaycastHit[]; getPlayers(options?: EntityQueryOptions): Player[]; getWeather(): WeatherType; playSound(soundId: string, location: Vector3, soundOptions?: WorldSoundOptions): void; runCommand(commandString: string): CommandResult; runCommandAsync(commandString: string): Promise<CommandResult>; setBlockPermutation(location: Vector3, permutation: BlockPermutation): void; setBlockType(location: Vector3, blockType: BlockType | string): void; setWeather(weatherType: WeatherType, duration?: number): void; spawnEntity(identifier: string, location: Vector3): Entity; spawnItem(itemStack: ItemStack, location: Vector3): Entity; spawnParticle(effectName: string, location: Vector3, molangVariables?: MolangVariableMap): void}
+export class Dimension { private constructor(); readonly heightRange: _00.NumberRange; readonly id: string; containsBlock(volume: BlockVolumeBase, filter: BlockFilter, allowUnloadedChunks: boolean): boolean; createExplosion(location: Vector3, radius: number, explosionOptions?: ExplosionOptions): boolean; fillBlocks(begin: Vector3, end: Vector3, block: BlockPermutation | BlockType | string, options?: BlockFillOptions): number; findClosestBiome(pos: Vector3, biomeToFind: BiomeType | string, options?: BiomeSearchOptions): Vector3; getBlock(location: Vector3): Block; getBlockFromRay(location: Vector3, direction: Vector3, options?: BlockRaycastOptions): BlockRaycastHit; getBlocks(volume: BlockVolumeBase, filter: BlockFilter, allowUnloadedChunks: boolean): ListBlockVolume; getEntities(options?: EntityQueryOptions): Entity[]; getEntitiesAtBlockLocation(location: Vector3): Entity[]; getEntitiesFromRay(location: Vector3, direction: Vector3, options?: EntityRaycastOptions): EntityRaycastHit[]; getPlayers(options?: EntityQueryOptions): Player[]; getWeather(): WeatherType; playSound(soundId: string, location: Vector3, soundOptions?: WorldSoundOptions): void; runCommand(commandString: string): CommandResult; runCommandAsync(commandString: string): Promise<CommandResult>; setBlockPermutation(location: Vector3, permutation: BlockPermutation): void; setBlockType(location: Vector3, blockType: BlockType | string): void; setWeather(weatherType: WeatherType, duration?: number): void; spawnEntity(identifier: string, location: Vector3, options?: SpawnEntityOptions): Entity; spawnItem(itemStack: ItemStack, location: Vector3): Entity; spawnParticle(effectName: string, location: Vector3, molangVariables?: MolangVariableMap): void}
 export class DimensionType { private constructor(); readonly typeId: string}
 export class DimensionTypes { private constructor(); static get(dimensionTypeId: string): DimensionType; static getAll(): DimensionType[]}
 export class Effect { private constructor(); readonly amplifier: number; readonly displayName: string; readonly duration: number; readonly typeId: string; isValid(): boolean}
@@ -111,7 +123,7 @@ export class Entity { private constructor(); readonly dimension: Dimension; read
 //@ts-ignore allow class inheritance for native classes
 export class EntityAddRiderComponent extends EntityComponent{ private constructor(); static readonly componentId: "minecraft:addrider"; readonly entityType: string; readonly spawnEvent: string}
 //@ts-ignore allow class inheritance for native classes
-export class EntityAgeableComponent extends EntityComponent{ private constructor(); static readonly componentId: "minecraft:ageable"; readonly duration: number; readonly growUp: Trigger; getDropItems(): string[]; getFeedItems(): EntityDefinitionFeedItem[]}
+export class EntityAgeableComponent extends EntityComponent{ private constructor(); static readonly componentId: "minecraft:ageable"; readonly duration: number; readonly growUp: Trigger; readonly transformToItem: string; getDropItems(): string[]; getFeedItems(): EntityDefinitionFeedItem[]}
 //@ts-ignore allow class inheritance for native classes
 export class EntityAttributeComponent extends EntityComponent{ private constructor(); readonly currentValue: number; readonly defaultValue: number; readonly effectiveMax: number; readonly effectiveMin: number; resetToDefaultValue(): void; resetToMaxValue(): void; resetToMinValue(): void; setCurrentValue(value: number): boolean}
 //@ts-ignore allow class inheritance for native classes
@@ -243,7 +255,7 @@ export class EntityRemoveAfterEventSignal { private constructor(); subscribe(cal
 export class EntityRemoveBeforeEvent { private constructor(); readonly removedEntity: Entity}
 export class EntityRemoveBeforeEventSignal { private constructor(); subscribe(callback: (arg0: EntityRemoveBeforeEvent)=>undefined): (arg0: EntityRemoveBeforeEvent)=>undefined; unsubscribe(callback: (arg0: EntityRemoveBeforeEvent)=>undefined): void}
 //@ts-ignore allow class inheritance for native classes
-export class EntityRideableComponent extends EntityComponent{ private constructor(); static readonly componentId: "minecraft:rideable"; readonly controllingSeat: number; readonly crouchingSkipInteract: boolean; readonly interactText: string; readonly pullInEntities: boolean; readonly riderCanInteract: boolean; readonly seatCount: number; addRider(rider: Entity): boolean; ejectRider(rider: Entity): void; ejectRiders(): void; getFamilyTypes(): string[]; getRiders(): Entity[]; getSeats(): Seat[]}
+export class EntityRideableComponent extends EntityComponent{ private constructor(); static readonly componentId: "minecraft:rideable"; readonly controllingSeat: number; readonly crouchingSkipInteract: boolean; readonly interactText: string; readonly passengerMaxWidth: number; readonly pullInEntities: boolean; readonly riderCanInteract: boolean; readonly seatCount: number; addRider(rider: Entity): boolean; ejectRider(rider: Entity): void; ejectRiders(): void; getFamilyTypes(): string[]; getRiders(): Entity[]; getSeats(): Seat[]}
 //@ts-ignore allow class inheritance for native classes
 export class EntityRidingComponent extends EntityComponent{ private constructor(); static readonly componentId: "minecraft:riding"; readonly entityRidingOn: Entity}
 //@ts-ignore allow class inheritance for native classes
@@ -290,6 +302,8 @@ export class ItemCompleteUseAfterEvent { private constructor(); readonly itemSta
 export class ItemCompleteUseAfterEventSignal { private constructor(); subscribe(callback: (arg0: ItemCompleteUseAfterEvent)=>undefined): (arg0: ItemCompleteUseAfterEvent)=>undefined; unsubscribe(callback: (arg0: ItemCompleteUseAfterEvent)=>undefined): void}
 //@ts-ignore allow class inheritance for native classes
 export class ItemComponent extends Component{ private constructor()}
+export class ItemComponentRegistry { private constructor(); registerCustomComponent(name: string, itemCustomComponent: ItemCustomComponent): void}
+export class ItemComponentUseEvent { private constructor(); readonly itemStack?: ItemStack; readonly source: Player}
 //@ts-ignore allow class inheritance for native classes
 export class ItemCooldownComponent extends ItemComponent{ private constructor(); static readonly componentId: "minecraft:cooldown"; readonly cooldownCategory: string; readonly cooldownTicks: number; getCooldownTicksRemaining(player: Player): number; isCooldownCategory(cooldownCategory: string): boolean; startCooldown(player: Player): void}
 //@ts-ignore allow class inheritance for native classes
@@ -390,7 +404,7 @@ export class ScoreboardScoreInfo { private constructor(); readonly participant: 
 export class ScreenDisplay { private constructor(); getHiddenHudElements(): HudElement[]; hideAllExcept(hudElements?: HudElement[]): void; isForcedHidden(hudElement: HudElement): boolean; isValid(): boolean; resetHudElements(): void; setActionBar(text: RawMessage | string[] | RawMessage | string): void; setHudVisibility(visible: HudVisibility, hudElements?: HudElement[]): void; setTitle(title: RawMessage | string[] | RawMessage | string, options?: TitleDisplayOptions): void; updateSubtitle(subtitle: RawMessage | string[] | RawMessage | string): void}
 export class ScriptEventCommandMessageAfterEvent { private constructor(); readonly id: string; readonly initiator?: Entity; readonly message: string; readonly sourceBlock?: Block; readonly sourceEntity?: Entity; readonly sourceType: ScriptEventSource}
 export class ScriptEventCommandMessageAfterEventSignal { private constructor(); subscribe(callback: (arg0: ScriptEventCommandMessageAfterEvent)=>undefined, options?: ScriptEventMessageFilterOptions): (arg0: ScriptEventCommandMessageAfterEvent)=>undefined; unsubscribe(callback: (arg0: ScriptEventCommandMessageAfterEvent)=>undefined): void}
-export class Seat { private constructor(); readonly lockRiderRotation: number; readonly maxRiderCount: number; readonly minRiderCount: number; readonly position: Vector3}
+export class Seat { private constructor(); readonly lockRiderRotation: number; readonly maxRiderCount: number; readonly minRiderCount: number; readonly position: Vector3; readonly seatRotation: number}
 export class ServerMessageAfterEventSignal { private constructor(); subscribe(callback: (arg0: MessageReceiveAfterEvent)=>undefined): (arg0: MessageReceiveAfterEvent)=>undefined; unsubscribe(callback: (arg0: MessageReceiveAfterEvent)=>undefined): void}
 export class Structure { private constructor(); readonly id: string; readonly size: Vector3; getBlockPermutation(location: Vector3): BlockPermutation; getIsWaterlogged(location: Vector3): boolean; isValid(): boolean; saveAs(identifier: string, saveMode?: StructureSaveMode): Structure; saveToWorld(): void; setBlockPermutation(location: Vector3, blockPermutation?: BlockPermutation, waterlogged?: boolean): void}
 export class StructureManager { private constructor(); createEmpty(identifier: string, size: Vector3, saveMode: StructureSaveMode): Structure; createFromWorld(identifier: string, dimension: Dimension, blockVolume: BlockVolume, options?: StructureCreateOptions): Structure; delete(structure: string | Structure): boolean; get(identifier: string): Structure; getIds(): string[]; place(structure: string | Structure, dimension: Dimension, location: Vector3, options?: StructurePlaceOptions): void}
@@ -415,10 +429,10 @@ export class WorldAfterEvents { private constructor(); readonly blockExplode: Bl
 export class WorldBeforeEvents { private constructor(); readonly chatSend: ChatSendBeforeEventSignal; readonly effectAdd: EffectAddBeforeEventSignal; readonly entityRemove: EntityRemoveBeforeEventSignal; readonly explosion: ExplosionBeforeEventSignal; readonly itemUse: ItemUseBeforeEventSignal; readonly itemUseOn: ItemUseOnBeforeEventSignal; readonly playerBreakBlock: PlayerBreakBlockBeforeEventSignal; readonly playerGameModeChange: PlayerGameModeChangeBeforeEventSignal; readonly playerInteractWithBlock: PlayerInteractWithBlockBeforeEventSignal; readonly playerInteractWithEntity: PlayerInteractWithEntityBeforeEventSignal; readonly playerLeave: PlayerLeaveBeforeEventSignal; readonly playerPlaceBlock: PlayerPlaceBlockBeforeEventSignal; readonly weatherChange: WeatherChangeBeforeEventSignal; readonly worldInitialize: WorldInitializeBeforeEventSignal}
 export class WorldInitializeAfterEvent { private constructor()}
 export class WorldInitializeAfterEventSignal { private constructor(); subscribe(callback: (arg0: WorldInitializeAfterEvent)=>undefined): (arg0: WorldInitializeAfterEvent)=>undefined; unsubscribe(callback: (arg0: WorldInitializeAfterEvent)=>undefined): void}
-export class WorldInitializeBeforeEvent { private constructor(); readonly blockTypeRegistry: BlockTypeRegistry}
+export class WorldInitializeBeforeEvent { private constructor(); readonly blockTypeRegistry: BlockComponentRegistry; readonly itemComponentRegistry: ItemComponentRegistry}
 export class WorldInitializeBeforeEventSignal { private constructor(); subscribe(callback: (arg0: WorldInitializeBeforeEvent)=>undefined): (arg0: WorldInitializeBeforeEvent)=>undefined; unsubscribe(callback: (arg0: WorldInitializeBeforeEvent)=>undefined): void}
 export interface BiomeSearchOptions {boundingSize?: Vector3}
-export interface BlockCustomComponent {onRandomTick?: (arg0: BlockComponentRandomTickEvent)=>undefined, onStepOff?: (arg0: BlockComponentStepOffEvent)=>undefined, onStepOn?: (arg0: BlockComponentStepOnEvent)=>undefined}
+export interface BlockCustomComponent {beforeOnPlayerPlace?: (arg0: BlockComponentPlayerPlaceBeforeEvent)=>undefined, onEntityFallOn?: (arg0: BlockComponentEntityFallOnEvent)=>undefined, onPlace?: (arg0: BlockComponentOnPlaceEvent)=>undefined, onPlayerDestroy?: (arg0: BlockComponentPlayerDestroyEvent)=>undefined, onPlayerInteract?: (arg0: BlockComponentPlayerInteractEvent)=>undefined, onRandomTick?: (arg0: BlockComponentRandomTickEvent)=>undefined, onStepOff?: (arg0: BlockComponentStepOffEvent)=>undefined, onStepOn?: (arg0: BlockComponentStepOnEvent)=>undefined, onTick?: (arg0: BlockComponentTickEvent)=>undefined}
 export interface BlockEventOptions {blockTypes?: string[], permutations?: BlockPermutation[]}
 export interface BlockFillOptions {matchingBlock?: BlockPermutation}
 export interface BlockFilter {excludePermutations?: BlockPermutation[], excludeTags?: string[], excludeTypes?: string[], includePermutations?: BlockPermutation[], includeTags?: string[], includeTypes?: string[]}
@@ -454,6 +468,7 @@ export interface EqualsComparison {equals: boolean | number | string}
 export interface ExplosionOptions {allowUnderwater?: boolean, breaksBlocks?: boolean, causesFire?: boolean, source?: Entity}
 export interface GreaterThanComparison {greaterThan: number}
 export interface GreaterThanOrEqualsComparison {greaterThanOrEquals: number}
+export interface ItemCustomComponent {onUse?: (arg0: ItemComponentUseEvent)=>undefined}
 export interface LessThanComparison {lessThan: number}
 export interface LessThanOrEqualsComparison {lessThanOrEquals: number}
 export interface MusicOptions {fade?: number, loop?: boolean, volume?: number}
@@ -469,9 +484,9 @@ export interface RGB {blue: number, green: number, red: number}
 export interface RGBA {alpha: number}
 export interface ScoreboardObjectiveDisplayOptions {objective: ScoreboardObjective, sortOrder?: ObjectiveSortOrder}
 export interface ScriptEventMessageFilterOptions {namespaces: string[]}
+export interface SpawnEntityOptions {initialPersistence?: boolean}
 export interface StructureCreateOptions {includeBlocks?: boolean, includeEntities?: boolean, saveMode?: StructureSaveMode}
 export interface StructurePlaceOptions {animationMode?: StructureAnimationMode, animationSeconds?: number, includeBlocks?: boolean, includeEntities?: boolean, integrity?: number, integritySeed?: string, mirror?: StructureMirrorAxis, rotation?: StructureRotation, waterlogged?: boolean}
-export interface StructureReadOptions {includeBlocks?: boolean, includeEntities?: boolean}
 export interface TeleportOptions {checkForBlocks?: boolean, dimension?: Dimension, facingLocation?: Vector3, keepVelocity?: boolean, rotation?: Vector2}
 export interface TitleDisplayOptions {fadeInDuration: number, fadeOutDuration: number, stayDuration: number, subtitle?: RawMessage | string[] | RawMessage | string}
 export interface Vector2 {x: number, y: number}
@@ -483,6 +498,11 @@ export class EnchantmentTypeNotCompatibleError extends Error { private construct
 export class EnchantmentTypeUnknownIdError extends Error { private constructor() }
 export class InvalidContainerSlotError extends Error { private constructor() }
 export class InvalidStructureError extends Error { private constructor() }
+export class ItemCustomComponentAlreadyRegisteredError extends Error { private constructor() }
+export class ItemCustomComponentNameError extends Error { private constructor() }
+export class ItemCustomComponentReloadNewComponentError extends Error { private constructor() }
+export class ItemCustomComponentReloadNewEventError extends Error { private constructor() }
+export class ItemCustomComponentReloadVersionError extends Error { private constructor() }
 export class LocationInUnloadedChunkError extends Error { private constructor() }
 export class LocationOutOfWorldBoundariesError extends Error { private constructor() }
 export class UnloadedChunksError extends Error { private constructor() }
