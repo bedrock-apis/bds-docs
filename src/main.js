@@ -183,7 +183,7 @@ async function CompareLatestVersions(){
             "version":preview
         })
         _preview = true;
-        console.log("New Stable Version Found: " + preview);
+        console.log("New Preview Version Found: " + preview);
         await Preload("preview");
         Generate("preview",preview);
         return;
@@ -209,7 +209,7 @@ async function System(cmd,cwd = ".",timeout=undefined,prefix=""){
       
         child.on('exit', (code, signal) => {
           if (code !== 0) {
-            reject(new Error(`Process exited with code ${code} and signal ${signal}`));
+            reject(new Error(`Command "${cmd}" exited with code ${code} and signal ${signal}`));
           } else {
             resolve();
           }
