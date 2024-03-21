@@ -41,10 +41,12 @@ const OSSYSTEM = os.platform() === "win32"?"win":"linux";
 CompareLatestVersions();
 
 async function Preload(v){
-    console.log("Loggin as 'Documentation Manager Bot'")
+    console.log("Loggin as 'Documentation Manager Bot'");
     await System('git config --global user.name "Documentation Manager Bot"');
     await System('git config --global user.email "conmaster2112@gmail.com"');
-    await System(`git checkout -f ${v}`);
+    console.log("Logged as 'Documentation Manager Bot'");
+    await System(`git fetch`);
+    await System(`git checkout ${v} -f`);
     await writeFile(".gitignore", git_ignore);
     console.log("GIT INGORE WRITTEN!");
 }
