@@ -4182,6 +4182,103 @@
                "arguments" : [
                   {
                      "details" : null,
+                     "name" : "enchantmentType",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "string"
+                     }
+                  }
+               ],
+               "is_constructor" : true,
+               "name" : "constructor",
+               "privilege" : "read_only",
+               "return_type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : true,
+                  "name" : "EnchantmentType"
+               }
+            }
+         ],
+         "name" : "EnchantmentType",
+         "properties" : [
+            {
+               "is_read_only" : true,
+               "name" : "id",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               }
+            },
+            {
+               "is_read_only" : true,
+               "name" : "maxLevel",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "int32",
+                  "valid_range" : {
+                     "max" : 2147483647,
+                     "min" : -2147483648
+                  }
+               }
+            }
+         ],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "EnchantmentType"
+         }
+      },
+      {
+         "base_types" : [],
+         "constants" : [],
+         "functions" : [
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "enchantmentId",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "string"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : true,
+               "name" : "get",
+               "privilege" : "read_only",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "optional",
+                  "optional_type" : {
+                     "is_bind_type" : true,
+                     "is_errorable" : false,
+                     "name" : "EnchantmentType"
+                  }
+               }
+            }
+         ],
+         "name" : "EnchantmentTypes",
+         "properties" : [],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "EnchantmentTypes"
+         }
+      },
+      {
+         "base_types" : [],
+         "constants" : [],
+         "functions" : [
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
                      "name" : "effectType",
                      "type" : {
                         "is_bind_type" : false,
@@ -10371,6 +10468,341 @@
                   "is_errorable" : false,
                   "name" : "string"
                },
+               "value" : "minecraft:enchantable"
+            }
+         ],
+         "functions" : [
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "enchantment",
+                     "type" : {
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "Enchantment"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "addEnchantment",
+               "privilege" : "none",
+               "return_type" : {
+                  "error_types" : [
+                     {
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "EnchantmentLevelOutOfBoundsError"
+                     },
+                     {
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "EnchantmentTypeNotCompatibleError"
+                     },
+                     {
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "EnchantmentTypeUnknownIdError"
+                     },
+                     {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "Error"
+                     }
+                  ],
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "undefined"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "enchantments",
+                     "type" : {
+                        "element_type" : {
+                           "is_bind_type" : true,
+                           "is_errorable" : false,
+                           "name" : "Enchantment"
+                        },
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "array"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "addEnchantments",
+               "privilege" : "none",
+               "return_type" : {
+                  "error_types" : [
+                     {
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "EnchantmentLevelOutOfBoundsError"
+                     },
+                     {
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "EnchantmentTypeNotCompatibleError"
+                     },
+                     {
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "EnchantmentTypeUnknownIdError"
+                     },
+                     {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "Error"
+                     }
+                  ],
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "undefined"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "enchantment",
+                     "type" : {
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "Enchantment"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "canAddEnchantment",
+               "privilege" : "read_only",
+               "return_type" : {
+                  "error_types" : [
+                     {
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "EnchantmentLevelOutOfBoundsError"
+                     },
+                     {
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "EnchantmentTypeUnknownIdError"
+                     }
+                  ],
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "boolean"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "enchantmentType",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "variant",
+                        "variant_types" : [
+                           {
+                              "is_bind_type" : true,
+                              "is_errorable" : false,
+                              "name" : "EnchantmentType"
+                           },
+                           {
+                              "is_bind_type" : false,
+                              "is_errorable" : false,
+                              "name" : "string"
+                           }
+                        ]
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "getEnchantment",
+               "privilege" : "read_only",
+               "return_type" : {
+                  "error_types" : [
+                     {
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "EnchantmentTypeUnknownIdError"
+                     }
+                  ],
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "optional",
+                  "optional_type" : {
+                     "is_bind_type" : true,
+                     "is_errorable" : false,
+                     "name" : "Enchantment"
+                  }
+               }
+            },
+            {
+               "arguments" : [],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "getEnchantments",
+               "privilege" : "read_only",
+               "return_type" : {
+                  "element_type" : {
+                     "is_bind_type" : true,
+                     "is_errorable" : false,
+                     "name" : "Enchantment"
+                  },
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "array"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "enchantmentType",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "variant",
+                        "variant_types" : [
+                           {
+                              "is_bind_type" : true,
+                              "is_errorable" : false,
+                              "name" : "EnchantmentType"
+                           },
+                           {
+                              "is_bind_type" : false,
+                              "is_errorable" : false,
+                              "name" : "string"
+                           }
+                        ]
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "hasEnchantment",
+               "privilege" : "read_only",
+               "return_type" : {
+                  "error_types" : [
+                     {
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "EnchantmentTypeUnknownIdError"
+                     }
+                  ],
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "boolean"
+               }
+            },
+            {
+               "arguments" : [],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "removeAllEnchantments",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "undefined"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "enchantmentType",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "variant",
+                        "variant_types" : [
+                           {
+                              "is_bind_type" : true,
+                              "is_errorable" : false,
+                              "name" : "EnchantmentType"
+                           },
+                           {
+                              "is_bind_type" : false,
+                              "is_errorable" : false,
+                              "name" : "string"
+                           }
+                        ]
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "removeEnchantment",
+               "privilege" : "none",
+               "return_type" : {
+                  "error_types" : [
+                     {
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "EnchantmentTypeUnknownIdError"
+                     },
+                     {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "Error"
+                     }
+                  ],
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "undefined"
+               }
+            }
+         ],
+         "name" : "ItemEnchantableComponent",
+         "properties" : [
+            {
+               "is_read_only" : true,
+               "name" : "slots",
+               "type" : {
+                  "element_type" : {
+                     "is_bind_type" : true,
+                     "is_errorable" : false,
+                     "name" : "EnchantmentSlot"
+                  },
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "array"
+               }
+            }
+         ],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "ItemEnchantableComponent"
+         }
+      },
+      {
+         "base_types" : [
+            {
+               "is_bind_type" : true,
+               "is_errorable" : false,
+               "name" : "ItemComponent"
+            }
+         ],
+         "constants" : [
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "componentId",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
                "value" : "minecraft:food"
             }
          ],
@@ -16118,12 +16550,97 @@
                "arguments" : [],
                "is_constructor" : false,
                "is_static" : false,
+               "name" : "getHiddenHudElements",
+               "privilege" : "none",
+               "return_type" : {
+                  "element_type" : {
+                     "is_bind_type" : true,
+                     "is_errorable" : false,
+                     "name" : "HudElement"
+                  },
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "array"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : {
+                        "default_value" : "null"
+                     },
+                     "name" : "hudElements",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "optional",
+                        "optional_type" : {
+                           "element_type" : {
+                              "is_bind_type" : true,
+                              "is_errorable" : false,
+                              "name" : "HudElement"
+                           },
+                           "is_bind_type" : false,
+                           "is_errorable" : false,
+                           "name" : "array"
+                        }
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "hideAllExcept",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "undefined"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "hudElement",
+                     "type" : {
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "HudElement"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "isForcedHidden",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "boolean"
+               }
+            },
+            {
+               "arguments" : [],
+               "is_constructor" : false,
+               "is_static" : false,
                "name" : "isValid",
                "privilege" : "read_only",
                "return_type" : {
                   "is_bind_type" : false,
                   "is_errorable" : false,
                   "name" : "boolean"
+               }
+            },
+            {
+               "arguments" : [],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "resetHudElements",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "undefined"
                }
             },
             {
@@ -16175,6 +16692,49 @@
                "is_constructor" : false,
                "is_static" : false,
                "name" : "setActionBar",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "undefined"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "visible",
+                     "type" : {
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "HudVisibility"
+                     }
+                  },
+                  {
+                     "details" : {
+                        "default_value" : "null"
+                     },
+                     "name" : "hudElements",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "optional",
+                        "optional_type" : {
+                           "element_type" : {
+                              "is_bind_type" : true,
+                              "is_errorable" : false,
+                              "name" : "HudElement"
+                           },
+                           "is_bind_type" : false,
+                           "is_errorable" : false,
+                           "name" : "array"
+                        }
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "setHudVisibility",
                "privilege" : "none",
                "return_type" : {
                   "is_bind_type" : false,
@@ -17569,6 +18129,161 @@
       {
          "base_types" : [],
          "constants" : [],
+         "functions" : [],
+         "name" : "WeatherChangeBeforeEvent",
+         "properties" : [
+            {
+               "is_read_only" : false,
+               "name" : "cancel",
+               "privilege" : "read_only",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "boolean"
+               }
+            },
+            {
+               "is_read_only" : false,
+               "name" : "duration",
+               "privilege" : "read_only",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "int32",
+                  "valid_range" : {
+                     "max" : 2147483647,
+                     "min" : -2147483648
+                  }
+               }
+            },
+            {
+               "is_read_only" : false,
+               "name" : "newWeather",
+               "privilege" : "read_only",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "WeatherType"
+               }
+            },
+            {
+               "is_read_only" : true,
+               "name" : "previousWeather",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "WeatherType"
+               }
+            }
+         ],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "WeatherChangeBeforeEvent"
+         }
+      },
+      {
+         "base_types" : [],
+         "constants" : [],
+         "functions" : [
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "callback",
+                     "type" : {
+                        "closure_type" : {
+                           "argument_types" : [
+                              {
+                                 "is_bind_type" : true,
+                                 "is_errorable" : false,
+                                 "name" : "WeatherChangeBeforeEvent"
+                              }
+                           ],
+                           "return_type" : {
+                              "is_bind_type" : false,
+                              "is_errorable" : true,
+                              "name" : "undefined"
+                           }
+                        },
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "closure"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "subscribe",
+               "privilege" : "none",
+               "return_type" : {
+                  "closure_type" : {
+                     "argument_types" : [
+                        {
+                           "is_bind_type" : true,
+                           "is_errorable" : false,
+                           "name" : "WeatherChangeBeforeEvent"
+                        }
+                     ],
+                     "return_type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : true,
+                        "name" : "undefined"
+                     }
+                  },
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "closure"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "callback",
+                     "type" : {
+                        "closure_type" : {
+                           "argument_types" : [
+                              {
+                                 "is_bind_type" : true,
+                                 "is_errorable" : false,
+                                 "name" : "WeatherChangeBeforeEvent"
+                              }
+                           ],
+                           "return_type" : {
+                              "is_bind_type" : false,
+                              "is_errorable" : true,
+                              "name" : "undefined"
+                           }
+                        },
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "closure"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "unsubscribe",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "undefined"
+               }
+            }
+         ],
+         "name" : "WeatherChangeBeforeEventSignal",
+         "properties" : [],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "WeatherChangeBeforeEventSignal"
+         }
+      },
+      {
+         "base_types" : [],
+         "constants" : [],
          "functions" : [
             {
                "arguments" : [],
@@ -18665,6 +19380,15 @@
                   "is_errorable" : false,
                   "name" : "PlayerLeaveBeforeEventSignal"
                }
+            },
+            {
+               "is_read_only" : true,
+               "name" : "weatherChange",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "WeatherChangeBeforeEventSignal"
+               }
             }
          ],
          "type" : {
@@ -18786,6 +19510,36 @@
       }
    ],
    "constants" : [
+      {
+         "is_read_only" : true,
+         "is_static" : true,
+         "name" : "HudElementsCount",
+         "type" : {
+            "is_bind_type" : false,
+            "is_errorable" : false,
+            "name" : "int32",
+            "valid_range" : {
+               "max" : 2147483647,
+               "min" : -2147483648
+            }
+         },
+         "value" : 13
+      },
+      {
+         "is_read_only" : true,
+         "is_static" : true,
+         "name" : "HudVisibilityCount",
+         "type" : {
+            "is_bind_type" : false,
+            "is_errorable" : false,
+            "name" : "int32",
+            "valid_range" : {
+               "max" : 2147483647,
+               "min" : -2147483648
+            }
+         },
+         "value" : 2
+      },
       {
          "is_read_only" : true,
          "is_static" : true,
@@ -19558,6 +20312,220 @@
             }
          ],
          "name" : "EasingType"
+      },
+      {
+         "constants" : [
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "ArmorFeet",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "ArmorFeet"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "ArmorHead",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "ArmorHead"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "ArmorLegs",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "ArmorLegs"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "ArmorTorso",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "ArmorTorso"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "Axe",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "Axe"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "Bow",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "Bow"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "CarrotStick",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "CarrotStick"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "CosmeticHead",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "CosmeticHead"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "Crossbow",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "Crossbow"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "Elytra",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "Elytra"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "FishingRod",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "FishingRod"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "Flintsteel",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "Flintsteel"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "Hoe",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "Hoe"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "Pickaxe",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "Pickaxe"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "Shears",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "Shears"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "Shield",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "Shield"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "Shovel",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "Shovel"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "Spear",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "Spear"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "Sword",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "Sword"
+            }
+         ],
+         "name" : "EnchantmentSlot"
       },
       {
          "constants" : [
@@ -20672,6 +21640,181 @@
             {
                "is_read_only" : true,
                "is_static" : true,
+               "name" : "AirBubbles",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "HudElement"
+               },
+               "value" : 9
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "Armor",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "HudElement"
+               },
+               "value" : 1
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "Crosshair",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "HudElement"
+               },
+               "value" : 4
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "Health",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "HudElement"
+               },
+               "value" : 6
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "HorseHealth",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "HudElement"
+               },
+               "value" : 10
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "Hotbar",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "HudElement"
+               },
+               "value" : 5
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "Hunger",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "HudElement"
+               },
+               "value" : 8
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "ItemText",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "HudElement"
+               },
+               "value" : 12
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "PaperDoll",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "HudElement"
+               },
+               "value" : 0
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "ProgressBar",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "HudElement"
+               },
+               "value" : 7
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "StatusEffects",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "HudElement"
+               },
+               "value" : 11
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "ToolTips",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "HudElement"
+               },
+               "value" : 2
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "TouchControls",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "HudElement"
+               },
+               "value" : 3
+            }
+         ],
+         "name" : "HudElement"
+      },
+      {
+         "constants" : [
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "Hide",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "HudVisibility"
+               },
+               "value" : 0
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "Reset",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "HudVisibility"
+               },
+               "value" : 1
+            }
+         ],
+         "name" : "HudVisibility"
+      },
+      {
+         "constants" : [
+            {
+               "is_read_only" : true,
+               "is_static" : true,
                "name" : "Cooldown",
                "type" : {
                   "is_bind_type" : false,
@@ -20690,6 +21833,17 @@
                   "name" : "string"
                },
                "value" : "minecraft:durability"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "Enchantable",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "minecraft:enchantable"
             },
             {
                "is_read_only" : true,
@@ -21258,6 +22412,33 @@
             "is_bind_type" : true,
             "is_errorable" : false,
             "name" : "CommandError"
+         }
+      },
+      {
+         "name" : "EnchantmentLevelOutOfBoundsError",
+         "properties" : [],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "EnchantmentLevelOutOfBoundsError"
+         }
+      },
+      {
+         "name" : "EnchantmentTypeNotCompatibleError",
+         "properties" : [],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "EnchantmentTypeNotCompatibleError"
+         }
+      },
+      {
+         "name" : "EnchantmentTypeUnknownIdError",
+         "properties" : [],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "EnchantmentTypeUnknownIdError"
          }
       },
       {
@@ -22042,6 +23223,39 @@
       },
       {
          "base_types" : [],
+         "name" : "Enchantment",
+         "properties" : [
+            {
+               "is_read_only" : false,
+               "name" : "level",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "int32",
+                  "valid_range" : {
+                     "max" : 2147483647,
+                     "min" : -2147483648
+                  }
+               }
+            },
+            {
+               "is_read_only" : false,
+               "name" : "type",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "EnchantmentType"
+               }
+            }
+         ],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "Enchantment"
+         }
+      },
+      {
+         "base_types" : [],
          "name" : "EntityApplyDamageByProjectileOptions",
          "properties" : [
             {
@@ -22747,6 +23961,20 @@
                         "max" : 2147483647,
                         "min" : -2147483648
                      }
+                  }
+               }
+            },
+            {
+               "is_read_only" : false,
+               "name" : "volume",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "optional",
+                  "optional_type" : {
+                     "is_bind_type" : true,
+                     "is_errorable" : false,
+                     "name" : "Vector3"
                   }
                }
             }
@@ -24058,5 +25286,5 @@
    ],
    "type_aliases" : [],
    "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
-   "version" : "1.10.0"
+   "version" : "1.11.0"
 }
