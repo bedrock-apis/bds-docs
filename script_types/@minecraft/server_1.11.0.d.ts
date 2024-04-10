@@ -27,20 +27,21 @@ export enum StructureRotation {None = "None", Rotate180 = "Rotate180", Rotate270
 export enum StructureSaveMode {Memory = "Memory", World = "World"}
 export enum TimeOfDay {Day = 1000, Midnight = 18000, Night = 13000, Noon = 6000, Sunrise = 23000, Sunset = 12000}
 export enum WeatherType {Clear = "Clear", Rain = "Rain", Thunder = "Thunder"}
-export class Block { private constructor(); readonly dimension: Dimension; readonly isAir: boolean; readonly isLiquid: boolean; readonly location: Vector3; readonly permutation: BlockPermutation; readonly x: number; readonly y: number; readonly z: number; above(steps?: number): Block; below(steps?: number): Block; bottomCenter(): Vector3; center(): Vector3; east(steps?: number): Block; getComponent(componentId: string): BlockComponent; getItemStack(amount?: number, withData?: boolean): ItemStack; getTags(): string[]; hasTag(tag: string): boolean; isValid(): boolean; north(steps?: number): Block; offset(offset: Vector3): Block; setPermutation(permutation: BlockPermutation): void; south(steps?: number): Block; west(steps?: number): Block}
+export class Block { private constructor(); readonly dimension: Dimension; readonly isAir: boolean; readonly isLiquid: boolean; readonly location: Vector3; readonly permutation: BlockPermutation; readonly 'type': BlockType; readonly typeId: string; readonly x: number; readonly y: number; readonly z: number; above(steps?: number): Block; below(steps?: number): Block; bottomCenter(): Vector3; center(): Vector3; east(steps?: number): Block; getComponent(componentId: string): BlockComponent; getItemStack(amount?: number, withData?: boolean): ItemStack; getTags(): string[]; hasTag(tag: string): boolean; isValid(): boolean; matches(blockName: string, states?: Record<string,boolean | number | string>): boolean; north(steps?: number): Block; offset(offset: Vector3): Block; setPermutation(permutation: BlockPermutation): void; south(steps?: number): Block; west(steps?: number): Block}
 //@ts-ignore allow class inheritance for native classes
 export class BlockComponent extends Component{ private constructor(); readonly block: Block}
 export class BlockEvent { private constructor(); readonly block: Block; readonly dimension: Dimension}
 //@ts-ignore allow class inheritance for native classes
 export class BlockInventoryComponent extends BlockComponent{ private constructor(); static readonly componentId: "minecraft:inventory"; readonly container?: Container}
-export class BlockPermutation { private constructor(); static resolve(blockName: string, states?: Record<string,boolean | number | string>): BlockPermutation; getAllStates(): Record<string,boolean | number | string>; getItemStack(amount?: number): ItemStack; getState(stateName: string): boolean | number | string; matches(blockName: string, states?: Record<string,boolean | number | string>): boolean; withState(name: string, value: boolean | number | string): BlockPermutation}
+export class BlockPermutation { private constructor(); static resolve(blockName: string, states?: Record<string,boolean | number | string>): BlockPermutation; readonly 'type': BlockType; getAllStates(): Record<string,boolean | number | string>; getItemStack(amount?: number): ItemStack; getState(stateName: string): boolean | number | string; matches(blockName: string, states?: Record<string,boolean | number | string>): boolean; withState(name: string, value: boolean | number | string): BlockPermutation}
 //@ts-ignore allow class inheritance for native classes
 export class BlockPistonComponent extends BlockComponent{ private constructor(); static readonly componentId: "minecraft:piston"; readonly isMoving: boolean; readonly state: BlockPistonState; getAttachedBlocks(): Block[]; getAttachedBlocksLocations(): Vector3[]}
 //@ts-ignore allow class inheritance for native classes
 export class BlockSignComponent extends BlockComponent{ private constructor(); static readonly componentId: "minecraft:sign"; readonly isWaxed: boolean; getRawText(side: SignSide): RawText; getText(side: SignSide): string; getTextDyeColor(side: SignSide): DyeColor; setText(message: RawMessage | RawText | string, side: SignSide): void; setTextDyeColor(color?: DyeColor, side?: SignSide): void; setWaxed(waxed: boolean): void}
 export class BlockStates { private constructor(); static get(stateName: string): BlockStateType; static getAll(): BlockStateType[]}
 export class BlockStateType { private constructor(); readonly id: string; readonly validValues: boolean | number | string[]}
-export class BlockType { private constructor()}
+export class BlockType { private constructor(); readonly id: string}
+export class BlockTypes { private constructor(); static get(typeName: string): BlockType; static getAll(): BlockType[]}
 //@ts-ignore allow class inheritance for native classes
 export class ButtonPushAfterEvent extends BlockEvent{ private constructor(); readonly source: Entity}
 //@ts-ignore allow class inheritance for native classes

@@ -4523,6 +4523,34 @@
             },
             {
                "is_read_only" : true,
+               "name" : "items",
+               "type" : {
+                  "element_type" : {
+                     "is_bind_type" : true,
+                     "is_errorable" : false,
+                     "name" : "CompoundBlockVolumeItem"
+                  },
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "array"
+               }
+            },
+            {
+               "is_read_only" : true,
+               "name" : "itemsAbsolute",
+               "type" : {
+                  "element_type" : {
+                     "is_bind_type" : true,
+                     "is_errorable" : false,
+                     "name" : "CompoundBlockVolumeItem"
+                  },
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "array"
+               }
+            },
+            {
+               "is_read_only" : true,
                "name" : "volumeCount",
                "type" : {
                   "is_bind_type" : false,
@@ -15953,6 +15981,43 @@
             {
                "is_bind_type" : true,
                "is_errorable" : false,
+               "name" : "ItemUseOnEvent"
+            }
+         ],
+         "constants" : [],
+         "functions" : [],
+         "name" : "ItemComponentUseOnEvent",
+         "properties" : [
+            {
+               "is_read_only" : true,
+               "name" : "source",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "Entity"
+               }
+            },
+            {
+               "is_read_only" : true,
+               "name" : "usedOnBlockPermutation",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "BlockPermutation"
+               }
+            }
+         ],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "ItemComponentUseOnEvent"
+         }
+      },
+      {
+         "base_types" : [
+            {
+               "is_bind_type" : true,
+               "is_errorable" : false,
                "name" : "ItemComponent"
             }
          ],
@@ -18646,6 +18711,55 @@
          }
       },
       {
+         "base_types" : [],
+         "constants" : [],
+         "functions" : [],
+         "name" : "ItemUseOnEvent",
+         "properties" : [
+            {
+               "is_read_only" : true,
+               "name" : "block",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "Block"
+               }
+            },
+            {
+               "is_read_only" : true,
+               "name" : "blockFace",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "Direction"
+               }
+            },
+            {
+               "is_read_only" : true,
+               "name" : "faceLocation",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "Vector3"
+               }
+            },
+            {
+               "is_read_only" : true,
+               "name" : "itemStack",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "ItemStack"
+               }
+            }
+         ],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "ItemUseOnEvent"
+         }
+      },
+      {
          "base_types" : [
             {
                "is_bind_type" : true,
@@ -20125,7 +20239,7 @@
                "privilege" : "none",
                "return_type" : {
                   "is_bind_type" : false,
-                  "is_errorable" : true,
+                  "is_errorable" : false,
                   "name" : "undefined"
                }
             }
@@ -20293,7 +20407,7 @@
                "privilege" : "none",
                "return_type" : {
                   "is_bind_type" : false,
-                  "is_errorable" : true,
+                  "is_errorable" : false,
                   "name" : "undefined"
                }
             }
@@ -21927,7 +22041,7 @@
                "privilege" : "none",
                "return_type" : {
                   "is_bind_type" : false,
-                  "is_errorable" : true,
+                  "is_errorable" : false,
                   "name" : "undefined"
                }
             }
@@ -22107,7 +22221,7 @@
                "privilege" : "none",
                "return_type" : {
                   "is_bind_type" : false,
-                  "is_errorable" : true,
+                  "is_errorable" : false,
                   "name" : "undefined"
                }
             }
@@ -34053,6 +34167,34 @@
                      "name" : "closure"
                   }
                }
+            },
+            {
+               "is_read_only" : false,
+               "name" : "onUseOn",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "optional",
+                  "optional_type" : {
+                     "closure_type" : {
+                        "argument_types" : [
+                           {
+                              "is_bind_type" : true,
+                              "is_errorable" : false,
+                              "name" : "ItemComponentUseOnEvent"
+                           }
+                        ],
+                        "return_type" : {
+                           "is_bind_type" : false,
+                           "is_errorable" : true,
+                           "name" : "undefined"
+                        }
+                     },
+                     "is_bind_type" : false,
+                     "is_errorable" : false,
+                     "name" : "closure"
+                  }
+               }
             }
          ],
          "type" : {
@@ -35276,7 +35418,7 @@
          }
       }
    ],
-   "minecraft_version" : "1.21.0-beta.20",
+   "minecraft_version" : "1.21.0-beta.21",
    "module_type" : "script",
    "name" : "@minecraft/server",
    "objects" : [
