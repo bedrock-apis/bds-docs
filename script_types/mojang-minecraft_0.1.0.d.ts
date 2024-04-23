@@ -130,8 +130,6 @@ export class EntityLeashableComponent extends IEntityComponent{ private construc
 //@ts-ignore allow class inheritance for native classes
 export class EntityMarkVariantComponent extends IEntityComponent{ private constructor(); value: number}
 //@ts-ignore allow class inheritance for native classes
-export class EntityMountTamingComponent extends IEntityComponent{ private constructor(); setTamed(showParticles: boolean): void}
-//@ts-ignore allow class inheritance for native classes
 export class EntityMovementAmphibiousComponent extends IEntityComponent{ private constructor(); readonly maxTurn: number}
 //@ts-ignore allow class inheritance for native classes
 export class EntityMovementBasicComponent extends IEntityComponent{ private constructor(); readonly maxTurn: number}
@@ -180,6 +178,8 @@ export class EntitySkinIdComponent extends IEntityComponent{ private constructor
 export class EntityStrengthComponent extends IEntityComponent{ private constructor(); readonly max: number; readonly value: number}
 //@ts-ignore allow class inheritance for native classes
 export class EntityTameableComponent extends IEntityComponent{ private constructor(); readonly probability: number; readonly tameItems: string[]; tame(): boolean}
+//@ts-ignore allow class inheritance for native classes
+export class EntityTameMountComponent extends IEntityComponent{ private constructor(); tame(showParticles: boolean): void}
 export class EntityType { private constructor(); readonly id: string}
 export class EntityTypeIterator { private constructor()}
 export class EntityTypes { private constructor(); static get(identifier: string): EntityType; static getAll(): EntityTypeIterator}
@@ -232,7 +232,7 @@ export class MolangVariableMap { constructor(); setColorRGB(variableName: string
 export class MusicOptions { constructor(); fade?: number; loop?: boolean; volume?: number}
 export class NumberRange { private constructor(); max: number; min: number; next(): number}
 //@ts-ignore allow class inheritance for native classes
-export class Player extends Entity{ private constructor(); readonly name: string; selectedSlot: number; getItemCooldown(itemCategory: string): number; playSound(soundId: string, soundOptions?: SoundOptions): void; postClientMessage(id: string, value: string): void; startItemCooldown(itemCategory: string, tickDuration: number): void}
+export class Player extends Entity{ private constructor(); readonly name: string; selectedSlot: number; getItemCooldown(cooldownCategory: string): number; playSound(soundId: string, soundOptions?: SoundOptions): void; postClientMessage(id: string, value: string): void; startItemCooldown(cooldownCategory: string, tickDuration: number): void}
 export class PlayerInventoryComponentContainer { private constructor(); readonly emptySlotsCount: number; readonly size: number; addItem(itemStack: ItemStack): void; getItem(slot: number): ItemStack; setItem(slot: number, itemStack: ItemStack): void; swapItems(slot: number, otherSlot: number, otherContainer: Container): boolean; transferItem(fromSlot: number, toSlot: number, toContainer: Container): boolean}
 export class PlayerIterator { private constructor()}
 export class PlayerJoinEvent { private constructor(); player: Player}
