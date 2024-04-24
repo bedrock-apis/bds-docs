@@ -1,11 +1,11 @@
 {
     "title": "minecraft:repairable v1.20.50",
-    "description": "Repairable item component. Determines the items that can be used to repair this item along with how much durability they repair.",
+    "description": "The repairable item component specifies which items can be used to repair this item, along with how much durability is gained.",
     "type": "object",
     "properties": {
         "repair_items": {
             "title": "sequence container (class std::vector<struct Puv::v1_20_50::RepairableItemComponent::RepairItemEntry,class std::allocator<struct Puv::v1_20_50::RepairableItemComponent::RepairItemEntry> >)",
-            "description": "List of repair item entries. Each entry needs to define a list of strings for `items` that can be used for the repair and an optional `repair_amount` for how much durability is repaired.",
+            "description": "List of repair item entries. Each entry needs to define a list of strings for `items` that can be used for the repair and an optional `repair_amount` for how much durability is gained.",
             "type": "array",
             "items": {
                 "$ref": "#/$defs/2122767410"
@@ -56,7 +56,7 @@
                     "properties": {
                         "items": {
                             "title": "sequence container (class std::vector<struct Puv::Legacy::ItemDescriptor,class std::allocator<struct Puv::Legacy::ItemDescriptor> >)",
-                            "description": "Items that may be used while repairing current item.",
+                            "description": "Items that may be used to repair an item.",
                             "type": "array",
                             "items": {
                                 "$ref": "#/$defs/2849785526"
