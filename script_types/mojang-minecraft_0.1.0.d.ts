@@ -126,8 +126,6 @@ export class EntityIterator { private constructor()}
 //@ts-ignore allow class inheritance for native classes
 export class EntityLavaMovementComponent extends EntityAttributeComponent{ private constructor()}
 //@ts-ignore allow class inheritance for native classes
-export class EntityLeashableComponent extends IEntityComponent{ private constructor(); readonly softDistance: number; leash(leashHolder: Entity): void; unleash(): void}
-//@ts-ignore allow class inheritance for native classes
 export class EntityMarkVariantComponent extends IEntityComponent{ private constructor(); value: number}
 //@ts-ignore allow class inheritance for native classes
 export class EntityMovementAmphibiousComponent extends IEntityComponent{ private constructor(); readonly maxTurn: number}

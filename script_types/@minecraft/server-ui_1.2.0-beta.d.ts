@@ -12,4 +12,6 @@ export class MessageFormResponse extends FormResponse{ private constructor(); re
 export class ModalFormData { constructor(); dropdown(label: _10.RawMessage | string, options: _10.RawMessage | string[], defaultValueIndex?: number): ModalFormData; show(player: _10.Player): Promise<ModalFormResponse>; slider(label: _10.RawMessage | string, minimumValue: number, maximumValue: number, valueStep: number, defaultValue?: number): ModalFormData; submitButton(submitButtonText: _10.RawMessage | string): ModalFormData; textField(label: _10.RawMessage | string, placeholderText: _10.RawMessage | string, defaultValue?: _10.RawMessage | string): ModalFormData; title(titleText: _10.RawMessage | string): ModalFormData; toggle(label: _10.RawMessage | string, defaultValue?: boolean): ModalFormData}
 //@ts-ignore allow class inheritance for native classes
 export class ModalFormResponse extends FormResponse{ private constructor(); readonly formValues?: boolean | number | string[]}
+export class UIManager { private constructor(); closeAllForms(player: _10.Player): void}
 export class FormRejectError extends Error { private constructor(), readonly reason: FormRejectReason}
+export const uiManager: UIManager;
