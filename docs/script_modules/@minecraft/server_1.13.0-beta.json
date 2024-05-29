@@ -9528,39 +9528,24 @@
                   "is_errorable" : true,
                   "name" : "array"
                }
-            },
-            {
-               "arguments" : [
-                  {
-                     "details" : {
-                        "max_value" : 32767,
-                        "min_value" : -32768
-                     },
-                     "name" : "value",
-                     "type" : {
-                        "is_bind_type" : false,
-                        "is_errorable" : false,
-                        "name" : "int16",
-                        "valid_range" : {
-                           "max" : 2147483647,
-                           "min" : -2147483648
-                        }
-                     }
-                  }
-               ],
-               "is_constructor" : false,
-               "is_static" : false,
-               "name" : "setAirSupply",
-               "privilege" : "read_only",
-               "return_type" : {
-                  "is_bind_type" : false,
-                  "is_errorable" : true,
-                  "name" : "undefined"
-               }
             }
          ],
          "name" : "EntityBreathableComponent",
          "properties" : [
+            {
+               "is_read_only" : false,
+               "name" : "airSupply",
+               "privilege" : "none",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "int16",
+                  "valid_range" : {
+                     "max" : 2147483647,
+                     "min" : -2147483648
+                  }
+               }
+            },
             {
                "is_read_only" : true,
                "name" : "breathesAir",
@@ -9591,6 +9576,15 @@
             {
                "is_read_only" : true,
                "name" : "breathesWater",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "boolean"
+               }
+            },
+            {
+               "is_read_only" : true,
+               "name" : "canBreathe",
                "type" : {
                   "is_bind_type" : false,
                   "is_errorable" : true,
@@ -21001,6 +20995,64 @@
          }
       },
       {
+         "base_types" : [
+            {
+               "is_bind_type" : true,
+               "is_errorable" : false,
+               "name" : "EntityComponent"
+            }
+         ],
+         "constants" : [
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "componentId",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "minecraft:cursor_inventory"
+            }
+         ],
+         "functions" : [
+            {
+               "arguments" : [],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "clear",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "undefined"
+               }
+            }
+         ],
+         "name" : "PlayerCursorInventoryComponent",
+         "properties" : [
+            {
+               "is_read_only" : true,
+               "name" : "item",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "optional",
+                  "optional_type" : {
+                     "is_bind_type" : true,
+                     "is_errorable" : false,
+                     "name" : "ItemStack"
+                  }
+               }
+            }
+         ],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "PlayerCursorInventoryComponent"
+         }
+      },
+      {
          "base_types" : [],
          "constants" : [],
          "functions" : [],
@@ -29673,6 +29725,17 @@
             {
                "is_read_only" : true,
                "is_static" : true,
+               "name" : "CursorInventory",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "minecraft:cursor_inventory"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
                "name" : "Equippable",
                "type" : {
                   "is_bind_type" : false,
@@ -36445,7 +36508,7 @@
          }
       }
    ],
-   "minecraft_version" : "1.21.10-beta.20",
+   "minecraft_version" : "1.21.10-beta.21",
    "module_type" : "script",
    "name" : "@minecraft/server",
    "objects" : [
@@ -36528,6 +36591,10 @@
             {
                "name" : "minecraft:breathable",
                "value" : "EntityBreathableComponent"
+            },
+            {
+               "name" : "minecraft:cursor_inventory",
+               "value" : "PlayerCursorInventoryComponent"
             },
             {
                "name" : "minecraft:equippable",
