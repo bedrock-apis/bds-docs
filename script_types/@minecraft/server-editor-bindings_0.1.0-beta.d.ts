@@ -1,6 +1,7 @@
 import * as _00 from '@minecraft/common';
 import * as _10 from '@minecraft/server';
 export enum BlockPaletteItemType {Probability = 1, Simple = 0}
+export enum BrushPipelineOperationType {Exclude = 1, Include = 0}
 export enum CursorControlMode {Fixed = 3, Keyboard = 0, KeyboardAndMouse = 2, Mouse = 1}
 export enum CursorTargetMode {Block = 0, Face = 1}
 export enum EditorMode {Crosshair = "Crosshair", Tool = "Tool"}
@@ -10,8 +11,8 @@ export enum PlaytestSessionResult {EditorSystemFailure = 7, InvalidLevelId = 8, 
 export enum ProjectExportType {PlayableWorld = 0, ProjectBackup = 1, WorldTemplate = 2}
 export enum WidgetGroupSelectionMode {Multiple = "Multiple", None = "None", Single = "Single"}
 export class BlockPalette { constructor(); getItem(index: number): IBlockPaletteItem; removeItemAt(index: number): void; removeItems(): void; setItem(blockPaletteItem: IBlockPaletteItem, index: number): void}
-export class BlockPaletteManager { private constructor(); getSelectedBlockType(): _10.BlockType; setSelectedBlockType(block: _10.BlockType): void}
-export class BrushShapeManager { private constructor(); readonly activeBrushShape?: BrushShape; readonly activeBrushVolume?: _10.CompoundBlockVolume; readonly brushShapeNames: string[]; activateBrushShape(name: string): _10.CompoundBlockVolume; getSettingsUIElements(brushName: string): SettingsUIElement[]; registerBrushShape(name: string, icon: string, rebuild: ()=>_10.CompoundBlockVolume, getSettingsUIElements: ()=>SettingsUIElement[]): void; uiSettingValueChanged(elementName: string, newValue: boolean | number | string | _10.Vector3): boolean}
+export class BlockPaletteManager { private constructor(); addOrReplacePalette(paletteId: string, palette: BlockPalette): void; getPalette(paletteId: string): BlockPalette; getPaletteIdList(): string[]; getPaletteItem(paletteId: string, index: number): IBlockPaletteItem; getPrimaryPalette(): BlockPalette; getSelectedBlockType(): _10.BlockType; getSelectedItem(): IBlockPaletteItem; removePalette(paletteId: string): void; setPaletteItem(paletteId: string, index: number, item: IBlockPaletteItem): void; setPrimaryPalette(paletteId: string): void; setSelectedItem(item: IBlockPaletteItem): void}
+export class BrushShapeManager { private constructor(); readonly activeBrushShape?: BrushShape; readonly activeBrushVolume?: _10.CompoundBlockVolume; readonly brushShapeNames: string[]; activateBrushShape(name: string): _10.CompoundBlockVolume; getBrushVolume(origin: _10.Vector3, pipeline: BrushPipelineOperation[]): _10.CompoundBlockVolume; getSettingsUIElements(brushName: string): SettingsUIElement[]; registerBrushShape(name: string, icon: string, rebuild: ()=>_10.CompoundBlockVolume, getSettingsUIElements: ()=>SettingsUIElement[]): void; uiSettingValueChanged(elementName: string, newValue: boolean | number | string | _10.Vector3): boolean}
 export class ClipboardChangeAfterEvent { private constructor(); readonly isPrimary: boolean; readonly itemId: string}
 export class ClipboardChangeAfterEventSignal { private constructor(); subscribe(callback: (arg0: ClipboardChangeAfterEvent)=>undefined): (arg0: ClipboardChangeAfterEvent)=>undefined; unsubscribe(callback: (arg0: ClipboardChangeAfterEvent)=>undefined): void}
 export class ClipboardItem { private constructor(); readonly isEmpty: boolean; clear(): void; getPredictedWriteAsCompoundBlockVolume(location: _10.Vector3, options?: ClipboardWriteOptions): _10.CompoundBlockVolume; getPredictedWriteAsSelection(location: _10.Vector3, options?: ClipboardWriteOptions): Selection; getSize(): _10.Vector3; readFromSelection(selection: Selection): void; readFromWorld(from: _10.Vector3, to: _10.Vector3): void; writeToWorld(location: _10.Vector3, options?: ClipboardWriteOptions): boolean}
@@ -63,6 +64,7 @@ export class Widget { private constructor(); readonly valid: boolean; deleteWidg
 export class WidgetGroup { private constructor(); readonly valid: boolean; areAnySelected(): boolean; createCustomWidget(customEntityName: string, location: _10.Vector3, rotation?: _10.Vector2, options?: CustomWidgetCreateOptions): CustomWidget; deleteWidget(widgetToDelete: Widget): void; deselectAllWidgets(): void; getIsVisible(): boolean; moveSelectedWidgets(delta: _10.Vector3): void; selectAllWidgets(): void; setIsVisible(isVisible: boolean): void}
 export class WidgetManager { private constructor(); createGroup(options?: WidgetGroupCreateOptions): WidgetGroup; deleteGroup(groupToDelete: WidgetGroup): void}
 export class WidgetStateChangeEventData { private constructor(); readonly group: WidgetGroup; readonly isSelected?: boolean; readonly isVisible?: boolean; readonly widget: Widget}
+export interface BrushPipelineOperation {blockTypes: _10.BlockType[], operation: BrushPipelineOperationType}
 export interface BrushShape {icon: string, name: string}
 export interface ClipboardWriteOptions {anchor?: _10.Vector3, mirror?: _10.StructureMirrorAxis, offset?: _10.Vector3, rotation?: _10.StructureRotation}
 export interface CursorAttachmentProperties {boundsFillColor?: _10.RGBA, boundsVisible?: boolean, boundsWireframeColor?: _10.RGBA, contentsFillColor?: _10.RGBA, contentsWireframeColor?: _10.RGBA, mirror?: _10.StructureMirrorAxis, offset?: _10.Vector3, origin?: _10.Vector3, rotation?: _10.StructureRotation}

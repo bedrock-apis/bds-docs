@@ -173,6 +173,131 @@
          "constants" : [],
          "functions" : [
             {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "paletteId",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "string"
+                     }
+                  },
+                  {
+                     "details" : null,
+                     "name" : "palette",
+                     "type" : {
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "BlockPalette"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "addOrReplacePalette",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "undefined"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "paletteId",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "string"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "getPalette",
+               "privilege" : "read_only",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "optional",
+                  "optional_type" : {
+                     "is_bind_type" : true,
+                     "is_errorable" : false,
+                     "name" : "BlockPalette"
+                  }
+               }
+            },
+            {
+               "arguments" : [],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "getPaletteIdList",
+               "privilege" : "read_only",
+               "return_type" : {
+                  "element_type" : {
+                     "is_bind_type" : false,
+                     "is_errorable" : false,
+                     "name" : "string"
+                  },
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "array"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "paletteId",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "string"
+                     }
+                  },
+                  {
+                     "details" : {
+                        "max_value" : 2147483647,
+                        "min_value" : -2147483648
+                     },
+                     "name" : "index",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "int32",
+                        "valid_range" : {
+                           "max" : 2147483647,
+                           "min" : -2147483648
+                        }
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "getPaletteItem",
+               "privilege" : "read_only",
+               "return_type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : true,
+                  "name" : "IBlockPaletteItem"
+               }
+            },
+            {
+               "arguments" : [],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "getPrimaryPalette",
+               "privilege" : "read_only",
+               "return_type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "BlockPalette"
+               }
+            },
+            {
                "arguments" : [],
                "is_constructor" : false,
                "is_static" : false,
@@ -190,25 +315,123 @@
                }
             },
             {
+               "arguments" : [],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "getSelectedItem",
+               "privilege" : "read_only",
+               "return_type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "IBlockPaletteItem"
+               }
+            },
+            {
                "arguments" : [
                   {
                      "details" : null,
-                     "name" : "block",
+                     "name" : "paletteId",
                      "type" : {
-                        "from_module" : {
-                           "name" : "@minecraft/server",
-                           "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
-                           "version" : "1.13.0-beta"
-                        },
-                        "is_bind_type" : true,
+                        "is_bind_type" : false,
                         "is_errorable" : false,
-                        "name" : "BlockType"
+                        "name" : "string"
                      }
                   }
                ],
                "is_constructor" : false,
                "is_static" : false,
-               "name" : "setSelectedBlockType",
+               "name" : "removePalette",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "undefined"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "paletteId",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "string"
+                     }
+                  },
+                  {
+                     "details" : {
+                        "max_value" : 2147483647,
+                        "min_value" : -2147483648
+                     },
+                     "name" : "index",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "int32",
+                        "valid_range" : {
+                           "max" : 2147483647,
+                           "min" : -2147483648
+                        }
+                     }
+                  },
+                  {
+                     "details" : null,
+                     "name" : "item",
+                     "type" : {
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "IBlockPaletteItem"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "setPaletteItem",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "undefined"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "paletteId",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "string"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "setPrimaryPalette",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "undefined"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "item",
+                     "type" : {
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "IBlockPaletteItem"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "setSelectedItem",
                "privilege" : "none",
                "return_type" : {
                   "is_bind_type" : false,
@@ -254,6 +477,57 @@
                   "is_bind_type" : true,
                   "is_errorable" : true,
                   "name" : "CompoundBlockVolume"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "origin",
+                     "type" : {
+                        "from_module" : {
+                           "name" : "@minecraft/server",
+                           "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                           "version" : "1.13.0-beta"
+                        },
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "Vector3"
+                     }
+                  },
+                  {
+                     "details" : null,
+                     "name" : "pipeline",
+                     "type" : {
+                        "element_type" : {
+                           "is_bind_type" : true,
+                           "is_errorable" : false,
+                           "name" : "BrushPipelineOperation"
+                        },
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "array"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "getBrushVolume",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "optional",
+                  "optional_type" : {
+                     "from_module" : {
+                        "name" : "@minecraft/server",
+                        "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                        "version" : "1.13.0-beta"
+                     },
+                     "is_bind_type" : true,
+                     "is_errorable" : false,
+                     "name" : "CompoundBlockVolume"
+                  }
                }
             },
             {
@@ -5434,6 +5708,33 @@
             {
                "is_read_only" : true,
                "is_static" : true,
+               "name" : "Exclude",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "BrushPipelineOperationType"
+               },
+               "value" : 1
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "Include",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "BrushPipelineOperationType"
+               },
+               "value" : 0
+            }
+         ],
+         "name" : "BrushPipelineOperationType"
+      },
+      {
+         "constants" : [
+            {
+               "is_read_only" : true,
+               "is_static" : true,
                "name" : "Fixed",
                "type" : {
                   "is_bind_type" : true,
@@ -5858,6 +6159,45 @@
    "errors" : [],
    "functions" : [],
    "interfaces" : [
+      {
+         "base_types" : [],
+         "name" : "BrushPipelineOperation",
+         "properties" : [
+            {
+               "is_read_only" : false,
+               "name" : "blockTypes",
+               "type" : {
+                  "element_type" : {
+                     "from_module" : {
+                        "name" : "@minecraft/server",
+                        "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                        "version" : "1.13.0-beta"
+                     },
+                     "is_bind_type" : true,
+                     "is_errorable" : false,
+                     "name" : "BlockType"
+                  },
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "array"
+               }
+            },
+            {
+               "is_read_only" : false,
+               "name" : "operation",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "BrushPipelineOperationType"
+               }
+            }
+         ],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "BrushPipelineOperation"
+         }
+      },
       {
          "base_types" : [],
          "name" : "BrushShape",
@@ -6919,7 +7259,7 @@
          }
       }
    ],
-   "minecraft_version" : "1.21.10-beta.21",
+   "minecraft_version" : "1.21.10-beta.22",
    "module_type" : "script",
    "name" : "@minecraft/server-editor-bindings",
    "objects" : [

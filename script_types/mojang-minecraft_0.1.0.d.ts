@@ -60,6 +60,8 @@ export class EntityAttributeComponent extends IEntityComponent{ private construc
 //@ts-ignore allow class inheritance for native classes
 export class EntityBaseMovementComponent extends IEntityComponent{ private constructor(); readonly maxTurn: number}
 //@ts-ignore allow class inheritance for native classes
+export class EntityBreathableComponent extends IEntityComponent{ private constructor(); readonly breatheBlocks: BlockPermutation[]; readonly breathesAir: boolean; readonly breathesLava: boolean; readonly breathesSolids: boolean; readonly breathesWater: boolean; readonly generatesBubbles: boolean; readonly inhaleTime: number; readonly nonBreatheBlocks: BlockPermutation[]; readonly suffocateTime: number; readonly totalSupply: number; setAirSupply(value: number): void}
+//@ts-ignore allow class inheritance for native classes
 export class EntityCanClimbComponent extends IEntityComponent{ private constructor()}
 //@ts-ignore allow class inheritance for native classes
 export class EntityCanFlyComponent extends IEntityComponent{ private constructor()}
