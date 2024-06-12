@@ -34,6 +34,25 @@ export enum WeatherType {Clear = "Clear", Rain = "Rain", Thunder = "Thunder"}
 export class Block { private constructor(); readonly dimension: Dimension; readonly isAir: boolean; readonly isLiquid: boolean; readonly location: Vector3; readonly permutation: BlockPermutation; readonly 'type': BlockType; readonly typeId: string; readonly x: number; readonly y: number; readonly z: number; above(steps?: number): Block; below(steps?: number): Block; bottomCenter(): Vector3; center(): Vector3; east(steps?: number): Block; getComponent(componentId: string): BlockComponent; getItemStack(amount?: number, withData?: boolean): ItemStack; getTags(): string[]; hasTag(tag: string): boolean; isValid(): boolean; matches(blockName: string, states?: Record<string,boolean | number | string>): boolean; north(steps?: number): Block; offset(offset: Vector3): Block; setPermutation(permutation: BlockPermutation): void; setType(blockType: BlockType | string): void; south(steps?: number): Block; west(steps?: number): Block}
 //@ts-ignore allow class inheritance for native classes
 export class BlockComponent extends Component{ private constructor(); readonly block: Block}
+//@ts-ignore allow class inheritance for native classes
+export class BlockComponentEntityFallOnEvent extends BlockEvent{ private constructor(); readonly entity?: Entity; readonly fallDistance: number}
+//@ts-ignore allow class inheritance for native classes
+export class BlockComponentOnPlaceEvent extends BlockEvent{ private constructor(); readonly previousBlock: BlockPermutation}
+//@ts-ignore allow class inheritance for native classes
+export class BlockComponentPlayerDestroyEvent extends BlockEvent{ private constructor(); readonly destroyedBlockPermutation: BlockPermutation; readonly player?: Player}
+//@ts-ignore allow class inheritance for native classes
+export class BlockComponentPlayerInteractEvent extends BlockEvent{ private constructor(); readonly face: Direction; readonly faceLocation?: Vector3; readonly player?: Player}
+//@ts-ignore allow class inheritance for native classes
+export class BlockComponentPlayerPlaceBeforeEvent extends BlockEvent{ private constructor(); cancel: boolean; readonly face: Direction; permutationToPlace: BlockPermutation; readonly player?: Player}
+//@ts-ignore allow class inheritance for native classes
+export class BlockComponentRandomTickEvent extends BlockEvent{ private constructor()}
+export class BlockComponentRegistry { private constructor(); registerCustomComponent(name: string, customComponent: BlockCustomComponent): void}
+//@ts-ignore allow class inheritance for native classes
+export class BlockComponentStepOffEvent extends BlockEvent{ private constructor(); readonly entity?: Entity}
+//@ts-ignore allow class inheritance for native classes
+export class BlockComponentStepOnEvent extends BlockEvent{ private constructor(); readonly entity?: Entity}
+//@ts-ignore allow class inheritance for native classes
+export class BlockComponentTickEvent extends BlockEvent{ private constructor()}
 export class BlockEvent { private constructor(); readonly block: Block; readonly dimension: Dimension}
 //@ts-ignore allow class inheritance for native classes
 export class BlockExplodeAfterEvent extends BlockEvent{ private constructor(); readonly explodedBlockPermutation: BlockPermutation; readonly source?: Entity}
@@ -214,7 +233,7 @@ export class EntitySpawnAfterEventSignal { private constructor(); subscribe(call
 //@ts-ignore allow class inheritance for native classes
 export class EntityTameableComponent extends EntityComponent{ private constructor(); static readonly componentId: "minecraft:tameable"; readonly getTameItems: ItemStack[]; readonly isTamed: boolean; readonly probability: number; readonly tamedToPlayer?: Player; readonly tamedToPlayerId?: string; tame(player: Player): boolean}
 //@ts-ignore allow class inheritance for native classes
-export class EntityTameMountComponent extends EntityComponent{ private constructor(); static readonly componentId: "minecraft:tamemount"; tame(showParticles: boolean): void}
+export class EntityTameMountComponent extends EntityComponent{ private constructor(); static readonly componentId: "minecraft:tamemount"; readonly isTamed: boolean; readonly isTamedToPlayer: boolean; readonly tamedToPlayer?: Player; readonly tamedToPlayerId?: string; tame(showParticles: boolean): void; tameToPlayer(showParticles: boolean, player: Player): boolean}
 export class EntityType { private constructor(); readonly id: string}
 //@ts-ignore allow class inheritance for native classes
 export class EntityTypeFamilyComponent extends EntityComponent{ private constructor(); static readonly componentId: "minecraft:type_family"; getTypeFamilies(): string[]; hasTypeFamily(typeFamily: string): boolean}
@@ -357,7 +376,7 @@ export class ScriptEventCommandMessageAfterEventSignal { private constructor(); 
 export class Seat { private constructor(); readonly lockRiderRotation: number; readonly maxRiderCount: number; readonly minRiderCount: number; readonly position: Vector3; readonly seatRotation: number}
 export class Structure { private constructor(); readonly id: string; readonly size: Vector3; getBlockPermutation(location: Vector3): BlockPermutation; getIsWaterlogged(location: Vector3): boolean; isValid(): boolean; saveAs(identifier: string, saveMode?: StructureSaveMode): Structure; saveToWorld(): void; setBlockPermutation(location: Vector3, blockPermutation?: BlockPermutation): void}
 export class StructureManager { private constructor(); createEmpty(identifier: string, size: Vector3, saveMode: StructureSaveMode): Structure; createFromWorld(identifier: string, dimension: Dimension, from: Vector3, to: Vector3, options?: StructureCreateOptions): Structure; delete(structure: string | Structure): boolean; get(identifier: string): Structure; getWorldStructureIds(): string[]; place(structure: string | Structure, dimension: Dimension, location: Vector3, options?: StructurePlaceOptions): void}
-export class System { private constructor(); readonly afterEvents: SystemAfterEvents; readonly currentTick: number; clearRun(runId: number): void; run(callback: ()=>undefined): number; runInterval(callback: ()=>undefined, tickInterval?: number): number; runTimeout(callback: ()=>undefined, tickDelay?: number): number}
+export class System { private constructor(); readonly afterEvents: SystemAfterEvents; readonly currentTick: number; clearJob(jobId: number): void; clearRun(runId: number): void; run(callback: ()=>undefined): number; runInterval(callback: ()=>undefined, tickInterval?: number): number; runJob(generator: Generator<undefined,undefined,undefined>): number; runTimeout(callback: ()=>undefined, tickDelay?: number): number; waitTicks(ticks: number): Promise<undefined>}
 export class SystemAfterEvents { private constructor(); readonly scriptEventReceive: ScriptEventCommandMessageAfterEventSignal}
 //@ts-ignore allow class inheritance for native classes
 export class TargetBlockHitAfterEvent extends BlockEvent{ private constructor(); readonly hitVector: Vector3; readonly previousRedstonePower: number; readonly redstonePower: number; readonly source: Entity}
@@ -375,8 +394,9 @@ export class WorldAfterEvents { private constructor(); readonly blockExplode: Bl
 export class WorldBeforeEvents { private constructor(); readonly effectAdd: EffectAddBeforeEventSignal; readonly entityRemove: EntityRemoveBeforeEventSignal; readonly explosion: ExplosionBeforeEventSignal; readonly itemUse: ItemUseBeforeEventSignal; readonly itemUseOn: ItemUseOnBeforeEventSignal; readonly playerBreakBlock: PlayerBreakBlockBeforeEventSignal; readonly playerGameModeChange: PlayerGameModeChangeBeforeEventSignal; readonly playerLeave: PlayerLeaveBeforeEventSignal; readonly weatherChange: WeatherChangeBeforeEventSignal; readonly worldInitialize: WorldInitializeBeforeEventSignal}
 export class WorldInitializeAfterEvent { private constructor()}
 export class WorldInitializeAfterEventSignal { private constructor(); subscribe(callback: (arg0: WorldInitializeAfterEvent)=>undefined): (arg0: WorldInitializeAfterEvent)=>undefined; unsubscribe(callback: (arg0: WorldInitializeAfterEvent)=>undefined): void}
-export class WorldInitializeBeforeEvent { private constructor(); readonly itemComponentRegistry: ItemComponentRegistry}
+export class WorldInitializeBeforeEvent { private constructor(); readonly blockComponentRegistry: BlockComponentRegistry; readonly itemComponentRegistry: ItemComponentRegistry}
 export class WorldInitializeBeforeEventSignal { private constructor(); subscribe(callback: (arg0: WorldInitializeBeforeEvent)=>undefined): (arg0: WorldInitializeBeforeEvent)=>undefined; unsubscribe(callback: (arg0: WorldInitializeBeforeEvent)=>undefined): void}
+export interface BlockCustomComponent {beforeOnPlayerPlace?: (arg0: BlockComponentPlayerPlaceBeforeEvent)=>undefined, onEntityFallOn?: (arg0: BlockComponentEntityFallOnEvent)=>undefined, onPlace?: (arg0: BlockComponentOnPlaceEvent)=>undefined, onPlayerDestroy?: (arg0: BlockComponentPlayerDestroyEvent)=>undefined, onPlayerInteract?: (arg0: BlockComponentPlayerInteractEvent)=>undefined, onRandomTick?: (arg0: BlockComponentRandomTickEvent)=>undefined, onStepOff?: (arg0: BlockComponentStepOffEvent)=>undefined, onStepOn?: (arg0: BlockComponentStepOnEvent)=>undefined, onTick?: (arg0: BlockComponentTickEvent)=>undefined}
 export interface BlockEventOptions {blockTypes?: string[], permutations?: BlockPermutation[]}
 export interface BlockFilter {excludePermutations?: BlockPermutation[], excludeTags?: string[], excludeTypes?: string[], includePermutations?: BlockPermutation[], includeTags?: string[], includeTypes?: string[]}
 export interface BlockHitInformation {block: Block, face: Direction, faceLocation: Vector3}
@@ -425,6 +445,10 @@ export interface TitleDisplayOptions {fadeInDuration: number, fadeOutDuration: n
 export interface Vector2 {x: number, y: number}
 export interface Vector3 {x: number, y: number, z: number}
 export interface WorldSoundOptions {pitch?: number, volume?: number}
+export class BlockCustomComponentAlreadyRegisteredError extends Error { private constructor() }
+export class BlockCustomComponentReloadNewComponentError extends Error { private constructor() }
+export class BlockCustomComponentReloadNewEventError extends Error { private constructor() }
+export class BlockCustomComponentReloadVersionError extends Error { private constructor() }
 export class CommandError extends Error { private constructor() }
 export class CustomComponentInvalidRegistryError extends Error { private constructor() }
 export class CustomComponentNameError extends Error { private constructor(), readonly reason: CustomComponentNameErrorReason}
