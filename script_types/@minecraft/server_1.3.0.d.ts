@@ -137,7 +137,8 @@ export class WorldAfterEvents { private constructor(); readonly buttonPush: Butt
 export interface EntityApplyDamageByProjectileOptions {damagingEntity?: Entity, damagingProjectile: Entity}
 export interface EntityApplyDamageOptions {cause: EntityDamageCause, damagingEntity?: Entity}
 export interface EntityEffectOptions {amplifier?: number, showParticles?: boolean}
-export interface EntityQueryOptions {closest?: number, excludeFamilies?: string[], excludeGameModes?: GameMode[], excludeNames?: string[], excludeTags?: string[], excludeTypes?: string[], families?: string[], farthest?: number, gameMode?: GameMode, location?: Vector3, maxDistance?: number, maxHorizontalRotation?: number, maxLevel?: number, maxVerticalRotation?: number, minDistance?: number, minHorizontalRotation?: number, minLevel?: number, minVerticalRotation?: number, name?: string, scoreOptions?: EntityQueryScoreOptions[], tags?: string[], 'type'?: string}
+export interface EntityFilter {excludeFamilies?: string[], excludeGameModes?: GameMode[], excludeNames?: string[], excludeTags?: string[], excludeTypes?: string[], families?: string[], gameMode?: GameMode, maxHorizontalRotation?: number, maxLevel?: number, maxVerticalRotation?: number, minHorizontalRotation?: number, minLevel?: number, minVerticalRotation?: number, name?: string, scoreOptions?: EntityQueryScoreOptions[], tags?: string[], 'type'?: string}
+export interface EntityQueryOptions {closest?: number, farthest?: number, location?: Vector3, maxDistance?: number, minDistance?: number}
 export interface EntityQueryScoreOptions {exclude?: boolean, maxScore?: number, minScore?: number, objective?: string}
 export interface MusicOptions {fade?: number, loop?: boolean, volume?: number}
 export interface PlayerSoundOptions {location?: Vector3, pitch?: number, volume?: number}

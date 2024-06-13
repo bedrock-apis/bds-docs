@@ -25,7 +25,7 @@ export class BlockLavaContainerComponent extends BlockLiquidContainerComponent{ 
 //@ts-ignore allow class inheritance for native classes
 export class BlockLiquidContainerComponent extends BlockComponent{ private constructor(); fillLevel: number}
 export class BlockLocation { constructor(x: number, y: number, z: number); x: number; y: number; z: number; above(): BlockLocation; blocksBetween(other: BlockLocation): BlockLocation[]; equals(other: BlockLocation): boolean; offset(x: number, y: number, z: number): BlockLocation}
-export class BlockPermutation { private constructor(); readonly 'type': BlockType; clone(): BlockPermutation; getAllProperties(): IBlockProperty[]; getProperty(propertyName: string): IBlockProperty; getTags(): string[]; hasTag(tag: string): boolean}
+export class BlockPermutation { private constructor(); readonly 'type': BlockType; getAllProperties(): IBlockProperty[]; getProperty(propertyName: string): IBlockProperty; getTags(): string[]; hasTag(tag: string): boolean}
 //@ts-ignore allow class inheritance for native classes
 export class BlockPistonComponent extends BlockComponent{ private constructor(); readonly attachedBlocks: BlockLocation[]; readonly isExpanded: boolean; readonly isExpanding: boolean; readonly isMoving: boolean; readonly isRetracted: boolean; readonly isRetracting: boolean}
 //@ts-ignore allow class inheritance for native classes

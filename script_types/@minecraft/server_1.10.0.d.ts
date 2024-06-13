@@ -292,6 +292,7 @@ export class WorldBeforeEvents { private constructor(); readonly effectAdd: Effe
 export class WorldInitializeAfterEvent { private constructor()}
 export class WorldInitializeAfterEventSignal { private constructor(); subscribe(callback: (arg0: WorldInitializeAfterEvent)=>undefined): (arg0: WorldInitializeAfterEvent)=>undefined; unsubscribe(callback: (arg0: WorldInitializeAfterEvent)=>undefined): void}
 export interface BlockEventOptions {blockTypes?: string[], permutations?: BlockPermutation[]}
+export interface BlockFilter {excludePermutations?: BlockPermutation[], excludeTags?: string[], excludeTypes?: string[], includePermutations?: BlockPermutation[], includeTags?: string[], includeTypes?: string[]}
 export interface BlockHitInformation {block: Block, face: Direction, faceLocation: Vector3}
 export interface BlockRaycastHit {block: Block, face: Direction, faceLocation: Vector3}
 export interface BlockRaycastOptions {includeLiquidBlocks?: boolean, includePassableBlocks?: boolean, maxDistance?: number}
@@ -311,8 +312,9 @@ export interface EntityDamageSource {cause: EntityDamageCause, damagingEntity?: 
 export interface EntityDataDrivenTriggerEventOptions {entities?: Entity[], entityTypes?: string[], eventTypes?: string[]}
 export interface EntityEffectOptions {amplifier?: number, showParticles?: boolean}
 export interface EntityEventOptions {entities?: Entity[], entityTypes?: string[]}
+export interface EntityFilter {excludeFamilies?: string[], excludeGameModes?: GameMode[], excludeNames?: string[], excludeTags?: string[], excludeTypes?: string[], families?: string[], gameMode?: GameMode, maxHorizontalRotation?: number, maxLevel?: number, maxVerticalRotation?: number, minHorizontalRotation?: number, minLevel?: number, minVerticalRotation?: number, name?: string, scoreOptions?: EntityQueryScoreOptions[], tags?: string[], 'type'?: string}
 export interface EntityHitInformation {entity?: Entity}
-export interface EntityQueryOptions {closest?: number, excludeFamilies?: string[], excludeGameModes?: GameMode[], excludeNames?: string[], excludeTags?: string[], excludeTypes?: string[], families?: string[], farthest?: number, gameMode?: GameMode, location?: Vector3, maxDistance?: number, maxHorizontalRotation?: number, maxLevel?: number, maxVerticalRotation?: number, minDistance?: number, minHorizontalRotation?: number, minLevel?: number, minVerticalRotation?: number, name?: string, scoreOptions?: EntityQueryScoreOptions[], tags?: string[], 'type'?: string}
+export interface EntityQueryOptions {closest?: number, farthest?: number, location?: Vector3, maxDistance?: number, minDistance?: number}
 export interface EntityQueryScoreOptions {exclude?: boolean, maxScore?: number, minScore?: number, objective?: string}
 export interface EntityRaycastHit {distance: number, entity: Entity}
 export interface EntityRaycastOptions {maxDistance?: number}
