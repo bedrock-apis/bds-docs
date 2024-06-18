@@ -131,8 +131,12 @@ async function runDocs(v,version){
     }
     //console.log((await promises.readFile(".\\bin\\docs\\script_modules\\@minecraft\\server-ui_1.0.0.json")).toString());
 }
-async function CopyFiles(v,version){
+async function CopyFiles(v, version){
     const console = Logger("[Moving Files]");
+    for(let file of FileTree(docs_cleaned)){
+        console.log("REMOVED", file);
+        await promises.rm(file);
+    }
     for (let file of FileTree(docs_generated)) {
         console.log(file);
         const data = await promises.readFile([docs_generated,file].join("/"));
