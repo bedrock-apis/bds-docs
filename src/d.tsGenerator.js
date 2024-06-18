@@ -218,7 +218,7 @@ class ModuleEnum extends ModuleMember{
     }
 }
 class ModuleInterface extends ModuleMemberHasProperties{
-    exportFrom(m){return `export interface ${this.name} {${this.properties.length?`${this.properties.map(e=>`${e.isStatic?"static ":""}${e.isReadOnly?"readonly ":""}${safePropertyName(e.name)}${e.type instanceof OptionalType?"?":""}: ${e.type.toString(m)}`).join(", ")}`:" "}}`;}
+    exportFrom(m){return `export interface ${this.name} {${this.properties.length?`${this.properties.map(e=>`${e.isStatic?"static ":""}${e.isReadOnly?"readonly ":""}${safePropertyName(e.name)}${e.type instanceof OptionalType?"?":""}: ${e.type.toString(m)}`).join("; ")};`:" "}}`;}
 }
 class ModuleError extends ModuleMemberHasProperties{
     exportFrom(m){return `export class ${this.name} extends Error { private constructor()${this.properties.length?`, ${this.properties.map(e=>`${e.isStatic?"static ":""}${e.isReadOnly?"readonly ":""}${safePropertyName(e.name)}${e.type instanceof OptionalType?"?":""}: ${e.type.toString(m)}`).join(", ")}`:" "}}`}
@@ -303,6 +303,6 @@ class ModuleClass extends ModuleMember{
             ...otherProperties.map(e=>`${e.isReadOnly?"readonly ":""}${safePropertyName(e.name)}${e.type instanceof OptionalType?"?":""}: ${e.type.toString(m)}`),
             ...otherFunctions.map(e=>`${safePropertyName(e.name)}(${e.buildParams(m)}): ${e.returnType.toString(m)}`)
         ];
-        return (this.baseTypes.length?"//@ts-ignore allow class inheritance for native classes\n":"") + `export class ${this.name} ${this.baseTypes.length?`extends ${this.baseTypes[0].toString(m)}`:""}{${members.join("; ")}}`;
+        return (this.baseTypes.length?"//@ts-ignore allow class inheritance for native classes\n":"") + `export class ${this.name} ${this.baseTypes.length?`extends ${this.baseTypes[0].toString(m)}`:""}{${members.join("; ")}${members.length?";":""}}`;
     }
 }
