@@ -134,8 +134,8 @@ async function runDocs(v,version){
 async function CopyFiles(v, version){
     const console = Logger("[Moving Files]");
     for(let file of FileTree(docs_cleaned)){
-        console.log("REMOVED", file);
-        await promises.rm(file);
+        console.log("REMOVED", docs_cleaned + "/" + file);
+        await promises.rm( docs_cleaned + "/" + file);
     }
     for (let file of FileTree(docs_generated)) {
         console.log(file);
