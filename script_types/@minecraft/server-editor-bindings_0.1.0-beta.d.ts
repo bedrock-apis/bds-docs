@@ -4,9 +4,14 @@ export enum BlockPaletteItemType {Probability = 1, Simple = 0}
 export enum BrushPipelineOperationType {Exclude = 1, Include = 0}
 export enum CursorControlMode {Fixed = 3, Keyboard = 0, KeyboardAndMouse = 2, Mouse = 1}
 export enum CursorTargetMode {Block = 0, Face = 1}
+export enum DaylightCycle {AlwaysDay = 1, LockTime = 2, Normal = 0}
 export enum EditorMode {Crosshair = "Crosshair", Tool = "Tool"}
 export enum ExportResult {EditorSystemFailure = 7, FileArchiverFetchFailed = 2, LevelFetchFailed = 1, PlayerNotFound = 4, ProjectConverterFetchFailed = 3, ValidWorldExport = 0, WorldExportBusy = 6, WorldExportFailed = 5}
+export enum GamePublishSetting {FriendsOfFriends = 3, FriendsOnly = 2, InviteOnly = 1, NoMultiPlay = 0, Public = 4}
 export enum GraphicsSettingsProperty {ShowInvisibleBlocks = "ShowInvisibleBlocks"}
+export enum InputModifier {Alt = 2, Any = 15, Control = 4, None = 1, Shift = 8, Unused = 0}
+export enum KeyInputType {Invalid = 0, Press = 1, Release = 2}
+export enum PlayerPermissionLevel {Custom = 3, Member = 1, Operator = 2, Visitor = 0}
 export enum PlaytestSessionResult {EditorSystemFailure = 7, InvalidLevelId = 8, InvalidSessionHandle = 1, OK = 0, PlayerNotFound = 9, ResponseTimeout = 10, SessionInfoNotFound = 2, TooManyPlayers = 3, UnspecifiedError = 11, UnsupportedScenario = 6, WorldExportBusy = 5, WorldExportFailed = 4}
 export enum ProjectExportType {PlayableWorld = 0, ProjectBackup = 1, WorldTemplate = 2}
 export enum WidgetGroupSelectionMode {Multiple = "Multiple", None = "None", Single = "Single"}
@@ -32,20 +37,23 @@ export class DataStoreAfterEvents { private constructor(); readonly payloadRecei
 export class DataStoreMenuContainer { private constructor(); createItem(id: string, payload: string): void; destroyItem(id: string): void; getPayload(id: string): string; getProperty(id: string, property: string): boolean | number | string; hasPayload(id: string): boolean; hasProperty(id: string, property: string): boolean; updateItem(id: string, payload: string): void;}
 export class DataStorePayloadAfterEvent { private constructor(); readonly dataTag: string; readonly payload: string;}
 export class DataStorePayloadAfterEventSignal { private constructor(); subscribe(callback: (arg0: DataStorePayloadAfterEvent)=>undefined): (arg0: DataStorePayloadAfterEvent)=>undefined; unsubscribe(callback: (arg0: DataStorePayloadAfterEvent)=>undefined): void;}
-export class ExportManager { private constructor(); beginExportProject(options: ProjectExportOptions): Promise<ExportResult>; canExportProject(): boolean;}
+export class DataTransferManager { private constructor(); getRegisteredAccessors(): DataTransferCollectionNameData[]; requestData(collectionUniqueId: string): Promise<DataTransferRequestResponse>; sendData(collectionUniqueId: string, jsonData: string): void; sendDataToClipboard(jsonData: string): void;}
+export class DataTransferRequestResponse { private constructor(); readonly collectionName: string; readonly data: string; readonly schema: string;}
+export class ExportManager { private constructor(); beginExportProject(options: GameOptions): Promise<ExportResult>; canExportProject(): boolean; getGameOptions(useDefault?: boolean): GameOptions;}
 export class Extension { private constructor(); readonly defaultToolGroupId: string; readonly description: string; readonly name: string; readonly notes: string;}
 export class ExtensionContext { private constructor(); readonly afterEvents: ExtensionContextAfterEvents; readonly blockPalette: BlockPaletteManager; readonly brushShapeManager: BrushShapeManager; readonly clipboardManager: ClipboardManager; readonly cursor: Cursor; readonly exportManager: ExportManager; readonly extensionInfo: Extension; readonly player: _10.Player; readonly playtest: PlaytestManager; readonly selectionManager: SelectionManager; readonly settings: SettingsManager; readonly transactionManager: TransactionManager; readonly widgetManager: WidgetManager;}
 export class ExtensionContextAfterEvents { private constructor(); readonly clipboardChange: ClipboardChangeAfterEventSignal; readonly cursorAttachmentPropertyChange: CursorAttachmentPropertyChangeAfterEventSignal; readonly cursorPropertyChange: CursorPropertyChangeAfterEventSignal; readonly modeChange: ModeChangeAfterEventSignal; readonly primarySelectionChange: PrimarySelectionChangeAfterEventSignal;}
 export class GraphicsSettings { private constructor(); get(property: GraphicsSettingsProperty): boolean | number | string; getAll(): Record<string,boolean | number | string>; set(property: GraphicsSettingsProperty, value: boolean | number | string): void; setAll(properties: Record<string,boolean | number | string>): void;}
 export class IBlockPaletteItem { private constructor(); getBlock(): _10.BlockType; getDisplayName(): string; getType(): BlockPaletteItemType; setBlock(block: _10.BlockPermutation | _10.BlockType | string): void;}
+export class InputService { private constructor(); registerKeyBinding(contextId: string, bindingId: string, key: number, modifier: InputModifier, info: InputBindingInfo): void; unregisterKeyBinding(controlId: string, bindingId: string): void;}
 //@ts-ignore allow class inheritance for native classes
 export class LineWidget extends Widget{ private constructor();}
 export class Logger { private constructor(); debug(message: string, properties?: LogProperties): void; error(message: string, properties?: LogProperties): void; info(message: string, properties?: LogProperties): void; warning(message: string, properties?: LogProperties): void;}
 export class MinecraftEditor { private constructor(); readonly log: Logger; readonly simulation: SimulationState;}
-export class MinecraftEditorInternal { private constructor(); getDataStore(player: _10.Player): DataStore; registerExtension(extensionName: string, activationFunction: (arg0: ExtensionContext)=>undefined, shutdownFunction: (arg0: ExtensionContext)=>undefined, options?: ExtensionOptionalParameters): Extension;}
+export class MinecraftEditorInternal { private constructor(); getDataStore(player: _10.Player): DataStore; getDataTransferManager(player: _10.Player): DataTransferManager; getInputService(player: _10.Player): InputService; registerExtension(extensionName: string, activationFunction: (arg0: ExtensionContext)=>undefined, shutdownFunction: (arg0: ExtensionContext)=>undefined, options?: ExtensionOptionalParameters): Extension;}
 export class ModeChangeAfterEvent { private constructor(); readonly mode: EditorMode;}
 export class ModeChangeAfterEventSignal { private constructor(); subscribe(callback: (arg0: ModeChangeAfterEvent)=>undefined): (arg0: ModeChangeAfterEvent)=>undefined; unsubscribe(callback: (arg0: ModeChangeAfterEvent)=>undefined): void;}
-export class PlaytestManager { private constructor(); beginPlaytest(options: PlaytestGameOptions): Promise<PlaytestSessionResult>; getPlaytestSessionAvailability(): PlaytestSessionResult;}
+export class PlaytestManager { private constructor(); beginPlaytest(options: GameOptions): Promise<PlaytestSessionResult>; getPlaytestSessionAvailability(): PlaytestSessionResult;}
 export class PrimarySelectionChangeAfterEventSignal { private constructor(); subscribe(callback: (arg0: SelectionEventAfterEvent)=>undefined): (arg0: SelectionEventAfterEvent)=>undefined; unsubscribe(callback: (arg0: SelectionEventAfterEvent)=>undefined): void;}
 export class PrimarySelectionChangedEvent { private constructor(); readonly volume?: _10.CompoundBlockVolume;}
 //@ts-ignore allow class inheritance for native classes
@@ -70,9 +78,11 @@ export interface ClipboardWriteOptions {anchor?: _10.Vector3; mirror?: _10.Struc
 export interface CursorAttachmentProperties {boundsFillColor?: _10.RGBA; boundsVisible?: boolean; boundsWireframeColor?: _10.RGBA; contentsFillColor?: _10.RGBA; contentsWireframeColor?: _10.RGBA; mirror?: _10.StructureMirrorAxis; offset?: _10.Vector3; origin?: _10.Vector3; rotation?: _10.StructureRotation;}
 export interface CursorProperties {controlMode?: CursorControlMode; fillColor?: _10.RGBA; fixedModeDistance?: number; outlineColor?: _10.RGBA; projectThroughLiquid?: boolean; targetMode?: CursorTargetMode; visible?: boolean;}
 export interface CustomWidgetCreateOptions {moveEvent?: (arg0: CustomWidgetMoveEventData)=>undefined; showTextOnlyWhenSelected?: boolean; text?: string; visualOffset?: _10.Vector3;}
+export interface DataTransferCollectionNameData {nameStringId: string; uniqueId: string;}
 export interface ExtensionOptionalParameters {description?: string; notes?: string; toolGroupId?: string;}
+export interface GameOptions {bonusChest?: boolean; cheats?: boolean; commandBlockEnabled?: boolean; daylightCycle?: DaylightCycle; difficulty?: _10.Difficulty; dimensionId?: string; disableWeather?: boolean; educationEdition?: boolean; entitiesDropLoot?: boolean; exportType?: ProjectExportType; fireSpreads?: boolean; friendlyFire?: boolean; gameMode?: _10.GameMode; immediateRespawn?: boolean; keepInventory?: boolean; lanVisibility?: boolean; mobGriefing?: boolean; mobLoot?: boolean; mobSpawning?: boolean; multiplayerGame?: boolean; naturalRegeneration?: boolean; playerAccess?: GamePublishSetting; playerPermissions?: PlayerPermissionLevel; randomTickSpeed?: number; recipeUnlocking?: boolean; respawnBlocksExplode?: boolean; respawnRadius?: number; showCoordinates?: boolean; showDaysPlayed?: boolean; simulationDistance?: number; spawnPosition?: _10.Vector3; startingMap?: boolean; tileDrops?: boolean; timeOfDay?: number; tntExplodes?: boolean; weather?: number; worldName?: string;}
+export interface InputBindingInfo {actionId?: string; canRebind: boolean; label?: string; tooltip?: string;}
 export interface LogProperties {player?: _10.Player; tags?: string[];}
-export interface PlaytestGameOptions {alwaysDay?: boolean; difficulty?: _10.Difficulty; dimensionId?: string; disableWeather?: boolean; gameMode?: _10.GameMode; showCoordinates?: boolean; spawnPosition?: _10.Vector3; timeOfDay?: number; weather?: number;}
 export interface ProjectExportOptions {alwaysDay?: boolean; difficulty?: _10.Difficulty; disableWeather?: boolean; exportName?: string; exportType: ProjectExportType; gameMode?: _10.GameMode; initialTimOfDay?: number;}
 export interface SettingsUIElementOptions {dropdownItems?: string[]; max?: number; min?: number; refreshOnChange?: boolean;}
 export interface WidgetCreateOptions {initialVisibility?: boolean; isSelectable?: boolean; stateChangeEvent?: (arg0: WidgetStateChangeEventData)=>undefined;}
