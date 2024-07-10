@@ -96,7 +96,7 @@ export class BoundingBoxUtils { private constructor(); static createValid(min: V
 export class ButtonPushAfterEvent extends BlockEvent{ private constructor(); readonly source: Entity;}
 //@ts-ignore allow class inheritance for native classes
 export class ButtonPushAfterEventSignal extends IButtonPushAfterEventSignal{ private constructor();}
-export class Camera { private constructor(); clear(): void; fade(fadeCameraOptions?: CameraFadeOptions): void; setCamera(cameraPreset: string, setOptions?: CameraDefaultOptions | CameraSetFacingOptions | CameraSetLocationOptions | CameraSetPosOptions | CameraSetRotOptions): void;}
+export class Camera { private constructor(); clear(): void; fade(fadeCameraOptions?: CameraFadeOptions): void; setCamera(cameraPreset: string, setOptions?: CameraDefaultOptions | CameraFixedBoomOptions | CameraSetFacingOptions | CameraSetLocationOptions | CameraSetPosOptions | CameraSetRotOptions): void;}
 export class ChatSendAfterEvent { private constructor(); readonly message: string; readonly sender: Player; readonly targets?: Player[];}
 export class ChatSendAfterEventSignal { private constructor(); subscribe(callback: (arg0: ChatSendAfterEvent)=>undefined): (arg0: ChatSendAfterEvent)=>undefined; unsubscribe(callback: (arg0: ChatSendAfterEvent)=>undefined): void;}
 export class ChatSendBeforeEvent { private constructor(); cancel: boolean; readonly message: string; readonly sender: Player; readonly targets?: Player[];}
@@ -468,6 +468,7 @@ export interface CameraDefaultOptions {easeOptions: CameraEaseOptions;}
 export interface CameraEaseOptions {easeTime?: number; easeType?: EasingType;}
 export interface CameraFadeOptions {fadeColor?: RGB; fadeTime?: CameraFadeTimeOptions;}
 export interface CameraFadeTimeOptions {fadeInTime: number; fadeOutTime: number; holdTime: number;}
+export interface CameraFixedBoomOptions {viewOffset?: Vector2;}
 export interface CameraSetFacingOptions {easeOptions?: CameraEaseOptions; facingEntity: Entity; location?: Vector3;}
 export interface CameraSetLocationOptions {easeOptions?: CameraEaseOptions; location: Vector3;}
 export interface CameraSetPosOptions {easeOptions?: CameraEaseOptions; facingLocation: Vector3; location?: Vector3;}

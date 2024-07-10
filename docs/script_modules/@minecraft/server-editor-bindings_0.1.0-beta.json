@@ -2833,6 +2833,25 @@
                   "is_errorable" : false,
                   "name" : "GameOptions"
                }
+            },
+            {
+               "arguments" : [],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "getGameVersion",
+               "privilege" : "none",
+               "return_type" : {
+                  "error_types" : [
+                     {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "Error"
+                     }
+                  ],
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "string"
+               }
             }
          ],
          "name" : "ExportManager",
@@ -5197,6 +5216,49 @@
                "arguments" : [
                   {
                      "details" : null,
+                     "name" : "entity",
+                     "type" : {
+                        "from_module" : {
+                           "name" : "@minecraft/server",
+                           "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                           "version" : "1.14.0-beta"
+                        },
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "Entity"
+                     }
+                  },
+                  {
+                     "details" : null,
+                     "name" : "type",
+                     "type" : {
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "EntityOperationType"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "addEntityOperation",
+               "privilege" : "none",
+               "return_type" : {
+                  "error_types" : [
+                     {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "Error"
+                     }
+                  ],
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "boolean"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
                      "name" : "transactionHandlerId",
                      "type" : {
                         "is_bind_type" : true,
@@ -6226,6 +6288,33 @@
             }
          ],
          "name" : "EditorMode"
+      },
+      {
+         "constants" : [
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "Create",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "EntityOperationType"
+               },
+               "value" : 0
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "Delete",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "EntityOperationType"
+               },
+               "value" : 1
+            }
+         ],
+         "name" : "EntityOperationType"
       },
       {
          "constants" : [
@@ -8366,7 +8455,7 @@
          }
       }
    ],
-   "minecraft_version" : "1.21.20-beta.21",
+   "minecraft_version" : "1.21.20-beta.22",
    "module_type" : "script",
    "name" : "@minecraft/server-editor-bindings",
    "objects" : [
