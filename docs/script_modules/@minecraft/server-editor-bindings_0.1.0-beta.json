@@ -4354,6 +4354,23 @@
                }
             },
             {
+               "arguments" : [],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "getBlocks",
+               "privilege" : "read_only",
+               "return_type" : {
+                  "element_type" : {
+                     "is_bind_type" : true,
+                     "is_errorable" : false,
+                     "name" : "WeightedBlock"
+                  },
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "array"
+               }
+            },
+            {
                "arguments" : [
                   {
                      "details" : {
@@ -4849,6 +4866,15 @@
                   "is_errorable" : false,
                   "name" : "GraphicsSettings"
                }
+            },
+            {
+               "is_read_only" : true,
+               "name" : "theme",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "ThemeSettings"
+               }
             }
          ],
          "type" : {
@@ -5206,6 +5232,97 @@
             "is_bind_type" : true,
             "is_errorable" : false,
             "name" : "SimulationState"
+         }
+      },
+      {
+         "base_types" : [],
+         "constants" : [],
+         "functions" : [
+            {
+               "arguments" : [],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "getThemeList",
+               "privilege" : "read_only",
+               "return_type" : {
+                  "element_type" : {
+                     "is_bind_type" : false,
+                     "is_errorable" : false,
+                     "name" : "string"
+                  },
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "array"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "key",
+                     "type" : {
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "ThemeSettingsColorKey"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "resolveColorKey",
+               "privilege" : "read_only",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "optional",
+                  "optional_type" : {
+                     "from_module" : {
+                        "name" : "@minecraft/server",
+                        "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                        "version" : "1.14.0-beta"
+                     },
+                     "is_bind_type" : true,
+                     "is_errorable" : false,
+                     "name" : "RGBA"
+                  }
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "name",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "string"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "setCurrentTheme",
+               "privilege" : "none",
+               "return_type" : {
+                  "error_types" : [
+                     {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "Error"
+                     }
+                  ],
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "undefined"
+               }
+            }
+         ],
+         "name" : "ThemeSettings",
+         "properties" : [],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "ThemeSettings"
          }
       },
       {
@@ -6823,6 +6940,154 @@
             {
                "is_read_only" : true,
                "is_static" : true,
+               "name" : "ControlsGeneralFill",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "ControlsGeneralFill"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "ControlsGeneralHighlight",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "ControlsGeneralHighlight"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "CoordinateControlX",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "CoordinateControlX"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "CoordinateControlY",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "CoordinateControlY"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "CoordinateControlZ",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "CoordinateControlZ"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "CursorVolumeBorder",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "CursorVolumeBorder"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "CursorVolumeFill",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "CursorVolumeFill"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "PlacementVolumeBorder",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "PlacementVolumeBorder"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "PlacementVolumeFill",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "PlacementVolumeFill"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "PrefillVolumeBorder",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "PrefillVolumeBorder"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "PrefillVolumeFill",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "PrefillVolumeFill"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "SelectionVolumeBorder",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "SelectionVolumeBorder"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "SelectionVolumeFill",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "SelectionVolumeFill"
+            }
+         ],
+         "name" : "ThemeSettingsColorKey"
+      },
+      {
+         "constants" : [
+            {
+               "is_read_only" : true,
+               "is_static" : true,
                "name" : "Multiple",
                "type" : {
                   "is_bind_type" : false,
@@ -8364,6 +8629,44 @@
       },
       {
          "base_types" : [],
+         "name" : "WeightedBlock",
+         "properties" : [
+            {
+               "is_read_only" : false,
+               "name" : "block",
+               "type" : {
+                  "from_module" : {
+                     "name" : "@minecraft/server",
+                     "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                     "version" : "1.14.0-beta"
+                  },
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "BlockType"
+               }
+            },
+            {
+               "is_read_only" : false,
+               "name" : "weight",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "int32",
+                  "valid_range" : {
+                     "max" : 2147483647,
+                     "min" : -2147483648
+                  }
+               }
+            }
+         ],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "WeightedBlock"
+         }
+      },
+      {
+         "base_types" : [],
          "name" : "WidgetCreateOptions",
          "properties" : [
             {
@@ -8455,7 +8758,7 @@
          }
       }
    ],
-   "minecraft_version" : "1.21.20-beta.22",
+   "minecraft_version" : "1.21.20-beta.23",
    "module_type" : "script",
    "name" : "@minecraft/server-editor-bindings",
    "objects" : [
