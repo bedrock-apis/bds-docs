@@ -108,11 +108,11 @@ async function runDocs(v,version){
     globalThis.console.log("///////////////////////// Bedrock Dedicated Server ///////////////////////////");
     if(existsSync(docs_generated)) {
         console.log("Successfully Generated in " + (Date.now() - time) + "ms");
-        CopyFiles(v,version).catch(er=>{
+        await CopyFiles(v,version).catch(er=>{
             global.console.error(er.message);
             exit(1);
         });
-        DoFiles(docs_generated + "/script_modules",declarations, (file, data)=>{
+        await DoFiles(docs_generated + "/script_modules",declarations, (file, data)=>{
             const Json = JSON.parse(data.toString());
             const script_module = new ScriptModule(Json);
             const {name, uuid, version} = script_module;
