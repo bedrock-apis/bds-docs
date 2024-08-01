@@ -12,10 +12,14 @@ export enum GamePublishSetting {FriendsOfFriends = 3, FriendsOnly = 2, InviteOnl
 export enum GraphicsSettingsProperty {ShowInvisibleBlocks = "ShowInvisibleBlocks"}
 export enum InputModifier {Alt = 2, Any = 15, Control = 4, None = 1, Shift = 8, Unused = 0}
 export enum KeyInputType {Invalid = 0, Press = 1, Release = 2}
+export enum Plane {XY = "XY", XZ = "XZ", YZ = "YZ"}
 export enum PlayerPermissionLevel {Custom = 3, Member = 1, Operator = 2, Visitor = 0}
 export enum PlaytestSessionResult {EditorSystemFailure = 7, InvalidLevelId = 8, InvalidSessionHandle = 1, OK = 0, PlayerNotFound = 9, ResponseTimeout = 10, SessionInfoNotFound = 2, TooManyPlayers = 3, UnspecifiedError = 11, UnsupportedScenario = 6, WorldExportBusy = 5, WorldExportFailed = 4}
+export enum PrimitiveType {AxialSphere = "AxialSphere", Box = "Box", Disc = "Disc", Line = "Line", Text = "Text"}
 export enum ProjectExportType {PlayableWorld = 0, ProjectBackup = 1, WorldTemplate = 2}
+export enum SplineType {Hermite = "Hermite", Line = "Line"}
 export enum ThemeSettingsColorKey {ControlsGeneralFill = "ControlsGeneralFill", ControlsGeneralHighlight = "ControlsGeneralHighlight", CoordinateControlX = "CoordinateControlX", CoordinateControlY = "CoordinateControlY", CoordinateControlZ = "CoordinateControlZ", CursorVolumeBorder = "CursorVolumeBorder", CursorVolumeFill = "CursorVolumeFill", PlacementVolumeBorder = "PlacementVolumeBorder", PlacementVolumeFill = "PlacementVolumeFill", PrefillVolumeBorder = "PrefillVolumeBorder", PrefillVolumeFill = "PrefillVolumeFill", SelectionVolumeBorder = "SelectionVolumeBorder", SelectionVolumeFill = "SelectionVolumeFill"}
+export enum WidgetComponentType {Entity = "Entity", Gizmo = "Gizmo", Guide = "Guide", RenderPrim = "RenderPrim", Spline = "Spline", Text = "Text"}
 export enum WidgetGroupSelectionMode {Multiple = "Multiple", None = "None", Single = "Single"}
 export class BlockPalette { constructor(); getItem(index: number): IBlockPaletteItem; removeItemAt(index: number): void; removeItems(): void; setItem(blockPaletteItem: IBlockPaletteItem, index: number): void;}
 export class BlockPaletteManager { private constructor(); addOrReplacePalette(paletteId: string, palette: BlockPalette): void; getPalette(paletteId: string): BlockPalette; getPaletteIdList(): string[]; getPaletteItem(paletteId: string, index: number): IBlockPaletteItem; getPrimaryPalette(): BlockPalette; getSelectedBlockType(): _10.BlockType; getSelectedItem(): IBlockPaletteItem; removePalette(paletteId: string): void; setPaletteItem(paletteId: string, index: number, item: IBlockPaletteItem): void; setPrimaryPalette(paletteId: string): void; setSelectedItem(item: IBlockPaletteItem): void;}
@@ -29,9 +33,6 @@ export class CursorAttachmentPropertiesChangeAfterEvent { private constructor();
 export class CursorAttachmentPropertyChangeAfterEventSignal { private constructor(); subscribe(callback: (arg0: CursorAttachmentPropertiesChangeAfterEvent)=>undefined): (arg0: CursorAttachmentPropertiesChangeAfterEvent)=>undefined; unsubscribe(callback: (arg0: CursorAttachmentPropertiesChangeAfterEvent)=>undefined): void;}
 export class CursorPropertiesChangeAfterEvent { private constructor(); readonly properties: CursorProperties;}
 export class CursorPropertyChangeAfterEventSignal { private constructor(); subscribe(callback: (arg0: CursorPropertiesChangeAfterEvent)=>undefined): (arg0: CursorPropertiesChangeAfterEvent)=>undefined; unsubscribe(callback: (arg0: CursorPropertiesChangeAfterEvent)=>undefined): void;}
-//@ts-ignore allow class inheritance for native classes
-export class CustomWidget extends Widget{ private constructor(); readonly location: _10.Vector3; readonly rotation: _10.Vector2; readonly showTextOnlyWhenSelected: boolean; getText(): string; moveBy(delta: _10.Vector3): void; setText(text: string): void;}
-export class CustomWidgetMoveEventData { private constructor(); readonly group: WidgetGroup; readonly location?: _10.Vector3; readonly rotation?: _10.Vector2; readonly widget: CustomWidget;}
 export class DataStore { private constructor(); readonly actionBarContainer: DataStoreActionBarContainer; readonly actionContainer: DataStoreActionContainer; readonly afterEvents: DataStoreAfterEvents; readonly menuContainer: DataStoreMenuContainer;}
 export class DataStoreActionBarContainer { private constructor(); getItemPayload(id: string): string; getItemProperty(id: string, property: string): boolean | number | string; hasItemPayload(id: string): boolean; hasItemProperty(id: string, property: string): boolean; registerItem(id: string, payload: string): void; unregisterItem(id: string): void; updateRegisteredItem(id: string, payload: string): void; updateRegisteredItemProperty(id: string, payload: string, property: string): void;}
 export class DataStoreActionContainer { private constructor(); bindActionToControl(controlId: string, actionPayload: string): void; removeActionFromControl(controlId: string, actionPayload?: string): void;}
@@ -48,8 +49,6 @@ export class ExtensionContextAfterEvents { private constructor(); readonly clipb
 export class GraphicsSettings { private constructor(); get(property: GraphicsSettingsProperty): boolean | number | string; getAll(): Record<string,boolean | number | string>; set(property: GraphicsSettingsProperty, value: boolean | number | string): void; setAll(properties: Record<string,boolean | number | string>): void;}
 export class IBlockPaletteItem { private constructor(); getBlock(): _10.BlockType; getDisplayName(): string; getType(): BlockPaletteItemType; setBlock(block: _10.BlockPermutation | _10.BlockType | string): void;}
 export class InputService { private constructor(); registerKeyBinding(contextId: string, bindingId: string, key: number, modifier: InputModifier, info: InputBindingInfo): void; unregisterKeyBinding(controlId: string, bindingId: string): void;}
-//@ts-ignore allow class inheritance for native classes
-export class LineWidget extends Widget{ private constructor();}
 export class Logger { private constructor(); debug(message: string, properties?: LogProperties): void; error(message: string, properties?: LogProperties): void; info(message: string, properties?: LogProperties): void; warning(message: string, properties?: LogProperties): void;}
 export class MinecraftEditor { private constructor(); readonly log: Logger; readonly simulation: SimulationState;}
 export class MinecraftEditorInternal { private constructor(); getDataStore(player: _10.Player): DataStore; getDataTransferManager(player: _10.Player): DataTransferManager; getInputService(player: _10.Player): InputService; registerExtension(extensionName: string, activationFunction: (arg0: ExtensionContext)=>undefined, shutdownFunction: (arg0: ExtensionContext)=>undefined, options?: ExtensionOptionalParameters): Extension;}
@@ -68,19 +67,35 @@ export class SettingsUIElement { constructor(name: string, initialValue: boolean
 //@ts-ignore allow class inheritance for native classes
 export class SimpleBlockPaletteItem extends IBlockPaletteItem{ constructor(displayName?: string);}
 export class SimulationState { private constructor(); isPaused(): boolean; setPaused(isPaused: boolean): void;}
-export class ThemeSettings { private constructor(); getThemeList(): string[]; resolveColorKey(key: ThemeSettingsColorKey): _10.RGBA; setCurrentTheme(name: string): void;}
+export class ThemeSettings { private constructor(); addNewTheme(name: string): void; deleteTheme(name: string): void; getCurrentTheme(): string; getThemeList(): string[]; resolveColorKey(key: ThemeSettingsColorKey): _10.RGBA; setCurrentTheme(name: string): void; updateThemeColor(name: string, key: ThemeSettingsColorKey, newColor: _10.RGBA): void;}
 export class TransactionManager { private constructor(); addEntityOperation(entity: _10.Entity, type: EntityOperationType): boolean; addUserDefinedOperation(transactionHandlerId: UserDefinedTransactionHandlerId, operationData: string, operationName?: string): void; commitOpenTransaction(): boolean; commitTrackedChanges(): number; createUserDefinedTransactionHandler(undoClosure: (arg0: string)=>undefined, redoClosure: (arg0: string)=>undefined): UserDefinedTransactionHandlerId; discardOpenTransaction(): boolean; discardTrackedChanges(): number; openTransaction(name: string): boolean; redo(): void; redoSize(): number; trackBlockChangeArea(from: _10.Vector3, to: _10.Vector3): boolean; trackBlockChangeCompoundBlockVolume(compoundBlockVolume: _10.CompoundBlockVolume): boolean; trackBlockChangeList(locations: _10.Vector3[]): boolean; trackBlockChangeSelection(selection: Selection): boolean; undo(): void; undoSize(): number;}
 export class UserDefinedTransactionHandlerId { private constructor();}
-export class Widget { private constructor(); readonly valid: boolean; deleteWidget(): void; getIsSelected(): boolean; getIsVisible(): boolean; setIsSelected(isSelected: boolean): void; setIsVisible(isVisible: boolean): void;}
-export class WidgetGroup { private constructor(); readonly valid: boolean; areAnySelected(): boolean; createCustomWidget(customEntityName: string, location: _10.Vector3, rotation?: _10.Vector2, options?: CustomWidgetCreateOptions): CustomWidget; deleteWidget(widgetToDelete: Widget): void; deselectAllWidgets(): void; getIsVisible(): boolean; moveSelectedWidgets(delta: _10.Vector3): void; selectAllWidgets(): void; setIsVisible(isVisible: boolean): void;}
+export class Widget { private constructor(); collisionOffset: _10.Vector3; collisionRadius: number; location: _10.Vector3; readonly selectable: boolean; selected: boolean; showBoundingBox: boolean; showCollisionRadius: boolean; snapToBlockLocation: boolean; visible: boolean; addEntityComponent(componentName: string, actorNameId: string, options?: WidgetComponentEntityOptions): WidgetComponentEntity; addGizmoComponent(componentName: string, options?: WidgetComponentGizmoOptions): WidgetComponentGizmo; addGuideComponent(componentName: string, options?: WidgetComponentGuideOptions): WidgetComponentGuide; addRenderPrimitiveComponent(componentName: string, primitiveType: WidgetComponentRenderPrimitiveAxialSphere | WidgetComponentRenderPrimitiveBox | WidgetComponentRenderPrimitiveDisc | WidgetComponentRenderPrimitiveLine, options?: WidgetComponentRenderPrimitiveOptions): WidgetComponentRenderPrimitive; addSplineComponent(componentName: string, options?: WidgetComponentSplineOptions): WidgetComponentSpline; addTextComponent(componentName: string, label: string, options?: WidgetComponentTextOptions): WidgetComponentText; delete(): void; deleteComponent(componentOrName: string | WidgetComponentBase): void; getComponent(componentName: string): WidgetComponentBase; getComponents(): WidgetComponentBase[]; setStateChangeEvent(eventFunction?: (arg0: WidgetStateChangeEventData)=>undefined): void;}
+export class WidgetComponentBase { private constructor(); readonly componentType: WidgetComponentType; readonly location: _10.Vector3; readonly name: string; offset: _10.Vector3; readonly valid: boolean; visible: boolean; readonly widget: Widget; delete(): void;}
+//@ts-ignore allow class inheritance for native classes
+export class WidgetComponentEntity extends WidgetComponentBase{ private constructor(); clickable: boolean; playAnimation(animationName: string): void;}
+//@ts-ignore allow class inheritance for native classes
+export class WidgetComponentGizmo extends WidgetComponentBase{ private constructor();}
+//@ts-ignore allow class inheritance for native classes
+export class WidgetComponentGuide extends WidgetComponentBase{ private constructor();}
+//@ts-ignore allow class inheritance for native classes
+export class WidgetComponentRenderPrimitive extends WidgetComponentBase{ private constructor(); setPrimitive(primitive: WidgetComponentRenderPrimitiveAxialSphere | WidgetComponentRenderPrimitiveBox | WidgetComponentRenderPrimitiveDisc | WidgetComponentRenderPrimitiveLine): void;}
+export class WidgetComponentRenderPrimitiveAxialSphere { constructor(center: _10.Vector3, radius: number, color?: _10.RGBA); center: _10.Vector3; color?: _10.RGBA; radius: number;}
+export class WidgetComponentRenderPrimitiveBox { constructor(center: _10.Vector3, color: _10.RGBA, size?: _10.Vector3); center: _10.Vector3; color: _10.RGBA; size?: _10.Vector3;}
+export class WidgetComponentRenderPrimitiveDisc { constructor(center: _10.Vector3, radius: number, color: _10.RGBA); center: _10.Vector3; color: _10.RGBA; radius: number;}
+export class WidgetComponentRenderPrimitiveLine { constructor(start: _10.Vector3, end: _10.Vector3, color: _10.RGBA); color: _10.RGBA; end: _10.Vector3; start: _10.Vector3;}
+//@ts-ignore allow class inheritance for native classes
+export class WidgetComponentSpline extends WidgetComponentBase{ private constructor(); splineType: SplineType; getControlPoints(): Widget[]; getInterpolatedPoints(maxPointsPerControlSegment?: number): _10.Vector3[]; setControlPoints(widgetList: Widget[]): void;}
+//@ts-ignore allow class inheritance for native classes
+export class WidgetComponentText extends WidgetComponentBase{ private constructor(); color: _10.RGBA; label: string;}
+export class WidgetGroup { private constructor(); readonly selectedWidgetCount: number; visible: boolean; visibleBounds: boolean; createWidget(location: _10.Vector3, options?: WidgetCreateOptions): Widget; delete(): void; deleteWidget(widgetToDelete: Widget): void; deselectAllWidgets(): void; selectAllWidgets(): void;}
 export class WidgetManager { private constructor(); createGroup(options?: WidgetGroupCreateOptions): WidgetGroup; deleteGroup(groupToDelete: WidgetGroup): void;}
-export class WidgetStateChangeEventData { private constructor(); readonly group: WidgetGroup; readonly isSelected?: boolean; readonly isVisible?: boolean; readonly widget: Widget;}
+export class WidgetStateChangeEventData { private constructor(); readonly group: WidgetGroup; readonly location?: _10.Vector3; readonly selected?: boolean; readonly visible?: boolean; readonly widget: Widget;}
 export interface BrushPipelineOperation {blockTypes: _10.BlockType[]; operation: BrushPipelineOperationType;}
 export interface BrushShape {icon: string; name: string;}
 export interface ClipboardWriteOptions {anchor?: _10.Vector3; mirror?: _10.StructureMirrorAxis; offset?: _10.Vector3; rotation?: _10.StructureRotation;}
 export interface CursorAttachmentProperties {boundsFillColor?: _10.RGBA; boundsVisible?: boolean; boundsWireframeColor?: _10.RGBA; contentsFillColor?: _10.RGBA; contentsWireframeColor?: _10.RGBA; mirror?: _10.StructureMirrorAxis; offset?: _10.Vector3; origin?: _10.Vector3; rotation?: _10.StructureRotation;}
 export interface CursorProperties {controlMode?: CursorControlMode; fillColor?: _10.RGBA; fixedModeDistance?: number; outlineColor?: _10.RGBA; projectThroughLiquid?: boolean; targetMode?: CursorTargetMode; visible?: boolean;}
-export interface CustomWidgetCreateOptions {moveEvent?: (arg0: CustomWidgetMoveEventData)=>undefined; showTextOnlyWhenSelected?: boolean; text?: string; visualOffset?: _10.Vector3;}
 export interface DataTransferCollectionNameData {nameStringId: string; uniqueId: string;}
 export interface ExtensionOptionalParameters {description?: string; notes?: string; toolGroupId?: string;}
 export interface GameOptions {bonusChest?: boolean; cheats?: boolean; commandBlockEnabled?: boolean; daylightCycle?: DaylightCycle; difficulty?: _10.Difficulty; dimensionId?: string; disableWeather?: boolean; educationEdition?: boolean; entitiesDropLoot?: boolean; exportType?: ProjectExportType; fireSpreads?: boolean; friendlyFire?: boolean; gameMode?: _10.GameMode; immediateRespawn?: boolean; keepInventory?: boolean; lanVisibility?: boolean; mobGriefing?: boolean; mobLoot?: boolean; mobSpawning?: boolean; multiplayerGame?: boolean; naturalRegeneration?: boolean; playerAccess?: GamePublishSetting; playerPermissions?: PlayerPermissionLevel; randomTickSpeed?: number; recipeUnlocking?: boolean; respawnBlocksExplode?: boolean; respawnRadius?: number; showCoordinates?: boolean; showDaysPlayed?: boolean; simulationDistance?: number; spawnPosition?: _10.Vector3; startingMap?: boolean; tileDrops?: boolean; timeOfDay?: number; tntExplodes?: boolean; weather?: number; worldName?: string;}
@@ -89,7 +104,17 @@ export interface LogProperties {player?: _10.Player; tags?: string[];}
 export interface ProjectExportOptions {alwaysDay?: boolean; difficulty?: _10.Difficulty; disableWeather?: boolean; exportName?: string; exportType: ProjectExportType; gameMode?: _10.GameMode; initialTimOfDay?: number;}
 export interface SettingsUIElementOptions {dropdownItems?: string[]; max?: number; min?: number; refreshOnChange?: boolean;}
 export interface WeightedBlock {block: _10.BlockType; weight: number;}
-export interface WidgetCreateOptions {initialVisibility?: boolean; isSelectable?: boolean; stateChangeEvent?: (arg0: WidgetStateChangeEventData)=>undefined;}
-export interface WidgetGroupCreateOptions {groupSelectionMode?: WidgetGroupSelectionMode;}
+export interface WidgetComponentBaseOptions {offset?: _10.Vector3; visible?: boolean;}
+export interface WidgetComponentEntityOptions {deselectedAnimation?: string; isClickable?: boolean; selectedAnimation?: string;}
+export interface WidgetComponentGizmoOptions { }
+export interface WidgetComponentGuideOptions { }
+export interface WidgetComponentRenderPrimitiveOptions { }
+export interface WidgetComponentSplineOptions {controlPoints: Widget[]; splineType?: SplineType;}
+export interface WidgetComponentTextOptions {color?: _10.RGBA;}
+export interface WidgetCreateOptions {collisionOffset?: _10.Vector3; collisionRadius?: number; selectable?: boolean; snapToBlockLocation?: boolean; stateChangeEvent?: (arg0: WidgetStateChangeEventData)=>undefined; visible?: boolean;}
+export interface WidgetGroupCreateOptions {groupSelectionMode?: WidgetGroupSelectionMode; showBounds?: boolean; visible?: boolean;}
+export class InvalidWidgetComponentError extends Error { private constructor() }
+export class InvalidWidgetError extends Error { private constructor() }
+export class InvalidWidgetGroupError extends Error { private constructor() }
 export const editor: MinecraftEditor;
 export const editorInternal: MinecraftEditorInternal;
