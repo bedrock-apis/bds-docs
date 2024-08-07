@@ -469,6 +469,13 @@
                "name" : "activateBrushShape",
                "privilege" : "none",
                "return_type" : {
+                  "error_types" : [
+                     {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "Error"
+                     }
+                  ],
                   "from_module" : {
                      "name" : "@minecraft/server",
                      "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
@@ -480,54 +487,51 @@
                }
             },
             {
-               "arguments" : [
-                  {
-                     "details" : null,
-                     "name" : "origin",
-                     "type" : {
-                        "from_module" : {
-                           "name" : "@minecraft/server",
-                           "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
-                           "version" : "1.15.0-beta"
-                        },
-                        "is_bind_type" : true,
-                        "is_errorable" : false,
-                        "name" : "Vector3"
-                     }
-                  },
-                  {
-                     "details" : null,
-                     "name" : "pipeline",
-                     "type" : {
-                        "element_type" : {
-                           "is_bind_type" : true,
-                           "is_errorable" : false,
-                           "name" : "BrushPipelineOperation"
-                        },
-                        "is_bind_type" : false,
-                        "is_errorable" : false,
-                        "name" : "array"
-                     }
-                  }
-               ],
+               "arguments" : [],
                "is_constructor" : false,
                "is_static" : false,
-               "name" : "getBrushVolume",
+               "name" : "activateBrushTool",
                "privilege" : "none",
                "return_type" : {
                   "is_bind_type" : false,
                   "is_errorable" : false,
-                  "name" : "optional",
-                  "optional_type" : {
-                     "from_module" : {
-                        "name" : "@minecraft/server",
-                        "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
-                        "version" : "1.15.0-beta"
-                     },
-                     "is_bind_type" : true,
-                     "is_errorable" : false,
-                     "name" : "CompoundBlockVolume"
-                  }
+                  "name" : "undefined"
+               }
+            },
+            {
+               "arguments" : [],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "beginPainting",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "undefined"
+               }
+            },
+            {
+               "arguments" : [],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "deactivateBrushTool",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "undefined"
+               }
+            },
+            {
+               "arguments" : [],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "endPainting",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "undefined"
                }
             },
             {
@@ -552,6 +556,13 @@
                      "is_errorable" : false,
                      "name" : "SettingsUIElement"
                   },
+                  "error_types" : [
+                     {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "Error"
+                     }
+                  ],
                   "is_bind_type" : false,
                   "is_errorable" : true,
                   "name" : "array"
@@ -627,8 +638,156 @@
                "name" : "registerBrushShape",
                "privilege" : "none",
                "return_type" : {
+                  "error_types" : [
+                     {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "Error"
+                     }
+                  ],
                   "is_bind_type" : false,
                   "is_errorable" : true,
+                  "name" : "undefined"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : {
+                        "default_value" : "null"
+                     },
+                     "name" : "overrideBlock",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "optional",
+                        "optional_type" : {
+                           "is_bind_type" : false,
+                           "is_errorable" : false,
+                           "name" : "variant",
+                           "variant_types" : [
+                              {
+                                 "from_module" : {
+                                    "name" : "@minecraft/server",
+                                    "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                                    "version" : "1.15.0-beta"
+                                 },
+                                 "is_bind_type" : true,
+                                 "is_errorable" : false,
+                                 "name" : "BlockPermutation"
+                              },
+                              {
+                                 "from_module" : {
+                                    "name" : "@minecraft/server",
+                                    "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                                    "version" : "1.15.0-beta"
+                                 },
+                                 "is_bind_type" : true,
+                                 "is_errorable" : false,
+                                 "name" : "BlockType"
+                              },
+                              {
+                                 "is_bind_type" : false,
+                                 "is_errorable" : false,
+                                 "name" : "string"
+                              }
+                           ]
+                        }
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "setBlockPaletteOverride",
+               "privilege" : "none",
+               "return_type" : {
+                  "error_types" : [
+                     {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "Error"
+                     }
+                  ],
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "undefined"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "mask",
+                     "type" : {
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "BlockMaskList"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "setBrushMask",
+               "privilege" : "none",
+               "return_type" : {
+                  "error_types" : [
+                     {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "Error"
+                     }
+                  ],
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "undefined"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "shape",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "variant",
+                        "variant_types" : [
+                           {
+                              "element_type" : {
+                                 "from_module" : {
+                                    "name" : "@minecraft/server",
+                                    "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                                    "version" : "1.15.0-beta"
+                                 },
+                                 "is_bind_type" : true,
+                                 "is_errorable" : false,
+                                 "name" : "Vector3"
+                              },
+                              "is_bind_type" : false,
+                              "is_errorable" : false,
+                              "name" : "array"
+                           },
+                           {
+                              "from_module" : {
+                                 "name" : "@minecraft/server",
+                                 "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                                 "version" : "1.15.0-beta"
+                              },
+                              "is_bind_type" : true,
+                              "is_errorable" : false,
+                              "name" : "CompoundBlockVolume"
+                           }
+                        ]
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "setBrushShape",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
                   "name" : "undefined"
                }
             },
@@ -689,6 +848,13 @@
                "name" : "uiSettingValueChanged",
                "privilege" : "none",
                "return_type" : {
+                  "error_types" : [
+                     {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "Error"
+                     }
+                  ],
                   "is_bind_type" : false,
                   "is_errorable" : true,
                   "name" : "boolean"
@@ -732,12 +898,12 @@
             },
             {
                "is_read_only" : true,
-               "name" : "brushShapeNames",
+               "name" : "brushShapeList",
                "type" : {
                   "element_type" : {
-                     "is_bind_type" : false,
+                     "is_bind_type" : true,
                      "is_errorable" : false,
-                     "name" : "string"
+                     "name" : "BrushShape"
                   },
                   "is_bind_type" : false,
                   "is_errorable" : false,
@@ -1163,6 +1329,262 @@
             "is_bind_type" : true,
             "is_errorable" : false,
             "name" : "ClipboardManager"
+         }
+      },
+      {
+         "base_types" : [],
+         "constants" : [],
+         "functions" : [],
+         "name" : "CurrentThemeChangeAfterEvent",
+         "properties" : [
+            {
+               "is_read_only" : true,
+               "name" : "name",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               }
+            }
+         ],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "CurrentThemeChangeAfterEvent"
+         }
+      },
+      {
+         "base_types" : [],
+         "constants" : [],
+         "functions" : [
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "callback",
+                     "type" : {
+                        "closure_type" : {
+                           "argument_types" : [
+                              {
+                                 "is_bind_type" : true,
+                                 "is_errorable" : false,
+                                 "name" : "CurrentThemeChangeAfterEvent"
+                              }
+                           ],
+                           "return_type" : {
+                              "is_bind_type" : false,
+                              "is_errorable" : true,
+                              "name" : "undefined"
+                           }
+                        },
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "closure"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "subscribe",
+               "privilege" : "none",
+               "return_type" : {
+                  "closure_type" : {
+                     "argument_types" : [
+                        {
+                           "is_bind_type" : true,
+                           "is_errorable" : false,
+                           "name" : "CurrentThemeChangeAfterEvent"
+                        }
+                     ],
+                     "return_type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : true,
+                        "name" : "undefined"
+                     }
+                  },
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "closure"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "callback",
+                     "type" : {
+                        "closure_type" : {
+                           "argument_types" : [
+                              {
+                                 "is_bind_type" : true,
+                                 "is_errorable" : false,
+                                 "name" : "CurrentThemeChangeAfterEvent"
+                              }
+                           ],
+                           "return_type" : {
+                              "is_bind_type" : false,
+                              "is_errorable" : true,
+                              "name" : "undefined"
+                           }
+                        },
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "closure"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "unsubscribe",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "undefined"
+               }
+            }
+         ],
+         "name" : "CurrentThemeChangeAfterEventSignal",
+         "properties" : [],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "CurrentThemeChangeAfterEventSignal"
+         }
+      },
+      {
+         "base_types" : [],
+         "constants" : [],
+         "functions" : [],
+         "name" : "CurrentThemeColorChangeAfterEvent",
+         "properties" : [
+            {
+               "is_read_only" : true,
+               "name" : "color",
+               "type" : {
+                  "from_module" : {
+                     "name" : "@minecraft/server",
+                     "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                     "version" : "1.15.0-beta"
+                  },
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "RGBA"
+               }
+            },
+            {
+               "is_read_only" : true,
+               "name" : "colorKey",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "ThemeSettingsColorKey"
+               }
+            }
+         ],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "CurrentThemeColorChangeAfterEvent"
+         }
+      },
+      {
+         "base_types" : [],
+         "constants" : [],
+         "functions" : [
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "callback",
+                     "type" : {
+                        "closure_type" : {
+                           "argument_types" : [
+                              {
+                                 "is_bind_type" : true,
+                                 "is_errorable" : false,
+                                 "name" : "CurrentThemeColorChangeAfterEvent"
+                              }
+                           ],
+                           "return_type" : {
+                              "is_bind_type" : false,
+                              "is_errorable" : true,
+                              "name" : "undefined"
+                           }
+                        },
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "closure"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "subscribe",
+               "privilege" : "none",
+               "return_type" : {
+                  "closure_type" : {
+                     "argument_types" : [
+                        {
+                           "is_bind_type" : true,
+                           "is_errorable" : false,
+                           "name" : "CurrentThemeColorChangeAfterEvent"
+                        }
+                     ],
+                     "return_type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : true,
+                        "name" : "undefined"
+                     }
+                  },
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "closure"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "callback",
+                     "type" : {
+                        "closure_type" : {
+                           "argument_types" : [
+                              {
+                                 "is_bind_type" : true,
+                                 "is_errorable" : false,
+                                 "name" : "CurrentThemeColorChangeAfterEvent"
+                              }
+                           ],
+                           "return_type" : {
+                              "is_bind_type" : false,
+                              "is_errorable" : true,
+                              "name" : "undefined"
+                           }
+                        },
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "closure"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "unsubscribe",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "undefined"
+               }
+            }
+         ],
+         "name" : "CurrentThemeColorChangeAfterEventSignal",
+         "properties" : [],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "CurrentThemeColorChangeAfterEventSignal"
          }
       },
       {
@@ -2876,6 +3298,24 @@
             },
             {
                "is_read_only" : true,
+               "name" : "currentThemeChange",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "CurrentThemeChangeAfterEventSignal"
+               }
+            },
+            {
+               "is_read_only" : true,
+               "name" : "currentThemeColorChange",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "CurrentThemeColorChangeAfterEventSignal"
+               }
+            },
+            {
+               "is_read_only" : true,
                "name" : "cursorAttachmentPropertyChange",
                "type" : {
                   "is_bind_type" : true,
@@ -3645,6 +4085,145 @@
                "arguments" : [
                   {
                      "details" : null,
+                     "name" : "player",
+                     "type" : {
+                        "from_module" : {
+                           "name" : "@minecraft/server",
+                           "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                           "version" : "1.15.0-beta"
+                        },
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "Player"
+                     }
+                  },
+                  {
+                     "details" : null,
+                     "name" : "coordinate",
+                     "type" : {
+                        "from_module" : {
+                           "name" : "@minecraft/server",
+                           "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                           "version" : "1.15.0-beta"
+                        },
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "Vector3"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "getMapColorUnsafe",
+               "privilege" : "none",
+               "return_type" : {
+                  "error_types" : [
+                     {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "Error"
+                     }
+                  ],
+                  "from_module" : {
+                     "name" : "@minecraft/server",
+                     "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                     "version" : "1.15.0-beta"
+                  },
+                  "is_bind_type" : true,
+                  "is_errorable" : true,
+                  "name" : "RGBA"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "player",
+                     "type" : {
+                        "from_module" : {
+                           "name" : "@minecraft/server",
+                           "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                           "version" : "1.15.0-beta"
+                        },
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "Player"
+                     }
+                  },
+                  {
+                     "details" : null,
+                     "name" : "areaIdentifier",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "string"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "isTickingAreaActive",
+               "privilege" : "none",
+               "return_type" : {
+                  "error_types" : [
+                     {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "Error"
+                     }
+                  ],
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "boolean"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "player",
+                     "type" : {
+                        "from_module" : {
+                           "name" : "@minecraft/server",
+                           "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                           "version" : "1.15.0-beta"
+                        },
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "Player"
+                     }
+                  },
+                  {
+                     "details" : null,
+                     "name" : "areaIdentifierPrefix",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "string"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "purgeTickingAreas",
+               "privilege" : "none",
+               "return_type" : {
+                  "error_types" : [
+                     {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "Error"
+                     }
+                  ],
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "boolean"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
                      "name" : "extensionName",
                      "type" : {
                         "is_bind_type" : false,
@@ -3723,6 +4302,120 @@
                   "is_bind_type" : true,
                   "is_errorable" : false,
                   "name" : "Extension"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "player",
+                     "type" : {
+                        "from_module" : {
+                           "name" : "@minecraft/server",
+                           "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                           "version" : "1.15.0-beta"
+                        },
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "Player"
+                     }
+                  },
+                  {
+                     "details" : null,
+                     "name" : "areaIdentifier",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "string"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "releaseTickingArea",
+               "privilege" : "none",
+               "return_type" : {
+                  "error_types" : [
+                     {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "Error"
+                     }
+                  ],
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "boolean"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "player",
+                     "type" : {
+                        "from_module" : {
+                           "name" : "@minecraft/server",
+                           "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                           "version" : "1.15.0-beta"
+                        },
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "Player"
+                     }
+                  },
+                  {
+                     "details" : null,
+                     "name" : "areaIdentifier",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "string"
+                     }
+                  },
+                  {
+                     "details" : null,
+                     "name" : "from",
+                     "type" : {
+                        "from_module" : {
+                           "name" : "@minecraft/server",
+                           "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                           "version" : "1.15.0-beta"
+                        },
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "Vector3"
+                     }
+                  },
+                  {
+                     "details" : null,
+                     "name" : "to",
+                     "type" : {
+                        "from_module" : {
+                           "name" : "@minecraft/server",
+                           "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                           "version" : "1.15.0-beta"
+                        },
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "Vector3"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "requestTickingArea",
+               "privilege" : "none",
+               "return_type" : {
+                  "error_types" : [
+                     {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "Error"
+                     }
+                  ],
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "boolean"
                }
             }
          ],
@@ -4088,8 +4781,8 @@
                   },
                   {
                      "details" : {
-                        "max_value" : 2147483647,
-                        "min_value" : -2147483648
+                        "max_value" : 100,
+                        "min_value" : 1
                      },
                      "name" : "weight",
                      "type" : {
@@ -5076,6 +5769,28 @@
                ],
                "is_constructor" : false,
                "is_static" : false,
+               "name" : "canThemeBeModified",
+               "privilege" : "read_only",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "boolean"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "name",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "string"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
                "name" : "deleteTheme",
                "privilege" : "none",
                "return_type" : {
@@ -5137,19 +5852,14 @@
                "name" : "resolveColorKey",
                "privilege" : "read_only",
                "return_type" : {
-                  "is_bind_type" : false,
+                  "from_module" : {
+                     "name" : "@minecraft/server",
+                     "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                     "version" : "1.15.0-beta"
+                  },
+                  "is_bind_type" : true,
                   "is_errorable" : false,
-                  "name" : "optional",
-                  "optional_type" : {
-                     "from_module" : {
-                        "name" : "@minecraft/server",
-                        "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
-                        "version" : "1.15.0-beta"
-                     },
-                     "is_bind_type" : true,
-                     "is_errorable" : false,
-                     "name" : "RGBA"
-                  }
+                  "name" : "RGBA"
                }
             },
             {
@@ -5240,6 +5950,134 @@
             "is_bind_type" : true,
             "is_errorable" : false,
             "name" : "ThemeSettings"
+         }
+      },
+      {
+         "base_types" : [],
+         "constants" : [],
+         "functions" : [
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "areaIdentifier",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "string"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "isTickingAreaActive",
+               "privilege" : "none",
+               "return_type" : {
+                  "error_types" : [
+                     {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "Error"
+                     }
+                  ],
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "boolean"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "areaIdentifier",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "string"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "releaseTickingArea",
+               "privilege" : "none",
+               "return_type" : {
+                  "error_types" : [
+                     {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "Error"
+                     }
+                  ],
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "boolean"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "areaIdentifier",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "string"
+                     }
+                  },
+                  {
+                     "details" : null,
+                     "name" : "from",
+                     "type" : {
+                        "from_module" : {
+                           "name" : "@minecraft/server",
+                           "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                           "version" : "1.15.0-beta"
+                        },
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "Vector3"
+                     }
+                  },
+                  {
+                     "details" : null,
+                     "name" : "to",
+                     "type" : {
+                        "from_module" : {
+                           "name" : "@minecraft/server",
+                           "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                           "version" : "1.15.0-beta"
+                        },
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "Vector3"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "requestTickingArea",
+               "privilege" : "none",
+               "return_type" : {
+                  "error_types" : [
+                     {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "Error"
+                     }
+                  ],
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "boolean"
+               }
+            }
+         ],
+         "name" : "TickingAreaManager",
+         "properties" : [],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "TickingAreaManager"
          }
       },
       {
@@ -7703,6 +8541,33 @@
             {
                "is_read_only" : true,
                "is_static" : true,
+               "name" : "Mask",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "Mask"
+            },
+            {
+               "is_read_only" : true,
+               "is_static" : true,
+               "name" : "Replace",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               },
+               "value" : "Replace"
+            }
+         ],
+         "name" : "BlockMaskListType"
+      },
+      {
+         "constants" : [
+            {
+               "is_read_only" : true,
+               "is_static" : true,
                "name" : "Probability",
                "type" : {
                   "is_bind_type" : true,
@@ -7724,33 +8589,6 @@
             }
          ],
          "name" : "BlockPaletteItemType"
-      },
-      {
-         "constants" : [
-            {
-               "is_read_only" : true,
-               "is_static" : true,
-               "name" : "Exclude",
-               "type" : {
-                  "is_bind_type" : true,
-                  "is_errorable" : false,
-                  "name" : "BrushPipelineOperationType"
-               },
-               "value" : 1
-            },
-            {
-               "is_read_only" : true,
-               "is_static" : true,
-               "name" : "Include",
-               "type" : {
-                  "is_bind_type" : true,
-                  "is_errorable" : false,
-                  "name" : "BrushPipelineOperationType"
-               },
-               "value" : 0
-            }
-         ],
-         "name" : "BrushPipelineOperationType"
       },
       {
          "constants" : [
@@ -8838,21 +9676,43 @@
    "interfaces" : [
       {
          "base_types" : [],
-         "name" : "BrushPipelineOperation",
+         "name" : "BlockMaskList",
          "properties" : [
             {
                "is_read_only" : false,
-               "name" : "blockTypes",
+               "name" : "blockList",
                "type" : {
                   "element_type" : {
-                     "from_module" : {
-                        "name" : "@minecraft/server",
-                        "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
-                        "version" : "1.15.0-beta"
-                     },
-                     "is_bind_type" : true,
+                     "is_bind_type" : false,
                      "is_errorable" : false,
-                     "name" : "BlockType"
+                     "name" : "variant",
+                     "variant_types" : [
+                        {
+                           "from_module" : {
+                              "name" : "@minecraft/server",
+                              "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                              "version" : "1.15.0-beta"
+                           },
+                           "is_bind_type" : true,
+                           "is_errorable" : false,
+                           "name" : "BlockPermutation"
+                        },
+                        {
+                           "from_module" : {
+                              "name" : "@minecraft/server",
+                              "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                              "version" : "1.15.0-beta"
+                           },
+                           "is_bind_type" : true,
+                           "is_errorable" : false,
+                           "name" : "BlockType"
+                        },
+                        {
+                           "is_bind_type" : false,
+                           "is_errorable" : false,
+                           "name" : "string"
+                        }
+                     ]
                   },
                   "is_bind_type" : false,
                   "is_errorable" : false,
@@ -8861,18 +9721,18 @@
             },
             {
                "is_read_only" : false,
-               "name" : "operation",
+               "name" : "maskType",
                "type" : {
                   "is_bind_type" : true,
                   "is_errorable" : false,
-                  "name" : "BrushPipelineOperationType"
+                  "name" : "BlockMaskListType"
                }
             }
          ],
          "type" : {
             "is_bind_type" : true,
             "is_errorable" : false,
-            "name" : "BrushPipelineOperation"
+            "name" : "BlockMaskList"
          }
       },
       {
@@ -10688,7 +11548,7 @@
          }
       }
    ],
-   "minecraft_version" : "1.21.30-beta.21",
+   "minecraft_version" : "1.21.30-beta.22",
    "module_type" : "script",
    "name" : "@minecraft/server-editor-bindings",
    "objects" : [
