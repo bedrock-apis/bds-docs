@@ -146,7 +146,7 @@ class VariantType extends Type{
         super(type);
         this.types = type.variant_types.map(e=>TypeResolver(e));
     }
-    toString(m){return this.types.map(e=>e.toString(m)).join(" | ");}
+    toString(m){return "(" + this.types.map(e=>e.toString(m)).join(" | ") + ")";}
 }
 class ArrayType extends ComplexType{
     constructor(type){
