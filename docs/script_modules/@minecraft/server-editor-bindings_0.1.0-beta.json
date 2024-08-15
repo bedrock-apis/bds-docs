@@ -1197,6 +1197,35 @@
                "arguments" : [
                   {
                      "details" : null,
+                     "name" : "structure",
+                     "type" : {
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "EditorStructure"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "readFromStructure",
+               "privilege" : "none",
+               "return_type" : {
+                  "error_types" : [
+                     {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "Error"
+                     }
+                  ],
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "undefined"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
                      "name" : "from",
                      "type" : {
                         "from_module" : {
@@ -2093,6 +2122,15 @@
                   "is_errorable" : false,
                   "name" : "DataStoreMenuContainer"
                }
+            },
+            {
+               "is_read_only" : true,
+               "name" : "modalToolContainer",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "DataStoreModalToolContainer"
+               }
             }
          ],
          "type" : {
@@ -2460,6 +2498,15 @@
          "properties" : [
             {
                "is_read_only" : true,
+               "name" : "modalToolActivationChanged",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "ModalToolActivationChangedAfterEventSignal"
+               }
+            },
+            {
+               "is_read_only" : true,
                "name" : "payloadReceived",
                "type" : {
                   "is_bind_type" : true,
@@ -2701,6 +2748,65 @@
             "is_bind_type" : true,
             "is_errorable" : false,
             "name" : "DataStoreMenuContainer"
+         }
+      },
+      {
+         "base_types" : [],
+         "constants" : [],
+         "functions" : [
+            {
+               "arguments" : [],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "getSelectedTool",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "optional",
+                  "optional_type" : {
+                     "is_bind_type" : false,
+                     "is_errorable" : false,
+                     "name" : "string"
+                  }
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : {
+                        "default_value" : "null"
+                     },
+                     "name" : "toolId",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "optional",
+                        "optional_type" : {
+                           "is_bind_type" : false,
+                           "is_errorable" : false,
+                           "name" : "string"
+                        }
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "updateSelectedTool",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "undefined"
+               }
+            }
+         ],
+         "name" : "DataStoreModalToolContainer",
+         "properties" : [],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "DataStoreModalToolContainer"
          }
       },
       {
@@ -3005,6 +3111,154 @@
                "arguments" : [
                   {
                      "details" : null,
+                     "name" : "item",
+                     "type" : {
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "ClipboardItem"
+                     }
+                  },
+                  {
+                     "details" : null,
+                     "name" : "structureName",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "string"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "createFromClipboardItem",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : true,
+                  "name" : "EditorStructure"
+               }
+            },
+            {
+               "arguments" : [],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "getExistingTags",
+               "privilege" : "none",
+               "return_type" : {
+                  "element_type" : {
+                     "is_bind_type" : false,
+                     "is_errorable" : false,
+                     "name" : "string"
+                  },
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "array"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "location",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "string"
+                     }
+                  },
+                  {
+                     "details" : null,
+                     "name" : "id",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "string"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "loadStructure",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : true,
+                  "name" : "EditorStructure"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "structure",
+                     "type" : {
+                        "is_bind_type" : true,
+                        "is_errorable" : false,
+                        "name" : "EditorStructure"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "saveStructure",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "undefined"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : {
+                        "default_value" : "null"
+                     },
+                     "name" : "options",
+                     "type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "optional",
+                        "optional_type" : {
+                           "is_bind_type" : true,
+                           "is_errorable" : false,
+                           "name" : "EditorStructureSearchOptions"
+                        }
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "searchStructures",
+               "privilege" : "none",
+               "return_type" : {
+                  "element_type" : {
+                     "is_bind_type" : true,
+                     "is_errorable" : false,
+                     "name" : "EditorStructure"
+                  },
+                  "is_bind_type" : false,
+                  "is_errorable" : true,
+                  "name" : "array"
+               }
+            }
+         ],
+         "name" : "EditorStructureManager",
+         "properties" : [],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "EditorStructureManager"
+         }
+      },
+      {
+         "base_types" : [],
+         "constants" : [],
+         "functions" : [
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
                      "name" : "options",
                      "type" : {
                         "is_bind_type" : true,
@@ -3254,6 +3508,15 @@
                   "is_bind_type" : true,
                   "is_errorable" : false,
                   "name" : "SettingsManager"
+               }
+            },
+            {
+               "is_read_only" : true,
+               "name" : "structureManager",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "EditorStructureManager"
                }
             },
             {
@@ -4425,6 +4688,141 @@
             "is_bind_type" : true,
             "is_errorable" : false,
             "name" : "MinecraftEditorInternal"
+         }
+      },
+      {
+         "base_types" : [],
+         "constants" : [],
+         "functions" : [],
+         "name" : "ModalToolActivationChangedAfterEvent",
+         "properties" : [
+            {
+               "is_read_only" : true,
+               "name" : "isActive",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "boolean"
+               }
+            },
+            {
+               "is_read_only" : true,
+               "name" : "toolId",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "optional",
+                  "optional_type" : {
+                     "is_bind_type" : false,
+                     "is_errorable" : false,
+                     "name" : "string"
+                  }
+               }
+            }
+         ],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "ModalToolActivationChangedAfterEvent"
+         }
+      },
+      {
+         "base_types" : [],
+         "constants" : [],
+         "functions" : [
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "callback",
+                     "type" : {
+                        "closure_type" : {
+                           "argument_types" : [
+                              {
+                                 "is_bind_type" : true,
+                                 "is_errorable" : false,
+                                 "name" : "ModalToolActivationChangedAfterEvent"
+                              }
+                           ],
+                           "return_type" : {
+                              "is_bind_type" : false,
+                              "is_errorable" : true,
+                              "name" : "undefined"
+                           }
+                        },
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "closure"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "subscribe",
+               "privilege" : "none",
+               "return_type" : {
+                  "closure_type" : {
+                     "argument_types" : [
+                        {
+                           "is_bind_type" : true,
+                           "is_errorable" : false,
+                           "name" : "ModalToolActivationChangedAfterEvent"
+                        }
+                     ],
+                     "return_type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : true,
+                        "name" : "undefined"
+                     }
+                  },
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "closure"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "callback",
+                     "type" : {
+                        "closure_type" : {
+                           "argument_types" : [
+                              {
+                                 "is_bind_type" : true,
+                                 "is_errorable" : false,
+                                 "name" : "ModalToolActivationChangedAfterEvent"
+                              }
+                           ],
+                           "return_type" : {
+                              "is_bind_type" : false,
+                              "is_errorable" : true,
+                              "name" : "undefined"
+                           }
+                        },
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "closure"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "unsubscribe",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "undefined"
+               }
+            }
+         ],
+         "name" : "ModalToolActivationChangedAfterEventSignal",
+         "properties" : [],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "ModalToolActivationChangedAfterEventSignal"
          }
       },
       {
@@ -10182,6 +10580,136 @@
       },
       {
          "base_types" : [],
+         "name" : "EditorStructure",
+         "properties" : [
+            {
+               "is_read_only" : false,
+               "name" : "storageLocation",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "string"
+               }
+            },
+            {
+               "is_read_only" : false,
+               "name" : "structure",
+               "type" : {
+                  "from_module" : {
+                     "name" : "@minecraft/server",
+                     "uuid" : "b26a4d4c-afdf-4690-88f8-931846312678",
+                     "version" : "1.15.0-beta"
+                  },
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "Structure"
+               }
+            },
+            {
+               "is_read_only" : false,
+               "name" : "tags",
+               "type" : {
+                  "element_type" : {
+                     "is_bind_type" : false,
+                     "is_errorable" : false,
+                     "name" : "string"
+                  },
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "array"
+               }
+            }
+         ],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "EditorStructure"
+         }
+      },
+      {
+         "base_types" : [],
+         "name" : "EditorStructureSearchOptions",
+         "properties" : [
+            {
+               "is_read_only" : false,
+               "name" : "excludeTags",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "optional",
+                  "optional_type" : {
+                     "element_type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "string"
+                     },
+                     "is_bind_type" : false,
+                     "is_errorable" : false,
+                     "name" : "array"
+                  }
+               }
+            },
+            {
+               "is_read_only" : false,
+               "name" : "idPattern",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "optional",
+                  "optional_type" : {
+                     "is_bind_type" : false,
+                     "is_errorable" : false,
+                     "name" : "string"
+                  }
+               }
+            },
+            {
+               "is_read_only" : false,
+               "name" : "includeLocation",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "optional",
+                  "optional_type" : {
+                     "element_type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "string"
+                     },
+                     "is_bind_type" : false,
+                     "is_errorable" : false,
+                     "name" : "array"
+                  }
+               }
+            },
+            {
+               "is_read_only" : false,
+               "name" : "includeTags",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "optional",
+                  "optional_type" : {
+                     "element_type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "string"
+                     },
+                     "is_bind_type" : false,
+                     "is_errorable" : false,
+                     "name" : "array"
+                  }
+               }
+            }
+         ],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "EditorStructureSearchOptions"
+         }
+      },
+      {
+         "base_types" : [],
          "name" : "ExtensionOptionalParameters",
          "properties" : [
             {
@@ -10426,6 +10954,20 @@
                      "is_bind_type" : true,
                      "is_errorable" : false,
                      "name" : "GameMode"
+                  }
+               }
+            },
+            {
+               "is_read_only" : false,
+               "name" : "hardcore",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "optional",
+                  "optional_type" : {
+                     "is_bind_type" : false,
+                     "is_errorable" : false,
+                     "name" : "boolean"
                   }
                }
             },
@@ -11548,7 +12090,7 @@
          }
       }
    ],
-   "minecraft_version" : "1.21.30-beta.22",
+   "minecraft_version" : "1.21.30-beta.23",
    "module_type" : "script",
    "name" : "@minecraft/server-editor-bindings",
    "objects" : [

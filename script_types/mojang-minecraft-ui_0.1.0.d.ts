@@ -9,4 +9,4 @@ export class MessageFormData { constructor(); body(bodyText: string): MessageFor
 export class MessageFormResponse extends FormResponse{ private constructor(); readonly selection?: number;}
 export class ModalFormData { constructor(); dropdown(label: string, options: string[], defaultValueIndex?: number): ModalFormData; icon(iconPath: string): ModalFormData; show(player: _10.Player): Promise<ModalFormResponse>; slider(label: string, minimumValue: number, maximumValue: number, valueStep: number, defaultValue?: number): ModalFormData; textField(label: string, placeholderText: string, defaultValue?: string): ModalFormData; title(titleText: string): ModalFormData; toggle(label: string, defaultValue?: boolean): ModalFormData;}
 //@ts-ignore allow class inheritance for native classes
-export class ModalFormResponse extends FormResponse{ private constructor(); readonly formValues?: boolean | number | string[];}
+export class ModalFormResponse extends FormResponse{ private constructor(); readonly formValues?: (boolean | number | string)[];}
