@@ -1,4 +1,5 @@
 const { exit } = require("process");
+const {deflateRawSync} = require("zlib");
 const {exec} = require("node:child_process");
 const { Download, SafeDownloadContent}= require("./download.js");
 const os = require("os");
@@ -25,7 +26,7 @@ const version_registred = {
         "generated_types",
         "script_module_list",
         "module_mapping",
-        "block_data"
+        "block_data2"
     ],
     "script_modules":[],
     "script_modules_mapping":{},
@@ -42,6 +43,7 @@ const OSSYSTEM = os.platform() === "win32"?"win":"linux";
 
 CompareLatestVersions();
 //runDocs("preview","1.21.30.23");
+
 async function Preload(v){
     if(DEBUG) return;
     console.log("Loggin as 'Documentation Manager Bot'");
@@ -131,12 +133,13 @@ async function runDocs(v,version){
             global.console.error(er.message);
             exit(1);
         });
-        await DoFiles(docs_generated + "/vanilladata_modules", "data", (file, data)=>{
+        await DoFiles(docs_generated + "/vanilladata_modules", "data", (file, data, createFile)=>{
             switch(file){
                 case "mojang-blocks.json":
                     const source = JSON.parse(data.toString());
                     const result = {states:{}, blocks:{}};
                     source.block_properties.forEach(e => {
+                        e.values = e.values.map(e=>e.value)
                         result.states[e.name] = e;
                     });
                     const stream = new Stream(Buffer.allocUnsafe(255),0);
@@ -153,7 +156,7 @@ async function runDocs(v,version){
                             stream.offset = 0;
                         }
                         else{
-                            for(const s of RecursivePermutations(...(data.properties.map(e=>result.states[e].values.map(s=>({value:s.value, name:e})))).reverse())){
+                            for(const s of RecursivePermutations(...(data.properties.map(e=>result.states[e].values.map(s=>({value:s, name:e})))).reverse())){
                                 const states = MapToObject(s,(n,o)=>o[n.name]=n.value);
                                 stream.writeCompoudTag({name, states:states},"");
                                 const buffer = stream.getWritenBytes();
@@ -166,7 +169,9 @@ async function runDocs(v,version){
                             data.hash = permutations[0].hash;
                         }
                     })
-                    return [file, JSON.stringify(result,null,"   ")];
+                    const rawData = JSON.stringify(result,null,"   ");
+                    createFile(file + ".raw_deflate", deflateRawSync(Buffer.from(rawData,"utf-8")));
+                    return [file, rawData];
             }
         }).catch(er=>{
             global.console.error(er.message);
@@ -197,16 +202,24 @@ async function CopyFiles(v, version){
     }
 }
 async function DoFiles(fr,to,changeMethod){
+    const tasks = [];
+    const write = (file,data)=>{
+        tasks.push((async ()=>{
+            await promises.writeFile([to,file].join("/"),data);
+        })().catch(console.error));
+    };
     const console = Logger("[Generating Docs Files]");
     for (let file of FileTree(fr)) {
         const data = await promises.readFile([fr,file].join("/"));
-        const changed = changeMethod(file,data);
-        if(!changed) continue;
         const makedir = await promises.mkdir(path.dirname([to,file].join("/")),{recursive:true});
+        const changed = changeMethod(file,data,write);
+        if(!changed) continue;
+        //const makedir = await promises.mkdir(path.dirname([to,file].join("/")),{recursive:true});
         const [newF,newData] = changed;
         console.log("Generated -> " + newF);
         await promises.writeFile([to,newF].join("/"),newData);
     }
+    await Promise.all(tasks);
 }
 async function CompareLatestVersions(){
     const console = Logger("[Checking Versions]");
