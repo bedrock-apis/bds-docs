@@ -11,6 +11,7 @@ const exist_link = (branch) => `https://raw.githubusercontent.com/Bedrock-APIs/b
 const github_notfound = "404: Not Found";
 const bin = "./bin";
 const test_config = "test_config.json";
+const DEBUG = false;
 const test_config_data = JSON.stringify({
     generate_documentation: true
 });
@@ -23,7 +24,8 @@ const version_registred = {
     "flags":[
         "generated_types",
         "script_module_list",
-        "module_mapping"
+        "module_mapping",
+        "block_data"
     ],
     "script_modules":[],
     "script_modules_mapping":{},
@@ -39,8 +41,9 @@ const OSSYSTEM = os.platform() === "win32"?"win":"linux";
 
 
 CompareLatestVersions();
-
+//runDocs("preview","1.21.30.23");
 async function Preload(v){
+    if(DEBUG) return;
     console.log("Loggin as 'Documentation Manager Bot'");
     await System('git config --global user.name "Documentation Manager Bot"');
     await System('git config --global user.email "conmaster2112@gmail.com"');
@@ -54,6 +57,7 @@ async function Preload(v){
 async function Finish(v,version){
     console.log("Versions registred");
     await promises.writeFile("exist.json",JSON.stringify(version_registred,null,"  "));
+    if(DEBUG) return;
     console.log("Loggin as 'Documentation Manager Bot'")
     await System('git config --global user.name "Documentation Manager Bot"');
     await System('git config --global user.email "conmaster2112@gmail.com"');
@@ -71,8 +75,10 @@ async function Finish(v,version){
     console.log("Done..."); 
 }
 async function Generate(v,version){
-    globalThis.console.log("Moving from main branch to " + v);
-    await System(`git checkout ${v} || git checkout -b ${v}`);
+    if(!DEBUG){
+        globalThis.console.log("Moving from main branch to " + v);
+        await System(`git checkout ${v} || git checkout -b ${v}`);
+    }
     const console = Logger("[BDS Downloader]");
     console.log("Downloading started. . .");
     await Download("bin",version,OSSYSTEM,v.toLowerCase() === "preview").catch(er=>{
@@ -81,7 +87,7 @@ async function Generate(v,version){
         exit(1);
     });
     console.log("Successfully Downloaded: " + OSSYSTEM);
-    runDocs(v,version).catch(er=>{globalThis.console.error(er.message); exit(1);});
+    await runDocs(v,version).catch(er=>{globalThis.console.error(er.message); exit(1);});
 }
 async function runDocs(v,version){
     const console = Logger("[Docs Generator]");
@@ -121,10 +127,52 @@ async function runDocs(v,version){
             ddd.versions.push(version);
             version_registred.script_modules.push(file);
             return [file.replace(".json",".d.ts"),script_module.toString()];
-        }).then(()=>Finish(v,version)).catch(er=>{
+        }).catch(er=>{
             global.console.error(er.message);
             exit(1);
         });
+        await DoFiles(docs_generated + "/vanilladata_modules", "data", (file, data)=>{
+            switch(file){
+                case "mojang-blocks.json":
+                    const source = JSON.parse(data.toString());
+                    const result = {states:{}, blocks:{}};
+                    source.block_properties.forEach(e => {
+                        result.states[e.name] = e;
+                    });
+                    const stream = new Stream(Buffer.allocUnsafe(255),0);
+                    source.data_items.forEach((e)=>{
+                        const { name, raw_id, serialization_id, properties } = e;
+                        const data = result.blocks[e.name] = Object.assign({ name, serialization_id, raw_id}, e);
+                        data.properties = properties.map(e=>e.name);
+                        const permutations = data.permutations = [];
+                        if(!data.properties.length){
+                            stream.writeCompoudTag({name, states:{}}, "");
+                            const buffer = stream.getWritenBytes();
+                            data.key = buffer.toString("base64");
+                            data.hash = HashPermutation(buffer);
+                            stream.offset = 0;
+                        }
+                        else{
+                            for(const s of RecursivePermutations(...(data.properties.map(e=>result.states[e].values.map(s=>({value:s.value, name:e})))).reverse())){
+                                const states = MapToObject(s,(n,o)=>o[n.name]=n.value);
+                                stream.writeCompoudTag({name, states:states},"");
+                                const buffer = stream.getWritenBytes();
+                                const key = buffer.toString("base64");
+                                const hash = HashPermutation(buffer);
+                                permutations.push({states, key, hash});
+                                stream.offset = 0;
+                            }
+                            data.key = permutations[0].key;
+                            data.hash = permutations[0].hash;
+                        }
+                    })
+                    return [file, JSON.stringify(result,null,"   ")];
+            }
+        }).catch(er=>{
+            global.console.error(er.message);
+            exit(1);
+        });
+        await Finish(v,version);
     }else{
         console.error("Generating Docs doesn't success, folder not found './bin/docs'");
         exit(1);
@@ -133,9 +181,13 @@ async function runDocs(v,version){
 }
 async function CopyFiles(v, version){
     const console = Logger("[Moving Files]");
-    for(let file of FileTree(docs_cleaned)){
-        console.log("REMOVED", docs_cleaned + "/" + file);
-        await promises.rm( docs_cleaned + "/" + file);
+    try {
+        for(let file of FileTree(docs_cleaned)){
+            console.log("REMOVED", docs_cleaned + "/" + file);
+            await promises.rm( docs_cleaned + "/" + file);
+        }
+    } catch (error) {
+        
     }
     for (let file of FileTree(docs_generated)) {
         console.log(file);
@@ -148,9 +200,11 @@ async function DoFiles(fr,to,changeMethod){
     const console = Logger("[Generating Docs Files]");
     for (let file of FileTree(fr)) {
         const data = await promises.readFile([fr,file].join("/"));
+        const changed = changeMethod(file,data);
+        if(!changed) continue;
         const makedir = await promises.mkdir(path.dirname([to,file].join("/")),{recursive:true});
-        const [newF,newData] = changeMethod(file,data);
-        console.log("Generated types  ->  " + newF);
+        const [newF,newData] = changed;
+        console.log("Generated -> " + newF);
         await promises.writeFile([to,newF].join("/"),newData);
     }
 }
@@ -183,7 +237,7 @@ async function CompareLatestVersions(){
         Generate("stable",stable);
         return;
     }
-    if(!await CheckForExist("preview",preview,console)) {
+    if(DEBUG || !await CheckForExist("preview",preview,console)) {
         Object.assign(version_registred, {
             "build-version":preview,
             "version":preview
@@ -276,4 +330,178 @@ function *FileTree(base,paths = []){
         if(entry.isFile()) yield [...paths,entry.name].join("/");
         else if(entry.isDirectory()) yield*FileTree(base,[...paths,entry.name]);
     }
+}
+
+function *RecursivePermutations(...loop){
+    if(loop.length <= 1) return yield * loop[0].map(e=>[e]);
+    for(const l of loop[0]){
+        for(const s of RecursivePermutations(...loop.slice(1))) yield [l, ...s];
+    }
+}
+const  NBTTag = {
+    "EndOfCompoud" :  0,
+    "Byte" :  1,
+    "Int16" :  2,
+    "Int32" :  3,
+    "Int64" :  4,
+    "Float" :  5,
+    "Double" :  6,
+    "ByteArray" :  7,
+    "String" :  8,
+    "TypedList" :  9,
+    "Compoud" :  10
+}
+class Stream{
+    offset;
+    buffer;
+    constructor(buffer, offset){
+        this.buffer = buffer;
+        this.offset = offset??0;
+    }
+    readByte(){return this.buffer.readUInt8(this.offset++);}
+    readInt16LE(){
+        const value = this.buffer.readInt16LE(this.offset);
+        this.offset += 2;
+        return value;
+    }
+    readInt32LE(){
+        const value = this.buffer.readInt32LE(this.offset);
+        this.offset += 4;
+        return value;
+    }
+    readInt64LE(){
+        const value = this.buffer.readBigInt64LE(this.offset);
+        this.offset += 8;
+        return value;
+    }
+    readUInt16LE(){
+        const value = this.buffer.readUInt16LE(this.offset);
+        this.offset += 2;
+        return value;
+    }
+    readUInt32LE(){
+        const value = this.buffer.readUInt32LE(this.offset);
+        this.offset += 4;
+        return value;
+    }
+    readUInt64LE(){
+        const value = this.buffer.readBigUInt64LE(this.offset);
+        this.offset += 8;
+        return value;
+    }
+    readFloatLE(){
+        const value = this.buffer.readFloatLE(this.offset);
+        this.offset += 4;
+        return value;
+    }
+    readDoubleLE(){
+        const value = this.buffer.readDoubleLE(this.offset);
+        this.offset += 8;
+        return value;
+    }
+    writeByte(value){ this.buffer.writeUInt8(value,this.offset++);}
+    writeInt16LE(value){
+        const length = this.buffer.writeInt16LE(value,this.offset);
+        this.offset += 2;
+        return length;
+    }
+    writeInt32LE(value){
+        const length = this.buffer.writeInt32LE(value,this.offset);
+        this.offset += 4;
+        return length;
+    }
+    writeInt64LE(value){
+        const length = this.buffer.writeBigInt64LE(value,this.offset);
+        this.offset += 8;
+        return length;
+    }
+    writeUInt16LE(value){
+        const length = this.buffer.writeUInt16LE(value,this.offset);
+        this.offset += 2;
+        return length;
+    }
+    writeUInt32LE(value){
+        const length = this.buffer.writeUInt32LE(value,this.offset);
+        this.offset += 4;
+        return length;
+    }
+    writeUInt64LE(value){
+        const length = this.buffer.writeBigUInt64LE(value,this.offset);
+        this.offset += 8;
+        return length;
+    }
+    writeFloatLE(value){
+        const length = this.buffer.writeFloatLE(value,this.offset);
+        this.offset += 4;
+        return length;
+    }
+    writeDoubleLE(value){
+        const length = this.buffer.writeDoubleLE(value,this.offset);
+        this.offset += 8;
+        return length;
+    }
+    writeString(value){
+        const length = this.buffer.write(value,this.offset + 2,"utf8");
+        this.writeInt16LE(length);
+        this.offset += length;
+    }
+    writeCompoudTag(compoud, root){
+        this.writeByte(NBTTag.Compoud);
+        if(typeof root === "string") this.writeString(root);
+        this.writeCompoud(compoud);
+    }
+    writeCompoud(compoud){
+        for (const [key,v] of Object.entries(compoud)) {
+            const type = typeof v;
+            switch(type){
+                case "string":
+                    this.writeByte(NBTTag.String);
+                    this.writeString(key);
+                    this.writeString(v);
+                    break;
+                case "boolean":
+                    this.writeByte(NBTTag.Byte);
+                    this.writeString(key);
+                    this.writeByte(v?1:0);
+                    break;
+                case "number":
+                    this.writeByte(NBTTag.Int32);
+                    this.writeString(key);
+                    this.writeInt32LE(v);
+                    break;
+                case "object":
+                    this.writeByte(NBTTag.Compoud);
+                    this.writeString(key);
+                    this.writeCompoud(v);
+                    break;
+            }
+        }
+        this.writeByte(NBTTag.EndOfCompoud);
+    }
+    /**@returns {Buffer} */
+    getWritenBytes(){
+        return this.buffer.slice(0, this.offset);
+    }
+}
+function MapToObject(arr, mapper){
+    const obj = {};
+    arr.forEach(e=>mapper(e, obj));
+    return obj;
+}
+
+const HASH_OFFSET = 0x81_1c_9d_c5;
+function HashPermutation(buffer){
+    let hash = HASH_OFFSET;
+    for (const element of buffer) {
+		// Set the hash to the XOR of the hash and the element.
+		hash ^= element & 0xff;
+    
+		// Apply the hash algorithm.
+		hash +=
+			(hash << 1) + (hash << 4) + (hash << 7) + (hash << 8) + (hash << 24);
+
+        // Convert the hash to a signed 32-bit integer.
+        hash = hash | 0;
+	}
+    return hash;
 }
