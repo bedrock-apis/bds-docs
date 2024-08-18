@@ -4,7 +4,13 @@ You can target to specific version via each of branches, all generated docs are 
 ```json
 {
     "version":"", //x.x.x or x.x.x.x depends on preview or stable
-    "build-version":"" //x.x.x.x version of BDS generated with
+    "build-version":"", //x.x.x.x version of BDS generated with
+    "flags": [ //Example of flags
+      "generated_types",
+      "script_module_list",
+      "module_mapping",
+      "block_data2"
+    ]
 }
 ```
 
