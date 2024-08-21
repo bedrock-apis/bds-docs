@@ -2498,15 +2498,6 @@
          "properties" : [
             {
                "is_read_only" : true,
-               "name" : "modalToolActivationChanged",
-               "type" : {
-                  "is_bind_type" : true,
-                  "is_errorable" : false,
-                  "name" : "ModalToolActivationChangedAfterEventSignal"
-               }
-            },
-            {
-               "is_read_only" : true,
                "name" : "payloadReceived",
                "type" : {
                   "is_bind_type" : true,
@@ -2753,13 +2744,148 @@
       {
          "base_types" : [],
          "constants" : [],
+         "functions" : [],
+         "name" : "DataStoreModalToolActivationChangedEvent",
+         "properties" : [
+            {
+               "is_read_only" : true,
+               "name" : "isActive",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "boolean"
+               }
+            },
+            {
+               "is_read_only" : true,
+               "name" : "toolId",
+               "type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "optional",
+                  "optional_type" : {
+                     "is_bind_type" : false,
+                     "is_errorable" : false,
+                     "name" : "string"
+                  }
+               }
+            }
+         ],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "DataStoreModalToolActivationChangedEvent"
+         }
+      },
+      {
+         "base_types" : [],
+         "constants" : [],
+         "functions" : [
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "callback",
+                     "type" : {
+                        "closure_type" : {
+                           "argument_types" : [
+                              {
+                                 "is_bind_type" : true,
+                                 "is_errorable" : false,
+                                 "name" : "DataStoreModalToolActivationChangedEvent"
+                              }
+                           ],
+                           "return_type" : {
+                              "is_bind_type" : false,
+                              "is_errorable" : true,
+                              "name" : "undefined"
+                           }
+                        },
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "closure"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "subscribe",
+               "privilege" : "none",
+               "return_type" : {
+                  "closure_type" : {
+                     "argument_types" : [
+                        {
+                           "is_bind_type" : true,
+                           "is_errorable" : false,
+                           "name" : "DataStoreModalToolActivationChangedEvent"
+                        }
+                     ],
+                     "return_type" : {
+                        "is_bind_type" : false,
+                        "is_errorable" : true,
+                        "name" : "undefined"
+                     }
+                  },
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "closure"
+               }
+            },
+            {
+               "arguments" : [
+                  {
+                     "details" : null,
+                     "name" : "callback",
+                     "type" : {
+                        "closure_type" : {
+                           "argument_types" : [
+                              {
+                                 "is_bind_type" : true,
+                                 "is_errorable" : false,
+                                 "name" : "DataStoreModalToolActivationChangedEvent"
+                              }
+                           ],
+                           "return_type" : {
+                              "is_bind_type" : false,
+                              "is_errorable" : true,
+                              "name" : "undefined"
+                           }
+                        },
+                        "is_bind_type" : false,
+                        "is_errorable" : false,
+                        "name" : "closure"
+                     }
+                  }
+               ],
+               "is_constructor" : false,
+               "is_static" : false,
+               "name" : "unsubscribe",
+               "privilege" : "none",
+               "return_type" : {
+                  "is_bind_type" : false,
+                  "is_errorable" : false,
+                  "name" : "undefined"
+               }
+            }
+         ],
+         "name" : "DataStoreModalToolActivationChangedEventSignal",
+         "properties" : [],
+         "type" : {
+            "is_bind_type" : true,
+            "is_errorable" : false,
+            "name" : "DataStoreModalToolActivationChangedEventSignal"
+         }
+      },
+      {
+         "base_types" : [],
+         "constants" : [],
          "functions" : [
             {
                "arguments" : [],
                "is_constructor" : false,
                "is_static" : false,
                "name" : "getSelectedTool",
-               "privilege" : "none",
+               "privilege" : "read_only",
                "return_type" : {
                   "is_bind_type" : false,
                   "is_errorable" : false,
@@ -2802,7 +2928,17 @@
             }
          ],
          "name" : "DataStoreModalToolContainer",
-         "properties" : [],
+         "properties" : [
+            {
+               "is_read_only" : true,
+               "name" : "toolActivationChanged",
+               "type" : {
+                  "is_bind_type" : true,
+                  "is_errorable" : false,
+                  "name" : "DataStoreModalToolActivationChangedEventSignal"
+               }
+            }
+         ],
          "type" : {
             "is_bind_type" : true,
             "is_errorable" : false,
@@ -4688,141 +4824,6 @@
             "is_bind_type" : true,
             "is_errorable" : false,
             "name" : "MinecraftEditorInternal"
-         }
-      },
-      {
-         "base_types" : [],
-         "constants" : [],
-         "functions" : [],
-         "name" : "ModalToolActivationChangedAfterEvent",
-         "properties" : [
-            {
-               "is_read_only" : true,
-               "name" : "isActive",
-               "type" : {
-                  "is_bind_type" : false,
-                  "is_errorable" : false,
-                  "name" : "boolean"
-               }
-            },
-            {
-               "is_read_only" : true,
-               "name" : "toolId",
-               "type" : {
-                  "is_bind_type" : false,
-                  "is_errorable" : false,
-                  "name" : "optional",
-                  "optional_type" : {
-                     "is_bind_type" : false,
-                     "is_errorable" : false,
-                     "name" : "string"
-                  }
-               }
-            }
-         ],
-         "type" : {
-            "is_bind_type" : true,
-            "is_errorable" : false,
-            "name" : "ModalToolActivationChangedAfterEvent"
-         }
-      },
-      {
-         "base_types" : [],
-         "constants" : [],
-         "functions" : [
-            {
-               "arguments" : [
-                  {
-                     "details" : null,
-                     "name" : "callback",
-                     "type" : {
-                        "closure_type" : {
-                           "argument_types" : [
-                              {
-                                 "is_bind_type" : true,
-                                 "is_errorable" : false,
-                                 "name" : "ModalToolActivationChangedAfterEvent"
-                              }
-                           ],
-                           "return_type" : {
-                              "is_bind_type" : false,
-                              "is_errorable" : true,
-                              "name" : "undefined"
-                           }
-                        },
-                        "is_bind_type" : false,
-                        "is_errorable" : false,
-                        "name" : "closure"
-                     }
-                  }
-               ],
-               "is_constructor" : false,
-               "is_static" : false,
-               "name" : "subscribe",
-               "privilege" : "none",
-               "return_type" : {
-                  "closure_type" : {
-                     "argument_types" : [
-                        {
-                           "is_bind_type" : true,
-                           "is_errorable" : false,
-                           "name" : "ModalToolActivationChangedAfterEvent"
-                        }
-                     ],
-                     "return_type" : {
-                        "is_bind_type" : false,
-                        "is_errorable" : true,
-                        "name" : "undefined"
-                     }
-                  },
-                  "is_bind_type" : false,
-                  "is_errorable" : false,
-                  "name" : "closure"
-               }
-            },
-            {
-               "arguments" : [
-                  {
-                     "details" : null,
-                     "name" : "callback",
-                     "type" : {
-                        "closure_type" : {
-                           "argument_types" : [
-                              {
-                                 "is_bind_type" : true,
-                                 "is_errorable" : false,
-                                 "name" : "ModalToolActivationChangedAfterEvent"
-                              }
-                           ],
-                           "return_type" : {
-                              "is_bind_type" : false,
-                              "is_errorable" : true,
-                              "name" : "undefined"
-                           }
-                        },
-                        "is_bind_type" : false,
-                        "is_errorable" : false,
-                        "name" : "closure"
-                     }
-                  }
-               ],
-               "is_constructor" : false,
-               "is_static" : false,
-               "name" : "unsubscribe",
-               "privilege" : "none",
-               "return_type" : {
-                  "is_bind_type" : false,
-                  "is_errorable" : false,
-                  "name" : "undefined"
-               }
-            }
-         ],
-         "name" : "ModalToolActivationChangedAfterEventSignal",
-         "properties" : [],
-         "type" : {
-            "is_bind_type" : true,
-            "is_errorable" : false,
-            "name" : "ModalToolActivationChangedAfterEventSignal"
          }
       },
       {
@@ -12090,7 +12091,7 @@
          }
       }
    ],
-   "minecraft_version" : "1.21.30-beta.23",
+   "minecraft_version" : "1.21.30-beta.24",
    "module_type" : "script",
    "name" : "@minecraft/server-editor-bindings",
    "objects" : [
