@@ -1,5 +1,5 @@
 import * as _00 from '@minecraft/common';
-export enum BlockComponentTypes {Inventory = "minecraft:inventory", LavaContainer = "minecraft:lavaContainer", Piston = "minecraft:piston", PotionContainer = "minecraft:potionContainer", RecordPlayer = "minecraft:record_player", Sign = "minecraft:sign", SnowContainer = "minecraft:snowContainer", WaterContainer = "minecraft:waterContainer"}
+export enum BlockComponentTypes {FluidContainer = "minecraft:fluidContainer", Inventory = "minecraft:inventory", Piston = "minecraft:piston", RecordPlayer = "minecraft:record_player", Sign = "minecraft:sign"}
 export enum BlockPistonState {Expanded = "Expanded", Expanding = "Expanding", Retracted = "Retracted", Retracting = "Retracting"}
 export enum BlockVolumeIntersection {Contains = 1, Disjoint = 0, Intersects = 2}
 export enum CompoundBlockVolumeAction {Add = 0, Subtract = 1}
@@ -21,7 +21,7 @@ export enum GameRule {CommandBlockOutput = "commandBlockOutput", CommandBlocksEn
 export enum HudElement {AirBubbles = 9, Armor = 1, Crosshair = 4, Health = 6, HorseHealth = 10, Hotbar = 5, Hunger = 8, ItemText = 12, PaperDoll = 0, ProgressBar = 7, StatusEffects = 11, ToolTips = 2, TouchControls = 3}
 export enum HudVisibility {Hide = 0, Reset = 1}
 export enum InputPermissionCategory {Camera = 1, Movement = 2}
-export enum ItemComponentTypes {Cooldown = "minecraft:cooldown", Durability = "minecraft:durability", Enchantable = "minecraft:enchantable", Food = "minecraft:food", Potion = "minecraft:potion"}
+export enum ItemComponentTypes {Cooldown = "minecraft:cooldown", Durability = "minecraft:durability", Dyeable = "minecraft:dyeable", Enchantable = "minecraft:enchantable", Food = "minecraft:food", Potion = "minecraft:potion"}
 export enum ItemLockMode {inventory = "inventory", none = "none", slot = "slot"}
 export enum MoonPhase {FirstQuarter = 2, FullMoon = 0, LastQuarter = 6, NewMoon = 4, WaningCrescent = 3, WaningGibbous = 1, WaxingCrescent = 5, WaxingGibbous = 7}
 export enum ObjectiveSortOrder {Ascending = 0, Descending = 1}
@@ -65,23 +65,17 @@ export class BlockEvent { private constructor(); readonly block: Block; readonly
 export class BlockExplodeAfterEvent extends BlockEvent{ private constructor(); readonly explodedBlockPermutation: BlockPermutation; readonly source?: Entity;}
 export class BlockExplodeAfterEventSignal { private constructor(); subscribe(callback: (arg0: BlockExplodeAfterEvent)=>undefined): (arg0: BlockExplodeAfterEvent)=>undefined; unsubscribe(callback: (arg0: BlockExplodeAfterEvent)=>undefined): void;}
 //@ts-ignore allow class inheritance for native classes
+export class BlockFluidContainerComponent extends BlockComponent{ private constructor(); static readonly componentId: "minecraft:fluidContainer"; fillLevel: number; fluidColor: RGBA; addDye(dye: ItemType): void; getFluidType(): FluidType; setFluidType(fluidType: FluidType): void; setPotion(itemStack: ItemStack): void;}
+//@ts-ignore allow class inheritance for native classes
 export class BlockInventoryComponent extends BlockComponent{ private constructor(); static readonly componentId: "minecraft:inventory"; readonly container?: Container;}
-//@ts-ignore allow class inheritance for native classes
-export class BlockLavaContainerComponent extends BlockLiquidContainerComponent{ private constructor(); static readonly componentId: "minecraft:lavaContainer";}
-//@ts-ignore allow class inheritance for native classes
-export class BlockLiquidContainerComponent extends BlockComponent{ private constructor(); fillLevel: number; isValidLiquid(): boolean;}
 export class BlockLocationIterator { private constructor();}
 export class BlockPermutation { private constructor(); static resolve(blockName: string, states?: Record<string,(boolean | number | string)>): BlockPermutation; readonly 'type': BlockType; getAllStates(): Record<string,(boolean | number | string)>; getItemStack(amount?: number): ItemStack; getState(stateName: string): (boolean | number | string); getTags(): string[]; hasTag(tag: string): boolean; matches(blockName: string, states?: Record<string,(boolean | number | string)>): boolean; withState(name: string, value: (boolean | number | string)): BlockPermutation;}
 //@ts-ignore allow class inheritance for native classes
 export class BlockPistonComponent extends BlockComponent{ private constructor(); static readonly componentId: "minecraft:piston"; readonly isMoving: boolean; readonly state: BlockPistonState; getAttachedBlocks(): Block[]; getAttachedBlocksLocations(): Vector3[];}
 //@ts-ignore allow class inheritance for native classes
-export class BlockPotionContainerComponent extends BlockLiquidContainerComponent{ private constructor(); static readonly componentId: "minecraft:potionContainer"; setPotionType(itemStack: ItemStack): void;}
-//@ts-ignore allow class inheritance for native classes
 export class BlockRecordPlayerComponent extends BlockComponent{ private constructor(); static readonly componentId: "minecraft:record_player"; ejectRecord(): void; getRecord(): ItemStack; isPlaying(): boolean; pauseRecord(): void; playRecord(): void; setRecord(recordItemType?: (ItemType | string), startPlaying?: boolean): void;}
 //@ts-ignore allow class inheritance for native classes
 export class BlockSignComponent extends BlockComponent{ private constructor(); static readonly componentId: "minecraft:sign"; readonly isWaxed: boolean; getRawText(side: SignSide): RawText; getText(side: SignSide): string; getTextDyeColor(side: SignSide): DyeColor; setText(message: (RawMessage | RawText | string), side: SignSide): void; setTextDyeColor(color?: DyeColor, side?: SignSide): void; setWaxed(waxed: boolean): void;}
-//@ts-ignore allow class inheritance for native classes
-export class BlockSnowContainerComponent extends BlockLiquidContainerComponent{ private constructor(); static readonly componentId: "minecraft:snowContainer";}
 export class BlockStates { private constructor(); static get(stateName: string): BlockStateType; static getAll(): BlockStateType[];}
 export class BlockStateType { private constructor(); readonly id: string; readonly validValues: (boolean | number | string)[];}
 export class BlockType { private constructor(); readonly canBeWaterlogged: boolean; readonly id: string;}
@@ -89,8 +83,6 @@ export class BlockTypes { private constructor(); static get(typeName: string): B
 //@ts-ignore allow class inheritance for native classes
 export class BlockVolume extends BlockVolumeBase{ constructor(from: Vector3, to: Vector3); from: Vector3; to: Vector3; doesLocationTouchFaces(pos: Vector3): boolean; doesVolumeTouchFaces(other: BlockVolume): boolean; intersects(other: BlockVolume): BlockVolumeIntersection;}
 export class BlockVolumeBase { private constructor(); getBlockLocationIterator(): BlockLocationIterator; getBoundingBox(): BoundingBox; getCapacity(): number; getMax(): Vector3; getMin(): Vector3; getSpan(): Vector3; isInside(location: Vector3): boolean; translate(delta: Vector3): void;}
-//@ts-ignore allow class inheritance for native classes
-export class BlockWaterContainerComponent extends BlockLiquidContainerComponent{ private constructor(); static readonly componentId: "minecraft:waterContainer"; addDye(itemType: ItemType): void; getCustomColor(): RGBA; setCustomColor(color: RGBA): void;}
 export class BoundingBoxUtils { private constructor(); static createValid(min: Vector3, max: Vector3): BoundingBox; static dilate(box: BoundingBox, size: Vector3): BoundingBox; static equals(box: BoundingBox, other: BoundingBox): boolean; static expand(box: BoundingBox, other: BoundingBox): BoundingBox; static getCenter(box: BoundingBox): Vector3; static getIntersection(box: BoundingBox, other: BoundingBox): BoundingBox; static getSpan(box: BoundingBox): Vector3; static intersects(box: BoundingBox, other: BoundingBox): boolean; static isInside(box: BoundingBox, pos: Vector3): boolean; static isValid(box: BoundingBox): boolean; static translate(box: BoundingBox, delta: Vector3): BoundingBox;}
 //@ts-ignore allow class inheritance for native classes
 export class ButtonPushAfterEvent extends BlockEvent{ private constructor(); readonly source: Entity;}
@@ -312,6 +304,8 @@ export class ItemComponentUseOnEvent extends ItemUseOnEvent{ private constructor
 export class ItemCooldownComponent extends ItemComponent{ private constructor(); static readonly componentId: "minecraft:cooldown"; readonly cooldownCategory: string; readonly cooldownTicks: number; getCooldownTicksRemaining(player: Player): number; isCooldownCategory(cooldownCategory: string): boolean; startCooldown(player: Player): void;}
 //@ts-ignore allow class inheritance for native classes
 export class ItemDurabilityComponent extends ItemComponent{ private constructor(); static readonly componentId: "minecraft:durability"; damage: number; readonly maxDurability: number; getDamageChance(unbreakingEnchantmentLevel: number): number; getDamageChanceRange(): _00.NumberRange;}
+//@ts-ignore allow class inheritance for native classes
+export class ItemDyeableComponent extends ItemComponent{ private constructor(); static readonly componentId: "minecraft:dyeable"; color?: RGB; readonly defaultColor?: RGB;}
 //@ts-ignore allow class inheritance for native classes
 export class ItemEnchantableComponent extends ItemComponent{ private constructor(); static readonly componentId: "minecraft:enchantable"; readonly slots: EnchantmentSlot[]; addEnchantment(enchantment: Enchantment): void; addEnchantments(enchantments: Enchantment[]): void; canAddEnchantment(enchantment: Enchantment): boolean; getEnchantment(enchantmentType: (EnchantmentType | string)): Enchantment; getEnchantments(): Enchantment[]; hasEnchantment(enchantmentType: (EnchantmentType | string)): boolean; removeAllEnchantments(): void; removeEnchantment(enchantmentType: (EnchantmentType | string)): void;}
 //@ts-ignore allow class inheritance for native classes
