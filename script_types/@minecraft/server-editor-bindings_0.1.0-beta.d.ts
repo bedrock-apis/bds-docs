@@ -9,7 +9,7 @@ export enum EditorMode {Crosshair = "Crosshair", Tool = "Tool"}
 export enum EntityOperationType {Create = 0, Delete = 1}
 export enum ExportResult {EditorSystemFailure = 7, FileArchiverFetchFailed = 2, LevelFetchFailed = 1, PlayerNotFound = 4, ProjectConverterFetchFailed = 3, ValidWorldExport = 0, WorldExportBusy = 6, WorldExportFailed = 5}
 export enum GamePublishSetting {FriendsOfFriends = 3, FriendsOnly = 2, InviteOnly = 1, NoMultiPlay = 0, Public = 4}
-export enum GraphicsSettingsProperty {ShowInvisibleBlocks = "ShowInvisibleBlocks"}
+export enum GraphicsSettingsProperty {ShowChunkBoundaries = "ShowChunkBoundaries", ShowInvisibleBlocks = "ShowInvisibleBlocks"}
 export enum InputModifier {Alt = 2, Any = 15, Control = 4, None = 1, Shift = 8, Unused = 0}
 export enum KeyInputType {Invalid = 0, Press = 1, Release = 2}
 export enum Plane {XY = "XY", XZ = "XZ", YZ = "YZ"}
