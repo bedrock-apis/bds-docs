@@ -27,6 +27,7 @@ export enum MemoryTier {High = 4, Low = 2, Mid = 3, SuperHigh = 5, SuperLow = 1,
 export enum MoonPhase {FirstQuarter = 2, FullMoon = 0, LastQuarter = 6, NewMoon = 4, WaningCrescent = 3, WaningGibbous = 1, WaxingCrescent = 5, WaxingGibbous = 7}
 export enum ObjectiveSortOrder {Ascending = 0, Descending = 1}
 export enum PaletteColor {Black = 15, Blue = 11, Brown = 12, Cyan = 9, Gray = 7, Green = 13, LightBlue = 3, Lime = 5, Magenta = 2, Orange = 1, Pink = 6, Purple = 10, Red = 14, Silver = 8, White = 0, Yellow = 4}
+export enum PlatformType {Console = "Console", Desktop = "Desktop", Mobile = "Mobile"}
 export enum ScoreboardIdentityType {Entity = "Entity", FakePlayer = "FakePlayer", Player = "Player"}
 export enum ScriptEventSource {Block = "Block", Entity = "Entity", NPCDialogue = "NPCDialogue", Server = "Server"}
 export enum SignSide {Back = "Back", Front = "Front"}
@@ -95,7 +96,7 @@ export class ChatSendAfterEventSignal { private constructor(); subscribe(callbac
 export class ChatSendBeforeEvent { private constructor(); cancel: boolean; readonly message: string; readonly sender: Player; readonly targets?: Player[];}
 export class ChatSendBeforeEventSignal { private constructor(); subscribe(callback: (arg0: ChatSendBeforeEvent)=>undefined): (arg0: ChatSendBeforeEvent)=>undefined; unsubscribe(callback: (arg0: ChatSendBeforeEvent)=>undefined): void;}
 //@ts-ignore allow class inheritance for native classes
-export class ClientSystemInfo extends SystemInfo{ private constructor();}
+export class ClientSystemInfo extends SystemInfo{ private constructor(); readonly maxRenderDistance: number; readonly platformType: PlatformType;}
 export class CommandResult { private constructor(); readonly successCount: number;}
 export class Component { private constructor(); readonly typeId: string; isValid(): boolean;}
 export class CompoundBlockVolume { constructor(origin?: Vector3); readonly capacity: number; readonly items: CompoundBlockVolumeItem[]; readonly itemsAbsolute: CompoundBlockVolumeItem[]; readonly volumeCount: number; clear(): void; getBlockLocationIterator(): BlockLocationIterator; getBoundingBox(): BoundingBox; getMax(): Vector3; getMin(): Vector3; getOrigin(): Vector3; isEmpty(): boolean; isInside(worldLocation: Vector3): boolean; peekLastVolume(forceRelativity?: CompoundBlockVolumePositionRelativity): CompoundBlockVolumeItem; popVolume(): boolean; pushVolume(item: CompoundBlockVolumeItem): void; replaceOrAddLastVolume(item: CompoundBlockVolumeItem): boolean; setOrigin(position: Vector3, preserveExistingVolumes?: boolean): void; translateOrigin(delta: Vector3, preserveExistingVolumes?: boolean): void;}
