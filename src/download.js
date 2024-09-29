@@ -3,7 +3,6 @@ const {Buffer} = require("node:buffer");
 module.exports = {
     async Download(path,version,type,preview=false){
         const {Extract} = await import("unzip-stream");
-        const {default: fetch} = await import("node-fetch");
         const response = await fetch(`https://www.minecraft.net/bedrockdedicatedserver/bin-${type}${preview?"-preview":""}/bedrock-server-${version}.zip`);//`https://minecraft.azureedge.net/bin-${type}${preview?"-preview":""}/bedrock-server-${version}.zip`);
         await stream.pipeline(
             response.body,
