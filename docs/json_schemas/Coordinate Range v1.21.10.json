@@ -35,7 +35,6 @@
         }
     },
     "title": "Coordinate Range",
-    "description": "Represents the scatter distrubution over a coordinate (x/y/z), can also be built by an expression.",
     "oneOf": [
         {
             "$ref": "#/definitions/3178719147"
@@ -45,7 +44,6 @@
             "properties": {
                 "distribution": {
                     "title": "Random Distribution Type",
-                    "description": "Type of distribution. Supported distributions are defined by \"Random Distribution Type\".",
                     "type": "string",
                     "enum": [
                         "fixed_grid",
@@ -59,7 +57,6 @@
                 },
                 "extent": {
                     "title": "sequence container",
-                    "description": "Lower and upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around.",
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/3178719147"
@@ -69,13 +66,11 @@
                     "maxItems": 2
                 },
                 "grid_offset": {
-                    "description": "When the distribution type is grid, defines the offset along this axis.",
                     "type": "integer",
                     "$metaProperties": {},
                     "minimum": 0.0
                 },
                 "step_size": {
-                    "description": "When the distribution type is grid, defines the distance between steps along this axis.",
                     "type": "integer",
                     "$metaProperties": {},
                     "minimum": 1.0

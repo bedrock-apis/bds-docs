@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "853889472",
+    "$id": "857819254",
     "definitions": {
         "49501551": {
             "title": "compound_proxy",
@@ -56,22 +56,16 @@
             "$metaProperties": {}
         }
     },
-    "title": "minecraft:entity_placer v1.20.50",
+    "title": "minecraft:block_placer v1.21.40",
     "type": "object",
     "properties": {
-        "dispense_on": {
-            "title": "sequence container",
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/748032502"
-            },
+        "block": {
+            "type": "string",
             "$metaProperties": {}
         },
-        "entity": {
-            "type": "string",
-            "$metaProperties": {},
-            "minLength": 0,
-            "pattern": "^(?:\\w+(?:\\.\\w+)*:(?=\\w))?(?:\\w+(?:\\.\\w+)*)(?:<((?:\\w+(?:\\.\\w+)*:(?=\\w))?\\w+(?:\\.\\w+)*)*>)?$"
+        "replace_block_item": {
+            "type": "boolean",
+            "$metaProperties": {}
         },
         "use_on": {
             "title": "sequence container",
@@ -82,8 +76,11 @@
             "$metaProperties": {}
         }
     },
+    "required": [
+        "block"
+    ],
     "$metaProperties": {
         "CEREAL_DOCUMENTATION_TAG": false,
-        "CEREAL_JSON_SCHEMA": "EntityPlacer v1.20.50"
+        "CEREAL_JSON_SCHEMA": "Planter v1.21.40"
     }
 }

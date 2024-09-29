@@ -4,22 +4,18 @@
     "definitions": {
         "764203503": {
             "title": "minecraft:durability_sensor durability_threshold v1.21.10",
-            "description": "Defines both the durability threshold, and the effects emitted when that threshold is met.",
             "type": "object",
             "properties": {
                 "durability": {
-                    "description": "The effects are emitted when the item durability value is less than or equal to this value.",
                     "type": "integer",
                     "$metaProperties": {}
                 },
                 "particle_type": {
-                    "description": "Particle effect to emit when the threshold is met.",
                     "type": "string",
                     "$metaProperties": {}
                 },
                 "sound_event": {
                     "title": "enum SharedTypes::Legacy::LevelSoundEvent",
-                    "description": "Sound effect to emit when the threshold is met.",
                     "type": "string",
                     "enum": [
                         "add.chest",
@@ -522,15 +518,12 @@
         }
     },
     "title": "minecraft:durability_sensor v1.21.10",
-    "description": "Enables an item to emit effects when it receives damage. Because of this, the item also needs a `minecraft:durability` component.",
     "type": "object",
     "properties": {
         "durability_thresholds": {
             "title": "sequence container",
-            "description": "The list of both durability thresholds and effects emitted when each threshold is met. When multiple thresholds are met, only the threshold with the lowest durability after applying the damage is considered.",
             "type": "array",
             "items": {
-                "description": "Defines both the durability threshold, and the effects emitted when that threshold is met.",
                 "$ref": "#/definitions/764203503"
             },
             "$metaProperties": {},
