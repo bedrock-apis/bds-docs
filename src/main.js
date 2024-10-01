@@ -1,9 +1,27 @@
-import { resolveDataFrom } from "./functions.js";
+import { ExecuteCommand, FetchBDSVersions, GetEngineVersion, VersionCheck } from "./functions.js";
 import { LINK_BDS_VERSIONS } from "./consts.js";
-import { appendFileSync, writeFileSync } from "node:fs";
-import { env } from "node:process";
+Main().catch(er=>{console.log(er, er.stack); process.exit(-1)}).then(process.exit);
 
-resolveDataFrom(LINK_BDS_VERSIONS).then(e=>{
-    console.log(e?.toString());
-    if(env["GITHUB_OUTPUT"]) appendFileSync(env["GITHUB_OUTPUT"], "status=neutral");
+VersionCheck(await FetchBDSVersions()).then(e=>{
+    if(!e) return;
+    console.log(GetEngineVersion(e.version));
 });
+
+
+
+/**
+ * 
+ * @returns {Promise<number>}
+ */
+async function Main(){
+    console.log("::group::Init");
+    const versions = await FetchBDSVersions();
+    const checkResults = await VersionCheck(versions);
+    if(!checkResults) {
+        console.log("No versions found");
+        return 0;
+    }
+    console.log("versions found")
+    console.log("::endgroup::");
+    return 0;
+};
