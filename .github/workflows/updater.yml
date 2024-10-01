@@ -27,4 +27,10 @@ jobs:
         npm ci
     - name: Check Build Commit
       run: |
-        node .
+        node .      
+    - name: Set color
+      id: color-selector
+      run: echo "SELECTED_COLOR=green" >> "$GITHUB_OUTPUT"
+    - name: Set Output
+      id: ouput-selector
+      run: echo "status=neutral" >> "$GITHUB_OUTPUT"
