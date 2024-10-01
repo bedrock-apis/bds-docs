@@ -1,15 +1,11 @@
+import { readFileSync } from "fs";
 import { platform } from "os";
+import { resolve } from "path";
 import { env } from "process";
 
-/**
- * @type {<T extends number>()=>T}
- */
-
-/**@type {string[]} */
-export const GIT_IGNORE = [];
 export const ALWAYS_OVERWRITE = env["ALWAYS_OVERWRITE"]??false;
 export const PLATFORM = platform()=="win32"?"win":"linux";
-export const DEBUG = env["OPTIONS_DEBUG"]?true:false;
+export const DEBUG = env["DEBUG_MODE"]?true:false;
 export const BDS_SRC_PATH = "./bds";
 export const LINK_BDS_VERSIONS = "https://raw.githubusercontent.com/Bedrock-OSS/BDS-Versions/main/versions.json";
 export const GITHUB_REPO_NAME = env["GITHUB_REPOSITORY"]??"bedrock-apis/bds-docs";
@@ -22,15 +18,13 @@ export const LINK_GITHUB_DOMAIN = "https://raw.githubusercontent.com";
 export const LINK_GITHUB_REPO = `${LINK_GITHUB_DOMAIN}/${GITHUB_REPO_NAME}`;
 export const FILE_NAME_GITHUB_REPO_EXISTS = "exist.json";
 export const FILE_NAME_BDS_TEST_CONFIG = "test_config.json"
+export const FILE_NAME_GITIGNORE = ".gitignore";
 export const FILE_CONTENT_BDS_TEST_CONFIG = JSON.stringify({generate_documentation: true});
+export const FILE_CONTENT_GITIGNORE = readFileSync(resolve(import.meta.dirname, "..", FILE_NAME_GITIGNORE)).toString();
 export const WORKING_DIRECTORY = DEBUG?((env.HOMEDRIVE??"") + (env.HOMEPATH??"") + "\\_test"):".";
-export const FILE_CONTENT_GITIGNORE = `
-bin/
-bds/
-node_modules/
-private/
-test/
-`;
+export const TERMINAL_CREATE_GROUP = "::group::";
+export const TERMINAL_END_GROUP = "::endgroup::";
+
 if(DEBUG) console.log("[DEBUG] Enabled: " + WORKING_DIRECTORY);
 /**
  * @type {{version:string, "build-version":string, flags: string[]}}

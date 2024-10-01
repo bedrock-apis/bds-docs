@@ -3,7 +3,7 @@ import { Buffer } from "node:buffer";
 import { exec } from "node:child_process";
 import { writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { ALWAYS_OVERWRITE, FILE_NAME_GITHUB_REPO_EXISTS, GIT_IGNORE, GITHUB_PREVIEW_BRAMCH_NAME, GITHUB_STABLE_BRANCH_NAME, LINK_BDS_VERSIONS, LINK_GITHUB_REPO } from "./consts.js";
+import { ALWAYS_OVERWRITE, DEBUG, FILE_CONTENT_GITIGNORE, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, GITHUB_PREVIEW_BRAMCH_NAME, GITHUB_STABLE_BRANCH_NAME, LINK_BDS_VERSIONS, LINK_GITHUB_REPO, TERMINAL_CREATE_GROUP, TERMINAL_END_GROUP } from "./consts.js";
 /**
  * @typedef {`${number}.${number}.${number}.${number}`} VersionFull
  * @typedef {`${number}.${number}.${number}` | VersionFull} Version
@@ -11,6 +11,7 @@ import { ALWAYS_OVERWRITE, FILE_NAME_GITHUB_REPO_EXISTS, GIT_IGNORE, GITHUB_PREV
  * @typedef {{linux:BDSBuildVersions, windows:BDSBuildVersions}} BDSVersions
  * @typedef {typeof GITHUB_PREVIEW_BRAMCH_NAME | typeof GITHUB_STABLE_BRANCH_NAME} BranchKind
  */
+let isLoggedIn = false;
 /**
  * 
  * @param {string} pathOrLink
@@ -30,23 +31,25 @@ export async function ResolveData(pathOrLink) {
 /**
  * 
  * @param {string} command 
- * @param {string | undefined} [cwd=undefined]
- * @returns {Promise<string>}
+ * @param {number} [timeout=120]
+ * @param {string} [cwd="."]
+ * @returns {Promise<{exitCode: number, error?: any}>}
  * @throws {string}
  */
-export async function ExecuteCommand(command, cwd) {
+export async function ExecuteCommand(command, timeout, cwd = ".") {
     return new Promise((res, rej)=>{
-        if(cwd){
-            exec(command,{cwd}, (er, output, message)=>{
-                if(er) rej(message);
-                res(output);
+        try {
+            const child = exec(command,{cwd, timeout, windowsHide: true}, ()=>{});
+            child.stdout?.pipe(process.stdout);
+            child.stderr?.pipe(process.stderr);
+            child.on("exit", (code)=>{
+                res({exitCode: code??0});
             });
-        }
-        else{
-            exec(command, (er, output, message)=>{
-                if(er) rej(message);
-                res(output);
+            child.on("error", (code)=>{
+                res({exitCode: -1, error: code});
             });
+        } catch (error) {
+            res({exitCode: -1, error: error})
         }
     });
 }
@@ -55,7 +58,7 @@ export async function ExecuteCommand(command, cwd) {
  * @param {string} loc 
  */
 export async function WriteGitIgnore(loc) {
-    await writeFile(resolve(loc, "./.gitignore"), GIT_IGNORE.join("\r\n"));
+    await writeFile(resolve(loc, FILE_NAME_GITIGNORE), FILE_CONTENT_GITIGNORE);
 }
 /**
  * 
@@ -108,4 +111,66 @@ export async function FetchBDSVersions() { return (await fetch(LINK_BDS_VERSIONS
 export function GetEngineVersion(version) {
     const [ma = 1, mi = 0, en = 0] = version.split(".").map(Number);
     return `${ma}.${mi}.${Math.floor(en/10) * 10}`;
+}
+/**
+ * @template T
+ * @template {any[]} params
+ * @param {(...p: params)=>T} method
+ * @param {string} groupName 
+ * @param {params} p 
+ * @returns {T}
+ */
+export function TerminalGroup(method, groupName , ...p){
+    console.log(TERMINAL_CREATE_GROUP + groupName);
+    try {
+        return method(...p);
+    } finally {
+        console.log(TERMINAL_END_GROUP);
+    }
+}
+/**
+ * @template T
+ * @template {any[]} params
+ * @param {(...p: params)=>PromiseLike<T>} method
+ * @param {string} groupName 
+ * @param {params} p 
+ * @returns {Promise<T>}
+ */
+export async function TerminalGroupAsync(method, groupName , ...p){
+    console.log(TERMINAL_CREATE_GROUP + groupName);
+    try {
+        return await method(...p);
+    } finally {
+        console.log(TERMINAL_END_GROUP);
+    }
+}
+
+/**
+ * 
+ * @param {BranchKind} branch 
+ */
+export async function GithubChekoutBranch(branch) {
+    
+}
+/**
+ * 
+ * @param {string} name 
+ * @param {string} email 
+ * @returns {Promise<boolean>}
+ */
+export async function GithubLoginAs(name, email) {
+    if(isLoggedIn) return true;
+    if(DEBUG) {
+        console.log("[DEBUG] Login Skipped . . .");
+        return true;
+    }
+    let result = await ExecuteCommand(`git config --global user.name "${name}"`);
+    if(result.exitCode != 0) return false;
+
+    result = await ExecuteCommand(`git config --global user.email "${email}"`);
+    if(result.exitCode != 0) return false;
+
+    console.log(`Successfully Logged in as '${name}'`);
+    isLoggedIn = true;
+    return true;
 }
