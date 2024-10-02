@@ -1,6 +1,7 @@
-import { resolve } from "node:path";
+import { dirname, resolve } from "node:path";
 import { FileTree } from "../functions.js";
 import { readFile, writeFile } from "node:fs/promises";
+import { existsSync, mkdirSync } from "node:fs";
 
 /**
  * 
@@ -14,7 +15,7 @@ export async function METADATA_WORKER(inputDirPath) {
 
     // Task Factory for each file in the path tree
     for (const file of FileTree(inputDir)) tasks.push(
-        Task(inputDir, file)
+        Task(inputDir, file).catch(()=>false)
     );
 
     // Return Only Succesfull Creations
@@ -43,13 +44,21 @@ async function Task(input,fileName) {
     // Check if buffer is valid content
     if(buffer == null) return false;
 
+    const outFile = resolve(METADATA_FOLDER, fileName);
+    const outDir = dirname(outFile);
+
+    // Has to be sync to be sure we are not about to call mkdir with same directory path
+    if(!existsSync(outDir)) mkdirSync(outDir, {recursive: true});
+
     // Write File Content
     let results = await writeFile(
-        resolve(METADATA_FOLDER, fileName), 
+        outFile, 
         buffer
     ).then(()=>true, ()=>false);
 
-    console.log("[METADATA] Generated: " + fileName);
+    if(results) console.log("[METADATA] Generated: " + fileName);
+    else console.log("[METADATA] Generate: " + fileName);
+    
     // Returns if file was successfully created
     return results;
 }
