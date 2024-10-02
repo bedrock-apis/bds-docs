@@ -51,7 +51,7 @@ async function Main(){
         for await(const entry of ClearWholeFolder(
             ".",
             (f)=>{
-                return [".git/","bin/", "bin/**/*"].some(s=>minimatch(f, s, {nocase: true}))
+                return [".git/**/*","bin/", "bin/**/*"].some(s=>minimatch(f, s, {nocase: true}))
             }
             )){
             console.log("[REPO Clear] entry: " + entry);
