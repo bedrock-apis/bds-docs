@@ -32,7 +32,7 @@ async function Main(){
     }
 
     //@ts-ignore Just testing
-    FILE_CONTENT_CURRENT_EXIST["version"] = "test:" + checkResults.isPreview?checkResults.version:GetEngineVersion(checkResults.version);
+    FILE_CONTENT_CURRENT_EXIST["version"] = "test:" + (checkResults.isPreview?checkResults.version:GetEngineVersion(checkResults.version));
     FILE_CONTENT_CURRENT_EXIST["build-version"] = checkResults.version;
 
     // Login and Checkout that specific branch

@@ -259,11 +259,11 @@ export async function FetchBDSSource(version, isPreview, outDir) {
      */
     //@ts-ignore
     const unzipStream = Extract({ path: outDir });
-
-    unzipStream.on("data", chunk=>{
-        loaded += chunk.length;
-        console.log(`Downloaded: ${Math.ceil((loaded / total) * 100)}%`);
-    });
+    
+    //@ts-ignore
+    unzipStream.unzipStream.on("entry",(p)=>{
+        console.log(`Downloaded entry: ${p.path}`);
+    })
 
     const task = new Promise((res,rej)=>{
         unzipStream.on("error", rej);
