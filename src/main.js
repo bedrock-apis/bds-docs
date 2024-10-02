@@ -30,7 +30,7 @@ async function Main(){
     }
 
     // Login and Checkout that specific branch
-    let successful = GithubChekoutBranch(checkResults.branch, true);
+    let successful = await GithubChekoutBranch(checkResults.branch, true);
     if(!successful){
         console.error(`Failed to checkout branch: ${checkResults.branch}`);
         return -1;
