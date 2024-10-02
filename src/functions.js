@@ -41,6 +41,7 @@ export async function ExecuteCommand(command, timeout, cwd = ".") {
         child.stderr?.pipe(process.stderr);
         child.on("exit", (code)=>res({exitCode: code??0}));
         child.on("error", (code)=>res({exitCode: -1, error: code}));
+        child.on("spawn", ()=>console.log("[Command Exec] '" + command + "'"));
     }).catch(error=>({errorCode: -1, error}));
 }
 /**
