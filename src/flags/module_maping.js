@@ -21,6 +21,8 @@ export async function SCRIPT_MODULES_MAPPING(inputDirPath) {
     // Return Only Succesfull Creations
     const results = (await Promise.all(tasks)).filter(s=>s);
 
+    // NOTE: I know this method mutates the array and returns a reference to the same array, but i feel more comfortable was assignment expression
+    VERSION_REGISTERED.script_modules = VERSION_REGISTERED.script_modules.sort();
     // Check if all tasks has successfully ended.
     return tasks.length == results.length;
 }
@@ -54,7 +56,7 @@ async function Task(input, fileName) {
     return true;
 }
 /**
- * @type {any}
+ * @type {{script_modules_mapping: {[k: string]: {versions:string[], uuid: string, name: string}}, script_modules: string[]}}
  */
 //@ts-ignore
 const VERSION_REGISTERED = FILE_CONTENT_CURRENT_EXIST[SCRIPT_MODULES_MAPPING.name] = {
