@@ -56,7 +56,7 @@ export async function ExecuteCommand(command, timeout = 1000, cwd = ".") {
 // FIXME: This doesn't really works on linux as linux doesn't have executables like ".exe"
 export async function ExecuteExecutable(executable, timeout = 1000, cwd = ".") {
     if(PLATFORM == "win"){
-        return ExecuteCommand(`call ${executable}`, timeout, cwd);
+        return ExecuteCommand(`cmd /c call ${executable}`, timeout, cwd);
     }
     else if(PLATFORM == "linux"){
         let result = await ExecuteCommand(`chmod +x ${executable}`, timeout, cwd);
