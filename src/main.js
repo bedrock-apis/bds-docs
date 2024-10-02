@@ -122,6 +122,9 @@ async function Main(){
             return -1;
         }
 
+        // Once generator ends, we can assign the generator flag to exist.json
+        FILE_CONTENT_CURRENT_EXIST.flags.push(flag.flagId);
+
         groupEnd();
     }
     groupEnd();

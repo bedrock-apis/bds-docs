@@ -14,7 +14,7 @@ export async function METADATA_WORKER(inputDirPath) {
 
     // Task Factory for each file in the path tree
     for (const file of FileTree(inputDir)) tasks.push(
-        Task(resolve(inputDir, file))
+        Task(inputDir, file)
     );
 
     // Return Only Succesfull Creations
@@ -24,31 +24,32 @@ export async function METADATA_WORKER(inputDirPath) {
     return tasks.length == results.length;
 }
 /**
- * @param {string} file
+ * @param {string} input
+ * @param {string} fileName
  * @returns {Promise<boolean>}
  */
-async function Task(file) {
+async function Task(input,fileName) {
 
     // Read File
     /**@type {Buffer | string | null} */
-    let buffer = await readFile(file).catch(()=>null);
+    let buffer = await readFile(resolve(input, fileName)).catch(()=>null);
 
     // Check if file was properly readed
     if(buffer == null) return false;
 
     // Transform File content
-    if(file.endsWith(".json")) buffer = await TransformJsonModule(buffer);
+    if(fileName.endsWith(".json")) buffer = await TransformJsonModule(buffer);
 
     // Check if buffer is valid content
     if(buffer == null) return false;
 
     // Write File Content
     let results = await writeFile(
-        resolve(METADATA_FOLDER, file), 
+        resolve(METADATA_FOLDER, fileName), 
         buffer
     ).then(()=>true, ()=>false);
 
-    console.log("[METADATA] Generated: " + file);
+    console.log("[METADATA] Generated: " + fileName);
     // Returns if file was successfully created
     return results;
 }
