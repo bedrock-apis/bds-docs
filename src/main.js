@@ -59,6 +59,8 @@ async function Main(){
         groupEnd();
     }
 
+    //@ts-ignore
+    FILE_CONTENT_CURRENT_EXIST["RANDOM"] = Math.random();
     writeFileSync(FILE_NAME_GITHUB_REPO_EXISTS, JSON.stringify(FILE_CONTENT_CURRENT_EXIST, null, 3));
     
     console.log("Commit");
