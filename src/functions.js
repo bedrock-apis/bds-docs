@@ -5,7 +5,7 @@ import { resolve } from "node:path";
 import { pipeline } from "node:stream/promises";
 import { ALWAYS_OVERWRITE, DEBUG, FILE_CONTENT_GITIGNORE, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, GITHUB_PREVIEW_BRAMCH_NAME, GITHUB_STABLE_BRANCH_NAME, LINK_BDS_CDN, LINK_BDS_VERSIONS, LINK_GITHUB_REPO, LOGIN_AS_EMAIL, LOGIN_AS_NAME, PLATFORM, TERMINAL_CREATE_GROUP, TERMINAL_END_GROUP } from "./consts.js";
 import { Extract } from "unzip-stream";
-import { readdirSync, rmSync } from "node:fs";
+import { readdirSync } from "node:fs";
 /**
  * @typedef {`${number}.${number}.${number}.${number}`} VersionFull
  * @typedef {`${number}.${number}.${number}`} VersionEngine
