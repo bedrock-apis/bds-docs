@@ -13,7 +13,7 @@ export const ALWAYS_OVERWRITE = env["ALWAYS_OVERWRITE"]??false;
 export const PLATFORM = platform()=="win32"?"win":"linux";
 export const DEBUG = env["DEBUG_MODE"]?true:false;
 export const IS_GITHUB_ACTION = env["GITHUB_WORKFLOW"]?true:false;
-export const BDS_SRC_PATH = "./bds";
+export const BDS_OUTDIR_PATH = "./bin";
 export const LINK_BDS_VERSIONS = "https://raw.githubusercontent.com/Bedrock-OSS/BDS-Versions/main/versions.json";
 export const LINK_BDS_CDN = `https://www.minecraft.net/bedrockdedicatedserver`;
 export const GITHUB_REPO_NAME = env["GITHUB_REPOSITORY"]??"bedrock-apis/bds-docs";
@@ -37,10 +37,14 @@ export const TERMINAL_END_GROUP = "::endgroup::";
 
 if(DEBUG) console.log("[DEBUG] Enabled: " + WORKING_DIRECTORY);
 /**
- * @type {{version:string, "build-version":string, flags: string[]}}
+ * @type {{version:Version, "build-version":VersionFull, flags: string[]}}
  */
 export const FILE_CONTENT_CURRENT_EXIST = {
+    
+//@ts-ignore
     version: "",
+    
+//@ts-ignore
     "build-version": "",
     "flags": []
 };

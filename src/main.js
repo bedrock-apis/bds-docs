@@ -1,7 +1,7 @@
 import { minimatch } from "minimatch";
-import { FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_GITHUB_REPO_EXISTS, IS_GITHUB_ACTION } from "./consts.js";
-import { ClearWholeFolder, ExecuteCommand, FetchBDSVersions,GetEngineVersion,GithubChekoutBranch,GithubLoginAs,group,groupEnd,VersionCheck } from "./functions.js";
-import { existsSync, writeFileSync } from "node:fs";
+import { BDS_OUTDIR_PATH, FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, IS_GITHUB_ACTION } from "./consts.js";
+import { ClearWholeFolder, ExecuteCommand, FetchBDSSource, FetchBDSVersions,GetEngineVersion,GithubChekoutBranch,GithubLoginAs,GithubPostNewBranch,group,groupEnd,VersionCheck } from "./functions.js";
+import { writeFile } from "node:fs/promises";
 
 // Calling Main EntryPont
 Main()
@@ -30,6 +30,9 @@ async function Main(){
         return 0;
     }
 
+    FILE_CONTENT_CURRENT_EXIST["version"] = checkResults.isPreview?checkResults.version:GetEngineVersion(checkResults.version);
+    FILE_CONTENT_CURRENT_EXIST["build-version"] = checkResults.version;
+
     // Login and Checkout that specific branch
     group(`Branch checkout: ${checkResults.branch} IsForced: ${true}`);
 
@@ -38,12 +41,16 @@ async function Main(){
         console.error(`Failed to checkout branch: ${checkResults.branch}`);
         return -1;
     }
-
     groupEnd();
 
 
 
-    // We should clear whole working directory, so we could upload generated files
+    // Load Required File For Later Use
+    await SaveWorkspaceContent();
+
+
+
+    // Now we should clear whole working directory, so we could upload generated files
     // Commented bc its dangerous to run this on local machine so please be sure its executed only via Github Action
     // Maybe Add some checks for GITHUB specific ENV FILES like GITHUB_TOKEN or something
     if(IS_GITHUB_ACTION){
@@ -51,24 +58,53 @@ async function Main(){
         for await(const entry of ClearWholeFolder(
             ".",
             (f)=>{
-                return [".git/**/*",".git/","bin/", "bin/**/*"].some(s=>minimatch(f, s, {nocase: true}));
+                return [".git/**/*",".git/"].some(s=>minimatch(f, s, {nocase: true}));
             }
             )){
             console.log("[REPO Clear] entry: " + entry);
         }
         groupEnd();
     }
+    // Once we cleared all the stuff, we should write updated version of .gitignore 
+    await writeFile(FILE_NAME_GITIGNORE, FILE_CONTENT_GITIGNORE);
 
-    //@ts-ignore
-    FILE_CONTENT_CURRENT_EXIST["RANDOM"] = Math.random();
-    writeFileSync(FILE_NAME_GITHUB_REPO_EXISTS, JSON.stringify(FILE_CONTENT_CURRENT_EXIST, null, 3));
+
+
+    // Fetch BDS Content
+    console.log("Downloading BDS to " + BDS_OUTDIR_PATH);
+    successful = await FetchBDSSource(checkResults.version, checkResults.isPreview, BDS_OUTDIR_PATH).then(()=>true,()=>false);
+    console.log("BDS Download Successed");
+
+
+
+
+    // At the end write the exist.json content
+    group("Writing " + FILE_NAME_GITHUB_REPO_EXISTS);
+    const existContent = JSON.stringify(FILE_CONTENT_CURRENT_EXIST, null, 3);
+    await writeFile(FILE_NAME_GITHUB_REPO_EXISTS, existContent);
+    console.log(existContent);
+    groupEnd();
     
-    console.log("Commit");
+
+
+
+    // Commit changes and force push
+    group("Commit & Push -> " + checkResults.branch);
     await ExecuteCommand("git add .");
     await ExecuteCommand(`git commit -m \"New ${checkResults.branch} v${checkResults.isPreview?checkResults.version:GetEngineVersion(checkResults.version)}\"`);
     await ExecuteCommand("git push --force origin " + checkResults.branch);
+    groupEnd();
 
+    // Create New Branch for stable release
+    if(!checkResults.isPreview){
+        /**@type {import("./functions.js").BranchKind | `${import("./functions.js").BranchKind}-${import("./functions.js").VersionEngine}`} */
+        const branch = `${checkResults.branch}-${GetEngineVersion(checkResults.version)}`;
+        successful = await GithubPostNewBranch(branch);
+        if(!successful){
+            console.error("Faild to post new branch");
+            return -1;
+        }
+    }
 
-    console.log(`New ${checkResults.isPreview?"preview":""} version available ${checkResults.version}`);
     return 0;
 };

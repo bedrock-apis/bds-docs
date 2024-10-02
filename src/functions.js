@@ -97,7 +97,7 @@ export async function CheckForVersionMatch(version, branch, fullMatch = false) {
 export async function FetchBDSVersions() { return (await fetch(LINK_BDS_VERSIONS)).json(); }
 /**
  * @param {VersionFull} version 
- * @returns {Version}
+ * @returns {VersionEngine}
  */
 export function GetEngineVersion(version) {
     const [ma = 1, mi = 0, en = 0] = version.split(".").map(Number);
