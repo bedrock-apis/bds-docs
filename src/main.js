@@ -1,5 +1,5 @@
 import { minimatch } from "minimatch";
-import { BDS_OUTDIR_PATH, FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, IS_GITHUB_ACTION } from "./consts.js";
+import { ALWAYS_OVERWRITE, BDS_OUTDIR_PATH, FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, IS_GITHUB_ACTION } from "./consts.js";
 import { ClearWholeFolder, ExecuteCommand, FetchBDSSource, FetchBDSVersions,GetEngineVersion,GithubChekoutBranch,GithubLoginAs,GithubPostNewBranch,group,groupEnd,VersionCheck } from "./functions.js";
 import { writeFile } from "node:fs/promises";
 import { SaveWorkspaceContent } from "./content_saver.js";
@@ -31,7 +31,8 @@ async function Main(){
         return 0;
     }
 
-    FILE_CONTENT_CURRENT_EXIST["version"] = checkResults.isPreview?checkResults.version:GetEngineVersion(checkResults.version);
+    //@ts-ignore Just testing
+    FILE_CONTENT_CURRENT_EXIST["version"] = "test:" + checkResults.isPreview?checkResults.version:GetEngineVersion(checkResults.version);
     FILE_CONTENT_CURRENT_EXIST["build-version"] = checkResults.version;
 
     // Login and Checkout that specific branch
@@ -73,7 +74,10 @@ async function Main(){
 
     // Fetch BDS Content
     group(`Download of BDS -> ${BDS_OUTDIR_PATH}`)
-    successful = await FetchBDSSource(checkResults.version, checkResults.isPreview, BDS_OUTDIR_PATH).then(()=>true,()=>false);
+    successful = await FetchBDSSource(checkResults.version, checkResults.isPreview, BDS_OUTDIR_PATH).then(s=>s,(error)=>{
+        console.error(error, error.stack);
+        return false;
+    });
     if(!successful){
         console.error("Faild to download BDS");
         return -1;
@@ -101,7 +105,7 @@ async function Main(){
     await ExecuteCommand("git push --force origin " + checkResults.branch);
 
     // Create New Branch for stable release
-    if(!checkResults.isPreview){
+    if(!ALWAYS_OVERWRITE && !checkResults.isPreview){
         /**@type {import("./functions.js").BranchKind | `${import("./functions.js").BranchKind}-${import("./functions.js").VersionEngine}`} */
         const branch = `${checkResults.branch}-${GetEngineVersion(checkResults.version)}`;
         successful = await GithubPostNewBranch(branch);

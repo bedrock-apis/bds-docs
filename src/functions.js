@@ -239,17 +239,18 @@ export async function GithubLoginAs(name, email) {
  * 
  * @param {VersionFull} version
  * @param {boolean} isPreview 
- * @param {string} outDir 
+ * @param {string} outDir
+ * @returns {Promise<boolean>}
  */
 export async function FetchBDSSource(version, isPreview, outDir) {
     const response = await fetch(`${LINK_BDS_CDN}/bin-${PLATFORM}${isPreview?"-preview":""}/bedrock-server-${version}.zip`);
-    if(!response.ok || !response.body) return;
+    if(!response.ok || !response.body) return false;
 
     const reader = response.body.getReader();
-    if (!response.ok || !response.body) return;
+    if (!response.ok || !response.body) return false;
 
     const contentLength = response.headers.get('content-length');
-    if (!contentLength) return;
+    if (!contentLength) return false;
 
     const total = parseInt(contentLength, 10);
     let loaded = 0;
@@ -270,6 +271,7 @@ export async function FetchBDSSource(version, isPreview, outDir) {
         response.body,
         unzipStream
     );
+    return true;
 }
 
 /**
