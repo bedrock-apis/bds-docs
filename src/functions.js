@@ -46,7 +46,6 @@ export async function ExecuteCommand(command, timeout = 1000, cwd = ".") {
     }).catch(error=>({errorCode: -1, error}));
 }
 /**
- * 
  * @param {string} executable 
  * @param {number} [timeout]
  * @param {string} [cwd="."]
@@ -125,14 +124,29 @@ export function GetEngineVersion(version) {
     const [ma = 1, mi = 0, en = 0] = version.split(".").map(Number);
     return `${ma}.${mi}.${Math.floor(en/10) * 10}`;
 }
-let groupTime = 0;
+
+/**
+ * @typedef {{time: number, base?: GroupDef}} GroupDef
+ * @type {GroupDef | undefined}
+ */
+let lastGroup = undefined;
+
+
 export function group(content=""){
-    groupTime = Date.now();
+    lastGroup = {
+        time: Date.now(),
+        base: lastGroup
+    }
     console.log(TERMINAL_CREATE_GROUP + content);
 }
 export function groupEnd(){
-    console.log("Group Performed in " + (Date.now() - groupTime) + "ms");
+    const {time = 0, base} = lastGroup??{};
+    lastGroup = base;
+    console.log("Group Performed in " + (Date.now() - time) + "ms");
     console.log(TERMINAL_END_GROUP);
+}
+export function groupFinish(){
+    while(lastGroup) groupEnd();
 }
 /**
  * @template T
@@ -374,7 +388,7 @@ export async function * ClearWholeFolder(dir, method) {
  * @param {string[]} paths 
  * @returns {Generator<string>}
  */
-function *FileTree(base, paths = []){
+export function *FileTree(base, paths = []){
     for (const entry of readdirSync([base,...paths].join("/"),{withFileTypes:true})) {
         if(entry.isFile()) yield [...paths,entry.name].join("/");
         else if(entry.isDirectory()) yield*FileTree(base,[...paths,entry.name]);
@@ -387,7 +401,7 @@ function *FileTree(base, paths = []){
  * @param {string[]} paths 
  * @returns {Generator<string>}
  */
-function *DirectoryTree(base, paths = []){
+export function *DirectoryTree(base, paths = []){
     for (const entry of readdirSync([base,...paths].join("/"),{withFileTypes:true})) {
         if(entry.isDirectory()) {
             yield * DirectoryTree(base,[...paths,entry.name]);

@@ -1,9 +1,10 @@
 import { minimatch } from "minimatch";
 import { ALWAYS_OVERWRITE, BDS_OUTDIR_PATH, FILE_CONTENT_BDS_TEST_CONFIG, FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_BDS_BINARY, FILE_NAME_BDS_TEST_CONFIG, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, IS_GITHUB_ACTION } from "./consts.js";
-import { ClearWholeFolder, ExecuteCommand, ExecuteExecutable, FetchBDSSource, FetchBDSVersions,GetEngineVersion,GithubChekoutBranch,GithubCommitAndPush,GithubLoginAs,GithubPostNewBranch,group,groupEnd,VersionCheck } from "./functions.js";
+import { ClearWholeFolder, ExecuteCommand, ExecuteExecutable, FetchBDSSource, FetchBDSVersions,GetEngineVersion,GithubChekoutBranch,GithubCommitAndPush,GithubLoginAs,GithubPostNewBranch,group,groupEnd,groupFinish,VersionCheck } from "./functions.js";
 import { writeFile } from "node:fs/promises";
 import { SaveWorkspaceContent } from "./content_saver.js";
 import { resolve } from "node:path";
+import { GENERATOR_FLAGS } from "./flags/index.js";
 let performanceTime = Date.now();
 // Calling Main EntryPont
 Main()
@@ -11,6 +12,7 @@ Main()
 .catch(er=>{console.log(er, er.stack); process.exit(-1)})
 // Return and exit with this code, when Main entrypoint returns
 .then((c)=>{
+    groupFinish();
     console.log(`Execution time: ${~~((Date.now() - performanceTime) / 1000)}s`);
     process.exit(c);
 });
@@ -105,6 +107,24 @@ async function Main(){
     groupEnd();
 
 
+    // Proccess All Related Generator Flag Workers
+    group(`${GENERATOR_FLAGS.length} Generators Flags`);
+    for (const flag of GENERATOR_FLAGS) {
+        group(`Generator ${flag.flagId}`);
+
+        successful = await flag.method(BDS_OUTDIR_PATH).catch((er)=>{
+            console.error(`Generator ${flag.flagId} fails: ${er}`);
+            return false;
+        });
+
+        if(!successful){
+            console.log("Generator Failed " + flag.flagId);
+            return -1;
+        }
+
+        groupEnd();
+    }
+    groupEnd();
 
 
     // At the end write the exist.json content
