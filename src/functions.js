@@ -254,6 +254,7 @@ export async function FetchBDSSource(version, isPreview, outDir) {
     const total = parseInt(contentLength, 10);
     let loaded = 0;
 
+    console.log("outDir: " + outDir);
     /**
      * @type {Transform}
      */
