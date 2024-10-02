@@ -1,3 +1,4 @@
+import { minimatch } from "minimatch";
 import { FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_GITHUB_REPO_EXISTS, IS_GITHUB_ACTION } from "./consts.js";
 import { ClearWholeFolder, ExecuteCommand, FetchBDSVersions,GetEngineVersion,GithubChekoutBranch,GithubLoginAs,group,groupEnd,VersionCheck } from "./functions.js";
 import { existsSync, writeFileSync } from "node:fs";
@@ -40,15 +41,20 @@ async function Main(){
 
     groupEnd();
 
-    
+
 
     // We should clear whole working directory, so we could upload generated files
     // Commented bc its dangerous to run this on local machine so please be sure its executed only via Github Action
     // Maybe Add some checks for GITHUB specific ENV FILES like GITHUB_TOKEN or something
     if(IS_GITHUB_ACTION){
         group("Clear Repo Bruteforce")
-        for await(const entry of ClearWholeFolder(".", ".git/")){
-            console.log("[REPO CLear] entry: " + entry);
+        for await(const entry of ClearWholeFolder(
+            ".",
+            (f)=>{
+                return [".git/","bin/", "bin/**/*"].some(s=>minimatch(f, s, {nocase: true}))
+            }
+            )){
+            console.log("[REPO Clear] entry: " + entry);
         }
         groupEnd();
     }

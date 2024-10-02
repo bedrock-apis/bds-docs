@@ -1,6 +1,6 @@
 import { Buffer } from "node:buffer";
 import { exec } from "node:child_process";
-import { readdir, rm, rmdir, writeFile } from "node:fs/promises";
+import { rm, rmdir, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { pipeline } from "node:stream/promises";
 import { ALWAYS_OVERWRITE, DEBUG, FILE_CONTENT_GITIGNORE, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, GITHUB_PREVIEW_BRAMCH_NAME, GITHUB_STABLE_BRANCH_NAME, LINK_BDS_CDN, LINK_BDS_VERSIONS, LINK_GITHUB_REPO, LOGIN_AS_EMAIL, LOGIN_AS_NAME, PLATFORM, TERMINAL_CREATE_GROUP, TERMINAL_END_GROUP } from "./consts.js";
@@ -145,6 +145,39 @@ export async function TerminalGroupAsync(method, groupName , ...p){
 
 /**
  * 
+ * @param {BranchKind | `${BranchKind}-${VersionEngine}`} branch 
+ */
+export async function GithubPostNewBranch(branch) {
+    // Make sure i am logged in
+    const loginResult = await GithubLoginAs(LOGIN_AS_NAME, LOGIN_AS_EMAIL);
+    if(!loginResult) {
+        console.error(`Faild to login as ${LOGIN_AS_NAME} ${LOGIN_AS_EMAIL}`);
+        return false;
+    }
+
+    // I have forgot for what is this usefull, but i know its important
+    let cmd = `git checkout -b ${branch}`;
+
+    let result = await ExecuteCommand(cmd);
+    if(result.exitCode != 0) {
+        console.error(`Fail to execute '${cmd}' command`);
+        return false;
+    }
+
+
+    // Basic checkout command execution
+    cmd = `git push -u origin ${branch}`;
+
+    result = await ExecuteCommand(cmd);
+    if(result.exitCode != 0)  {
+        console.error(`Fail to execute '${cmd}' command`);
+        return false;
+    }
+
+    return true;
+}
+/**
+ * 
  * @param {BranchKind} branch 
  * @param {boolean} force 
  */
@@ -153,7 +186,6 @@ export async function GithubChekoutBranch(branch, force) {
     const loginResult = await GithubLoginAs(LOGIN_AS_NAME, LOGIN_AS_EMAIL);
     if(!loginResult) {
         console.error(`Faild to login as ${LOGIN_AS_NAME} ${LOGIN_AS_EMAIL}`);
-        groupEnd();
         return false;
     }
 
@@ -221,15 +253,16 @@ export async function FetchBDSSource(version, isPreview, outDir) {
 /**
  * 
  * @param {string} dir 
- * @param {string} filter
+ * @param {(file: string)=>boolean} method
  * @returns {AsyncGenerator<string,number>}
  */
-export async function * ClearWholeFolder(dir, filter = "*") {
+export async function * ClearWholeFolder(dir, method) {
     let i = 0;
     /**@type {PromiseLike<any>[]} */
     const tasks = [];
     for(const file of FileTree(dir)) {
-        if(file.startsWith(filter)) {
+        if(method(file)) {
+            console.log("[Skipped Entry]: " + file);
             continue;
         }
         i++;
@@ -240,7 +273,8 @@ export async function * ClearWholeFolder(dir, filter = "*") {
     
     // Have to be synced, bc we have to be sure the directory it self is empty before its removal
     for(const directory of DirectoryTree(dir)) {
-        if(directory.startsWith(filter))  {
+        if(method(directory))  {
+            console.log("[Skipped Entry]: " + directory);
             continue;
         }
         i++;
