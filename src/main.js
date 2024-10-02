@@ -22,6 +22,7 @@ Main()
  * @returns {Promise<number>}
  */
 async function Main(){
+    
     // Fetch Current BDS Versions
     const versions = await FetchBDSVersions().catch(console.error);
     if(!versions) {

@@ -71,7 +71,7 @@ async function Task(input, fileName) {
  */
 //@ts-ignore
 const VERSION_REGISTERED = FILE_CONTENT_CURRENT_EXIST[SCRIPT_MODULES_MAPPING.name] = {
-    script_modules_mapping:{},
     script_modules:[],
+    script_modules_mapping:{},
     script_module_files:[]
 };
