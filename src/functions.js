@@ -30,12 +30,12 @@ export async function TryFetch(pathOrLink) {
 /**
  * 
  * @param {string} command 
- * @param {number} [timeout=120]
+ * @param {number} [timeout]
  * @param {string} [cwd="."]
  * @returns {Promise<{exitCode: number, error?: any}>}
  * @throws {string}
  */
-export async function ExecuteCommand(command, timeout, cwd = ".") {
+export async function ExecuteCommand(command, timeout = 1000, cwd = ".") {
     return new Promise((res, rej)=>{
         const child = exec(command,{cwd, timeout, windowsHide: true}, ()=>{});
         child.stdout?.pipe(process.stdout);
@@ -44,6 +44,25 @@ export async function ExecuteCommand(command, timeout, cwd = ".") {
         child.on("error", (code)=>res({exitCode: -1, error: code}));
         child.on("spawn", ()=>console.log("[Command Exec] '" + command + "'"));
     }).catch(error=>({errorCode: -1, error}));
+}
+/**
+ * 
+ * @param {string} executable 
+ * @param {number} [timeout]
+ * @param {string} [cwd="."]
+ * @returns {Promise<{exitCode: number, error?: any}>}
+ * @throws {string}
+ */
+export async function ExecuteExecutable(executable, timeout = 1000, cwd = ".") {
+    if(PLATFORM == "win"){
+        return ExecuteCommand(`call ${executable}`, timeout, cwd);
+    }
+    else if(PLATFORM == "linux"){
+        let result = await ExecuteCommand(`chmod +x ${executable}`, timeout, cwd);
+        if(result.exitCode != 0) return result;
+        return ExecuteCommand(`LD_LIBRARY_PATH=. ${executable}`, timeout, cwd);
+    }
+    return {exitCode: -1, error: "Unknown platform"}
 }
 /**
  * 
@@ -150,6 +169,10 @@ export async function TerminalGroupAsync(method, groupName , ...p){
  * @param {BranchKind | `${BranchKind}-${VersionEngine}`} branch 
  */
 export async function GithubPostNewBranch(branch) {
+    if(DEBUG) {
+        console.log("[DEBUG] Login Skipped . . .");
+        return true;
+    }
     // Make sure i am logged in
     const loginResult = await GithubLoginAs(LOGIN_AS_NAME, LOGIN_AS_EMAIL);
     if(!loginResult) {
@@ -184,6 +207,10 @@ export async function GithubPostNewBranch(branch) {
  * @param {boolean} force 
  */
 export async function GithubChekoutBranch(branch, force) {
+    if(DEBUG) {
+        console.log("[DEBUG] Login Skipped . . .");
+        return true;
+    }
     // Make sure i am logged in
     const loginResult = await GithubLoginAs(LOGIN_AS_NAME, LOGIN_AS_EMAIL);
     if(!loginResult) {
@@ -234,35 +261,61 @@ export async function GithubLoginAs(name, email) {
     isLoggedIn = true;
     return true;
 }
+/**
+ * 
+ * @param {BranchKind} branch 
+ * @param {boolean} isPreview 
+ * @param {VersionFull} version 
+ * @returns {Promise<boolean>}
+ */
+export async function GithubCommitAndPush(branch, version, isPreview) {
+    if(DEBUG) {
+        console.log("[DEBUG] Login Skipped . . .");
+        return true;
+    }
+    
+    let result = await ExecuteCommand("git add .");
+    if(result.exitCode != 0) return false;
+
+    result = await ExecuteCommand(`git commit -m \"New ${branch} v${isPreview?version:GetEngineVersion(version)}\"`);
+    if(result.exitCode != 0) return false;
+
+    result = await ExecuteCommand("git push --force origin " + branch);
+    if(result.exitCode != 0) return false;
+    
+    return true;
+}
 
 /**
  * 
  * @param {VersionFull} version
  * @param {boolean} isPreview 
  * @param {string} outDir
- * @returns {Promise<boolean>}
+ * -1 When Erros is present
+ * @returns {Promise<number>}
  */
 export async function FetchBDSSource(version, isPreview, outDir) {
     const response = await fetch(`${LINK_BDS_CDN}/bin-${PLATFORM}${isPreview?"-preview":""}/bedrock-server-${version}.zip`);
-    if(!response.ok || !response.body) return false;
+    if(!response.ok || !response.body) return -1;
 
-    if (!response.ok || !response.body) return false;
+    if (!response.ok || !response.body) return -1;
 
     const contentLength = response.headers.get('content-length');
-    if (!contentLength) return false;
+    if (!contentLength) return -1;
 
-    const total = parseInt(contentLength, 10);
-    let loaded = 0;
+    let filesCounr = 0;
 
     /**
      * @type {Transform}
      */
     //@ts-ignore
     const unzipStream = Extract({ path: outDir });
-    
+
     //@ts-ignore
     unzipStream.unzipStream.on("entry",(p)=>{
-        console.log(`Downloaded entry: ${p.path}`);
+        const isDir = p.isDirectory;
+        if(isDir) console.log(`Downloading directory: ${p.path}`);
+        else filesCounr++;
     })
 
     const task = new Promise((res,rej)=>{
@@ -276,7 +329,7 @@ export async function FetchBDSSource(version, isPreview, outDir) {
         unzipStream
     );
     await task;
-    return true;
+    return filesCounr;
 }
 
 /**

@@ -1,8 +1,9 @@
 import { minimatch } from "minimatch";
-import { ALWAYS_OVERWRITE, BDS_OUTDIR_PATH, FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, IS_GITHUB_ACTION } from "./consts.js";
-import { ClearWholeFolder, ExecuteCommand, FetchBDSSource, FetchBDSVersions,GetEngineVersion,GithubChekoutBranch,GithubLoginAs,GithubPostNewBranch,group,groupEnd,VersionCheck } from "./functions.js";
+import { ALWAYS_OVERWRITE, BDS_OUTDIR_PATH, FILE_CONTENT_BDS_TEST_CONFIG, FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_BDS_TEST_CONFIG, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, IS_GITHUB_ACTION } from "./consts.js";
+import { ClearWholeFolder, ExecuteCommand, ExecuteExecutable, FetchBDSSource, FetchBDSVersions,GetEngineVersion,GithubChekoutBranch,GithubCommitAndPush,GithubLoginAs,GithubPostNewBranch,group,groupEnd,VersionCheck } from "./functions.js";
 import { writeFile } from "node:fs/promises";
 import { SaveWorkspaceContent } from "./content_saver.js";
+import { resolve } from "node:path";
 
 // Calling Main EntryPont
 Main()
@@ -74,8 +75,8 @@ async function Main(){
 
 
     // Fetch BDS Content
-    group(`Download of BDS -> ${BDS_OUTDIR_PATH}`)
-    successful = await FetchBDSSource(checkResults.version, checkResults.isPreview, BDS_OUTDIR_PATH).then(s=>s,(error)=>{
+    group(`Download of Bedrock Dedicated Server -> ${BDS_OUTDIR_PATH}`);
+    successful = await FetchBDSSource(checkResults.version, checkResults.isPreview, BDS_OUTDIR_PATH).then(s=>s >= 0,(error)=>{
         console.error(error, error.stack);
         return false;
     });
@@ -83,7 +84,21 @@ async function Main(){
         console.error("Faild to download BDS");
         return -1;
     }
-    console.log("BDS Downloaded Successfully");
+    console.log("Bedrock Dedicated Server Downloaded Successfully");
+    groupEnd();
+
+
+    // Add Test config to generate metadata
+    await writeFile(resolve(BDS_OUTDIR_PATH, FILE_NAME_BDS_TEST_CONFIG), FILE_CONTENT_BDS_TEST_CONFIG);
+
+    // Execute BDS Executable
+    group(`Running Bedrock Dedicated Server -> ${BDS_OUTDIR_PATH}`);
+    let exeSuccessful = await ExecuteExecutable("bedorck_server", 60_000, BDS_OUTDIR_PATH);
+    if(exeSuccessful.exitCode != 0){
+        console.error("Faild to download BDS: " + exeSuccessful.error);
+        return -1;
+    }
+    console.log("BDS has quit Successfully");
     groupEnd();
 
 
@@ -101,21 +116,29 @@ async function Main(){
 
     // Commit changes and force push
     group("Commit & Push -> " + checkResults.branch);
-    await ExecuteCommand("git add .");
-    await ExecuteCommand(`git commit -m \"New ${checkResults.branch} v${checkResults.isPreview?checkResults.version:GetEngineVersion(checkResults.version)}\"`);
-    await ExecuteCommand("git push --force origin " + checkResults.branch);
+    successful = await GithubCommitAndPush(checkResults.branch, checkResults.version, checkResults.isPreview);
+    if(!successful){
+        console.error("Faild to commit and push");
+        return -1;
+    }
+
+    // There is no need to create new branch
+    if(ALWAYS_OVERWRITE || checkResults.isPreview){
+        groupEnd();
+        return 0;
+    }
+
 
     // Create New Branch for stable release
-    if(!ALWAYS_OVERWRITE && !checkResults.isPreview){
-        /**@type {import("./functions.js").BranchKind | `${import("./functions.js").BranchKind}-${import("./functions.js").VersionEngine}`} */
-        const branch = `${checkResults.branch}-${GetEngineVersion(checkResults.version)}`;
-        successful = await GithubPostNewBranch(branch);
-        if(!successful){
-            console.error("Faild to post new branch");
-            return -1;
-        }
+    /**@type {import("./functions.js").BranchKind | `${import("./functions.js").BranchKind}-${import("./functions.js").VersionEngine}`} */
+    const branch = `${checkResults.branch}-${GetEngineVersion(checkResults.version)}`;
+    successful = await GithubPostNewBranch(branch);
+    if(!successful){
+        console.error("Faild to post new branch");
+        return -1;
     }
-    groupEnd();
 
+
+    groupEnd();
     return 0;
 };
