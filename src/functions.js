@@ -6,6 +6,7 @@ import { pipeline } from "node:stream/promises";
 import { ALWAYS_OVERWRITE, DEBUG, FILE_CONTENT_GITIGNORE, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, GITHUB_PREVIEW_BRAMCH_NAME, GITHUB_STABLE_BRANCH_NAME, LINK_BDS_CDN, LINK_BDS_VERSIONS, LINK_GITHUB_REPO, LOGIN_AS_EMAIL, LOGIN_AS_NAME, PLATFORM, TERMINAL_CREATE_GROUP, TERMINAL_END_GROUP } from "./consts.js";
 import { Extract } from "unzip-stream";
 import { readdirSync } from "node:fs";
+import { Transform } from "node:stream";
 /**
  * @typedef {`${number}.${number}.${number}.${number}`} VersionFull
  * @typedef {`${number}.${number}.${number}`} VersionEngine
@@ -244,10 +245,30 @@ export async function FetchBDSSource(version, isPreview, outDir) {
     const response = await fetch(`${LINK_BDS_CDN}/bin-${PLATFORM}${isPreview?"-preview":""}/bedrock-server-${version}.zip`);
     if(!response.ok || !response.body) return;
 
-    //@ts-ignore As unzip-stream doesn't have types we have to ignore this line
+    const reader = response.body.getReader();
+    if (!response.ok || !response.body) return;
+
+    const contentLength = response.headers.get('content-length');
+    if (!contentLength) return;
+
+    const total = parseInt(contentLength, 10);
+    let loaded = 0;
+
+    /**
+     * @type {Transform}
+     */
+    //@ts-ignore
+    const unzipStream = Extract({ outDir });
+
+    unzipStream.on("data", chunk=>{
+        loaded += chunk.length;
+        console.log(`Downloaded: ${Math.ceil((loaded / total) * 100)}%`);
+    });
+
+
     await pipeline(
         response.body,
-        Extract({ outDir })
+        unzipStream
     );
 }
 
