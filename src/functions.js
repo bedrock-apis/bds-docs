@@ -175,7 +175,7 @@ export async function GithubChekoutBranch(branch, force) {
         console.error(`Fail to execute '${cmd}' command`);
         return false;
     }
-    
+
     return true;
 }
 /**
@@ -241,11 +241,9 @@ export async function * ClearWholeFolder(dir, filter = "*") {
     // Have to be synced, bc we have to be sure the directory it self is empty before its removal
     for(const directory of DirectoryTree(dir)) {
         if(directory.startsWith(filter))  {
-            console.log(directory);
             continue;
         }
-        i++
-
+        i++;
         await rmdir(resolve(dir, directory));
         yield directory;
     }
