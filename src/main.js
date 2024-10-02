@@ -1,5 +1,5 @@
 import { minimatch } from "minimatch";
-import { ALWAYS_OVERWRITE, BDS_OUTDIR_PATH, FILE_CONTENT_BDS_TEST_CONFIG, FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_BDS_TEST_CONFIG, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, IS_GITHUB_ACTION } from "./consts.js";
+import { ALWAYS_OVERWRITE, BDS_OUTDIR_PATH, FILE_CONTENT_BDS_TEST_CONFIG, FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_BDS_BINARY, FILE_NAME_BDS_TEST_CONFIG, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, IS_GITHUB_ACTION } from "./consts.js";
 import { ClearWholeFolder, ExecuteCommand, ExecuteExecutable, FetchBDSSource, FetchBDSVersions,GetEngineVersion,GithubChekoutBranch,GithubCommitAndPush,GithubLoginAs,GithubPostNewBranch,group,groupEnd,VersionCheck } from "./functions.js";
 import { writeFile } from "node:fs/promises";
 import { SaveWorkspaceContent } from "./content_saver.js";
@@ -93,7 +93,7 @@ async function Main(){
 
     // Execute BDS Executable
     group(`Running Bedrock Dedicated Server -> ${BDS_OUTDIR_PATH}`);
-    let exeSuccessful = await ExecuteExecutable("bedorck_server", 60_000, BDS_OUTDIR_PATH);
+    let exeSuccessful = await ExecuteExecutable(FILE_NAME_BDS_BINARY, 60_000, BDS_OUTDIR_PATH);
     if(exeSuccessful.exitCode != 0){
         console.error("Faild to download BDS: " + exeSuccessful.error);
         return -1;
