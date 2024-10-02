@@ -253,7 +253,7 @@ export async function FetchBDSSource(version, isPreview, outDir) {
 
     const total = parseInt(contentLength, 10);
     let loaded = 0;
-    
+
     /**
      * @type {Transform}
      */
@@ -265,11 +265,17 @@ export async function FetchBDSSource(version, isPreview, outDir) {
         console.log(`Downloaded: ${Math.ceil((loaded / total) * 100)}%`);
     });
 
+    const task = new Promise((res,rej)=>{
+        unzipStream.on("error", rej);
+        unzipStream.on("finish", res);
+    });
+
 
     await pipeline(
         response.body,
         unzipStream
     );
+    await task;
     return true;
 }
 
