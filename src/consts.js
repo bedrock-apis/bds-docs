@@ -3,16 +3,26 @@ import { platform } from "os";
 import { resolve } from "path";
 import { env } from "process";
 
+/**
+ * @typedef {`${number}.${number}.${number}.${number}`} VersionFull
+ * @typedef {`${number}.${number}.${number}`} VersionEngine
+ * @typedef {VersionEngine | VersionFull} Version
+ */
+
 export const ALWAYS_OVERWRITE = env["ALWAYS_OVERWRITE"]??false;
 export const PLATFORM = platform()=="win32"?"win":"linux";
 export const DEBUG = env["DEBUG_MODE"]?true:false;
+export const IS_GITHUB_ACTION = env["GITHUB_WORKFLOW"]?true:false;
 export const BDS_SRC_PATH = "./bds";
 export const LINK_BDS_VERSIONS = "https://raw.githubusercontent.com/Bedrock-OSS/BDS-Versions/main/versions.json";
+export const LINK_BDS_CDN = `https://www.minecraft.net/bedrockdedicatedserver`;
 export const GITHUB_REPO_NAME = env["GITHUB_REPOSITORY"]??"bedrock-apis/bds-docs";
+export const LOGIN_AS_NAME = "Metadata Generator";
+export const LOGIN_AS_EMAIL = "metadatagenerator@fakemail.com"
 export const GITHUB_STABLE_BRANCH_NAME = `stable`;
 export const GITHUB_PREVIEW_BRAMCH_NAME = `preview`;
-/**@type {<T1 extends number, T2 extends number, T3 extends number>(ma: T1, mi: T2, en: T3)=>`${GITHUB_STABLE_BRANCH_NAME}-${T1}.${T2}.${T3}`} */
-export const GITHUB_STABLE_VERSIONED_BRANCH_NAME = (ma, mi, en)=>`${GITHUB_STABLE_BRANCH_NAME}-${ma}.${mi}.${en}`;
+/**@type {<T extends VersionEngine = VersionEngine>(engine: T)=>`${GITHUB_STABLE_BRANCH_NAME}-${T}`} */
+export const GITHUB_STABLE_VERSIONED_BRANCH_NAME = (engine)=>`${GITHUB_STABLE_BRANCH_NAME}-${engine}`;
 export const LINK_GITHUB_DOMAIN = "https://raw.githubusercontent.com";
 /**@type {`${typeof LINK_GITHUB_DOMAIN}/${typeof GITHUB_REPO_NAME}`} */
 export const LINK_GITHUB_REPO = `${LINK_GITHUB_DOMAIN}/${GITHUB_REPO_NAME}`;
@@ -29,7 +39,7 @@ if(DEBUG) console.log("[DEBUG] Enabled: " + WORKING_DIRECTORY);
 /**
  * @type {{version:string, "build-version":string, flags: string[]}}
  */
-export const CURRENT_CONFIG = {
+export const FILE_CONTENT_CURRENT_EXIST = {
     version: "",
     "build-version": "",
     "flags": []
