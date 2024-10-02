@@ -106,9 +106,10 @@ async function Main(){
 
 
     // Proccess All Related Generator Flag Workers
-    group(`${GENERATOR_FLAGS.length} Generators Flags`);
+    console.log(`${GENERATOR_FLAGS.length} Generators Flags . . .`);
+    let temp = 0;
     for (const flag of GENERATOR_FLAGS) {
-        group(`Generator ${flag.flagId}`);
+        group(`[${++temp} / ${GENERATOR_FLAGS.length}] Generator ${flag.flagId}`);
 
         successful = await flag.method(BDS_OUTDIR_PATH).catch((er)=>{
             console.error(`Generator ${flag.flagId} fails: ${er}`);
@@ -125,7 +126,6 @@ async function Main(){
 
         groupEnd();
     }
-    groupEnd();
 
 
     // At the end write the exist.json content

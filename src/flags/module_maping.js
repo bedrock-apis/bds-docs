@@ -22,7 +22,18 @@ export async function SCRIPT_MODULES_MAPPING(inputDirPath) {
     const results = (await Promise.all(tasks)).filter(s=>s);
 
     // NOTE: I know this method mutates the array and returns a reference to the same array, but i feel more comfortable was assignment expression
-    VERSION_REGISTERED.script_modules = VERSION_REGISTERED.script_modules.sort();
+    VERSION_REGISTERED.script_module_files = VERSION_REGISTERED.script_module_files.sort();
+
+    const OLD_MAPPINGS = VERSION_REGISTERED.script_modules_mapping;
+    VERSION_REGISTERED.script_modules_mapping = {};
+    for (const moduleName of Object.keys(OLD_MAPPINGS).sort()) {
+        const map = OLD_MAPPINGS[moduleName];
+
+        map.versions = map.versions.sort();
+
+        VERSION_REGISTERED.script_modules.push(moduleName);
+        VERSION_REGISTERED.script_modules_mapping[moduleName] = map;
+    }
     // Check if all tasks has successfully ended.
     return tasks.length == results.length;
 }
@@ -46,9 +57,9 @@ async function Task(input, fileName) {
     if(data["module_type"] !== "script") return false;
 
     const name = data["name"];
-    const module_package = VERSION_REGISTERED.script_modules_mapping[name] =  VERSION_REGISTERED.script_modules_mapping[name]??{versions:[], name, uuid: data["uuid"]};
+    const module_package = VERSION_REGISTERED.script_modules_mapping[name] =  VERSION_REGISTERED.script_modules_mapping[name]??{name, uuid: data["uuid"], versions:[]};
     module_package.versions.push(data["version"]);
-    VERSION_REGISTERED.script_modules.push(fileName);
+    VERSION_REGISTERED.script_module_files.push(fileName);
 
     console.log("[MODULE_MAPING] Generated: " + fileName);
     
@@ -56,10 +67,11 @@ async function Task(input, fileName) {
     return true;
 }
 /**
- * @type {{script_modules_mapping: {[k: string]: {versions:string[], uuid: string, name: string}}, script_modules: string[]}}
+ * @type {{script_modules_mapping: {[k: string]: {versions:string[], uuid: string, name: string}}, script_modules: string[], script_module_files: string[]}}
  */
 //@ts-ignore
 const VERSION_REGISTERED = FILE_CONTENT_CURRENT_EXIST[SCRIPT_MODULES_MAPPING.name] = {
     script_modules_mapping:{},
-    script_modules:[]
+    script_modules:[],
+    script_module_files:[]
 };
