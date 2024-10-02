@@ -1,4 +1,5 @@
-import { METADATA_WORKER } from "./metadata.js";
+import { METADATA } from "./metadata.js";
+import { SCRIPT_MODULES_MAPPING } from "./module_maping.js";
 
 /**
  * @type {{
@@ -7,7 +8,11 @@ import { METADATA_WORKER } from "./metadata.js";
  */
 export const GENERATOR_FLAGS = [
     {
-        flagId: METADATA_WORKER.FLAG_NAME,
-        method: METADATA_WORKER
+        flagId: METADATA.name,
+        method: METADATA
+    },
+    {
+        flagId: SCRIPT_MODULES_MAPPING.name,
+        method: SCRIPT_MODULES_MAPPING
     }
 ];

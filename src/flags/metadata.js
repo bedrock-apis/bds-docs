@@ -8,7 +8,7 @@ import { existsSync, mkdirSync } from "node:fs";
  * @param {string} inputDirPath
  * @returns {Promise<boolean>}
  */
-export async function METADATA_WORKER(inputDirPath) {
+export async function METADATA(inputDirPath) {
     // Init
     const inputDir = resolve(inputDirPath, "docs");
     const tasks = [];
@@ -82,4 +82,3 @@ async function TransformJsonModule(input) {
 
 
 const METADATA_FOLDER = "./metadata";
-METADATA_WORKER.FLAG_NAME = "metadata";
