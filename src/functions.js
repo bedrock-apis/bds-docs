@@ -246,7 +246,6 @@ export async function FetchBDSSource(version, isPreview, outDir) {
     const response = await fetch(`${LINK_BDS_CDN}/bin-${PLATFORM}${isPreview?"-preview":""}/bedrock-server-${version}.zip`);
     if(!response.ok || !response.body) return false;
 
-    const reader = response.body.getReader();
     if (!response.ok || !response.body) return false;
 
     const contentLength = response.headers.get('content-length');
