@@ -4,13 +4,16 @@ import { ClearWholeFolder, ExecuteCommand, ExecuteExecutable, FetchBDSSource, Fe
 import { writeFile } from "node:fs/promises";
 import { SaveWorkspaceContent } from "./content_saver.js";
 import { resolve } from "node:path";
-
+let performanceTime = Date.now();
 // Calling Main EntryPont
 Main()
 // Catch en error and report an invalid return code
 .catch(er=>{console.log(er, er.stack); process.exit(-1)})
 // Return and exit with this code, when Main entrypoint returns
-.then(process.exit);
+.then((c)=>{
+    console.log(`Execution time: ${~~((Date.now() - performanceTime) / 1000)}s`);
+    process.exit(c);
+});
 
 /**
  * Main Entry Point

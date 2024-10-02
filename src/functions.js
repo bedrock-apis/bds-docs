@@ -125,11 +125,13 @@ export function GetEngineVersion(version) {
     const [ma = 1, mi = 0, en = 0] = version.split(".").map(Number);
     return `${ma}.${mi}.${Math.floor(en/10) * 10}`;
 }
-
+let groupTime = 0;
 export function group(content=""){
+    groupTime = Date.now();
     console.log(TERMINAL_CREATE_GROUP + content);
 }
 export function groupEnd(){
+    console.log("Group Performed in " + (Date.now() - groupTime) + "ms");
     console.log(TERMINAL_END_GROUP);
 }
 /**
