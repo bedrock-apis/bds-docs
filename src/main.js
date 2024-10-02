@@ -72,9 +72,14 @@ async function Main(){
 
 
     // Fetch BDS Content
-    console.log("Downloading BDS to " + BDS_OUTDIR_PATH);
+    group(`Download of BDS -> ${BDS_OUTDIR_PATH}`)
     successful = await FetchBDSSource(checkResults.version, checkResults.isPreview, BDS_OUTDIR_PATH).then(()=>true,()=>false);
-    console.log("BDS Download Successed");
+    if(!successful){
+        console.error("Faild to download BDS");
+        return -1;
+    }
+    console.log("BDS Downloaded Successfully");
+    groupEnd();
 
 
 
@@ -94,7 +99,6 @@ async function Main(){
     await ExecuteCommand("git add .");
     await ExecuteCommand(`git commit -m \"New ${checkResults.branch} v${checkResults.isPreview?checkResults.version:GetEngineVersion(checkResults.version)}\"`);
     await ExecuteCommand("git push --force origin " + checkResults.branch);
-    groupEnd();
 
     // Create New Branch for stable release
     if(!checkResults.isPreview){
@@ -106,6 +110,7 @@ async function Main(){
             return -1;
         }
     }
+    groupEnd();
 
     return 0;
 };
