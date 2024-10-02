@@ -88,6 +88,7 @@ export async function VersionCheck(versions) {
  */
 export async function CheckForVersionMatch(version, branch, fullMatch = false) {
     let existsData = await FetchExistFromBranch(branch);
+    if(ALWAYS_OVERWRITE) console.warn("[VERSION CHECK SKIPPED] About to overwrite current repo branch: " + branch);
     return ALWAYS_OVERWRITE || (existsData && (existsData.version != (fullMatch?version:GetEngineVersion(version))));
 }
 /**
