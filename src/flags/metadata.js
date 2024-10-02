@@ -1,5 +1,5 @@
 import { resolve } from "node:path";
-import { FileTree } from "../functions";
+import { FileTree } from "../functions.js";
 import { readFile, writeFile } from "node:fs/promises";
 
 /**
