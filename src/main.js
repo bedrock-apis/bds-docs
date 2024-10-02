@@ -43,7 +43,7 @@ async function Main(){
     // Maybe Add some checks for GITHUB specific ENV FILES like GITHUB_TOKEN or something
     if(IS_GITHUB_ACTION){
         let entriesRemoved = await ClearWholeFolder(".", ".git");
-        console.log(`[REPO CLEAR] Removed ${entriesRemoved} entries.`)
+        console.log(`[REPO CLEAR] Removed ${entriesRemoved} entries.`);
     }
 
     writeFileSync(FILE_NAME_GITHUB_REPO_EXISTS, JSON.stringify(FILE_CONTENT_CURRENT_EXIST, null, 3));

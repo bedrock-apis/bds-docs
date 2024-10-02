@@ -233,7 +233,10 @@ export async function ClearWholeFolder(dir, filter = "*") {
     /**@type {PromiseLike<any>[]} */
     const tasks = [];
     for(const file of FileTree(dir + "/")) {
-        if(file.startsWith(filter)) continue;
+        if(file.startsWith(filter)) {
+            console.log(file);
+            continue;
+        }
         i++;
         tasks.push(rm(resolve(dir, file)));
     }
@@ -241,7 +244,10 @@ export async function ClearWholeFolder(dir, filter = "*") {
     
     // Have to be synced, bc we have to be sure the directory it self is empty before its removal
     for(const directory of DirectoryTree(dir)) {
-        if(directory.startsWith(dir)) continue;
+        if(directory.startsWith(filter))  {
+            console.log(directory);
+            continue;
+        }
         i++
         await rmdir(resolve(dir, directory));
     }
