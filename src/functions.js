@@ -152,7 +152,7 @@ export async function GithubChekoutBranch(branch, force) {
     group(`Branch checkout: ${branch} IsForced: ${force}`)
 
     // Make sure i am logged in
-    const loginResult = GithubLoginAs(LOGIN_AS_NAME, LOGIN_AS_EMAIL);
+    const loginResult = await GithubLoginAs(LOGIN_AS_NAME, LOGIN_AS_EMAIL);
     if(!loginResult) {
         console.error(`Faild to login as ${LOGIN_AS_NAME} ${LOGIN_AS_EMAIL}`);
         groupEnd();
