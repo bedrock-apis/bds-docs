@@ -93,7 +93,7 @@ async function Main(){
 
     // Execute BDS Executable
     group(`Running Bedrock Dedicated Server -> ${BDS_OUTDIR_PATH}`);
-    let exeSuccessful = await ExecuteExecutable("bedorck_server", 60_000, BDS_OUTDIR_PATH);
+    let exeSuccessful = await ExecuteExecutable("./bedorck_server.exe", 60_000, BDS_OUTDIR_PATH);
     if(exeSuccessful.exitCode != 0){
         console.error("Faild to download BDS: " + exeSuccessful.error);
         return -1;

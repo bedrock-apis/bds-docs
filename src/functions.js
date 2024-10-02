@@ -53,6 +53,7 @@ export async function ExecuteCommand(command, timeout = 1000, cwd = ".") {
  * @returns {Promise<{exitCode: number, error?: any}>}
  * @throws {string}
  */
+// FIXME: This doesn't really works on linux as linux doesn't have executables like ".exe"
 export async function ExecuteExecutable(executable, timeout = 1000, cwd = ".") {
     if(PLATFORM == "win"){
         return ExecuteCommand(`call ${executable}`, timeout, cwd);
