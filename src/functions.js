@@ -149,8 +149,6 @@ export async function TerminalGroupAsync(method, groupName , ...p){
  * @param {boolean} force 
  */
 export async function GithubChekoutBranch(branch, force) {
-    group(`Branch checkout: ${branch} IsForced: ${force}`)
-
     // Make sure i am logged in
     const loginResult = await GithubLoginAs(LOGIN_AS_NAME, LOGIN_AS_EMAIL);
     if(!loginResult) {
@@ -165,7 +163,6 @@ export async function GithubChekoutBranch(branch, force) {
     let result = await ExecuteCommand(cmd);
     if(result.exitCode != 0) {
         console.error(`Fail to execute '${cmd}' command`);
-        groupEnd();
         return false;
     }
 
@@ -176,11 +173,9 @@ export async function GithubChekoutBranch(branch, force) {
     result = await ExecuteCommand(cmd);
     if(result.exitCode != 0)  {
         console.error(`Fail to execute '${cmd}' command`);
-        groupEnd();
         return false;
     }
-
-    groupEnd();
+    
     return true;
 }
 /**
@@ -227,19 +222,19 @@ export async function FetchBDSSource(version, isPreview, outDir) {
  * 
  * @param {string} dir 
  * @param {string} filter
- * @returns {Promise<number>}
+ * @returns {AsyncGenerator<string,number>}
  */
-export async function ClearWholeFolder(dir, filter = "*") {
+export async function * ClearWholeFolder(dir, filter = "*") {
     let i = 0;
     /**@type {PromiseLike<any>[]} */
     const tasks = [];
-    for(const file of FileTree(dir + "/")) {
+    for(const file of FileTree(dir)) {
         if(file.startsWith(filter)) {
-            console.log(file);
             continue;
         }
         i++;
         tasks.push(rm(resolve(dir, file)));
+        yield file;
     }
     await Promise.all(tasks);
     
@@ -250,7 +245,9 @@ export async function ClearWholeFolder(dir, filter = "*") {
             continue;
         }
         i++
+
         await rmdir(resolve(dir, directory));
+        yield directory;
     }
     return i;
 }
@@ -277,7 +274,7 @@ function *DirectoryTree(base, paths = []){
     for (const entry of readdirSync([base,...paths].join("/"),{withFileTypes:true})) {
         if(entry.isDirectory()) {
             yield * DirectoryTree(base,[...paths,entry.name]);
-            yield [...paths,entry.name].join("/");
+            yield [...paths,entry.name,""].join("/");
         }
     }
 }

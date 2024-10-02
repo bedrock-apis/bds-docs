@@ -1,5 +1,5 @@
 import { FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_GITHUB_REPO_EXISTS, IS_GITHUB_ACTION } from "./consts.js";
-import { ClearWholeFolder, ExecuteCommand, FetchBDSVersions,GetEngineVersion,GithubChekoutBranch,GithubLoginAs,groupEnd,VersionCheck } from "./functions.js";
+import { ClearWholeFolder, ExecuteCommand, FetchBDSVersions,GetEngineVersion,GithubChekoutBranch,GithubLoginAs,group,groupEnd,VersionCheck } from "./functions.js";
 import { existsSync, writeFileSync } from "node:fs";
 
 // Calling Main EntryPont
@@ -30,6 +30,8 @@ async function Main(){
     }
 
     // Login and Checkout that specific branch
+    group(`Branch checkout: ${checkResults.branch} IsForced: ${true}`);
+
     let successful = await GithubChekoutBranch(checkResults.branch, true);
     if(!successful){
         console.error(`Failed to checkout branch: ${checkResults.branch}`);
@@ -38,12 +40,17 @@ async function Main(){
 
     groupEnd();
 
+    
+
     // We should clear whole working directory, so we could upload generated files
     // Commented bc its dangerous to run this on local machine so please be sure its executed only via Github Action
     // Maybe Add some checks for GITHUB specific ENV FILES like GITHUB_TOKEN or something
     if(IS_GITHUB_ACTION){
-        let entriesRemoved = await ClearWholeFolder(".", ".git");
-        console.log(`[REPO CLEAR] Removed ${entriesRemoved} entries.`);
+        group("Clear Repo Bruteforce")
+        for await(const entry of ClearWholeFolder(".", ".git/")){
+            console.log("[REPO CLear] entry: " + entry);
+        }
+        groupEnd();
     }
 
     writeFileSync(FILE_NAME_GITHUB_REPO_EXISTS, JSON.stringify(FILE_CONTENT_CURRENT_EXIST, null, 3));
