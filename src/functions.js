@@ -253,13 +253,12 @@ export async function FetchBDSSource(version, isPreview, outDir) {
 
     const total = parseInt(contentLength, 10);
     let loaded = 0;
-
-    console.log("outDir: " + outDir);
+    
     /**
      * @type {Transform}
      */
     //@ts-ignore
-    const unzipStream = Extract({ outDir });
+    const unzipStream = Extract({ path: outDir });
 
     unzipStream.on("data", chunk=>{
         loaded += chunk.length;
