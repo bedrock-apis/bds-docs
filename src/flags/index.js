@@ -1,4 +1,4 @@
-import { METADATA_WORKER } from "./metadata";
+import { METADATA_WORKER } from "./metadata.js";
 
 /**
  * @type {{
