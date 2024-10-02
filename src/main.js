@@ -1,6 +1,5 @@
-import { group, groupEnd } from "node:console";
 import { FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_GITHUB_REPO_EXISTS, IS_GITHUB_ACTION } from "./consts.js";
-import { ClearWholeFolder, ExecuteCommand, FetchBDSVersions,GetEngineVersion,GithubChekoutBranch,GithubLoginAs,VersionCheck } from "./functions.js";
+import { ClearWholeFolder, ExecuteCommand, FetchBDSVersions,GetEngineVersion,GithubChekoutBranch,GithubLoginAs,groupEnd,VersionCheck } from "./functions.js";
 import { existsSync, writeFileSync } from "node:fs";
 
 // Calling Main EntryPont
@@ -37,6 +36,7 @@ async function Main(){
         return -1;
     }
 
+    groupEnd();
 
     // We should clear whole working directory, so we could upload generated files
     // Commented bc its dangerous to run this on local machine so please be sure its executed only via Github Action
