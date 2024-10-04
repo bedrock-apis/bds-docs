@@ -53,7 +53,7 @@ export interface MetadataModuleDefinition extends MetadataModuleBaseDefinition{
     type_aliases: MetadataAliasDefinition[];
 }
 export interface MetadataObjectDefinition extends MetadataMemberDefinition, MetadataTypedDefinition { }
-export interface MetadataConstantDefinition extends MetadataObjectDefinition { value: unknown; }
+export interface MetadataConstantDefinition extends MetadataObjectDefinition { value?: unknown; }
 export interface MetadataEnumDefinition extends MetadataDefinition {constants: MetadataConstantDefinition[]; }
 export interface MetadataPropertyMemberDefinition extends MetadataMemberDefinition, MetadataTypedDefinition {
     privilege: "read_only" | "none";

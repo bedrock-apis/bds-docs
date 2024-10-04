@@ -110,7 +110,8 @@ function * PrintObject(data, context){
  * @param {BaseContext} context 
  */
 function * PrintConst(data, context){
-    yield`export ${data.is_read_only?"const":"let"} ${data.name} = ${ToLiteral(data.value)};`;
+    if("value" in data) yield `export ${data.is_read_only?"const":"let"} ${data.name} = ${ToLiteral(data.value)};`;
+    else yield `export ${data.is_read_only?"const":"let"} ${data.name}: ${TypePrinter(data.type, context, true, false)};`;
 }
 
 /**
@@ -238,7 +239,7 @@ function ClassConstant(data, context){
     let text =  "public ";
     if(data.is_static) text += "static ";
     if(data.is_read_only) text += "readonly "
-    text += `${propertName(data.name)} = ${ToLiteral(data.value)}`;
+    text += ("value" in data)?`${propertName(data.name)} = ${ToLiteral(data.value)}`:`${propertName(data.name)}: ${TypePrinter(data.type, context, true, false)}`;
     return text;
 }
 /**
