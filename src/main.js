@@ -1,10 +1,11 @@
 import { minimatch } from "minimatch";
-import { ALWAYS_OVERWRITE, BDS_OUTDIR_PATH, FILE_CONTENT_BDS_TEST_CONFIG, FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_BDS_BINARY, FILE_NAME_BDS_TEST_CONFIG, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, IS_GITHUB_ACTION } from "./consts.js";
+import { ALWAYS_OVERWRITE, BDS_OUTDIR_PATH, FILE_CONTENT_BDS_TEST_CONFIG, FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_BDS_BINARY, FILE_NAME_BDS_TEST_CONFIG, FILE_NAME_GITHUB_README, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, IS_GITHUB_ACTION } from "./consts.js";
 import { ClearWholeFolder, ExecuteCommand, ExecuteExecutable, FetchBDSSource, FetchBDSVersions,GetEngineVersion,GithubChekoutBranch,GithubCommitAndPush,GithubLoginAs,GithubPostNewBranch,group,groupEnd,groupFinish,VersionCheck } from "./functions.js";
 import { writeFile } from "node:fs/promises";
 import { SaveWorkspaceContent } from "./content_saver.js";
 import { resolve } from "node:path";
-import { GENERATOR_FLAGS } from "./flags/index.js";
+import { GENERATORS_FLAGS } from "./flags/index.js";
+import { GENERAL_README } from "../DOCUMENTATION/gen.mjs";
 let performanceTime = Date.now();
 // Calling Main EntryPont
 Main()
@@ -106,10 +107,10 @@ async function Main(){
 
 
     // Proccess All Related Generator Flag Workers
-    console.log(`${GENERATOR_FLAGS.length} Generators Flags . . .`);
+    console.log(`${GENERATORS_FLAGS.length} Generators Flags . . .`);
     let temp = 0;
-    for (const flag of GENERATOR_FLAGS) {
-        group(`[${++temp} / ${GENERATOR_FLAGS.length}] Generator ${flag.flagId}`);
+    for (const flag of GENERATORS_FLAGS) {
+        group(`[${++temp} / ${GENERATORS_FLAGS.length}] Generator ${flag.flagId}`);
 
         successful = await flag.method(BDS_OUTDIR_PATH).catch((er)=>{
             console.error(`Generator ${flag.flagId} fails: ${er}`);
@@ -135,7 +136,7 @@ async function Main(){
     console.log(existContent);
     groupEnd();
     
-
+    await writeFile(FILE_NAME_GITHUB_README, GENERAL_README);
 
 
     // Commit changes and force push

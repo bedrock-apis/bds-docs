@@ -4,12 +4,19 @@ import { readFile, writeFile } from "node:fs/promises";
 import { existsSync, mkdirSync } from "node:fs";
 
 const OUTPUT_FOLDER = "./metadata";
+const description = `This generator is moving BDS generated docs to **${OUTPUT_FOLDER}** and removes version from all JSON modules so github doesn't generates usless diff for every version change.`;
+
+export default {
+    method: METADATA,
+    flagId: METADATA.name,
+    description: description
+};
 /**
  * 
  * @param {string} inputDirPath
  * @returns {Promise<boolean>}
  */
-export async function METADATA(inputDirPath) {
+async function METADATA(inputDirPath) {
     // Init
     const inputDir = resolve(inputDirPath, "docs");
     const tasks = [];

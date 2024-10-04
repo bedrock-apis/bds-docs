@@ -6,12 +6,18 @@ import { existsSync, mkdirSync } from "node:fs";
 
 const OUTPUT_BLOCK_STATES = "block_states.json";
 const OUTPUT_BLOCKS = "blocks.json";
+const description = "The BLOCKS_DATA flag generator creates JSON files containing detailed information about block states and blocks from vanilla data modules. It processes JSON files, extracting block properties and data items, and generates two output files: block_states.json and blocks.json. This ensures that all block-related data is accurately captured and organized, making it easier for developers to work with the generated documentation. The process involves reading the JSON files, transforming their content, and writing the output to the appropriate directory, ensuring that all tasks are completed successfully.";
+export default {
+    method: BLOCKS_DATA,
+    flagId: BLOCKS_DATA.name,
+    description
+};
 /**
  * 
  * @param {string} inputDirPath
  * @returns {Promise<boolean>}
  */
-export async function BLOCKS_DATA(inputDirPath) {
+async function BLOCKS_DATA(inputDirPath) {
     // Init
     const inputDir = resolve(inputDirPath, "docs/vanilladata_modules");
     const tasks = [];

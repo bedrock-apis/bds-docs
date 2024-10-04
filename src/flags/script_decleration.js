@@ -7,12 +7,19 @@ import { Printer } from "./ts-declarations/printers.js";
 import { FileTree } from "../functions.js";
 
 const OUTPUT_FOLDER = "./script-declerations";
+const description = "The SCRIPT_DECLARATIONS flag generator creates TypeScript declaration files from JSON metadata about script modules. It processes JSON files, transforming their content into .d.ts files, which are then stored in the ./script-declarations directory. This ensures that all script modules have accurate TypeScript declarations, making it easier for developers to work with the generated documentation. The process involves reading the JSON files, transforming their content, and writing the output to the appropriate directory, ensuring that all tasks are completed successfully.";
+
+export default {
+    method: SCRIPT_DECLARATIONS,
+    flagId: SCRIPT_DECLARATIONS.name,
+    description
+};
 /**
  * 
  * @param {string} inputDirPath
  * @returns {Promise<boolean>}
  */
-export async function SCRIPT_DECLARATIONS(inputDirPath) {
+async function SCRIPT_DECLARATIONS(inputDirPath) {
     // Init
     const inputDir = resolve(inputDirPath, "docs/script_modules");
     const tasks = [];

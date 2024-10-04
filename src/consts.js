@@ -27,6 +27,7 @@ export const LINK_GITHUB_DOMAIN = "https://raw.githubusercontent.com";
 /**@type {`${typeof LINK_GITHUB_DOMAIN}/${typeof GITHUB_REPO_NAME}`} */
 export const LINK_GITHUB_REPO = `${LINK_GITHUB_DOMAIN}/${GITHUB_REPO_NAME}`;
 export const FILE_NAME_GITHUB_REPO_EXISTS = "exist.json";
+export const FILE_NAME_GITHUB_README = "README.md";
 export const FILE_NAME_BDS_TEST_CONFIG = "test_config.json"
 export const FILE_NAME_BDS_BINARY = "bedrock_server"; //In general, .exe is not valid on linux platforms
 export const FILE_NAME_GITIGNORE = ".gitignore";
