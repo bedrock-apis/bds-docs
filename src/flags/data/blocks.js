@@ -2,6 +2,7 @@ import { resolve } from "node:path";
 import { FileTree } from "../../functions.js";
 import { readFile, writeFile } from "node:fs/promises";
 import { DATA_OUTPUT_FOLDER } from "./consts.js";
+import { existsSync, mkdirSync } from "node:fs";
 
 const OUTPUT_BLOCK_STATES = "block_states.json";
 const OUTPUT_BLOCKS = "blocks.json";
@@ -59,10 +60,11 @@ async function Task(input, fileName) {
         return e;
     });
 
+    if(!existsSync(DATA_OUTPUT_FOLDER)) mkdirSync(DATA_OUTPUT_FOLDER, {recursive:true});
     
-    console.log("[DATA/BLOCKS_STATES] Generated: " + OUTPUT_BLOCK_STATES);
     let results = await writeFile(resolve(DATA_OUTPUT_FOLDER, OUTPUT_BLOCK_STATES), JSON.stringify(states, null, 3)).then(()=>true, ()=>false);
     if(!results) return false;
+    console.log("[DATA/BLOCKS_STATES] Generated: " + OUTPUT_BLOCK_STATES);
 
     // @ts-ignore
     const blocks = data["data_items"].map((e)=>{
@@ -71,9 +73,9 @@ async function Task(input, fileName) {
         return MapBlock(states_map, e);
     });
 
-    console.log("[DATA/BLOCKS] Generated: " + OUTPUT_BLOCKS);
     results = await writeFile(resolve(DATA_OUTPUT_FOLDER, OUTPUT_BLOCKS), JSON.stringify(blocks, null, 3)).then(()=>true, ()=>false);
     if(!results) return false;
+    console.log("[DATA/BLOCKS] Generated: " + OUTPUT_BLOCKS);
     
     // Returns if file was successfully created
     return true;
