@@ -1,6 +1,6 @@
 import { minimatch } from "minimatch";
 import { ALWAYS_OVERWRITE, BDS_OUTDIR_PATH, FILE_CONTENT_BDS_TEST_CONFIG, FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_BDS_BINARY, FILE_NAME_BDS_TEST_CONFIG, FILE_NAME_GITHUB_README, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, IS_GITHUB_ACTION } from "./consts.js";
-import { ClearWholeFolder, ExecuteCommand, ExecuteExecutable, FetchBDSSource, FetchBDSVersions,GetEngineVersion,GithubChekoutBranch,GithubCommitAndPush,GithubLoginAs,GithubPostNewBranch,group,groupEnd,groupFinish,VersionCheck } from "./functions.js";
+import { ClearWholeFolder, ExecuteExecutable, FetchBDSSource, FetchBDSVersions,GetEngineVersion,GithubChekoutBranch,GithubCommitAndPush,GithubLoginAs,GithubPostNewBranch,group,groupEnd,groupFinish,VersionCheck } from "./functions.js";
 import { writeFile } from "node:fs/promises";
 import { SaveWorkspaceContent } from "./content_saver.js";
 import { resolve } from "node:path";
@@ -38,7 +38,7 @@ async function Main(){
     }
 
     //@ts-ignore Just testing
-    FILE_CONTENT_CURRENT_EXIST["version"] = "test:" + (checkResults.isPreview?checkResults.version:GetEngineVersion(checkResults.version));
+    FILE_CONTENT_CURRENT_EXIST["version"] = (checkResults.isPreview?checkResults.version:GetEngineVersion(checkResults.version));
     FILE_CONTENT_CURRENT_EXIST["build-version"] = checkResults.version;
 
     // Login and Checkout that specific branch

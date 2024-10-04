@@ -1,8 +1,7 @@
 name: Update Docs
 on:
-  push: 
-  #schedule: 
-  #- cron: '*/20 * * * *'
+  schedule: 
+  - cron: '*/20 * * * *'
 permissions:
   contents: write
 jobs:
@@ -17,7 +16,7 @@ jobs:
     - name: Setup Node.js environment
       uses: actions/setup-node@v3
       with:
-        node-version: '20'
+        node-version: '22'
         cache: 'npm'
         cache-dependency-path: './package-lock.json'
     - name: Install NPM
