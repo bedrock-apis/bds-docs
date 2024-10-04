@@ -5,7 +5,6 @@ import { writeFile } from "node:fs/promises";
 import { SaveWorkspaceContent } from "./content_saver.js";
 import { resolve } from "node:path";
 import { GENERATOR_FLAGS } from "./flags/index.js";
-import { MainEntry } from "./flags/ts-declarations/test.js";
 let performanceTime = Date.now();
 // Calling Main EntryPont
 Main()
@@ -23,9 +22,6 @@ Main()
  * @returns {Promise<number>}
  */
 async function Main(){
-    
-    await MainEntry();
-    return 0;
     // Fetch Current BDS Versions
     const versions = await FetchBDSVersions().catch(console.error);
     if(!versions) {
