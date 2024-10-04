@@ -83,7 +83,7 @@ async function Task(input, fileName) {
 /**
  * 
  * @param {{[key: string]: any[]}} states_map 
- * @param {{name: string, permutations?: string[], properties: string[], raw_id: number, serialization_id: string}} block_item 
+ * @param {{name: string, permutations?: number[][], properties: string[], raw_id: number, serialization_id: string}} block_item 
  */
 function MapBlock(states_map, block_item){
     const lengths = block_item.properties.map(e=>states_map[e].length);
@@ -94,12 +94,12 @@ function MapBlock(states_map, block_item){
 /**
  * @param {number[]} lengths 
  * @param {number} index 
- * @returns {Generator<string>}
+ * @returns {Generator<number[]>}
  */
 function * PermutationGenerator(lengths, index){
     for (let v = 0; v < lengths[index]; v++) {
-        if(index > 0) for(const permutations of PermutationGenerator(lengths, index-1)) yield permutations + GetStringFor(v);
-        else yield GetStringFor(v);
+        if(index > 0) for(const permutations of PermutationGenerator(lengths, index-1)) yield [...permutations, v];
+        else yield [v];
     }
 }
 function GetStringFor(num = 0, lengthExpected = 2, r = 16){
