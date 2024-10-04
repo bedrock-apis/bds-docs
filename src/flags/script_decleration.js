@@ -1,17 +1,20 @@
 import { dirname, resolve } from "node:path";
+import { readFile } from "node:fs/promises";
+import { createWriteStream, existsSync, mkdirSync } from "node:fs";
+import { Readable } from "node:stream";
+import { pipeline } from "node:stream/promises";
+import { Printer } from "./ts-declarations/printers.js";
 import { FileTree } from "../functions.js";
-import { readFile, writeFile } from "node:fs/promises";
-import { existsSync, mkdirSync } from "node:fs";
 
-const OUTPUT_FOLDER = "./metadata";
+const OUTPUT_FOLDER = "./script-declerations";
 /**
  * 
  * @param {string} inputDirPath
  * @returns {Promise<boolean>}
  */
-export async function METADATA(inputDirPath) {
+export async function SCRIPT_DECLARATIONS(inputDirPath) {
     // Init
-    const inputDir = resolve(inputDirPath, "docs");
+    const inputDir = resolve(inputDirPath, "docs/script_modules");
     const tasks = [];
 
     // Task Factory for each file in the path tree
@@ -40,10 +43,12 @@ async function Task(input,fileName) {
     if(buffer == null) return false;
 
     // Transform File content
-    if(fileName.endsWith(".json")) buffer = await TransformJsonModule(buffer);
+    if(!fileName.endsWith(".json")) return false;
 
     // Check if buffer is valid content
     if(buffer == null) return false;
+
+
 
     const outFile = resolve(OUTPUT_FOLDER, fileName);
     const outDir = dirname(outFile);
@@ -51,14 +56,18 @@ async function Task(input,fileName) {
     // Has to be sync to be sure we are not about to call mkdir with same directory path
     if(!existsSync(outDir)) mkdirSync(outDir, {recursive: true});
 
-    // Write File Content
-    let results = await writeFile(
-        outFile, 
-        buffer
+
+    const writeStream = createWriteStream(outFile.replace(/.json$/g,".d.ts"));
+
+    const readable = PrintScriptModule(buffer);
+
+    const results = await pipeline(
+        readable,
+        writeStream
     ).then(()=>true, ()=>false);
 
-    if(results) console.log("[METADATA] Generated: " + fileName);
-    else console.log("[METADATA] Generation failed: " + fileName);
+    if(results) console.log("[SCRIPT_DECLARATIONS] Generated: " + fileName);
+    else console.log("[SCRIPT_DECLARATIONS] Generation failed: " + fileName);
     
     // Returns if file was successfully created
     return results;
@@ -66,18 +75,12 @@ async function Task(input,fileName) {
 
 /**
  * @param {Buffer} input
- * @returns {Promise<Buffer | string>}
  */
-async function TransformJsonModule(input) {
+function PrintScriptModule(input) {
     // Parse Conent
     const data = JSON.parse(input.toString());
     // Check if content was object
-    if(typeof data == "object"){
-        // Remove "minecraft_version" property if possible
-        if("minecraft_version" in data) delete data["minecraft_version"];
-    }
+    if(typeof data != "object") throw new TypeError("Expected JSON module is not an instance of object.s");
 
-    // Serialize object back to JSON
-    return JSON.stringify(data, null, 4);
+    return Readable.from(Printer(data));
 }
-
