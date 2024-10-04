@@ -1,3 +1,4 @@
+import { BLOCKS_DATA } from "./data/blocks.js";
 import { METADATA } from "./metadata.js";
 import { SCRIPT_MODULES_MAPPING } from "./module_maping.js";
 import { SCRIPT_DECLARATIONS } from "./script_decleration.js";
@@ -19,5 +20,9 @@ export const GENERATOR_FLAGS = [
     {
         flagId: SCRIPT_DECLARATIONS.name,
         method: SCRIPT_DECLARATIONS
+    },
+    {
+        flagId: BLOCKS_DATA.name,
+        method: BLOCKS_DATA
     }
 ];
