@@ -1,3 +1,4 @@
+//@ts-nocheck
 const randomAliaes = [];
 for(let i = 0, id = "00"; i <255; i++, id = i.toString(16)) randomAliaes.push("_" + (id.length<2?id + "0":id));
 class ScriptModule{

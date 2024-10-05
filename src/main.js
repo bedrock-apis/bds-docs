@@ -1,520 +1,169 @@
-const { exit } = require("process");
-const {deflateRawSync} = require("zlib");
-const {exec} = require("node:child_process");
-const { Download, SafeDownloadContent}= require("./download.js");
-const os = require("os");
-const { promises, existsSync, readdirSync } = require("fs");
-const path = require("path");
-const { ScriptModule } = require("./d.tsGenerator.js");
-const { writeFile } = require("fs/promises");
-const bds_versions_link = "https://raw.githubusercontent.com/Bedrock-OSS/BDS-Versions/main/versions.json";
-const exist_link = (branch) => `https://raw.githubusercontent.com/Bedrock-APIs/bds-docs/${branch}/exist.json`;
-const github_notfound = "404: Not Found";
-const bin = "./bin";
-const test_config = "test_config.json";
-const DEBUG = false;
-const test_config_data = JSON.stringify({
-    generate_documentation: true
+import { minimatch } from "minimatch";
+import { ALWAYS_OVERWRITE, BDS_OUTDIR_PATH, FILE_CONTENT_BDS_TEST_CONFIG, FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_BDS_BINARY, FILE_NAME_BDS_TEST_CONFIG, FILE_NAME_GITHUB_README, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, IS_GITHUB_ACTION } from "./consts.js";
+import { ClearWholeFolder, ExecuteExecutable, FetchBDSSource, FetchBDSVersions,GetEngineVersion,GithubChekoutBranch,GithubCommitAndPush,GithubLoginAs,GithubPostNewBranch,group,groupEnd,groupFinish,VersionCheck } from "./functions.js";
+import { writeFile } from "node:fs/promises";
+import { SaveWorkspaceContent } from "./content_saver.js";
+import { resolve } from "node:path";
+import { GENERATORS_FLAGS } from "./flags/index.js";
+import { GENERAL_README } from "../DOCUMENTATION/gen.mjs";
+let performanceTime = Date.now();
+// Calling Main EntryPont
+Main()
+// Catch en error and report an invalid return code
+.catch(er=>{console.log(er, er.stack); process.exit(-1)})
+// Return and exit with this code, when Main entrypoint returns
+.then((c)=>{
+    groupFinish();
+    console.log(`Execution time: ${~~((Date.now() - performanceTime) / 1000)}s`);
+    process.exit(c);
 });
-const docs_generated = [bin,"docs"].join("/");
-const docs_cleaned = "./docs";
-const declarations = "./script_types";
-const version_registred = {
-    "build-version":"1.0.0.0",
-    "version":"1.0.0.0",
-    "flags":[
-        "generated_types",
-        "script_module_list",
-        "module_mapping",
-        "block_data2"
-    ],
-    "script_modules":[],
-    "script_modules_mapping":{},
-};
-const git_ignore = `
-bin/
-bds/
-node_modules/
-private/
-test/
-`;
-const OSSYSTEM = os.platform() === "win32"?"win":"linux";
 
-
-CompareLatestVersions();
-//runDocs("preview","1.21.30.23");
-
-async function Preload(v){
-    if(DEBUG) return;
-    console.log("Loggin as 'Documentation Manager Bot'");
-    await System('git config --global user.name "Documentation Manager Bot"');
-    await System('git config --global user.email "conmaster2112@gmail.com"');
-    console.log("Logged as 'Documentation Manager Bot'");
-    await System(`git fetch`);
-    await System(`git checkout ${v} -f`);
-    await writeFile(".gitignore", git_ignore);
-    console.log("GIT INGORE WRITTEN!");
-}
-
-async function Finish(v,version){
-    console.log("Versions registred");
-    await promises.writeFile("exist.json",JSON.stringify(version_registred,null,"  "));
-    if(DEBUG) return;
-    console.log("Loggin as 'Documentation Manager Bot'")
-    await System('git config --global user.name "Documentation Manager Bot"');
-    await System('git config --global user.email "conmaster2112@gmail.com"');
-    await System(`git checkout ${v}`);
-    console.log("Commit");
-    await System("git add .");
-    await System(`git commit -m \"New ${v} v${v==="stable"?GetEngine(version):version}\"`);
-    console.log("Push");
-    await System("git push --force origin " + v);
-    if(v==="stable") {
-        console.log("New Branch stable-" + GetEngine(version));
-        await System("git checkout -b stable-" + GetEngine(version));
-        await System("git push -u origin stable-" + GetEngine(version));
+/**
+ * Main Entry Point
+ * @returns {Promise<number>}
+ */
+async function Main(){
+    // Fetch Current BDS Versions
+    const versions = await FetchBDSVersions().catch(console.error);
+    if(!versions) {
+        console.error("Failed to get current versions");
+        return -1;
     }
-    console.log("Done..."); 
-}
-async function Generate(v,version){
-    if(!DEBUG){
-        globalThis.console.log("Moving from main branch to " + v);
-        await System(`git checkout ${v} || git checkout -b ${v}`);
+
+    //Compare with already generated data and check if any new versions has been released
+    const checkResults = await VersionCheck(versions);
+    if(!checkResults) {
+        console.log("All is up to date :)");
+        return 0;
     }
-    const console = Logger("[BDS Downloader]");
-    console.log("Downloading started. . .");
-    await Download("bin",version,OSSYSTEM,v.toLowerCase() === "preview").catch(er=>{
-        console.error(er.message);
-        console.error("Fails to download bds: " + version);
-        exit(1);
-    });
-    console.log("Successfully Downloaded: " + OSSYSTEM);
-    await runDocs(v,version).catch(er=>{globalThis.console.error(er.message); exit(1);});
-}
-async function runDocs(v,version){
-    const console = Logger("[Docs Generator]");
-    console.log("Writing test_config.json");
-    await promises.writeFile([bin,test_config].join("/"),test_config_data);
-    console.log("Executing BDS in " + OSSYSTEM);
-    globalThis.console.log("///////////////////////// Bedrock Dedicated Server ///////////////////////////");
-    const time = Date.now();
-    if(OSSYSTEM === "win"){
-        await System("call bedrock_server.exe",bin,60_000,"   ").catch(er=>{
-            console.error(er.message);
-            exit(1);
-        });
-    }else{
-        await System("chmod +x ./bin/bedrock_server",".",5_000).catch().catch(er=>{
-            console.error(er.message);
-            exit(1);
-        });
-        await System("LD_LIBRARY_PATH=. ./bedrock_server",bin,60_000,"    ").catch(er=>{
-            console.error(er.message);
-            exit(1);
-        });
+
+    //@ts-ignore Just testing
+    FILE_CONTENT_CURRENT_EXIST["version"] = (checkResults.isPreview?checkResults.version:GetEngineVersion(checkResults.version));
+    FILE_CONTENT_CURRENT_EXIST["build-version"] = checkResults.version;
+
+    // Login and Checkout that specific branch
+    group(`Branch checkout: ${checkResults.branch} IsForced: ${true}`);
+
+    let successful = await GithubChekoutBranch(checkResults.branch, true);
+    if(!successful){
+        console.error(`Failed to checkout branch: ${checkResults.branch}`);
+        return -1;
     }
-    globalThis.console.log("///////////////////////// Bedrock Dedicated Server ///////////////////////////");
-    if(existsSync(docs_generated)) {
-        console.log("Successfully Generated in " + (Date.now() - time) + "ms");
-        await CopyFiles(v,version).catch(er=>{
-            global.console.error(er.message);
-            exit(1);
-        });
-        await DoFiles(docs_generated + "/script_modules",declarations, (file, data)=>{
-            const Json = JSON.parse(data.toString());
-            const script_module = new ScriptModule(Json);
-            const {name, uuid, version} = script_module;
-            const ddd = version_registred.script_modules_mapping[name] =  version_registred.script_modules_mapping[name]??{versions:[]};
-            ddd.uuid = uuid;
-            ddd.versions.push(version);
-            version_registred.script_modules.push(file);
-            return [file.replace(".json",".d.ts"),script_module.toString()];
-        }).catch(er=>{
-            global.console.error(er.message);
-            exit(1);
-        });
-        await DoFiles(docs_generated + "/vanilladata_modules", "data", (file, data, createFile)=>{
-            switch(file){
-                case "mojang-blocks.json":
-                    const source = JSON.parse(data.toString());
-                    const result = {states:{}, blocks:{}};
-                    source.block_properties.forEach(e => {
-                        e.values = e.values.map(e=>e.value)
-                        result.states[e.name] = e;
-                    });
-                    const stream = new Stream(Buffer.allocUnsafe(255),0);
-                    source.data_items.forEach((e)=>{
-                        const { name, raw_id, serialization_id, properties } = e;
-                        const data = result.blocks[e.name] = Object.assign({ name, serialization_id, raw_id}, e);
-                        data.properties = properties.map(e=>e.name);
-                        const permutations = data.permutations = [];
-                        if(!data.properties.length){
-                            stream.writeCompoudTag({name, states:{}}, "");
-                            const buffer = stream.getWritenBytes();
-                            data.key = buffer.toString("base64");
-                            data.hash = HashPermutation(buffer);
-                            stream.offset = 0;
-                        }
-                        else{
-                            for(const s of RecursivePermutations(...(data.properties.map(e=>result.states[e].values.map(s=>({value:s, name:e})))).reverse())){
-                                const states = MapToObject(s,(n,o)=>o[n.name]=n.value);
-                                stream.writeCompoudTag({name, states:states},"");
-                                const buffer = stream.getWritenBytes();
-                                const key = buffer.toString("base64");
-                                const hash = HashPermutation(buffer);
-                                permutations.push({states, key, hash});
-                                stream.offset = 0;
-                            }
-                            data.key = permutations[0].key;
-                            data.hash = permutations[0].hash;
-                        }
-                    })
-                    const rawData = JSON.stringify(result,null,"   ");
-                    createFile(file + ".raw_deflate", deflateRawSync(Buffer.from(rawData,"utf-8")));
-                    return [file, rawData];
+    groupEnd();
+
+
+
+    // Load Required File For Later Use
+    await SaveWorkspaceContent();
+
+
+
+    // Now we should clear whole working directory, so we could upload generated files
+    // Commented bc its dangerous to run this on local machine so please be sure its executed only via Github Action
+    // Maybe Add some checks for GITHUB specific ENV FILES like GITHUB_TOKEN or something
+    if(IS_GITHUB_ACTION){
+        group("Clear Repo Bruteforce")
+        for await(const entry of ClearWholeFolder(
+            ".",
+            (f)=>{
+                return [".git/**/*",".git/"].some(s=>minimatch(f, s, {nocase: true}));
             }
-        }).catch(er=>{
-            global.console.error(er.message);
-            exit(1);
-        });
-        await Finish(v,version);
-    }else{
-        console.error("Generating Docs doesn't success, folder not found './bin/docs'");
-        exit(1);
-    }
-    //console.log((await promises.readFile(".\\bin\\docs\\script_modules\\@minecraft\\server-ui_1.0.0.json")).toString());
-}
-async function CopyFiles(v, version){
-    const console = Logger("[Moving Files]");
-    try {
-        for(let file of FileTree(docs_cleaned)){
-            console.log("REMOVED", docs_cleaned + "/" + file);
-            await promises.rm( docs_cleaned + "/" + file);
+            )){
+            console.log("[REPO Clear] entry: " + entry);
         }
-    } catch (error) {
-        
+        groupEnd();
     }
-    for (let file of FileTree(docs_generated)) {
-        console.log(file);
-        const data = await promises.readFile([docs_generated,file].join("/"));
-        const makedir = await promises.mkdir(path.dirname([docs_cleaned,file].join("/")),{recursive:true});
-        await promises.writeFile([docs_cleaned,file].join("/"),data);
-    }
-}
-async function DoFiles(fr,to,changeMethod){
-    const tasks = [];
-    const write = (file,data)=>{
-        tasks.push((async ()=>{
-            await promises.writeFile([to,file].join("/"),data);
-        })().catch(console.error));
-    };
-    const console = Logger("[Generating Docs Files]");
-    for (let file of FileTree(fr)) {
-        const data = await promises.readFile([fr,file].join("/"));
-        const makedir = await promises.mkdir(path.dirname([to,file].join("/")),{recursive:true});
-        const changed = changeMethod(file,data,write);
-        if(!changed) continue;
-        //const makedir = await promises.mkdir(path.dirname([to,file].join("/")),{recursive:true});
-        const [newF,newData] = changed;
-        console.log("Generated -> " + newF);
-        await promises.writeFile([to,newF].join("/"),newData);
-    }
-    await Promise.all(tasks);
-}
-async function CompareLatestVersions(){
-    const console = Logger("[Checking Versions]");
-    console.log("Checking for Updates . . .");
-    
-    //----------------------------------------------------------------------------------
-    
-    console.log("Getting versions"); 
-    let response = (await SafeDownload(bds_versions_link,console)).toString();
-    if(response == github_notfound) {
-        console.error("File not found: " + bds_versions_link);
-        process.exit(1);
-    }
-    const {linux:{stable,preview}} = SafeParse(response);
-    const engine = GetEngine(stable);
-    console.log("Stable Version: " + engine);
-    console.log("Preview Version: " + preview);
+    // Once we cleared all the stuff, we should write updated version of .gitignore 
+    await writeFile(FILE_NAME_GITIGNORE, FILE_CONTENT_GITIGNORE);
 
-    //----------------------------------------------------------------------------------
-    if(!await CheckForExist("stable",engine,console)) {
-        Object.assign(version_registred, {
-            "build-version":stable,
-            "version":engine
-        })
-        _preview = false;
-        console.log("New Stable Version Found: " + engine);
-        await Preload("stable");
-        Generate("stable",stable);
-        return;
-    }
-    if(DEBUG || !await CheckForExist("preview",preview,console)) {
-        Object.assign(version_registred, {
-            "build-version":preview,
-            "version":preview
-        })
-        _preview = true;
-        console.log("New Preview Version Found: " + preview);
-        await Preload("preview");
-        Generate("preview",preview);
-        return;
-    }
-    console.log("Docs are up to date");
-}
-async function System(cmd,cwd = ".",timeout=undefined,prefix=""){
-    return new Promise((resolve, reject) => {
-        const child = exec(cmd, {cwd, windowsHide: true,timeout}, function(){});
-        process.stdout.write(prefix);
-        child.stdout.on('data', (data) => {
-            process.stdout.write(data.replaceAll("\n","\n" + prefix));
-        });
-      
-        child.stderr.on('data', (data) => {
-            process.stderr.write(data.replaceAll("\n","\n" + prefix));
-        });
-      
-        child.on('error', (error) => {
-          console.error(`exec error: ${error.message}`);
-          reject(error);
-        });
-      
-        child.on('exit', (code, signal) => {
-          if (code !== 0) {
-            reject(new Error(`Command "${cmd}" exited with code ${code} and signal ${signal}`));
-          } else {
-            resolve();
-          }
-        });
-      }).then(()=>process.stdout.write("\n"));
-}
-async function CheckForExist(v,version,console){
-    try {
-        console.log("Checking for " + v);
-        let versionLink = exist_link(v);
-        let response = (await SafeDownload(versionLink,console)).toString();
-        if(response === github_notfound) {
-            console.error(`Can't target to ${v} -> exist.json`);
-            return false;
-        }
-        const {"build-version":bv,"version":vv} = JSON.parse(response,console);
-        console.log(`Version compare: ${vv} === ${version}`);
-        return version==vv;
-    } catch (error) {
+
+
+    // Fetch BDS Content
+    group(`Download of Bedrock Dedicated Server -> ${BDS_OUTDIR_PATH}`);
+    successful = await FetchBDSSource(checkResults.version, checkResults.isPreview, BDS_OUTDIR_PATH).then(s=>s >= 0,(error)=>{
+        console.error(error, error.stack);
         return false;
-    }
-}
-function GetEngine(v){
-    const [major,minor,base] = v.split(".");
-    return [major,minor,StableVersion(base)].join(".");
-}
-function SafeParse(data,console = globalThis.console){
-    try {
-        return JSON.parse(data);
-    } catch (error) {
-        console.error(error.message);
-    }
-}
-async function SafeDownload(link,console = globalThis.console){
-    const {error,data} = await SafeDownloadContent(link);
-    if(error){
-        console.error(error.message);
-        exit(1);
-    }
-    return data;
-}
-function StableVersion(num){
-    if(num.length === 1) return "0";
-    else {
-        return num[0] + "0".repeat(num.length - 1);
-    }
-}
-function Logger(text,console=globalThis.console){
-    const {log,error,warn} = console;
-    return Object.assign({},{
-        log:log.bind(console,text),
-        error:error.bind(console,text),
-        warn:warn.bind(console,text),
     });
-}
-function *FileTree(base,paths = []){
-    for (const entry of readdirSync([base,...paths].join("/"),{withFileTypes:true})) {
-        if(entry.isFile()) yield [...paths,entry.name].join("/");
-        else if(entry.isDirectory()) yield*FileTree(base,[...paths,entry.name]);
+    if(!successful){
+        console.error("Faild to download BDS");
+        return -1;
     }
-}
+    console.log("Bedrock Dedicated Server Downloaded Successfully");
+    groupEnd();
 
-function *RecursivePermutations(...loop){
-    if(loop.length <= 1) return yield * loop[0].map(e=>[e]);
-    for(const l of loop[0]){
-        for(const s of RecursivePermutations(...loop.slice(1))) yield [l, ...s];
+
+    // Add Test config to generate metadata
+    await writeFile(resolve(BDS_OUTDIR_PATH, FILE_NAME_BDS_TEST_CONFIG), FILE_CONTENT_BDS_TEST_CONFIG);
+
+    // Execute BDS Executable
+    group(`Running Bedrock Dedicated Server -> ${BDS_OUTDIR_PATH}`);
+    let exeSuccessful = await ExecuteExecutable(FILE_NAME_BDS_BINARY, 60_000, BDS_OUTDIR_PATH);
+    if(exeSuccessful.exitCode != 0){
+        console.error("Faild to download BDS: " + exeSuccessful.error);
+        return -1;
     }
-}
-const  NBTTag = {
-    "EndOfCompoud" :  0,
-    "Byte" :  1,
-    "Int16" :  2,
-    "Int32" :  3,
-    "Int64" :  4,
-    "Float" :  5,
-    "Double" :  6,
-    "ByteArray" :  7,
-    "String" :  8,
-    "TypedList" :  9,
-    "Compoud" :  10
-}
-class Stream{
-    offset;
-    buffer;
-    constructor(buffer, offset){
-        this.buffer = buffer;
-        this.offset = offset??0;
-    }
-    readByte(){return this.buffer.readUInt8(this.offset++);}
-    readInt16LE(){
-        const value = this.buffer.readInt16LE(this.offset);
-        this.offset += 2;
-        return value;
-    }
-    readInt32LE(){
-        const value = this.buffer.readInt32LE(this.offset);
-        this.offset += 4;
-        return value;
-    }
-    readInt64LE(){
-        const value = this.buffer.readBigInt64LE(this.offset);
-        this.offset += 8;
-        return value;
-    }
-    readUInt16LE(){
-        const value = this.buffer.readUInt16LE(this.offset);
-        this.offset += 2;
-        return value;
-    }
-    readUInt32LE(){
-        const value = this.buffer.readUInt32LE(this.offset);
-        this.offset += 4;
-        return value;
-    }
-    readUInt64LE(){
-        const value = this.buffer.readBigUInt64LE(this.offset);
-        this.offset += 8;
-        return value;
-    }
-    readFloatLE(){
-        const value = this.buffer.readFloatLE(this.offset);
-        this.offset += 4;
-        return value;
-    }
-    readDoubleLE(){
-        const value = this.buffer.readDoubleLE(this.offset);
-        this.offset += 8;
-        return value;
-    }
-    writeByte(value){ this.buffer.writeUInt8(value,this.offset++);}
-    writeInt16LE(value){
-        const length = this.buffer.writeInt16LE(value,this.offset);
-        this.offset += 2;
-        return length;
-    }
-    writeInt32LE(value){
-        const length = this.buffer.writeInt32LE(value,this.offset);
-        this.offset += 4;
-        return length;
-    }
-    writeInt64LE(value){
-        const length = this.buffer.writeBigInt64LE(value,this.offset);
-        this.offset += 8;
-        return length;
-    }
-    writeUInt16LE(value){
-        const length = this.buffer.writeUInt16LE(value,this.offset);
-        this.offset += 2;
-        return length;
-    }
-    writeUInt32LE(value){
-        const length = this.buffer.writeUInt32LE(value,this.offset);
-        this.offset += 4;
-        return length;
-    }
-    writeUInt64LE(value){
-        const length = this.buffer.writeBigUInt64LE(value,this.offset);
-        this.offset += 8;
-        return length;
-    }
-    writeFloatLE(value){
-        const length = this.buffer.writeFloatLE(value,this.offset);
-        this.offset += 4;
-        return length;
-    }
-    writeDoubleLE(value){
-        const length = this.buffer.writeDoubleLE(value,this.offset);
-        this.offset += 8;
-        return length;
-    }
-    writeString(value){
-        const length = this.buffer.write(value,this.offset + 2,"utf8");
-        this.writeInt16LE(length);
-        this.offset += length;
-    }
-    writeCompoudTag(compoud, root){
-        this.writeByte(NBTTag.Compoud);
-        if(typeof root === "string") this.writeString(root);
-        this.writeCompoud(compoud);
-    }
-    writeCompoud(compoud){
-        for (const [key,v] of Object.entries(compoud)) {
-            const type = typeof v;
-            switch(type){
-                case "string":
-                    this.writeByte(NBTTag.String);
-                    this.writeString(key);
-                    this.writeString(v);
-                    break;
-                case "boolean":
-                    this.writeByte(NBTTag.Byte);
-                    this.writeString(key);
-                    this.writeByte(v?1:0);
-                    break;
-                case "number":
-                    this.writeByte(NBTTag.Int32);
-                    this.writeString(key);
-                    this.writeInt32LE(v);
-                    break;
-                case "object":
-                    this.writeByte(NBTTag.Compoud);
-                    this.writeString(key);
-                    this.writeCompoud(v);
-                    break;
-            }
+    console.log("BDS has quit Successfully");
+    groupEnd();
+
+
+    // Proccess All Related Generator Flag Workers
+    console.log(`${GENERATORS_FLAGS.length} Generators Flags . . .`);
+    let temp = 0;
+    for (const flag of GENERATORS_FLAGS) {
+        group(`[${++temp} / ${GENERATORS_FLAGS.length}] Generator ${flag.flagId}`);
+
+        successful = await flag.method(BDS_OUTDIR_PATH).catch((er)=>{
+            console.error(`Generator ${flag.flagId} fails: ${er}`);
+            return false;
+        });
+
+        if(!successful){
+            console.log("Generator Failed " + flag.flagId);
+            return -1;
         }
-        this.writeByte(NBTTag.EndOfCompoud);
-    }
-    /**@returns {Buffer} */
-    getWritenBytes(){
-        return this.buffer.slice(0, this.offset);
-    }
-}
-function MapToObject(arr, mapper){
-    const obj = {};
-    arr.forEach(e=>mapper(e, obj));
-    return obj;
-}
 
-const HASH_OFFSET = 0x81_1c_9d_c5;
-function HashPermutation(buffer){
-    let hash = HASH_OFFSET;
-    for (const element of buffer) {
-		// Set the hash to the XOR of the hash and the element.
-		hash ^= element & 0xff;
+        // Once generator ends, we can assign the generator flag to exist.json
+        FILE_CONTENT_CURRENT_EXIST.flags.push(flag.flagId);
+
+        groupEnd();
+    }
+
+
+    // At the end write the exist.json content
+    group("Writing " + FILE_NAME_GITHUB_REPO_EXISTS);
+    const existContent = JSON.stringify(FILE_CONTENT_CURRENT_EXIST, null, 3);
+    await writeFile(FILE_NAME_GITHUB_REPO_EXISTS, existContent);
+    console.log(existContent);
+    groupEnd();
     
-		// Apply the hash algorithm.
-		hash +=
-			(hash << 1) + (hash << 4) + (hash << 7) + (hash << 8) + (hash << 24);
+    await writeFile(FILE_NAME_GITHUB_README, GENERAL_README);
 
-        // Convert the hash to a signed 32-bit integer.
-        hash = hash | 0;
-	}
-    return hash;
-}
+
+    // Commit changes and force push
+    group("Commit & Push -> " + checkResults.branch);
+    successful = await GithubCommitAndPush(checkResults.branch, checkResults.version, checkResults.isPreview);
+    if(!successful){
+        console.error("Faild to commit and push");
+        return -1;
+    }
+
+    // There is no need to create new branch
+    if(ALWAYS_OVERWRITE || checkResults.isPreview){
+        groupEnd();
+        return 0;
+    }
+
+
+    // Create New Branch for stable release
+    /**@type {import("./functions.js").BranchKind | `${import("./functions.js").BranchKind}-${import("./functions.js").VersionEngine}`} */
+    const branch = `${checkResults.branch}-${GetEngineVersion(checkResults.version)}`;
+    successful = await GithubPostNewBranch(branch);
+    if(!successful){
+        console.error("Faild to post new branch");
+        return -1;
+    }
+
+
+    groupEnd();
+    return 0;
+};

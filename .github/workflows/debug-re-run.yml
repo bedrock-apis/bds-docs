@@ -1,13 +1,15 @@
-name: Update Docs
+name: Update Docs (Debug Mode)
 on:
-  schedule: 
-  - cron: '*/20 * * * *'
+  workflow_dispatch:
+    
 permissions:
   contents: write
 jobs:
-
-  Updater:
+  Debuger:
     runs-on: windows-latest
+    env:
+      OPTIONS_DEBUG: true
+      ALWAYS_OVERWRITE: true
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
