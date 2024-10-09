@@ -44,7 +44,7 @@ async function Main(){
     // Login and Checkout that specific branch
     group(`Branch checkout: ${checkResults.branch} IsForced: ${true}`);
 
-    console.log(GITHUB_REPO_NAME);
+    console.log(GITHUB_REPO_NAME, process.env);
 
     let successful = await GithubChekoutBranch(checkResults.branch, true);
     if(!successful){
