@@ -236,18 +236,22 @@ export async function GithubChekoutBranch(branch, force) {
     }
 
     // I have forgot for what is this usefull, but i know its important
-    /*let cmd = 'git fetch';
+    let cmd = 'git fetch';
 
     let result = await ExecuteCommand(cmd);
     if(result.exitCode != 0) {
         console.error(`Fail to execute '${cmd}' command`);
         return false;
-    }*/
+    }
+    
+    await ExecuteCommand("git remote");
+
+    await ExecuteCommand("git branch -r -a");
 
     // Basic checkout command execution
-    let cmd = `git checkout origin/${branch}${force?" -f":""}`;
+    cmd = `git checkout origin/${branch}${force?" -f":""}`;
 
-    let result = await ExecuteCommand(cmd);
+    result = await ExecuteCommand(cmd);
     if(result.exitCode != 0)  {
         console.error(`Fail to execute '${cmd}' command`);
         return false;
