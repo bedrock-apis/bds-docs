@@ -244,7 +244,7 @@ export async function GithubChekoutBranch(branch, force) {
         return false;
     }
 
-    await ExecuteCommand("git branch -r");
+    await ExecuteCommand("git branch -r -a");
 
     // Basic checkout command execution
     cmd = `git checkout origin/${branch}${force?" -f":""}`;
