@@ -243,6 +243,8 @@ export async function GithubChekoutBranch(branch, force) {
         console.error(`Fail to execute '${cmd}' command`);
         return false;
     }
+
+    await ExecuteCommand("git branch -r -a");
     
     // Basic checkout command execution
     cmd = `git checkout ${branch}${force?" -f":""}`;
@@ -296,7 +298,7 @@ export async function GithubCommitAndPush(branch, version, isPreview) {
     result = await ExecuteCommand(`git commit -m \"New ${branch} v${isPreview?version:GetEngineVersion(version)}\"`);
     if(result.exitCode != 0) return false;
 
-    result = await ExecuteCommand("git push --force " + branch);
+    result = await ExecuteCommand("git push --force origin " + branch);
     if(result.exitCode != 0) return false;
     
     return true;
