@@ -1,21 +1,23 @@
-name: Update Docs
+name: Update Docs Generator
 on:
-  push: 
-  #schedule: 
-  #- cron: '*/20 * * * *'
+  push:
+    branches: 
+      main
+  schedule: 
+  - cron: '*/20 * * * *'
 permissions:
   contents: write
 jobs:
-
-  Updater:
+  Main-Updater:
     runs-on: windows-latest
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with: 
         ref: "main"
+        fetch-depth: '0'
     - name: Setup Node.js environment
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4.0.4
       with:
         node-version: '22'
         cache: 'npm'

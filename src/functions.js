@@ -208,7 +208,7 @@ export async function GithubPostNewBranch(branch) {
 
 
     // Basic checkout command execution
-    cmd = `git push -u origin ${branch}`;
+    cmd = `git push -u ${branch}`;
 
     result = await ExecuteCommand(cmd);
     if(result.exitCode != 0)  {
@@ -244,12 +244,8 @@ export async function GithubChekoutBranch(branch, force) {
         return false;
     }
     
-    await ExecuteCommand("git remote");
-
-    await ExecuteCommand("git branch -r -a");
-
     // Basic checkout command execution
-    cmd = `git checkout origin/${branch}${force?" -f":""}`;
+    cmd = `git checkout ${branch}${force?" -f":""}`;
 
     result = await ExecuteCommand(cmd);
     if(result.exitCode != 0)  {
@@ -300,7 +296,7 @@ export async function GithubCommitAndPush(branch, version, isPreview) {
     result = await ExecuteCommand(`git commit -m \"New ${branch} v${isPreview?version:GetEngineVersion(version)}\"`);
     if(result.exitCode != 0) return false;
 
-    result = await ExecuteCommand("git push --force origin " + branch);
+    result = await ExecuteCommand("git push --force " + branch);
     if(result.exitCode != 0) return false;
     
     return true;
