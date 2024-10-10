@@ -1,5 +1,5 @@
 import { minimatch } from "minimatch";
-import { ALWAYS_OVERWRITE, BDS_OUTDIR_PATH, FILE_CONTENT_BDS_TEST_CONFIG, FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_BDS_BINARY, FILE_NAME_BDS_TEST_CONFIG, FILE_NAME_GITHUB_README, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, IS_GITHUB_ACTION } from "./consts.js";
+import { ALWAYS_OVERWRITE, BDS_OUTDIR_PATH, FILE_CONTENT_BDS_TEST_CONFIG, FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_BDS_BINARY, FILE_NAME_BDS_TEST_CONFIG, FILE_NAME_GITHUB_README, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, GITHUB_REPO_NAME, IS_GITHUB_ACTION } from "./consts.js";
 import { ClearWholeFolder, ExecuteExecutable, FetchBDSSource, FetchBDSVersions,GetEngineVersion,GithubChekoutBranch,GithubCommitAndPush,GithubLoginAs,GithubPostNewBranch,group,groupEnd,groupFinish,VersionCheck } from "./functions.js";
 import { writeFile } from "node:fs/promises";
 import { SaveWorkspaceContent } from "./content_saver.js";
@@ -43,6 +43,8 @@ async function Main(){
 
     // Login and Checkout that specific branch
     group(`Branch checkout: ${checkResults.branch} IsForced: ${true}`);
+
+    console.log(GITHUB_REPO_NAME, process.env);
 
     let successful = await GithubChekoutBranch(checkResults.branch, true);
     if(!successful){
