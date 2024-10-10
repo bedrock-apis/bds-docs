@@ -140,7 +140,6 @@ async function Main(){
     
     await writeFile(FILE_NAME_GITHUB_README, GENERAL_README);
 
-
     // Commit changes and force push
     group("Commit & Push -> " + checkResults.branch);
     successful = await GithubCommitAndPush(checkResults.branch, checkResults.version, checkResults.isPreview);
