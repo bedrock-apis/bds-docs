@@ -243,8 +243,6 @@ export async function GithubChekoutBranch(branch, force) {
         console.error(`Fail to execute '${cmd}' command`);
         return false;
     }
-
-    await ExecuteCommand("git branch -r -a");
     
     // Basic checkout command execution
     cmd = `git checkout ${branch}${force?" -f":""}`;
