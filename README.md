@@ -1,7 +1,7 @@
 # Bedrock Documentation Generator
 
 ## Overview
-This repository generates documentation for different versions of Bedrock. The generated docs are stored in the `./docs` directory. Before fetching any data, ensure that the data is generated in the specific branch by checking the `exist.json` file in the root directory. This file includes the build version, engine version, and flags indicating the types of generated data.
+This repository generates documentation for different versions of Bedrock. The generated docs are stored in the `./metadata` directory. Before fetching any data, ensure that the data is generated in the specific branch by checking the `exist.json` file in the root directory. This file includes the build version, engine version, and flags indicating the types of generated data.
 
 ## Checking Generated Data
 The `exist.json` file is crucial for determining if the necessary data has been generated for a specific branch. This file must be fetched first to verify the existence of the repository and the availability of the required data. It contains:
@@ -33,7 +33,7 @@ https://raw.githubusercontent.com/Bedrock-APIs/bds-docs/{branch}/metadata/script
 Replace `{branch}` with the appropriate branch name (`stable`, `preview`, or `stable-x.x.x`), and `{module_name}` and `{module_version}` with the specific module name and version.
 
 ### Specific Stable Version Example
-Keep in mind this branch is older and was generated with different flags, thats why we have `/docs/`, in the link and not `/metadata/`
+Keep in mind this branch is older and was generated with different flags, thats why we have to use `/docs/` in the link and not `/metadata/`
 ```js
 const engine_version = "1.20.10";
 `https://raw.githubusercontent.com/Bedrock-APIs/bds-docs/stable-${engine_version}/docs/script_modules/@minecraft/server_1.2.0.json`;

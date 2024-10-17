@@ -1,4 +1,5 @@
 import * as _1e from '@minecraft/common';
+import * as _2c from '@minecraft/server';
 
 // Enums - 0
 
@@ -14,6 +15,7 @@ export class ServerVariables { public readonly names: string[]; public get(name:
 export const secrets: ServerSecrets;
 export const variables: ServerVariables;
 
-// Functions - 0
+// Functions - 1
+export function transferPlayer(player: _2c.Player, host: string, port: number): void
 
 // Errors - 0

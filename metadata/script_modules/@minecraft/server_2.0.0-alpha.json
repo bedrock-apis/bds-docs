@@ -1597,6 +1597,9 @@
                     "privilege": [
                         {
                             "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
                         }
                     ],
                     "return_type": {
@@ -9406,6 +9409,32 @@
                     "arguments": [
                         {
                             "details": null,
+                            "name": "targetLocation",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "lookAt",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
                             "name": "options",
                             "type": {
                                 "is_bind_type": true,
@@ -16940,6 +16969,16 @@
                     "type": {
                         "error_types": [
                             {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.1.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "EngineError"
+                            },
+                            {
                                 "is_bind_type": true,
                                 "is_errorable": false,
                                 "name": "InvalidEntityError"
@@ -17429,6 +17468,9 @@
                     "privilege": [
                         {
                             "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
                         }
                     ],
                     "return_type": {
@@ -27646,6 +27688,144 @@
                     "arguments": [
                         {
                             "details": null,
+                            "name": "callback",
+                            "type": {
+                                "closure_type": {
+                                    "argument_types": [
+                                        {
+                                            "is_bind_type": true,
+                                            "is_errorable": false,
+                                            "name": "StartupEvent"
+                                        }
+                                    ],
+                                    "return_type": {
+                                        "is_bind_type": false,
+                                        "is_errorable": true,
+                                        "name": "undefined"
+                                    }
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "closure"
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "subscribe",
+                    "privilege": [
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "return_type": {
+                        "closure_type": {
+                            "argument_types": [
+                                {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "StartupEvent"
+                                }
+                            ],
+                            "return_type": {
+                                "is_bind_type": false,
+                                "is_errorable": true,
+                                "name": "undefined"
+                            }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "callback",
+                            "type": {
+                                "closure_type": {
+                                    "argument_types": [
+                                        {
+                                            "is_bind_type": true,
+                                            "is_errorable": false,
+                                            "name": "StartupEvent"
+                                        }
+                                    ],
+                                    "return_type": {
+                                        "is_bind_type": false,
+                                        "is_errorable": true,
+                                        "name": "undefined"
+                                    }
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "closure"
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "unsubscribe",
+                    "privilege": [
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "undefined"
+                    }
+                }
+            ],
+            "name": "StartupBeforeEventSignal",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "StartupBeforeEventSignal"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [],
+            "name": "StartupEvent",
+            "properties": [
+                {
+                    "is_read_only": true,
+                    "name": "blockComponentRegistry",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "BlockComponentRegistry"
+                    }
+                },
+                {
+                    "is_read_only": true,
+                    "name": "itemComponentRegistry",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "ItemComponentRegistry"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "StartupEvent"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [
+                {
+                    "arguments": [
+                        {
+                            "details": null,
                             "name": "location",
                             "type": {
                                 "is_bind_type": true,
@@ -28881,11 +29061,11 @@
             "properties": [
                 {
                     "is_read_only": true,
-                    "name": "systemInitialize",
+                    "name": "startup",
                     "type": {
                         "is_bind_type": true,
                         "is_errorable": false,
-                        "name": "SystemInitializeBeforeEventSignal"
+                        "name": "StartupBeforeEventSignal"
                     }
                 },
                 {
@@ -28924,125 +29104,6 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "SystemInfo"
-            }
-        },
-        {
-            "base_types": [],
-            "constants": [],
-            "functions": [],
-            "name": "SystemInitializeBeforeEvent",
-            "properties": [],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "SystemInitializeBeforeEvent"
-            }
-        },
-        {
-            "base_types": [],
-            "constants": [],
-            "functions": [
-                {
-                    "arguments": [
-                        {
-                            "details": null,
-                            "name": "callback",
-                            "type": {
-                                "closure_type": {
-                                    "argument_types": [
-                                        {
-                                            "is_bind_type": true,
-                                            "is_errorable": false,
-                                            "name": "SystemInitializeBeforeEvent"
-                                        }
-                                    ],
-                                    "return_type": {
-                                        "is_bind_type": false,
-                                        "is_errorable": true,
-                                        "name": "undefined"
-                                    }
-                                },
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "closure"
-                            }
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "subscribe",
-                    "privilege": [
-                        {
-                            "name": "early_execution"
-                        }
-                    ],
-                    "return_type": {
-                        "closure_type": {
-                            "argument_types": [
-                                {
-                                    "is_bind_type": true,
-                                    "is_errorable": false,
-                                    "name": "SystemInitializeBeforeEvent"
-                                }
-                            ],
-                            "return_type": {
-                                "is_bind_type": false,
-                                "is_errorable": true,
-                                "name": "undefined"
-                            }
-                        },
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "closure"
-                    }
-                },
-                {
-                    "arguments": [
-                        {
-                            "details": null,
-                            "name": "callback",
-                            "type": {
-                                "closure_type": {
-                                    "argument_types": [
-                                        {
-                                            "is_bind_type": true,
-                                            "is_errorable": false,
-                                            "name": "SystemInitializeBeforeEvent"
-                                        }
-                                    ],
-                                    "return_type": {
-                                        "is_bind_type": false,
-                                        "is_errorable": true,
-                                        "name": "undefined"
-                                    }
-                                },
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "closure"
-                            }
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "unsubscribe",
-                    "privilege": [
-                        {
-                            "name": "early_execution"
-                        }
-                    ],
-                    "return_type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "undefined"
-                    }
-                }
-            ],
-            "name": "SystemInitializeBeforeEventSignal",
-            "properties": [],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "SystemInitializeBeforeEventSignal"
             }
         },
         {
@@ -31079,11 +31140,11 @@
                 },
                 {
                     "is_read_only": true,
-                    "name": "worldInitialize",
+                    "name": "worldLoad",
                     "type": {
                         "is_bind_type": true,
                         "is_errorable": false,
-                        "name": "WorldInitializeAfterEventSignal"
+                        "name": "WorldLoadAfterEventSignal"
                     }
                 }
             ],
@@ -31215,15 +31276,6 @@
                         "is_errorable": false,
                         "name": "WeatherChangeBeforeEventSignal"
                     }
-                },
-                {
-                    "is_read_only": true,
-                    "name": "worldInitialize",
-                    "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "WorldInitializeBeforeEventSignal"
-                    }
                 }
             ],
             "type": {
@@ -31236,12 +31288,12 @@
             "base_types": [],
             "constants": [],
             "functions": [],
-            "name": "WorldInitializeAfterEvent",
+            "name": "WorldLoadAfterEvent",
             "properties": [],
             "type": {
                 "is_bind_type": true,
                 "is_errorable": false,
-                "name": "WorldInitializeAfterEvent"
+                "name": "WorldLoadAfterEvent"
             }
         },
         {
@@ -31259,7 +31311,7 @@
                                         {
                                             "is_bind_type": true,
                                             "is_errorable": false,
-                                            "name": "WorldInitializeAfterEvent"
+                                            "name": "WorldLoadAfterEvent"
                                         }
                                     ],
                                     "return_type": {
@@ -31288,7 +31340,7 @@
                                 {
                                     "is_bind_type": true,
                                     "is_errorable": false,
-                                    "name": "WorldInitializeAfterEvent"
+                                    "name": "WorldLoadAfterEvent"
                                 }
                             ],
                             "return_type": {
@@ -31313,7 +31365,7 @@
                                         {
                                             "is_bind_type": true,
                                             "is_errorable": false,
-                                            "name": "WorldInitializeAfterEvent"
+                                            "name": "WorldLoadAfterEvent"
                                         }
                                     ],
                                     "return_type": {
@@ -31343,150 +31395,12 @@
                     }
                 }
             ],
-            "name": "WorldInitializeAfterEventSignal",
+            "name": "WorldLoadAfterEventSignal",
             "properties": [],
             "type": {
                 "is_bind_type": true,
                 "is_errorable": false,
-                "name": "WorldInitializeAfterEventSignal"
-            }
-        },
-        {
-            "base_types": [],
-            "constants": [],
-            "functions": [],
-            "name": "WorldInitializeBeforeEvent",
-            "properties": [
-                {
-                    "is_read_only": true,
-                    "name": "blockComponentRegistry",
-                    "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "BlockComponentRegistry"
-                    }
-                },
-                {
-                    "is_read_only": true,
-                    "name": "itemComponentRegistry",
-                    "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "ItemComponentRegistry"
-                    }
-                }
-            ],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "WorldInitializeBeforeEvent"
-            }
-        },
-        {
-            "base_types": [],
-            "constants": [],
-            "functions": [
-                {
-                    "arguments": [
-                        {
-                            "details": null,
-                            "name": "callback",
-                            "type": {
-                                "closure_type": {
-                                    "argument_types": [
-                                        {
-                                            "is_bind_type": true,
-                                            "is_errorable": false,
-                                            "name": "WorldInitializeBeforeEvent"
-                                        }
-                                    ],
-                                    "return_type": {
-                                        "is_bind_type": false,
-                                        "is_errorable": true,
-                                        "name": "undefined"
-                                    }
-                                },
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "closure"
-                            }
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "subscribe",
-                    "privilege": [
-                        {
-                            "name": "early_execution"
-                        }
-                    ],
-                    "return_type": {
-                        "closure_type": {
-                            "argument_types": [
-                                {
-                                    "is_bind_type": true,
-                                    "is_errorable": false,
-                                    "name": "WorldInitializeBeforeEvent"
-                                }
-                            ],
-                            "return_type": {
-                                "is_bind_type": false,
-                                "is_errorable": true,
-                                "name": "undefined"
-                            }
-                        },
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "closure"
-                    }
-                },
-                {
-                    "arguments": [
-                        {
-                            "details": null,
-                            "name": "callback",
-                            "type": {
-                                "closure_type": {
-                                    "argument_types": [
-                                        {
-                                            "is_bind_type": true,
-                                            "is_errorable": false,
-                                            "name": "WorldInitializeBeforeEvent"
-                                        }
-                                    ],
-                                    "return_type": {
-                                        "is_bind_type": false,
-                                        "is_errorable": true,
-                                        "name": "undefined"
-                                    }
-                                },
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "closure"
-                            }
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "unsubscribe",
-                    "privilege": [
-                        {
-                            "name": "early_execution"
-                        }
-                    ],
-                    "return_type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "undefined"
-                    }
-                }
-            ],
-            "name": "WorldInitializeBeforeEventSignal",
-            "properties": [],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "WorldInitializeBeforeEventSignal"
+                "name": "WorldLoadAfterEventSignal"
             }
         }
     ],
@@ -34739,17 +34653,6 @@
                         "name": "string"
                     },
                     "value": "Touch"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "Undetermined",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "Undetermined"
                 }
             ],
             "name": "InputMode"
