@@ -6619,6 +6619,38 @@
                                 "is_errorable": false,
                                 "name": "string"
                             }
+                        },
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "name",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": false,
+                                    "is_errorable": false,
+                                    "name": "string"
+                                }
+                            }
+                        },
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "sourceThemeId",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": false,
+                                    "is_errorable": false,
+                                    "name": "string"
+                                }
+                            }
                         }
                     ],
                     "is_constructor": false,
@@ -6767,7 +6799,7 @@
                     "arguments": [],
                     "is_constructor": false,
                     "is_static": false,
-                    "name": "getThemeList",
+                    "name": "getThemeIdList",
                     "privilege": [
                         {
                             "name": "read_only"
@@ -6782,6 +6814,39 @@
                         "is_bind_type": false,
                         "is_errorable": false,
                         "name": "array"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "id",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getThemeName",
+                    "privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "string"
                     }
                 },
                 {
@@ -6830,6 +6895,48 @@
                     "is_constructor": false,
                     "is_static": false,
                     "name": "setCurrentTheme",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "id",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "name",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "setThemeName",
                     "privilege": [
                         {
                             "name": "none"
