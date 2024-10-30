@@ -1565,6 +1565,15 @@
             "properties": [
                 {
                     "is_read_only": true,
+                    "name": "id",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                },
+                {
+                    "is_read_only": true,
                     "name": "isEmpty",
                     "type": {
                         "is_bind_type": false,
@@ -1895,64 +1904,6 @@
             "constants": [],
             "functions": [
                 {
-                    "arguments": [
-                        {
-                            "details": null,
-                            "name": "item",
-                            "type": {
-                                "is_bind_type": true,
-                                "is_errorable": false,
-                                "name": "ClipboardItem"
-                            }
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "attachClipboardItem",
-                    "privilege": [
-                        {
-                            "name": "none"
-                        }
-                    ],
-                    "return_type": {
-                        "is_bind_type": false,
-                        "is_errorable": true,
-                        "name": "undefined"
-                    }
-                },
-                {
-                    "arguments": [],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "clearAttachment",
-                    "privilege": [
-                        {
-                            "name": "none"
-                        }
-                    ],
-                    "return_type": {
-                        "is_bind_type": false,
-                        "is_errorable": true,
-                        "name": "undefined"
-                    }
-                },
-                {
-                    "arguments": [],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "getAttachmentProperties",
-                    "privilege": [
-                        {
-                            "name": "none"
-                        }
-                    ],
-                    "return_type": {
-                        "is_bind_type": true,
-                        "is_errorable": true,
-                        "name": "CursorAttachmentProperties"
-                    }
-                },
-                {
                     "arguments": [],
                     "is_constructor": false,
                     "is_static": false,
@@ -1987,6 +1938,29 @@
                         "is_bind_type": true,
                         "is_errorable": true,
                         "name": "CursorProperties"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getRay",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "CursorRay"
                     }
                 },
                 {
@@ -2046,32 +2020,6 @@
                     "is_constructor": false,
                     "is_static": false,
                     "name": "resetToDefaultState",
-                    "privilege": [
-                        {
-                            "name": "none"
-                        }
-                    ],
-                    "return_type": {
-                        "is_bind_type": false,
-                        "is_errorable": true,
-                        "name": "undefined"
-                    }
-                },
-                {
-                    "arguments": [
-                        {
-                            "details": null,
-                            "name": "properties",
-                            "type": {
-                                "is_bind_type": true,
-                                "is_errorable": false,
-                                "name": "CursorAttachmentProperties"
-                            }
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "setAttachmentProperties",
                     "privilege": [
                         {
                             "name": "none"
@@ -2155,135 +2103,6 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "Cursor"
-            }
-        },
-        {
-            "base_types": [],
-            "constants": [],
-            "functions": [],
-            "name": "CursorAttachmentPropertiesChangeAfterEvent",
-            "properties": [
-                {
-                    "is_read_only": true,
-                    "name": "properties",
-                    "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "CursorAttachmentProperties"
-                    }
-                }
-            ],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "CursorAttachmentPropertiesChangeAfterEvent"
-            }
-        },
-        {
-            "base_types": [],
-            "constants": [],
-            "functions": [
-                {
-                    "arguments": [
-                        {
-                            "details": null,
-                            "name": "callback",
-                            "type": {
-                                "closure_type": {
-                                    "argument_types": [
-                                        {
-                                            "is_bind_type": true,
-                                            "is_errorable": false,
-                                            "name": "CursorAttachmentPropertiesChangeAfterEvent"
-                                        }
-                                    ],
-                                    "return_type": {
-                                        "is_bind_type": false,
-                                        "is_errorable": true,
-                                        "name": "undefined"
-                                    }
-                                },
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "closure"
-                            }
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "subscribe",
-                    "privilege": [
-                        {
-                            "name": "early_execution"
-                        }
-                    ],
-                    "return_type": {
-                        "closure_type": {
-                            "argument_types": [
-                                {
-                                    "is_bind_type": true,
-                                    "is_errorable": false,
-                                    "name": "CursorAttachmentPropertiesChangeAfterEvent"
-                                }
-                            ],
-                            "return_type": {
-                                "is_bind_type": false,
-                                "is_errorable": true,
-                                "name": "undefined"
-                            }
-                        },
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "closure"
-                    }
-                },
-                {
-                    "arguments": [
-                        {
-                            "details": null,
-                            "name": "callback",
-                            "type": {
-                                "closure_type": {
-                                    "argument_types": [
-                                        {
-                                            "is_bind_type": true,
-                                            "is_errorable": false,
-                                            "name": "CursorAttachmentPropertiesChangeAfterEvent"
-                                        }
-                                    ],
-                                    "return_type": {
-                                        "is_bind_type": false,
-                                        "is_errorable": true,
-                                        "name": "undefined"
-                                    }
-                                },
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "closure"
-                            }
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "unsubscribe",
-                    "privilege": [
-                        {
-                            "name": "early_execution"
-                        }
-                    ],
-                    "return_type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "undefined"
-                    }
-                }
-            ],
-            "name": "CursorAttachmentPropertyChangeAfterEventSignal",
-            "properties": [],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "CursorAttachmentPropertyChangeAfterEventSignal"
             }
         },
         {
@@ -3314,6 +3133,294 @@
                 {
                     "arguments": [
                         {
+                            "details": null,
+                            "name": "id",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getToolPayload",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "id",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "property",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getToolProperty",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "variant",
+                            "variant_types": [
+                                {
+                                    "is_bind_type": false,
+                                    "is_errorable": false,
+                                    "name": "boolean"
+                                },
+                                {
+                                    "is_bind_type": false,
+                                    "is_errorable": false,
+                                    "name": "float",
+                                    "valid_range": {
+                                        "max": 2147483647,
+                                        "min": -2147483648
+                                    }
+                                },
+                                {
+                                    "is_bind_type": false,
+                                    "is_errorable": false,
+                                    "name": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "id",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "hasToolPayload",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "id",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "property",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "hasToolProperty",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "id",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "payload",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "registerTool",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "id",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "unregisterTool",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "id",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "payload",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "updateRegisteredTool",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "id",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "payload",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "property",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "updateRegisteredToolProperty",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
                             "details": {
                                 "default_value": "null"
                             },
@@ -4193,15 +4300,6 @@
                 },
                 {
                     "is_read_only": true,
-                    "name": "cursorAttachmentPropertyChange",
-                    "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "CursorAttachmentPropertyChangeAfterEventSignal"
-                    }
-                },
-                {
-                    "is_read_only": true,
                     "name": "cursorPropertyChange",
                     "type": {
                         "is_bind_type": true,
@@ -4998,6 +5096,71 @@
             "base_types": [],
             "constants": [],
             "functions": [
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "player",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server",
+                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                    "version": "1.17.0-beta"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Player"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "source",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "eventName",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "metadata",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "fireTelemetryEvent",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
                 {
                     "arguments": [
                         {
@@ -7703,6 +7866,76 @@
                             }
                         },
                         {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "clipboardItem",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "ClipboardItem"
+                                }
+                            }
+                        },
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "options",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "WidgetComponentClipboardOptions"
+                                }
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "addClipboardComponent",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidWidgetError"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "WidgetComponentClipboard"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "componentName",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
                             "details": null,
                             "name": "actorNameId",
                             "type": {
@@ -7884,22 +8117,22 @@
                                     {
                                         "is_bind_type": true,
                                         "is_errorable": false,
-                                        "name": "WidgetComponentRenderPrimitiveAxialSphere"
+                                        "name": "WidgetComponentRenderPrimitiveTypeAxialSphere"
                                     },
                                     {
                                         "is_bind_type": true,
                                         "is_errorable": false,
-                                        "name": "WidgetComponentRenderPrimitiveBox"
+                                        "name": "WidgetComponentRenderPrimitiveTypeBox"
                                     },
                                     {
                                         "is_bind_type": true,
                                         "is_errorable": false,
-                                        "name": "WidgetComponentRenderPrimitiveDisc"
+                                        "name": "WidgetComponentRenderPrimitiveTypeDisc"
                                     },
                                     {
                                         "is_bind_type": true,
                                         "is_errorable": false,
-                                        "name": "WidgetComponentRenderPrimitiveLine"
+                                        "name": "WidgetComponentRenderPrimitiveTypeLine"
                                     }
                                 ]
                             }
@@ -8265,11 +8498,6 @@
                                 "is_bind_type": true,
                                 "is_errorable": false,
                                 "name": "InvalidWidgetError"
-                            },
-                            {
-                                "is_bind_type": true,
-                                "is_errorable": false,
-                                "name": "InvalidWidgetError"
                             }
                         ],
                         "is_bind_type": false,
@@ -8280,6 +8508,20 @@
             ],
             "name": "Widget",
             "properties": [
+                {
+                    "is_read_only": false,
+                    "name": "bindPositionToBlockCursor",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                    }
+                },
                 {
                     "is_read_only": false,
                     "name": "collisionOffset",
@@ -8334,6 +8576,20 @@
                         "is_bind_type": true,
                         "is_errorable": false,
                         "name": "Vector3"
+                    }
+                },
+                {
+                    "is_read_only": false,
+                    "name": "lockPositionToSurface",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
                     }
                 },
                 {
@@ -8455,6 +8711,60 @@
                         "is_errorable": true,
                         "name": "undefined"
                     }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "eventFunction",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "closure_type": {
+                                        "argument_types": [
+                                            {
+                                                "is_bind_type": true,
+                                                "is_errorable": false,
+                                                "name": "WidgetComponentStateChangeEventData"
+                                            }
+                                        ],
+                                        "return_type": {
+                                            "is_bind_type": false,
+                                            "is_errorable": true,
+                                            "name": "undefined"
+                                        }
+                                    },
+                                    "is_bind_type": false,
+                                    "is_errorable": false,
+                                    "name": "closure"
+                                }
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "setStateChangeEvent",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidWidgetComponentError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
                 }
             ],
             "name": "WidgetComponentBase",
@@ -8494,6 +8804,20 @@
                         "is_bind_type": true,
                         "is_errorable": true,
                         "name": "Vector3"
+                    }
+                },
+                {
+                    "is_read_only": false,
+                    "name": "lockToSurface",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
                     }
                 },
                 {
@@ -8586,6 +8910,153 @@
                 }
             ],
             "constants": [],
+            "functions": [],
+            "name": "WidgetComponentClipboard",
+            "properties": [
+                {
+                    "is_read_only": false,
+                    "name": "clipboardMirror",
+                    "privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "type": {
+                        "from_module": {
+                            "name": "@minecraft/server",
+                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                            "version": "1.17.0-beta"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "StructureMirrorAxis"
+                    }
+                },
+                {
+                    "is_read_only": false,
+                    "name": "clipboardNormalizedOrigin",
+                    "privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "type": {
+                        "from_module": {
+                            "name": "@minecraft/server",
+                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                            "version": "1.17.0-beta"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                    }
+                },
+                {
+                    "is_read_only": false,
+                    "name": "clipboardOffset",
+                    "privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "type": {
+                        "from_module": {
+                            "name": "@minecraft/server",
+                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                            "version": "1.17.0-beta"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                    }
+                },
+                {
+                    "is_read_only": false,
+                    "name": "clipboardRotation",
+                    "privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "type": {
+                        "from_module": {
+                            "name": "@minecraft/server",
+                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                            "version": "1.17.0-beta"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "StructureRotation"
+                    }
+                },
+                {
+                    "is_read_only": false,
+                    "name": "fillColor",
+                    "privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "type": {
+                        "from_module": {
+                            "name": "@minecraft/server",
+                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                            "version": "1.17.0-beta"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "RGBA"
+                    }
+                },
+                {
+                    "is_read_only": false,
+                    "name": "outlineColor",
+                    "privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "type": {
+                        "from_module": {
+                            "name": "@minecraft/server",
+                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                            "version": "1.17.0-beta"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "RGBA"
+                    }
+                },
+                {
+                    "is_read_only": false,
+                    "name": "showBounds",
+                    "privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "WidgetComponentClipboard"
+            }
+        },
+        {
+            "base_types": [
+                {
+                    "is_bind_type": true,
+                    "is_errorable": false,
+                    "name": "WidgetComponentBase"
+                }
+            ],
+            "constants": [],
             "functions": [
                 {
                     "arguments": [
@@ -8655,7 +9126,22 @@
             "constants": [],
             "functions": [],
             "name": "WidgetComponentGizmo",
-            "properties": [],
+            "properties": [
+                {
+                    "is_read_only": false,
+                    "name": "activated",
+                    "privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                    }
+                }
+            ],
             "type": {
                 "is_bind_type": true,
                 "is_errorable": false,
@@ -8703,22 +9189,22 @@
                                     {
                                         "is_bind_type": true,
                                         "is_errorable": false,
-                                        "name": "WidgetComponentRenderPrimitiveAxialSphere"
+                                        "name": "WidgetComponentRenderPrimitiveTypeAxialSphere"
                                     },
                                     {
                                         "is_bind_type": true,
                                         "is_errorable": false,
-                                        "name": "WidgetComponentRenderPrimitiveBox"
+                                        "name": "WidgetComponentRenderPrimitiveTypeBox"
                                     },
                                     {
                                         "is_bind_type": true,
                                         "is_errorable": false,
-                                        "name": "WidgetComponentRenderPrimitiveDisc"
+                                        "name": "WidgetComponentRenderPrimitiveTypeDisc"
                                     },
                                     {
                                         "is_bind_type": true,
                                         "is_errorable": false,
-                                        "name": "WidgetComponentRenderPrimitiveLine"
+                                        "name": "WidgetComponentRenderPrimitiveTypeLine"
                                     }
                                 ]
                             }
@@ -8752,7 +9238,29 @@
                 }
             ],
             "name": "WidgetComponentRenderPrimitive",
-            "properties": [],
+            "properties": [
+                {
+                    "is_read_only": true,
+                    "name": "primitiveType",
+                    "type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidWidgetComponentError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidWidgetError"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "PrimitiveType"
+                    }
+                }
+            ],
             "type": {
                 "is_bind_type": true,
                 "is_errorable": false,
@@ -8760,7 +9268,13 @@
             }
         },
         {
-            "base_types": [],
+            "base_types": [
+                {
+                    "is_bind_type": true,
+                    "is_errorable": false,
+                    "name": "WidgetComponentRenderPrimitiveTypeBase"
+                }
+            ],
             "constants": [],
             "functions": [
                 {
@@ -8827,11 +9341,11 @@
                     "return_type": {
                         "is_bind_type": true,
                         "is_errorable": false,
-                        "name": "WidgetComponentRenderPrimitiveAxialSphere"
+                        "name": "WidgetComponentRenderPrimitiveTypeAxialSphere"
                     }
                 }
             ],
-            "name": "WidgetComponentRenderPrimitiveAxialSphere",
+            "name": "WidgetComponentRenderPrimitiveTypeAxialSphere",
             "properties": [
                 {
                     "is_read_only": false,
@@ -8898,11 +9412,39 @@
             "type": {
                 "is_bind_type": true,
                 "is_errorable": false,
-                "name": "WidgetComponentRenderPrimitiveAxialSphere"
+                "name": "WidgetComponentRenderPrimitiveTypeAxialSphere"
             }
         },
         {
             "base_types": [],
+            "constants": [],
+            "functions": [],
+            "name": "WidgetComponentRenderPrimitiveTypeBase",
+            "properties": [
+                {
+                    "is_read_only": true,
+                    "name": "primitiveType",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrimitiveType"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "WidgetComponentRenderPrimitiveTypeBase"
+            }
+        },
+        {
+            "base_types": [
+                {
+                    "is_bind_type": true,
+                    "is_errorable": false,
+                    "name": "WidgetComponentRenderPrimitiveTypeBase"
+                }
+            ],
             "constants": [],
             "functions": [
                 {
@@ -8967,11 +9509,11 @@
                     "return_type": {
                         "is_bind_type": true,
                         "is_errorable": false,
-                        "name": "WidgetComponentRenderPrimitiveBox"
+                        "name": "WidgetComponentRenderPrimitiveTypeBox"
                     }
                 }
             ],
-            "name": "WidgetComponentRenderPrimitiveBox",
+            "name": "WidgetComponentRenderPrimitiveTypeBox",
             "properties": [
                 {
                     "is_read_only": false,
@@ -9039,11 +9581,17 @@
             "type": {
                 "is_bind_type": true,
                 "is_errorable": false,
-                "name": "WidgetComponentRenderPrimitiveBox"
+                "name": "WidgetComponentRenderPrimitiveTypeBox"
             }
         },
         {
-            "base_types": [],
+            "base_types": [
+                {
+                    "is_bind_type": true,
+                    "is_errorable": false,
+                    "name": "WidgetComponentRenderPrimitiveTypeBase"
+                }
+            ],
             "constants": [],
             "functions": [
                 {
@@ -9103,11 +9651,11 @@
                     "return_type": {
                         "is_bind_type": true,
                         "is_errorable": false,
-                        "name": "WidgetComponentRenderPrimitiveDisc"
+                        "name": "WidgetComponentRenderPrimitiveTypeDisc"
                     }
                 }
             ],
-            "name": "WidgetComponentRenderPrimitiveDisc",
+            "name": "WidgetComponentRenderPrimitiveTypeDisc",
             "properties": [
                 {
                     "is_read_only": false,
@@ -9169,11 +9717,17 @@
             "type": {
                 "is_bind_type": true,
                 "is_errorable": false,
-                "name": "WidgetComponentRenderPrimitiveDisc"
+                "name": "WidgetComponentRenderPrimitiveTypeDisc"
             }
         },
         {
-            "base_types": [],
+            "base_types": [
+                {
+                    "is_bind_type": true,
+                    "is_errorable": false,
+                    "name": "WidgetComponentRenderPrimitiveTypeBase"
+                }
+            ],
             "constants": [],
             "functions": [
                 {
@@ -9231,11 +9785,11 @@
                     "return_type": {
                         "is_bind_type": true,
                         "is_errorable": false,
-                        "name": "WidgetComponentRenderPrimitiveLine"
+                        "name": "WidgetComponentRenderPrimitiveTypeLine"
                     }
                 }
             ],
-            "name": "WidgetComponentRenderPrimitiveLine",
+            "name": "WidgetComponentRenderPrimitiveTypeLine",
             "properties": [
                 {
                     "is_read_only": false,
@@ -9298,7 +9852,7 @@
             "type": {
                 "is_bind_type": true,
                 "is_errorable": false,
-                "name": "WidgetComponentRenderPrimitiveLine"
+                "name": "WidgetComponentRenderPrimitiveTypeLine"
             }
         },
         {
@@ -9478,6 +10032,60 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "WidgetComponentSpline"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [],
+            "name": "WidgetComponentStateChangeEventData",
+            "properties": [
+                {
+                    "is_read_only": true,
+                    "name": "component",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "WidgetComponentBase"
+                    }
+                },
+                {
+                    "is_read_only": true,
+                    "name": "gizmoActivated",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "boolean"
+                        }
+                    }
+                },
+                {
+                    "is_read_only": true,
+                    "name": "group",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "WidgetGroup"
+                    }
+                },
+                {
+                    "is_read_only": true,
+                    "name": "widget",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Widget"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "WidgetComponentStateChangeEventData"
             }
         },
         {
@@ -10610,33 +11218,33 @@
                     "is_static": true,
                     "name": "XY",
                     "type": {
-                        "is_bind_type": false,
+                        "is_bind_type": true,
                         "is_errorable": false,
-                        "name": "string"
+                        "name": "Plane"
                     },
-                    "value": "XY"
+                    "value": 0
                 },
                 {
                     "is_read_only": true,
                     "is_static": true,
                     "name": "XZ",
                     "type": {
-                        "is_bind_type": false,
+                        "is_bind_type": true,
                         "is_errorable": false,
-                        "name": "string"
+                        "name": "Plane"
                     },
-                    "value": "XZ"
+                    "value": 1
                 },
                 {
                     "is_read_only": true,
                     "is_static": true,
                     "name": "YZ",
                     "type": {
-                        "is_bind_type": false,
+                        "is_bind_type": true,
                         "is_errorable": false,
-                        "name": "string"
+                        "name": "Plane"
                     },
-                    "value": "YZ"
+                    "value": 2
                 }
             ],
             "name": "Plane"
@@ -10834,55 +11442,55 @@
                     "is_static": true,
                     "name": "AxialSphere",
                     "type": {
-                        "is_bind_type": false,
+                        "is_bind_type": true,
                         "is_errorable": false,
-                        "name": "string"
+                        "name": "PrimitiveType"
                     },
-                    "value": "AxialSphere"
+                    "value": 5
                 },
                 {
                     "is_read_only": true,
                     "is_static": true,
                     "name": "Box",
                     "type": {
-                        "is_bind_type": false,
+                        "is_bind_type": true,
                         "is_errorable": false,
-                        "name": "string"
+                        "name": "PrimitiveType"
                     },
-                    "value": "Box"
+                    "value": 1
                 },
                 {
                     "is_read_only": true,
                     "is_static": true,
                     "name": "Disc",
                     "type": {
-                        "is_bind_type": false,
+                        "is_bind_type": true,
                         "is_errorable": false,
-                        "name": "string"
+                        "name": "PrimitiveType"
                     },
-                    "value": "Disc"
+                    "value": 4
                 },
                 {
                     "is_read_only": true,
                     "is_static": true,
                     "name": "Line",
                     "type": {
-                        "is_bind_type": false,
+                        "is_bind_type": true,
                         "is_errorable": false,
-                        "name": "string"
+                        "name": "PrimitiveType"
                     },
-                    "value": "Line"
+                    "value": 2
                 },
                 {
                     "is_read_only": true,
                     "is_static": true,
                     "name": "Text",
                     "type": {
-                        "is_bind_type": false,
+                        "is_bind_type": true,
                         "is_errorable": false,
-                        "name": "string"
+                        "name": "PrimitiveType"
                     },
-                    "value": "Text"
+                    "value": 0
                 }
             ],
             "name": "PrimitiveType"
@@ -10932,22 +11540,22 @@
                     "is_static": true,
                     "name": "Hermite",
                     "type": {
-                        "is_bind_type": false,
+                        "is_bind_type": true,
                         "is_errorable": false,
-                        "name": "string"
+                        "name": "SplineType"
                     },
-                    "value": "Hermite"
+                    "value": 1
                 },
                 {
                     "is_read_only": true,
                     "is_static": true,
                     "name": "Line",
                     "type": {
-                        "is_bind_type": false,
+                        "is_bind_type": true,
                         "is_errorable": false,
-                        "name": "string"
+                        "name": "SplineType"
                     },
-                    "value": "Line"
+                    "value": 0
                 }
             ],
             "name": "SplineType"
@@ -11644,6 +12252,17 @@
                 {
                     "is_read_only": true,
                     "is_static": true,
+                    "name": "Clipboard",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Clipboard"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
                     "name": "Entity",
                     "type": {
                         "is_bind_type": false,
@@ -11914,25 +12533,6 @@
             "properties": [
                 {
                     "is_read_only": false,
-                    "name": "anchor",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                            "from_module": {
-                                "name": "@minecraft/server",
-                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                "version": "1.17.0-beta"
-                            },
-                            "is_bind_type": true,
-                            "is_errorable": false,
-                            "name": "Vector3"
-                        }
-                    }
-                },
-                {
-                    "is_read_only": false,
                     "name": "mirror",
                     "type": {
                         "is_bind_type": false,
@@ -11947,6 +12547,25 @@
                             "is_bind_type": true,
                             "is_errorable": false,
                             "name": "StructureMirrorAxis"
+                        }
+                    }
+                },
+                {
+                    "is_read_only": false,
+                    "name": "normalizedOrigin",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "from_module": {
+                                "name": "@minecraft/server",
+                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                "version": "1.17.0-beta"
+                            },
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "Vector3"
                         }
                     }
                 },
@@ -11993,183 +12612,6 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "ClipboardWriteOptions"
-            }
-        },
-        {
-            "base_types": [],
-            "name": "CursorAttachmentProperties",
-            "properties": [
-                {
-                    "is_read_only": false,
-                    "name": "boundsFillColor",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                            "from_module": {
-                                "name": "@minecraft/server",
-                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                "version": "1.17.0-beta"
-                            },
-                            "is_bind_type": true,
-                            "is_errorable": false,
-                            "name": "RGBA"
-                        }
-                    }
-                },
-                {
-                    "is_read_only": false,
-                    "name": "boundsVisible",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                            "is_bind_type": false,
-                            "is_errorable": false,
-                            "name": "boolean"
-                        }
-                    }
-                },
-                {
-                    "is_read_only": false,
-                    "name": "boundsWireframeColor",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                            "from_module": {
-                                "name": "@minecraft/server",
-                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                "version": "1.17.0-beta"
-                            },
-                            "is_bind_type": true,
-                            "is_errorable": false,
-                            "name": "RGBA"
-                        }
-                    }
-                },
-                {
-                    "is_read_only": false,
-                    "name": "contentsFillColor",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                            "from_module": {
-                                "name": "@minecraft/server",
-                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                "version": "1.17.0-beta"
-                            },
-                            "is_bind_type": true,
-                            "is_errorable": false,
-                            "name": "RGBA"
-                        }
-                    }
-                },
-                {
-                    "is_read_only": false,
-                    "name": "contentsWireframeColor",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                            "from_module": {
-                                "name": "@minecraft/server",
-                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                "version": "1.17.0-beta"
-                            },
-                            "is_bind_type": true,
-                            "is_errorable": false,
-                            "name": "RGBA"
-                        }
-                    }
-                },
-                {
-                    "is_read_only": false,
-                    "name": "mirror",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                            "from_module": {
-                                "name": "@minecraft/server",
-                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                "version": "1.17.0-beta"
-                            },
-                            "is_bind_type": true,
-                            "is_errorable": false,
-                            "name": "StructureMirrorAxis"
-                        }
-                    }
-                },
-                {
-                    "is_read_only": false,
-                    "name": "offset",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                            "from_module": {
-                                "name": "@minecraft/server",
-                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                "version": "1.17.0-beta"
-                            },
-                            "is_bind_type": true,
-                            "is_errorable": false,
-                            "name": "Vector3"
-                        }
-                    }
-                },
-                {
-                    "is_read_only": false,
-                    "name": "origin",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                            "from_module": {
-                                "name": "@minecraft/server",
-                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                "version": "1.17.0-beta"
-                            },
-                            "is_bind_type": true,
-                            "is_errorable": false,
-                            "name": "Vector3"
-                        }
-                    }
-                },
-                {
-                    "is_read_only": false,
-                    "name": "rotation",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                            "from_module": {
-                                "name": "@minecraft/server",
-                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                "version": "1.17.0-beta"
-                            },
-                            "is_bind_type": true,
-                            "is_errorable": false,
-                            "name": "StructureRotation"
-                        }
-                    }
-                }
-            ],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "CursorAttachmentProperties"
             }
         },
         {
@@ -12293,6 +12735,54 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "CursorProperties"
+            }
+        },
+        {
+            "base_types": [],
+            "name": "CursorRay",
+            "properties": [
+                {
+                    "is_read_only": false,
+                    "name": "end",
+                    "type": {
+                        "from_module": {
+                            "name": "@minecraft/server",
+                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                            "version": "1.17.0-beta"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                    }
+                },
+                {
+                    "is_read_only": false,
+                    "name": "hit",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                    }
+                },
+                {
+                    "is_read_only": false,
+                    "name": "start",
+                    "type": {
+                        "from_module": {
+                            "name": "@minecraft/server",
+                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                            "version": "1.17.0-beta"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "CursorRay"
             }
         },
         {
@@ -13438,6 +13928,20 @@
             "properties": [
                 {
                     "is_read_only": false,
+                    "name": "lockToSurface",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "boolean"
+                        }
+                    }
+                },
+                {
+                    "is_read_only": false,
                     "name": "offset",
                     "type": {
                         "is_bind_type": false,
@@ -13452,6 +13956,34 @@
                             "is_bind_type": true,
                             "is_errorable": false,
                             "name": "Vector3"
+                        }
+                    }
+                },
+                {
+                    "is_read_only": false,
+                    "name": "stateChangeEvent",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "closure_type": {
+                                "argument_types": [
+                                    {
+                                        "is_bind_type": true,
+                                        "is_errorable": false,
+                                        "name": "WidgetComponentStateChangeEventData"
+                                    }
+                                ],
+                                "return_type": {
+                                    "is_bind_type": false,
+                                    "is_errorable": true,
+                                    "name": "undefined"
+                                }
+                            },
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "closure"
                         }
                     }
                 },
@@ -13474,6 +14006,151 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "WidgetComponentBaseOptions"
+            }
+        },
+        {
+            "base_types": [
+                {
+                    "is_bind_type": true,
+                    "is_errorable": false,
+                    "name": "WidgetComponentBaseOptions"
+                }
+            ],
+            "name": "WidgetComponentClipboardOptions",
+            "properties": [
+                {
+                    "is_read_only": false,
+                    "name": "boundsFillColor",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "from_module": {
+                                "name": "@minecraft/server",
+                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                "version": "1.17.0-beta"
+                            },
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "RGBA"
+                        }
+                    }
+                },
+                {
+                    "is_read_only": false,
+                    "name": "boundsOutlineColor",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "from_module": {
+                                "name": "@minecraft/server",
+                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                "version": "1.17.0-beta"
+                            },
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "RGBA"
+                        }
+                    }
+                },
+                {
+                    "is_read_only": false,
+                    "name": "clipboardMirror",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "from_module": {
+                                "name": "@minecraft/server",
+                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                "version": "1.17.0-beta"
+                            },
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "StructureMirrorAxis"
+                        }
+                    }
+                },
+                {
+                    "is_read_only": false,
+                    "name": "clipboardNormalizedOrigin",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "from_module": {
+                                "name": "@minecraft/server",
+                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                "version": "1.17.0-beta"
+                            },
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "Vector3"
+                        }
+                    }
+                },
+                {
+                    "is_read_only": false,
+                    "name": "clipboardOffset",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "from_module": {
+                                "name": "@minecraft/server",
+                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                "version": "1.17.0-beta"
+                            },
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "Vector3"
+                        }
+                    }
+                },
+                {
+                    "is_read_only": false,
+                    "name": "clipboardRotation",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "from_module": {
+                                "name": "@minecraft/server",
+                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                "version": "1.17.0-beta"
+                            },
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "StructureRotation"
+                        }
+                    }
+                },
+                {
+                    "is_read_only": false,
+                    "name": "showBounds",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "boolean"
+                        }
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "WidgetComponentClipboardOptions"
             }
         },
         {
@@ -13670,6 +14347,20 @@
             "properties": [
                 {
                     "is_read_only": false,
+                    "name": "bindPositionToBlockCursor",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "boolean"
+                        }
+                    }
+                },
+                {
+                    "is_read_only": false,
                     "name": "collisionOffset",
                     "type": {
                         "is_bind_type": false,
@@ -13702,6 +14393,20 @@
                                 "max": 2147483647,
                                 "min": -2147483648
                             }
+                        }
+                    }
+                },
+                {
+                    "is_read_only": false,
+                    "name": "lockToSurface",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "boolean"
                         }
                     }
                 },
