@@ -517,6 +517,115 @@
             "constants": [],
             "functions": [
                 {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "volume",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "variant",
+                                "variant_types": [
+                                    {
+                                        "from_module": {
+                                            "name": "@minecraft/server",
+                                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                            "version": "1.17.0-beta"
+                                        },
+                                        "is_bind_type": true,
+                                        "is_errorable": false,
+                                        "name": "BlockVolumeBase"
+                                    },
+                                    {
+                                        "from_module": {
+                                            "name": "@minecraft/server",
+                                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                            "version": "1.17.0-beta"
+                                        },
+                                        "is_bind_type": true,
+                                        "is_errorable": false,
+                                        "name": "CompoundBlockVolume"
+                                    },
+                                    {
+                                        "is_bind_type": true,
+                                        "is_errorable": false,
+                                        "name": "Selection"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "block",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": false,
+                                    "is_errorable": false,
+                                    "name": "variant",
+                                    "variant_types": [
+                                        {
+                                            "from_module": {
+                                                "name": "@minecraft/server",
+                                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                                "version": "1.17.0-beta"
+                                            },
+                                            "is_bind_type": true,
+                                            "is_errorable": false,
+                                            "name": "BlockPermutation"
+                                        },
+                                        {
+                                            "from_module": {
+                                                "name": "@minecraft/server",
+                                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                                "version": "1.17.0-beta"
+                                            },
+                                            "is_bind_type": true,
+                                            "is_errorable": false,
+                                            "name": "BlockType"
+                                        },
+                                        {
+                                            "is_bind_type": false,
+                                            "is_errorable": false,
+                                            "name": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "fillVolume",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                }
+            ],
+            "name": "BlockUtilities",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "BlockUtilities"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [
+                {
                     "arguments": [],
                     "is_constructor": false,
                     "is_static": false,
@@ -879,6 +988,65 @@
                     "is_constructor": false,
                     "is_static": false,
                     "name": "setBrushShapeOffset",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "visible",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "boolean"
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "setBrushShapeVisible",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": {
+                                "max_value": 2147483647,
+                                "min_value": -2147483648
+                            },
+                            "name": "smoothStrength",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "int32",
+                                "valid_range": {
+                                    "max": 2147483647,
+                                    "min": -2147483648
+                                }
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "setSmoothStrength",
                     "privilege": [
                         {
                             "name": "none"
@@ -4147,6 +4315,15 @@
                 },
                 {
                     "is_read_only": true,
+                    "name": "blockUtilities",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "BlockUtilities"
+                    }
+                },
+                {
+                    "is_read_only": true,
                     "name": "brushShapeManager",
                     "type": {
                         "is_bind_type": true,
@@ -4610,7 +4787,12 @@
                     "return_type": {
                         "is_bind_type": false,
                         "is_errorable": false,
-                        "name": "string"
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "string"
+                        }
                     }
                 },
                 {
@@ -6387,6 +6569,15 @@
                 },
                 {
                     "is_read_only": true,
+                    "name": "speed",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "SpeedSettings"
+                    }
+                },
+                {
+                    "is_read_only": true,
                     "name": "theme",
                     "type": {
                         "is_bind_type": true,
@@ -6766,6 +6957,201 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "SimulationState"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "property",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "SpeedSettingsProperty"
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "get",
+                    "privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "variant",
+                            "variant_types": [
+                                {
+                                    "is_bind_type": false,
+                                    "is_errorable": false,
+                                    "name": "float",
+                                    "valid_range": {
+                                        "max": 2147483647,
+                                        "min": -2147483648
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "arguments": [],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getAll",
+                    "privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "key_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "string"
+                        },
+                        "name": "map",
+                        "value_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "optional",
+                            "optional_type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "variant",
+                                "variant_types": [
+                                    {
+                                        "is_bind_type": false,
+                                        "is_errorable": false,
+                                        "name": "float",
+                                        "valid_range": {
+                                            "max": 2147483647,
+                                            "min": -2147483648
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "property",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "SpeedSettingsProperty"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "value",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "variant",
+                                "variant_types": [
+                                    {
+                                        "is_bind_type": false,
+                                        "is_errorable": false,
+                                        "name": "float",
+                                        "valid_range": {
+                                            "max": 2147483647,
+                                            "min": -2147483648
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "set",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "properties",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "key_type": {
+                                    "is_bind_type": false,
+                                    "is_errorable": false,
+                                    "name": "string"
+                                },
+                                "name": "map",
+                                "value_type": {
+                                    "is_bind_type": false,
+                                    "is_errorable": false,
+                                    "name": "optional",
+                                    "optional_type": {
+                                        "is_bind_type": false,
+                                        "is_errorable": false,
+                                        "name": "variant",
+                                        "variant_types": [
+                                            {
+                                                "is_bind_type": false,
+                                                "is_errorable": false,
+                                                "name": "float",
+                                                "valid_range": {
+                                                    "max": 2147483647,
+                                                    "min": -2147483648
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "setAll",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                }
+            ],
+            "name": "SpeedSettings",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "SpeedSettings"
             }
         },
         {
@@ -10613,6 +10999,55 @@
                 {
                     "is_read_only": true,
                     "is_static": true,
+                    "name": "X",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Axis"
+                    },
+                    "value": 1
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Y",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Axis"
+                    },
+                    "value": 2
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Z",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Axis"
+                    },
+                    "value": 4
+                }
+            ],
+            "name": "Axis"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Disabled",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Disabled"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
                     "name": "Mask",
                     "type": {
                         "is_bind_type": false,
@@ -11026,6 +11461,17 @@
                 {
                     "is_read_only": true,
                     "is_static": true,
+                    "name": "ShowCompass",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "ShowCompass"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
                     "name": "ShowInvisibleBlocks",
                     "type": {
                         "is_bind_type": false,
@@ -11207,6 +11653,17 @@
                         "name": "PaintMode"
                     },
                     "value": 1
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Smooth",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PaintMode"
+                    },
+                    "value": 2
                 }
             ],
             "name": "PaintMode"
@@ -11222,7 +11679,7 @@
                         "is_errorable": false,
                         "name": "Plane"
                     },
-                    "value": 0
+                    "value": 1
                 },
                 {
                     "is_read_only": true,
@@ -11233,7 +11690,7 @@
                         "is_errorable": false,
                         "name": "Plane"
                     },
-                    "value": 1
+                    "value": 2
                 },
                 {
                     "is_read_only": true,
@@ -11244,7 +11701,7 @@
                         "is_errorable": false,
                         "name": "Plane"
                     },
-                    "value": 2
+                    "value": 4
                 }
             ],
             "name": "Plane"
@@ -11532,6 +11989,22 @@
                 }
             ],
             "name": "ProjectExportType"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "FlySpeedMultiplier",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "FlySpeedMultiplier"
+                }
+            ],
+            "name": "SpeedSettingsProperty"
         },
         {
             "constants": [
@@ -14221,7 +14694,36 @@
                 }
             ],
             "name": "WidgetComponentGizmoOptions",
-            "properties": [],
+            "properties": [
+                {
+                    "is_read_only": false,
+                    "name": "axes",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "Axis"
+                        }
+                    }
+                },
+                {
+                    "is_read_only": false,
+                    "name": "enablePlanes",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "boolean"
+                        }
+                    }
+                }
+            ],
             "type": {
                 "is_bind_type": true,
                 "is_errorable": false,

@@ -44,7 +44,7 @@ export enum TimeOfDay { Day = 1000, Midnight = 18000, Night = 13000, Noon = 6000
 export enum WatchdogTerminateReason { Hang = "Hang", StackOverflow = "StackOverflow"};
 export enum WeatherType { Clear = "Clear", Rain = "Rain", Thunder = "Thunder"};
 
-// Interfaces - 68
+// Interfaces - 69
 export interface BiomeSearchOptions { boundingSize?: Vector3};
 export interface BlockCustomComponent { beforeOnPlayerPlace?: (arg0: BlockComponentPlayerPlaceBeforeEvent)=>void; onEntityFallOn?: (arg0: BlockComponentEntityFallOnEvent)=>void; onPlace?: (arg0: BlockComponentOnPlaceEvent)=>void; onPlayerDestroy?: (arg0: BlockComponentPlayerDestroyEvent)=>void; onPlayerInteract?: (arg0: BlockComponentPlayerInteractEvent)=>void; onRandomTick?: (arg0: BlockComponentRandomTickEvent)=>void; onStepOff?: (arg0: BlockComponentStepOffEvent)=>void; onStepOn?: (arg0: BlockComponentStepOnEvent)=>void; onTick?: (arg0: BlockComponentTickEvent)=>void};
 export interface BlockEventOptions { blockTypes?: string[]; permutations?: BlockPermutation[]};
@@ -58,11 +58,12 @@ export interface CameraDefaultOptions { easeOptions: CameraEaseOptions};
 export interface CameraEaseOptions { easeTime?: number; easeType?: EasingType};
 export interface CameraFadeOptions { fadeColor?: RGB; fadeTime?: CameraFadeTimeOptions};
 export interface CameraFadeTimeOptions { fadeInTime: number; fadeOutTime: number; holdTime: number};
-export interface CameraFixedBoomOptions { viewOffset?: Vector2};
+export interface CameraFixedBoomOptions { entityOffset?: Vector3; viewOffset?: Vector2};
 export interface CameraSetFacingOptions { easeOptions?: CameraEaseOptions; facingEntity: Entity; location?: Vector3};
 export interface CameraSetLocationOptions { easeOptions?: CameraEaseOptions; location: Vector3};
 export interface CameraSetPosOptions { easeOptions?: CameraEaseOptions; facingLocation: Vector3; location?: Vector3};
 export interface CameraSetRotOptions { easeOptions?: CameraEaseOptions; location?: Vector3; rotation: Vector2};
+export interface CameraTargetOptions { offsetFromTargetCenter?: Vector3; targetEntity: Entity};
 export interface CompoundBlockVolumeItem { action?: CompoundBlockVolumeAction; locationRelativity?: CompoundBlockVolumePositionRelativity; volume: BlockVolume};
 export interface DefinitionModifier { addedComponentGroups: string[]; removedComponentGroups: string[]; triggers: Trigger[]};
 export interface DimensionLocation { dimension: Dimension; x: number; y: number; z: number};
@@ -166,7 +167,7 @@ export class BoundingBoxUtils { public static createValid(min: Vector3, max: Vec
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ButtonPushAfterEvent extends BlockEvent{ public readonly source: Entity; private constructor();};
 export class ButtonPushAfterEventSignal { public subscribe(callback: (arg0: ButtonPushAfterEvent)=>void): (arg0: ButtonPushAfterEvent)=>void; public unsubscribe(callback: (arg0: ButtonPushAfterEvent)=>void): void; private constructor();};
-export class Camera { public clear(): void; public fade(fadeCameraOptions?: CameraFadeOptions): void; public setCamera(cameraPreset: string, setOptions?: CameraDefaultOptions | CameraFixedBoomOptions | CameraSetFacingOptions | CameraSetLocationOptions | CameraSetPosOptions | CameraSetRotOptions): void; private constructor();};
+export class Camera { public clear(): void; public fade(fadeCameraOptions?: CameraFadeOptions): void; public setCamera(cameraPreset: string, setOptions?: CameraDefaultOptions | CameraFixedBoomOptions | CameraSetFacingOptions | CameraSetLocationOptions | CameraSetPosOptions | CameraSetRotOptions | CameraTargetOptions): void; private constructor();};
 export class ChatSendAfterEvent { public readonly message: string; public readonly sender: Player; public readonly targets?: Player[]; private constructor();};
 export class ChatSendAfterEventSignal { public subscribe(callback: (arg0: ChatSendAfterEvent)=>void): (arg0: ChatSendAfterEvent)=>void; public unsubscribe(callback: (arg0: ChatSendAfterEvent)=>void): void; private constructor();};
 export class ChatSendBeforeEvent { public cancel: boolean; public readonly message: string; public readonly sender: Player; public readonly targets?: Player[]; private constructor();};
