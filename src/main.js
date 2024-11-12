@@ -6,6 +6,7 @@ import { SaveWorkspaceContent } from "./content_saver.js";
 import { resolve } from "node:path";
 import { GENERATORS_FLAGS } from "./flags/index.js";
 import { GENERAL_README } from "../DOCUMENTATION/gen.mjs";
+import { createPost } from "./discord/index.js";
 let performanceTime = Date.now();
 // Calling Main EntryPont
 Main()
@@ -164,6 +165,7 @@ async function Main(){
         return -1;
     }
 
+    createPost("1150152535475240991","Hello World")
 
     groupEnd();
     return 0;
