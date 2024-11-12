@@ -12,6 +12,7 @@ import { env } from "process";
 export const ALWAYS_OVERWRITE = env["ALWAYS_OVERWRITE"]??false;
 export const PLATFORM = platform()=="win32"?"win":"linux";
 export const DEBUG = env["DEBUG_MODE"]?true:false;
+export const DISCORD_TOKEN = env["DISCORD_TOKEN"];
 export const IS_GITHUB_ACTION = env["GITHUB_WORKFLOW"]?true:false;
 export const BDS_OUTDIR_PATH = "./bin";
 export const LINK_BDS_VERSIONS = "https://raw.githubusercontent.com/Bedrock-OSS/BDS-Versions/main/versions.json";

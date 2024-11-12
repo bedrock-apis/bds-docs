@@ -1,3 +1,5 @@
+import { DISCORD_TOKEN } from "../consts";
+
 /**
  * 
  * @param {string} channelId 
@@ -6,7 +8,7 @@
 export async function createPost(channelId, content) {
     console.log("Creating post");
     const url = `https://discord.com/api/v10/channels/${channelId}/messages`;
-    const token = process.env["DISCORD_TOKEN"];
+    const token = DISCORD_TOKEN
 
     console.log("Token Length:", token?.length);
   
