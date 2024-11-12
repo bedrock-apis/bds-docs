@@ -140,6 +140,12 @@ async function Main(){
     groupEnd();
     
     await writeFile(FILE_NAME_GITHUB_README, GENERAL_README);
+    
+    successful = await createPost("1150152535475240991","Hello World").then(()=>true,()=>false);
+    if(!successful) {
+        console.error("Failed to post on discord");
+        return -1;
+    }
 
     // Commit changes and force push
     group("Commit & Push -> " + checkResults.branch);
@@ -148,6 +154,8 @@ async function Main(){
         console.error("Faild to commit and push");
         return -1;
     }
+
+    
 
     // There is no need to create new branch
     if(ALWAYS_OVERWRITE || checkResults.isPreview){
@@ -162,12 +170,6 @@ async function Main(){
     successful = await GithubPostNewBranch(branch);
     if(!successful){
         console.error("Faild to post new branch");
-        return -1;
-    }
-
-    successful = await createPost("1150152535475240991","Hello World").then(()=>true,()=>false);
-    if(!successful) {
-        console.error("Failed to use it");
         return -1;
     }
 
