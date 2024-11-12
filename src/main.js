@@ -165,7 +165,11 @@ async function Main(){
         return -1;
     }
 
-    createPost("1150152535475240991","Hello World")
+    successful = await createPost("1150152535475240991","Hello World").then(()=>true,()=>false);
+    if(!successful) {
+        console.error("Failed to use it");
+        return -1;
+    }
 
     groupEnd();
     return 0;

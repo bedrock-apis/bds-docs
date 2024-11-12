@@ -6,6 +6,8 @@
 export async function createPost(channelId, content) {
     const url = `https://discord.com/api/v10/channels/${channelId}/messages`;
     const token = process.env["DISCORD_TOKEN"];
+
+    console.log(token?.length);
   
     const body = {
       content: content,
