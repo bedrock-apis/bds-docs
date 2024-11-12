@@ -4,10 +4,11 @@
  * @param {string} content 
  */
 export async function createPost(channelId, content) {
+    console.log("Creating post");
     const url = `https://discord.com/api/v10/channels/${channelId}/messages`;
     const token = process.env["DISCORD_TOKEN"];
 
-    console.log(token?.length);
+    console.log("Token Length:", token?.length);
   
     const body = {
       content: content,
@@ -24,6 +25,7 @@ export async function createPost(channelId, content) {
       });
   
       if (!response.ok) {
+        console.error(response.statusText);
         throw new Error(`Error: ${response.statusText}`);
       }
   
