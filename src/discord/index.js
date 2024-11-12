@@ -1,4 +1,4 @@
-import { DISCORD_TOKEN } from "../consts";
+import { DISCORD_TOKEN } from "../consts.js";
 
 /**
  * 
