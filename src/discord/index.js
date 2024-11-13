@@ -7,7 +7,7 @@ import { DISCORD_TOKEN } from "../consts.js";
  */
 export async function createPost(channelId, content) {
     console.log("Creating post");
-    const url = `https://discord.com/api/v14/channels/${channelId}/messages`;
+    const url = `https://discord.com/api/v14/channels/${channelId}/threads`;
     const token = DISCORD_TOKEN
 
     console.log("Token Length:", token?.length);
