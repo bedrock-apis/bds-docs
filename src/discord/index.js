@@ -7,13 +7,14 @@ import { DISCORD_TOKEN } from "../consts.js";
  */
 export async function createPost(channelId, content) {
     console.log("Creating post");
-    const url = `https://discord.com/api/v10/channels/${channelId}/messages`;
+    const url = `https://discord.com/api/v14/channels/${channelId}/messages`;
     const token = DISCORD_TOKEN
 
     console.log("Token Length:", token?.length);
   
     const body = {
-      content: content,
+      name: "New Update",
+      message: {content},
     };
   
     try {
