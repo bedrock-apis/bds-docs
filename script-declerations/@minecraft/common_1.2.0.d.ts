@@ -11,8 +11,9 @@ export interface NumberRange { max: number; min: number};
 
 // Functions - 0
 
-// Errors - 4
+// Errors - 5
 export class ArgumentOutOfBoundsError extends Error{ public readonly maxValue: number; public readonly minValue: number; public readonly value: number; private constructor();};
 export class EngineError extends Error{ private constructor();};
 export class InvalidArgumentError extends Error{ public readonly index: number; private constructor();};
 export class PropertyOutOfBoundsError extends Error{ public readonly maxValue: number; public readonly minValue: number; public readonly value: number; private constructor();};
+export class RuntimeConditionError extends Error{ private constructor();};
