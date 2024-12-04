@@ -1,7 +1,7 @@
 import * as _1e from '@minecraft/common';
 import * as _2c from '@minecraft/server';
 
-// Enums - 27
+// Enums - 28
 export enum Axis { X = 1, Y = 2, Z = 4};
 export enum BlockMaskListType { Disabled = "Disabled", Mask = "Mask", Replace = "Replace"};
 export enum BlockPaletteItemType { Probability = 1, Simple = 0};
@@ -16,6 +16,7 @@ export enum GamePublishSetting { FriendsOfFriends = 3, FriendsOnly = 2, InviteOn
 export enum GraphicsSettingsProperty { ShowChunkBoundaries = "ShowChunkBoundaries", ShowCompass = "ShowCompass", ShowInvisibleBlocks = "ShowInvisibleBlocks"};
 export enum InputModifier { Alt = 2, Any = 15, Control = 4, None = 1, Shift = 8, Unused = 0};
 export enum KeyInputType { Invalid = 0, Press = 1, Release = 2};
+export enum MouseActionCategory { Button = 1, Drag = 3, Invalid = 0, Wheel = 2};
 export enum PaintCompletionState { Canceled = 1, Failed = 2, Success = 0};
 export enum PaintMode { BlockPaint = 0, Flatten = 4, FreehandSelect = 1, Roughen = 3, Smooth = 2};
 export enum Plane { XY = 1, XZ = 2, YZ = 4};
@@ -92,7 +93,7 @@ export class ExtensionContext { public readonly afterEvents: ExtensionContextAft
 export class ExtensionContextAfterEvents { public readonly clipboardChange: ClipboardChangeAfterEventSignal; public readonly currentThemeChange: CurrentThemeChangeAfterEventSignal; public readonly currentThemeColorChange: CurrentThemeColorChangeAfterEventSignal; public readonly cursorPropertyChange: CursorPropertyChangeAfterEventSignal; public readonly modeChange: ModeChangeAfterEventSignal; public readonly primarySelectionChange: PrimarySelectionChangeAfterEventSignal; private constructor();};
 export class GraphicsSettings { public get(property: GraphicsSettingsProperty): (boolean | number | string | undefined); public getAll(): Record<string,boolean | number | string | undefined>; public set(property: GraphicsSettingsProperty, value: boolean | number | string): void; public setAll(properties: Record<string,boolean | number | string | undefined>): void; private constructor();};
 export class IBlockPaletteItem { public getBlock(): (_2c.BlockType | undefined); public getDisplayName(): (string | undefined); public getType(): BlockPaletteItemType; public setBlock(block: _2c.BlockPermutation | _2c.BlockType | string): void; private constructor();};
-export class InputService { public focusViewport(): void; public registerKeyBinding(contextId: string, bindingId: string, key: number, modifier: InputModifier, info: InputBindingInfo): void; public unregisterKeyBinding(controlId: string, bindingId: string): void; private constructor();};
+export class InputService { public focusViewport(): void; public registerKeyBinding(contextId: string, bindingId: string, key: number, modifier: InputModifier, info: InputBindingInfo): void; public registerMouseBinding(contextId: string, bindingId: string, mouseAction: MouseActionCategory): void; public unregisterKeyBinding(controlId: string, bindingId: string): void; public unregisterMouseBinding(controlId: string, bindingId: string): void; private constructor();};
 export class InternalPlayerServiceContext { public readonly dataStore: DataStore; public readonly dataTransfer: DataTransferManager; public readonly input: InputService; public readonly tickingArea: TickingAreaManager; private constructor();};
 export class Logger { public debug(message: string, properties?: LogProperties): void; public error(message: string, properties?: LogProperties): void; public info(message: string, properties?: LogProperties): void; public warning(message: string, properties?: LogProperties): void; private constructor();};
 export class MinecraftEditor { public readonly log: Logger; public readonly simulation: SimulationState; private constructor();};
