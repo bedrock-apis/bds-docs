@@ -21,10 +21,9 @@ jobs:
       with:
         node-version: '22'
         cache: 'npm'
-        cache-dependency-path: './package-lock.json'
     - name: Install NPM
       run: |
-        npm ci
+        npm i
     - name: Check Build Commit
       run: |
         npm run check-for-update

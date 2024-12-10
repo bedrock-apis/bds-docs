@@ -1,5 +1,5 @@
 /**
- * @import * as MD from "./ScriptModule.d.ts";
+ * @import * as MD from "./ScriptModule";
  * @typedef {IterableIterator<string | PrintableIterator>} PrintableIterator
  */
 
