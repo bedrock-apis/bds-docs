@@ -79,7 +79,7 @@ async function Main(): Promise<number>{
         for await(const entry of DirectoryTreeRemoval(
             ".",
             (f)=>{
-                return [".git/**/*",".git/"].some(s=>minimatch(f, s, {nocase: true}));
+                return [".git/**/*",".git/","node_modules/**/*"].some(s=>minimatch(f, s, {nocase: true}));
             }
             )){
             console.log("[REPO Clear] entry: " + entry);

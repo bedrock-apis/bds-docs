@@ -8,7 +8,6 @@ export async function * DirectoryTreeRemoval(dir: string, method: (file: string)
     const tasks: PromiseLike<any>[] = [];
     for(const file of FileTree(dir)) {
         if(method(file)) {
-            console.log("[Skipped Entry]: " + file);
             continue;
         }
         i++;
