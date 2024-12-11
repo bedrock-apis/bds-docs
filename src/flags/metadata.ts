@@ -1,5 +1,5 @@
 import { dirname, resolve } from "node:path";
-import { FileTree } from "../functions.js";
+import { FileTree, Panic, ReadFile, WriteFile } from "../functions";
 import { readFile, writeFile } from "node:fs/promises";
 import { existsSync, mkdirSync } from "node:fs";
 
@@ -11,12 +11,8 @@ export default {
     flagId: METADATA.name,
     description: description
 };
-/**
- * 
- * @param {string} inputDirPath
- * @returns {Promise<boolean>}
- */
-async function METADATA(inputDirPath) {
+
+async function METADATA(inputDirPath: string): Promise<number> {
     // Init
     const inputDir = resolve(inputDirPath, "docs");
     const tasks = [];
@@ -26,31 +22,29 @@ async function METADATA(inputDirPath) {
         Task(inputDir, file).catch(()=>false)
     );
 
-    // Return Only Succesfull Creations
+    // Return Only Successful Creations
     const results = (await Promise.all(tasks)).filter(s=>s);
 
     // Check if all tasks has successfully ended.
-    return tasks.length == results.length;
+    return tasks.length == results.length?0:-1;
 }
-/**
- * @param {string} input
- * @param {string} fileName
- * @returns {Promise<boolean>}
- */
-async function Task(input,fileName) {
+
+async function Task(input: string, fileName: string): Promise<number> {
 
     // Read File
-    /**@type {Buffer | string | null} */
-    let buffer = await readFile(resolve(input, fileName)).catch(()=>null);
+    let buffer: string | Buffer | null = await ReadFile(resolve(input, fileName)).catch(()=>null);
 
-    // Check if file was properly readed
-    if(buffer == null) return false;
+    // Check if file was properly read
+    if(buffer == null)
+        return Panic("Failed to load file: " + fileName);
 
     // Transform File content
-    if(fileName.endsWith(".json")) buffer = await TransformJsonModule(buffer);
+    if(fileName.endsWith(".json")) 
+        buffer = await TransformJsonModule(buffer.toString()).catch(e=>null);
 
     // Check if buffer is valid content
-    if(buffer == null) return false;
+    if(buffer == null) 
+        return Panic("Failed to transform file: " + fileName);
 
     const outFile = resolve(OUTPUT_FOLDER, fileName);
     const outDir = dirname(outFile);
@@ -59,25 +53,21 @@ async function Task(input,fileName) {
     if(!existsSync(outDir)) mkdirSync(outDir, {recursive: true});
 
     // Write File Content
-    let results = await writeFile(
+    let results = await WriteFile(
         outFile, 
         buffer
-    ).then(()=>true, ()=>false);
+    );
 
-    if(results) console.log("[METADATA] Generated: " + fileName);
+    if(!results) console.log("[METADATA] Generated: " + fileName);
     else console.log("[METADATA] Generation failed: " + fileName);
     
     // Returns if file was successfully created
     return results;
 }
 
-/**
- * @param {Buffer} input
- * @returns {Promise<Buffer | string>}
- */
-async function TransformJsonModule(input) {
-    // Parse Conent
-    const data = JSON.parse(input.toString());
+async function TransformJsonModule(input: string): Promise<string> {
+    // Parse Content
+    const data = JSON.parse(input);
     // Check if content was object
     if(typeof data == "object"){
         // Remove "minecraft_version" property if possible
