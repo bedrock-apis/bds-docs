@@ -4,7 +4,7 @@ import { GENERATORS } from "../src/flags/index";
 import { dirname, resolve } from "node:path";
 import { readFile } from "node:fs/promises";
 
-export const MAIN_DATA = await readFile(resolve(import.meta.dirname, "./__MAIN.md"));
+export const MAIN_DATA = await readFile("./DOCUMENTATION/__MAIN.md");
 let flagsInfo = "";
 const newline = "\n\r";
 
