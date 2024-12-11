@@ -1,6 +1,9 @@
+
 //@ts-ignore
 import {Extract} from "unzip-stream";
+
 import { pipeline } from "node:stream/promises";
+
 export async function FetchJson<T extends object = object>(target: string): Promise<T | null> {
     const response = await fetch(target);
     if(!response.ok) return null;
