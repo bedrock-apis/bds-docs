@@ -1,7 +1,7 @@
 import { resolve } from "node:path";
 import { FileTree, Panic, ReadFile } from "../functions";
 import { readFile } from "node:fs/promises";
-import { FILE_CONTENT_CURRENT_EXIST } from "../consts.js";
+import { FILE_CONTENT_CURRENT_EXIST } from "../consts";
 import type { ModuleDefaultExport } from ".";
 
 const description = `This flag generator creates a detailed mapping of script modules from the documentation files. It reads and processes JSON files to gather metadata about various script modules. This information is then organized and added to main the \`./exist.json\` file, ensuring that all relevant data about script modules, such as names, UUIDs, and versions, is accurately captured`;

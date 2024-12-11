@@ -1,11 +1,15 @@
+import blocks from "./data/blocks";
+import metadata from "./metadata";
+import module_mapping from "./module_mapping";
+import script_declaration from "./script_declaration";
 export type ModuleDefaultExport = {
     flagId: string,
     method: (dir: string)=>Promise<number>,
     description: string
 };
 export const GENERATORS: ModuleDefaultExport[] = [
-    (await import("./metadata")).default,
-    (await import("./module_mapping")).default,
-    (await import("./script_declaration")).default,
-    (await import("./data/blocks")).default
+    metadata,
+    module_mapping,
+    script_declaration,
+    blocks
 ];

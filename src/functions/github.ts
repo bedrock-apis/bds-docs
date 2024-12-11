@@ -1,7 +1,7 @@
-import { DEBUG, LOGIN_AS_EMAIL, LOGIN_AS_NAME } from "../consts.js";
+import { DEBUG, LOGIN_AS_EMAIL, LOGIN_AS_NAME } from "../consts";
 import type { BranchKind, VersionEngine, VersionFull } from "../types";
-import { InvokeProcess } from "./exec.js";
-import { GetEngineVersion, Panic } from "./utils.js";
+import { InvokeProcess } from "./exec";
+import { GetEngineVersion, Panic } from "./utils";
 let isLoggedIn = false;
 const InvokeGit = InvokeProcess.bind(this, "git");
 

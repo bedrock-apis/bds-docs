@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { platform } from "node:os";
-import { resolve } from "node:path";
+import { dirname, resolve } from "node:path";
 import { env } from "node:process";
 import { ExistJson, VersionEngine } from "./types";
 
@@ -32,6 +32,8 @@ export const FILE_CONTENT_GITIGNORE = readFileSync(FILE_NAME_GITIGNORE).toString
 export const WORKING_DIRECTORY = DEBUG?((env.HOMEDRIVE??"") + (env.HOMEPATH??"") + "\\_test"):".";
 export const TERMINAL_CREATE_GROUP = "::group::";
 export const TERMINAL_END_GROUP = "::endgroup::";
+export const BUNDLER_OUTPUT = import.meta.dirname;
+export const FILE_NAME_SCRIPT_API = "script_api.js";
 
 if(DEBUG) console.log("[DEBUG] Enabled: " + WORKING_DIRECTORY);
 export const FILE_CONTENT_CURRENT_EXIST: ExistJson = {

@@ -1,13 +1,12 @@
-import { group, groupEnd } from "console";
 import { ALWAYS_OVERWRITE, BDS_OUTDIR_PATH, FILE_CONTENT_BDS_TEST_CONFIG, FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_BDS_BINARY, FILE_NAME_BDS_TEST_CONFIG, FILE_NAME_GITHUB_README, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, GITHUB_REPO_NAME, IS_GITHUB_ACTION, LINK_BDS_CDN, LINK_BDS_VERSIONS, PLATFORM } from "./consts";
-import { DirectoryTreeRemoval, DownloadZipFile, FetchJson, GetEngineVersion, GithubCheckoutBranch, GithubCommitAndPush, GithubPostNewBranch, groupFinish, Panic, Success, WriteFile } from "./functions";
+import { DirectoryTreeRemoval, DownloadZipFile, FetchJson, GetEngineVersion, GithubCheckoutBranch, GithubCommitAndPush, GithubPostNewBranch, group, groupEnd, groupFinish, InvokeProcess, Panic, Success, WriteFile } from "./functions";
 import { GetRepositoryVersionIncompatibility } from "./helper";
 import type { BDSVersions } from "./types";
 import { SaveWorkspaceContent } from "./content_saver";
 import { minimatch } from "minimatch";
-import { resolve } from "path";
-import { InvokeProcess } from "./functions/exec";
+import { resolve } from "node:path";
 import { GENERATORS } from "./flags";
+//@ts-expect-error JS i know
 import { GENERAL_README } from "../DOCUMENTATION/gen.mjs";
 import { createPost } from "./discord";
 let performanceTime = Date.now();
@@ -54,7 +53,8 @@ async function Main(): Promise<number>{
     console.log(GITHUB_REPO_NAME, process.env);
 
     let successful = await GithubCheckoutBranch(checkResults.branch, true);
-    if(!successful) 
+    console.log(successful);
+    if(!successful)
         return Panic(`Failed to checkout branch: ${checkResults.branch}`);
     groupEnd();
 

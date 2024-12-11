@@ -2,6 +2,7 @@ import { dirname, resolve } from "node:path";
 import { createWriteStream, existsSync, mkdirSync } from "node:fs";
 import { Readable } from "node:stream";
 import { pipeline } from "node:stream/promises";
+//@ts-expect-error JS i know
 import { Printer } from "./ts-declarations/printers";
 import { FileTree, Panic, ReadFile } from "../functions";
 
@@ -17,7 +18,7 @@ export default {
 
 async function SCRIPT_DECLARATIONS(inputDirPath: string): Promise<number> {
     const inputDir = resolve(inputDirPath, "docs/script_modules");
-    const tasks = [];
+    const tasks: Promise<number>[] = [];
 
     // Task Factory for each file in the path tree
     for (const file of FileTree(inputDir)) tasks.push(

@@ -1,6 +1,6 @@
 import { resolve } from "node:path";
 import { FileTree, Panic, ReadFile, WriteFile } from "../../functions";
-import { DATA_OUTPUT_FOLDER } from "./consts.js";
+import { DATA_OUTPUT_FOLDER } from "./consts";
 import { existsSync, mkdirSync } from "node:fs";
 
 const OUTPUT_BLOCK_STATES = "block_states.json";
