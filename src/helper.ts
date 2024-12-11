@@ -12,7 +12,11 @@ export type VersionIncompatibility = {
 };
 export async function GetRepositoryVersionIncompatibility(versions: BDSVersions): Promise<VersionIncompatibility | null>{
     // Avoid checking if always overwrite is set to true
-    if(ALWAYS_OVERWRITE) return null;
+    if(ALWAYS_OVERWRITE) return {
+        branch: GITHUB_STABLE_BRANCH_NAME,
+        version: versions.windows.stable,
+        usePreview: false
+    };
 
     // Check for stable branch
     let data = await GetRepositoryExistJson(GITHUB_STABLE_BRANCH_NAME);
