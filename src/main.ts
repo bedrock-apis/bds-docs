@@ -50,11 +50,8 @@ async function Main(): Promise<number>{
     // Login and Checkout that specific branch
     group(`Branch checkout: ${checkResults.branch} IsForced: ${true}`);
 
-    console.log(GITHUB_REPO_NAME, process.env);
-
-    let successful = await GithubCheckoutBranch(checkResults.branch, true);
-    console.log(successful);
-    if(!successful)
+    let failed = await GithubCheckoutBranch(checkResults.branch, true);
+    if(failed)
         return Panic(`Failed to checkout branch: ${checkResults.branch}`);
     groupEnd();
 
@@ -77,7 +74,7 @@ async function Main(): Promise<number>{
     // Commented bc its dangerous to run this on local machine so please be sure its executed only via Github Action
     // Maybe Add some checks for GITHUB specific ENV FILES like GITHUB_TOKEN or something
     if(IS_GITHUB_ACTION){
-        group("Clear Repo Bruteforce")
+        group("Clear Repo Brute force")
         for await(const entry of DirectoryTreeRemoval(
             ".",
             (f)=>{
@@ -102,15 +99,15 @@ async function Main(): Promise<number>{
 
     
     // Once we cleared all the stuff, we should write updated version of .gitignore 
-    successful = await WriteFile(FILE_NAME_GITIGNORE, FILE_CONTENT_GITIGNORE);
-    if(!successful)
+    failed = await WriteFile(FILE_NAME_GITIGNORE, FILE_CONTENT_GITIGNORE);
+    if(failed)
         return Panic("Failed to write .gitignore file");
 
 
     // Fetch BDS Content
     group(`Download of Bedrock Dedicated Server -> ${BDS_OUTDIR_PATH}`);
-    successful = await DownloadZipFile(`${LINK_BDS_CDN}/bin-${PLATFORM}${checkResults.usePreview?"-preview":""}/bedrock-server-${checkResults.version}.zip`, BDS_OUTDIR_PATH);
-    if(!successful) 
+    failed = await DownloadZipFile(`${LINK_BDS_CDN}/bin-${PLATFORM}${checkResults.usePreview?"-preview":""}/bedrock-server-${checkResults.version}.zip`, BDS_OUTDIR_PATH);
+    if(failed) 
         return Panic("Failed to download BDS");
 
     console.log("Bedrock Dedicated Server Downloaded Successfully");
@@ -130,8 +127,8 @@ async function Main(): Promise<number>{
 
     // Add Test config to generate metadata
     //await writeFile(resolve(BDS_OUTDIR_PATH, FILE_NAME_BDS_TEST_CONFIG), FILE_CONTENT_BDS_TEST_CONFIG);
-    successful = await WriteFile(resolve(BDS_OUTDIR_PATH, FILE_NAME_BDS_TEST_CONFIG), FILE_CONTENT_BDS_TEST_CONFIG);
-    if(!successful)
+    failed = await WriteFile(resolve(BDS_OUTDIR_PATH, FILE_NAME_BDS_TEST_CONFIG), FILE_CONTENT_BDS_TEST_CONFIG);
+    if(!failed)
         return Panic("Failed to write test_config.json");
 
 
@@ -140,7 +137,7 @@ async function Main(): Promise<number>{
     // Execute BDS Executable
     group(`Running Bedrock Dedicated Server -> ${BDS_OUTDIR_PATH}`);
     let exeSuccessful = await InvokeProcess(resolve(BDS_OUTDIR_PATH, FILE_NAME_BDS_BINARY), [], 60_000); //1min limit
-    if(!exeSuccessful.exitCode)
+    if(exeSuccessful.exitCode)
         return Panic("Failed to invoke BDS with test_config.json: " + exeSuccessful.error);
 
     console.log("BDS has quit Successfully");
@@ -161,9 +158,9 @@ async function Main(): Promise<number>{
     for (const flag of GENERATORS) {
         group(`[${++temp} / ${GENERATORS.length}] Generator ${flag.flagId}`);
 
-        successful = await flag.method(BDS_OUTDIR_PATH).then(()=>0,Panic);
+        failed = await flag.method(BDS_OUTDIR_PATH).then(()=>0,Panic);
 
-        if(!successful)
+        if(failed)
             return Panic("Generator Failed " + flag.flagId);
 
         // Once generator ends, we can assign the generator flag to exist.json
@@ -176,29 +173,27 @@ async function Main(): Promise<number>{
     // At the end write the exist.json content
     group("Writing " + FILE_NAME_GITHUB_REPO_EXISTS);
     const existContent = JSON.stringify(FILE_CONTENT_CURRENT_EXIST, null, 3);
-    successful = await WriteFile(FILE_NAME_GITHUB_REPO_EXISTS, existContent);
+    failed = await WriteFile(FILE_NAME_GITHUB_REPO_EXISTS, existContent);
 
-    if(!successful)
+    if(failed)
         return Panic("Failed to write exist.json file");
 
     console.log(existContent);
     groupEnd();
     
-    successful = await WriteFile(FILE_NAME_GITHUB_README, GENERAL_README);
-    if(!successful)
+    failed = await WriteFile(FILE_NAME_GITHUB_README, GENERAL_README);
+    if(failed)
         return Panic("Failed to write README.md file");
 
-    successful = await createPost("1150152535475240991","Hello World").then(()=>0, Panic);
-    if(!successful)
+    failed = await createPost("1150152535475240991","Hello World").then(()=>0, Panic);
+    if(failed)
         return Panic("Failed to post on discord");
 
     // Commit changes and force push
     group("Commit & Push -> " + checkResults.branch);
-    successful = await GithubCommitAndPush(checkResults.branch, checkResults.version, checkResults.usePreview);
-    if(!successful){
-        console.error("Failed to commit and push");
-        return -1;
-    }
+    failed = await GithubCommitAndPush(checkResults.branch, checkResults.version, checkResults.usePreview);
+    if(failed) 
+        return Panic("Failed to commit and push");
     
     // There is no need to create new branch
     if(ALWAYS_OVERWRITE || checkResults.usePreview){
@@ -207,8 +202,8 @@ async function Main(): Promise<number>{
     }
 
     // Create New Branch for stable release
-    successful = await GithubPostNewBranch(`${checkResults.branch}-${GetEngineVersion(checkResults.version)}`);
-    if(!successful)
+    failed = await GithubPostNewBranch(`${checkResults.branch}-${GetEngineVersion(checkResults.version)}`);
+    if(failed)
         return Panic("Failed to post new branch");
 
 
