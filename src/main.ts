@@ -66,8 +66,9 @@ async function Main(): Promise<number>{
 
 
     // Load Required File For Later Use
-    await SaveWorkspaceContent();
-
+    failed = await SaveWorkspaceContent();
+    if(failed)
+        return Panic("Failed to save workspace content");
 
 
     // Now we should clear whole working directory, so we could upload generated files
