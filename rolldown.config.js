@@ -6,6 +6,7 @@ export default defineConfig([
     input: 'src/main.ts',
     external: [
       /node:/,
+      "unzip-steam",
       "minimatch"
     ],
     output: {
@@ -15,6 +16,7 @@ export default defineConfig([
   {
     input: './DOCUMENTATION/gen.mjs',
     external: [
+      "unzip-steam",
       /node:/g
     ],
     output: {
