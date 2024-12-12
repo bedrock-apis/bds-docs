@@ -9,51 +9,46 @@
                 "type": {
                     "title": "PositionalBlockRuleAxis",
                     "type": "string",
+                    "const": "minecraft:passthrough",
                     "enum": [
                         "minecraft:passthrough",
                         "minecraft:append_loot"
-                    ],
-                    "$metaProperties": {}
+                    ]
                 }
-            },
-            "$metaProperties": {}
+            }
         },
         "1134690608": {
             "title": "struct SharedTypes::v1_21_20::JigsawStructure::ProcessorRule::AppendLoot",
             "type": "object",
             "properties": {
                 "loot_table": {
-                    "type": "string",
-                    "$metaProperties": {}
+                    "type": "string"
                 },
                 "type": {
                     "title": "PositionalBlockRuleAxis",
                     "type": "string",
+                    "const": "minecraft:append_loot",
                     "enum": [
                         "minecraft:passthrough",
                         "minecraft:append_loot"
-                    ],
-                    "$metaProperties": {}
+                    ]
                 }
             },
             "required": [
                 "loot_table"
-            ],
-            "$metaProperties": {}
+            ]
         },
         "1218029234": {
             "title": "struct SharedTypes::v1_21_20::JigsawStructureProcessorList::Description",
             "type": "object",
             "properties": {
                 "identifier": {
-                    "type": "string",
-                    "$metaProperties": {}
+                    "type": "string"
                 }
             },
             "required": [
                 "identifier"
-            ],
-            "$metaProperties": {}
+            ]
         },
         "1354340864": {
             "title": "struct SharedTypes::v1_21_20::ConstantIntProvider",
@@ -62,21 +57,19 @@
                 "type": {
                     "title": "enum SharedTypes::v1_21_20::IntProviderType",
                     "type": "string",
+                    "const": "constant",
                     "enum": [
                         "constant",
                         "uniform"
-                    ],
-                    "$metaProperties": {}
+                    ]
                 },
                 "value": {
-                    "type": "integer",
-                    "$metaProperties": {}
+                    "type": "integer"
                 }
             },
             "required": [
                 "value"
-            ],
-            "$metaProperties": {}
+            ]
         },
         "1556792771": {
             "title": "struct SharedTypes::v1_21_20::JigsawStructure::ProcessorRule::AlwaysTruePos",
@@ -85,42 +78,38 @@
                 "predicate_type": {
                     "title": "PositionalBlockRuleAxis",
                     "type": "string",
+                    "const": "minecraft:always_true",
                     "enum": [
                         "minecraft:always_true",
                         "minecraft:axis_aligned_linear_pos"
-                    ],
-                    "$metaProperties": {}
+                    ]
                 }
-            },
-            "$metaProperties": {}
+            }
         },
         "1740413124": {
             "title": "struct SharedTypes::v1_21_20::UniformIntProvider",
             "type": "object",
             "properties": {
                 "max_inclusive": {
-                    "type": "integer",
-                    "$metaProperties": {}
+                    "type": "integer"
                 },
                 "min_inclusive": {
-                    "type": "integer",
-                    "$metaProperties": {}
+                    "type": "integer"
                 },
                 "type": {
                     "title": "enum SharedTypes::v1_21_20::IntProviderType",
                     "type": "string",
+                    "const": "uniform",
                     "enum": [
                         "constant",
                         "uniform"
-                    ],
-                    "$metaProperties": {}
+                    ]
                 }
             },
             "required": [
                 "max_inclusive",
                 "min_inclusive"
-            ],
-            "$metaProperties": {}
+            ]
         },
         "1810898542": {
             "title": "struct SharedTypes::v1_21_20::JigsawStructure::Processors::ProtectedBlock",
@@ -129,48 +118,44 @@
                 "processor_type": {
                     "title": "enum SharedTypes::v1_21_20::JigsawStructure::Processors::Type",
                     "type": "string",
+                    "const": "minecraft:protected_blocks",
                     "enum": [
                         "minecraft:block_ignore",
                         "minecraft:rule",
                         "minecraft:capped",
                         "minecraft:protected_blocks"
-                    ],
-                    "$metaProperties": {}
+                    ]
                 },
                 "value": {
-                    "type": "string",
-                    "$metaProperties": {}
+                    "type": "string"
                 }
             },
             "required": [
                 "value"
-            ],
-            "$metaProperties": {}
+            ]
         },
         "2198589344": {
             "title": "struct SharedTypes::v1_21_20::JigsawStructure::ProcessorRule::BlockMatch",
             "type": "object",
             "properties": {
                 "block": {
-                    "type": "string",
-                    "$metaProperties": {}
+                    "type": "string"
                 },
                 "predicate_type": {
                     "title": "PositionalBlockRuleAxis",
                     "type": "string",
+                    "const": "minecraft:block_match",
                     "enum": [
                         "minecraft:always_true",
                         "minecraft:block_match",
                         "minecraft:random_block_match",
                         "minecraft:tag_match"
-                    ],
-                    "$metaProperties": {}
+                    ]
                 }
             },
             "required": [
                 "block"
-            ],
-            "$metaProperties": {}
+            ]
         },
         "2581260060": {
             "title": "struct SharedTypes::v1_21_20::JigsawStructure::Processors::Capped",
@@ -187,8 +172,7 @@
                         {
                             "$ref": "#/definitions/1810898542"
                         }
-                    ],
-                    "$metaProperties": {}
+                    ]
                 },
                 "limit": {
                     "oneOf": [
@@ -201,26 +185,24 @@
                         {
                             "$ref": "#/definitions/1740413124"
                         }
-                    ],
-                    "$metaProperties": {}
+                    ]
                 },
                 "processor_type": {
                     "title": "enum SharedTypes::v1_21_20::JigsawStructure::Processors::Type",
                     "type": "string",
+                    "const": "minecraft:capped",
                     "enum": [
                         "minecraft:block_ignore",
                         "minecraft:rule",
                         "minecraft:capped",
                         "minecraft:protected_blocks"
-                    ],
-                    "$metaProperties": {}
+                    ]
                 }
             },
             "required": [
                 "delegate",
                 "limit"
-            ],
-            "$metaProperties": {}
+            ]
         },
         "3016468321": {
             "title": "struct SharedTypes::v1_21_20::JigsawStructure::Processors::BlockRules",
@@ -229,27 +211,25 @@
                 "processor_type": {
                     "title": "enum SharedTypes::v1_21_20::JigsawStructure::Processors::Type",
                     "type": "string",
+                    "const": "minecraft:rule",
                     "enum": [
                         "minecraft:block_ignore",
                         "minecraft:rule",
                         "minecraft:capped",
                         "minecraft:protected_blocks"
-                    ],
-                    "$metaProperties": {}
+                    ]
                 },
                 "rules": {
                     "title": "sequence container",
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/3035388266"
-                    },
-                    "$metaProperties": {}
+                    }
                 }
             },
             "required": [
                 "rules"
-            ],
-            "$metaProperties": {}
+            ]
         },
         "3034820683": {
             "title": "struct SharedTypes::v1_21_20::JigsawStructure::ProcessorRule::TagMatch",
@@ -258,23 +238,21 @@
                 "predicate_type": {
                     "title": "PositionalBlockRuleAxis",
                     "type": "string",
+                    "const": "minecraft:tag_match",
                     "enum": [
                         "minecraft:always_true",
                         "minecraft:block_match",
                         "minecraft:random_block_match",
                         "minecraft:tag_match"
-                    ],
-                    "$metaProperties": {}
+                    ]
                 },
                 "tag": {
-                    "type": "string",
-                    "$metaProperties": {}
+                    "type": "string"
                 }
             },
             "required": [
                 "tag"
-            ],
-            "$metaProperties": {}
+            ]
         },
         "3035388266": {
             "title": "struct SharedTypes::v1_21_20::JigsawStructure::Rule",
@@ -288,8 +266,7 @@
                         {
                             "$ref": "#/definitions/1134690608"
                         }
-                    ],
-                    "$metaProperties": {}
+                    ]
                 },
                 "input_predicate": {
                     "oneOf": [
@@ -305,8 +282,7 @@
                         {
                             "$ref": "#/definitions/3034820683"
                         }
-                    ],
-                    "$metaProperties": {}
+                    ]
                 },
                 "location_predicate": {
                     "oneOf": [
@@ -322,12 +298,10 @@
                         {
                             "$ref": "#/definitions/3034820683"
                         }
-                    ],
-                    "$metaProperties": {}
+                    ]
                 },
                 "output_state": {
-                    "$ref": "#/definitions/3076687790",
-                    "$metaProperties": {}
+                    "$ref": "#/definitions/3076687790"
                 },
                 "position_predicate": {
                     "oneOf": [
@@ -337,14 +311,12 @@
                         {
                             "$ref": "#/definitions/3839910888"
                         }
-                    ],
-                    "$metaProperties": {}
+                    ]
                 }
             },
             "required": [
                 "output_state"
-            ],
-            "$metaProperties": {}
+            ]
         },
         "3076687790": {
             "title": "Block Specifier",
@@ -356,8 +328,7 @@
                     "type": "object",
                     "properties": {
                         "name": {
-                            "type": "string",
-                            "$metaProperties": {}
+                            "type": "string"
                         },
                         "states": {
                             "title": "associative container",
@@ -374,16 +345,14 @@
                                         "type": "string"
                                     }
                                 ]
-                            },
-                            "$metaProperties": {}
+                            }
                         }
                     },
                     "required": [
                         "name"
                     ]
                 }
-            ],
-            "$metaProperties": {}
+            ]
         },
         "3518228880": {
             "title": "struct SharedTypes::v1_21_20::JigsawStructure::Processors::BlockIgnore",
@@ -394,48 +363,44 @@
                     "type": "array",
                     "items": {
                         "type": "string"
-                    },
-                    "$metaProperties": {}
+                    }
                 },
                 "processor_type": {
                     "title": "enum SharedTypes::v1_21_20::JigsawStructure::Processors::Type",
                     "type": "string",
+                    "const": "minecraft:block_ignore",
                     "enum": [
                         "minecraft:block_ignore",
                         "minecraft:rule",
                         "minecraft:capped",
                         "minecraft:protected_blocks"
-                    ],
-                    "$metaProperties": {}
+                    ]
                 }
             },
             "required": [
                 "blocks"
-            ],
-            "$metaProperties": {}
+            ]
         },
         "3523914459": {
             "title": "struct SharedTypes::v1_21_20::JigsawStructure::ProcessorRule::RandomBlockMatch",
             "type": "object",
             "properties": {
                 "block": {
-                    "type": "string",
-                    "$metaProperties": {}
+                    "type": "string"
                 },
                 "predicate_type": {
                     "title": "PositionalBlockRuleAxis",
                     "type": "string",
+                    "const": "minecraft:random_block_match",
                     "enum": [
                         "minecraft:always_true",
                         "minecraft:block_match",
                         "minecraft:random_block_match",
                         "minecraft:tag_match"
-                    ],
-                    "$metaProperties": {}
+                    ]
                 },
                 "probability": {
                     "type": "number",
-                    "$metaProperties": {},
                     "minimum": 0,
                     "exclusiveMaximum": 1
                 }
@@ -443,8 +408,7 @@
             "required": [
                 "block",
                 "probability"
-            ],
-            "$metaProperties": {}
+            ]
         },
         "3839910888": {
             "title": "struct SharedTypes::v1_21_20::JigsawStructure::ProcessorRule::AxisAlignedLinear",
@@ -457,42 +421,36 @@
                         "x",
                         "y",
                         "z"
-                    ],
-                    "$metaProperties": {}
+                    ]
                 },
                 "max_chance": {
                     "type": "number",
-                    "$metaProperties": {},
                     "minimum": 0,
                     "exclusiveMaximum": 1
                 },
                 "max_dist": {
                     "type": "integer",
-                    "$metaProperties": {},
                     "minimum": 0
                 },
                 "min_chance": {
                     "type": "number",
-                    "$metaProperties": {},
                     "minimum": 0,
                     "exclusiveMaximum": 1
                 },
                 "min_dist": {
                     "type": "integer",
-                    "$metaProperties": {},
                     "minimum": 0
                 },
                 "predicate_type": {
                     "title": "PositionalBlockRuleAxis",
                     "type": "string",
+                    "const": "minecraft:axis_aligned_linear_pos",
                     "enum": [
                         "minecraft:always_true",
                         "minecraft:axis_aligned_linear_pos"
-                    ],
-                    "$metaProperties": {}
+                    ]
                 }
-            },
-            "$metaProperties": {}
+            }
         },
         "4275912652": {
             "title": "struct SharedTypes::v1_21_20::JigsawStructure::ProcessorRule::AlwaysTrueBlock",
@@ -501,24 +459,22 @@
                 "predicate_type": {
                     "title": "PositionalBlockRuleAxis",
                     "type": "string",
+                    "const": "minecraft:always_true",
                     "enum": [
                         "minecraft:always_true",
                         "minecraft:block_match",
                         "minecraft:random_block_match",
                         "minecraft:tag_match"
-                    ],
-                    "$metaProperties": {}
+                    ]
                 }
-            },
-            "$metaProperties": {}
+            }
         }
     },
     "title": "Rules used by Jigsaw Structures to determine which blocks to modify or replace when placing a Structure Template in the world.",
     "type": "object",
     "properties": {
         "description": {
-            "$ref": "#/definitions/1218029234",
-            "$metaProperties": {}
+            "$ref": "#/definitions/1218029234"
         },
         "processors": {
             "title": "sequence container",
@@ -538,13 +494,11 @@
                         "$ref": "#/definitions/2581260060"
                     }
                 ]
-            },
-            "$metaProperties": {}
+            }
         }
     },
     "required": [
         "description",
         "processors"
-    ],
-    "$metaProperties": {}
+    ]
 }

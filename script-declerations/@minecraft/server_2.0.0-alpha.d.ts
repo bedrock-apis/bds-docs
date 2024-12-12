@@ -160,7 +160,7 @@ export class BlockRecordPlayerComponent extends BlockComponent{ public static re
 export class BlockSignComponent extends BlockComponent{ public static readonly componentId = "minecraft:sign"; public readonly isWaxed: boolean; public getRawText(side?: SignSide): (RawText | undefined); public getText(side?: SignSide): (string | undefined); public getTextDyeColor(side?: SignSide): (DyeColor | undefined); public setText(message: RawMessage | RawText | string, side?: SignSide): void; public setTextDyeColor(color?: DyeColor, side?: SignSide): void; public setWaxed(waxed: boolean): void; private constructor();};
 export class BlockStates { public static get(stateName: string): (BlockStateType | undefined); public static getAll(): BlockStateType[]; private constructor();};
 export class BlockStateType { public readonly id: string; public readonly validValues: (boolean | number | string)[]; private constructor();};
-export class BlockType { public readonly canBeWaterlogged: boolean; public readonly id: string; private constructor();};
+export class BlockType { public readonly id: string; private constructor();};
 export class BlockTypes { public static get(typeName: string): (BlockType | undefined); public static getAll(): BlockType[]; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BlockVolume extends BlockVolumeBase{ public from: Vector3; public to: Vector3; public constructor(from: Vector3, to: Vector3); public doesLocationTouchFaces(pos: Vector3): boolean; public doesVolumeTouchFaces(other: BlockVolume): boolean; public intersects(other: BlockVolume): BlockVolumeIntersection;};
@@ -508,7 +508,7 @@ export class ShutdownBeforeEventSignal { public subscribe(callback: (arg0: Shutd
 export class ShutdownEvent { private constructor();};
 export class StartupBeforeEventSignal { public subscribe(callback: (arg0: StartupEvent)=>void): (arg0: StartupEvent)=>void; public unsubscribe(callback: (arg0: StartupEvent)=>void): void; private constructor();};
 export class StartupEvent { public readonly blockComponentRegistry: BlockComponentRegistry; public readonly itemComponentRegistry: ItemComponentRegistry; private constructor();};
-export class Structure { public readonly id: string; public readonly size: Vector3; public getBlockPermutation(location: Vector3): (BlockPermutation | undefined); public getIsWaterlogged(location: Vector3): boolean; public isValid(): boolean; public saveAs(identifier: string, saveMode?: StructureSaveMode): Structure; public saveToWorld(): void; public setBlockPermutation(location: Vector3, blockPermutation?: BlockPermutation): void; private constructor();};
+export class Structure { public readonly id: string; public readonly size: Vector3; public getBlockPermutation(location: Vector3): (BlockPermutation | undefined); public getIsWaterlogged(location: Vector3): boolean; public isValid(): boolean; public saveAs(identifier: string, saveMode?: StructureSaveMode): Structure; public saveToWorld(): void; public setBlockPermutation(location: Vector3, blockPermutation?: BlockPermutation, waterlogged?: boolean): void; private constructor();};
 export class StructureManager { public createEmpty(identifier: string, size: Vector3, saveMode?: StructureSaveMode): Structure; public createFromWorld(identifier: string, dimension: Dimension, from: Vector3, to: Vector3, options?: StructureCreateOptions): Structure; public delete(structure: string | Structure): boolean; public get(identifier: string): (Structure | undefined); public getWorldStructureIds(): string[]; public place(structure: string | Structure, dimension: Dimension, location: Vector3, options?: StructurePlaceOptions): void; public placeJigsaw(pool: string, targetJigsaw: string, maxDepth: number, dimension: Dimension, location: Vector3, options?: JigsawPlaceOptions): BoundingBox; public placeJigsawStructure(identifier: string, dimension: Dimension, location: Vector3, options?: JigsawStructurePlaceOptions): BoundingBox; private constructor();};
 export class System { public readonly afterEvents: SystemAfterEvents; public readonly beforeEvents: SystemBeforeEvents; public readonly currentTick: number; public readonly serverSystemInfo: SystemInfo; public clearJob(jobId: number): void; public clearRun(runId: number): void; public run(callback: ()=>void): number; public runInterval(callback: ()=>void, tickInterval?: number): number; public runJob(generator: Generator<undefined>): number; public runTimeout(callback: ()=>void, tickDelay?: number): number; public scriptEvent(id: string, message: string): void; public waitTicks(ticks: number): Promise<void>; private constructor();};
 export class SystemAfterEvents { public readonly scriptEventReceive: ScriptEventCommandMessageAfterEventSignal; private constructor();};
@@ -547,7 +547,7 @@ export const world: World;
 
 // Functions - 0
 
-// Errors - 23
+// Errors - 24
 export class BlockCustomComponentAlreadyRegisteredError extends Error{ private constructor();};
 export class BlockCustomComponentReloadNewComponentError extends Error{ private constructor();};
 export class BlockCustomComponentReloadNewEventError extends Error{ private constructor();};
@@ -570,4 +570,5 @@ export class LocationInUnloadedChunkError extends Error{ private constructor();}
 export class LocationOutOfWorldBoundariesError extends Error{ private constructor();};
 export class NamespaceNameError extends Error{ public readonly reason: NamespaceNameErrorReason; private constructor();};
 export class PlaceJigsawError extends Error{ private constructor();};
+export class ScriptEventMessageSizeError extends Error{ private constructor();};
 export class UnloadedChunksError extends Error{ private constructor();};

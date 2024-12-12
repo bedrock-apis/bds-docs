@@ -3607,15 +3607,6 @@
             "properties": [
                 {
                     "is_read_only": true,
-                    "name": "canBeWaterlogged",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "boolean"
-                    }
-                },
-                {
-                    "is_read_only": true,
                     "name": "id",
                     "type": {
                         "is_bind_type": false,
@@ -29049,6 +29040,17 @@
                                     "name": "BlockPermutation"
                                 }
                             }
+                        },
+                        {
+                            "details": {
+                                "default_value": false
+                            },
+                            "name": "waterlogged",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "boolean"
+                            }
                         }
                     ],
                     "is_constructor": false,
@@ -29973,6 +29975,11 @@
                                 "is_bind_type": true,
                                 "is_errorable": false,
                                 "name": "NamespaceNameError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "ScriptEventMessageSizeError"
                             }
                         ],
                         "is_bind_type": false,
@@ -37190,6 +37197,15 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "PlaceJigsawError"
+            }
+        },
+        {
+            "name": "ScriptEventMessageSizeError",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "ScriptEventMessageSizeError"
             }
         },
         {
