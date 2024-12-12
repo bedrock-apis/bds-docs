@@ -80,7 +80,7 @@ function * PrintModule(data){
  */
 function propertName(property){
     try {
-        eval(`class S { ${property}(){} }`);
+        new Function(`function Yes(){ return class { ${property}(){} } }`);
         return property;
     } catch (error) {
         console.log("Keyword fix for: " + property);
