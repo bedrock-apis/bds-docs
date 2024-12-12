@@ -77,16 +77,16 @@ async function Main(): Promise<number>{
     if(IS_GITHUB_ACTION){
         group("Clear Repo Brute force")
         // Fast System Deletion
-        let result = await InvokeProcess("cmd", ["/c", "rd /s /q node_modules"]);
+        //let result = await InvokeProcess("cmd", ["/c", "rd /s /q node_modules"]);
         
-        if(result.exitCode !== 0)
-            return Panic((result.error as string)??"Failed to system remove node_modules");
+        //if(result.exitCode !== 0)
+            //return Panic((result.error as string)??"Failed to system remove node_modules");
 
-        const filter = ".git"
         for await(const entry of DirectoryTreeRemoval(
             ".",
             (f)=>{
-                return f.startsWith(filter);
+                // We can just ignore node_modules bc they are in .gitignore anyway
+                return f.startsWith(".git") || f.startsWith("node_modules");
             }
             ))
         {
