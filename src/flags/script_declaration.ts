@@ -2,7 +2,6 @@ import { dirname, resolve } from "node:path";
 import { createWriteStream, existsSync, mkdirSync } from "node:fs";
 import { Readable } from "node:stream";
 import { pipeline } from "node:stream/promises";
-//@ts-expect-error JS i know
 import { Printer } from "./ts-declarations/printers";
 import { FileTree, Panic, ReadFile } from "../functions";
 
