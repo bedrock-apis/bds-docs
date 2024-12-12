@@ -136,7 +136,7 @@ async function Main(): Promise<number>{
     // Add Test config to generate metadata
     //await writeFile(resolve(BDS_OUTDIR_PATH, FILE_NAME_BDS_TEST_CONFIG), FILE_CONTENT_BDS_TEST_CONFIG);
     failed = await WriteFile(resolve(BDS_OUTDIR_PATH, FILE_NAME_BDS_TEST_CONFIG), FILE_CONTENT_BDS_TEST_CONFIG);
-    if(!failed)
+    if(failed)
         return Panic("Failed to write test_config.json");
 
 
