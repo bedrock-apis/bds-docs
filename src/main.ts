@@ -3,7 +3,6 @@ import { DirectoryTreeRemoval, DownloadZipFile, FetchJson, GetEngineVersion, Git
 import { GetRepositoryVersionIncompatibility } from "./helper";
 import type { BDSVersions } from "./types";
 import { SaveWorkspaceContent } from "./content_saver";
-import { minimatch } from "minimatch";
 import { resolve } from "node:path";
 import { GENERATORS } from "./flags";
 //@ts-expect-error JS i know
