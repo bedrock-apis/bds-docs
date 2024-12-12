@@ -14,6 +14,7 @@ export async function * DirectoryTreeRemoval(dir: string, method: (file: string)
         tasks.push(rm(resolve(dir, file)));
         yield file;
     }
+    console.log("Removed: " + tasks.length);
     await Promise.all(tasks);
     
     // Have to be synced, bc we have to be sure the directory it self is empty before its removal

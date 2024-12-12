@@ -76,10 +76,11 @@ async function Main(): Promise<number>{
     // Maybe Add some checks for GITHUB specific ENV FILES like GITHUB_TOKEN or something
     if(IS_GITHUB_ACTION){
         group("Clear Repo Brute force")
+        const filter = resolve(".git");
         for await(const entry of DirectoryTreeRemoval(
             ".",
             (f)=>{
-                return [".git/"].some(s=>minimatch(f, s, {nocase: true}));
+                return f.startsWith(filter);
             }
             ))
         {
