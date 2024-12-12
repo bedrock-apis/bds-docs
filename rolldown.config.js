@@ -3,13 +3,6 @@ import { defineConfig } from 'rolldown'
 
 export default defineConfig([
   {
-    input: 'src/main.ts',
-    external: /(node:)|(unzip-stream)|(minimatch)/g,
-    output: {
-      dir: "./dist/"
-    },
-  },
-  {
     input: './DOCUMENTATION/gen.mjs',
     external: /node:|unzip-stream/g,
     output: {
