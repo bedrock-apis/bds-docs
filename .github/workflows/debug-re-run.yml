@@ -8,7 +8,7 @@ on:
 permissions:
   contents: write
 jobs:
-  debuger:
+  debugger:
     runs-on: windows-latest
     env:
       DEBUG_MODE: true
@@ -19,20 +19,26 @@ jobs:
       uses: actions/checkout@v3
       with: 
         ref: "main"
+
     - name: Setup Node.js environment
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4.0.4
       with:
         node-version: '22'
-        cache: 'npm'
-    - name: Install NPM
-      run: |
-        npm i
+
+    - name: Install pnpm
+      run: corepack enable
+
+    - name: Install dependencies with pnpm
+      run: pnpm install --frozen-lockfile
+  
     - name: Check TSC
       run: |
         npm run check
+
     - name: Build
       run: |
         npm run build
+      
     - name: Check Build Commit
       run: |
         npm run check-for-update

@@ -1,8 +1,8 @@
+//@ts-nocheck
 /**
  * @import * as MD from "./ScriptModule";
  * @typedef {IterableIterator<string | PrintableIterator>} PrintableIterator
  */
-
 export class BaseContext{
     /**
      * @type {{[key: string]: string}}

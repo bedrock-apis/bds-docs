@@ -17,20 +17,26 @@ jobs:
       with: 
         ref: "main"
         fetch-depth: '0'
+        
     - name: Setup Node.js environment
       uses: actions/setup-node@v4.0.4
       with:
         node-version: '22'
-        cache: 'npm'
-    - name: Install NPM
-      run: |
-        npm i
+
+    - name: Install pnpm
+      run: corepack enable
+
+    - name: Install dependencies with pnpm
+      run: pnpm install --frozen-lockfile
+
     - name: Check TSC
       run: |
-        npm run check
+        pnpm run check
+    
     - name: Build
       run: |
         npm run build
+
     - name: Check Build Commit
       run: |
         npm run check-for-update
