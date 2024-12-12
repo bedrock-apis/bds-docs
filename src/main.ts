@@ -76,7 +76,13 @@ async function Main(): Promise<number>{
     // Maybe Add some checks for GITHUB specific ENV FILES like GITHUB_TOKEN or something
     if(IS_GITHUB_ACTION){
         group("Clear Repo Brute force")
-        const filter = resolve(".git");
+        // Fast System Deletion
+        let result = await InvokeProcess("cmd", ["/c", "rd /s /q node_modules"]);
+        
+        if(result.exitCode !== 0)
+            return Panic((result.error as string)??"Failed to system remove node_modules");
+
+        const filter = ".git"
         for await(const entry of DirectoryTreeRemoval(
             ".",
             (f)=>{
