@@ -19,7 +19,6 @@ export async function * DirectoryTreeRemoval(dir: string, method: (file: string)
     // Have to be synced, bc we have to be sure the directory it self is empty before its removal
     for(const directory of DirectoryTree(dir)) {
         if(method(directory))  {
-            console.log("[Skipped Entry]: " + directory);
             continue;
         }
         i++;
