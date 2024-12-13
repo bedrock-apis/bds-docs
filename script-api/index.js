@@ -1,7 +1,9 @@
 import * as mc from "@minecraft/server";
 import * as net from "@minecraft/server-net";
+import { IP_ADDRESS, PORT } from "../shared/consts";
 
 console.log("Hello World from Script API");
+console.log(IP_ADDRESS, PORT);
 /*const overworld = mc.world.getDimension("overworld");
 
 Main().catch((e) => console.error(e));

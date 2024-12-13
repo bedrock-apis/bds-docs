@@ -10,6 +10,7 @@ import { GENERAL_README } from "../DOCUMENTATION/gen.mjs";
 import { createPost } from "./discord";
 import { GetConfigPermissions, GetServerProperties, GetEditorExtension } from "./helpers/bds";
 import { rm } from "node:fs/promises";
+import { ON_SERVICE_START_UP_TASK } from "./service";
 let performanceTime = Date.now();
 // Calling Main EntryPont
 Main()
@@ -56,6 +57,8 @@ async function Main(): Promise<number>{
         return Panic(`Failed to checkout branch: ${checkResults.branch}`);
     groupEnd();
 
+    const {port,ip} = await ON_SERVICE_START_UP_TASK;
+    console.log("Service running on: " + ip + ":" + port);
 
     ///////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////
