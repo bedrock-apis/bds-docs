@@ -125,7 +125,7 @@ export async function GetConfigPermissions(basePath: string): Promise<{data: {al
             Panic("Failed to load: " + permissions_file);
             return null;
         }
-        if (typeof data === "object" || !("allowed_modules" in data)) {
+        if (typeof data !== "object" || !("allowed_modules" in data)) {
             Panic("Incorrect file format for : " + permissions_file);
             return null;
         }
