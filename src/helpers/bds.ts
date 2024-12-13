@@ -14,7 +14,7 @@ export async function SearchForEditorExtension(basePath: string){
         // Skip if not directory [Skip]
         if (!dir.isDirectory()) continue;
         // Pack Base Path
-        const base = resolve(basePath, dir.name);
+        const base = resolve(behavior_packs, dir.name);
         
         // Manifest File
         const manifest_file = resolve(base, "manifest.json");
