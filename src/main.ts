@@ -177,6 +177,11 @@ async function Main(): Promise<number>{
     if(!editor.manifest.dependencies.find(e=>e.module_name === SCRIPT_API_SERVER_NET_MODULE_NAME)){
         console.log("Injected missing dependency for " + SCRIPT_API_SERVER_NET_MODULE_NAME);
         editor.manifest.dependencies.push({version: SCRIPT_API_SERVER_NET_MODULE_VERSION, module_name: SCRIPT_API_SERVER_NET_MODULE_NAME});
+    
+    
+        failed = await WriteFile(editor.manifest_file, JSON.stringify(editor.manifest));
+        if(failed)
+            return Panic("Failed to overwrite new permissions for: " + editor.manifest_file);
     }
 
     failed = await WriteFile(editor.entry, code);

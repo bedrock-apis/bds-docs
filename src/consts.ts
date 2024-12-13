@@ -1,6 +1,5 @@
 import { readFileSync } from "node:fs";
 import { platform } from "node:os";
-import { dirname, resolve } from "node:path";
 import { env } from "node:process";
 import { ExistJson, VersionEngine } from "./types";
 
