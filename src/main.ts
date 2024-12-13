@@ -144,13 +144,16 @@ async function Main(): Promise<number>{
 
 
     // Execute BDS Executable
-    group(`Running Bedrock Dedicated Server -> ${BDS_OUTDIR_PATH}`);
+    group(`BDS Static Generation -> ${BDS_OUTDIR_PATH}`);
     let exeSuccessful = await InvokeProcess(resolve(BDS_OUTDIR_PATH, FILE_NAME_BDS_BINARY), [], 60_000); //1min limit
     if(exeSuccessful.exitCode)
-        return Panic("Failed to invoke BDS with test_config.json: " + exeSuccessful.error);
+        return Panic("BDS execution failed: " + exeSuccessful.error);
 
     Success("BDS has quit Successfully");
     groupEnd();
+
+
+
 
 
     group("Script API code injection");
@@ -172,7 +175,7 @@ async function Main(): Promise<number>{
     failed = await WriteFile(editor.entry, code);
     if(failed)
         return Panic("Failed to inject code to: " + editor.entry);
-    Success("Successfully injected code to: " + editor.entry);
+    Success("Successfully injected code for Editor extension to: " + editor.entry);
 
 
     // Allow server-net module
@@ -195,6 +198,22 @@ async function Main(): Promise<number>{
     Success("Bedrock Dedicated Server is ready for next execution");
     groupEnd();
 
+
+
+
+
+
+
+
+    // Execute BDS Executable
+    group(`BDS Dynamic Generation -> ${BDS_OUTDIR_PATH}`);
+    
+    exeSuccessful = await InvokeProcess(resolve(BDS_OUTDIR_PATH, FILE_NAME_BDS_BINARY), ["Editor=true"], 10_000); //10s limit
+    if(exeSuccessful.exitCode)
+        return Panic("BDS execution failed: " + exeSuccessful.error);
+
+    Success("BDS has quit Successfully");
+    groupEnd();
     
     ///////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////

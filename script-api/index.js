@@ -1,10 +1,11 @@
 import * as mc from "@minecraft/server";
 import * as net from "@minecraft/server-net";
 
-const overworld = mc.world.getDimension("overworld");
+console.log("Hello World from Script API");
+/*const overworld = mc.world.getDimension("overworld");
 
 Main().catch((e) => console.error(e));
-
+*/
 async function Main() {
 	overworld.runCommand("tickingarea add circle 0 0 0 4 load true");
 
