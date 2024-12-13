@@ -180,6 +180,8 @@ async function Main(): Promise<number>{
 
     // At the end write the exist.json content
     group("Writing " + FILE_NAME_GITHUB_REPO_EXISTS);
+    // TODO: fix
+    (FILE_CONTENT_CURRENT_EXIST as any).test = Math.random();
     const existContent = JSON.stringify(FILE_CONTENT_CURRENT_EXIST, null, 3);
     failed = await WriteFile(FILE_NAME_GITHUB_REPO_EXISTS, existContent);
 
