@@ -59,7 +59,6 @@ async function Main(): Promise<number>{
 
     const {port,ip} = await ON_SERVICE_START_UP_TASK;
     console.log("Service running on: " + ip + ":" + port);
-    console.log(arguments.callee);
 
     ///////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////
