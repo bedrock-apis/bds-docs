@@ -8,7 +8,7 @@ import { existsSync } from "node:fs";
 const BEHAVIOR_PACKS_DIR = "behavior_packs";
 const SERVER_PROPERTIES_FILE = "server.properties";
 
-export async function SearchForEditorExtension(basePath: string){
+export async function SearchForEditorExtension(basePath: string): Promise<{manifest: ManifestLike,entry: string,basePath: string} | null>{
     const behavior_packs = resolve(basePath, BEHAVIOR_PACKS_DIR);
     for (const dir of await readdir(behavior_packs, { withFileTypes: true })) {
         // Skip if not directory [Skip]
@@ -106,4 +106,30 @@ export async function GetServerProperties(basePath: string): Promise<Record<stri
         settings[key] = value;
     }
     return settings;
+}
+export async function GetConfigPermissions(basePath: string): Promise<{data: {allowed_modules?: string[]}, permissionsFile: string}|null> {
+    const configDir = resolve(basePath, "config");
+    for (const dir of await readdir(configDir, { withFileTypes: true })) {
+        // Skip files in config folder as there should be only folders
+        if (!dir.isDirectory()) continue;
+        // Save Folder as base
+        const base = resolve(configDir, dir.name);
+        // permissions file
+        const permissions_file = resolve(base, "permissions.json");
+        // Exists check
+        if (!existsSync(permissions_file)) continue;
+
+        const data = await ReadJsonFile<{allowed_modules?: string[]}>(permissions_file);
+
+        if (!data) {
+            Panic("Failed to load: " + permissions_file);
+            return null;
+        }
+        if (typeof data === "object" || !("allowed_modules" in data)) {
+            Panic("Incorrect file format for : " + permissions_file);
+            return null;
+        }
+        return { data, permissionsFile: permissions_file };
+    }
+    return null;
 }

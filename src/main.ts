@@ -8,7 +8,7 @@ import { GENERATORS } from "./flags";
 //@ts-expect-error JS i know
 import { GENERAL_README } from "../DOCUMENTATION/gen.mjs";
 import { createPost } from "./discord";
-import { GetServerProperties, SearchForEditorExtension } from "./helpers/bds";
+import { GetConfigPermissions, GetServerProperties, SearchForEditorExtension } from "./helpers/bds";
 let performanceTime = Date.now();
 // Calling Main EntryPont
 Main()
@@ -152,8 +152,9 @@ async function Main(): Promise<number>{
     console.log("BDS has quit Successfully");
     groupEnd();
 
-    await GetServerProperties(BDS_OUTDIR_PATH);
+
     console.log(await SearchForEditorExtension(BDS_OUTDIR_PATH));
+    console.log(await GetConfigPermissions(BDS_OUTDIR_PATH));
 
     
     ///////////////////////////////////////////////////////////////////
