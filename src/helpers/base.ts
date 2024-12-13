@@ -1,6 +1,6 @@
-import { ALWAYS_OVERWRITE, FILE_NAME_GITHUB_REPO_EXISTS, GITHUB_PREVIEW_BRANCH_NAME, GITHUB_STABLE_BRANCH_NAME, LINK_GITHUB_REPO } from "./consts";
-import { FetchJson, GetEngineVersion } from "./functions";
-import { BDSVersions, BranchKind, ExistJson, VersionFull } from "./types";
+import { ALWAYS_OVERWRITE, FILE_NAME_GITHUB_REPO_EXISTS, GITHUB_PREVIEW_BRANCH_NAME, GITHUB_STABLE_BRANCH_NAME, LINK_GITHUB_REPO } from "../consts";
+import { FetchJson, GetEngineVersion } from "../functions";
+import { BDSVersions, BranchKind, ExistJson, VersionFull } from "../types";
 
 export async function GetRepositoryExistJson(branch: BranchKind){
     return await FetchJson<ExistJson>(`${LINK_GITHUB_REPO}/${branch}/${FILE_NAME_GITHUB_REPO_EXISTS}`);
