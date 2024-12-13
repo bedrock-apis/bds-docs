@@ -3,6 +3,7 @@ import { resolve } from "node:path";
 import { Panic, ReadFile, ReadJsonFile } from "../functions";
 import { ManifestLike } from "../types";
 import { EDITOR_EXTENSION_UUID } from "../consts";
+import { existsSync } from "node:fs";
 
 const BEHAVIOR_PACKS_DIR = "behavior_packs";
 const SERVER_PROPERTIES_FILE = "server.properties";
