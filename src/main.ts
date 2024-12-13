@@ -1,6 +1,6 @@
 import { ALWAYS_OVERWRITE, BDS_OUTDIR_PATH, DEBUG, FILE_CONTENT_BDS_TEST_CONFIG, FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_BDS_BINARY, FILE_NAME_BDS_TEST_CONFIG, FILE_NAME_GITHUB_README, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, GITHUB_REPO_NAME, IS_GITHUB_ACTION, LINK_BDS_CDN, LINK_BDS_VERSIONS, PLATFORM } from "./consts";
 import { DirectoryTreeRemoval, DownloadZipFile, FetchJson, GetEngineVersion, GithubCheckoutBranch, GithubCommitAndPush, GithubPostNewBranch, group, groupEnd, groupFinish, InvokeProcess, Panic, Success, WriteFile } from "./functions";
-import { GetRepositoryVersionIncompatibility } from "./helper";
+import { GetRepositoryVersionIncompatibility } from "./helpers";
 import type { BDSVersions } from "./types";
 import { SaveWorkspaceContent } from "./content_saver";
 import { resolve } from "node:path";
@@ -8,6 +8,7 @@ import { GENERATORS } from "./flags";
 //@ts-expect-error JS i know
 import { GENERAL_README } from "../DOCUMENTATION/gen.mjs";
 import { createPost } from "./discord";
+import { GetServerProperties } from "./helpers/bds";
 let performanceTime = Date.now();
 // Calling Main EntryPont
 Main()
@@ -150,6 +151,8 @@ async function Main(): Promise<number>{
 
     console.log("BDS has quit Successfully");
     groupEnd();
+
+    await GetServerProperties(BDS_OUTDIR_PATH);
 
     
     ///////////////////////////////////////////////////////////////////

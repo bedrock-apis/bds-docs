@@ -1,10 +1,11 @@
 import { readdir } from "node:fs/promises";
 import { resolve } from "node:path";
-import { Panic, ReadJsonFile } from "../functions";
+import { Panic, ReadFile, ReadJsonFile } from "../functions";
 import { ManifestLike } from "../types";
 import { EDITOR_EXTENSION_UUID } from "../consts";
 
 const BEHAVIOR_PACKS_DIR = "behavior_packs";
+const SERVER_PROPERTIES_FILE = "server.properties";
 
 export async function SearchForEditorExtension(basePath: string){
     const behavior_packs = resolve(basePath, BEHAVIOR_PACKS_DIR);
@@ -66,13 +67,40 @@ export async function SearchForEditorExtension(basePath: string){
     return null;   
 }
 export async function GetServerProperties(basePath: string): Promise<Record<string, string> | null>{
+    // Resolve file name
+    const server_properties = resolve(basePath, SERVER_PROPERTIES_FILE);
 
-    const settings = {};
-    for (const property of data.replace(/#(.+|)/g, "").match(/[a-z-]+=.+/g) ??
-        []) {
-        const [key, ...value] = property.split("=");
+    // Checking for existence
+    if(!existsSync(server_properties)){
+        Panic("File not found: " + server_properties);
+        return null;
+    }
 
-        console.log(key, (settings[key.toLocaleLowerCase()] = value.join("=")));
+    const data = await ReadFile(server_properties);
+
+    if(!data){
+        Panic("Failed to read: " + server_properties);
+        return null;
+    }
+
+    const text = data.toString();
+    const settings: Record<string, string> = {};
+
+    // Remove comments and search for lines with property
+    for (const property of text.replace(/#(.+|)/g, "").match(/[a-z-]+=.+/g) ?? []) {
+        // get index of the first "=";
+        const splitIndex = property.indexOf("=");
+
+        // Check if the index is valid
+        if(splitIndex < 0 || splitIndex >= property.length) continue;
+
+        // Extract key and value
+        const 
+        key = property.slice(0, splitIndex).toLocaleLowerCase().replace(/ +|/g, ""),
+        value = property.slice(splitIndex + 1);
+
+        settings[key] = value;
+        console.log(JSON.stringify({key, value}));
     }
     return settings;
 }
