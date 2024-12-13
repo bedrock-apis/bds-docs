@@ -9,6 +9,7 @@ import { GENERATORS } from "./flags";
 import { GENERAL_README } from "../DOCUMENTATION/gen.mjs";
 import { createPost } from "./discord";
 import { GetConfigPermissions, GetServerProperties, GetEditorExtension } from "./helpers/bds";
+import { rm } from "node:fs/promises";
 let performanceTime = Date.now();
 // Calling Main EntryPont
 Main()
@@ -150,6 +151,12 @@ async function Main(): Promise<number>{
         return Panic("BDS execution failed: " + exeSuccessful.error);
 
     Success("BDS has quit Successfully");
+    
+    
+    failed = await rm(resolve(BDS_OUTDIR_PATH, FILE_NAME_BDS_TEST_CONFIG)).then(()=>0, Panic);
+    if(failed)
+        return Panic("Failed to remove: " + FILE_NAME_BDS_TEST_CONFIG);
+
     groupEnd();
 
 
