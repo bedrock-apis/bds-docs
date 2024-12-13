@@ -52,6 +52,6 @@ export async function WriteFile(fileName: string, data: string | Buffer): Promis
     return await writeFile(fileName, data).then(e=>0, Panic);
 }
 export async function ReadJsonFile<T = object>(fileName: string): Promise<T | null> {
-    return ReadFile(fileName).then(e=>e?JSON.parse(e.toString()):e, ()=>null);
+    return ReadFile(fileName).then(e=>{console.log(e); return e?JSON.parse(e.toString()):e}).catch(()=>null);
 }
 export function PathExists(name: string){return existsSync(name);}
