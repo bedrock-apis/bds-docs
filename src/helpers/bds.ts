@@ -8,7 +8,7 @@ import { existsSync } from "node:fs";
 const BEHAVIOR_PACKS_DIR = "behavior_packs";
 const SERVER_PROPERTIES_FILE = "server.properties";
 
-export async function SearchForEditorExtension(basePath: string): Promise<{manifest: ManifestLike,entry: string,basePath: string} | null>{
+export async function GetEditorExtension(basePath: string): Promise<{manifest: ManifestLike,entry: string,basePath: string} | null>{
     const behavior_packs = resolve(basePath, BEHAVIOR_PACKS_DIR);
     for (const dir of await readdir(behavior_packs, { withFileTypes: true })) {
         // Skip if not directory [Skip]

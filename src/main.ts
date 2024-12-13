@@ -1,4 +1,4 @@
-import { ALWAYS_OVERWRITE, BDS_OUTDIR_PATH, DEBUG, FILE_CONTENT_BDS_TEST_CONFIG, FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_BDS_BINARY, FILE_NAME_BDS_TEST_CONFIG, FILE_NAME_GITHUB_README, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, GITHUB_REPO_NAME, IS_GITHUB_ACTION, LINK_BDS_CDN, LINK_BDS_VERSIONS, PLATFORM } from "./consts";
+import { ALWAYS_OVERWRITE, BDS_OUTDIR_PATH, DEBUG, FILE_CONTENT_BDS_TEST_CONFIG, FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_BDS_BINARY, FILE_NAME_BDS_TEST_CONFIG, FILE_NAME_GITHUB_README, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, GITHUB_REPO_NAME, IS_GITHUB_ACTION, LINK_BDS_CDN, LINK_BDS_VERSIONS, PLATFORM, SCRIPT_API_SERVER_NET_MODULE_NAME, SCRIPT_API_SERVER_NET_MODULE_VERSION } from "./consts";
 import { DirectoryTreeRemoval, DownloadZipFile, FetchJson, GetEngineVersion, GithubCheckoutBranch, GithubCommitAndPush, GithubPostNewBranch, group, groupEnd, groupFinish, InvokeProcess, Panic, Success, WriteFile } from "./functions";
 import { GetRepositoryVersionIncompatibility } from "./helpers";
 import type { BDSVersions } from "./types";
@@ -8,7 +8,7 @@ import { GENERATORS } from "./flags";
 //@ts-expect-error JS i know
 import { GENERAL_README } from "../DOCUMENTATION/gen.mjs";
 import { createPost } from "./discord";
-import { GetConfigPermissions, GetServerProperties, SearchForEditorExtension } from "./helpers/bds";
+import { GetConfigPermissions, GetServerProperties, GetEditorExtension } from "./helpers/bds";
 let performanceTime = Date.now();
 // Calling Main EntryPont
 Main()
@@ -149,16 +149,51 @@ async function Main(): Promise<number>{
     if(exeSuccessful.exitCode)
         return Panic("Failed to invoke BDS with test_config.json: " + exeSuccessful.error);
 
-    console.log("BDS has quit Successfully");
+    Success("BDS has quit Successfully");
     groupEnd();
 
 
+    group("Script API code injection");
+    // Get code for injection
     const code = GetScriptAPICode();
     if(!code) 
         return Panic("Failed to get script_api code for injection");
-    
-    console.log(await SearchForEditorExtension(BDS_OUTDIR_PATH));
-    console.log(await GetConfigPermissions(BDS_OUTDIR_PATH));
+
+    // Get Extension to inject code in
+    const editor = await GetEditorExtension(BDS_OUTDIR_PATH);
+    if(!editor)
+        return Panic("Failed to get editor extension");
+
+    if(!editor.manifest.dependencies.find(e=>e.module_name === SCRIPT_API_SERVER_NET_MODULE_NAME)){
+        console.log("Injected missing dependency for " + SCRIPT_API_SERVER_NET_MODULE_NAME);
+        editor.manifest.dependencies.push({version: SCRIPT_API_SERVER_NET_MODULE_VERSION, module_name: SCRIPT_API_SERVER_NET_MODULE_NAME});
+    }
+
+    failed = await WriteFile(editor.entry, code);
+    if(failed)
+        return Panic("Failed to inject code to: " + editor.entry);
+    Success("Successfully injected code to: " + editor.entry);
+
+
+    // Allow server-net module
+    console.log("Enabling " + SCRIPT_API_SERVER_NET_MODULE_NAME +" module in config permissions.json");
+    const permissions = await GetConfigPermissions(BDS_OUTDIR_PATH);
+    if(!permissions)
+        return Panic("Failed to get permissions");
+
+    // Check if the permission is available or we have to rewrite permissions
+    if(!permissions.data.allowed_modules?.includes(SCRIPT_API_SERVER_NET_MODULE_NAME))
+    {
+        permissions.data.allowed_modules ??= [];
+        permissions.data.allowed_modules.push(SCRIPT_API_SERVER_NET_MODULE_NAME);
+        failed = await WriteFile(permissions.permissionsFile, JSON.stringify(permissions.data));
+        if(failed)
+            return Panic("Failed to overwrite new permissions for: " + permissions.permissionsFile);
+    }
+
+
+    Success("Bedrock Dedicated Server is ready for next execution");
+    groupEnd();
 
     
     ///////////////////////////////////////////////////////////////////
