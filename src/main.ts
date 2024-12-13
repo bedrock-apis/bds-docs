@@ -2,7 +2,7 @@ import { ALWAYS_OVERWRITE, BDS_OUTDIR_PATH, DEBUG, FILE_CONTENT_BDS_TEST_CONFIG,
 import { DirectoryTreeRemoval, DownloadZipFile, FetchJson, GetEngineVersion, GithubCheckoutBranch, GithubCommitAndPush, GithubPostNewBranch, group, groupEnd, groupFinish, InvokeProcess, Panic, Success, WriteFile } from "./functions";
 import { GetRepositoryVersionIncompatibility } from "./helpers";
 import type { BDSVersions } from "./types";
-import { SaveWorkspaceContent } from "./content_saver";
+import { GetScriptAPICode, SaveWorkspaceContent } from "./content_saver";
 import { resolve } from "node:path";
 import { GENERATORS } from "./flags";
 //@ts-expect-error JS i know
@@ -153,6 +153,10 @@ async function Main(): Promise<number>{
     groupEnd();
 
 
+    const code = GetScriptAPICode();
+    if(!code) 
+        return Panic("Failed to get script_api code for injection");
+    
     console.log(await SearchForEditorExtension(BDS_OUTDIR_PATH));
     console.log(await GetConfigPermissions(BDS_OUTDIR_PATH));
 
