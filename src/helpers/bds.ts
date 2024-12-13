@@ -17,8 +17,10 @@ export async function SearchForEditorExtension(basePath: string){
         const base = resolve(basePath, dir.name);
         
         // Manifest File
-        const manifest_file = base + "/manifest.json";
+        const manifest_file = resolve(base, "manifest.json");
         
+        console.log(manifest_file);
+
         // Exist check [Skip]
         if (!existsSync(manifest_file)) continue;
         
@@ -64,6 +66,7 @@ export async function SearchForEditorExtension(basePath: string){
         return { manifest: data, basePath: base, entry: resolve(base, scriptModule.entry) };
     }
 
+    Panic("No match for editor behavior pack found!");
     // No Match
     return null;   
 }
@@ -101,7 +104,6 @@ export async function GetServerProperties(basePath: string): Promise<Record<stri
         value = property.slice(splitIndex + 1);
 
         settings[key] = value;
-        console.log(JSON.stringify({key, value}));
     }
     return settings;
 }
