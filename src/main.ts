@@ -222,6 +222,7 @@ async function Main(): Promise<number>{
     // Execute BDS Executable
     group(`BDS Dynamic Generation -> ${BDS_OUTDIR_PATH}`);
 
+    console.log("Creating: " + REPORTS_DIR_NAME);
     failed = await mkdir(REPORTS_DIR_NAME).then(()=>0, Panic);
     if(failed)
         return Panic("Failed to create a folder: ./" + REPORTS_DIR_NAME);
