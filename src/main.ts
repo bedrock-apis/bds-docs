@@ -12,7 +12,6 @@ import { GetConfigPermissions, GetServerProperties, GetEditorExtension } from ".
 import { mkdir, rm } from "node:fs/promises";
 import { WebServer } from "./service";
 import { IsPacketTypeOf, PacketTypes, PORT } from "../shared";
-import { PacketReceiveBeforeEventSignal } from "@minecraft/server-net";
 let performanceTime = Date.now();
 // Calling Main EntryPont
 Main()
