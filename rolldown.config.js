@@ -9,7 +9,7 @@ export default defineConfig([
       dir: "./dist/",
     },
     platform: "node"
-  },
+  },/*
   {
     input: './test/test.ts',
     external: /node:|unzip-stream|minimatch/,
@@ -17,7 +17,7 @@ export default defineConfig([
       dir: "./dist/",
     },
     platform: "node"
-  },
+  },*/
   {
     input: './DOCUMENTATION/gen.mjs',
     external: /node:|unzip-stream/,
