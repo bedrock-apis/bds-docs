@@ -313,7 +313,7 @@ async function Main(): Promise<number>{
     if(failed)
         return Panic("Failed to write README.md file");
 
-    failed = await createPost("1150152535475240991","Hello World").then(()=>0, Panic);
+    failed = await createPost("1150152535475240991","New Update - " + checkResults.version,"Hello World: 🧪").then(()=>0, Panic);
     if(failed)
         return Panic("Failed to post on discord");
 
