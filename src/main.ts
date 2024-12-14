@@ -1,4 +1,4 @@
-import { ALWAYS_OVERWRITE, BDS_OUTDIR_PATH, DEBUG, FILE_CONTENT_BDS_TEST_CONFIG, FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_BDS_BINARY, FILE_NAME_BDS_TEST_CONFIG, FILE_NAME_GITHUB_README, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, GITHUB_REPO_NAME, IS_GITHUB_ACTION, LINK_BDS_CDN, LINK_BDS_VERSIONS, PLATFORM, SCRIPT_API_GEN_TIMEOUT, SCRIPT_API_SERVER_NET_MODULE_NAME, SCRIPT_API_SERVER_NET_MODULE_VERSION } from "./consts";
+import { ALWAYS_OVERWRITE, BDS_OUTDIR_PATH, DEBUG, FILE_CONTENT_BDS_TEST_CONFIG, FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_BDS_BINARY, FILE_NAME_BDS_TEST_CONFIG, FILE_NAME_GITHUB_README, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, GITHUB_REPO_NAME, IS_GITHUB_ACTION, LINK_BDS_CDN, LINK_BDS_VERSIONS, PLATFORM, REPORTS_DIR_NAME, SCRIPT_API_GEN_TIMEOUT, SCRIPT_API_SERVER_NET_MODULE_NAME, SCRIPT_API_SERVER_NET_MODULE_VERSION } from "./consts";
 import { DirectoryTreeRemoval, DownloadZipFile, FetchJson, GetEngineVersion, GithubCheckoutBranch, GithubCommitAndPush, GithubPostNewBranch, group, groupEnd, groupFinish, InvokeProcess, InvokeProcessRaw, Panic, Success, WriteFile } from "./functions";
 import { GetRepositoryVersionIncompatibility } from "./helpers";
 import type { BDSVersions } from "./types";
@@ -9,7 +9,7 @@ import { GENERATORS } from "./flags";
 import { GENERAL_README } from "../DOCUMENTATION/gen.mjs";
 import { createPost } from "./discord";
 import { GetConfigPermissions, GetServerProperties, GetEditorExtension } from "./helpers/bds";
-import { rm } from "node:fs/promises";
+import { mkdir, rm } from "node:fs/promises";
 import { WebServer } from "./service";
 import { IsPacketTypeOf, PacketTypes, PORT } from "../shared";
 import { PacketReceiveBeforeEventSignal } from "@minecraft/server-net";
@@ -223,6 +223,9 @@ async function Main(): Promise<number>{
     // Execute BDS Executable
     group(`BDS Dynamic Generation -> ${BDS_OUTDIR_PATH}`);
 
+    failed = await mkdir(REPORTS_DIR_NAME).then(()=>0, Panic);
+    if(failed)
+        return Panic("Failed to create a folder: ./" + REPORTS_DIR_NAME);
     
     // WebServer for requests sended by Script API injection code
     const server = new WebServer(PORT, SCRIPT_API_GEN_TIMEOUT);
@@ -232,13 +235,20 @@ async function Main(): Promise<number>{
     const {promise: runningProcessTask, child: runningProcess} = await InvokeProcessRaw(resolve(BDS_OUTDIR_PATH, FILE_NAME_BDS_BINARY), ["Editor=true"], SCRIPT_API_GEN_TIMEOUT); //10s limit
     
     for await(const payload of server){
+        // So here we parse!!!
         const data = JSON.parse(payload);
+        
+        // This is end of the communication
         if(IsPacketTypeOf(data, PacketTypes.EndOfSession)) {
             const {exitCode, numberOfPosts, totalTime} = data.body;
             failed = exitCode;
             break;
         }
-        console.log("Received packet of type: " + data.type);
+
+        if(IsPacketTypeOf(data, PacketTypes.ErrorMessages)) {
+            const {body} = data;
+            await WriteFile(resolve(REPORTS_DIR_NAME, "errors.json"), JSON.stringify(body, null, 4));
+        }
     }
 
     // Stop without forcing
@@ -256,8 +266,6 @@ async function Main(): Promise<number>{
 
     if(failed) 
         return Panic("Script Failed to quit successfully, errorCode: " + failed);
-
-
 
     Success("BDS has quit Successfully");
     groupEnd();

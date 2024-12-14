@@ -32,6 +32,7 @@ export const FILE_NAME_GITIGNORE = ".gitignore";
 export const FILE_CONTENT_BDS_TEST_CONFIG = JSON.stringify({generate_documentation: true});
 export const FILE_CONTENT_GITIGNORE = readFileSync(FILE_NAME_GITIGNORE).toString();
 export const WORKING_DIRECTORY = DEBUG?((env.HOMEDRIVE??"") + (env.HOMEPATH??"") + "\\_test"):".";
+export const REPORTS_DIR_NAME = "REPORTS";
 export const TERMINAL_CREATE_GROUP = "::group::";
 export const TERMINAL_END_GROUP = "::endgroup::";
 export const BUNDLER_OUTPUT = import.meta.dirname;
