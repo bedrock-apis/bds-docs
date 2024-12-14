@@ -5,6 +5,7 @@ import { ExistJson, VersionEngine } from "./types";
 
 export const SCRIPT_API_SERVER_NET_MODULE_NAME = "@minecraft/server-net";
 export const SCRIPT_API_SERVER_NET_MODULE_VERSION = "1.0.0-beta";
+export const SCRIPT_API_GEN_TIMEOUT = 120_000; // 2Mins
 export const EDITOR_EXTENSION_UUID = "3222066e-79d0-4573-9e15-93472d32cbd5";
 export const PROCESS_TIMEOUT = 5_000;
 export const ALWAYS_OVERWRITE = env["ALWAYS_OVERWRITE"]??false;

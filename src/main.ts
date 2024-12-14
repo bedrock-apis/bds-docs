@@ -1,5 +1,5 @@
-import { ALWAYS_OVERWRITE, BDS_OUTDIR_PATH, DEBUG, FILE_CONTENT_BDS_TEST_CONFIG, FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_BDS_BINARY, FILE_NAME_BDS_TEST_CONFIG, FILE_NAME_GITHUB_README, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, GITHUB_REPO_NAME, IS_GITHUB_ACTION, LINK_BDS_CDN, LINK_BDS_VERSIONS, PLATFORM, SCRIPT_API_SERVER_NET_MODULE_NAME, SCRIPT_API_SERVER_NET_MODULE_VERSION } from "./consts";
-import { DirectoryTreeRemoval, DownloadZipFile, FetchJson, GetEngineVersion, GithubCheckoutBranch, GithubCommitAndPush, GithubPostNewBranch, group, groupEnd, groupFinish, InvokeProcess, Panic, Success, WriteFile } from "./functions";
+import { ALWAYS_OVERWRITE, BDS_OUTDIR_PATH, DEBUG, FILE_CONTENT_BDS_TEST_CONFIG, FILE_CONTENT_CURRENT_EXIST, FILE_CONTENT_GITIGNORE, FILE_NAME_BDS_BINARY, FILE_NAME_BDS_TEST_CONFIG, FILE_NAME_GITHUB_README, FILE_NAME_GITHUB_REPO_EXISTS, FILE_NAME_GITIGNORE, GITHUB_REPO_NAME, IS_GITHUB_ACTION, LINK_BDS_CDN, LINK_BDS_VERSIONS, PLATFORM, SCRIPT_API_GEN_TIMEOUT, SCRIPT_API_SERVER_NET_MODULE_NAME, SCRIPT_API_SERVER_NET_MODULE_VERSION } from "./consts";
+import { DirectoryTreeRemoval, DownloadZipFile, FetchJson, GetEngineVersion, GithubCheckoutBranch, GithubCommitAndPush, GithubPostNewBranch, group, groupEnd, groupFinish, InvokeProcess, InvokeProcessRaw, Panic, Success, WriteFile } from "./functions";
 import { GetRepositoryVersionIncompatibility } from "./helpers";
 import type { BDSVersions } from "./types";
 import { GetScriptAPICode, SaveWorkspaceContent } from "./content_saver";
@@ -10,7 +10,9 @@ import { GENERAL_README } from "../DOCUMENTATION/gen.mjs";
 import { createPost } from "./discord";
 import { GetConfigPermissions, GetServerProperties, GetEditorExtension } from "./helpers/bds";
 import { rm } from "node:fs/promises";
-import { ON_SERVICE_START_UP_TASK } from "./service";
+import { WebServer } from "./service";
+import { IsPacketTypeOf, PacketTypes, PORT } from "../shared";
+import { PacketReceiveBeforeEventSignal } from "@minecraft/server-net";
 let performanceTime = Date.now();
 // Calling Main EntryPont
 Main()
@@ -57,8 +59,6 @@ async function Main(): Promise<number>{
         return Panic(`Failed to checkout branch: ${checkResults.branch}`);
     groupEnd();
 
-    const {port,ip} = await ON_SERVICE_START_UP_TASK;
-    console.log("Service running on: " + ip + ":" + port);
 
     ///////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////
@@ -222,10 +222,42 @@ async function Main(): Promise<number>{
 
     // Execute BDS Executable
     group(`BDS Dynamic Generation -> ${BDS_OUTDIR_PATH}`);
+
     
-    exeSuccessful = await InvokeProcess(resolve(BDS_OUTDIR_PATH, FILE_NAME_BDS_BINARY), ["Editor=true"], 10_000); //10s limit
+    // WebServer for requests sended by Script API injection code
+    const server = new WebServer(PORT, SCRIPT_API_GEN_TIMEOUT);
+    console.log("Successfully created webserver.");
+
+    // Spawn new process
+    const {promise: runningProcessTask, child: runningProcess} = await InvokeProcessRaw(resolve(BDS_OUTDIR_PATH, FILE_NAME_BDS_BINARY), ["Editor=true"], SCRIPT_API_GEN_TIMEOUT); //10s limit
+    
+    for await(const payload of server){
+        const data = JSON.parse(payload);
+        if(IsPacketTypeOf(data, PacketTypes.EndOfSession)) {
+            const {exitCode, numberOfPosts, totalTime} = data.body;
+            failed = exitCode;
+            break;
+        }
+        console.log("Received packet of type: " + data.type);
+    }
+
+    // Stop without forcing
+    runningProcess.stdin.end("stop");
+
+    // Await correctly for process to quit
+    exeSuccessful = await runningProcessTask;
     if(exeSuccessful.exitCode)
         return Panic("BDS execution failed: " + exeSuccessful.error);
+
+
+    // Check if server was terminated before script api gen ends
+    if(server.wasTerminatedByTimeout())
+        return Panic("Failed to generate dynamic information in time, webserver was terminated!")
+
+    if(failed) 
+        return Panic("Script Failed to quit successfully, errorCode: " + failed);
+
+
 
     Success("BDS has quit Successfully");
     groupEnd();

@@ -11,6 +11,14 @@ export default defineConfig([
     platform: "node"
   },
   {
+    input: './test/test.ts',
+    external: /node:|unzip-stream|minimatch/,
+    output: {
+      dir: "./dist/",
+    },
+    platform: "node"
+  },
+  {
     input: './DOCUMENTATION/gen.mjs',
     external: /node:|unzip-stream/,
     output: {
@@ -19,7 +27,7 @@ export default defineConfig([
     platform: "node"
   },
   {
-    input: './script-api/index.js',
+    input: './script-api/index.ts',
     external: [
       /@minecraft/
     ],
