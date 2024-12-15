@@ -223,7 +223,7 @@ async function Main(): Promise<number>{
     group(`BDS Dynamic Generation -> ${BDS_OUTDIR_PATH}`);
 
     console.log("Creating: " + REPORTS_DIR_NAME);
-    failed = await mkdir(REPORTS_DIR_NAME).then(()=>0, Panic);
+    //failed = await mkdir(REPORTS_DIR_NAME).then(()=>0, Panic);
     if(failed)
         return Panic("Failed to create a folder: ./" + REPORTS_DIR_NAME);
     
@@ -247,7 +247,7 @@ async function Main(): Promise<number>{
 
         if(IsPacketTypeOf(data, PacketTypes.ErrorMessages)) {
             const {body} = data;
-            await WriteFile(resolve(REPORTS_DIR_NAME, "errors.json"), JSON.stringify(body, null, 4));
+            //await WriteFile(resolve(REPORTS_DIR_NAME, "errors.json"), JSON.stringify(body, null, 4));
         }
     }
 
