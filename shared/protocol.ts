@@ -26,9 +26,14 @@ export type PacketBodyType = {
     [PacketTypes.ErrorMessages]: ErrorMessagesDataPacketData;
 }
 export interface ErrorMessagesDataPacketData{
+    general: {
+        message: string | null,
+        type: string | null,
+        code: string
+    }[],
     reports: {
-        message: string,
-        type: string,
+        message: string | null,
+        type: string | null,
         code: string
     }[]
 }
