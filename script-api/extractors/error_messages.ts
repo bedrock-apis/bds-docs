@@ -26,11 +26,12 @@ export class ErrorDocumentation{
             this.type = error.constructor;
         }
     }
-    toJSON(): ErrorMessagesDataPacketData["reports"][number]{
+    toJSON(): ErrorMessagesDataPacketData["general"][number]{
         return {
             code: this.method.toString(),
             message: this.message??null,
-            type: this.type?.name??null
+            type: this.type?.name??null,
+            id: this.id
         };
     }
 }

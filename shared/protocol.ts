@@ -29,7 +29,8 @@ export interface ErrorMessagesDataPacketData{
     general: {
         message: string | null,
         type: string | null,
-        code: string
+        code: string,
+        id: number,
     }[],
     reports: {
         message: string | null,
