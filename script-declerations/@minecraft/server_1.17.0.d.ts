@@ -38,7 +38,7 @@ export enum StructureSaveMode { Memory = "Memory", World = "World"};
 export enum TimeOfDay { Day = 1000, Midnight = 18000, Night = 13000, Noon = 6000, Sunrise = 23000, Sunset = 12000};
 export enum WeatherType { Clear = "Clear", Rain = "Rain", Thunder = "Thunder"};
 
-// Interfaces - 59
+// Interfaces - 60
 export interface BlockCustomComponent { beforeOnPlayerPlace?: (arg0: BlockComponentPlayerPlaceBeforeEvent)=>void; onEntityFallOn?: (arg0: BlockComponentEntityFallOnEvent)=>void; onPlace?: (arg0: BlockComponentOnPlaceEvent)=>void; onPlayerDestroy?: (arg0: BlockComponentPlayerDestroyEvent)=>void; onPlayerInteract?: (arg0: BlockComponentPlayerInteractEvent)=>void; onRandomTick?: (arg0: BlockComponentRandomTickEvent)=>void; onStepOff?: (arg0: BlockComponentStepOffEvent)=>void; onStepOn?: (arg0: BlockComponentStepOnEvent)=>void; onTick?: (arg0: BlockComponentTickEvent)=>void};
 export interface BlockEventOptions { blockTypes?: string[]; permutations?: BlockPermutation[]};
 export interface BlockFillOptions { blockFilter?: BlockFilter; ignoreChunkBoundErrors?: boolean};
@@ -54,6 +54,7 @@ export interface CameraSetFacingOptions { easeOptions?: CameraEaseOptions; facin
 export interface CameraSetLocationOptions { easeOptions?: CameraEaseOptions; location: Vector3};
 export interface CameraSetPosOptions { easeOptions?: CameraEaseOptions; facingLocation: Vector3; location?: Vector3};
 export interface CameraSetRotOptions { easeOptions?: CameraEaseOptions; location?: Vector3; rotation: Vector2};
+export interface CameraTargetOptions { offsetFromTargetCenter?: Vector3; targetEntity: Entity};
 export interface DefinitionModifier { addedComponentGroups: string[]; removedComponentGroups: string[]};
 export interface DimensionLocation { dimension: Dimension; x: number; y: number; z: number};
 export interface Enchantment { level: number; type: EnchantmentType};
@@ -149,7 +150,7 @@ export class BlockVolumeBase { public getBlockLocationIterator(): BlockLocationI
 export class ButtonPushAfterEvent extends BlockEvent{ public readonly source: Entity; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ButtonPushAfterEventSignal extends IButtonPushAfterEventSignal{ private constructor();};
-export class Camera { public clear(): void; public fade(fadeCameraOptions?: CameraFadeOptions): void; public setCamera(cameraPreset: string, setOptions?: CameraDefaultOptions | CameraSetFacingOptions | CameraSetLocationOptions | CameraSetPosOptions | CameraSetRotOptions): void; private constructor();};
+export class Camera { public clear(): void; public fade(fadeCameraOptions?: CameraFadeOptions): void; public setCamera(cameraPreset: string, setOptions?: CameraDefaultOptions | CameraSetFacingOptions | CameraSetLocationOptions | CameraSetPosOptions | CameraSetRotOptions | CameraTargetOptions): void; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ClientSystemInfo extends SystemInfo{ public readonly maxRenderDistance: number; public readonly platformType: PlatformType; private constructor();};
 export class CommandResult { public readonly successCount: number; private constructor();};

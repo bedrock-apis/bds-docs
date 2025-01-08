@@ -99,6 +99,16 @@
                 }
             ]
         },
+        "298388283": {
+            "title": "minecraft:storage_weight_modifier",
+            "type": "object",
+            "properties": {
+                "weight_in_storage_item": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            }
+        },
         "300434879": {
             "title": "minecraft:stacked_by_data",
             "oneOf": [
@@ -255,6 +265,12 @@
                 },
                 "minecraft:storage_item": {
                     "$ref": "#/definitions/3446777064"
+                },
+                "minecraft:storage_weight_limit": {
+                    "$ref": "#/definitions/1762411589"
+                },
+                "minecraft:storage_weight_modifier": {
+                    "$ref": "#/definitions/298388283"
                 },
                 "minecraft:tags": {
                     "$ref": "#/definitions/118156658"
@@ -1052,6 +1068,16 @@
                 }
             ]
         },
+        "1762411589": {
+            "title": "minecraft:storage_weight_limit",
+            "type": "object",
+            "properties": {
+                "max_weight_limit": {
+                    "type": "integer",
+                    "maximum": 64
+                }
+            }
+        },
         "1876740853": {
             "title": "minecraft:fuel",
             "oneOf": [
@@ -1504,14 +1530,6 @@
                 "max_slots": {
                     "type": "integer",
                     "maximum": 64
-                },
-                "max_weight_limit": {
-                    "type": "integer",
-                    "maximum": 64
-                },
-                "weight_in_storage_item": {
-                    "type": "integer",
-                    "minimum": 0
                 }
             }
         },

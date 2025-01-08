@@ -13,7 +13,7 @@ export enum EditorMode { Crosshair = "Crosshair", Tool = "Tool"};
 export enum EntityOperationType { Create = 0, Delete = 1};
 export enum ExportResult { EditorSystemFailure = 7, FileArchiverFetchFailed = 2, LevelFetchFailed = 1, PlayerNotFound = 4, ProjectConverterFetchFailed = 3, ValidWorldExport = 0, WorldExportBusy = 6, WorldExportFailed = 5};
 export enum GamePublishSetting { FriendsOfFriends = 3, FriendsOnly = 2, InviteOnly = 1, NoMultiPlay = 0, Public = 4};
-export enum GraphicsSettingsProperty { ShowChunkBoundaries = "ShowChunkBoundaries", ShowCompass = "ShowCompass", ShowInvisibleBlocks = "ShowInvisibleBlocks"};
+export enum GraphicsSettingsProperty { NightVision = "NightVision", ShowChunkBoundaries = "ShowChunkBoundaries", ShowCompass = "ShowCompass", ShowInvisibleBlocks = "ShowInvisibleBlocks"};
 export enum InputModifier { Alt = 2, Any = 15, Control = 4, None = 1, Shift = 8, Unused = 0};
 export enum KeyInputType { Invalid = 0, Press = 1, Release = 2};
 export enum MouseActionCategory { Button = 1, Drag = 3, Invalid = 0, Wheel = 2};
@@ -31,10 +31,11 @@ export enum WidgetComponentType { Clipboard = "Clipboard", Entity = "Entity", Gi
 export enum WidgetGroupSelectionMode { Multiple = "Multiple", None = "None", Single = "Single"};
 export enum WidgetMouseButtonActionType { Drag = 2, Pressed = 0, Released = 1};
 
-// Interfaces - 25
+// Interfaces - 26
 export interface BlockMaskList { blockList: (_2c.BlockPermutation | _2c.BlockType | string)[]; maskType: BlockMaskListType};
 export interface BrushShape { icon: string; name: string};
 export interface ClipboardWriteOptions { mirror?: _2c.StructureMirrorAxis; normalizedOrigin?: _2c.Vector3; offset?: _2c.Vector3; rotation?: _2c.StructureRotation};
+export interface CursorPosition { FaceDirection: number; Position: _2c.Vector3};
 export interface CursorProperties { controlMode?: CursorControlMode; fillColor?: _2c.RGBA; fixedModeDistance?: number; outlineColor?: _2c.RGBA; projectThroughLiquid?: boolean; targetMode?: CursorTargetMode; visible?: boolean};
 export interface CursorRay { end: _2c.Vector3; hit: boolean; start: _2c.Vector3};
 export interface DataTransferCollectionNameData { nameStringId: string; uniqueId: string};
@@ -72,7 +73,7 @@ export class CurrentThemeChangeAfterEventSignal { public subscribe(callback: (ar
 export class CurrentThemeColorChangeAfterEvent { public readonly color: _2c.RGBA; public readonly colorKey: string; private constructor();};
 export class CurrentThemeColorChangeAfterEventSignal { public subscribe(callback: (arg0: CurrentThemeColorChangeAfterEvent)=>void): (arg0: CurrentThemeColorChangeAfterEvent)=>void; public unsubscribe(callback: (arg0: CurrentThemeColorChangeAfterEvent)=>void): void; private constructor();};
 export class Cursor { public readonly faceDirection: number; public readonly isVisible: boolean; public getPosition(): _2c.Vector3; public getProperties(): CursorProperties; public getRay(): CursorRay; public hide(): void; public moveBy(offset: _2c.Vector3): _2c.Vector3; public resetToDefaultState(): void; public setProperties(properties: CursorProperties): void; public show(): void; private constructor();};
-export class CursorPropertiesChangeAfterEvent { public readonly properties: CursorProperties; private constructor();};
+export class CursorPropertiesChangeAfterEvent { public readonly position?: CursorPosition; public readonly properties: CursorProperties; private constructor();};
 export class CursorPropertyChangeAfterEventSignal { public subscribe(callback: (arg0: CursorPropertiesChangeAfterEvent)=>void): (arg0: CursorPropertiesChangeAfterEvent)=>void; public unsubscribe(callback: (arg0: CursorPropertiesChangeAfterEvent)=>void): void; private constructor();};
 export class DataStore { public readonly actionBarContainer: DataStoreActionBarContainer; public readonly actionContainer: DataStoreActionContainer; public readonly afterEvents: DataStoreAfterEvents; public readonly menuContainer: DataStoreMenuContainer; public readonly modalToolContainer: DataStoreModalToolContainer; private constructor();};
 export class DataStoreActionBarContainer { public getItemPayload(id: string): string; public getItemProperty(id: string, property: string): (boolean | number | string | undefined); public hasItemPayload(id: string): boolean; public hasItemProperty(id: string, property: string): boolean; public registerItem(id: string, payload: string): void; public unregisterItem(id: string): void; public updateRegisteredItem(id: string, payload: string): void; public updateRegisteredItemProperty(id: string, payload: string, property: string): void; private constructor();};

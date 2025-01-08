@@ -20,7 +20,8 @@ export class ModalFormData { public constructor(); public dropdown(label: _2c.Ra
 export class ModalFormResponse extends FormResponse{ public readonly formValues?: (boolean | number | string)[]; private constructor();};
 export class UIManager { public closeAllForms(player: _2c.Player): void; private constructor();};
 
-// Constants & Objects - 1
+// Constants & Objects - 2
+export const isAlpha = true;
 
 export const uiManager: UIManager;
 

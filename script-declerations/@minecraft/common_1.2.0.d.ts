@@ -1,5 +1,6 @@
 
-// Enums - 0
+// Enums - 1
+export enum InvalidArgumentErrorType { Empty = "Empty", Unknown = "Unknown", Unspecified = "Unspecified"};
 
 // Interfaces - 1
 export interface NumberRange { max: number; min: number};
@@ -14,6 +15,6 @@ export interface NumberRange { max: number; min: number};
 // Errors - 5
 export class ArgumentOutOfBoundsError extends Error{ public readonly maxValue: number; public readonly minValue: number; public readonly value: number; private constructor();};
 export class EngineError extends Error{ private constructor();};
-export class InvalidArgumentError extends Error{ public readonly index: number; private constructor();};
+export class InvalidArgumentError extends Error{ public readonly index: number; public readonly type: InvalidArgumentErrorType; private constructor();};
 export class PropertyOutOfBoundsError extends Error{ public readonly maxValue: number; public readonly minValue: number; public readonly value: number; private constructor();};
 export class RuntimeConditionError extends Error{ private constructor();};

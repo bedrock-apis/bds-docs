@@ -2347,6 +2347,20 @@
             "properties": [
                 {
                     "is_read_only": true,
+                    "name": "position",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "CursorPosition"
+                        }
+                    }
+                },
+                {
+                    "is_read_only": true,
                     "name": "properties",
                     "type": {
                         "is_bind_type": true,
@@ -11595,6 +11609,17 @@
                 {
                     "is_read_only": true,
                     "is_static": true,
+                    "name": "NightVision",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "NightVision"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
                     "name": "ShowChunkBoundaries",
                     "type": {
                         "is_bind_type": false,
@@ -13301,6 +13326,44 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "ClipboardWriteOptions"
+            }
+        },
+        {
+            "base_types": [],
+            "name": "CursorPosition",
+            "properties": [
+                {
+                    "is_read_only": false,
+                    "name": "FaceDirection",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "uint8",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                },
+                {
+                    "is_read_only": false,
+                    "name": "Position",
+                    "type": {
+                        "from_module": {
+                            "name": "@minecraft/server",
+                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                            "version": "1.18.0-beta"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "CursorPosition"
             }
         },
         {
