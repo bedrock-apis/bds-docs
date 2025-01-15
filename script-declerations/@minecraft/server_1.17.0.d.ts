@@ -21,7 +21,7 @@ export enum HudElement { AirBubbles = 9, Armor = 1, Crosshair = 4, Health = 6, H
 export enum HudVisibility { Hide = 0, Reset = 1};
 export enum InputMode { Gamepad = "Gamepad", KeyboardAndMouse = "KeyboardAndMouse", MotionController = "MotionController", Touch = "Touch"};
 export enum InputPermissionCategory { Camera = 1, Dismount = 8, Jump = 6, LateralMovement = 4, Mount = 7, MoveBackward = 10, MoveForward = 9, MoveLeft = 11, Movement = 2, MoveRight = 12, Sneak = 5};
-export enum ItemComponentTypes { Cooldown = "minecraft:cooldown", Durability = "minecraft:durability", Enchantable = "minecraft:enchantable", Food = "minecraft:food"};
+export enum ItemComponentTypes { Compostable = "minecraft:compostable", Cooldown = "minecraft:cooldown", Durability = "minecraft:durability", Enchantable = "minecraft:enchantable", Food = "minecraft:food"};
 export enum ItemLockMode { inventory = "inventory", none = "none", slot = "slot"};
 export enum MemoryTier { High = 3, Low = 1, Mid = 2, SuperHigh = 4, SuperLow = 0};
 export enum MoonPhase { FirstQuarter = 2, FullMoon = 0, LastQuarter = 6, NewMoon = 4, WaningCrescent = 3, WaningGibbous = 1, WaxingCrescent = 5, WaxingGibbous = 7};
@@ -100,7 +100,7 @@ export interface Vector3 { x: number; y: number; z: number};
 export interface VectorXZ { x: number; z: number};
 export interface WorldSoundOptions { pitch?: number; volume?: number};
 
-// Classes - 275
+// Classes - 276
 export class Block { public readonly dimension: Dimension; public readonly isAir: boolean; public readonly isLiquid: boolean; public readonly isWaterlogged: boolean; public readonly location: Vector3; public readonly permutation: BlockPermutation; public readonly type: BlockType; public readonly typeId: string; public readonly x: number; public readonly y: number; public readonly z: number; public above(steps?: number): (Block | undefined); public below(steps?: number): (Block | undefined); public bottomCenter(): Vector3; public center(): Vector3; public east(steps?: number): (Block | undefined); public getComponent(componentId: string): (BlockComponent | undefined); public getItemStack(amount?: number, withData?: boolean): (ItemStack | undefined); public getRedstonePower(): (number | undefined); public getTags(): string[]; public hasTag(tag: string): boolean; public isValid(): boolean; public matches(blockName: string, states?: Record<string,boolean | number | string>): boolean; public north(steps?: number): (Block | undefined); public offset(offset: Vector3): (Block | undefined); public setPermutation(permutation: BlockPermutation): void; public setType(blockType: BlockType | string): void; public setWaterlogged(isWaterlogged: boolean): void; public south(steps?: number): (Block | undefined); public west(steps?: number): (Block | undefined); private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BlockComponent extends Component{ public readonly block: Block; private constructor();};
@@ -361,6 +361,8 @@ export class ItemComponentRegistry { public registerCustomComponent(name: string
 export class ItemComponentUseEvent { public readonly itemStack?: ItemStack; public readonly source: Player; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ItemComponentUseOnEvent extends ItemUseOnEvent{ public readonly source: Entity; public readonly usedOnBlockPermutation: BlockPermutation; private constructor();};
+//@ts-ignore extending for classes with private constructor is possible with native API
+export class ItemCompostableComponent extends ItemComponent{ public static readonly componentId = "minecraft:compostable"; public readonly compostingChance: number; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ItemCooldownComponent extends ItemComponent{ public static readonly componentId = "minecraft:cooldown"; public readonly cooldownCategory: string; public readonly cooldownTicks: number; public getCooldownTicksRemaining(player: Player): number; public isCooldownCategory(cooldownCategory: string): boolean; public startCooldown(player: Player): void; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
