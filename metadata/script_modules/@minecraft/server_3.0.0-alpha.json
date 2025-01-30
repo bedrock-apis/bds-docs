@@ -3425,7 +3425,36 @@
         {
             "base_types": [],
             "constants": [],
-            "functions": [],
+            "functions": [
+                {
+                    "arguments": [],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "isValid",
+                    "privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.1.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "EngineError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "boolean"
+                    }
+                }
+            ],
             "iterator": {
                 "error_types": [
                     {
@@ -3449,6 +3478,99 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "BlockLocationIterator"
+            }
+        },
+        {
+            "base_types": [
+                {
+                    "is_bind_type": true,
+                    "is_errorable": false,
+                    "name": "BlockComponent"
+                }
+            ],
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "componentId",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "minecraft:map_color"
+                }
+            ],
+            "functions": [
+                {
+                    "arguments": [],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "color",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "RGBA"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "tintedColor",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "RGBA"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "tintMethod",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "TintMethod"
+                    }
+                }
+            ],
+            "name": "BlockMapColorComponent",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "BlockMapColorComponent"
             }
         },
         {
@@ -4791,7 +4913,7 @@
                     "name": "doesLocationTouchFaces",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "return_type": {
@@ -4817,7 +4939,7 @@
                     "name": "doesVolumeTouchFaces",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "return_type": {
@@ -4843,7 +4965,7 @@
                     "name": "intersects",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "return_type": {
@@ -4860,7 +4982,7 @@
                     "name": "from",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "type": {
@@ -4874,7 +4996,7 @@
                     "name": "to",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "type": {
@@ -4901,7 +5023,7 @@
                     "name": "getBlockLocationIterator",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "return_type": {
@@ -4917,7 +5039,7 @@
                     "name": "getBoundingBox",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "return_type": {
@@ -4933,7 +5055,7 @@
                     "name": "getCapacity",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "return_type": {
@@ -4953,7 +5075,7 @@
                     "name": "getMax",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "return_type": {
@@ -4969,7 +5091,7 @@
                     "name": "getMin",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "return_type": {
@@ -4985,7 +5107,7 @@
                     "name": "getSpan",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "return_type": {
@@ -5011,7 +5133,7 @@
                     "name": "isInside",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "return_type": {
@@ -5037,7 +5159,7 @@
                     "name": "translate",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "return_type": {
@@ -5700,7 +5822,17 @@
                 }
             ],
             "name": "Camera",
-            "properties": [],
+            "properties": [
+                {
+                    "is_read_only": true,
+                    "name": "isValid",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                    }
+                }
+            ],
             "type": {
                 "is_bind_type": true,
                 "is_errorable": false,
@@ -8828,6 +8960,126 @@
                     "arguments": [
                         {
                             "details": null,
+                            "name": "featureName",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "location",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        },
+                        {
+                            "details": {
+                                "default_value": false
+                            },
+                            "name": "shouldThrow",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "boolean"
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "placeFeature",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            },
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.1.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidArgumentError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "LocationInUnloadedChunkError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "boolean"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "featureRuleName",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "location",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "placeFeatureRule",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.1.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidArgumentError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "LocationInUnloadedChunkError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "boolean"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
                             "name": "soundId",
                             "type": {
                                 "is_bind_type": false,
@@ -8906,37 +9158,6 @@
                         "is_bind_type": true,
                         "is_errorable": true,
                         "name": "CommandResult"
-                    }
-                },
-                {
-                    "arguments": [
-                        {
-                            "details": null,
-                            "name": "commandString",
-                            "type": {
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "string"
-                            }
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "runCommandAsync",
-                    "privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "return_type": {
-                        "is_bind_type": false,
-                        "is_errorable": true,
-                        "name": "promise",
-                        "promise_type": {
-                            "is_bind_type": true,
-                            "is_errorable": false,
-                            "name": "CommandResult"
-                        }
                     }
                 },
                 {
@@ -9106,7 +9327,19 @@
                             "type": {
                                 "is_bind_type": false,
                                 "is_errorable": false,
-                                "name": "string"
+                                "name": "variant",
+                                "variant_types": [
+                                    {
+                                        "is_bind_type": true,
+                                        "is_errorable": false,
+                                        "name": "EntityType"
+                                    },
+                                    {
+                                        "is_bind_type": false,
+                                        "is_errorable": false,
+                                        "name": "string"
+                                    }
+                                ]
                             }
                         },
                         {
@@ -11106,37 +11339,6 @@
                     "arguments": [
                         {
                             "details": null,
-                            "name": "commandString",
-                            "type": {
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "string"
-                            }
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "runCommandAsync",
-                    "privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "return_type": {
-                        "is_bind_type": false,
-                        "is_errorable": true,
-                        "name": "promise",
-                        "promise_type": {
-                            "is_bind_type": true,
-                            "is_errorable": false,
-                            "name": "CommandResult"
-                        }
-                    }
-                },
-                {
-                    "arguments": [
-                        {
-                            "details": null,
                             "name": "values",
                             "type": {
                                 "is_bind_type": false,
@@ -12407,8 +12609,15 @@
                     "is_read_only": true,
                     "name": "entity",
                     "type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidEntityError"
+                            }
+                        ],
                         "is_bind_type": true,
-                        "is_errorable": false,
+                        "is_errorable": true,
                         "name": "Entity"
                     }
                 }
@@ -13751,14 +13960,16 @@
                     "is_read_only": true,
                     "name": "container",
                     "type": {
-                        "is_bind_type": false,
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidEntityError"
+                            }
+                        ],
+                        "is_bind_type": true,
                         "is_errorable": true,
-                        "name": "optional",
-                        "optional_type": {
-                            "is_bind_type": true,
-                            "is_errorable": false,
-                            "name": "Container"
-                        }
+                        "name": "Container"
                     }
                 },
                 {
@@ -16632,6 +16843,180 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "EntitySpawnAfterEventSignal"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [],
+            "name": "EntitySpawnCallbackArgs",
+            "properties": [
+                {
+                    "is_read_only": true,
+                    "name": "dimensionLocation",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "DimensionLocation"
+                    }
+                },
+                {
+                    "is_read_only": true,
+                    "name": "spawnReason",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "EntitySpawnReason"
+                    }
+                },
+                {
+                    "is_read_only": true,
+                    "name": "spawnType",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "EntitySpawnType"
+                    }
+                }
+            ],
+            "runtime_conditions": [
+                "Simplified Spawn Rules"
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "EntitySpawnCallbackArgs"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "position",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getSpawnAABB",
+                    "privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "return_type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "BoundingBox"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "block",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Block"
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "isBlockDangerous",
+                    "privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                    }
+                }
+            ],
+            "name": "EntitySpawnType",
+            "properties": [
+                {
+                    "is_read_only": true,
+                    "name": "entityId",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                },
+                {
+                    "is_read_only": true,
+                    "name": "height",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "float",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                },
+                {
+                    "is_read_only": true,
+                    "name": "isImmuneFire",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                    }
+                },
+                {
+                    "is_read_only": true,
+                    "name": "isSummonable",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                    }
+                },
+                {
+                    "is_read_only": true,
+                    "name": "spawnCategory",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "EntitySpawnCategory"
+                    }
+                },
+                {
+                    "is_read_only": true,
+                    "name": "width",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "float",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                }
+            ],
+            "runtime_conditions": [
+                "Simplified Spawn Rules"
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "EntitySpawnType"
             }
         },
         {
@@ -22623,7 +23008,7 @@
                     "name": "add",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "return_type": {
@@ -22684,7 +23069,7 @@
                     "name": "remove",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "return_type": {
@@ -22966,6 +23351,49 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "MolangVariableMap"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [],
+            "name": "ObstructionCallbackArgs",
+            "properties": [
+                {
+                    "is_read_only": true,
+                    "name": "dimension",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Dimension"
+                    }
+                },
+                {
+                    "is_read_only": true,
+                    "name": "entity",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Entity"
+                    }
+                },
+                {
+                    "is_read_only": true,
+                    "name": "spawnType",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "EntitySpawnType"
+                    }
+                }
+            ],
+            "runtime_conditions": [
+                "Simplified Spawn Rules"
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "ObstructionCallbackArgs"
             }
         },
         {
@@ -23837,6 +24265,22 @@
                         "is_bind_type": true,
                         "is_errorable": true,
                         "name": "ClientSystemInfo"
+                    }
+                },
+                {
+                    "is_read_only": true,
+                    "name": "graphicsMode",
+                    "type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidEntityError"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "GraphicsMode"
                     }
                 },
                 {
@@ -29770,6 +30214,164 @@
                     "arguments": [
                         {
                             "details": null,
+                            "name": "id",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "callback",
+                            "type": {
+                                "closure_type": {
+                                    "argument_types": [
+                                        {
+                                            "is_bind_type": true,
+                                            "is_errorable": false,
+                                            "name": "EntitySpawnCallbackArgs"
+                                        }
+                                    ],
+                                    "return_type": {
+                                        "is_bind_type": false,
+                                        "is_errorable": true,
+                                        "name": "boolean"
+                                    }
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "closure"
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "registerEntitySpawnCallback",
+                    "privilege": [
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.1.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidArgumentError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "NamespaceNameError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "SpawnRulesInvalidRegistryError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "id",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "callback",
+                            "type": {
+                                "closure_type": {
+                                    "argument_types": [
+                                        {
+                                            "is_bind_type": true,
+                                            "is_errorable": false,
+                                            "name": "ObstructionCallbackArgs"
+                                        }
+                                    ],
+                                    "return_type": {
+                                        "is_bind_type": false,
+                                        "is_errorable": true,
+                                        "name": "boolean"
+                                    }
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "closure"
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "registerObstructionCallback",
+                    "privilege": [
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.1.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidArgumentError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "NamespaceNameError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "SpawnRulesInvalidRegistryError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                }
+            ],
+            "name": "SpawnRulesRegistry",
+            "properties": [],
+            "runtime_conditions": [
+                "Simplified Spawn Rules"
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "SpawnRulesRegistry"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [
+                {
+                    "arguments": [
+                        {
+                            "details": null,
                             "name": "callback",
                             "type": {
                                 "closure_type": {
@@ -29872,7 +30474,27 @@
         {
             "base_types": [],
             "constants": [],
-            "functions": [],
+            "functions": [
+                {
+                    "arguments": [],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getSpawnRulesRegistry",
+                    "privilege": [
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "return_type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "SpawnRulesRegistry"
+                    },
+                    "runtime_conditions": [
+                        "Simplified Spawn Rules"
+                    ]
+                }
+            ],
             "name": "StartupEvent",
             "properties": [
                 {
@@ -31030,7 +31652,7 @@
                     ],
                     "is_constructor": false,
                     "is_static": false,
-                    "name": "scriptEvent",
+                    "name": "sendScriptEvent",
                     "privilege": [
                         {
                             "name": "none"
@@ -31154,6 +31776,15 @@
                             "max": 2147483647,
                             "min": -2147483648
                         }
+                    }
+                },
+                {
+                    "is_read_only": true,
+                    "name": "isEditorWorld",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
                     }
                 },
                 {
@@ -33756,7 +34387,11 @@
         {
             "name": "@minecraft/common",
             "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
-            "version": "1.1.0"
+            "versions": [
+                {
+                    "version": "1.1.0"
+                }
+            ]
         }
     ],
     "enums": [
@@ -36149,6 +36784,313 @@
                 {
                     "is_read_only": true,
                     "is_static": true,
+                    "name": "Ambient",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Ambient"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Axolotls",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Axolotls"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Creature",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Creature"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Misc",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Misc"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Monster",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Monster"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "UndergroundWaterCreature",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "UndergroundWaterCreature"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "WaterAmbient",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "WaterAmbient"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "WaterCreature",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "WaterCreature"
+                }
+            ],
+            "name": "EntitySpawnCategory"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Breeding",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Breeding"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Bucket",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Bucket"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "ChunkGeneration",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "ChunkGeneration"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Command",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Command"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Conversion",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Conversion"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "DimensionTravel",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "DimensionTravel"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Dispenser",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Dispenser"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Event",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Event"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Jockey",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Jockey"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Load",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Load"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "MobSummoned",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "MobSummoned"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Natural",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Natural"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Patrol",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Patrol"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Reinforcement",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Reinforcement"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "SpawnEgg",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "SpawnEgg"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Spawner",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Spawner"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Structure",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Structure"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "TrialSpawner",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "TrialSpawner"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Triggered",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Triggered"
+                }
+            ],
+            "name": "EntitySpawnReason"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
                     "name": "Body",
                     "type": {
                         "is_bind_type": false,
@@ -36735,6 +37677,55 @@
                 }
             ],
             "name": "GameRule"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Deferred",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Deferred"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Fancy",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Fancy"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "RayTraced",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "RayTraced"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Simple",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Simple"
+                }
+            ],
+            "name": "GraphicsMode"
         },
         {
             "constants": [
@@ -38028,6 +39019,77 @@
                 {
                     "is_read_only": true,
                     "is_static": true,
+                    "name": "BirchFoliage",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "BirchFoliage"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "DefaultFoliage",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "DefaultFoliage"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "EvergreenFoliage",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "EvergreenFoliage"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Grass",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Grass"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "None",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "None"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Water",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Water"
+                }
+            ],
+            "name": "TintMethod"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
                     "name": "Hang",
                     "type": {
                         "is_bind_type": false,
@@ -38325,6 +39387,15 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "PlaceJigsawError"
+            }
+        },
+        {
+            "name": "SpawnRulesInvalidRegistryError",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "SpawnRulesInvalidRegistryError"
             }
         },
         {
@@ -42603,6 +43674,10 @@
                     "value": "BlockInventoryComponent"
                 },
                 {
+                    "name": "minecraft:map_color",
+                    "value": "BlockMapColorComponent"
+                },
+                {
                     "name": "minecraft:piston",
                     "value": "BlockPistonComponent"
                 },
@@ -42938,5 +44013,5 @@
         }
     ],
     "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-    "version": "2.0.0-alpha"
+    "version": "3.0.0-alpha"
 }

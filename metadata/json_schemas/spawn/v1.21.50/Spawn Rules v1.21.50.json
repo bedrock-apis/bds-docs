@@ -6,25 +6,25 @@
             "title": "struct SharedTypes::v1_21_60::Spawn::Herd",
             "type": "object",
             "properties": {
+                "min": {
+                    "type": "integer",
+                    "minimum": 0
+                },
                 "event": {
                     "type": "string"
                 },
                 "event_skip_count": {
                     "type": "integer"
                 },
+                "max": {
+                    "type": "integer",
+                    "minimum": 0
+                },
                 "initial_event": {
                     "type": "string"
                 },
                 "initial_event_count": {
                     "type": "integer"
-                },
-                "max": {
-                    "type": "integer",
-                    "minimum": 0
-                },
-                "min": {
-                    "type": "integer",
-                    "minimum": 0
                 }
             }
         },
@@ -44,12 +44,6 @@
                 {
                     "type": "object",
                     "properties": {
-                        "AND": {
-                            "$ref": "#/definitions/1088251937"
-                        },
-                        "NOT": {
-                            "$ref": "#/definitions/1088251937"
-                        },
                         "OR": {
                             "$ref": "#/definitions/1088251937"
                         },
@@ -59,13 +53,19 @@
                         "all_of": {
                             "$ref": "#/definitions/1088251937"
                         },
-                        "any": {
+                        "AND": {
                             "$ref": "#/definitions/1088251937"
                         },
                         "any_of": {
                             "$ref": "#/definitions/1088251937"
                         },
                         "none_of": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "any": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "NOT": {
                             "$ref": "#/definitions/1088251937"
                         }
                     }
@@ -76,16 +76,16 @@
             "title": "struct SharedTypes::v1_21_60::Spawn::Placement",
             "type": "object",
             "properties": {
-                "heightmap": {
+                "type": {
                     "type": "string"
                 },
-                "spawn_obstruction_predicate": {
+                "heightmap": {
                     "type": "string"
                 },
                 "spawn_predicate": {
                     "type": "string"
                 },
-                "type": {
+                "spawn_obstruction_predicate": {
                     "type": "string"
                 }
             }
@@ -106,16 +106,16 @@
             "title": "struct SharedTypes::v1_21_60::Spawn::PermuteType",
             "type": "object",
             "properties": {
-                "entity_type": {
-                    "type": "string"
+                "weight": {
+                    "type": "integer",
+                    "minimum": 0
                 },
                 "min_guaranteed": {
                     "type": "integer",
                     "minimum": 0
                 },
-                "weight": {
-                    "type": "integer",
-                    "minimum": 0
+                "entity_type": {
+                    "type": "string"
                 }
             },
             "required": [
@@ -126,8 +126,9 @@
             "title": "struct SharedTypes::v1_21_60::Spawn::BiomeConditions",
             "type": "object",
             "properties": {
-                "biome_filter": {
-                    "$ref": "#/definitions/1088251937"
+                "weight": {
+                    "type": "integer",
+                    "minimum": 0
                 },
                 "herds": {
                     "title": "sequence container",
@@ -146,9 +147,8 @@
                         "$ref": "#/definitions/3424466759"
                     }
                 },
-                "weight": {
-                    "type": "integer",
-                    "minimum": 0
+                "biome_filter": {
+                    "$ref": "#/definitions/1088251937"
                 }
             },
             "required": [
@@ -159,39 +159,7 @@
             "title": "Filter Test",
             "type": "object",
             "properties": {
-                "domain": {
-                    "oneOf": [
-                        {
-                            "type": "boolean"
-                        },
-                        {
-                            "type": "integer"
-                        },
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
                 "operator": {
-                    "oneOf": [
-                        {
-                            "type": "boolean"
-                        },
-                        {
-                            "type": "integer"
-                        },
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "subject": {
                     "oneOf": [
                         {
                             "type": "boolean"
@@ -209,6 +177,38 @@
                 },
                 "test": {
                     "type": "string"
+                },
+                "subject": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "domain": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "value": {
                     "oneOf": [
@@ -235,18 +235,18 @@
     "title": "struct SharedTypes::v1_21_60::Spawn::Contents",
     "type": "object",
     "properties": {
+        "description": {
+            "$ref": "#/definitions/1743975235"
+        },
+        "placement": {
+            "$ref": "#/definitions/1564953790"
+        },
         "conditions": {
             "title": "sequence container",
             "type": "array",
             "items": {
                 "$ref": "#/definitions/3629386827"
             }
-        },
-        "description": {
-            "$ref": "#/definitions/1743975235"
-        },
-        "placement": {
-            "$ref": "#/definitions/1564953790"
         }
     },
     "required": [

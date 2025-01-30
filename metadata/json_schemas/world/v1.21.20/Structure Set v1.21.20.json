@@ -6,12 +6,19 @@
             "title": "struct SharedTypes::v1_21_20::JigsawStructureSet::RandomSpreadPlacement",
             "type": "object",
             "properties": {
-                "salt": {
-                    "type": "integer"
-                },
                 "separation": {
                     "type": "integer",
                     "minimum": 0
+                },
+                "type": {
+                    "title": "enum SharedTypes::v1_21_20::JigsawStructureSet::PlacementType",
+                    "type": "string",
+                    "enum": [
+                        "minecraft:random_spread"
+                    ]
+                },
+                "salt": {
+                    "type": "integer"
                 },
                 "spacing": {
                     "type": "integer",
@@ -24,20 +31,13 @@
                         "linear",
                         "triangular"
                     ]
-                },
-                "type": {
-                    "title": "enum SharedTypes::v1_21_20::JigsawStructureSet::PlacementType",
-                    "type": "string",
-                    "enum": [
-                        "minecraft:random_spread"
-                    ]
                 }
             },
             "required": [
-                "salt",
+                "type",
                 "separation",
-                "spacing",
-                "type"
+                "salt",
+                "spacing"
             ]
         },
         "1509348670": {

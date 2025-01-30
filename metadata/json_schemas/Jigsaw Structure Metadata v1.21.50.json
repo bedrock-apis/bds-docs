@@ -6,10 +6,13 @@
             "title": "class SharedTypes::v1_21_50::JigsawBlockMetadata",
             "type": "object",
             "properties": {
-                "block": {
+                "name": {
                     "type": "string"
                 },
-                "final_block": {
+                "pool": {
+                    "type": "string"
+                },
+                "target": {
                     "type": "string"
                 },
                 "joint_type": {
@@ -20,35 +23,32 @@
                         "aligned"
                     ]
                 },
-                "name": {
-                    "type": "string"
-                },
-                "placement_priority": {
+                "selection_priority": {
                     "type": "integer"
                 },
-                "pool": {
+                "block": {
+                    "type": "string"
+                },
+                "final_block": {
                     "type": "string"
                 },
                 "pos": {
                     "$ref": "#/definitions/820712576"
                 },
-                "selection_priority": {
+                "placement_priority": {
                     "type": "integer"
-                },
-                "target": {
-                    "type": "string"
                 }
             },
             "required": [
-                "block",
-                "final_block",
-                "joint_type",
                 "name",
-                "placement_priority",
                 "pool",
-                "pos",
+                "joint_type",
+                "target",
                 "selection_priority",
-                "target"
+                "block",
+                "pos",
+                "final_block",
+                "placement_priority"
             ]
         },
         "820712576": {
@@ -104,8 +104,8 @@
                 }
             },
             "required": [
-                "markers",
-                "size"
+                "size",
+                "markers"
             ]
         }
     },

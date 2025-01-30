@@ -1,6 +1,6 @@
 
 // Enums - 1
-export enum InvalidArgumentErrorType { Empty = "Empty", Unknown = "Unknown", Unspecified = "Unspecified"};
+export enum InvalidArgumentErrorType { Duplicate = "Duplicate", Empty = "Empty", Unknown = "Unknown", Unspecified = "Unspecified"};
 
 // Interfaces - 1
 export interface NumberRange { max: number; min: number};
