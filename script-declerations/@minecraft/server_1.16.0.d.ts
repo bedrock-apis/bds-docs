@@ -37,7 +37,7 @@ export enum StructureSaveMode { Memory = "Memory", World = "World"};
 export enum TimeOfDay { Day = 1000, Midnight = 18000, Night = 13000, Noon = 6000, Sunrise = 23000, Sunset = 12000};
 export enum WeatherType { Clear = "Clear", Rain = "Rain", Thunder = "Thunder"};
 
-// Interfaces - 59
+// Interfaces - 60
 export interface BlockCustomComponent { beforeOnPlayerPlace?: (arg0: BlockComponentPlayerPlaceBeforeEvent)=>void; onEntityFallOn?: (arg0: BlockComponentEntityFallOnEvent)=>void; onPlace?: (arg0: BlockComponentOnPlaceEvent)=>void; onPlayerDestroy?: (arg0: BlockComponentPlayerDestroyEvent)=>void; onPlayerInteract?: (arg0: BlockComponentPlayerInteractEvent)=>void; onRandomTick?: (arg0: BlockComponentRandomTickEvent)=>void; onStepOff?: (arg0: BlockComponentStepOffEvent)=>void; onStepOn?: (arg0: BlockComponentStepOnEvent)=>void; onTick?: (arg0: BlockComponentTickEvent)=>void};
 export interface BlockEventOptions { blockTypes?: string[]; permutations?: BlockPermutation[]};
 export interface BlockFillOptions { blockFilter?: BlockFilter; ignoreChunkBoundErrors?: boolean};
@@ -53,6 +53,7 @@ export interface CameraSetFacingOptions { easeOptions?: CameraEaseOptions; facin
 export interface CameraSetLocationOptions { easeOptions?: CameraEaseOptions; location: Vector3};
 export interface CameraSetPosOptions { easeOptions?: CameraEaseOptions; facingLocation: Vector3; location?: Vector3};
 export interface CameraSetRotOptions { easeOptions?: CameraEaseOptions; location?: Vector3; rotation: Vector2};
+export interface CameraTargetOptions { offsetFromTargetCenter?: Vector3; targetEntity: Entity};
 export interface DefinitionModifier { addedComponentGroups: string[]; removedComponentGroups: string[]};
 export interface DimensionLocation { dimension: Dimension; x: number; y: number; z: number};
 export interface Enchantment { level: number; type: EnchantmentType};
@@ -148,7 +149,7 @@ export class BlockVolumeBase { public getBlockLocationIterator(): BlockLocationI
 export class ButtonPushAfterEvent extends BlockEvent{ public readonly source: Entity; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ButtonPushAfterEventSignal extends IButtonPushAfterEventSignal{ private constructor();};
-export class Camera { public clear(): void; public fade(fadeCameraOptions?: CameraFadeOptions): void; public setCamera(cameraPreset: string, setOptions?: CameraDefaultOptions | CameraSetFacingOptions | CameraSetLocationOptions | CameraSetPosOptions | CameraSetRotOptions): void; private constructor();};
+export class Camera { public clear(): void; public fade(fadeCameraOptions?: CameraFadeOptions): void; public setCamera(cameraPreset: string, setOptions?: CameraDefaultOptions | CameraSetFacingOptions | CameraSetLocationOptions | CameraSetPosOptions | CameraSetRotOptions | CameraTargetOptions): void; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ClientSystemInfo extends SystemInfo{ public readonly maxRenderDistance: number; public readonly platformType: PlatformType; private constructor();};
 export class CommandResult { public readonly successCount: number; private constructor();};
@@ -462,7 +463,7 @@ export class ScreenDisplay { public getHiddenHudElements(): HudElement[]; public
 export class ScriptEventCommandMessageAfterEvent { public readonly id: string; public readonly initiator?: Entity; public readonly message: string; public readonly sourceBlock?: Block; public readonly sourceEntity?: Entity; public readonly sourceType: ScriptEventSource; private constructor();};
 export class ScriptEventCommandMessageAfterEventSignal { public subscribe(callback: (arg0: ScriptEventCommandMessageAfterEvent)=>void, options?: ScriptEventMessageFilterOptions): (arg0: ScriptEventCommandMessageAfterEvent)=>void; public unsubscribe(callback: (arg0: ScriptEventCommandMessageAfterEvent)=>void): void; private constructor();};
 export class Seat { public readonly lockRiderRotation: number; public readonly maxRiderCount: number; public readonly minRiderCount: number; public readonly position: Vector3; public readonly seatRotation: number; private constructor();};
-export class Structure { public readonly id: string; public readonly size: Vector3; public getBlockPermutation(location: Vector3): (BlockPermutation | undefined); public getIsWaterlogged(location: Vector3): boolean; public isValid(): boolean; public saveAs(identifier: string, saveMode?: StructureSaveMode): Structure; public saveToWorld(): void; public setBlockPermutation(location: Vector3, blockPermutation?: BlockPermutation): void; private constructor();};
+export class Structure { public readonly id: string; public readonly size: Vector3; public getBlockPermutation(location: Vector3): (BlockPermutation | undefined); public getIsWaterlogged(location: Vector3): boolean; public isValid(): boolean; public saveAs(identifier: string, saveMode?: StructureSaveMode): Structure; public saveToWorld(): void; public setBlockPermutation(location: Vector3, blockPermutation?: BlockPermutation, waterlogged?: boolean): void; private constructor();};
 export class StructureManager { public createEmpty(identifier: string, size: Vector3, saveMode?: StructureSaveMode): Structure; public createFromWorld(identifier: string, dimension: Dimension, from: Vector3, to: Vector3, options?: StructureCreateOptions): Structure; public delete(structure: string | Structure): boolean; public get(identifier: string): (Structure | undefined); public getWorldStructureIds(): string[]; public place(structure: string | Structure, dimension: Dimension, location: Vector3, options?: StructurePlaceOptions): void; private constructor();};
 export class System { public readonly afterEvents: SystemAfterEvents; public readonly currentTick: number; public readonly serverSystemInfo: SystemInfo; public clearJob(jobId: number): void; public clearRun(runId: number): void; public run(callback: ()=>void): number; public runInterval(callback: ()=>void, tickInterval?: number): number; public runJob(generator: Generator<undefined>): number; public runTimeout(callback: ()=>void, tickDelay?: number): number; public waitTicks(ticks: number): Promise<void>; private constructor();};
 export class SystemAfterEvents { public readonly scriptEventReceive: ScriptEventCommandMessageAfterEventSignal; private constructor();};

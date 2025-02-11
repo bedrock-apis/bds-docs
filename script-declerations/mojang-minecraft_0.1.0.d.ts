@@ -18,7 +18,7 @@ export class BeforeItemUseEventSignal { public subscribe(callback: (arg0: Before
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BeforeItemUseOnEvent extends ItemUseOnEvent{ public cancel: boolean; private constructor();};
 export class BeforeItemUseOnEventSignal { public subscribe(callback: (arg0: BeforeItemUseOnEvent)=>void): (arg0: BeforeItemUseOnEvent)=>void; public unsubscribe(callback: (arg0: BeforeItemUseOnEvent)=>void): void; private constructor();};
-export class Block { public readonly dimension: Dimension; public readonly id: string; public readonly isEmpty: boolean; public isWaterlogged: boolean; public readonly location: BlockLocation; public readonly permutation: BlockPermutation; public readonly type: BlockType; public readonly x: number; public readonly y: number; public readonly z: number; public getComponent(componentName: string): (BlockComponent | undefined); public getTags(): string[]; public hasTag(tag: string): boolean; public setPermutation(permutation: BlockPermutation): void; public setType(blockType: BlockType): void; private constructor();};
+export class Block { public readonly dimension: Dimension; public readonly id: string; public readonly isEmpty: boolean; public readonly location: BlockLocation; public readonly permutation: BlockPermutation; public readonly type: BlockType; public readonly x: number; public readonly y: number; public readonly z: number; public getComponent(componentName: string): (BlockComponent | undefined); public getTags(): string[]; public hasTag(tag: string): boolean; public setPermutation(permutation: BlockPermutation): void; public setType(blockType: BlockType): void; private constructor();};
 export class BlockAreaSize { public x: number; public y: number; public z: number; public constructor(x: number, y: number, z: number); public equals(other: BlockAreaSize): boolean;};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BlockComponent extends Component{ public readonly location: BlockLocation; private constructor();};
@@ -40,7 +40,7 @@ export class BlockRaycastOptions { public includeLiquidBlocks?: boolean; public 
 export class BlockRecordPlayerComponent { public clearRecord(): void; public isPlaying(): boolean; public setRecord(recordItemType: ItemType): void; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BlockSnowContainerComponent extends BlockLiquidContainerComponent{ private constructor();};
-export class BlockType { public readonly canBeWaterlogged: boolean; public readonly id: string; public createDefaultBlockPermutation(): BlockPermutation; private constructor();};
+export class BlockType { public readonly id: string; public createDefaultBlockPermutation(): BlockPermutation; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BlockWaterContainerComponent extends BlockLiquidContainerComponent{ public addDye(itemType: ItemType): void; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
