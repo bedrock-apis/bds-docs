@@ -611,6 +611,129 @@
                         "is_errorable": true,
                         "name": "undefined"
                     }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "properties",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "ContiguousSelectionProperties"
+                                }
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getContiguousSelection",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            }
+                        ],
+                        "from_module": {
+                            "name": "@minecraft/server",
+                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                            "version": "2.0.0-beta"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "CompoundBlockVolume"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "properties",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "QuickExtrudeProperties"
+                                }
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getFacePreviewSelection",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            }
+                        ],
+                        "from_module": {
+                            "name": "@minecraft/server",
+                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                            "version": "2.0.0-beta"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "ListBlockVolume"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "properties",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "QuickExtrudeProperties"
+                                }
+                            }
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "quickExtrude",
+                    "privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
                 }
             ],
             "name": "BlockUtilities",
@@ -11530,6 +11653,66 @@
                 {
                     "is_read_only": true,
                     "is_static": true,
+                    "name": "AllBlocks",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "ContiguousSelectionType"
+                    },
+                    "value": 3
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Custom",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "ContiguousSelectionType"
+                    },
+                    "value": 4
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "SameBlock",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "ContiguousSelectionType"
+                    },
+                    "value": 0
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "SameBlockAndStates",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "ContiguousSelectionType"
+                    },
+                    "value": 1
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "SolidBlocks",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "ContiguousSelectionType"
+                    },
+                    "value": 2
+                }
+            ],
+            "name": "ContiguousSelectionType"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
                     "name": "Fixed",
                     "type": {
                         "is_bind_type": true,
@@ -13580,6 +13763,159 @@
         },
         {
             "base_types": [],
+            "name": "ContiguousSelectionProperties",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "checkForAdjacentFace",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "boolean"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "contiguousSelectionBlockList",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "element_type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            },
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "array"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "contiguousSelectionType",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "ContiguousSelectionType"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "fullSelectionToleranceLevel",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "int32",
+                            "valid_range": {
+                                "max": 2147483647,
+                                "min": -2147483648
+                            }
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "isFace",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "boolean"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "selectionDirection",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "int32",
+                            "valid_range": {
+                                "max": 2147483647,
+                                "min": -2147483648
+                            }
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "size",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "int32",
+                            "valid_range": {
+                                "max": 2147483647,
+                                "min": -2147483648
+                            }
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "startingLocation",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "from_module": {
+                                "name": "@minecraft/server",
+                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                "version": "2.0.0-beta"
+                            },
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "Vector3"
+                        }
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "ContiguousSelectionProperties"
+            }
+        },
+        {
+            "base_types": [],
             "name": "CursorPosition",
             "properties": [
                 {
@@ -14913,6 +15249,159 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "ProjectExportOptions"
+            }
+        },
+        {
+            "base_types": [],
+            "name": "QuickExtrudeProperties",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "checkForAdjacentFace",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "boolean"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "contiguousSelectionBlockList",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "element_type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            },
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "array"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "contiguousSelectionType",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "ContiguousSelectionType"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "isShrink",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "boolean"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "layerCount",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "int32",
+                            "valid_range": {
+                                "max": 2147483647,
+                                "min": -2147483648
+                            }
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "selectionDirection",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "int32",
+                            "valid_range": {
+                                "max": 2147483647,
+                                "min": -2147483648
+                            }
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "size",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "int32",
+                            "valid_range": {
+                                "max": 2147483647,
+                                "min": -2147483648
+                            }
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "startingLocation",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "from_module": {
+                                "name": "@minecraft/server",
+                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                "version": "2.0.0-beta"
+                            },
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "Vector3"
+                        }
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "QuickExtrudeProperties"
             }
         },
         {

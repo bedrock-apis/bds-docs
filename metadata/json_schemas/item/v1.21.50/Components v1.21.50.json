@@ -41,12 +41,12 @@
             "title": "minecraft:food v1.20.50",
             "type": "object",
             "properties": {
-                "nutrition": {
-                    "type": "integer"
-                },
                 "saturation_modifier": {
                     "type": "number",
                     "minimum": 0
+                },
+                "nutrition": {
+                    "type": "integer"
                 },
                 "can_always_eat": {
                     "type": "boolean"
@@ -743,7 +743,7 @@
             "type": "object",
             "properties": {
                 "block": {
-                    "type": "string"
+                    "$ref": "#/definitions/1527037515"
                 },
                 "use_on": {
                     "title": "sequence container",
@@ -820,6 +820,10 @@
                     "type": "integer"
                 }
             }
+        },
+        "1527037515": {
+            "title": "struct SharedTypes::Reference<0>",
+            "type": "string"
         },
         "1531870811": {
             "title": "struct SharedTypes::Legacy::ItemDescriptor",
@@ -1905,11 +1909,11 @@
                 "min_draw_duration": {
                     "type": "number"
                 },
-                "max_draw_duration": {
-                    "type": "number"
-                },
                 "scale_power_by_draw_duration": {
                     "type": "boolean"
+                },
+                "max_draw_duration": {
+                    "type": "number"
                 },
                 "launch_power_scale": {
                     "type": "number"

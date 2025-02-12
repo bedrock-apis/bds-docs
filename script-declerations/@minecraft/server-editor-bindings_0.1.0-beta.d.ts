@@ -1,11 +1,12 @@
 import * as _1e from '@minecraft/common';
 import * as _2c from '@minecraft/server';
 
-// Enums - 28
+// Enums - 29
 export enum Axis { X = 1, Y = 2, Z = 4};
 export enum BlockMaskListType { Disabled = "Disabled", Mask = "Mask", Replace = "Replace"};
 export enum BlockPaletteItemType { Probability = 1, Simple = 0};
 export enum BrushShapeType { OffsetList = "OffsetList", WeightedSphere = "WeightedSphere"};
+export enum ContiguousSelectionType { AllBlocks = 3, Custom = 4, SameBlock = 0, SameBlockAndStates = 1, SolidBlocks = 2};
 export enum CursorControlMode { Fixed = 3, Keyboard = 0, KeyboardAndMouse = 2, Mouse = 1};
 export enum CursorTargetMode { Block = 0, Face = 1};
 export enum DaylightCycle { AlwaysDay = 1, LockTime = 2, Normal = 0};
@@ -31,10 +32,11 @@ export enum WidgetComponentType { Clipboard = "Clipboard", Entity = "Entity", Gi
 export enum WidgetGroupSelectionMode { Multiple = "Multiple", None = "None", Single = "Single"};
 export enum WidgetMouseButtonActionType { Drag = 2, Pressed = 0, Released = 1};
 
-// Interfaces - 26
+// Interfaces - 28
 export interface BlockMaskList { blockList: (_2c.BlockPermutation | _2c.BlockType | string)[]; maskType: BlockMaskListType};
 export interface BrushShape { icon: string; name: string};
 export interface ClipboardWriteOptions { mirror?: _2c.StructureMirrorAxis; normalizedOrigin?: _2c.Vector3; offset?: _2c.Vector3; rotation?: _2c.StructureRotation};
+export interface ContiguousSelectionProperties { checkForAdjacentFace?: boolean; contiguousSelectionBlockList?: string[]; contiguousSelectionType?: ContiguousSelectionType; fullSelectionToleranceLevel?: number; isFace?: boolean; selectionDirection?: number; size?: number; startingLocation?: _2c.Vector3};
 export interface CursorPosition { FaceDirection: number; Position: _2c.Vector3};
 export interface CursorProperties { controlMode?: CursorControlMode; fillColor?: _2c.RGBA; fixedModeDistance?: number; outlineColor?: _2c.RGBA; projectThroughLiquid?: boolean; targetMode?: CursorTargetMode; visible?: boolean};
 export interface CursorRay { end: _2c.Vector3; hit: boolean; start: _2c.Vector3};
@@ -46,6 +48,7 @@ export interface GameOptions { bedsWork?: boolean; bonusChest?: boolean; cheats?
 export interface InputBindingInfo { actionId?: string; canRebind: boolean; label?: string; tooltip?: string};
 export interface LogProperties { player?: _2c.Player; tags?: string[]};
 export interface ProjectExportOptions { alwaysDay?: boolean; difficulty?: _2c.Difficulty; disableWeather?: boolean; exportName?: string; exportType: ProjectExportType; gameMode?: _2c.GameMode; initialTimOfDay?: number};
+export interface QuickExtrudeProperties { checkForAdjacentFace?: boolean; contiguousSelectionBlockList?: string[]; contiguousSelectionType?: ContiguousSelectionType; isShrink?: boolean; layerCount?: number; selectionDirection?: number; size?: number; startingLocation?: _2c.Vector3};
 export interface SettingsUIElementOptions { dropdownItems?: string[]; max?: number; min?: number; refreshOnChange?: boolean};
 export interface WeightedBlock { block: _2c.BlockType; weight: number};
 export interface WidgetComponentBaseOptions { lockToSurface?: boolean; offset?: _2c.Vector3; stateChangeEvent?: (arg0: WidgetComponentStateChangeEventData)=>void; visible?: boolean};
@@ -62,7 +65,7 @@ export interface WidgetGroupCreateOptions { groupSelectionMode?: WidgetGroupSele
 // Classes - 76
 export class BlockPalette { public constructor(); public getItem(index: number): IBlockPaletteItem; public removeItemAt(index: number): void; public removeItems(): void; public setItem(blockPaletteItem: IBlockPaletteItem, index: number): void;};
 export class BlockPaletteManager { public addOrReplacePalette(paletteId: string, palette: BlockPalette): void; public getPalette(paletteId: string): (BlockPalette | undefined); public getPaletteIdList(): string[]; public getPaletteItem(paletteId: string, index: number): IBlockPaletteItem; public getPrimaryPalette(): BlockPalette; public getSelectedBlockType(): _2c.BlockType; public getSelectedItem(): IBlockPaletteItem; public removePalette(paletteId: string): void; public setPaletteItem(paletteId: string, index: number, item: IBlockPaletteItem): void; public setPrimaryPalette(paletteId: string): void; public setSelectedItem(item: IBlockPaletteItem): void; private constructor();};
-export class BlockUtilities { public fillVolume(volume: _2c.BlockVolumeBase | _2c.CompoundBlockVolume | Selection, block?: _2c.BlockPermutation | _2c.BlockType | string): void; private constructor();};
+export class BlockUtilities { public fillVolume(volume: _2c.BlockVolumeBase | _2c.CompoundBlockVolume | Selection, block?: _2c.BlockPermutation | _2c.BlockType | string): void; public getContiguousSelection(properties?: ContiguousSelectionProperties): _2c.CompoundBlockVolume; public getFacePreviewSelection(properties?: QuickExtrudeProperties): _2c.ListBlockVolume; public quickExtrude(properties?: QuickExtrudeProperties): void; private constructor();};
 export class BrushShapeManager { public readonly activeBrushShape?: BrushShape; public readonly activeBrushVolume?: _2c.CompoundBlockVolume; public readonly brushShapeList: BrushShape[]; public activateBrushTool(): void; public beginPainting(onComplete: (arg0: PaintCompletionState)=>void): void; public deactivateBrushTool(): void; public endPainting(cancelled: boolean): void; public getBrushShapeOffset(): _2c.Vector3; public getSettingsUIElements(brushName: string): SettingsUIElement[]; public registerBrushShape(name: string, icon: string, rebuild: ()=>_2c.CompoundBlockVolume, getSettingsUIElements: ()=>SettingsUIElement[]): void; public setBrushMask(mask: BlockMaskList): void; public setBrushShape(shape: _2c.Vector3[] | _2c.CompoundBlockVolume): void; public setBrushShapeOffset(offset: _2c.Vector3): void; public setBrushShapeVisible(visible: boolean): void; public setFlattenHeight(flattenHeight: number): void; public setFlattenRadius(flattenRadius: number): void; public setTerrainStrength(terrainStrength: number): void; public singlePaint(onComplete: (arg0: PaintCompletionState)=>void): void; public switchBrushPaintMode(paintMode: PaintMode): void; public switchBrushShape(name: string): _2c.CompoundBlockVolume; public uiSettingValueChanged(elementName: string, newValue: boolean | number | string | _2c.Vector3): boolean; private constructor();};
 export class ClipboardChangeAfterEvent { public readonly isPrimary: boolean; public readonly itemId: string; private constructor();};
 export class ClipboardChangeAfterEventSignal { public subscribe(callback: (arg0: ClipboardChangeAfterEvent)=>void): (arg0: ClipboardChangeAfterEvent)=>void; public unsubscribe(callback: (arg0: ClipboardChangeAfterEvent)=>void): void; private constructor();};

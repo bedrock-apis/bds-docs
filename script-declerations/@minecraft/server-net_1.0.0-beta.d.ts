@@ -27,4 +27,6 @@ export const http: HttpClient;
 
 // Functions - 0
 
-// Errors - 0
+// Errors - 2
+export class InternalHttpRequestError extends Error{ public readonly code: number; public readonly message: string; private constructor();};
+export class MalformedHttpRequestError extends Error{ private constructor();};

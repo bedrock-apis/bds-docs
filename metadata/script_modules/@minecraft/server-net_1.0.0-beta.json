@@ -21,7 +21,10 @@
                     "name": "cancelAll",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
                         }
                     ],
                     "return_type": {
@@ -47,7 +50,10 @@
                     "name": "get",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
                         }
                     ],
                     "return_type": {
@@ -78,7 +84,10 @@
                     "name": "request",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
                         }
                     ],
                     "return_type": {
@@ -165,7 +174,10 @@
                     "name": "key",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
                         }
                     ],
                     "type": {
@@ -180,7 +192,10 @@
                     "name": "value",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
                         }
                     ],
                     "type": {
@@ -260,7 +275,10 @@
                     "name": "addHeader",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
                         }
                     ],
                     "return_type": {
@@ -311,7 +329,10 @@
                     "name": "setBody",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
                         }
                     ],
                     "return_type": {
@@ -342,7 +363,10 @@
                     "name": "setHeaders",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
                         }
                     ],
                     "return_type": {
@@ -368,7 +392,10 @@
                     "name": "setMethod",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
                         }
                     ],
                     "return_type": {
@@ -401,7 +428,10 @@
                     "name": "setTimeout",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
                         }
                     ],
                     "return_type": {
@@ -419,7 +449,10 @@
                     "name": "body",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
                         }
                     ],
                     "type": {
@@ -434,7 +467,10 @@
                     "name": "headers",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
                         }
                     ],
                     "type": {
@@ -454,7 +490,10 @@
                     "name": "method",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
                         }
                     ],
                     "type": {
@@ -469,7 +508,10 @@
                     "name": "timeout",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
                         }
                     ],
                     "type": {
@@ -488,7 +530,10 @@
                     "name": "uri",
                     "privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
                         }
                     ],
                     "type": {
@@ -3358,7 +3403,51 @@
             "name": "PacketId"
         }
     ],
-    "errors": [],
+    "errors": [
+        {
+            "name": "InternalHttpRequestError",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "code",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "message",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "InternalHttpRequestError"
+            }
+        },
+        {
+            "name": "MalformedHttpRequestError",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "MalformedHttpRequestError"
+            }
+        }
+    ],
     "functions": [],
     "interfaces": [
         {
