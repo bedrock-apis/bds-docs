@@ -1,7 +1,7 @@
 import * as _1e from '@minecraft/common';
 import * as _2c from '@minecraft/server';
 
-// Enums - 29
+// Enums - 30
 export enum Axis { X = 1, Y = 2, Z = 4};
 export enum BlockMaskListType { Disabled = "Disabled", Mask = "Mask", Replace = "Replace"};
 export enum BlockPaletteItemType { Probability = 1, Simple = 0};
@@ -25,6 +25,7 @@ export enum PlayerPermissionLevel { Custom = 3, Member = 1, Operator = 2, Visito
 export enum PlaytestSessionResult { EditorSystemFailure = 7, InvalidLevelId = 8, InvalidSessionHandle = 1, OK = 0, PlayerNotFound = 9, ResponseTimeout = 10, SessionInfoNotFound = 2, TooManyPlayers = 3, UnspecifiedError = 11, UnsupportedScenario = 6, WorldExportBusy = 5, WorldExportFailed = 4};
 export enum PrimitiveType { AxialSphere = 5, Box = 1, Disc = 4, Line = 2, Text = 0};
 export enum ProjectExportType { PlayableWorld = 0, ProjectBackup = 1, WorldTemplate = 2};
+export enum RealmsServiceStatus { Exporting = 2, Fetching = 0, Idle = 1, Uploading = 3};
 export enum SpeedSettingsProperty { FlySpeedMultiplier = "FlySpeedMultiplier"};
 export enum SplineType { Hermite = 1, Line = 0};
 export enum ThemeSettingsColorKey { Caret = "Caret", Confirm1 = "Confirm1", Confirm2 = "Confirm2", Confirm3 = "Confirm3", ConfirmFill = "ConfirmFill", ControlsGeneralFill = "ControlsGeneralFill", ControlsGeneralHighlight = "ControlsGeneralHighlight", Coordinate1 = "Coordinate1", Coordinate2 = "Coordinate2", Coordinate3 = "Coordinate3", CoordinateControlX = "CoordinateControlX", CoordinateControlY = "CoordinateControlY", CoordinateControlZ = "CoordinateControlZ", CursorVolumeBorder = "CursorVolumeBorder", CursorVolumeFill = "CursorVolumeFill", Destroy1 = "Destroy1", Destroy2 = "Destroy2", Destroy3 = "Destroy3", DestroyFill = "DestroyFill", DisableBackground = "DisableBackground", DisableFill = "DisableFill", DisableOutline = "DisableOutline", DisableText = "DisableText", DropDown1 = "DropDown1", DropDown2 = "DropDown2", DropDown3 = "DropDown3", ElementBorder = "ElementBorder", Error = "Error", FocusOutline = "FocusOutline", HeaderBackground = "HeaderBackground", HotbarOutline = "HotbarOutline", Info1 = "Info1", Info2 = "Info2", Info3 = "Info3", InfoFill = "InfoFill", PanelBackground = "PanelBackground", PanelBorder = "PanelBorder", PlacementVolumeBorder = "PlacementVolumeBorder", PlacementVolumeFill = "PlacementVolumeFill", PrefillVolumeBorder = "PrefillVolumeBorder", PrefillVolumeFill = "PrefillVolumeFill", PrimaryActive = "PrimaryActive", PrimaryBackground1 = "PrimaryBackground1", PrimaryBackground2 = "PrimaryBackground2", PrimaryBackground3 = "PrimaryBackground3", PrimaryBackground4 = "PrimaryBackground4", PrimaryDefault = "PrimaryDefault", PrimaryDisable = "PrimaryDisable", PrimaryMute = "PrimaryMute", ScrollBar = "ScrollBar", SecondaryActive = "SecondaryActive", SecondaryBackground1 = "SecondaryBackground1", SecondaryBackground2 = "SecondaryBackground2", SecondaryBackground3 = "SecondaryBackground3", SecondaryDefault = "SecondaryDefault", SecondaryDisable = "SecondaryDisable", SecondaryMute = "SecondaryMute", SelectionVolumeBorder = "SelectionVolumeBorder", SelectionVolumeFill = "SelectionVolumeFill", TitleBarBackground = "TitleBarBackground", ViewportOutline = "ViewportOutline", Warning = "Warning"};
@@ -32,7 +33,7 @@ export enum WidgetComponentType { Clipboard = "Clipboard", Entity = "Entity", Gi
 export enum WidgetGroupSelectionMode { Multiple = "Multiple", None = "None", Single = "Single"};
 export enum WidgetMouseButtonActionType { Drag = 2, Pressed = 0, Released = 1};
 
-// Interfaces - 28
+// Interfaces - 30
 export interface BlockMaskList { blockList: (_2c.BlockPermutation | _2c.BlockType | string)[]; maskType: BlockMaskListType};
 export interface BrushShape { icon: string; name: string};
 export interface ClipboardWriteOptions { mirror?: _2c.StructureMirrorAxis; normalizedOrigin?: _2c.Vector3; offset?: _2c.Vector3; rotation?: _2c.StructureRotation};
@@ -41,6 +42,8 @@ export interface CursorPosition { FaceDirection: number; Position: _2c.Vector3};
 export interface CursorProperties { controlMode?: CursorControlMode; fillColor?: _2c.RGBA; fixedModeDistance?: number; outlineColor?: _2c.RGBA; projectThroughLiquid?: boolean; targetMode?: CursorTargetMode; visible?: boolean};
 export interface CursorRay { end: _2c.Vector3; hit: boolean; start: _2c.Vector3};
 export interface DataTransferCollectionNameData { nameStringId: string; uniqueId: string};
+export interface EditorRealmsWorld { id: string; name: string};
+export interface EditorRealmsWorldSlot { id: number; name: string};
 export interface EditorStructure { storageLocation: string; structure: _2c.Structure; tags: string[]};
 export interface EditorStructureSearchOptions { excludeTags?: string[]; idPattern?: string; includeLocation?: string[]; includeTags?: string[]};
 export interface ExtensionOptionalParameters { description?: string; notes?: string; toolGroupId?: string};
@@ -62,7 +65,7 @@ export interface WidgetComponentTextOptions extends WidgetComponentBaseOptions{ 
 export interface WidgetCreateOptions { bindPositionToBlockCursor?: boolean; collisionOffset?: _2c.Vector3; collisionRadius?: number; lockToSurface?: boolean; selectable?: boolean; snapToBlockLocation?: boolean; stateChangeEvent?: (arg0: WidgetStateChangeEventData)=>void; visible?: boolean};
 export interface WidgetGroupCreateOptions { groupSelectionMode?: WidgetGroupSelectionMode; showBounds?: boolean; visible?: boolean};
 
-// Classes - 76
+// Classes - 77
 export class BlockPalette { public constructor(); public getItem(index: number): IBlockPaletteItem; public removeItemAt(index: number): void; public removeItems(): void; public setItem(blockPaletteItem: IBlockPaletteItem, index: number): void;};
 export class BlockPaletteManager { public addOrReplacePalette(paletteId: string, palette: BlockPalette): void; public getPalette(paletteId: string): (BlockPalette | undefined); public getPaletteIdList(): string[]; public getPaletteItem(paletteId: string, index: number): IBlockPaletteItem; public getPrimaryPalette(): BlockPalette; public getSelectedBlockType(): _2c.BlockType; public getSelectedItem(): IBlockPaletteItem; public removePalette(paletteId: string): void; public setPaletteItem(paletteId: string, index: number, item: IBlockPaletteItem): void; public setPrimaryPalette(paletteId: string): void; public setSelectedItem(item: IBlockPaletteItem): void; private constructor();};
 export class BlockUtilities { public fillVolume(volume: _2c.BlockVolumeBase | _2c.CompoundBlockVolume | Selection, block?: _2c.BlockPermutation | _2c.BlockType | string): void; public getContiguousSelection(properties?: ContiguousSelectionProperties): _2c.CompoundBlockVolume; public getFacePreviewSelection(properties?: QuickExtrudeProperties): _2c.ListBlockVolume; public quickExtrude(properties?: QuickExtrudeProperties): void; private constructor();};
@@ -98,7 +101,7 @@ export class ExtensionContextAfterEvents { public readonly clipboardChange: Clip
 export class GraphicsSettings { public get(property: GraphicsSettingsProperty): (boolean | number | string | undefined); public getAll(): Record<string,boolean | number | string | undefined>; public set(property: GraphicsSettingsProperty, value: boolean | number | string): void; public setAll(properties: Record<string,boolean | number | string | undefined>): void; private constructor();};
 export class IBlockPaletteItem { public getBlock(): (_2c.BlockType | undefined); public getDisplayName(): (string | undefined); public getType(): BlockPaletteItemType; public setBlock(block: _2c.BlockPermutation | _2c.BlockType | string): void; private constructor();};
 export class InputService { public focusViewport(): void; public getKeyBindingProcessingState(contextId: string, bindingId: string): (number | undefined); public registerKeyBinding(contextId: string, bindingId: string, key: number, modifier: InputModifier, info: InputBindingInfo): void; public registerMouseBinding(contextId: string, bindingId: string, mouseAction: MouseActionCategory): void; public unregisterKeyBinding(contextId: string, bindingId: string): void; public unregisterMouseBinding(contextId: string, bindingId: string): void; public updateKeyBindingProcessingState(contextId: string, bindingId: string, state?: number): void; private constructor();};
-export class InternalPlayerServiceContext { public readonly dataStore: DataStore; public readonly dataTransfer: DataTransferManager; public readonly input: InputService; public readonly tickingArea: TickingAreaManager; private constructor();};
+export class InternalPlayerServiceContext { public readonly dataStore: DataStore; public readonly dataTransfer: DataTransferManager; public readonly input: InputService; public readonly realmsService: realmsService; public readonly tickingArea: TickingAreaManager; private constructor();};
 export class Logger { public debug(message: string, properties?: LogProperties): void; public error(message: string, properties?: LogProperties): void; public info(message: string, properties?: LogProperties): void; public warning(message: string, properties?: LogProperties): void; private constructor();};
 export class MinecraftEditor { public readonly log: Logger; public readonly simulation: SimulationState; private constructor();};
 export class MinecraftEditorInternal { public fireTelemetryEvent(player: _2c.Player, source: string, eventName: string, metadata: string): void; public getMapColorUnsafe(player: _2c.Player, coordinate: _2c.Vector3): _2c.RGBA; public getPlayerServices(player: _2c.Player): InternalPlayerServiceContext; public registerExtension(extensionName: string, activationFunction: (arg0: ExtensionContext)=>void, shutdownFunction: (arg0: ExtensionContext)=>void, options?: ExtensionOptionalParameters): Extension; private constructor();};
@@ -109,6 +112,7 @@ export class PrimarySelectionChangeAfterEventSignal { public subscribe(callback:
 export class PrimarySelectionChangedEvent { public readonly volume?: _2c.CompoundBlockVolume; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ProbabilityBlockPaletteItem extends IBlockPaletteItem{ public addBlock(block: _2c.BlockPermutation | _2c.BlockType | string, weight: number): void; public constructor(displayName?: string); public getBlocks(): WeightedBlock[]; public removeBlockAt(index: number): void;};
+export class realmsService { public beginUploadToRealms(realmsWorldId: string, slotId: number, gameOptions: GameOptions): Promise<boolean>; public canUploadWorld(): boolean; public getRealmWorldlist(): Promise<EditorRealmsWorld[]>; public getServiceStatus(): RealmsServiceStatus; public getSlots(worldId: string): Promise<EditorRealmsWorldSlot[]>; private constructor();};
 export class Selection { public readonly isEmpty: boolean; public visible: boolean; public clear(): void; public getBlockLocationIterator(): _2c.BlockLocationIterator; public getBoundingBox(): _2c.BoundingBox; public getFillColor(): _2c.RGBA; public getOutlineColor(): _2c.RGBA; public getVolumeOrigin(): _2c.Vector3; public moveBy(delta: _2c.Vector3): _2c.Vector3; public moveTo(location: _2c.Vector3): _2c.Vector3; public peekLastVolume(forceRelativity?: _2c.CompoundBlockVolumePositionRelativity): (_2c.CompoundBlockVolumeItem | undefined); public popVolume(): void; public pushVolume(item: _2c.CompoundBlockVolumeItem): void; public set(other: _2c.CompoundBlockVolume | Selection): void; public setFillColor(color: _2c.RGBA): void; public setOutlineColor(color: _2c.RGBA): void; private constructor();};
 export class SelectionEventAfterEvent { public readonly selectionEvent: PrimarySelectionChangedEvent; private constructor();};
 export class SelectionManager { public readonly selection: Selection; public create(): Selection; private constructor();};

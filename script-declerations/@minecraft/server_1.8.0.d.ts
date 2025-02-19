@@ -17,7 +17,7 @@ export enum ScriptEventSource { Block = "Block", Entity = "Entity", NPCDialogue 
 export enum TimeOfDay { Day = 1000, Midnight = 18000, Night = 13000, Noon = 6000, Sunrise = 23000, Sunset = 12000};
 export enum WeatherType { Clear = "Clear", Rain = "Rain", Thunder = "Thunder"};
 
-// Interfaces - 41
+// Interfaces - 42
 export interface BlockEventOptions { blockTypes?: string[]; permutations?: BlockPermutation[]};
 export interface BlockFilter { excludePermutations?: BlockPermutation[]; excludeTags?: string[]; excludeTypes?: string[]; includePermutations?: BlockPermutation[]; includeTags?: string[]; includeTypes?: string[]};
 export interface BlockHitInformation { block: Block; face: Direction; faceLocation: Vector3};
@@ -27,6 +27,7 @@ export interface CameraDefaultOptions { easeOptions: CameraEaseOptions};
 export interface CameraEaseOptions { easeTime?: number; easeType?: EasingType};
 export interface CameraFadeOptions { fadeColor?: RGB; fadeTime?: CameraFadeTimeOptions};
 export interface CameraFadeTimeOptions { fadeInTime: number; fadeOutTime: number; holdTime: number};
+export interface CameraFixedBoomOptions { entityOffset?: Vector3; viewOffset?: Vector2};
 export interface CameraSetFacingOptions { easeOptions?: CameraEaseOptions; facingEntity: Entity; location?: Vector3};
 export interface CameraSetLocationOptions { easeOptions?: CameraEaseOptions; location: Vector3};
 export interface CameraSetPosOptions { easeOptions?: CameraEaseOptions; facingLocation: Vector3; location?: Vector3};
@@ -73,7 +74,7 @@ export class BlockType { private constructor();};
 export class ButtonPushAfterEvent extends BlockEvent{ public readonly source: Entity; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ButtonPushAfterEventSignal extends IButtonPushAfterEventSignal{ private constructor();};
-export class Camera { public clear(): void; public fade(fadeCameraOptions?: CameraFadeOptions): void; public setCamera(cameraPreset: string, setOptions?: CameraDefaultOptions | CameraSetFacingOptions | CameraSetLocationOptions | CameraSetPosOptions | CameraSetRotOptions | CameraTargetOptions): void; private constructor();};
+export class Camera { public clear(): void; public fade(fadeCameraOptions?: CameraFadeOptions): void; public setCamera(cameraPreset: string, setOptions?: CameraDefaultOptions | CameraFixedBoomOptions | CameraSetFacingOptions | CameraSetLocationOptions | CameraSetPosOptions | CameraSetRotOptions | CameraTargetOptions): void; private constructor();};
 export class CommandResult { public readonly successCount: number; private constructor();};
 export class Component { public readonly typeId: string; public isValid(): boolean; private constructor();};
 export class Container { public readonly emptySlotsCount: number; public readonly size: number; public addItem(itemStack: ItemStack): (ItemStack | undefined); public clearAll(): void; public getItem(slot: number): (ItemStack | undefined); public isValid(): boolean; public moveItem(fromSlot: number, toSlot: number, toContainer: Container): void; public setItem(slot: number, itemStack?: ItemStack): void; public swapItems(slot: number, otherSlot: number, otherContainer: Container): void; public transferItem(fromSlot: number, toContainer: Container): (ItemStack | undefined); private constructor();};
