@@ -173,7 +173,7 @@
                     ],
                     "call_privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "is_constructor": true,
@@ -587,7 +587,7 @@
                     ],
                     "call_privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "is_constructor": true,
@@ -3450,6 +3450,81 @@
             }
         },
         {
+            "base_types": [
+                {
+                    "is_bind_type": true,
+                    "is_errorable": false,
+                    "name": "BlockComponent"
+                }
+            ],
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "componentId",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "minecraft:destruction_particles"
+                }
+            ],
+            "functions": [],
+            "name": "BlockDestructionParticlesComponent",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "texture",
+                    "type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "string"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "tintMethod",
+                    "type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "TintMethod"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "BlockDestructionParticlesComponent"
+            }
+        },
+        {
             "base_types": [],
             "constants": [],
             "functions": [],
@@ -3981,18 +4056,19 @@
                     "value": "minecraft:map_color"
                 }
             ],
-            "functions": [
+            "functions": [],
+            "name": "BlockMapColorComponent",
+            "properties": [
                 {
-                    "arguments": [],
-                    "call_privilege": [
+                    "get_privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
-                    "is_constructor": false,
-                    "is_static": false,
+                    "is_baked": false,
+                    "is_read_only": true,
                     "name": "color",
-                    "return_type": {
+                    "type": {
                         "error_types": [
                             {
                                 "is_bind_type": false,
@@ -4006,32 +4082,30 @@
                     }
                 },
                 {
-                    "arguments": [],
-                    "call_privilege": [
+                    "get_privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
-                    "is_constructor": false,
-                    "is_static": false,
+                    "is_baked": false,
+                    "is_read_only": true,
                     "name": "tintedColor",
-                    "return_type": {
+                    "type": {
                         "is_bind_type": true,
                         "is_errorable": false,
                         "name": "RGBA"
                     }
                 },
                 {
-                    "arguments": [],
-                    "call_privilege": [
+                    "get_privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
-                    "is_constructor": false,
-                    "is_static": false,
+                    "is_baked": false,
+                    "is_read_only": true,
                     "name": "tintMethod",
-                    "return_type": {
+                    "type": {
                         "error_types": [
                             {
                                 "is_bind_type": false,
@@ -4045,8 +4119,6 @@
                     }
                 }
             ],
-            "name": "BlockMapColorComponent",
-            "properties": [],
             "type": {
                 "is_bind_type": true,
                 "is_errorable": false,
@@ -5407,7 +5479,7 @@
                     ],
                     "call_privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "is_constructor": true,
@@ -6924,7 +6996,7 @@
                     ],
                     "call_privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "is_constructor": true,
@@ -10942,7 +11014,7 @@
                     ],
                     "call_privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "is_constructor": true,
@@ -18231,16 +18303,11 @@
                         }
                     ],
                     "is_baked": false,
-                    "is_read_only": false,
+                    "is_read_only": true,
                     "name": "value",
-                    "set_privilege": [
-                        {
-                            "name": "none"
-                        }
-                    ],
                     "type": {
                         "is_bind_type": false,
-                        "is_errorable": false,
+                        "is_errorable": true,
                         "name": "float",
                         "valid_range": {
                             "max": 2147483647,
@@ -22969,7 +23036,7 @@
                     ],
                     "call_privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "is_constructor": true,
@@ -24921,362 +24988,6 @@
             "base_types": [],
             "constants": [],
             "functions": [],
-            "name": "ItemUseOnAfterEvent",
-            "properties": [
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
-                    "name": "block",
-                    "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "Block"
-                    }
-                },
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": true,
-                    "is_read_only": true,
-                    "name": "blockFace",
-                    "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "Direction"
-                    }
-                },
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
-                    "name": "faceLocation",
-                    "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "Vector3"
-                    }
-                },
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
-                    "name": "isFirstEvent",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "boolean"
-                    }
-                },
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
-                    "name": "itemStack",
-                    "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "ItemStack"
-                    }
-                },
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
-                    "name": "source",
-                    "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "Player"
-                    }
-                }
-            ],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "ItemUseOnAfterEvent"
-            }
-        },
-        {
-            "base_types": [],
-            "constants": [],
-            "functions": [
-                {
-                    "arguments": [
-                        {
-                            "details": null,
-                            "name": "callback",
-                            "type": {
-                                "closure_type": {
-                                    "argument_types": [
-                                        {
-                                            "is_bind_type": true,
-                                            "is_errorable": false,
-                                            "name": "ItemUseOnAfterEvent"
-                                        }
-                                    ],
-                                    "return_type": {
-                                        "is_bind_type": false,
-                                        "is_errorable": true,
-                                        "name": "undefined"
-                                    }
-                                },
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "closure"
-                            }
-                        }
-                    ],
-                    "call_privilege": [
-                        {
-                            "name": "early_execution"
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "subscribe",
-                    "return_type": {
-                        "closure_type": {
-                            "argument_types": [
-                                {
-                                    "is_bind_type": true,
-                                    "is_errorable": false,
-                                    "name": "ItemUseOnAfterEvent"
-                                }
-                            ],
-                            "return_type": {
-                                "is_bind_type": false,
-                                "is_errorable": true,
-                                "name": "undefined"
-                            }
-                        },
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "closure"
-                    }
-                },
-                {
-                    "arguments": [
-                        {
-                            "details": null,
-                            "name": "callback",
-                            "type": {
-                                "closure_type": {
-                                    "argument_types": [
-                                        {
-                                            "is_bind_type": true,
-                                            "is_errorable": false,
-                                            "name": "ItemUseOnAfterEvent"
-                                        }
-                                    ],
-                                    "return_type": {
-                                        "is_bind_type": false,
-                                        "is_errorable": true,
-                                        "name": "undefined"
-                                    }
-                                },
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "closure"
-                            }
-                        }
-                    ],
-                    "call_privilege": [
-                        {
-                            "name": "early_execution"
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "unsubscribe",
-                    "return_type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "undefined"
-                    }
-                }
-            ],
-            "name": "ItemUseOnAfterEventSignal",
-            "properties": [],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "ItemUseOnAfterEventSignal"
-            }
-        },
-        {
-            "base_types": [
-                {
-                    "is_bind_type": true,
-                    "is_errorable": false,
-                    "name": "ItemUseOnAfterEvent"
-                }
-            ],
-            "constants": [],
-            "functions": [],
-            "name": "ItemUseOnBeforeEvent",
-            "properties": [
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": false,
-                    "name": "cancel",
-                    "set_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "boolean"
-                    }
-                }
-            ],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "ItemUseOnBeforeEvent"
-            }
-        },
-        {
-            "base_types": [],
-            "constants": [],
-            "functions": [
-                {
-                    "arguments": [
-                        {
-                            "details": null,
-                            "name": "callback",
-                            "type": {
-                                "closure_type": {
-                                    "argument_types": [
-                                        {
-                                            "is_bind_type": true,
-                                            "is_errorable": false,
-                                            "name": "ItemUseOnBeforeEvent"
-                                        }
-                                    ],
-                                    "return_type": {
-                                        "is_bind_type": false,
-                                        "is_errorable": true,
-                                        "name": "undefined"
-                                    }
-                                },
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "closure"
-                            }
-                        }
-                    ],
-                    "call_privilege": [
-                        {
-                            "name": "early_execution"
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "subscribe",
-                    "return_type": {
-                        "closure_type": {
-                            "argument_types": [
-                                {
-                                    "is_bind_type": true,
-                                    "is_errorable": false,
-                                    "name": "ItemUseOnBeforeEvent"
-                                }
-                            ],
-                            "return_type": {
-                                "is_bind_type": false,
-                                "is_errorable": true,
-                                "name": "undefined"
-                            }
-                        },
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "closure"
-                    }
-                },
-                {
-                    "arguments": [
-                        {
-                            "details": null,
-                            "name": "callback",
-                            "type": {
-                                "closure_type": {
-                                    "argument_types": [
-                                        {
-                                            "is_bind_type": true,
-                                            "is_errorable": false,
-                                            "name": "ItemUseOnBeforeEvent"
-                                        }
-                                    ],
-                                    "return_type": {
-                                        "is_bind_type": false,
-                                        "is_errorable": true,
-                                        "name": "undefined"
-                                    }
-                                },
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "closure"
-                            }
-                        }
-                    ],
-                    "call_privilege": [
-                        {
-                            "name": "early_execution"
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "unsubscribe",
-                    "return_type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "undefined"
-                    }
-                }
-            ],
-            "name": "ItemUseOnBeforeEventSignal",
-            "properties": [],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "ItemUseOnBeforeEventSignal"
-            }
-        },
-        {
-            "base_types": [],
-            "constants": [],
-            "functions": [],
             "name": "ItemUseOnEvent",
             "properties": [
                 {
@@ -25562,7 +25273,7 @@
                     ],
                     "call_privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "is_constructor": true,
@@ -25679,7 +25390,7 @@
                     "arguments": [],
                     "call_privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "is_constructor": true,
@@ -35642,7 +35353,7 @@
                     ],
                     "call_privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "is_constructor": true,
@@ -37731,24 +37442,6 @@
                     ],
                     "is_baked": false,
                     "is_read_only": true,
-                    "name": "itemUseOn",
-                    "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "ItemUseOnAfterEventSignal"
-                    }
-                },
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        },
-                        {
-                            "name": "early_execution"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
                     "name": "leverAction",
                     "type": {
                         "is_bind_type": true,
@@ -38289,24 +37982,6 @@
                         "is_bind_type": true,
                         "is_errorable": false,
                         "name": "ItemUseBeforeEventSignal"
-                    }
-                },
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        },
-                        {
-                            "name": "early_execution"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
-                    "name": "itemUseOn",
-                    "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "ItemUseOnBeforeEventSignal"
                     }
                 },
                 {
@@ -48211,6 +47886,10 @@
         {
             "alias_type": "type_map",
             "mappings": [
+                {
+                    "name": "minecraft:destruction_particles",
+                    "value": "BlockDestructionParticlesComponent"
+                },
                 {
                     "name": "minecraft:fluid_container",
                     "value": "BlockFluidContainerComponent"
