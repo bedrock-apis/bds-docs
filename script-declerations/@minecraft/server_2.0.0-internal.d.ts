@@ -123,7 +123,7 @@ export interface Vector3 { x: number; y: number; z: number};
 export interface VectorXZ { x: number; z: number};
 export interface WorldSoundOptions { pitch?: number; volume?: number};
 
-// Classes - 310
+// Classes - 311
 export class AimAssistCategory { public readonly defaultBlockPriority: number; public readonly defaultEntityPriority: number; public readonly identifier: string; public getBlockPriorities(): Record<string,number>; public getEntityPriorities(): Record<string,number>; private constructor();};
 export class AimAssistCategorySettings { public defaultBlockPriority: number; public defaultEntityPriority: number; public readonly identifier: string; public constructor(identifier: string); public getBlockPriorities(): Record<string,number>; public getEntityPriorities(): Record<string,number>; public setBlockPriorities(blockPriorities: Record<string,number>): void; public setEntityPriorities(entityPriorities: Record<string,number>): void;};
 export class AimAssistPreset { public readonly defaultItemSettings?: string; public readonly handSettings?: string; public readonly identifier: string; public getExcludedTargets(): string[]; public getItemSettings(): Record<string,string>; public getLiquidTargetingItems(): string[]; private constructor();};
@@ -342,7 +342,7 @@ export class EntityOnFireComponent extends EntityComponent{ public static readon
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class EntityProjectileComponent extends EntityComponent{ public static readonly componentId = "minecraft:projectile"; public airInertia: number; public catchFireOnHurt: boolean; public critParticlesOnProjectileHurt: boolean; public destroyOnProjectileHurt: boolean; public gravity: number; public hitEntitySound?: string; public hitGroundSound?: string; public hitParticle?: string; public lightningStrikeOnHit: boolean; public liquidInertia: number; public onFireTime: number; public owner?: Entity; public shouldBounceOnHit: boolean; public stopOnHit: boolean; public shoot(velocity: Vector3, options?: ProjectileShootOptions): void; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
-export class EntityPushThroughComponent extends EntityComponent{ public static readonly componentId = "minecraft:push_through"; public value: number; private constructor();};
+export class EntityPushThroughComponent extends EntityComponent{ public static readonly componentId = "minecraft:push_through"; public readonly value: number; private constructor();};
 export class EntityRemoveAfterEvent { public readonly removedEntityId: string; public readonly typeId: string; private constructor();};
 export class EntityRemoveAfterEventSignal { public subscribe(callback: (arg0: EntityRemoveAfterEvent)=>void, options?: EntityEventOptions): (arg0: EntityRemoveAfterEvent)=>void; public unsubscribe(callback: (arg0: EntityRemoveAfterEvent)=>void): void; private constructor();};
 export class EntityRemoveBeforeEvent { public readonly removedEntity: Entity; private constructor();};
@@ -408,6 +408,8 @@ export class ItemComponentUseOnEvent extends ItemUseOnEvent{ public readonly sou
 export class ItemCompostableComponent extends ItemComponent{ public static readonly componentId = "minecraft:compostable"; public readonly compostingChance: number; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ItemCooldownComponent extends ItemComponent{ public static readonly componentId = "minecraft:cooldown"; public readonly cooldownCategory: string; public readonly cooldownTicks: number; public getCooldownTicksRemaining(player: Player): number; public isCooldownCategory(cooldownCategory: string): boolean; public startCooldown(player: Player): void; private constructor();};
+//@ts-ignore extending for classes with private constructor is possible with native API
+export class ItemCustomComponentInstance extends ItemComponent{ private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ItemDurabilityComponent extends ItemComponent{ public static readonly componentId = "minecraft:durability"; public damage: number; public readonly maxDurability: number; public getDamageChance(unbreakingEnchantmentLevel?: number): number; public getDamageChanceRange(): _1e.NumberRange; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
@@ -515,7 +517,7 @@ export class Scoreboard { public addObjective(objectiveId: string, displayName?:
 export class ScoreboardIdentity { public readonly displayName: string; public readonly id: number; public readonly isValid: boolean; public readonly type: ScoreboardIdentityType; public getEntity(): (Entity | undefined); private constructor();};
 export class ScoreboardObjective { public readonly displayName: string; public readonly id: string; public readonly isValid: boolean; public addScore(participant: Entity | ScoreboardIdentity | string, scoreToAdd: number): number; public getParticipants(): ScoreboardIdentity[]; public getScore(participant: Entity | ScoreboardIdentity | string): (number | undefined); public getScores(): ScoreboardScoreInfo[]; public hasParticipant(participant: Entity | ScoreboardIdentity | string): boolean; public removeParticipant(participant: Entity | ScoreboardIdentity | string): boolean; public setScore(participant: Entity | ScoreboardIdentity | string, score: number): void; private constructor();};
 export class ScoreboardScoreInfo { public readonly participant: ScoreboardIdentity; public readonly score: number; private constructor();};
-export class ScreenDisplay { public readonly isValid: boolean; public getHiddenHudElements(): HudElement[]; public hideAllExcept(hudElements?: HudElement[]): void; public isForcedHidden(hudElement: HudElement): boolean; public resetHudElements(): void; public setActionBar(text: (RawMessage | string)[] | RawMessage | string): void; public setHudVisibility(visible: HudVisibility, hudElements?: HudElement[]): void; public setTitle(title: (RawMessage | string)[] | RawMessage | string, options?: TitleDisplayOptions): void; public updateSubtitle(subtitle: (RawMessage | string)[] | RawMessage | string): void; private constructor();};
+export class ScreenDisplay { public readonly isValid: boolean; public getHiddenHudElements(): HudElement[]; public hideAllExcept(hudElements?: HudElement[]): void; public isForcedHidden(hudElement: HudElement): boolean; public resetHudElementsVisibility(): void; public setActionBar(text: (RawMessage | string)[] | RawMessage | string): void; public setHudVisibility(visible: HudVisibility, hudElements?: HudElement[]): void; public setTitle(title: (RawMessage | string)[] | RawMessage | string, options?: TitleDisplayOptions): void; public updateSubtitle(subtitle: (RawMessage | string)[] | RawMessage | string): void; private constructor();};
 export class ScriptEventCommandMessageAfterEvent { public readonly id: string; public readonly initiator?: Entity; public readonly message: string; public readonly sourceBlock?: Block; public readonly sourceEntity?: Entity; public readonly sourceType: ScriptEventSource; private constructor();};
 export class ScriptEventCommandMessageAfterEventSignal { public subscribe(callback: (arg0: ScriptEventCommandMessageAfterEvent)=>void, options?: ScriptEventMessageFilterOptions): (arg0: ScriptEventCommandMessageAfterEvent)=>void; public unsubscribe(callback: (arg0: ScriptEventCommandMessageAfterEvent)=>void): void; private constructor();};
 export class Seat { public readonly lockRiderRotation: number; public readonly maxRiderCount: number; public readonly minRiderCount: number; public readonly position: Vector3; public readonly seatRotation: number; private constructor();};
@@ -563,7 +565,7 @@ export const world: World;
 
 // Functions - 0
 
-// Errors - 25
+// Errors - 26
 export class BlockCustomComponentAlreadyRegisteredError extends Error{ private constructor();};
 export class BlockCustomComponentReloadNewComponentError extends Error{ private constructor();};
 export class BlockCustomComponentReloadNewEventError extends Error{ private constructor();};
@@ -587,5 +589,6 @@ export class LocationInUnloadedChunkError extends Error{ private constructor();}
 export class LocationOutOfWorldBoundariesError extends Error{ private constructor();};
 export class NamespaceNameError extends Error{ public readonly reason: NamespaceNameErrorReason; private constructor();};
 export class PlaceJigsawError extends Error{ private constructor();};
+export class RawMessageError extends Error{ private constructor();};
 export class SpawnRulesInvalidRegistryError extends Error{ private constructor();};
 export class UnloadedChunksError extends Error{ private constructor();};

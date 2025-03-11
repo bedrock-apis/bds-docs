@@ -1,0 +1,289 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "3714031231",
+    "x-minecraft-version": "1.21.80-beta.20",
+    "definitions": {
+        "56017534": {
+            "title": "struct SharedTypes::v1_21_30::TradeItem",
+            "type": "object",
+            "properties": {
+                "__DEP_fnctns": {
+                    "deprecated": true,
+                    "$ref": "#/definitions/315535208"
+                },
+                "functions": {
+                    "type": "array",
+                    "items": {
+                        "description": "Dynamic value"
+                    }
+                },
+                "item": {
+                    "type": "string"
+                },
+                "__DEP_fltrs": {
+                    "deprecated": true,
+                    "$ref": "#/definitions/315535208"
+                },
+                "quantity": {
+                    "$ref": "#/definitions/2298823339"
+                },
+                "price_multiplier": {
+                    "type": "number"
+                },
+                "filters": {
+                    "$ref": "#/definitions/1088251937"
+                }
+            },
+            "required": [
+                "item"
+            ]
+        },
+        "315535208": {
+            "title": "class Json::Value"
+        },
+        "943617905": {
+            "title": "struct SharedTypes::v1_21_30::TradeTier",
+            "type": "object",
+            "properties": {
+                "groups": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/3153354884"
+                    }
+                },
+                "total_exp_required": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "groups",
+                "total_exp_required"
+            ]
+        },
+        "1088251937": {
+            "title": "Filter Group",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/4150989894"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/1088251937"
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "OR": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "all": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "all_of": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "AND": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "any_of": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "none_of": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "any": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "NOT": {
+                            "$ref": "#/definitions/1088251937"
+                        }
+                    }
+                }
+            ]
+        },
+        "1093643626": {
+            "title": "struct SharedTypes::v1_21_30::TradeItemList",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/56017534"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "choice": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/56017534"
+                            }
+                        }
+                    },
+                    "required": [
+                        "choice"
+                    ]
+                }
+            ]
+        },
+        "2298823339": {
+            "title": "struct SharedTypes::v1_21_30::TradeItem::Quantity",
+            "oneOf": [
+                {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "min": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "max": {
+                            "type": "integer",
+                            "minimum": 1
+                        }
+                    }
+                }
+            ]
+        },
+        "3153354884": {
+            "title": "struct SharedTypes::v1_21_30::TradeGroup",
+            "type": "object",
+            "properties": {
+                "trades": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/3738829565"
+                    },
+                    "minItems": 1
+                },
+                "num_to_select": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            },
+            "required": [
+                "trades"
+            ]
+        },
+        "3738829565": {
+            "title": "struct SharedTypes::v1_21_30::Trade",
+            "type": "object",
+            "properties": {
+                "wants": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/1093643626"
+                    },
+                    "minItems": 1
+                },
+                "trader_exp": {
+                    "type": "integer"
+                },
+                "gives": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/1093643626"
+                    },
+                    "minItems": 1
+                },
+                "max_uses": {
+                    "type": "integer"
+                },
+                "reward_exp": {
+                    "type": "boolean"
+                },
+                "weight": {
+                    "type": "integer",
+                    "minimum": 1
+                }
+            },
+            "required": [
+                "wants",
+                "gives"
+            ]
+        },
+        "4150989894": {
+            "title": "Filter Test",
+            "type": "object",
+            "properties": {
+                "operator": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "test": {
+                    "type": "string"
+                },
+                "subject": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "domain": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "value": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "test"
+            ]
+        }
+    },
+    "title": "struct SharedTypes::v1_21_30::TradeTableData",
+    "type": "array",
+    "items": {
+        "$ref": "#/definitions/943617905"
+    }
+}

@@ -1,0 +1,252 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "662705489",
+    "x-minecraft-version": "1.21.80-beta.20",
+    "definitions": {
+        "98158070": {
+            "title": "struct SharedTypes::v1_21_60::Spawn::Herd",
+            "type": "object",
+            "properties": {
+                "min": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "event": {
+                    "type": "string"
+                },
+                "event_skip_count": {
+                    "type": "integer"
+                },
+                "max": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "initial_event": {
+                    "type": "string"
+                },
+                "initial_event_count": {
+                    "type": "integer"
+                }
+            }
+        },
+        "1088251937": {
+            "title": "Filter Group",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/4150989894"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/1088251937"
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "OR": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "all": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "all_of": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "AND": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "any_of": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "none_of": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "any": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "NOT": {
+                            "$ref": "#/definitions/1088251937"
+                        }
+                    }
+                }
+            ]
+        },
+        "1564953790": {
+            "title": "struct SharedTypes::v1_21_60::Spawn::Placement",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "heightmap": {
+                    "type": "string"
+                },
+                "spawn_predicate": {
+                    "type": "string"
+                },
+                "spawn_obstruction_predicate": {
+                    "type": "string"
+                }
+            }
+        },
+        "1743975235": {
+            "title": "struct SharedTypes::v1_21_60::Spawn::Description",
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "identifier"
+            ]
+        },
+        "3424466759": {
+            "title": "struct SharedTypes::v1_21_60::Spawn::PermuteType",
+            "type": "object",
+            "properties": {
+                "weight": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "min_guaranteed": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "entity_type": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "weight"
+            ]
+        },
+        "3629386827": {
+            "title": "struct SharedTypes::v1_21_60::Spawn::BiomeConditions",
+            "type": "object",
+            "properties": {
+                "weight": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "herds": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/98158070"
+                    }
+                },
+                "mob_event_filter": {
+                    "type": "string"
+                },
+                "permute_types": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/3424466759"
+                    }
+                },
+                "biome_filter": {
+                    "$ref": "#/definitions/1088251937"
+                }
+            },
+            "required": [
+                "weight"
+            ]
+        },
+        "4150989894": {
+            "title": "Filter Test",
+            "type": "object",
+            "properties": {
+                "operator": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "test": {
+                    "type": "string"
+                },
+                "subject": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "domain": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "value": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "test"
+            ]
+        }
+    },
+    "title": "struct SharedTypes::v1_21_60::Spawn::Contents",
+    "type": "object",
+    "properties": {
+        "description": {
+            "$ref": "#/definitions/1743975235"
+        },
+        "placement": {
+            "$ref": "#/definitions/1564953790"
+        },
+        "conditions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/3629386827"
+            }
+        }
+    },
+    "required": [
+        "description"
+    ]
+}

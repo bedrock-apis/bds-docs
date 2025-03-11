@@ -1,0 +1,61 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "3781185164",
+    "x-minecraft-version": "1.21.80-beta.20",
+    "definitions": {
+        "1531870811": {
+            "title": "struct SharedTypes::Legacy::ItemDescriptor",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "2681068491": {
+            "title": "struct SharedTypes::v1_20_50::ShooterItemComponent::Ammunition",
+            "type": "object",
+            "properties": {
+                "use_in_creative": {
+                    "type": "boolean"
+                },
+                "search_inventory": {
+                    "type": "boolean"
+                },
+                "item": {
+                    "$ref": "#/definitions/1531870811"
+                },
+                "use_offhand": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "item"
+            ]
+        }
+    },
+    "title": "minecraft:shooter",
+    "type": "object",
+    "properties": {
+        "ammunition": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/2681068491"
+            }
+        },
+        "scale_power_by_draw_duration": {
+            "type": "boolean"
+        },
+        "max_draw_duration": {
+            "type": "number"
+        },
+        "charge_on_draw": {
+            "type": "boolean"
+        }
+    }
+}

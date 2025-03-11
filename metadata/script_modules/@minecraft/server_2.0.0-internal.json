@@ -17621,16 +17621,11 @@
                         }
                     ],
                     "is_baked": false,
-                    "is_read_only": false,
+                    "is_read_only": true,
                     "name": "value",
-                    "set_privilege": [
-                        {
-                            "name": "none"
-                        }
-                    ],
                     "type": {
                         "is_bind_type": false,
-                        "is_errorable": false,
+                        "is_errorable": true,
                         "name": "float",
                         "valid_range": {
                             "max": 2147483647,
@@ -22026,6 +22021,24 @@
                     "name": "ItemComponent"
                 }
             ],
+            "constants": [],
+            "functions": [],
+            "name": "ItemCustomComponentInstance",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "ItemCustomComponentInstance"
+            }
+        },
+        {
+            "base_types": [
+                {
+                    "is_bind_type": true,
+                    "is_errorable": false,
+                    "name": "ItemComponent"
+                }
+            ],
             "constants": [
                 {
                     "is_read_only": true,
@@ -26347,6 +26360,18 @@
                     "is_static": false,
                     "name": "sendMessage",
                     "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidEntityError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "RawMessageError"
+                            }
+                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "undefined"
@@ -32413,6 +32438,13 @@
                             "is_errorable": false,
                             "name": "HudElement"
                         },
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidEntityError"
+                            }
+                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "array"
@@ -32451,6 +32483,13 @@
                     "is_static": false,
                     "name": "hideAllExcept",
                     "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidEntityError"
+                            }
+                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "undefined"
@@ -32477,6 +32516,13 @@
                     "is_static": false,
                     "name": "isForcedHidden",
                     "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidEntityError"
+                            }
+                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "boolean"
@@ -32491,8 +32537,15 @@
                     ],
                     "is_constructor": false,
                     "is_static": false,
-                    "name": "resetHudElements",
+                    "name": "resetHudElementsVisibility",
                     "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidEntityError"
+                            }
+                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "undefined"
@@ -32553,6 +32606,18 @@
                     "is_static": false,
                     "name": "setActionBar",
                     "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidEntityError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "RawMessageError"
+                            }
+                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "undefined"
@@ -32600,6 +32665,13 @@
                     "is_static": false,
                     "name": "setHudVisibility",
                     "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidEntityError"
+                            }
+                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "undefined"
@@ -32676,6 +32748,28 @@
                     "is_static": false,
                     "name": "setTitle",
                     "return_type": {
+                        "error_types": [
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.1.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "ArgumentOutOfBoundsError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidEntityError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "RawMessageError"
+                            }
+                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "undefined"
@@ -32736,6 +32830,18 @@
                     "is_static": false,
                     "name": "updateSubtitle",
                     "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidEntityError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "RawMessageError"
+                            }
+                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "undefined"
@@ -43404,6 +43510,15 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "PlaceJigsawError"
+            }
+        },
+        {
+            "name": "RawMessageError",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "RawMessageError"
             }
         },
         {

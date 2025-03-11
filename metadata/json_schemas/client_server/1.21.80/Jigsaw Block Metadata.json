@@ -1,0 +1,63 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "480089458",
+    "x-minecraft-version": "1.21.80-beta.20",
+    "definitions": {
+        "820712576": {
+            "title": "block_pos",
+            "type": "array",
+            "items": {
+                "type": "integer"
+            },
+            "minItems": 3,
+            "maxItems": 3
+        }
+    },
+    "title": "class SharedTypes::v1_21_80::JigsawBlockMetadata",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string"
+        },
+        "pool": {
+            "type": "string"
+        },
+        "target": {
+            "type": "string"
+        },
+        "joint_type": {
+            "title": "Jigsaw Joint Type",
+            "type": "string",
+            "enum": [
+                "rollable",
+                "aligned"
+            ]
+        },
+        "block": {
+            "type": "string"
+        },
+        "selection_priority": {
+            "type": "integer"
+        },
+        "final_block": {
+            "type": "string"
+        },
+        "pos": {
+            "$ref": "#/definitions/820712576"
+        },
+        "placement_priority": {
+            "type": "integer"
+        }
+    },
+    "required": [
+        "name",
+        "pool",
+        "joint_type",
+        "target",
+        "block",
+        "selection_priority",
+        "pos",
+        "final_block",
+        "placement_priority"
+    ]
+}

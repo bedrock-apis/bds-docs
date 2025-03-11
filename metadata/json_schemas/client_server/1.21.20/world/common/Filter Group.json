@@ -1,0 +1,124 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "1088251937",
+    "x-minecraft-version": "1.21.80-beta.20",
+    "definitions": {
+        "4150989894": {
+            "title": "Filter Test",
+            "type": "object",
+            "properties": {
+                "operator": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "test": {
+                    "type": "string"
+                },
+                "subject": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "domain": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "value": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "test"
+            ]
+        }
+    },
+    "title": "Filter Group",
+    "oneOf": [
+        {
+            "$ref": "#/definitions/4150989894"
+        },
+        {
+            "type": "array",
+            "items": {
+                "$ref": "1088251937"
+            }
+        },
+        {
+            "type": "object",
+            "properties": {
+                "OR": {
+                    "$ref": "1088251937"
+                },
+                "all": {
+                    "$ref": "1088251937"
+                },
+                "all_of": {
+                    "$ref": "1088251937"
+                },
+                "AND": {
+                    "$ref": "1088251937"
+                },
+                "any_of": {
+                    "$ref": "1088251937"
+                },
+                "none_of": {
+                    "$ref": "1088251937"
+                },
+                "any": {
+                    "$ref": "1088251937"
+                },
+                "NOT": {
+                    "$ref": "1088251937"
+                }
+            }
+        }
+    ]
+}
