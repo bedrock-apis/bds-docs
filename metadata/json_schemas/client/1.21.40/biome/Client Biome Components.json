@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "2282391920",
-    "x-minecraft-version": "1.21.80-beta.20",
+    "x-minecraft-version": "1.21.80-beta.21",
     "definitions": {
         "444653910": {
             "title": "minecraft:dry_foliage_color",
@@ -132,15 +132,6 @@
                 "lighting_identifier"
             ]
         },
-        "3250030827": {
-            "title": "minecraft:biome_music",
-            "type": "object",
-            "properties": {
-                "volume_multiplier": {
-                    "type": "number"
-                }
-            }
-        },
         "3713296728": {
             "title": "minecraft:foliage_appearance",
             "type": "object",
@@ -212,6 +203,18 @@
                     "type": "number"
                 }
             }
+        },
+        "4184661767": {
+            "title": "minecraft:biome_music",
+            "type": "object",
+            "properties": {
+                "volume_multiplier": {
+                    "type": "number"
+                },
+                "music_definition": {
+                    "type": "string"
+                }
+            }
         }
     },
     "title": "Client Biome Components",
@@ -241,9 +244,6 @@
         "minecraft:dry_foliage_color": {
             "$ref": "#/definitions/444653910"
         },
-        "minecraft:biome_music": {
-            "$ref": "#/definitions/3250030827"
-        },
         "minecraft:atmosphere_identifier": {
             "$ref": "#/definitions/3762876268"
         },
@@ -252,6 +252,9 @@
         },
         "minecraft:water_identifier": {
             "$ref": "#/definitions/2503601769"
+        },
+        "minecraft:biome_music": {
+            "$ref": "#/definitions/4184661767"
         }
     }
 }

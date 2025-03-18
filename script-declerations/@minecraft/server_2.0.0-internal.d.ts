@@ -300,7 +300,7 @@ export class EntityLeashableComponent extends EntityComponent{ public static rea
 export class EntityLoadAfterEvent { public entity: Entity; private constructor();};
 export class EntityLoadAfterEventSignal { public subscribe(callback: (arg0: EntityLoadAfterEvent)=>void): (arg0: EntityLoadAfterEvent)=>void; public unsubscribe(callback: (arg0: EntityLoadAfterEvent)=>void): void; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
-export class EntityMarkVariantComponent extends EntityComponent{ public static readonly componentId = "minecraft:mark_variant"; public value: number; private constructor();};
+export class EntityMarkVariantComponent extends EntityComponent{ public static readonly componentId = "minecraft:mark_variant"; public readonly value: number; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class EntityMovementAmphibiousComponent extends EntityBaseMovementComponent{ public static readonly componentId = "minecraft:movement.amphibious"; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
