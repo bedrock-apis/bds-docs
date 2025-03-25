@@ -7,7 +7,6 @@
             "type": "object",
             "properties": {
                 "categories": {
-                    "title": "sequence container",
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/2938198659"
@@ -22,28 +21,26 @@
             "title": "struct SharedTypes::v1_21_50::CameraAimAssistCategoryPriorities",
             "type": "object",
             "properties": {
+                "entities": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 100
+                    }
+                },
+                "blocks": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 100
+                    }
+                },
                 "block_default": {
                     "type": "integer",
                     "minimum": 0,
                     "maximum": 100
-                },
-                "blocks": {
-                    "title": "associative container",
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "integer",
-                        "minimum": 0,
-                        "maximum": 100
-                    }
-                },
-                "entities": {
-                    "title": "associative container",
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "integer",
-                        "minimum": 0,
-                        "maximum": 100
-                    }
                 },
                 "entity_default": {
                     "type": "integer",

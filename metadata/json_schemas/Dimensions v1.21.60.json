@@ -21,13 +21,13 @@
             "title": "Bounds",
             "type": "object",
             "properties": {
-                "max": {
+                "min": {
                     "type": "integer",
                     "multipleOf": 16,
                     "minimum": -512,
                     "maximum": 512
                 },
-                "min": {
+                "max": {
                     "type": "integer",
                     "multipleOf": 16,
                     "minimum": -512,
@@ -35,8 +35,8 @@
                 }
             },
             "required": [
-                "max",
-                "min"
+                "min",
+                "max"
             ]
         },
         "1299192089": {
@@ -67,11 +67,11 @@
             "title": "Dimension",
             "type": "object",
             "properties": {
-                "components": {
-                    "$ref": "#/definitions/164563289"
-                },
                 "description": {
                     "$ref": "#/definitions/1299192089"
+                },
+                "components": {
+                    "$ref": "#/definitions/164563289"
                 }
             },
             "required": [

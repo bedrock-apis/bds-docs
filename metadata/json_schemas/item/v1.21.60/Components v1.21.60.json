@@ -16,15 +16,15 @@
             "title": "minecraft:food v1.20.50",
             "type": "object",
             "properties": {
-                "can_always_eat": {
-                    "type": "boolean"
+                "saturation_modifier": {
+                    "type": "number",
+                    "minimum": 0
                 },
                 "nutrition": {
                     "type": "integer"
                 },
-                "saturation_modifier": {
-                    "type": "number",
-                    "minimum": 0
+                "can_always_eat": {
+                    "type": "boolean"
                 },
                 "using_converts_to": {
                     "$ref": "#/definitions/1531870811"
@@ -35,14 +35,14 @@
             "title": "minecraft:use_modifiers v1.20.50",
             "type": "object",
             "properties": {
+                "use_duration": {
+                    "type": "number",
+                    "minimum": 0
+                },
                 "movement_modifier": {
                     "type": "number",
                     "minimum": 0,
                     "maximum": 1
-                },
-                "use_duration": {
-                    "type": "number",
-                    "minimum": 0
                 }
             }
         },
@@ -703,7 +703,6 @@
             "type": "object",
             "properties": {
                 "dispense_on": {
-                    "title": "sequence container",
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/2794205495"
@@ -715,7 +714,6 @@
                     "pattern": "^(?:\\w+(?:\\.\\w+)*:(?=\\w))?(?:\\w+(?:\\.\\w+)*)(?:<((?:\\w+(?:\\.\\w+)*:(?=\\w))?\\w+(?:\\.\\w+)*)*>)?$"
                 },
                 "use_on": {
-                    "title": "sequence container",
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/2794205495"
@@ -728,17 +726,16 @@
             "type": "object",
             "properties": {
                 "block": {
-                    "type": "string"
-                },
-                "replace_block_item": {
-                    "type": "boolean"
+                    "$ref": "#/definitions/1527037515"
                 },
                 "use_on": {
-                    "title": "sequence container",
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/2794205495"
                     }
+                },
+                "replace_block_item": {
+                    "type": "boolean"
                 }
             },
             "required": [
@@ -765,17 +762,17 @@
             "title": "minecraft:enchantable v1.20.50",
             "type": "object",
             "properties": {
-                "slot": {
-                    "type": "string"
-                },
                 "value": {
                     "type": "integer",
                     "minimum": 0
+                },
+                "slot": {
+                    "type": "string"
                 }
             },
             "required": [
-                "slot",
-                "value"
+                "value",
+                "slot"
             ]
         },
         "1206516236": {
@@ -798,13 +795,17 @@
             "title": "struct SharedTypes::IntRange",
             "type": "object",
             "properties": {
-                "max": {
+                "min": {
                     "type": "integer"
                 },
-                "min": {
+                "max": {
                     "type": "integer"
                 }
             }
+        },
+        "1527037515": {
+            "title": "struct SharedTypes::Reference<0>",
+            "type": "string"
         },
         "1531870811": {
             "title": "struct SharedTypes::Legacy::ItemDescriptor",
@@ -813,7 +814,6 @@
                     "type": "string"
                 },
                 {
-                    "title": "associative container",
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
@@ -831,7 +831,6 @@
                     "type": "object",
                     "properties": {
                         "textures": {
-                            "title": "associative container",
                             "type": "object",
                             "additionalProperties": {
                                 "type": "string"
@@ -846,7 +845,6 @@
             "type": "object",
             "properties": {
                 "repair_items": {
-                    "title": "sequence container",
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/3256164975"
@@ -885,26 +883,24 @@
             "title": "minecraft:storage_item v1.21.60",
             "type": "object",
             "properties": {
-                "allow_nested_storage_items": {
-                    "type": "boolean"
-                },
-                "allowed_items": {
-                    "title": "sequence container",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/1531870811"
-                    }
-                },
-                "banned_items": {
-                    "title": "sequence container",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/1531870811"
-                    }
-                },
                 "max_slots": {
                     "type": "integer",
                     "maximum": 64
+                },
+                "allow_nested_storage_items": {
+                    "type": "boolean"
+                },
+                "banned_items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/1531870811"
+                    }
+                },
+                "allowed_items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/1531870811"
+                    }
                 }
             }
         },
@@ -945,7 +941,6 @@
             "type": "object",
             "properties": {
                 "durability_thresholds": {
-                    "title": "sequence container",
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/764203503"
@@ -961,10 +956,6 @@
             "title": "minecraft:wearable v1.20.50",
             "type": "object",
             "properties": {
-                "protection": {
-                    "type": "integer",
-                    "minimum": 0
-                },
                 "slot": {
                     "title": "enum SharedTypes::Legacy::EquipmentSlot",
                     "type": "string",
@@ -975,6 +966,10 @@
                         "slot.armor.legs",
                         "slot.armor.feet"
                     ]
+                },
+                "protection": {
+                    "type": "integer",
+                    "minimum": 0
                 }
             },
             "required": [
@@ -986,7 +981,6 @@
             "type": "object",
             "properties": {
                 "absorbable_causes": {
-                    "title": "sequence container",
                     "type": "array",
                     "items": {
                         "type": "string"
@@ -1052,15 +1046,14 @@
             "title": "minecraft:digger v1.20.50",
             "type": "object",
             "properties": {
+                "use_efficiency": {
+                    "type": "boolean"
+                },
                 "destroy_speeds": {
-                    "title": "sequence container",
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/1899103179"
                     }
-                },
-                "use_efficiency": {
-                    "type": "boolean"
                 }
             }
         },
@@ -1068,14 +1061,14 @@
             "title": "struct SharedTypes::v1_20_50::ShooterItemComponent::Ammunition",
             "type": "object",
             "properties": {
-                "item": {
-                    "$ref": "#/definitions/1531870811"
+                "use_in_creative": {
+                    "type": "boolean"
                 },
                 "search_inventory": {
                     "type": "boolean"
                 },
-                "use_in_creative": {
-                    "type": "boolean"
+                "item": {
+                    "$ref": "#/definitions/1531870811"
                 },
                 "use_offhand": {
                     "type": "boolean"
@@ -1092,15 +1085,14 @@
                 "name": {
                     "type": "string"
                 },
+                "tags": {
+                    "type": "string"
+                },
                 "states": {
-                    "title": "associative container",
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "#/definitions/517105782"
                     }
-                },
-                "tags": {
-                    "type": "string"
                 }
             }
         },
@@ -1149,12 +1141,6 @@
             "title": "minecraft:record v1.20.50",
             "type": "object",
             "properties": {
-                "comparator_signal": {
-                    "type": "integer"
-                },
-                "duration": {
-                    "type": "number"
-                },
                 "sound_event": {
                     "title": "enum SharedTypes::Legacy::LevelSoundEvent",
                     "type": "string",
@@ -1661,6 +1647,12 @@
                         "close_long",
                         "undefined"
                     ]
+                },
+                "duration": {
+                    "type": "number"
+                },
+                "comparator_signal": {
+                    "type": "integer"
                 }
             }
         },
@@ -1699,7 +1691,6 @@
             "type": "object",
             "properties": {
                 "tags": {
-                    "title": "sequence container",
                     "type": "array",
                     "items": {
                         "type": "string"
@@ -1798,7 +1789,6 @@
             "title": "struct SharedTypes::v1_20_50::RepairableItemComponent::RepairItemEntry",
             "oneOf": [
                 {
-                    "title": "sequence container",
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/1531870811"
@@ -1808,7 +1798,6 @@
                     "type": "object",
                     "properties": {
                         "items": {
-                            "title": "sequence container",
                             "type": "array",
                             "items": {
                                 "$ref": "#/definitions/1531870811"
@@ -1906,20 +1895,20 @@
                 "do_swing_animation": {
                     "type": "boolean"
                 },
-                "launch_power_scale": {
-                    "type": "number"
-                },
-                "max_draw_duration": {
-                    "type": "number"
-                },
-                "max_launch_power": {
-                    "type": "number"
-                },
                 "min_draw_duration": {
                     "type": "number"
                 },
                 "scale_power_by_draw_duration": {
                     "type": "boolean"
+                },
+                "max_draw_duration": {
+                    "type": "number"
+                },
+                "launch_power_scale": {
+                    "type": "number"
+                },
+                "max_launch_power": {
+                    "type": "number"
                 }
             }
         },
@@ -1928,19 +1917,18 @@
             "type": "object",
             "properties": {
                 "ammunition": {
-                    "title": "sequence container",
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/2681068491"
                     }
                 },
-                "charge_on_draw": {
+                "scale_power_by_draw_duration": {
                     "type": "boolean"
                 },
                 "max_draw_duration": {
                     "type": "number"
                 },
-                "scale_power_by_draw_duration": {
+                "charge_on_draw": {
                     "type": "boolean"
                 }
             }
@@ -1969,7 +1957,6 @@
                     "pattern": "^#[a-fA-F0-9]{6}$"
                 },
                 {
-                    "title": "sequence container",
                     "type": "array",
                     "items": {
                         "type": "integer"
@@ -1994,44 +1981,62 @@
     "title": "components v1.21.60",
     "type": "object",
     "properties": {
+        "minecraft:tags": {
+            "$ref": "#/definitions/3168558347"
+        },
         "minecraft:allow_off_hand": {
             "$ref": "#/definitions/3389099981"
-        },
-        "minecraft:block_placer": {
-            "$ref": "#/definitions/857819254"
-        },
-        "minecraft:bundle_interaction": {
-            "$ref": "#/definitions/2333685719"
         },
         "minecraft:can_destroy_in_creative": {
             "$ref": "#/definitions/3126701690"
         },
-        "minecraft:compostable": {
-            "$ref": "#/definitions/3133202100"
-        },
         "minecraft:cooldown": {
             "$ref": "#/definitions/886176099"
+        },
+        "minecraft:rarity": {
+            "$ref": "#/definitions/3375297728"
+        },
+        "minecraft:max_stack_size": {
+            "$ref": "#/definitions/2817495317"
+        },
+        "minecraft:bundle_interaction": {
+            "$ref": "#/definitions/2333685719"
+        },
+        "minecraft:compostable": {
+            "$ref": "#/definitions/3133202100"
         },
         "minecraft:custom_components": {
             "$ref": "#/definitions/4150838471"
         },
+        "minecraft:damage_absorption": {
+            "$ref": "#/definitions/2063418195"
+        },
         "minecraft:damage": {
             "$ref": "#/definitions/3173009623"
         },
-        "minecraft:damage_absorption": {
-            "$ref": "#/definitions/2063418195"
+        "minecraft:record": {
+            "$ref": "#/definitions/3053237679"
         },
         "minecraft:digger": {
             "$ref": "#/definitions/2499855414"
         },
+        "minecraft:use_animation": {
+            "$ref": "#/definitions/3246981949"
+        },
         "minecraft:display_name": {
             "$ref": "#/definitions/2942400907"
+        },
+        "minecraft:throwable": {
+            "$ref": "#/definitions/3715727616"
         },
         "minecraft:durability": {
             "$ref": "#/definitions/3494639353"
         },
         "minecraft:durability_sensor": {
             "$ref": "#/definitions/1956551060"
+        },
+        "minecraft:should_despawn": {
+            "$ref": "#/definitions/3875281249"
         },
         "minecraft:dyeable": {
             "$ref": "#/definitions/3602397325"
@@ -2066,26 +2071,17 @@
         "minecraft:liquid_clipped": {
             "$ref": "#/definitions/2359991381"
         },
-        "minecraft:max_stack_size": {
-            "$ref": "#/definitions/2817495317"
+        "minecraft:block_placer": {
+            "$ref": "#/definitions/857819254"
         },
         "minecraft:projectile": {
             "$ref": "#/definitions/608914689"
-        },
-        "minecraft:rarity": {
-            "$ref": "#/definitions/3375297728"
-        },
-        "minecraft:record": {
-            "$ref": "#/definitions/3053237679"
         },
         "minecraft:repairable": {
             "$ref": "#/definitions/1658474219"
         },
         "minecraft:shooter": {
             "$ref": "#/definitions/3781185164"
-        },
-        "minecraft:should_despawn": {
-            "$ref": "#/definitions/3875281249"
         },
         "minecraft:stacked_by_data": {
             "$ref": "#/definitions/3178615832"
@@ -2098,15 +2094,6 @@
         },
         "minecraft:storage_weight_modifier": {
             "$ref": "#/definitions/842194090"
-        },
-        "minecraft:tags": {
-            "$ref": "#/definitions/3168558347"
-        },
-        "minecraft:throwable": {
-            "$ref": "#/definitions/3715727616"
-        },
-        "minecraft:use_animation": {
-            "$ref": "#/definitions/3246981949"
         },
         "minecraft:use_modifiers": {
             "$ref": "#/definitions/435751873"

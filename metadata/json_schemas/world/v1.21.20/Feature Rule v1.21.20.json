@@ -9,7 +9,6 @@
                     "$ref": "#/definitions/4150989894"
                 },
                 {
-                    "title": "sequence container",
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/1088251937"
@@ -18,12 +17,6 @@
                 {
                     "type": "object",
                     "properties": {
-                        "AND": {
-                            "$ref": "#/definitions/1088251937"
-                        },
-                        "NOT": {
-                            "$ref": "#/definitions/1088251937"
-                        },
                         "OR": {
                             "$ref": "#/definitions/1088251937"
                         },
@@ -33,13 +26,19 @@
                         "all_of": {
                             "$ref": "#/definitions/1088251937"
                         },
-                        "any": {
+                        "AND": {
                             "$ref": "#/definitions/1088251937"
                         },
                         "any_of": {
                             "$ref": "#/definitions/1088251937"
                         },
                         "none_of": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "any": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "NOT": {
                             "$ref": "#/definitions/1088251937"
                         }
                     }
@@ -55,18 +54,18 @@
                 {
                     "type": "object",
                     "properties": {
-                        "denominator": {
+                        "numerator": {
                             "type": "integer",
                             "minimum": 1
                         },
-                        "numerator": {
+                        "denominator": {
                             "type": "integer",
                             "minimum": 1
                         }
                     },
                     "required": [
-                        "denominator",
-                        "numerator"
+                        "numerator",
+                        "denominator"
                     ]
                 }
             ]
@@ -75,6 +74,15 @@
             "title": "Scatter Params",
             "type": "object",
             "properties": {
+                "z": {
+                    "$ref": "#/definitions/4150871210"
+                },
+                "iterations": {
+                    "$ref": "#/definitions/3178719147"
+                },
+                "scatter_chance": {
+                    "$ref": "#/definitions/2176758423"
+                },
                 "coordinate_eval_order": {
                     "title": "Coordinate Evaluation Order",
                     "type": "string",
@@ -87,27 +95,18 @@
                         "zyx"
                     ]
                 },
-                "iterations": {
-                    "$ref": "#/definitions/3178719147"
-                },
-                "scatter_chance": {
-                    "$ref": "#/definitions/2176758423"
-                },
                 "x": {
                     "$ref": "#/definitions/4150871210"
                 },
                 "y": {
                     "$ref": "#/definitions/4150871210"
-                },
-                "z": {
-                    "$ref": "#/definitions/4150871210"
                 }
             },
             "required": [
                 "iterations",
+                "z",
                 "x",
-                "y",
-                "z"
+                "y"
             ]
         },
         "2267778531": {
@@ -182,7 +181,6 @@
                             ]
                         },
                         "extent": {
-                            "title": "sequence container",
                             "type": "array",
                             "items": {
                                 "$ref": "#/definitions/3178719147"
@@ -190,13 +188,13 @@
                             "minItems": 2,
                             "maxItems": 2
                         },
-                        "grid_offset": {
-                            "type": "integer",
-                            "minimum": 0
-                        },
                         "step_size": {
                             "type": "integer",
                             "minimum": 1
+                        },
+                        "grid_offset": {
+                            "type": "integer",
+                            "minimum": 0
                         }
                     },
                     "required": [
@@ -210,39 +208,7 @@
             "title": "Filter Test",
             "type": "object",
             "properties": {
-                "domain": {
-                    "oneOf": [
-                        {
-                            "type": "boolean"
-                        },
-                        {
-                            "type": "integer"
-                        },
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
                 "operator": {
-                    "oneOf": [
-                        {
-                            "type": "boolean"
-                        },
-                        {
-                            "type": "integer"
-                        },
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "subject": {
                     "oneOf": [
                         {
                             "type": "boolean"
@@ -260,6 +226,38 @@
                 },
                 "test": {
                     "type": "string"
+                },
+                "subject": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "domain": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "value": {
                     "oneOf": [
@@ -286,11 +284,11 @@
             "title": "Feature Rule Conditions",
             "type": "object",
             "properties": {
-                "minecraft:biome_filter": {
-                    "$ref": "#/definitions/1088251937"
-                },
                 "placement_pass": {
                     "type": "string"
+                },
+                "minecraft:biome_filter": {
+                    "$ref": "#/definitions/1088251937"
                 }
             },
             "required": [
@@ -301,18 +299,18 @@
     "title": "Feature Rule Definition",
     "type": "object",
     "properties": {
-        "conditions": {
-            "$ref": "#/definitions/4231469203"
-        },
         "description": {
             "$ref": "#/definitions/3683814853"
+        },
+        "conditions": {
+            "$ref": "#/definitions/4231469203"
         },
         "distribution": {
             "$ref": "#/definitions/2195141389"
         }
     },
     "required": [
-        "conditions",
-        "description"
+        "description",
+        "conditions"
     ]
 }

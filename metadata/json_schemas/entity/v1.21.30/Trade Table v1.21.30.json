@@ -6,19 +6,11 @@
             "title": "struct SharedTypes::v1_21_30::TradeItem",
             "type": "object",
             "properties": {
-                "__DEP_fltrs": {
-                    "deprecated": true,
-                    "$ref": "#/definitions/315535208"
-                },
                 "__DEP_fnctns": {
                     "deprecated": true,
                     "$ref": "#/definitions/315535208"
                 },
-                "filters": {
-                    "$ref": "#/definitions/1088251937"
-                },
                 "functions": {
-                    "title": "sequence container",
                     "type": "array",
                     "items": {
                         "description": "Dynamic value"
@@ -27,11 +19,18 @@
                 "item": {
                     "type": "string"
                 },
-                "price_multiplier": {
-                    "type": "number"
+                "__DEP_fltrs": {
+                    "deprecated": true,
+                    "$ref": "#/definitions/315535208"
                 },
                 "quantity": {
                     "$ref": "#/definitions/2298823339"
+                },
+                "price_multiplier": {
+                    "type": "number"
+                },
+                "filters": {
+                    "$ref": "#/definitions/1088251937"
                 }
             },
             "required": [
@@ -46,7 +45,6 @@
             "type": "object",
             "properties": {
                 "groups": {
-                    "title": "sequence container",
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/3153354884"
@@ -68,7 +66,6 @@
                     "$ref": "#/definitions/4150989894"
                 },
                 {
-                    "title": "sequence container",
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/1088251937"
@@ -77,12 +74,6 @@
                 {
                     "type": "object",
                     "properties": {
-                        "AND": {
-                            "$ref": "#/definitions/1088251937"
-                        },
-                        "NOT": {
-                            "$ref": "#/definitions/1088251937"
-                        },
                         "OR": {
                             "$ref": "#/definitions/1088251937"
                         },
@@ -92,13 +83,19 @@
                         "all_of": {
                             "$ref": "#/definitions/1088251937"
                         },
-                        "any": {
+                        "AND": {
                             "$ref": "#/definitions/1088251937"
                         },
                         "any_of": {
                             "$ref": "#/definitions/1088251937"
                         },
                         "none_of": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "any": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "NOT": {
                             "$ref": "#/definitions/1088251937"
                         }
                     }
@@ -115,7 +112,6 @@
                     "type": "object",
                     "properties": {
                         "choice": {
-                            "title": "sequence container",
                             "type": "array",
                             "items": {
                                 "$ref": "#/definitions/56017534"
@@ -138,11 +134,11 @@
                 {
                     "type": "object",
                     "properties": {
-                        "max": {
+                        "min": {
                             "type": "integer",
                             "minimum": 1
                         },
-                        "min": {
+                        "max": {
                             "type": "integer",
                             "minimum": 1
                         }
@@ -154,17 +150,16 @@
             "title": "struct SharedTypes::v1_21_30::TradeGroup",
             "type": "object",
             "properties": {
-                "num_to_select": {
-                    "type": "integer",
-                    "minimum": 0
-                },
                 "trades": {
-                    "title": "sequence container",
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/3738829565"
                     },
                     "minItems": 1
+                },
+                "num_to_select": {
+                    "type": "integer",
+                    "minimum": 0
                 }
             },
             "required": [
@@ -175,8 +170,17 @@
             "title": "struct SharedTypes::v1_21_30::Trade",
             "type": "object",
             "properties": {
+                "wants": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/1093643626"
+                    },
+                    "minItems": 1
+                },
+                "trader_exp": {
+                    "type": "integer"
+                },
                 "gives": {
-                    "title": "sequence container",
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/1093643626"
@@ -189,64 +193,21 @@
                 "reward_exp": {
                     "type": "boolean"
                 },
-                "trader_exp": {
-                    "type": "integer"
-                },
-                "wants": {
-                    "title": "sequence container",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/1093643626"
-                    },
-                    "minItems": 1
-                },
                 "weight": {
                     "type": "integer",
                     "minimum": 1
                 }
             },
             "required": [
-                "gives",
-                "wants"
+                "wants",
+                "gives"
             ]
         },
         "4150989894": {
             "title": "Filter Test",
             "type": "object",
             "properties": {
-                "domain": {
-                    "oneOf": [
-                        {
-                            "type": "boolean"
-                        },
-                        {
-                            "type": "integer"
-                        },
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
                 "operator": {
-                    "oneOf": [
-                        {
-                            "type": "boolean"
-                        },
-                        {
-                            "type": "integer"
-                        },
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "subject": {
                     "oneOf": [
                         {
                             "type": "boolean"
@@ -264,6 +225,38 @@
                 },
                 "test": {
                     "type": "string"
+                },
+                "subject": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "domain": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "value": {
                     "oneOf": [

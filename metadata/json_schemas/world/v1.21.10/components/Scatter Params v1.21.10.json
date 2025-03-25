@@ -11,18 +11,18 @@
                 {
                     "type": "object",
                     "properties": {
-                        "denominator": {
+                        "numerator": {
                             "type": "integer",
                             "minimum": 1
                         },
-                        "numerator": {
+                        "denominator": {
                             "type": "integer",
                             "minimum": 1
                         }
                     },
                     "required": [
-                        "denominator",
-                        "numerator"
+                        "numerator",
+                        "denominator"
                     ]
                 }
             ]
@@ -83,7 +83,6 @@
                             ]
                         },
                         "extent": {
-                            "title": "sequence container",
                             "type": "array",
                             "items": {
                                 "$ref": "#/definitions/3178719147"
@@ -91,13 +90,13 @@
                             "minItems": 2,
                             "maxItems": 2
                         },
-                        "grid_offset": {
-                            "type": "integer",
-                            "minimum": 0
-                        },
                         "step_size": {
                             "type": "integer",
                             "minimum": 1
+                        },
+                        "grid_offset": {
+                            "type": "integer",
+                            "minimum": 0
                         }
                     },
                     "required": [
@@ -111,6 +110,15 @@
     "title": "Scatter Params",
     "type": "object",
     "properties": {
+        "z": {
+            "$ref": "#/definitions/4150871210"
+        },
+        "iterations": {
+            "$ref": "#/definitions/3178719147"
+        },
+        "scatter_chance": {
+            "$ref": "#/definitions/2176758423"
+        },
         "coordinate_eval_order": {
             "title": "Coordinate Evaluation Order",
             "type": "string",
@@ -123,26 +131,17 @@
                 "zyx"
             ]
         },
-        "iterations": {
-            "$ref": "#/definitions/3178719147"
-        },
-        "scatter_chance": {
-            "$ref": "#/definitions/2176758423"
-        },
         "x": {
             "$ref": "#/definitions/4150871210"
         },
         "y": {
             "$ref": "#/definitions/4150871210"
-        },
-        "z": {
-            "$ref": "#/definitions/4150871210"
         }
     },
     "required": [
         "iterations",
+        "z",
         "x",
-        "y",
-        "z"
+        "y"
     ]
 }
