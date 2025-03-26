@@ -1,7 +1,7 @@
 import * as _1e from '@minecraft/common';
 import * as _2c from '@minecraft/server';
 
-// Enums - 33
+// Enums - 34
 export enum Axis { None = 0, X = 1, Y = 2, Z = 4};
 export enum BlockMaskListType { Disabled = "Disabled", Mask = "Mask", Replace = "Replace"};
 export enum BlockPaletteItemType { Probability = 1, Simple = 0};
@@ -27,6 +27,7 @@ export enum PlaytestSessionResult { EditorSystemFailure = 7, InvalidLevelId = 8,
 export enum PrimitiveType { AxialSphere = 5, Box = 1, Disc = 4, Line = 2, Text = 0};
 export enum ProjectExportType { PlayableWorld = 0, ProjectBackup = 1, WorldTemplate = 2};
 export enum RealmsServiceStatus { Exporting = 2, Fetching = 0, Idle = 1, Uploading = 3};
+export enum RealmsWorldUploadResult { EditorSystemFailure = 4, ExportWorldFailure = 2, Success = 1, Unknown = 0, UploadWorldFailure = 3, WorldNameNonCompliant = 6, WorldUploadBusy = 5};
 export enum SelectionVolumeEventType { Add = 2, Clear = 6, Move = 5, Remove = 3, Set = 1, Translate = 4};
 export enum SpeedSettingsProperty { FlySpeedMultiplier = "FlySpeedMultiplier"};
 export enum SplineType { Hermite = 1, Line = 0};
@@ -114,7 +115,7 @@ export class ModeChangeAfterEventSignal { public subscribe(callback: (arg0: Mode
 export class PlaytestManager { public beginPlaytest(options: GameOptions): Promise<PlaytestSessionResult>; public getPlaytestSessionAvailability(): PlaytestSessionResult; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ProbabilityBlockPaletteItem extends IBlockPaletteItem{ public addBlock(block: _2c.BlockPermutation | _2c.BlockType | string, weight: number): void; public constructor(displayName?: string); public getBlocks(): WeightedBlock[]; public removeBlockAt(index: number): void;};
-export class realmsService { public beginDownloadFromRealms(realmsWorldId: string, slotId: number): Promise<string>; public beginUploadToRealms(realmsWorldId: string, slotId: number, gameOptions: GameOptions): Promise<boolean>; public canUploadWorld(): boolean; public getRealmWorldlist(): Promise<EditorRealmsWorld[]>; public getServiceStatus(): RealmsServiceStatus; public getSlots(worldId: string): Promise<EditorRealmsWorldSlot[]>; public isRealmsServiceAvailable(): EditorRealmsServiceAvailability; private constructor();};
+export class realmsService { public beginDownloadFromRealms(realmsWorldId: string, slotId: number): Promise<string>; public beginUploadToRealms(realmsWorldId: string, slotId: number, gameOptions: GameOptions): Promise<RealmsWorldUploadResult>; public canUploadWorld(): boolean; public getRealmWorldlist(): Promise<EditorRealmsWorld[]>; public getServiceStatus(): RealmsServiceStatus; public getSlots(worldId: string): Promise<EditorRealmsWorldSlot[]>; public isRealmsServiceAvailable(): EditorRealmsServiceAvailability; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class RelativeVolumeListBlockVolume extends _2c.BlockVolumeBase{ public readonly isEmpty: boolean; public origin?: _2c.Vector3; public readonly volumeCount: number; public add(toAdd: _2c.Vector3[] | _2c.BlockVolume | _2c.BlockVolumeBase | RelativeVolumeListBlockVolume | _2c.Vector3): void; public clear(): void; public constructor(origin?: _2c.Vector3); public getVolumeList(): _2c.BlockVolume[]; public hasAdjacent(location: _2c.Vector3, normalizedOffset: _2c.Vector3): boolean; public moveTo(location: _2c.Vector3): void; public remove(toRemove: _2c.Vector3[] | _2c.BlockVolume | _2c.BlockVolumeBase | RelativeVolumeListBlockVolume | _2c.Vector3): void; public set(toSet: _2c.Vector3[] | _2c.BlockVolume | _2c.BlockVolumeBase | RelativeVolumeListBlockVolume | _2c.Vector3): void; public translate(offset: _2c.Vector3): void;};
 export class SelectionChangeAfterEventSignal { public subscribe(callback: (arg0: SelectionEventAfterEvent)=>void): (arg0: SelectionEventAfterEvent)=>void; public unsubscribe(callback: (arg0: SelectionEventAfterEvent)=>void): void; private constructor();};
