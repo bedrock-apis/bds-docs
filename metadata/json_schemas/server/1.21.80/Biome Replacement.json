@@ -1,0 +1,35 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "716969038",
+    "x-minecraft-version": "1.21.80-beta.27",
+    "title": "Biome Replacement",
+    "type": "object",
+    "properties": {
+        "dimension": {
+            "type": "string"
+        },
+        "amount": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 1
+        },
+        "targets": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1
+        },
+        "noise_frequency_scale": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 100
+        }
+    },
+    "required": [
+        "dimension",
+        "targets",
+        "amount",
+        "noise_frequency_scale"
+    ]
+}

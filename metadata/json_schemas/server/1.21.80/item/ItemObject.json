@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1162783841",
-    "x-minecraft-version": "1.21.80-beta.26",
+    "x-minecraft-version": "1.21.80-beta.27",
     "definitions": {
         "34598326": {
             "title": "minecraft:storage_weight_limit",
@@ -17,12 +17,12 @@
             "title": "minecraft:food",
             "type": "object",
             "properties": {
+                "nutrition": {
+                    "type": "integer"
+                },
                 "saturation_modifier": {
                     "type": "number",
                     "minimum": 0
-                },
-                "nutrition": {
-                    "type": "integer"
                 },
                 "can_always_eat": {
                     "type": "boolean"
@@ -69,7 +69,7 @@
                     "type": "number"
                 },
                 "projectile_entity": {
-                    "type": "string",
+                    "$ref": "#/definitions/1493335182",
                     "minLength": 0,
                     "pattern": "^(?:\\w+(?:\\.\\w+)*:(?=\\w))?(?:\\w+(?:\\.\\w+)*)(?:<((?:\\w+(?:\\.\\w+)*:(?=\\w))?\\w+(?:\\.\\w+)*)*>)?$"
                 }
@@ -719,7 +719,7 @@
                     }
                 },
                 "entity": {
-                    "type": "string",
+                    "$ref": "#/definitions/1493335182",
                     "minLength": 0,
                     "pattern": "^(?:\\w+(?:\\.\\w+)*:(?=\\w))?(?:\\w+(?:\\.\\w+)*)(?:<((?:\\w+(?:\\.\\w+)*:(?=\\w))?\\w+(?:\\.\\w+)*)*>)?$"
                 },
@@ -813,7 +813,7 @@
                         "textures": {
                             "type": "object",
                             "additionalProperties": {
-                                "$ref": "#/definitions/1527331705"
+                                "$ref": "#/definitions/1493629372"
                             }
                         }
                     }
@@ -832,13 +832,42 @@
                 }
             }
         },
-        "1527037515": {
-            "title": "struct SharedTypes::Reference<0>",
+        "1459401151": {
+            "title": "struct SharedTypes::Identifier<2>",
             "type": "string"
         },
-        "1527331705": {
-            "title": "struct SharedTypes::Reference<2>",
-            "type": "string"
+        "1493335182": {
+            "title": "struct SharedTypes::Reference<1>",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "1493629372": {
+            "title": "struct SharedTypes::Reference<3>",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "1527037515": {
+            "title": "struct SharedTypes::Reference<0>",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ]
         },
         "1531870811": {
             "title": "struct SharedTypes::Legacy::ItemDescriptor",
@@ -898,7 +927,7 @@
             "type": "object",
             "properties": {
                 "identifier": {
-                    "type": "string"
+                    "$ref": "#/definitions/1459401151"
                 },
                 "menu_category": {
                     "$ref": "#/definitions/3342154574"

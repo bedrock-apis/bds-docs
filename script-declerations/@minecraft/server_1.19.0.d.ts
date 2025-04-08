@@ -43,7 +43,7 @@ export enum StructureSaveMode { Memory = "Memory", World = "World"};
 export enum TimeOfDay { Day = 1000, Midnight = 18000, Night = 13000, Noon = 6000, Sunrise = 23000, Sunset = 12000};
 export enum WeatherType { Clear = "Clear", Rain = "Rain", Thunder = "Thunder"};
 
-// Interfaces - 63
+// Interfaces - 65
 export interface BlockBoundingBox { max: Vector3; min: Vector3};
 export interface BlockCustomComponent { beforeOnPlayerPlace?: (arg0: BlockComponentPlayerPlaceBeforeEvent)=>void; onEntityFallOn?: (arg0: BlockComponentEntityFallOnEvent)=>void; onPlace?: (arg0: BlockComponentOnPlaceEvent)=>void; onPlayerDestroy?: (arg0: BlockComponentPlayerDestroyEvent)=>void; onPlayerInteract?: (arg0: BlockComponentPlayerInteractEvent)=>void; onRandomTick?: (arg0: BlockComponentRandomTickEvent)=>void; onStepOff?: (arg0: BlockComponentStepOffEvent)=>void; onStepOn?: (arg0: BlockComponentStepOnEvent)=>void; onTick?: (arg0: BlockComponentTickEvent)=>void};
 export interface BlockEventOptions { blockTypes?: string[]; permutations?: BlockPermutation[]};
@@ -84,6 +84,8 @@ export interface GreaterThanComparison { greaterThan: number};
 export interface GreaterThanOrEqualsComparison { greaterThanOrEquals: number};
 export interface InputEventOptions { buttons?: InputButton[]; state?: ButtonState};
 export interface ItemCustomComponent { onBeforeDurabilityDamage?: (arg0: ItemComponentBeforeDurabilityDamageEvent)=>void; onCompleteUse?: (arg0: ItemComponentCompleteUseEvent)=>void; onConsume?: (arg0: ItemComponentConsumeEvent)=>void; onHitEntity?: (arg0: ItemComponentHitEntityEvent)=>void; onMineBlock?: (arg0: ItemComponentMineBlockEvent)=>void; onUse?: (arg0: ItemComponentUseEvent)=>void; onUseOn?: (arg0: ItemComponentUseOnEvent)=>void};
+export interface JigsawPlaceOptions { includeEntities?: boolean; keepJigsaws?: boolean};
+export interface JigsawStructurePlaceOptions { ignoreStartHeight?: boolean; includeEntities?: boolean; keepJigsaws?: boolean};
 export interface LessThanComparison { lessThan: number};
 export interface LessThanOrEqualsComparison { lessThanOrEquals: number};
 export interface MusicOptions { fade?: number; loop?: boolean; volume?: number};
@@ -480,7 +482,7 @@ export class ScriptEventCommandMessageAfterEvent { public readonly id: string; p
 export class ScriptEventCommandMessageAfterEventSignal { public subscribe(callback: (arg0: ScriptEventCommandMessageAfterEvent)=>void, options?: ScriptEventMessageFilterOptions): (arg0: ScriptEventCommandMessageAfterEvent)=>void; public unsubscribe(callback: (arg0: ScriptEventCommandMessageAfterEvent)=>void): void; private constructor();};
 export class Seat { public readonly lockRiderRotation: number; public readonly maxRiderCount: number; public readonly minRiderCount: number; public readonly position: Vector3; public readonly seatRotation: number; private constructor();};
 export class Structure { public readonly id: string; public readonly size: Vector3; public getBlockPermutation(location: Vector3): (BlockPermutation | undefined); public getIsWaterlogged(location: Vector3): boolean; public isValid(): boolean; public saveAs(identifier: string, saveMode?: StructureSaveMode): Structure; public saveToWorld(): void; public setBlockPermutation(location: Vector3, blockPermutation?: BlockPermutation, waterlogged?: boolean): void; private constructor();};
-export class StructureManager { public createEmpty(identifier: string, size: Vector3, saveMode?: StructureSaveMode): Structure; public createFromWorld(identifier: string, dimension: Dimension, from: Vector3, to: Vector3, options?: StructureCreateOptions): Structure; public delete(structure: string | Structure): boolean; public get(identifier: string): (Structure | undefined); public getWorldStructureIds(): string[]; public place(structure: string | Structure, dimension: Dimension, location: Vector3, options?: StructurePlaceOptions): void; private constructor();};
+export class StructureManager { public createEmpty(identifier: string, size: Vector3, saveMode?: StructureSaveMode): Structure; public createFromWorld(identifier: string, dimension: Dimension, from: Vector3, to: Vector3, options?: StructureCreateOptions): Structure; public delete(structure: string | Structure): boolean; public get(identifier: string): (Structure | undefined); public getWorldStructureIds(): string[]; public place(structure: string | Structure, dimension: Dimension, location: Vector3, options?: StructurePlaceOptions): void; public placeJigsaw(pool: string, targetJigsaw: string, maxDepth: number, dimension: Dimension, location: Vector3, options?: JigsawPlaceOptions): BlockBoundingBox; public placeJigsawStructure(identifier: string, dimension: Dimension, location: Vector3, options?: JigsawStructurePlaceOptions): BlockBoundingBox; private constructor();};
 export class System { public readonly afterEvents: SystemAfterEvents; public readonly currentTick: number; public readonly serverSystemInfo: SystemInfo; public clearJob(jobId: number): void; public clearRun(runId: number): void; public run(callback: ()=>void): number; public runInterval(callback: ()=>void, tickInterval?: number): number; public runJob(generator: Generator<undefined>): number; public runTimeout(callback: ()=>void, tickDelay?: number): number; public sendScriptEvent(id: string, message: string): void; public waitTicks(ticks: number): Promise<void>; private constructor();};
 export class SystemAfterEvents { public readonly scriptEventReceive: ScriptEventCommandMessageAfterEventSignal; private constructor();};
 export class SystemInfo { public readonly memoryTier: MemoryTier; private constructor();};
@@ -514,7 +516,7 @@ export const world: World;
 
 // Functions - 0
 
-// Errors - 23
+// Errors - 24
 export class BlockCustomComponentAlreadyRegisteredError extends Error{ private constructor();};
 export class BlockCustomComponentReloadNewComponentError extends Error{ private constructor();};
 export class BlockCustomComponentReloadNewEventError extends Error{ private constructor();};
@@ -536,5 +538,6 @@ export class ItemCustomComponentReloadVersionError extends Error{ private constr
 export class LocationInUnloadedChunkError extends Error{ private constructor();};
 export class LocationOutOfWorldBoundariesError extends Error{ private constructor();};
 export class NamespaceNameError extends Error{ public readonly reason: NamespaceNameErrorReason; private constructor();};
+export class PlaceJigsawError extends Error{ private constructor();};
 export class RawMessageError extends Error{ private constructor();};
 export class UnloadedChunksError extends Error{ private constructor();};

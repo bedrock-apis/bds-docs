@@ -2117,13 +2117,6 @@
                     "is_static": false,
                     "name": "addDye",
                     "return_type": {
-                        "error_types": [
-                            {
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "Error"
-                            }
-                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "undefined"
@@ -2140,13 +2133,6 @@
                     "is_static": false,
                     "name": "getFluidType",
                     "return_type": {
-                        "error_types": [
-                            {
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "Error"
-                            }
-                        ],
                         "is_bind_type": true,
                         "is_errorable": true,
                         "name": "FluidType"
@@ -2173,13 +2159,6 @@
                     "is_static": false,
                     "name": "setFluidType",
                     "return_type": {
-                        "error_types": [
-                            {
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "Error"
-                            }
-                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "undefined"
@@ -2206,13 +2185,6 @@
                     "is_static": false,
                     "name": "setPotion",
                     "return_type": {
-                        "error_types": [
-                            {
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "Error"
-                            }
-                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "undefined"
@@ -2377,13 +2349,6 @@
                     "is_static": false,
                     "name": "canBeDestroyedByLiquidSpread",
                     "return_type": {
-                        "error_types": [
-                            {
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "Error"
-                            }
-                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "boolean"
@@ -2410,13 +2375,6 @@
                     "is_static": false,
                     "name": "canContainLiquid",
                     "return_type": {
-                        "error_types": [
-                            {
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "Error"
-                            }
-                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "boolean"
@@ -2628,13 +2586,6 @@
                     "is_static": false,
                     "name": "isLiquidBlocking",
                     "return_type": {
-                        "error_types": [
-                            {
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "Error"
-                            }
-                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "boolean"
@@ -2661,13 +2612,6 @@
                     "is_static": false,
                     "name": "liquidSpreadCausesSpawn",
                     "return_type": {
-                        "error_types": [
-                            {
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "Error"
-                            }
-                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "boolean"
@@ -6802,6 +6746,11 @@
                     "return_type": {
                         "error_types": [
                             {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            },
+                            {
                                 "is_bind_type": true,
                                 "is_errorable": false,
                                 "name": "LocationInUnloadedChunkError"
@@ -8854,9 +8803,9 @@
                                 "name": "CommandError"
                             },
                             {
-                                "is_bind_type": false,
+                                "is_bind_type": true,
                                 "is_errorable": false,
-                                "name": "Error"
+                                "name": "InvalidEntityError"
                             }
                         ],
                         "is_bind_type": true,
@@ -18517,13 +18466,6 @@
                     "is_read_only": true,
                     "name": "compostingChance",
                     "type": {
-                        "error_types": [
-                            {
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "Error"
-                            }
-                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "int8",
@@ -23176,13 +23118,6 @@
                     "is_read_only": true,
                     "name": "clientSystemInfo",
                     "type": {
-                        "error_types": [
-                            {
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "Error"
-                            }
-                        ],
                         "is_bind_type": true,
                         "is_errorable": true,
                         "name": "ClientSystemInfo"
@@ -25114,13 +25049,6 @@
                     "is_static": false,
                     "name": "isPermissionCategoryEnabled",
                     "return_type": {
-                        "error_types": [
-                            {
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "Error"
-                            }
-                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "boolean"
@@ -29566,6 +29494,165 @@
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "pool",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "targetJigsaw",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": {
+                                "max_value": 20,
+                                "min_value": 1
+                            },
+                            "name": "maxDepth",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "int32",
+                                "valid_range": {
+                                    "max": 2147483647,
+                                    "min": -2147483648
+                                }
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "dimension",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Dimension"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "location",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        },
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "options",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "JigsawPlaceOptions"
+                                }
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "placeJigsaw",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PlaceJigsawError"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "BlockBoundingBox"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "identifier",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "dimension",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Dimension"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "location",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        },
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "options",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "JigsawStructurePlaceOptions"
+                                }
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "placeJigsawStructure",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PlaceJigsawError"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "BlockBoundingBox"
                     }
                 }
             ],
@@ -37605,6 +37692,15 @@
             }
         },
         {
+            "name": "PlaceJigsawError",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PlaceJigsawError"
+            }
+        },
+        {
             "name": "RawMessageError",
             "properties": [],
             "type": {
@@ -40374,6 +40470,103 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "ItemCustomComponent"
+            }
+        },
+        {
+            "base_types": [],
+            "name": "JigsawPlaceOptions",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "includeEntities",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "boolean"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "keepJigsaws",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "boolean"
+                        }
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "JigsawPlaceOptions"
+            }
+        },
+        {
+            "base_types": [],
+            "name": "JigsawStructurePlaceOptions",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "ignoreStartHeight",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "boolean"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "includeEntities",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "boolean"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "keepJigsaws",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "boolean"
+                        }
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "JigsawStructurePlaceOptions"
             }
         },
         {

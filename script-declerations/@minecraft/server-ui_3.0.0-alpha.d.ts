@@ -21,7 +21,7 @@ export class MessageFormData { public body(bodyText: _2c.RawMessage | string): M
 export class MessageFormResponse extends FormResponse{ public readonly selection?: number; private constructor();};
 export class ModalFormData { public constructor(); public divider(): ModalFormData; public dropdown(label: _2c.RawMessage | string, items: (_2c.RawMessage | string)[], dropdownOptions?: ModalFormDataDropdownOptions): ModalFormData; public header(text: _2c.RawMessage | string): ModalFormData; public label(text: _2c.RawMessage | string): ModalFormData; public show(player: _2c.Player): Promise<ModalFormResponse>; public slider(label: _2c.RawMessage | string, minimumValue: number, maximumValue: number, sliderOptions?: ModalFormDataSliderOptions): ModalFormData; public submitButton(submitButtonText: _2c.RawMessage | string): ModalFormData; public textField(label: _2c.RawMessage | string, placeholderText: _2c.RawMessage | string, textFieldOptions?: ModalFormDataTextFieldOptions): ModalFormData; public title(titleText: _2c.RawMessage | string): ModalFormData; public toggle(label: _2c.RawMessage | string, toggleOptions?: ModalFormDataToggleOptions): ModalFormData;};
 //@ts-ignore extending for classes with private constructor is possible with native API
-export class ModalFormResponse extends FormResponse{ public readonly formValues?: (boolean | number | string)[]; private constructor();};
+export class ModalFormResponse extends FormResponse{ public readonly formValues?: (boolean | number | string | undefined)[]; private constructor();};
 export class UIManager { public closeAllForms(player: _2c.Player): void; private constructor();};
 
 // Constants & Objects - 2

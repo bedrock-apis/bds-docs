@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1325498408",
-    "x-minecraft-version": "1.21.80-beta.26",
+    "x-minecraft-version": "1.21.80-beta.27",
     "definitions": {
         "6061611": {
             "title": "minecraft:creature_spawn_probability",
@@ -82,6 +82,21 @@
                 "foundation_material",
                 "top_material",
                 "sea_material"
+            ]
+        },
+        "320104782": {
+            "title": "minecraft:replace_biomes",
+            "type": "object",
+            "properties": {
+                "replacements": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/716969038"
+                    }
+                }
+            },
+            "required": [
+                "replacements"
             ]
         },
         "416340115": {
@@ -174,6 +189,9 @@
                 "minecraft:surface_parameters": {
                     "$ref": "#/definitions/1167427373"
                 },
+                "minecraft:replace_biomes": {
+                    "$ref": "#/definitions/320104782"
+                },
                 "minecraft:swamp_surface": {
                     "$ref": "#/definitions/416340115"
                 },
@@ -206,6 +224,38 @@
                 {
                     "type": "string"
                 }
+            ]
+        },
+        "716969038": {
+            "title": "Biome Replacement",
+            "type": "object",
+            "properties": {
+                "dimension": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 1
+                },
+                "targets": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1
+                },
+                "noise_frequency_scale": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 100
+                }
+            },
+            "required": [
+                "dimension",
+                "targets",
+                "amount",
+                "noise_frequency_scale"
             ]
         },
         "800202529": {
@@ -582,16 +632,16 @@
             "title": "Biome Definition",
             "type": "object",
             "properties": {
-                "components": {
-                    "$ref": "#/definitions/471566442"
-                },
                 "description": {
                     "$ref": "#/definitions/2794612011"
+                },
+                "components": {
+                    "$ref": "#/definitions/471566442"
                 }
             },
             "required": [
-                "description",
-                "components"
+                "components",
+                "description"
             ]
         },
         "3848407258": {
