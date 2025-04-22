@@ -1,7 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "4012773087",
-    "x-minecraft-version": "1.21.80-beta.28",
+    "$id": "3635230096",
+    "x-format-version": "1.20.50",
+    "x-minecraft-version": "1.21.90-beta.20",
     "definitions": {
         "34598326": {
             "title": "minecraft:storage_weight_limit",
@@ -69,7 +70,7 @@
                     "type": "number"
                 },
                 "projectile_entity": {
-                    "$ref": "#/definitions/1493335182",
+                    "$ref": "#/definitions/1527331705",
                     "minLength": 0,
                     "pattern": "^(?:\\w+(?:\\.\\w+)*:(?=\\w))?(?:\\w+(?:\\.\\w+)*)(?:<((?:\\w+(?:\\.\\w+)*:(?=\\w))?\\w+(?:\\.\\w+)*)*>)?$"
                 }
@@ -719,7 +720,7 @@
                     }
                 },
                 "entity": {
-                    "$ref": "#/definitions/1493335182",
+                    "$ref": "#/definitions/1527331705",
                     "minLength": 0,
                     "pattern": "^(?:\\w+(?:\\.\\w+)*:(?=\\w))?(?:\\w+(?:\\.\\w+)*)(?:<((?:\\w+(?:\\.\\w+)*:(?=\\w))?\\w+(?:\\.\\w+)*)*>)?$"
                 },
@@ -801,6 +802,25 @@
                 }
             ]
         },
+        "1372809227": {
+            "title": "minecraft:icon v1.21.80",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "textures": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "#/definitions/3673881199"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
         "1398826300": {
             "title": "struct SharedTypes::IntRange",
             "type": "object",
@@ -813,30 +833,19 @@
                 }
             }
         },
-        "1493335182": {
-            "title": "struct SharedTypes::Reference<1>",
-            "oneOf": [
-                {
-                    "type": "string"
-                },
-                {
-                    "type": "string"
-                }
-            ]
-        },
-        "1493629372": {
-            "title": "struct SharedTypes::Reference<3>",
-            "oneOf": [
-                {
-                    "type": "string"
-                },
-                {
-                    "type": "string"
-                }
-            ]
-        },
         "1527037515": {
             "title": "struct SharedTypes::Reference<0>",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "1527331705": {
+            "title": "struct SharedTypes::Reference<2>",
             "oneOf": [
                 {
                     "type": "string"
@@ -856,25 +865,6 @@
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
-                    }
-                }
-            ]
-        },
-        "1618184314": {
-            "title": "minecraft:icon",
-            "oneOf": [
-                {
-                    "type": "string"
-                },
-                {
-                    "type": "object",
-                    "properties": {
-                        "textures": {
-                            "type": "object",
-                            "additionalProperties": {
-                                "$ref": "#/definitions/1493629372"
-                            }
-                        }
                     }
                 }
             ]
@@ -1939,6 +1929,17 @@
                 }
             }
         },
+        "3673881199": {
+            "title": "struct SharedTypes::Reference<4>",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
         "3715727616": {
             "title": "minecraft:throwable",
             "type": "object",
@@ -2056,9 +2057,6 @@
         "minecraft:compostable": {
             "$ref": "#/definitions/3133202100"
         },
-        "minecraft:custom_components": {
-            "$ref": "#/definitions/4150838471"
-        },
         "minecraft:damage_absorption": {
             "$ref": "#/definitions/2063418195"
         },
@@ -2114,7 +2112,7 @@
             "$ref": "#/definitions/1661309668"
         },
         "minecraft:icon": {
-            "$ref": "#/definitions/1618184314"
+            "$ref": "#/definitions/1372809227"
         },
         "minecraft:interact_button": {
             "$ref": "#/definitions/1754804474"
@@ -2151,6 +2149,10 @@
         },
         "minecraft:wearable": {
             "$ref": "#/definitions/2041267453"
+        },
+        "minecraft:custom_components": {
+            "deprecated": true,
+            "$ref": "#/definitions/4150838471"
         }
     }
 }
