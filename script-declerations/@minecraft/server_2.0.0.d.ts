@@ -1,6 +1,6 @@
 import * as _1e from '@minecraft/common';
 
-// Enums - 42
+// Enums - 43
 export enum BlockComponentTypes { FluidContainer = "minecraft:fluid_container", Inventory = "minecraft:inventory", Piston = "minecraft:piston", RecordPlayer = "minecraft:record_player", Sign = "minecraft:sign"};
 export enum BlockPistonState { Expanded = "Expanded", Expanding = "Expanding", Retracted = "Retracted", Retracting = "Retracting"};
 export enum BlockVolumeIntersection { Contains = 1, Disjoint = 0, Intersects = 2};
@@ -42,6 +42,7 @@ export enum StructureMirrorAxis { None = "None", X = "X", XZ = "XZ", Z = "Z"};
 export enum StructureRotation { None = "None", Rotate180 = "Rotate180", Rotate270 = "Rotate270", Rotate90 = "Rotate90"};
 export enum StructureSaveMode { Memory = "Memory", World = "World"};
 export enum TimeOfDay { Day = 1000, Midnight = 18000, Night = 13000, Noon = 6000, Sunrise = 23000, Sunset = 12000};
+export enum TintMethod { BirchFoliage = "BirchFoliage", DefaultFoliage = "DefaultFoliage", DryFoliage = "DryFoliage", EvergreenFoliage = "EvergreenFoliage", Grass = "Grass", None = "None", Water = "Water"};
 export enum WeatherType { Clear = "Clear", Rain = "Rain", Thunder = "Thunder"};
 
 // Interfaces - 66
@@ -112,7 +113,7 @@ export interface Vector3 { x: number; y: number; z: number};
 export interface VectorXZ { x: number; z: number};
 export interface WorldSoundOptions { pitch?: number; volume?: number};
 
-// Classes - 273
+// Classes - 274
 export class Block { public readonly dimension: Dimension; public readonly isAir: boolean; public readonly isLiquid: boolean; public readonly isValid: boolean; public readonly isWaterlogged: boolean; public readonly location: Vector3; public readonly permutation: BlockPermutation; public readonly type: BlockType; public readonly typeId: string; public readonly x: number; public readonly y: number; public readonly z: number; public above(steps?: number): (Block | undefined); public below(steps?: number): (Block | undefined); public bottomCenter(): Vector3; public canBeDestroyedByLiquidSpread(liquidType: LiquidType): boolean; public canContainLiquid(liquidType: LiquidType): boolean; public center(): Vector3; public east(steps?: number): (Block | undefined); public getComponent(componentId: string): (BlockComponent | undefined); public getItemStack(amount?: number, withData?: boolean): (ItemStack | undefined); public getRedstonePower(): (number | undefined); public getTags(): string[]; public hasTag(tag: string): boolean; public isLiquidBlocking(liquidType: LiquidType): boolean; public liquidCanFlowFromDirection(liquidType: LiquidType, flowDirection: Direction): boolean; public liquidSpreadCausesSpawn(liquidType: LiquidType): boolean; public matches(blockName: string, states?: Record<string,boolean | number | string>): boolean; public north(steps?: number): (Block | undefined); public offset(offset: Vector3): (Block | undefined); public setPermutation(permutation: BlockPermutation): void; public setType(blockType: BlockType | string): void; public setWaterlogged(isWaterlogged: boolean): void; public south(steps?: number): (Block | undefined); public west(steps?: number): (Block | undefined); private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BlockComponent extends Component{ public readonly block: Block; private constructor();};
@@ -146,6 +147,8 @@ export class BlockFluidContainerComponent extends BlockComponent{ public static 
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BlockInventoryComponent extends BlockComponent{ public static readonly componentId = "minecraft:inventory"; public readonly container?: Container; private constructor();};
 export class BlockLocationIterator { public next(): IteratorResult<Vector3>; public [Symbol.iterator](): this; private constructor();};
+//@ts-ignore extending for classes with private constructor is possible with native API
+export class BlockMapColorComponent extends BlockComponent{ public static readonly componentId = "minecraft:map_color"; public readonly color: RGBA; public readonly tintedColor: RGBA; public readonly tintMethod: TintMethod; private constructor();};
 export class BlockPermutation { public readonly type: BlockType; public canBeDestroyedByLiquidSpread(liquidType: LiquidType): boolean; public canContainLiquid(liquidType: LiquidType): boolean; public getAllStates(): Record<string,boolean | number | string>; public getItemStack(amount?: number): (ItemStack | undefined); public getState(stateName: string): (boolean | number | string | undefined); public getTags(): string[]; public hasTag(tag: string): boolean; public isLiquidBlocking(liquidType: LiquidType): boolean; public liquidSpreadCausesSpawn(liquidType: LiquidType): boolean; public matches(blockName: string, states?: Record<string,boolean | number | string>): boolean; public static resolve(blockName: string, states?: Record<string,boolean | number | string>): BlockPermutation; public withState(name: string, value: boolean | number | string): BlockPermutation; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BlockPistonComponent extends BlockComponent{ public static readonly componentId = "minecraft:piston"; public readonly isMoving: boolean; public readonly state: BlockPistonState; public getAttachedBlocks(): Block[]; public getAttachedBlocksLocations(): Vector3[]; private constructor();};
@@ -163,7 +166,7 @@ export class BlockVolumeBase { public getBlockLocationIterator(): BlockLocationI
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ButtonPushAfterEvent extends BlockEvent{ public readonly source: Entity; private constructor();};
 export class ButtonPushAfterEventSignal { public subscribe(callback: (arg0: ButtonPushAfterEvent)=>void): (arg0: ButtonPushAfterEvent)=>void; public unsubscribe(callback: (arg0: ButtonPushAfterEvent)=>void): void; private constructor();};
-export class Camera { public clear(): void; public fade(fadeCameraOptions?: CameraFadeOptions): void; public setCamera(cameraPreset: string, setOptions?: CameraDefaultOptions | CameraFixedBoomOptions | CameraSetFacingOptions | CameraSetLocationOptions | CameraSetPosOptions | CameraSetRotOptions | CameraTargetOptions): void; private constructor();};
+export class Camera { public readonly isValid: boolean; public clear(): void; public fade(fadeCameraOptions?: CameraFadeOptions): void; public setCamera(cameraPreset: string, setOptions?: CameraDefaultOptions | CameraFixedBoomOptions | CameraSetFacingOptions | CameraSetLocationOptions | CameraSetPosOptions | CameraSetRotOptions | CameraTargetOptions): void; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ClientSystemInfo extends SystemInfo{ public readonly maxRenderDistance: number; public readonly platformType: PlatformType; private constructor();};
 export class CommandResult { public readonly successCount: number; private constructor();};
@@ -497,10 +500,11 @@ export class WorldBeforeEvents { public readonly effectAdd: EffectAddBeforeEvent
 export class WorldLoadAfterEvent { private constructor();};
 export class WorldLoadAfterEventSignal { public subscribe(callback: (arg0: WorldLoadAfterEvent)=>void): (arg0: WorldLoadAfterEvent)=>void; public unsubscribe(callback: (arg0: WorldLoadAfterEvent)=>void): void; private constructor();};
 
-// Constants & Objects - 6
+// Constants & Objects - 7
 export const HudElementsCount = 13;
 export const HudVisibilityCount = 2;
 export const MoonPhaseCount = 8;
+export const TicksPerDay = 24000;
 export const TicksPerSecond = 20;
 
 export const system: System;
