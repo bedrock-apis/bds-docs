@@ -1,0 +1,199 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "2005366640",
+    "x-minecraft-version": "1.21.80",
+    "definitions": {
+        "996782454": {
+            "title": "struct SharedTypes::v1_21_80::CameraPreset",
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "type": "string",
+                    "pattern": "^(\\w+:\\w+)?$"
+                },
+                "pos_x": {
+                    "type": "number"
+                },
+                "rot_y": {
+                    "type": "number"
+                },
+                "player_effects": {
+                    "type": "boolean"
+                },
+                "inherit_from": {
+                    "type": "string",
+                    "pattern": "^(\\w+:\\w+)?$"
+                },
+                "pos_y": {
+                    "type": "number"
+                },
+                "rot_x": {
+                    "type": "number",
+                    "minimum": -90,
+                    "maximum": 90
+                },
+                "pos_z": {
+                    "type": "number"
+                },
+                "rotation_speed": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 360
+                },
+                "snap_to_target": {
+                    "type": "boolean"
+                },
+                "horizontal_rotation_limit": {
+                    "type": "array",
+                    "items": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 360
+                    },
+                    "minItems": 2,
+                    "maxItems": 2
+                },
+                "vertical_rotation_limit": {
+                    "type": "array",
+                    "items": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 180
+                    },
+                    "minItems": 2,
+                    "maxItems": 2
+                },
+                "continue_targeting": {
+                    "type": "boolean"
+                },
+                "entity_offset": {
+                    "type": "array",
+                    "items": {
+                        "type": "number",
+                        "minimum": -64,
+                        "maximum": 64
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                },
+                "tracking_radius": {
+                    "type": "number"
+                },
+                "view_offset": {
+                    "type": "array",
+                    "items": {
+                        "type": "number",
+                        "minimum": -64,
+                        "maximum": 64
+                    },
+                    "minItems": 2,
+                    "maxItems": 2
+                },
+                "yaw_limits_min": {
+                    "type": "number",
+                    "minimum": -180,
+                    "maximum": 179.89999389648438
+                },
+                "radius": {
+                    "type": "number",
+                    "minimum": 0.10000000149011612,
+                    "maximum": 64
+                },
+                "yaw_limits_max": {
+                    "type": "number",
+                    "minimum": -179.89999389648438,
+                    "maximum": 180
+                },
+                "listener": {
+                    "title": "enum SharedTypes::v1_21_80::CameraPreset::AudioListener",
+                    "type": "string",
+                    "enum": [
+                        "camera",
+                        "player"
+                    ]
+                },
+                "align_target_and_camera_forward": {
+                    "type": "boolean"
+                },
+                "aim_assist": {
+                    "$ref": "#/definitions/3530470262"
+                },
+                "control_scheme": {
+                    "title": "Control Scheme",
+                    "type": "string",
+                    "enum": [
+                        "locked_player_relative_strafe",
+                        "camera_relative",
+                        "camera_relative_strafe",
+                        "player_relative",
+                        "player_relative_strafe"
+                    ]
+                }
+            },
+            "required": [
+                "identifier"
+            ]
+        },
+        "3530470262": {
+            "title": "struct SharedTypes::v1_21_50::CameraPresetAimAssistDefinition",
+            "type": "object",
+            "properties": {
+                "preset": {
+                    "type": "string"
+                },
+                "distance": {
+                    "type": "number"
+                },
+                "target_mode": {
+                    "title": "Aim-Assist Target Mode",
+                    "type": "string",
+                    "enum": [
+                        "angle",
+                        "distance"
+                    ]
+                },
+                "angle": {
+                    "$ref": "#/definitions/4021724221"
+                }
+            }
+        },
+        "4021724221": {
+            "title": "Vec2",
+            "oneOf": [
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    },
+                    "minItems": 2,
+                    "maxItems": 2
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "x": {
+                            "type": "number"
+                        },
+                        "y": {
+                            "type": "number"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "title": "struct SharedTypes::v1_21_80::CameraPresetFile",
+    "type": "object",
+    "properties": {
+        "format_version": {
+            "type": "string"
+        },
+        "minecraft:camera_preset": {
+            "$ref": "#/definitions/996782454"
+        }
+    },
+    "required": [
+        "format_version",
+        "minecraft:camera_preset"
+    ]
+}

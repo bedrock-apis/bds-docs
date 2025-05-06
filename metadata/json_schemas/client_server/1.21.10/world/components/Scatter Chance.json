@@ -1,0 +1,64 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "2176758423",
+    "x-minecraft-version": "1.21.80",
+    "definitions": {
+        "2267778531": {
+            "title": "struct SharedTypes::Legacy::ExpressionNode::StringRepresentation",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "expression": {
+                            "type": "string"
+                        },
+                        "version": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "expression",
+                        "version"
+                    ]
+                }
+            ]
+        },
+        "3178719147": {
+            "title": "struct SharedTypes::Legacy::ExpressionNode",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/2267778531"
+                },
+                {
+                    "type": "number"
+                }
+            ]
+        }
+    },
+    "title": "Scatter Chance",
+    "oneOf": [
+        {
+            "$ref": "#/definitions/3178719147"
+        },
+        {
+            "type": "object",
+            "properties": {
+                "numerator": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "denominator": {
+                    "type": "integer",
+                    "minimum": 1
+                }
+            },
+            "required": [
+                "numerator",
+                "denominator"
+            ]
+        }
+    ]
+}

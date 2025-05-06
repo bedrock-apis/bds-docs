@@ -1,0 +1,482 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "1007525655",
+    "x-minecraft-version": "1.21.80",
+    "definitions": {
+        "169701669": {
+            "title": "struct SharedTypes::v1_21_20::PoolAliases::Random",
+            "type": "object",
+            "properties": {
+                "alias": {
+                    "type": "string"
+                },
+                "targets": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/2318795732"
+                    }
+                }
+            },
+            "required": [
+                "alias",
+                "targets"
+            ]
+        },
+        "781829906": {
+            "title": "struct SharedTypes::v1_21_20::DimensionPaddingRange",
+            "type": "object",
+            "properties": {
+                "top": {
+                    "type": "integer"
+                },
+                "bottom": {
+                    "type": "integer"
+                }
+            }
+        },
+        "1088251937": {
+            "title": "Filter Group",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/4150989894"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/1088251937"
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "OR": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "all": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "all_of": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "AND": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "any_of": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "none_of": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "any": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "NOT": {
+                            "$ref": "#/definitions/1088251937"
+                        }
+                    }
+                }
+            ]
+        },
+        "1292959213": {
+            "title": "struct SharedTypes::v1_21_20::JigsawStructureDefinition::Description",
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "identifier"
+            ]
+        },
+        "2155635173": {
+            "title": "struct SharedTypes::v1_21_20::WeightedRandomItem<class std::vector<class std::variant<struct SharedTypes::v1_21_20::PoolAliases::Direct,struct SharedTypes::v1_21_20::PoolAliases::Random>,class std::allocator<class std::variant<struct SharedTypes::v1_21_20::PoolAliases::Direct,struct SharedTypes::v1_21_20::PoolAliases::Random> > > >",
+            "type": "object",
+            "properties": {
+                "weight": {
+                    "type": "integer"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/definitions/3138104923"
+                            },
+                            {
+                                "$ref": "#/definitions/169701669"
+                            }
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "weight",
+                "data"
+            ]
+        },
+        "2318795732": {
+            "title": "struct SharedTypes::v1_21_20::WeightedRandomItem<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >",
+            "type": "object",
+            "properties": {
+                "weight": {
+                    "type": "integer"
+                },
+                "data": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "weight",
+                "data"
+            ]
+        },
+        "2375908812": {
+            "title": "struct SharedTypes::v1_21_20::PoolAliases::RandomGroup",
+            "type": "object",
+            "properties": {
+                "groups": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/2155635173"
+                    }
+                }
+            },
+            "required": [
+                "groups"
+            ]
+        },
+        "2427056231": {
+            "title": "struct SharedTypes::v1_21_20::UniformHeight",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "title": "enum SharedTypes::v1_21_20::HeightProviderHelper::HeightProviderType",
+                    "type": "string",
+                    "const": "uniform",
+                    "enum": [
+                        "uniform",
+                        "constant"
+                    ]
+                },
+                "max": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/4201740570"
+                        },
+                        {
+                            "$ref": "#/definitions/4235442903"
+                        },
+                        {
+                            "$ref": "#/definitions/4202034760"
+                        },
+                        {
+                            "$ref": "#/definitions/4235737093"
+                        }
+                    ]
+                },
+                "min": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/4201740570"
+                        },
+                        {
+                            "$ref": "#/definitions/4235442903"
+                        },
+                        {
+                            "$ref": "#/definitions/4202034760"
+                        },
+                        {
+                            "$ref": "#/definitions/4235737093"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "type",
+                "max",
+                "min"
+            ]
+        },
+        "3138104923": {
+            "title": "struct SharedTypes::v1_21_20::PoolAliases::Direct",
+            "type": "object",
+            "properties": {
+                "alias": {
+                    "type": "string"
+                },
+                "target": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "alias",
+                "target"
+            ]
+        },
+        "3176878115": {
+            "title": "struct SharedTypes::v1_21_20::ConstantHeight",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "title": "enum SharedTypes::v1_21_20::HeightProviderHelper::HeightProviderType",
+                    "type": "string",
+                    "const": "constant",
+                    "enum": [
+                        "uniform",
+                        "constant"
+                    ]
+                },
+                "value": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/4201740570"
+                        },
+                        {
+                            "$ref": "#/definitions/4235442903"
+                        },
+                        {
+                            "$ref": "#/definitions/4202034760"
+                        },
+                        {
+                            "$ref": "#/definitions/4235737093"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "type",
+                "value"
+            ]
+        },
+        "4150989894": {
+            "title": "Filter Test",
+            "type": "object",
+            "properties": {
+                "operator": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "test": {
+                    "type": "string"
+                },
+                "subject": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "domain": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "value": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "test"
+            ]
+        },
+        "4201740570": {
+            "title": "struct SharedTypes::v1_21_20::VerticalAnchorValue<0>",
+            "type": "object",
+            "properties": {
+                "absolute": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "absolute"
+            ]
+        },
+        "4202034760": {
+            "title": "struct SharedTypes::v1_21_20::VerticalAnchorValue<2>",
+            "type": "object",
+            "properties": {
+                "below_top": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "below_top"
+            ]
+        },
+        "4235442903": {
+            "title": "struct SharedTypes::v1_21_20::VerticalAnchorValue<1>",
+            "type": "object",
+            "properties": {
+                "above_bottom": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "above_bottom"
+            ]
+        },
+        "4235737093": {
+            "title": "struct SharedTypes::v1_21_20::VerticalAnchorValue<3>",
+            "type": "object",
+            "properties": {
+                "from_sea": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "from_sea"
+            ]
+        }
+    },
+    "title": "JigsawStructure",
+    "type": "object",
+    "properties": {
+        "description": {
+            "$ref": "#/definitions/1292959213"
+        },
+        "biome_filters": {
+            "$ref": "#/definitions/1088251937"
+        },
+        "step": {
+            "title": "GenerationStep",
+            "type": "string",
+            "enum": [
+                "raw_generation",
+                "lakes",
+                "local_modifications",
+                "underground_structures",
+                "surface_structures",
+                "strongholds",
+                "underground_ores",
+                "underground_decoration",
+                "fluid_springs",
+                "vegetal_decoration",
+                "top_layer_modification"
+            ]
+        },
+        "terrain_adaptation": {
+            "title": "enum SharedTypes::v1_21_20::JigsawStructureDefinition::TerrainAdaptation",
+            "type": "string",
+            "enum": [
+                "none",
+                "bury",
+                "beard_thin",
+                "beard_box",
+                "encapsulate"
+            ]
+        },
+        "start_pool": {
+            "type": "string"
+        },
+        "max_distance_from_center": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 128
+        },
+        "start_height": {
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/2427056231"
+                },
+                {
+                    "$ref": "#/definitions/3176878115"
+                }
+            ]
+        },
+        "start_jigsaw_name": {
+            "type": "string"
+        },
+        "max_depth": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 20
+        },
+        "heightmap_projection": {
+            "title": "enum SharedTypes::v1_21_20::JigsawStructureDefinition::HeightmapProjection",
+            "type": "string",
+            "enum": [
+                "world_surface",
+                "ocean_floor"
+            ]
+        },
+        "dimension_padding": {
+            "oneOf": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "$ref": "#/definitions/781829906"
+                }
+            ]
+        },
+        "pool_aliases": {
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "$ref": "#/definitions/3138104923"
+                    },
+                    {
+                        "$ref": "#/definitions/169701669"
+                    },
+                    {
+                        "$ref": "#/definitions/2375908812"
+                    }
+                ]
+            }
+        }
+    },
+    "required": [
+        "description",
+        "step",
+        "start_pool",
+        "start_height",
+        "max_depth"
+    ]
+}

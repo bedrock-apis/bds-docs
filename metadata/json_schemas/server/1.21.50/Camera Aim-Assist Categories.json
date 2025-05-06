@@ -1,0 +1,84 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "3310109924",
+    "x-minecraft-version": "1.21.80",
+    "definitions": {
+        "1679484019": {
+            "title": "struct SharedTypes::v1_21_50::CameraAimAssistCategoriesDefinition",
+            "type": "object",
+            "properties": {
+                "categories": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/2938198659"
+                    }
+                }
+            },
+            "required": [
+                "categories"
+            ]
+        },
+        "1765013198": {
+            "title": "struct SharedTypes::v1_21_50::CameraAimAssistCategoryPriorities",
+            "type": "object",
+            "properties": {
+                "entities": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 100
+                    }
+                },
+                "blocks": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 100
+                    }
+                },
+                "entity_default": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 100
+                },
+                "block_default": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 100
+                }
+            }
+        },
+        "2938198659": {
+            "title": "struct SharedTypes::v1_21_50::CameraAimAssistCategoryDefinition",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "priorities": {
+                    "$ref": "#/definitions/1765013198"
+                }
+            },
+            "required": [
+                "name",
+                "priorities"
+            ]
+        }
+    },
+    "title": "minecraft:aim_assist_categories",
+    "type": "object",
+    "properties": {
+        "format_version": {
+            "type": "string"
+        },
+        "minecraft:aim_assist_categories": {
+            "$ref": "#/definitions/1679484019"
+        }
+    },
+    "required": [
+        "format_version",
+        "minecraft:aim_assist_categories"
+    ]
+}

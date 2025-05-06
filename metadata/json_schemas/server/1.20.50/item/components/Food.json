@@ -1,0 +1,38 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "268086052",
+    "x-minecraft-version": "1.21.80",
+    "definitions": {
+        "1531870811": {
+            "title": "struct SharedTypes::Legacy::ItemDescriptor",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                }
+            ]
+        }
+    },
+    "title": "minecraft:food",
+    "type": "object",
+    "properties": {
+        "nutrition": {
+            "type": "integer"
+        },
+        "saturation_modifier": {
+            "type": "number",
+            "minimum": 0
+        },
+        "can_always_eat": {
+            "type": "boolean"
+        },
+        "using_converts_to": {
+            "$ref": "#/definitions/1531870811"
+        }
+    }
+}

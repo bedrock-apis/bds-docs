@@ -5,7 +5,11 @@ import * as _2c from '@minecraft/server';
 export enum FormCancelationReason { UserBusy = "UserBusy", UserClosed = "UserClosed"};
 export enum FormRejectReason { MalformedResponse = "MalformedResponse", PlayerQuit = "PlayerQuit", ServerShutdown = "ServerShutdown"};
 
-// Interfaces - 0
+// Interfaces - 4
+export interface ModalFormDataDropdownOptions { defaultValueIndex?: number; tooltip?: _2c.RawMessage | string};
+export interface ModalFormDataSliderOptions { defaultValue?: number; tooltip?: _2c.RawMessage | string; valueStep?: number};
+export interface ModalFormDataTextFieldOptions { defaultValue?: string; tooltip?: _2c.RawMessage | string};
+export interface ModalFormDataToggleOptions { defaultValue?: boolean; tooltip?: _2c.RawMessage | string};
 
 // Classes - 8
 export class ActionFormData { public body(bodyText: _2c.RawMessage | string): ActionFormData; public button(text: _2c.RawMessage | string, iconPath?: string): ActionFormData; public constructor(); public divider(): ActionFormData; public header(text: _2c.RawMessage | string): ActionFormData; public label(text: _2c.RawMessage | string): ActionFormData; public show(player: _2c.Player): Promise<ActionFormResponse>; public title(titleText: _2c.RawMessage | string): ActionFormData;};
@@ -15,9 +19,9 @@ export class FormResponse { public readonly cancelationReason?: FormCancelationR
 export class MessageFormData { public body(bodyText: _2c.RawMessage | string): MessageFormData; public button1(text: _2c.RawMessage | string): MessageFormData; public button2(text: _2c.RawMessage | string): MessageFormData; public constructor(); public show(player: _2c.Player): Promise<MessageFormResponse>; public title(titleText: _2c.RawMessage | string): MessageFormData;};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class MessageFormResponse extends FormResponse{ public readonly selection?: number; private constructor();};
-export class ModalFormData { public constructor(); public divider(): ModalFormData; public dropdown(label: _2c.RawMessage | string, options: (_2c.RawMessage | string)[], defaultValueIndex?: number): ModalFormData; public header(text: _2c.RawMessage | string): ModalFormData; public label(text: _2c.RawMessage | string): ModalFormData; public show(player: _2c.Player): Promise<ModalFormResponse>; public slider(label: _2c.RawMessage | string, minimumValue: number, maximumValue: number, valueStep: number, defaultValue?: number): ModalFormData; public submitButton(submitButtonText: _2c.RawMessage | string): ModalFormData; public textField(label: _2c.RawMessage | string, placeholderText: _2c.RawMessage | string, defaultValue?: _2c.RawMessage | string): ModalFormData; public title(titleText: _2c.RawMessage | string): ModalFormData; public toggle(label: _2c.RawMessage | string, defaultValue?: boolean): ModalFormData;};
+export class ModalFormData { public constructor(); public divider(): ModalFormData; public dropdown(label: _2c.RawMessage | string, items: (_2c.RawMessage | string)[], dropdownOptions?: ModalFormDataDropdownOptions): ModalFormData; public header(text: _2c.RawMessage | string): ModalFormData; public label(text: _2c.RawMessage | string): ModalFormData; public show(player: _2c.Player): Promise<ModalFormResponse>; public slider(label: _2c.RawMessage | string, minimumValue: number, maximumValue: number, sliderOptions?: ModalFormDataSliderOptions): ModalFormData; public submitButton(submitButtonText: _2c.RawMessage | string): ModalFormData; public textField(label: _2c.RawMessage | string, placeholderText: _2c.RawMessage | string, textFieldOptions?: ModalFormDataTextFieldOptions): ModalFormData; public title(titleText: _2c.RawMessage | string): ModalFormData; public toggle(label: _2c.RawMessage | string, toggleOptions?: ModalFormDataToggleOptions): ModalFormData;};
 //@ts-ignore extending for classes with private constructor is possible with native API
-export class ModalFormResponse extends FormResponse{ public readonly formValues?: (boolean | number | string)[]; private constructor();};
+export class ModalFormResponse extends FormResponse{ public readonly formValues?: (boolean | number | string | undefined)[]; private constructor();};
 export class UIManager { public closeAllForms(player: _2c.Player): void; private constructor();};
 
 // Constants & Objects - 1

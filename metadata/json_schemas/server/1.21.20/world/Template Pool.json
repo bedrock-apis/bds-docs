@@ -1,0 +1,88 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "1382973118",
+    "x-minecraft-version": "1.21.80",
+    "definitions": {
+        "1755372388": {
+            "title": "struct SharedTypes::v1_21_20::JigsawStructureTemplatePool::TemplatePoolElement",
+            "type": "object",
+            "properties": {
+                "element": {
+                    "$ref": "#/definitions/2726507774"
+                },
+                "weight": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 200
+                },
+                "projection": {
+                    "title": "enum SharedTypes::v1_21_20::JigsawStructureTemplatePool::Projection",
+                    "type": "string",
+                    "enum": [
+                        "rigid",
+                        "terrain_matching"
+                    ]
+                }
+            },
+            "required": [
+                "element"
+            ]
+        },
+        "1872243302": {
+            "title": "struct SharedTypes::v1_21_20::JigsawStructureTemplatePool::Description",
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "identifier"
+            ]
+        },
+        "2726507774": {
+            "title": "struct SharedTypes::v1_21_20::JigsawStructureTemplatePool::SinglePoolElement",
+            "type": "object",
+            "properties": {
+                "element_type": {
+                    "title": "enum SharedTypes::v1_21_20::JigsawStructureTemplatePool::ElementType",
+                    "type": "string",
+                    "enum": [
+                        "minecraft:single_pool_element"
+                    ]
+                },
+                "location": {
+                    "type": "string"
+                },
+                "processors": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "element_type",
+                "location",
+                "processors"
+            ]
+        }
+    },
+    "title": "Used to pair block rules with Structure Templates and to randomly place Structure Templates using a weighted list.",
+    "type": "object",
+    "properties": {
+        "description": {
+            "$ref": "#/definitions/1872243302"
+        },
+        "elements": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/1755372388"
+            }
+        },
+        "fallback": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "description",
+        "elements"
+    ]
+}

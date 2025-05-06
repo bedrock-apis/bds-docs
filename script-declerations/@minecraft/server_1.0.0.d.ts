@@ -21,4 +21,6 @@ export const world: World;
 
 // Functions - 0
 
-// Errors - 0
+// Errors - 2
+export class InvalidEntityError extends Error{ public readonly id: string; public readonly type: string; private constructor();};
+export class RawMessageError extends Error{ private constructor();};
