@@ -45,7 +45,7 @@ export enum TimeOfDay { Day = 1000, Midnight = 18000, Night = 13000, Noon = 6000
 export enum TintMethod { BirchFoliage = "BirchFoliage", DefaultFoliage = "DefaultFoliage", DryFoliage = "DryFoliage", EvergreenFoliage = "EvergreenFoliage", Grass = "Grass", None = "None", Water = "Water"};
 export enum WeatherType { Clear = "Clear", Rain = "Rain", Thunder = "Thunder"};
 
-// Interfaces - 66
+// Interfaces - 65
 export interface BlockBoundingBox { max: Vector3; min: Vector3};
 export interface BlockCustomComponent { beforeOnPlayerPlace?: (arg0: BlockComponentPlayerPlaceBeforeEvent, arg1: CustomComponentParameters)=>void; onEntityFallOn?: (arg0: BlockComponentEntityFallOnEvent, arg1: CustomComponentParameters)=>void; onPlace?: (arg0: BlockComponentOnPlaceEvent, arg1: CustomComponentParameters)=>void; onPlayerBreak?: (arg0: BlockComponentPlayerBreakEvent, arg1: CustomComponentParameters)=>void; onPlayerInteract?: (arg0: BlockComponentPlayerInteractEvent, arg1: CustomComponentParameters)=>void; onRandomTick?: (arg0: BlockComponentRandomTickEvent, arg1: CustomComponentParameters)=>void; onStepOff?: (arg0: BlockComponentStepOffEvent, arg1: CustomComponentParameters)=>void; onStepOn?: (arg0: BlockComponentStepOnEvent, arg1: CustomComponentParameters)=>void; onTick?: (arg0: BlockComponentTickEvent, arg1: CustomComponentParameters)=>void};
 export interface BlockEventOptions { blockTypes?: string[]; permutations?: BlockPermutation[]};
@@ -54,7 +54,6 @@ export interface BlockFilter { excludePermutations?: BlockPermutation[]; exclude
 export interface BlockHitInformation { block: Block; face: Direction; faceLocation: Vector3};
 export interface BlockRaycastHit { block: Block; face: Direction; faceLocation: Vector3};
 export interface BlockRaycastOptions extends BlockFilter{ includeLiquidBlocks?: boolean; includePassableBlocks?: boolean; maxDistance?: number};
-export interface CameraDefaultOptions { easeOptions: CameraEaseOptions};
 export interface CameraEaseOptions { easeTime?: number; easeType?: EasingType};
 export interface CameraFadeOptions { fadeColor?: RGB; fadeTime?: CameraFadeTimeOptions};
 export interface CameraFadeTimeOptions { fadeInTime: number; fadeOutTime: number; holdTime: number};
@@ -92,7 +91,7 @@ export interface LessThanComparison { lessThan: number};
 export interface LessThanOrEqualsComparison { lessThanOrEquals: number};
 export interface MusicOptions { fade?: number; loop?: boolean; volume?: number};
 export interface NotEqualsComparison { notEquals: boolean | number | string};
-export interface PlayAnimationOptions { blendOutTime?: number; controller?: string; nextState?: string; players?: string[]; stopExpression?: string};
+export interface PlayAnimationOptions { blendOutTime?: number; controller?: string; nextState?: string; players?: Player[]; stopExpression?: string};
 export interface PlayerSoundOptions { location?: Vector3; pitch?: number; volume?: number};
 export interface ProjectileShootOptions { uncertainty?: number};
 export interface RangeComparison { lowerBound: number; upperBound: number};
@@ -166,7 +165,7 @@ export class BlockVolumeBase { public getBlockLocationIterator(): BlockLocationI
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ButtonPushAfterEvent extends BlockEvent{ public readonly source: Entity; private constructor();};
 export class ButtonPushAfterEventSignal { public subscribe(callback: (arg0: ButtonPushAfterEvent)=>void): (arg0: ButtonPushAfterEvent)=>void; public unsubscribe(callback: (arg0: ButtonPushAfterEvent)=>void): void; private constructor();};
-export class Camera { public readonly isValid: boolean; public clear(): void; public fade(fadeCameraOptions?: CameraFadeOptions): void; public setCamera(cameraPreset: string, setOptions?: CameraDefaultOptions | CameraFixedBoomOptions | CameraSetFacingOptions | CameraSetLocationOptions | CameraSetPosOptions | CameraSetRotOptions | CameraTargetOptions): void; private constructor();};
+export class Camera { public readonly isValid: boolean; public clear(): void; public fade(fadeCameraOptions?: CameraFadeOptions): void; public setCamera(cameraPreset: string, setOptions?: CameraFixedBoomOptions | CameraSetFacingOptions | CameraSetLocationOptions | CameraSetPosOptions | CameraSetRotOptions | CameraTargetOptions): void; public setDefaultCamera(cameraPreset: string, easeOptions?: CameraEaseOptions): void; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ClientSystemInfo extends SystemInfo{ public readonly maxRenderDistance: number; public readonly platformType: PlatformType; private constructor();};
 export class CommandResult { public readonly successCount: number; private constructor();};
@@ -176,7 +175,7 @@ export class ContainerSlot { public amount: number; public readonly isStackable:
 export class CustomComponentParameters { public readonly params: unknown; private constructor();};
 export class DataDrivenEntityTriggerAfterEvent { public readonly entity: Entity; public readonly eventId: string; public getModifiers(): DefinitionModifier[]; private constructor();};
 export class DataDrivenEntityTriggerAfterEventSignal { public subscribe(callback: (arg0: DataDrivenEntityTriggerAfterEvent)=>void, options?: EntityDataDrivenTriggerEventOptions): (arg0: DataDrivenEntityTriggerAfterEvent)=>void; public unsubscribe(callback: (arg0: DataDrivenEntityTriggerAfterEvent)=>void): void; private constructor();};
-export class Dimension { public readonly heightRange: _1e.NumberRange; public readonly id: string; public containsBlock(volume: BlockVolumeBase, filter: BlockFilter, allowUnloadedChunks?: boolean): boolean; public createExplosion(location: Vector3, radius: number, explosionOptions?: ExplosionOptions): boolean; public fillBlocks(volume: BlockVolumeBase, block: BlockPermutation | BlockType | string, options?: BlockFillOptions): ListBlockVolume; public getBlock(location: Vector3): (Block | undefined); public getBlockFromRay(location: Vector3, direction: Vector3, options?: BlockRaycastOptions): (BlockRaycastHit | undefined); public getBlocks(volume: BlockVolumeBase, filter: BlockFilter, allowUnloadedChunks?: boolean): ListBlockVolume; public getEntities(options?: EntityQueryOptions): Entity[]; public getEntitiesAtBlockLocation(location: Vector3): Entity[]; public getEntitiesFromRay(location: Vector3, direction: Vector3, options?: EntityRaycastOptions): EntityRaycastHit[]; public getPlayers(options?: EntityQueryOptions): Player[]; public getTopmostBlock(locationXZ: VectorXZ, minHeight?: number): (Block | undefined); public placeFeature(featureName: string, location: Vector3, shouldThrow?: boolean): boolean; public placeFeatureRule(featureRuleName: string, location: Vector3): boolean; public playSound(soundId: string, location: Vector3, soundOptions?: WorldSoundOptions): void; public runCommand(commandString: string): CommandResult; public setBlockPermutation(location: Vector3, permutation: BlockPermutation): void; public setBlockType(location: Vector3, blockType: BlockType | string): void; public setWeather(weatherType: WeatherType, duration?: number): void; public spawnEntity(identifier: EntityType | string, location: Vector3, options?: SpawnEntityOptions): Entity; public spawnItem(itemStack: ItemStack, location: Vector3): Entity; public spawnParticle(effectName: string, location: Vector3, molangVariables?: MolangVariableMap): void; private constructor();};
+export class Dimension { public readonly heightRange: _1e.NumberRange; public readonly id: string; public containsBlock(volume: BlockVolumeBase, filter: BlockFilter, allowUnloadedChunks?: boolean): boolean; public createExplosion(location: Vector3, radius: number, explosionOptions?: ExplosionOptions): boolean; public fillBlocks(volume: BlockVolumeBase, block: BlockPermutation | BlockType | string, options?: BlockFillOptions): ListBlockVolume; public getBlock(location: Vector3): (Block | undefined); public getBlockAbove(location: Vector3, options?: BlockRaycastOptions): (Block | undefined); public getBlockBelow(location: Vector3, options?: BlockRaycastOptions): (Block | undefined); public getBlockFromRay(location: Vector3, direction: Vector3, options?: BlockRaycastOptions): (BlockRaycastHit | undefined); public getBlocks(volume: BlockVolumeBase, filter: BlockFilter, allowUnloadedChunks?: boolean): ListBlockVolume; public getEntities(options?: EntityQueryOptions): Entity[]; public getEntitiesAtBlockLocation(location: Vector3): Entity[]; public getEntitiesFromRay(location: Vector3, direction: Vector3, options?: EntityRaycastOptions): EntityRaycastHit[]; public getPlayers(options?: EntityQueryOptions): Player[]; public getTopmostBlock(locationXZ: VectorXZ, minHeight?: number): (Block | undefined); public placeFeature(featureName: string, location: Vector3, shouldThrow?: boolean): boolean; public placeFeatureRule(featureRuleName: string, location: Vector3): boolean; public playSound(soundId: string, location: Vector3, soundOptions?: WorldSoundOptions): void; public runCommand(commandString: string): CommandResult; public setBlockPermutation(location: Vector3, permutation: BlockPermutation): void; public setBlockType(location: Vector3, blockType: BlockType | string): void; public setWeather(weatherType: WeatherType, duration?: number): void; public spawnEntity(identifier: EntityType | string, location: Vector3, options?: SpawnEntityOptions): Entity; public spawnItem(itemStack: ItemStack, location: Vector3): Entity; public spawnParticle(effectName: string, location: Vector3, molangVariables?: MolangVariableMap): void; private constructor();};
 export class DimensionType { public readonly typeId: string; private constructor();};
 export class DimensionTypes { public static get(dimensionTypeId: string): (DimensionType | undefined); public static getAll(): DimensionType[]; private constructor();};
 export class Effect { public readonly amplifier: number; public readonly displayName: string; public readonly duration: number; public readonly isValid: boolean; public readonly typeId: string; private constructor();};
@@ -512,12 +511,13 @@ export const world: World;
 
 // Functions - 0
 
-// Errors - 24
+// Errors - 25
 export class BlockCustomComponentAlreadyRegisteredError extends Error{ private constructor();};
 export class BlockCustomComponentReloadNewComponentError extends Error{ private constructor();};
 export class BlockCustomComponentReloadNewEventError extends Error{ private constructor();};
 export class BlockCustomComponentReloadVersionError extends Error{ private constructor();};
 export class CommandError extends Error{ private constructor();};
+export class ContainerRulesError extends Error{ private constructor();};
 export class CustomComponentInvalidRegistryError extends Error{ private constructor();};
 export class CustomComponentNameError extends Error{ public readonly reason: CustomComponentNameErrorReason; private constructor();};
 export class EnchantmentLevelOutOfBoundsError extends Error{ private constructor();};

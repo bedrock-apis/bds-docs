@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "101144416",
     "x-format-version": "1.21.10",
-    "x-minecraft-version": "1.21.90-beta.22",
+    "x-minecraft-version": "1.21.90-beta.23",
     "definitions": {
         "44664202": {
             "title": "emitter_rate_manual",
@@ -231,7 +231,7 @@
             "title": "particle_expire_if_in_blocks",
             "type": "array",
             "items": {
-                "type": "string"
+                "$ref": "#/definitions/1527037515"
             }
         },
         "1499078169": {
@@ -260,6 +260,17 @@
                 "size"
             ]
         },
+        "1527037515": {
+            "title": "struct SharedTypes::Reference<0>",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
         "1684720476": {
             "title": "emitter_lifetime_events",
             "$ref": "#/definitions/2267676288"
@@ -285,7 +296,7 @@
             "title": "particle_expire_if_not_in_blocks",
             "type": "array",
             "items": {
-                "type": "string"
+                "$ref": "#/definitions/1527037515"
             }
         },
         "2267676288": {
@@ -319,7 +330,7 @@
             }
         },
         "2267778531": {
-            "title": "struct SharedTypes::Legacy::ExpressionNode::StringRepresentation",
+            "title": "Molang string",
             "oneOf": [
                 {
                     "type": "string"
@@ -550,7 +561,7 @@
             }
         },
         "3178719147": {
-            "title": "struct SharedTypes::Legacy::ExpressionNode",
+            "title": "Molang expression",
             "oneOf": [
                 {
                     "$ref": "#/definitions/2267778531"

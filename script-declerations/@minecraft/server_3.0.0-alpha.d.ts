@@ -1,6 +1,6 @@
 import * as _1e from '@minecraft/common';
 
-// Enums - 55
+// Enums - 56
 export enum AimAssistTargetMode { Angle = "Angle", Distance = "Distance"};
 export enum BlockComponentTypes { FluidContainer = "minecraft:fluid_container", Inventory = "minecraft:inventory", Piston = "minecraft:piston", RecordPlayer = "minecraft:record_player", Sign = "minecraft:sign"};
 export enum BlockPistonState { Expanded = "Expanded", Expanding = "Expanding", Retracted = "Retracted", Retracting = "Retracting"};
@@ -9,8 +9,9 @@ export enum ButtonState { Pressed = "Pressed", Released = "Released"};
 export enum CommandPermissionLevel { Admin = 2, Any = 0, GameDirectors = 1, Host = 3, Owner = 4};
 export enum CompoundBlockVolumeAction { Add = 0, Subtract = 1};
 export enum CompoundBlockVolumePositionRelativity { Absolute = 1, Relative = 0};
+export enum ContainerRulesErrorReason { BannedItem = "BannedItem", NestedStorageItem = "NestedStorageItem", NotAllowedItem = "NotAllowedItem", OverWeightLimit = "OverWeightLimit", ZeroWeightItem = "ZeroWeightItem"};
 export enum CustomCommandErrorReason { AlreadyRegistered = "AlreadyRegistered", EnumDependencyMissing = "EnumDependencyMissing", NamespaceMismatch = "NamespaceMismatch", ParameterLimit = "ParameterLimit", RegistryInvalid = "RegistryInvalid", RegistryReadOnly = "RegistryReadOnly"};
-export enum CustomCommandParamType { BlockType = 7, Boolean = 0, EntitySelector = 4, Enum = 9, Float = 2, Integer = 1, ItemType = 8, Location = 6, PlayerSelector = 5, String = 3};
+export enum CustomCommandParamType { BlockType = "BlockType", Boolean = "Boolean", EntitySelector = "EntitySelector", EntityType = "EntityType", Enum = "Enum", Float = "Float", Integer = "Integer", ItemType = "ItemType", Location = "Location", PlayerSelector = "PlayerSelector", String = "String"};
 export enum CustomCommandSource { Block = "Block", Entity = "Entity", NPCDialogue = "NPCDialogue", Server = "Server"};
 export enum CustomCommandStatus { Failure = 1, Success = 0};
 export enum CustomComponentNameErrorReason { DisallowedNamespace = 2, NoNamespace = 1};
@@ -33,7 +34,7 @@ export enum HudVisibility { Hide = 0, Reset = 1};
 export enum InputButton { Jump = "Jump", Sneak = "Sneak"};
 export enum InputMode { Gamepad = "Gamepad", KeyboardAndMouse = "KeyboardAndMouse", MotionController = "MotionController", Touch = "Touch"};
 export enum InputPermissionCategory { Camera = 1, Dismount = 8, Jump = 6, LateralMovement = 4, Mount = 7, MoveBackward = 10, MoveForward = 9, MoveLeft = 11, Movement = 2, MoveRight = 12, Sneak = 5};
-export enum ItemComponentTypes { Compostable = "minecraft:compostable", Cooldown = "minecraft:cooldown", Durability = "minecraft:durability", Dyeable = "minecraft:dyeable", Enchantable = "minecraft:enchantable", Food = "minecraft:food", Potion = "minecraft:potion"};
+export enum ItemComponentTypes { Compostable = "minecraft:compostable", Cooldown = "minecraft:cooldown", Durability = "minecraft:durability", Dyeable = "minecraft:dyeable", Enchantable = "minecraft:enchantable", Food = "minecraft:food", Inventory = "minecraft:inventory", Potion = "minecraft:potion"};
 export enum ItemLockMode { inventory = "inventory", none = "none", slot = "slot"};
 export enum LiquidSettings { ApplyWaterlogging = "ApplyWaterlogging", IgnoreWaterlogging = "IgnoreWaterlogging"};
 export enum LiquidType { Water = "Water"};
@@ -67,7 +68,6 @@ export interface BlockFilter { excludePermutations?: BlockPermutation[]; exclude
 export interface BlockHitInformation { block: Block; face: Direction; faceLocation: Vector3};
 export interface BlockRaycastHit { block: Block; face: Direction; faceLocation: Vector3};
 export interface BlockRaycastOptions extends BlockFilter{ includeLiquidBlocks?: boolean; includePassableBlocks?: boolean; maxDistance?: number};
-export interface CameraDefaultOptions { easeOptions: CameraEaseOptions};
 export interface CameraEaseOptions { easeTime?: number; easeType?: EasingType};
 export interface CameraFadeOptions { fadeColor?: RGB; fadeTime?: CameraFadeTimeOptions};
 export interface CameraFadeTimeOptions { fadeInTime: number; fadeOutTime: number; holdTime: number};
@@ -78,6 +78,7 @@ export interface CameraSetPosOptions { easeOptions?: CameraEaseOptions; facingLo
 export interface CameraSetRotOptions { easeOptions?: CameraEaseOptions; location?: Vector3; rotation: Vector2};
 export interface CameraTargetOptions { offsetFromTargetCenter?: Vector3; targetEntity: Entity};
 export interface CompoundBlockVolumeItem { action?: CompoundBlockVolumeAction; locationRelativity?: CompoundBlockVolumePositionRelativity; volume: BlockVolume};
+export interface ContainerRules { allowedItems: string[]; allowNestedStorageItems: boolean; bannedItems: string[]; weightLimit?: number};
 export interface CustomCommand { cheatsRequired?: boolean; description: string; mandatoryParameters?: CustomCommandParameter[]; name: string; optionalParameters?: CustomCommandParameter[]; permissionLevel: CommandPermissionLevel};
 export interface CustomCommandParameter { name: string; type: CustomCommandParamType};
 export interface CustomCommandResult { message?: string; status: CustomCommandStatus};
@@ -111,7 +112,7 @@ export interface LessThanComparison { lessThan: number};
 export interface LessThanOrEqualsComparison { lessThanOrEquals: number};
 export interface MusicOptions { fade?: number; loop?: boolean; volume?: number};
 export interface NotEqualsComparison { notEquals: boolean | number | string};
-export interface PlayAnimationOptions { blendOutTime?: number; controller?: string; nextState?: string; players?: string[]; stopExpression?: string};
+export interface PlayAnimationOptions { blendOutTime?: number; controller?: string; nextState?: string; players?: Player[]; stopExpression?: string};
 export interface PlayerAimAssistSettings { distance?: number; presetId: string; targetMode?: AimAssistTargetMode; viewAngle?: Vector2};
 export interface PlayerSoundOptions { location?: Vector3; pitch?: number; volume?: number};
 export interface PotionOptions { effect: PotionEffectType | string; liquid?: PotionLiquidType | string; modifier?: PotionModifierType | string};
@@ -134,7 +135,7 @@ export interface Vector3 { x: number; y: number; z: number};
 export interface VectorXZ { x: number; z: number};
 export interface WorldSoundOptions { pitch?: number; volume?: number};
 
-// Classes - 308
+// Classes - 309
 export class AimAssistCategory { public readonly defaultBlockPriority: number; public readonly defaultEntityPriority: number; public readonly identifier: string; public getBlockPriorities(): Record<string,number>; public getEntityPriorities(): Record<string,number>; private constructor();};
 export class AimAssistCategorySettings { public defaultBlockPriority: number; public defaultEntityPriority: number; public readonly identifier: string; public constructor(identifier: string); public getBlockPriorities(): Record<string,number>; public getEntityPriorities(): Record<string,number>; public setBlockPriorities(blockPriorities: Record<string,number>): void; public setEntityPriorities(entityPriorities: Record<string,number>): void;};
 export class AimAssistPreset { public readonly defaultItemSettings?: string; public readonly handSettings?: string; public readonly identifier: string; public getExcludedTargets(): string[]; public getItemSettings(): Record<string,string>; public getLiquidTargetingItems(): string[]; private constructor();};
@@ -197,7 +198,7 @@ export class BlockVolumeBase { public getBlockLocationIterator(): BlockLocationI
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ButtonPushAfterEvent extends BlockEvent{ public readonly source: Entity; private constructor();};
 export class ButtonPushAfterEventSignal { public subscribe(callback: (arg0: ButtonPushAfterEvent)=>void): (arg0: ButtonPushAfterEvent)=>void; public unsubscribe(callback: (arg0: ButtonPushAfterEvent)=>void): void; private constructor();};
-export class Camera { public readonly isValid: boolean; public clear(): void; public fade(fadeCameraOptions?: CameraFadeOptions): void; public setCamera(cameraPreset: string, setOptions?: CameraDefaultOptions | CameraFixedBoomOptions | CameraSetFacingOptions | CameraSetLocationOptions | CameraSetPosOptions | CameraSetRotOptions | CameraTargetOptions): void; private constructor();};
+export class Camera { public readonly isValid: boolean; public clear(): void; public fade(fadeCameraOptions?: CameraFadeOptions): void; public setCamera(cameraPreset: string, setOptions?: CameraFixedBoomOptions | CameraSetFacingOptions | CameraSetLocationOptions | CameraSetPosOptions | CameraSetRotOptions | CameraTargetOptions): void; public setDefaultCamera(cameraPreset: string, easeOptions?: CameraEaseOptions): void; private constructor();};
 export class ChatSendAfterEvent { public readonly message: string; public readonly sender: Player; public readonly targets?: Player[]; private constructor();};
 export class ChatSendAfterEventSignal { public subscribe(callback: (arg0: ChatSendAfterEvent)=>void): (arg0: ChatSendAfterEvent)=>void; public unsubscribe(callback: (arg0: ChatSendAfterEvent)=>void): void; private constructor();};
 export class ChatSendBeforeEvent { public cancel: boolean; public readonly message: string; public readonly sender: Player; public readonly targets?: Player[]; private constructor();};
@@ -207,7 +208,7 @@ export class ClientSystemInfo extends SystemInfo{ public readonly maxRenderDista
 export class CommandResult { public readonly successCount: number; private constructor();};
 export class Component { public readonly isValid: boolean; public readonly typeId: string; private constructor();};
 export class CompoundBlockVolume { public readonly capacity: number; public readonly items: CompoundBlockVolumeItem[]; public readonly itemsAbsolute: CompoundBlockVolumeItem[]; public readonly volumeCount: number; public clear(): void; public constructor(origin?: Vector3); public getBlockLocationIterator(): BlockLocationIterator; public getBoundingBox(): BlockBoundingBox; public getMax(): Vector3; public getMin(): Vector3; public getOrigin(): Vector3; public isEmpty(): boolean; public isInside(worldLocation: Vector3): boolean; public peekLastVolume(forceRelativity?: CompoundBlockVolumePositionRelativity): (CompoundBlockVolumeItem | undefined); public popVolume(): boolean; public pushVolume(item: CompoundBlockVolumeItem): void; public replaceOrAddLastVolume(item: CompoundBlockVolumeItem): boolean; public setOrigin(position: Vector3, preserveExistingVolumes?: boolean): void; public translateOrigin(delta: Vector3, preserveExistingVolumes?: boolean): void;};
-export class Container { public readonly emptySlotsCount: number; public readonly isValid: boolean; public readonly size: number; public addItem(itemStack: ItemStack): (ItemStack | undefined); public clearAll(): void; public contains(itemStack: ItemStack): boolean; public find(itemStack: ItemStack): (number | undefined); public findLast(itemStack: ItemStack): (number | undefined); public firstEmptySlot(): (number | undefined); public firstItem(): (number | undefined); public getItem(slot: number): (ItemStack | undefined); public getSlot(slot: number): ContainerSlot; public moveItem(fromSlot: number, toSlot: number, toContainer: Container): void; public setItem(slot: number, itemStack?: ItemStack): void; public swapItems(slot: number, otherSlot: number, otherContainer: Container): void; public transferItem(fromSlot: number, toContainer: Container): (ItemStack | undefined); private constructor();};
+export class Container { public readonly containerRules?: ContainerRules; public readonly emptySlotsCount: number; public readonly isValid: boolean; public readonly size: number; public readonly weight: number; public addItem(itemStack: ItemStack): (ItemStack | undefined); public clearAll(): void; public contains(itemStack: ItemStack): boolean; public find(itemStack: ItemStack): (number | undefined); public findLast(itemStack: ItemStack): (number | undefined); public firstEmptySlot(): (number | undefined); public firstItem(): (number | undefined); public getItem(slot: number): (ItemStack | undefined); public getSlot(slot: number): ContainerSlot; public moveItem(fromSlot: number, toSlot: number, toContainer: Container): void; public setItem(slot: number, itemStack?: ItemStack): void; public swapItems(slot: number, otherSlot: number, otherContainer: Container): void; public transferItem(fromSlot: number, toContainer: Container): (ItemStack | undefined); private constructor();};
 export class ContainerSlot { public amount: number; public readonly isStackable: boolean; public readonly isValid: boolean; public keepOnDeath: boolean; public lockMode: ItemLockMode; public readonly maxAmount: number; public nameTag?: string; public readonly type: ItemType; public readonly typeId: string; public clearDynamicProperties(): void; public getCanDestroy(): string[]; public getCanPlaceOn(): string[]; public getDynamicProperty(identifier: string): (boolean | number | number | string | Vector3 | undefined); public getDynamicPropertyIds(): string[]; public getDynamicPropertyTotalByteCount(): number; public getItem(): (ItemStack | undefined); public getLore(): string[]; public getTags(): string[]; public hasItem(): boolean; public hasTag(tag: string): boolean; public isStackableWith(itemStack: ItemStack): boolean; public setCanDestroy(blockIdentifiers?: string[]): void; public setCanPlaceOn(blockIdentifiers?: string[]): void; public setDynamicProperties(values: Record<string,boolean | number | number | string | Vector3>): void; public setDynamicProperty(identifier: string, value?: boolean | number | number | string | Vector3): void; public setItem(itemStack?: ItemStack): void; public setLore(loreList?: string[]): void; private constructor();};
 export class CustomCommandOrigin { public readonly initiator?: Entity; public readonly sourceBlock?: Block; public readonly sourceEntity?: Entity; public readonly sourceType: CustomCommandSource; private constructor();};
 export class CustomCommandRegistry { public registerCommand(customCommand: CustomCommand, callback: ()=>(CustomCommandResult | undefined)): void; public registerEnum(name: string, values: string[]): void; private constructor();};
@@ -426,10 +427,12 @@ export class ItemEnchantableComponent extends ItemComponent{ public static reado
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ItemFoodComponent extends ItemComponent{ public static readonly componentId = "minecraft:food"; public readonly canAlwaysEat: boolean; public readonly nutrition: number; public readonly saturationModifier: number; public readonly usingConvertsTo: string; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
+export class ItemInventoryComponent extends ItemComponent{ public static readonly componentId = "minecraft:inventory"; public readonly container: Container; private constructor();};
+//@ts-ignore extending for classes with private constructor is possible with native API
 export class ItemPotionComponent extends ItemComponent{ public static readonly componentId = "minecraft:potion"; public readonly potionEffectType: PotionEffectType; public readonly potionLiquidType: PotionLiquidType; public readonly potionModifierType: PotionModifierType; private constructor();};
 export class ItemReleaseUseAfterEvent { public readonly itemStack?: ItemStack; public readonly source: Player; public readonly useDuration: number; private constructor();};
 export class ItemReleaseUseAfterEventSignal { public subscribe(callback: (arg0: ItemReleaseUseAfterEvent)=>void): (arg0: ItemReleaseUseAfterEvent)=>void; public unsubscribe(callback: (arg0: ItemReleaseUseAfterEvent)=>void): void; private constructor();};
-export class ItemStack { public amount: number; public readonly isStackable: boolean; public keepOnDeath: boolean; public readonly localizationKey: string; public lockMode: ItemLockMode; public readonly maxAmount: number; public nameTag?: string; public readonly type: ItemType; public readonly typeId: string; public clearDynamicProperties(): void; public clone(): ItemStack; public constructor(itemType: ItemType | string, amount?: number); public static createPotion(options: PotionOptions): ItemStack; public getCanDestroy(): string[]; public getCanPlaceOn(): string[]; public getComponent(componentId: string): (ItemComponent | undefined); public getComponents(): ItemComponent[]; public getDynamicProperty(identifier: string): (boolean | number | number | string | Vector3 | undefined); public getDynamicPropertyIds(): string[]; public getDynamicPropertyTotalByteCount(): number; public getLore(): string[]; public getTags(): string[]; public hasComponent(componentId: string): boolean; public hasTag(tag: string): boolean; public isStackableWith(itemStack: ItemStack): boolean; public matches(itemName: string, states?: Record<string,boolean | number | string>): boolean; public setCanDestroy(blockIdentifiers?: string[]): void; public setCanPlaceOn(blockIdentifiers?: string[]): void; public setDynamicProperties(values: Record<string,boolean | number | number | string | Vector3>): void; public setDynamicProperty(identifier: string, value?: boolean | number | number | string | Vector3): void; public setLore(loreList?: string[]): void;};
+export class ItemStack { public amount: number; public readonly isStackable: boolean; public keepOnDeath: boolean; public readonly localizationKey: string; public lockMode: ItemLockMode; public readonly maxAmount: number; public nameTag?: string; public readonly type: ItemType; public readonly typeId: string; public readonly weight: number; public clearDynamicProperties(): void; public clone(): ItemStack; public constructor(itemType: ItemType | string, amount?: number); public static createPotion(options: PotionOptions): ItemStack; public getCanDestroy(): string[]; public getCanPlaceOn(): string[]; public getComponent(componentId: string): (ItemComponent | undefined); public getComponents(): ItemComponent[]; public getDynamicProperty(identifier: string): (boolean | number | number | string | Vector3 | undefined); public getDynamicPropertyIds(): string[]; public getDynamicPropertyTotalByteCount(): number; public getLore(): string[]; public getTags(): string[]; public hasComponent(componentId: string): boolean; public hasTag(tag: string): boolean; public isStackableWith(itemStack: ItemStack): boolean; public matches(itemName: string, states?: Record<string,boolean | number | string>): boolean; public setCanDestroy(blockIdentifiers?: string[]): void; public setCanPlaceOn(blockIdentifiers?: string[]): void; public setDynamicProperties(values: Record<string,boolean | number | number | string | Vector3>): void; public setDynamicProperty(identifier: string, value?: boolean | number | number | string | Vector3): void; public setLore(loreList?: string[]): void;};
 export class ItemStartUseAfterEvent { public readonly itemStack: ItemStack; public readonly source: Player; public readonly useDuration: number; private constructor();};
 export class ItemStartUseAfterEventSignal { public subscribe(callback: (arg0: ItemStartUseAfterEvent)=>void): (arg0: ItemStartUseAfterEvent)=>void; public unsubscribe(callback: (arg0: ItemStartUseAfterEvent)=>void): void; private constructor();};
 export class ItemStartUseOnAfterEvent { public readonly block: Block; public readonly blockFace: Direction; public readonly itemStack?: ItemStack; public readonly source: Player; private constructor();};
@@ -574,12 +577,13 @@ export const world: World;
 
 // Functions - 0
 
-// Errors - 26
+// Errors - 27
 export class BlockCustomComponentAlreadyRegisteredError extends Error{ private constructor();};
 export class BlockCustomComponentReloadNewComponentError extends Error{ private constructor();};
 export class BlockCustomComponentReloadNewEventError extends Error{ private constructor();};
 export class BlockCustomComponentReloadVersionError extends Error{ private constructor();};
 export class CommandError extends Error{ private constructor();};
+export class ContainerRulesError extends Error{ public readonly reason: ContainerRulesErrorReason; private constructor();};
 export class CustomCommandError extends Error{ public readonly reason: CustomCommandErrorReason; private constructor();};
 export class CustomComponentInvalidRegistryError extends Error{ private constructor();};
 export class CustomComponentNameError extends Error{ public readonly reason: CustomComponentNameErrorReason; private constructor();};
