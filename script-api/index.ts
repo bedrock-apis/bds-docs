@@ -1,4 +1,4 @@
-import { system } from "@minecraft/server";
+import { system, world } from "@minecraft/server";
 import { PacketTypes, PROTOCOL_ID } from "../shared";
 import { BlockResolver } from "./extractors";
 import { ErrorMessages } from "./extractors/error_messages";
@@ -8,24 +8,25 @@ import { RunThread } from "./helper";
 import { getNumberOfPosts, SendPayload } from "./net";
 import { startUpTime } from "./precode";
 
-await SendPayload(PacketTypes.StartUp, { protocolId: PROTOCOL_ID });
-
-Main().then(
-	(exitCode) => {
-		SendPayload(PacketTypes.EndOfSession, {
-			exitCode,
-			numberOfPosts: getNumberOfPosts(),
-			totalTime: Date.now() - startUpTime,
-		});
-	},
-	() => {
-		SendPayload(PacketTypes.EndOfSession, {
-			exitCode: -1,
-			numberOfPosts: getNumberOfPosts(),
-			totalTime: Date.now() - startUpTime,
-		});
-	}
-);
+world.afterEvents.worldLoad.subscribe(async () => {
+	await SendPayload(PacketTypes.StartUp, { protocolId: PROTOCOL_ID });
+	Main().then(
+		(exitCode) => {
+			SendPayload(PacketTypes.EndOfSession, {
+				exitCode,
+				numberOfPosts: getNumberOfPosts(),
+				totalTime: Date.now() - startUpTime,
+			});
+		},
+		() => {
+			SendPayload(PacketTypes.EndOfSession, {
+				exitCode: -1,
+				numberOfPosts: getNumberOfPosts(),
+				totalTime: Date.now() - startUpTime,
+			});
+		}
+	);
+});
 
 async function Main(): Promise<number> {
 	// Security Check
