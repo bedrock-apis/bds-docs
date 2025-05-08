@@ -80,7 +80,12 @@ export interface ScriptDataPacketData {
 	suites: { enviromentSetupError: string } | TestSuiteRunResult[];
 }
 
-export type TestRunResult = string | { type: "error"; error: string };
+export type TestRunResult =
+	| object
+	| string
+	| number
+	| boolean
+	| { type: "error"; error: string };
 
 // Base Packet Payload
 export interface IPacket<T extends keyof PacketBodyType> {

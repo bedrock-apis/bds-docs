@@ -71,7 +71,7 @@ export class TestSuite<T> {
 		this.tests.push((setupData) => {
 			try {
 				const result = testFn(setupData);
-				return { type: "simple", result: TestSuite.stringify(result) };
+				return { type: "simple", result: result as TestRunResult };
 			} catch (error) {
 				return { type: "simple", result: this.createErrorReport(error) };
 			}
@@ -88,10 +88,10 @@ export class TestSuite<T> {
 
 	testChain(testFn: (setupData: T) => Generator<unknown, void, unknown>) {
 		this.tests.push((setupData) => {
-			let results: string[] = [];
+			let results: TestRunResult[] = [];
 			try {
 				for (const iteration of testFn(setupData)) {
-					results.push(TestSuite.stringify(iteration));
+					results.push(iteration as TestRunResult);
 				}
 
 				return { type: "chain", result: results };
