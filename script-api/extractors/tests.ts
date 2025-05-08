@@ -3,7 +3,15 @@ import { TestSuite } from "../test-runner/suite";
 import "../test-runner/suites/all";
 
 export function* TestsResolver() {
-	yield;
-	const suites = yield* TestSuite.run(new BedrockDedicatedServerEnviroment());
-	return { suites };
+	const generator = TestSuite.run(new BedrockDedicatedServerEnviroment());
+	let result = generator.next();
+	while (!result.done) {
+		result = generator.next();
+		yield;
+		if (result.done) {
+			return { suites: result.value };
+		}
+	}
+
+	throw new Error("failed to get repost");
 }

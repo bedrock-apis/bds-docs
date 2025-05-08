@@ -43,7 +43,6 @@ async function Main(): Promise<number> {
 
 	// Tests
 	{
-		// @ts-expect-error Uhh idk it expects iterator i give it generator
 		const tests = await RunThread(TestsResolver());
 		await SendPayload(PacketTypes.ScriptData, tests);
 	}
