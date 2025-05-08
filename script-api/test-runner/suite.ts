@@ -9,7 +9,7 @@ import { TestEnviroment, setEnviroment } from "./enviroment";
 export class TestSuite<T> {
 	static stringify(object: unknown): string {
 		// TODO Better stringify
-		return JSON.stringify(object, null, 2);
+		return JSON.stringify(object, null, 4);
 	}
 
 	static withSetup<T>(id: string, setupFn: () => T) {

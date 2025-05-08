@@ -261,12 +261,6 @@ async function Main(): Promise<number> {
 	group(`BDS Dynamic Generation -> ${BDS_OUTDIR_PATH}`);
 
 	console.log("Creating: " + REPORTS_DIR_NAME);
-	failed = await rm(REPORTS_DIR_NAME, { force: true, recursive: true }).then(
-		() => 0,
-		Panic
-	);
-	if (failed) return Panic("Failed to delete a folder: ./" + REPORTS_DIR_NAME);
-
 	failed = await mkdir(REPORTS_DIR_NAME).then(() => 0, Panic);
 	if (failed) return Panic("Failed to create a folder: ./" + REPORTS_DIR_NAME);
 
@@ -308,6 +302,22 @@ async function Main(): Promise<number> {
 				JSON.stringify(body, null, 4)
 			);
 		}
+
+		if (IsPacketTypeOf(data, PacketTypes.BlocksData)) {
+			const { body } = data;
+			await WriteFile(
+				resolve(REPORTS_DIR_NAME, "blocks.json"),
+				JSON.stringify(body, null, 4)
+			);
+		}
+
+		if (IsPacketTypeOf(data, PacketTypes.ItemsData)) {
+			const { body } = data;
+			await WriteFile(
+				resolve(REPORTS_DIR_NAME, "items.json"),
+				JSON.stringify(body, null, 4)
+			);
+		}
 	}
 
 	// Stop without forcing
@@ -329,8 +339,6 @@ async function Main(): Promise<number> {
 
 	Success("BDS has quit Successfully");
 	groupEnd();
-
-	if (process.env.DO_NOT_SEND) return 0;
 
 	///////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////
