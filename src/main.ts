@@ -358,6 +358,8 @@ async function Main(): Promise<number> {
 	console.log(existContent);
 	groupEnd();
 
+	if (process.env.DO_NOT_SEND) return 0;
+
 	failed = await WriteFile(FILE_NAME_GITHUB_README, GENERAL_README);
 	if (failed) return Panic("Failed to write README.md file");
 
