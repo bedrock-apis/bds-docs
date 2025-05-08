@@ -1,12 +1,5 @@
 //@ts-nocheck
-import {
-    BlockPermutation,
-    ItemStack,
-    Player,
-    System,
-    system,
-    world,
-} from "@minecraft/server";
+import { ItemStack, Player, world } from "@minecraft/server";
 import { ErrorMessagesDataPacketData } from "../net";
 
 export function* ErrorMessages(): Generator<void, ErrorMessagesDataPacketData> {
@@ -55,51 +48,16 @@ export enum ErrorDocumentationIds {
     LocationInUnloadedChunk = 9,
 }
 export const ERROR_DOCUMENTATIONS = [
-    new ErrorDocumentation(
-        ErrorDocumentationIds.NativeObjectBoundToPrototype,
-        () => ItemStack.prototype.getComponents.call(null),
-    ),
-    new ErrorDocumentation(
-        ErrorDocumentationIds.IncorrectNumberOfArguments,
-        () => new ItemStack("Yes", 5, 5),
-    ),
-    new ErrorDocumentation(
-        ErrorDocumentationIds.NativeVariantTypeConversionFailed,
-        () => new ItemStack(5),
-    ),
-    new ErrorDocumentation(
-        ErrorDocumentationIds.NativeVariantTypeConversionFailed,
-        () => new Player(),
-    ),
-    new ErrorDocumentation(ErrorDocumentationIds.FailedToSetMember, () =>
-        Object.getOwnPropertyDescriptor(
-            ItemStack.prototype,
-            "amount",
-        )?.set?.call(world, 5),
-    ),
-    new ErrorDocumentation(
-        ErrorDocumentationIds.ArrayContainsUnsupportedType,
-        () =>
-            world.beforeEvents.playerBreakBlock.subscribe(() => {}, {
-                blockTypes: [new ItemStack("stick")],
-            }),
-    ),
-    new ErrorDocumentation(ErrorDocumentationIds.HasInvalidNativeHandle, () =>
-        world.beforeEvents.playerBreakBlock.subscribe(() => {}, {
-            blockTypes: [new String("stick")],
-        }),
-    ),
-    new ErrorDocumentation(ErrorDocumentationIds.DidNotHaveNativeHandle, () =>
-        world.beforeEvents.playerBreakBlock.subscribe(() => {}, {
-            blockTypes: [{}],
-        }),
-    ),
+    new ErrorDocumentation(ErrorDocumentationIds.NativeObjectBoundToPrototype, () => ItemStack.prototype.getComponents.call(null)),
+    new ErrorDocumentation(ErrorDocumentationIds.IncorrectNumberOfArguments, () => new ItemStack("Yes", 5, 5)),
+    new ErrorDocumentation(ErrorDocumentationIds.NativeVariantTypeConversionFailed, () => new ItemStack(5)),
+    new ErrorDocumentation(ErrorDocumentationIds.NativeVariantTypeConversionFailed, () => new Player()),
+    new ErrorDocumentation(ErrorDocumentationIds.FailedToSetMember, () => Object.getOwnPropertyDescriptor(ItemStack.prototype, "amount")?.set?.call(world, 5)),
+    new ErrorDocumentation(ErrorDocumentationIds.ArrayContainsUnsupportedType, () => world.beforeEvents.playerBreakBlock.subscribe(() => {}, { blockTypes: [new ItemStack("stick")] })),
+    new ErrorDocumentation(ErrorDocumentationIds.HasInvalidNativeHandle, () => world.beforeEvents.playerBreakBlock.subscribe(() => {}, { blockTypes: [new String("stick")] })),
+    new ErrorDocumentation(ErrorDocumentationIds.DidNotHaveNativeHandle, () => world.beforeEvents.playerBreakBlock.subscribe(() => {}, { blockTypes: [{}] })),
 
-    new ErrorDocumentation(ErrorDocumentationIds.LocationInUnloadedChunk, () =>
-        world
-            .getDimension("minecraft:overworld")
-            .setBlockType({ x: 654654, y: 55, z: 6 }, "bedrock"),
-    ),
+    new ErrorDocumentation(ErrorDocumentationIds.LocationInUnloadedChunk, () => world.getDimension("minecraft:overworld").setBlockType({ x: 654654, y: 55, z: 6 }, "bedrock")),
 ];
 export const TEST_CASES = [
     () => new ItemStack("Yes", 5, {}),
@@ -108,42 +66,12 @@ export const TEST_CASES = [
     () => new ItemStack(new String("")),
     () => ItemStack.prototype.getComponents.call(null),
     () => ItemStack.prototype.getComponents.call(world),
-    () =>
-        Object.getOwnPropertyDescriptor(
-            ItemStack.prototype,
-            "amount",
-        )?.set?.call(world, 5),
-    () =>
-        Object.getOwnPropertyDescriptor(
-            ItemStack.prototype,
-            "amount",
-        )?.set?.call(),
-    () =>
-        Object.getOwnPropertyDescriptor(
-            ItemStack.prototype,
-            "nameTag",
-        )?.set?.call(new ItemStack("stick"), {}),
-    () =>
-        world
-            .getDimension("minecraft:overworld")
-            .setBlockType(
-                Object.setPrototypeOf({ x: 654654 }, { y: 55, z: 6 }),
-                "bedrock",
-            ),
-    () =>
-        world.beforeEvents.playerBreakBlock.subscribe(() => {}, {
-            blockTypes: [new ItemStack("stick")],
-        }),
-    () =>
-        world.beforeEvents.playerBreakBlock.subscribe(() => {}, {
-            blockTypes: [new String("Yes")],
-        }),
-    () =>
-        world.beforeEvents.playerBreakBlock.subscribe(() => {}, {
-            blockTypes: [new Promise(() => {})],
-        }),
-    () =>
-        world.beforeEvents.playerBreakBlock.subscribe(() => {}, {
-            blockTypes: [{}],
-        }),
+    () => Object.getOwnPropertyDescriptor(ItemStack.prototype, "amount")?.set?.call(world, 5),
+    () => Object.getOwnPropertyDescriptor(ItemStack.prototype, "amount")?.set?.call(),
+    () => Object.getOwnPropertyDescriptor(ItemStack.prototype, "nameTag")?.set?.call(new ItemStack("stick"), {}),
+    () => world.getDimension("minecraft:overworld").setBlockType(Object.setPrototypeOf({ x: 654654 }, { y: 55, z: 6 }), "bedrock"),
+    () => world.beforeEvents.playerBreakBlock.subscribe(() => {}, { blockTypes: [new ItemStack("stick")] }),
+    () => world.beforeEvents.playerBreakBlock.subscribe(() => {}, { blockTypes: [new String("Yes")] }),
+    () => world.beforeEvents.playerBreakBlock.subscribe(() => {}, { blockTypes: [new Promise(() => {})] }),
+    () => world.beforeEvents.playerBreakBlock.subscribe(() => {}, { blockTypes: [{}] }),
 ];

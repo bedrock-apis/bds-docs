@@ -7,12 +7,7 @@ export abstract class TestEnviroment {
 
     private nextLocations = new Map<string, Vector3>();
 
-    protected getNextLocation(
-        targetType: string,
-        baseLocation: Vector3,
-        offsetCoordinate: keyof Vector3 = "x",
-        offsetNumber: number = 1,
-    ): Vector3 {
+    protected getNextLocation(targetType: string, baseLocation: Vector3, offsetCoordinate: keyof Vector3 = "x", offsetNumber: number = 1): Vector3 {
         let previousOffset = this.nextLocations.get(targetType);
         if (!previousOffset) {
             previousOffset = baseLocation;
@@ -31,8 +26,7 @@ export abstract class TestEnviroment {
 let globalEnviroment: TestEnviroment | null = null;
 
 export function getEnviroment(): TestEnviroment {
-    if (!globalEnviroment)
-        throw new Error("You should setup test enviroment first");
+    if (!globalEnviroment) throw new Error("You should setup test enviroment first");
 
     return globalEnviroment;
 }

@@ -1,9 +1,4 @@
-import {
-    TestRunResult,
-    TestRunResultChain,
-    TestRunResultSimple,
-    TestSuiteRunResult,
-} from "../net";
+import { TestRunResult, TestRunResultChain, TestRunResultSimple, TestSuiteRunResult } from "../net";
 import { TestEnviroment, setEnviroment } from "./enviroment";
 
 export class TestSuite<T> {
@@ -66,9 +61,7 @@ export class TestSuite<T> {
         return { id: this.id, tests: results };
     }
 
-    protected tests: ((
-        setupData: T,
-    ) => TestRunResultChain | TestRunResultSimple)[] = [];
+    protected tests: ((setupData: T) => TestRunResultChain | TestRunResultSimple)[] = [];
 
     test(testFn: (setupData: T) => unknown): this {
         this.tests.push((setupData) => {
