@@ -41,16 +41,16 @@ async function Main(): Promise<number> {
 		loadTimeSpan: Date.now() - startUpTime,
 	});
 
-	// Tests
-	{
-		const tests = await RunThread(TestsResolver());
-		await SendPayload(PacketTypes.ScriptData, tests);
-	}
-
 	// Blocks
 	{
 		const blocks = await RunThread(BlockResolver());
 		await SendPayload(PacketTypes.BlocksData, blocks);
+	}
+
+	// Tests
+	{
+		const tests = await RunThread(TestsResolver());
+		await SendPayload(PacketTypes.ScriptData, tests);
 	}
 
 	// Items
