@@ -77,8 +77,9 @@ export interface TestSuiteRunResult {
 }
 
 export interface ScriptDataPacketData {
-	suites: ({ enviromentSetupError: string } | TestSuiteRunResult)[];
+	suites: { enviromentSetupError: string } | TestSuiteRunResult[];
 }
+
 export type TestRunResult = string | { type: "error"; error: string };
 
 // Base Packet Payload

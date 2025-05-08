@@ -82,7 +82,7 @@ export class TestSuite<T> {
 	private createErrorReport(error: unknown): TestRunResult {
 		return {
 			type: "error",
-			error: error instanceof Error ? error.stack ?? "" : String(error),
+			error: String(error),
 		};
 	}
 
