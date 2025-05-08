@@ -9,6 +9,11 @@ import { getNumberOfPosts, SendPayload } from "./net";
 import { startUpTime } from "./precode";
 
 world.afterEvents.worldLoad.subscribe(async () => {
+	WorldLoad();
+});
+
+async function WorldLoad() {
+	await null;
 	await SendPayload(PacketTypes.StartUp, { protocolId: PROTOCOL_ID });
 	Main().then(
 		(exitCode) => {
@@ -26,7 +31,7 @@ world.afterEvents.worldLoad.subscribe(async () => {
 			});
 		}
 	);
-});
+}
 
 async function Main(): Promise<number> {
 	// Security Check
