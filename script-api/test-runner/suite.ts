@@ -25,19 +25,18 @@ export class TestSuite<T> {
 			setEnviroment(enviroment);
 
 			enviroment.onSetup();
-
-			yield;
-
-			const suites = [];
-			for (const suite of this.suites.values()) {
-				const suiteResult = yield* suite.run();
-				suites.push(suiteResult);
-			}
-			return suites;
 		} catch (e) {
 			console.error(e);
-			return { setupError: String(e) };
+			return { enviromentSetupError: String(e) };
 		}
+		yield;
+
+		const suites = [];
+		for (const suite of this.suites.values()) {
+			const suiteResult = yield* suite.run();
+			suites.push(suiteResult);
+		}
+		return suites;
 	}
 
 	protected static suites = new Map<string, TestSuite<any>>();
@@ -47,8 +46,13 @@ export class TestSuite<T> {
 	}
 
 	*run(): Generator<unknown, TestSuiteRunResult, unknown> {
-		const setup = this.setupFn();
-		yield;
+		let setup;
+		try {
+			setup = this.setupFn();
+			yield;
+		} catch (e) {
+			return { id: this.id, setupError: String(e), tests: [] };
+		}
 
 		const results: (TestRunResultChain | TestRunResultSimple)[] = [];
 		for (const test of this.tests) {

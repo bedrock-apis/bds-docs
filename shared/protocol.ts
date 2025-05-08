@@ -73,10 +73,11 @@ export interface TestRunResultChain {
 export interface TestSuiteRunResult {
 	id: string;
 	tests: (TestRunResultSimple | TestRunResultChain)[];
+	setupError?: string;
 }
 
 export interface ScriptDataPacketData {
-	suites: TestSuiteRunResult[];
+	suites: ({ enviromentSetupError: string } | TestSuiteRunResult)[];
 }
 export type TestRunResult = string | { type: "error"; error: string };
 
