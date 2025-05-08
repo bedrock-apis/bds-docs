@@ -2,9 +2,9 @@ name: Update Docs (Debug Mode)
 on:
   workflow_dispatch:
   push:
-    branches: 
-      main
-    
+    branches: main
+  pull_request:
+
 permissions:
   contents: write
 jobs:
@@ -14,34 +14,34 @@ jobs:
       ALWAYS_OVERWRITE: true
       DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-      with: 
-        ref: "main"
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: "main"
 
-    - name: Setup Node.js environment
-      uses: actions/setup-node@v4.0.4
-      with:
-        node-version: '22'
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4.0.4
+        with:
+          node-version: "22"
 
-    - name: Install pnpm
-      run: corepack enable
+      - name: Install pnpm
+        run: corepack enable
 
-    - name: Install dependencies with pnpm
-      run: pnpm install --frozen-lockfile
-  
-    - name: Check TSC
-      run: |
-        pnpm run check
+      - name: Install dependencies with pnpm
+        run: pnpm install --frozen-lockfile
 
-    - name: Build TS
-      run: |
-        pnpm run build-ts
+      - name: Check TSC
+        run: |
+          pnpm run check
 
-    - name: Build
-      run: |
-        pnpm run build
-      
-    - name: Check Build Commit
-      run: |
-        pnpm run check-for-update
+      - name: Build TS
+        run: |
+          pnpm run build-ts
+
+      - name: Build
+        run: |
+          pnpm run build
+
+      - name: Check Build Commit
+        run: |
+          pnpm run check-for-update
