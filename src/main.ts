@@ -300,6 +300,14 @@ async function Main(): Promise<number> {
 				JSON.stringify(body, null, 4)
 			);
 		}
+
+		if (IsPacketTypeOf(data, PacketTypes.ScriptData)) {
+			const { body } = data;
+			await WriteFile(
+				resolve(REPORTS_DIR_NAME, "api.json"),
+				JSON.stringify(body, null, 4)
+			);
+		}
 	}
 
 	// Stop without forcing
@@ -321,6 +329,8 @@ async function Main(): Promise<number> {
 
 	Success("BDS has quit Successfully");
 	groupEnd();
+
+	if (process.env.DO_NOT_SEND) return 0;
 
 	///////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////
@@ -357,8 +367,6 @@ async function Main(): Promise<number> {
 
 	console.log(existContent);
 	groupEnd();
-
-	if (process.env.DO_NOT_SEND) return 0;
 
 	failed = await WriteFile(FILE_NAME_GITHUB_README, GENERAL_README);
 	if (failed) return Panic("Failed to write README.md file");
