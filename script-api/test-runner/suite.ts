@@ -21,17 +21,23 @@ export class TestSuite<T> {
 	}
 
 	static *run(enviroment: TestEnviroment) {
-		setEnviroment(enviroment);
+		try {
+			setEnviroment(enviroment);
 
-		enviroment.onSetup();
-		yield;
+			enviroment.onSetup();
 
-		const suites = [];
-		for (const suite of this.suites.values()) {
-			const suiteResult = yield* suite.run();
-			suites.push(suiteResult);
+			yield;
+
+			const suites = [];
+			for (const suite of this.suites.values()) {
+				const suiteResult = yield* suite.run();
+				suites.push(suiteResult);
+			}
+			return suites;
+		} catch (e) {
+			console.error(e);
+			return { setupError: String(e) };
 		}
-		return suites;
 	}
 
 	protected static suites = new Map<string, TestSuite<any>>();
