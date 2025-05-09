@@ -1,47 +1,38 @@
 name: Update Docs (Debug Mode)
 on:
-  workflow_dispatch:
-  push:
-    branches: main
-  pull_request:
+    workflow_dispatch:
+    push:
+        branches: main
+    pull_request:
 
-permissions:
-  contents: write
 jobs:
-  debugger:
-    runs-on: windows-latest
-    env:
-      ALWAYS_OVERWRITE: true
-      DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          ref: "main"
+    debugger:
+        runs-on: windows-latest
+        env:
+            ALWAYS_OVERWRITE: true
+            DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
 
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v4.0.4
-        with:
-          node-version: "24"
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
 
-      - name: Install pnpm
-        run: npm install pnpm -g
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 24
+                  cache: pnpm
 
-      - name: Install dependencies with pnpm
-        run: pnpm install
+            - name: Enable corepack
+              run: corepack enable
 
-      - name: Check TSC
-        run: |
-          pnpm run check
+            - name: Install dependencies with pnpm
+              run: pnpm install
 
-      - name: Build TS
-        run: |
-          pnpm run build-ts
+            - name: Run TSC without emit
+              run: pnpm run check
 
-      - name: Build
-        run: |
-          pnpm run build
+            - name: Build
+              run: pnpm run build
 
-      - name: Check Build Commit
-        run: |
-          pnpm run check-for-update
+            - name: Check Build Commit
+              run: pnpm run check-for-update
