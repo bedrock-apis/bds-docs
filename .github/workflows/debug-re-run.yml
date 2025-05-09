@@ -22,7 +22,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v4.0.4
         with:
-          node-version: "22"
+          node-version: "24"
 
       - name: Install pnpm
         run: corepack enable
@@ -32,7 +32,7 @@ jobs:
         run: corepack use pnpm
 
       - name: Install dependencies with pnpm
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       - name: Check TSC
         run: |
