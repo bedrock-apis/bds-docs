@@ -1,47 +1,38 @@
 name: Update Docs (Debug Mode)
 on:
-  workflow_dispatch:
-  push:
-    branches: 
-      main
-    
-permissions:
-  contents: write
+    workflow_dispatch:
+    push:
+        branches: main
+    pull_request:
+
 jobs:
-  debugger:
-    runs-on: windows-latest
-    env:
-      ALWAYS_OVERWRITE: true
-      DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-      with: 
-        ref: "main"
+    debugger:
+        runs-on: windows-latest
+        env:
+            ALWAYS_OVERWRITE: true
+            DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
 
-    - name: Setup Node.js environment
-      uses: actions/setup-node@v4.0.4
-      with:
-        node-version: '22'
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
 
-    - name: Install pnpm
-      run: corepack enable
+            - name: Enable corepack
+              run: corepack enable
 
-    - name: Install dependencies with pnpm
-      run: pnpm install --frozen-lockfile
-  
-    - name: Check TSC
-      run: |
-        pnpm run check
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 24
+                  cache: pnpm
 
-    - name: Build TS
-      run: |
-        pnpm run build-ts
+            - name: Install dependencies with pnpm
+              run: pnpm install
 
-    - name: Build
-      run: |
-        pnpm run build
-      
-    - name: Check Build Commit
-      run: |
-        pnpm run check-for-update
+            - name: Run TSC without emit
+              run: pnpm run check
+
+            - name: Build
+              run: pnpm run build
+
+            - name: Check Build Commit
+              run: pnpm run check-for-update
