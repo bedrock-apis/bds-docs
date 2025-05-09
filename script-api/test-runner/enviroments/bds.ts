@@ -1,4 +1,4 @@
-import { Block, Entity, world } from "@minecraft/server";
+import { Block, Entity, VanillaEntityIdentifier, world } from "@minecraft/server";
 import { TestEnviroment } from "../enviroment";
 
 export class BedrockDedicatedServerEnviroment extends TestEnviroment {
@@ -19,7 +19,7 @@ export class BedrockDedicatedServerEnviroment extends TestEnviroment {
 
     spawnEnttity(typeId: string): Entity {
         const location = this.getNextLocation("entity", { x: 0, y: 0, z: 1 }, "z");
-        const entity = world.getDimension("overworld").spawnEntity(typeId, location);
+        const entity = world.getDimension("overworld").spawnEntity(typeId as VanillaEntityIdentifier, location);
 
         return entity;
     }
