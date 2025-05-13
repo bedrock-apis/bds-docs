@@ -1,11 +1,30 @@
-/** Represents JSON-compatible primitive type */
-type JsonPrimative = string | number | boolean | null | undefined;
+export namespace TestReport {
+    export interface Error {
+        error: string;
+    }
 
-/** Represents JSON-compatible object type */
-type JsonObject = { [key: string]: Json };
+    export type Primitive = string | Error;
 
-/** Represents JSON-compatible array type */
-type JsonArray = Json[];
+    export type Chained = Primitive[];
 
-/** Represents JSON-compatible object or primitive type */
-export type Json = JsonPrimative | JsonArray | JsonObject;
+    export type Result = Primitive | Chained;
+
+    interface SuiteSetupFailed {
+        setupError: string;
+    }
+
+    interface SuiteSuccess {
+        results: Result[];
+    }
+
+    export type Suite = {
+        id: string;
+    } & (SuiteSetupFailed | SuiteSuccess);
+
+    type RunSuccess = Suite[];
+    interface RunFailed {
+        enviromentSetupError: string;
+    }
+
+    export type Run = RunSuccess | RunFailed;
+}

@@ -1,6 +1,6 @@
-import { TestReport } from "../net";
 import { TestEnviroment } from "./enviroment";
 import { TestSuite } from "./suite";
+import { TestReport } from "./types";
 
 export function runAndCompare(bdsDocsResults: TestReport.Run, enviroment: TestEnviroment) {
     let result;
@@ -28,7 +28,7 @@ export function runAndCompare(bdsDocsResults: TestReport.Run, enviroment: TestEn
         const suiteB = result[i];
 
         if (typeof suiteB === "undefined") {
-            report += `No suite ${suiteA.id}\n`;
+            report += `No suite ${suiteA.id}. Perhaps you forgot to import suite file.\n`;
             continue;
         }
 
@@ -98,13 +98,13 @@ function compareMultipleResults(resultsA: TestReport.Result[], resultsB: TestRep
     for (const [i, resultA] of resultsA.entries()) {
         const resultB = resultsB[i];
         if (typeof resultB === "undefined") {
-            report += "No result at chain for index " + i;
+            report += "No result at chain for index " + i + "\n";
             continue;
         }
 
         const compare = compareResults(resultA, resultB);
         if (compare) {
-            report += i + ":" + compare;
+            report += i + ": " + compare + "\n";
         }
     }
     return report;

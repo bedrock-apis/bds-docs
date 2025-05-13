@@ -1,5 +1,5 @@
-import { TestReport } from "../net";
 import { TestEnviroment, setEnviroment } from "./enviroment";
+import { TestReport } from "./types";
 
 export class TestSuite<T> {
     static stringify(object: unknown): string {
@@ -15,7 +15,7 @@ export class TestSuite<T> {
         return new TestSuite(id, () => {});
     }
 
-    static *run(enviroment: TestEnviroment) {
+    static *run(enviroment: TestEnviroment): Generator<unknown, TestReport.Run, unknown> {
         try {
             setEnviroment(enviroment);
 

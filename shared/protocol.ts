@@ -1,3 +1,5 @@
+import { TestReport } from "../script-api/test-runner/types";
+
 // Change every time you made a changes to this protocol
 export const PROTOCOL_ID = 3;
 
@@ -59,37 +61,6 @@ export interface ItemsDataPacketData {
             components: Record<string, unknown>;
         }
     >;
-}
-
-export namespace TestReport {
-    export interface Error {
-        error: string;
-    }
-
-    export type Primitive = string | Error;
-
-    export type Chained = Primitive[];
-
-    export type Result = Primitive | Chained;
-
-    interface SuiteSetupFailed {
-        setupError: string;
-    }
-
-    interface SuiteSuccess {
-        results: Result[];
-    }
-
-    export type Suite = {
-        id: string;
-    } & (SuiteSetupFailed | SuiteSuccess);
-
-    type RunSuccess = Suite[];
-    interface RunFailed {
-        enviromentSetupError: string;
-    }
-
-    export type Run = RunSuccess | RunFailed;
 }
 
 export type ScriptDataPacketData = TestReport.Run;

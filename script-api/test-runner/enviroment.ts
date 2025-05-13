@@ -2,7 +2,7 @@ import { Block, Entity, Vector3 } from "@minecraft/server";
 
 export abstract class TestEnviroment {
     abstract onSetup(): void;
-    abstract spawnEnttity(typeId: string): Entity;
+    abstract spawnEntity(typeId: string): Entity;
     abstract placeBlock(typeId: string): Block;
 
     private nextLocations = new Map<string, Vector3>();
@@ -35,7 +35,7 @@ export function setEnviroment(enviroment: TestEnviroment) {
     globalEnviroment = enviroment;
 }
 export function spawnEntity(typeId: string): Entity {
-    return getEnviroment().spawnEnttity(typeId);
+    return getEnviroment().spawnEntity(typeId);
 }
 export function placeBlock(typeId: string): Block {
     return getEnviroment().placeBlock(typeId);
