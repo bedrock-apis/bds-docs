@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "2333463437",
     "x-format-version": "1.21.80",
-    "x-minecraft-version": "1.21.90-beta.23",
+    "x-minecraft-version": "1.21.90-beta.25",
     "definitions": {
         "34598326": {
             "title": "minecraft:storage_weight_limit",
@@ -18,15 +18,15 @@
             "title": "minecraft:food",
             "type": "object",
             "properties": {
+                "can_always_eat": {
+                    "type": "boolean"
+                },
                 "nutrition": {
                     "type": "integer"
                 },
                 "saturation_modifier": {
                     "type": "number",
                     "minimum": 0
-                },
-                "can_always_eat": {
-                    "type": "boolean"
                 },
                 "using_converts_to": {
                     "$ref": "#/definitions/1531870811"
@@ -37,14 +37,14 @@
             "title": "minecraft:use_modifiers",
             "type": "object",
             "properties": {
-                "use_duration": {
-                    "type": "number",
-                    "minimum": 0
-                },
                 "movement_modifier": {
                     "type": "number",
                     "minimum": 0,
                     "maximum": 1
+                },
+                "use_duration": {
+                    "type": "number",
+                    "minimum": 0
                 }
             }
         },
@@ -70,7 +70,7 @@
                     "type": "number"
                 },
                 "projectile_entity": {
-                    "$ref": "#/definitions/1527331705",
+                    "$ref": "#/definitions/1493629372",
                     "minLength": 0,
                     "pattern": "^(?:\\w+(?:\\.\\w+)*:(?=\\w))?(?:\\w+(?:\\.\\w+)*)(?:<((?:\\w+(?:\\.\\w+)*:(?=\\w))?\\w+(?:\\.\\w+)*)*>)?$"
                 }
@@ -333,6 +333,7 @@
                         "record.relic",
                         "record.otherside",
                         "record.5",
+                        "record.tears",
                         "flop",
                         "elderguardian.curse",
                         "teleport",
@@ -720,7 +721,7 @@
                     }
                 },
                 "entity": {
-                    "$ref": "#/definitions/1527331705",
+                    "$ref": "#/definitions/1493629372",
                     "minLength": 0,
                     "pattern": "^(?:\\w+(?:\\.\\w+)*:(?=\\w))?(?:\\w+(?:\\.\\w+)*)(?:<((?:\\w+(?:\\.\\w+)*:(?=\\w))?\\w+(?:\\.\\w+)*)*>)?$"
                 },
@@ -737,16 +738,16 @@
             "type": "object",
             "properties": {
                 "block": {
-                    "$ref": "#/definitions/1527037515"
+                    "$ref": "#/definitions/1493335182"
+                },
+                "replace_block_item": {
+                    "type": "boolean"
                 },
                 "use_on": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/2794205495"
                     }
-                },
-                "replace_block_item": {
-                    "type": "boolean"
                 }
             },
             "required": [
@@ -773,17 +774,17 @@
             "title": "minecraft:enchantable",
             "type": "object",
             "properties": {
+                "slot": {
+                    "type": "string"
+                },
                 "value": {
                     "type": "integer",
                     "minimum": 0
-                },
-                "slot": {
-                    "type": "string"
                 }
             },
             "required": [
-                "value",
-                "slot"
+                "slot",
+                "value"
             ]
         },
         "1206516236": {
@@ -814,7 +815,7 @@
                         "textures": {
                             "type": "object",
                             "additionalProperties": {
-                                "$ref": "#/definitions/3673881199"
+                                "$ref": "#/definitions/1492643634"
                             }
                         }
                     }
@@ -825,16 +826,16 @@
             "title": "struct SharedTypes::IntRange",
             "type": "object",
             "properties": {
-                "min": {
+                "max": {
                     "type": "integer"
                 },
-                "max": {
+                "min": {
                     "type": "integer"
                 }
             }
         },
-        "1527037515": {
-            "title": "struct SharedTypes::Reference<0>",
+        "1492643634": {
+            "title": "struct SharedTypes::Reference<5>",
             "oneOf": [
                 {
                     "type": "string"
@@ -844,8 +845,19 @@
                 }
             ]
         },
-        "1527331705": {
-            "title": "struct SharedTypes::Reference<2>",
+        "1493335182": {
+            "title": "struct SharedTypes::Reference<1>",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "1493629372": {
+            "title": "struct SharedTypes::Reference<3>",
             "oneOf": [
                 {
                     "type": "string"
@@ -912,12 +924,14 @@
             "title": "minecraft:storage_item",
             "type": "object",
             "properties": {
-                "max_slots": {
-                    "type": "integer",
-                    "maximum": 64
-                },
                 "allow_nested_storage_items": {
                     "type": "boolean"
+                },
+                "allowed_items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/1531870811"
+                    }
                 },
                 "banned_items": {
                     "type": "array",
@@ -925,11 +939,9 @@
                         "$ref": "#/definitions/1531870811"
                     }
                 },
-                "allowed_items": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/1531870811"
-                    }
+                "max_slots": {
+                    "type": "integer",
+                    "maximum": 64
                 }
             }
         },
@@ -985,6 +997,10 @@
             "title": "minecraft:wearable",
             "type": "object",
             "properties": {
+                "protection": {
+                    "type": "integer",
+                    "minimum": 0
+                },
                 "slot": {
                     "title": "enum SharedTypes::Legacy::EquipmentSlot",
                     "type": "string",
@@ -995,10 +1011,6 @@
                         "slot.armor.legs",
                         "slot.armor.feet"
                     ]
-                },
-                "protection": {
-                    "type": "integer",
-                    "minimum": 0
                 }
             },
             "required": [
@@ -1075,14 +1087,14 @@
             "title": "minecraft:digger",
             "type": "object",
             "properties": {
-                "use_efficiency": {
-                    "type": "boolean"
-                },
                 "destroy_speeds": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/1899103179"
                     }
+                },
+                "use_efficiency": {
+                    "type": "boolean"
                 }
             }
         },
@@ -1090,14 +1102,14 @@
             "title": "struct SharedTypes::v1_20_50::ShooterItemComponent::Ammunition",
             "type": "object",
             "properties": {
-                "use_in_creative": {
-                    "type": "boolean"
+                "item": {
+                    "$ref": "#/definitions/1531870811"
                 },
                 "search_inventory": {
                     "type": "boolean"
                 },
-                "item": {
-                    "$ref": "#/definitions/1531870811"
+                "use_in_creative": {
+                    "type": "boolean"
                 },
                 "use_offhand": {
                     "type": "boolean"
@@ -1114,14 +1126,14 @@
                 "name": {
                     "type": "string"
                 },
-                "tags": {
-                    "type": "string"
-                },
                 "states": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "#/definitions/517105782"
                     }
+                },
+                "tags": {
+                    "type": "string"
                 }
             }
         },
@@ -1173,6 +1185,12 @@
             "title": "minecraft:record",
             "type": "object",
             "properties": {
+                "comparator_signal": {
+                    "type": "integer"
+                },
+                "duration": {
+                    "type": "number"
+                },
                 "sound_event": {
                     "title": "enum SharedTypes::Legacy::LevelSoundEvent",
                     "type": "string",
@@ -1325,6 +1343,7 @@
                         "record.relic",
                         "record.otherside",
                         "record.5",
+                        "record.tears",
                         "flop",
                         "elderguardian.curse",
                         "teleport",
@@ -1688,12 +1707,6 @@
                         "armor.unequip_generic",
                         "undefined"
                     ]
-                },
-                "duration": {
-                    "type": "number"
-                },
-                "comparator_signal": {
-                    "type": "integer"
                 }
             }
         },
@@ -1929,17 +1942,6 @@
                 }
             }
         },
-        "3673881199": {
-            "title": "struct SharedTypes::Reference<4>",
-            "oneOf": [
-                {
-                    "type": "string"
-                },
-                {
-                    "type": "string"
-                }
-            ]
-        },
         "3715727616": {
             "title": "minecraft:throwable",
             "type": "object",
@@ -1947,20 +1949,20 @@
                 "do_swing_animation": {
                     "type": "boolean"
                 },
+                "launch_power_scale": {
+                    "type": "number"
+                },
+                "max_draw_duration": {
+                    "type": "number"
+                },
+                "max_launch_power": {
+                    "type": "number"
+                },
                 "min_draw_duration": {
                     "type": "number"
                 },
                 "scale_power_by_draw_duration": {
                     "type": "boolean"
-                },
-                "max_draw_duration": {
-                    "type": "number"
-                },
-                "launch_power_scale": {
-                    "type": "number"
-                },
-                "max_launch_power": {
-                    "type": "number"
                 }
             }
         },
@@ -1974,13 +1976,13 @@
                         "$ref": "#/definitions/2681068491"
                     }
                 },
-                "scale_power_by_draw_duration": {
+                "charge_on_draw": {
                     "type": "boolean"
                 },
                 "max_draw_duration": {
                     "type": "number"
                 },
-                "charge_on_draw": {
+                "scale_power_by_draw_duration": {
                     "type": "boolean"
                 }
             }
@@ -2018,7 +2020,7 @@
                 }
             ],
             "$metaProperties": {
-                "CEREAL_EDITOR_SCHEMA_TAG": "[editor(type:color)]"
+                "CEREAL_EDITOR_SCHEMA_TAG": "type:color"
             }
         },
         "4150838471": {
@@ -2033,62 +2035,44 @@
     "title": "components v1.21.80",
     "type": "object",
     "properties": {
-        "minecraft:tags": {
-            "$ref": "#/definitions/3168558347"
-        },
         "minecraft:allow_off_hand": {
             "$ref": "#/definitions/3389099981"
         },
-        "minecraft:can_destroy_in_creative": {
-            "$ref": "#/definitions/3126701690"
-        },
-        "minecraft:cooldown": {
-            "$ref": "#/definitions/886176099"
-        },
-        "minecraft:rarity": {
-            "$ref": "#/definitions/3375297728"
-        },
-        "minecraft:max_stack_size": {
-            "$ref": "#/definitions/2817495317"
+        "minecraft:block_placer": {
+            "$ref": "#/definitions/857819254"
         },
         "minecraft:bundle_interaction": {
             "$ref": "#/definitions/2333685719"
         },
+        "minecraft:can_destroy_in_creative": {
+            "$ref": "#/definitions/3126701690"
+        },
         "minecraft:compostable": {
             "$ref": "#/definitions/3133202100"
+        },
+        "minecraft:cooldown": {
+            "$ref": "#/definitions/886176099"
         },
         "minecraft:custom_components": {
             "$ref": "#/definitions/4150838471"
         },
-        "minecraft:damage_absorption": {
-            "$ref": "#/definitions/2063418195"
-        },
         "minecraft:damage": {
             "$ref": "#/definitions/3173009623"
         },
-        "minecraft:record": {
-            "$ref": "#/definitions/3053237679"
+        "minecraft:damage_absorption": {
+            "$ref": "#/definitions/2063418195"
         },
         "minecraft:digger": {
             "$ref": "#/definitions/2499855414"
         },
-        "minecraft:use_animation": {
-            "$ref": "#/definitions/3246981949"
-        },
         "minecraft:display_name": {
             "$ref": "#/definitions/2942400907"
-        },
-        "minecraft:throwable": {
-            "$ref": "#/definitions/3715727616"
         },
         "minecraft:durability": {
             "$ref": "#/definitions/3494639353"
         },
         "minecraft:durability_sensor": {
             "$ref": "#/definitions/1956551060"
-        },
-        "minecraft:should_despawn": {
-            "$ref": "#/definitions/3875281249"
         },
         "minecraft:dyeable": {
             "$ref": "#/definitions/3602397325"
@@ -2123,17 +2107,26 @@
         "minecraft:liquid_clipped": {
             "$ref": "#/definitions/2359991381"
         },
-        "minecraft:block_placer": {
-            "$ref": "#/definitions/857819254"
+        "minecraft:max_stack_size": {
+            "$ref": "#/definitions/2817495317"
         },
         "minecraft:projectile": {
             "$ref": "#/definitions/608914689"
+        },
+        "minecraft:rarity": {
+            "$ref": "#/definitions/3375297728"
+        },
+        "minecraft:record": {
+            "$ref": "#/definitions/3053237679"
         },
         "minecraft:repairable": {
             "$ref": "#/definitions/1658474219"
         },
         "minecraft:shooter": {
             "$ref": "#/definitions/3781185164"
+        },
+        "minecraft:should_despawn": {
+            "$ref": "#/definitions/3875281249"
         },
         "minecraft:stacked_by_data": {
             "$ref": "#/definitions/3178615832"
@@ -2146,6 +2139,15 @@
         },
         "minecraft:storage_weight_modifier": {
             "$ref": "#/definitions/842194090"
+        },
+        "minecraft:tags": {
+            "$ref": "#/definitions/3168558347"
+        },
+        "minecraft:throwable": {
+            "$ref": "#/definitions/3715727616"
+        },
+        "minecraft:use_animation": {
+            "$ref": "#/definitions/3246981949"
         },
         "minecraft:use_modifiers": {
             "$ref": "#/definitions/435751873"

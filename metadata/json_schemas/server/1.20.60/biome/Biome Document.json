@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1325498408",
     "x-format-version": "1.20.60",
-    "x-minecraft-version": "1.21.90-beta.23",
+    "x-minecraft-version": "1.21.90-beta.25",
     "definitions": {
         "6061611": {
             "title": "minecraft:creature_spawn_probability",
@@ -19,17 +19,17 @@
             "title": "minecraft:overworld_generation_rules",
             "type": "object",
             "properties": {
-                "mutate_transformation": {
-                    "$ref": "#/definitions/2586207614"
-                },
-                "hills_transformation": {
-                    "$ref": "#/definitions/2586207614"
-                },
                 "generate_for_climates": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/891697368"
                     }
+                },
+                "hills_transformation": {
+                    "$ref": "#/definitions/2586207614"
+                },
+                "mutate_transformation": {
+                    "$ref": "#/definitions/2586207614"
                 },
                 "river_transformation": {
                     "$ref": "#/definitions/2586207614"
@@ -57,6 +57,9 @@
             "title": "minecraft:frozen_ocean_surface",
             "type": "object",
             "properties": {
+                "foundation_material": {
+                    "$ref": "#/definitions/3076687790"
+                },
                 "mid_material": {
                     "$ref": "#/definitions/3076687790"
                 },
@@ -71,18 +74,15 @@
                 },
                 "top_material": {
                     "$ref": "#/definitions/3076687790"
-                },
-                "foundation_material": {
-                    "$ref": "#/definitions/3076687790"
                 }
             },
             "required": [
-                "sea_floor_depth",
-                "mid_material",
-                "sea_floor_material",
                 "foundation_material",
-                "top_material",
-                "sea_material"
+                "mid_material",
+                "sea_floor_depth",
+                "sea_floor_material",
+                "sea_material",
+                "top_material"
             ]
         },
         "320104782": {
@@ -104,48 +104,48 @@
             "title": "minecraft:swamp_surface",
             "type": "object",
             "properties": {
-                "sea_floor_depth": {
-                    "type": "integer"
+                "foundation_material": {
+                    "$ref": "#/definitions/3076687790"
                 },
                 "mid_material": {
                     "$ref": "#/definitions/3076687790"
                 },
+                "sea_floor_depth": {
+                    "type": "integer"
+                },
                 "sea_floor_material": {
-                    "$ref": "#/definitions/3076687790"
-                },
-                "foundation_material": {
-                    "$ref": "#/definitions/3076687790"
-                },
-                "top_material": {
                     "$ref": "#/definitions/3076687790"
                 },
                 "sea_material": {
                     "$ref": "#/definitions/3076687790"
+                },
+                "top_material": {
+                    "$ref": "#/definitions/3076687790"
                 }
             },
             "required": [
+                "foundation_material",
                 "mid_material",
                 "sea_floor_depth",
                 "sea_floor_material",
                 "sea_material",
-                "top_material",
-                "foundation_material"
+                "top_material"
             ]
         },
         "458645028": {
             "title": "minecraft:multinoise_generation_rules",
             "type": "object",
             "properties": {
-                "target_weirdness": {
-                    "type": "number"
-                },
-                "target_temperature": {
+                "target_altitude": {
                     "type": "number"
                 },
                 "target_humidity": {
                     "type": "number"
                 },
-                "target_altitude": {
+                "target_temperature": {
+                    "type": "number"
+                },
+                "target_weirdness": {
                     "type": "number"
                 },
                 "weight": {
@@ -160,14 +160,11 @@
                 "minecraft:capped_surface": {
                     "$ref": "#/definitions/910282102"
                 },
-                "minecraft:creature_spawn_probability": {
-                    "$ref": "#/definitions/6061611"
-                },
-                "minecraft:overworld_generation_rules": {
-                    "$ref": "#/definitions/70508991"
-                },
                 "minecraft:climate": {
                     "$ref": "#/definitions/800202529"
+                },
+                "minecraft:creature_spawn_probability": {
+                    "$ref": "#/definitions/6061611"
                 },
                 "minecraft:frozen_ocean_surface": {
                     "$ref": "#/definitions/114123883"
@@ -181,8 +178,14 @@
                 "minecraft:multinoise_generation_rules": {
                     "$ref": "#/definitions/458645028"
                 },
+                "minecraft:overworld_generation_rules": {
+                    "$ref": "#/definitions/70508991"
+                },
                 "minecraft:overworld_height": {
                     "$ref": "#/definitions/1042742755"
+                },
+                "minecraft:replace_biomes": {
+                    "$ref": "#/definitions/320104782"
                 },
                 "minecraft:surface_material_adjustments": {
                     "$ref": "#/definitions/3704131722"
@@ -190,17 +193,14 @@
                 "minecraft:surface_parameters": {
                     "$ref": "#/definitions/1167427373"
                 },
-                "minecraft:replace_biomes": {
-                    "$ref": "#/definitions/320104782"
-                },
                 "minecraft:swamp_surface": {
                     "$ref": "#/definitions/416340115"
                 },
-                "minecraft:the_end_surface": {
-                    "$ref": "#/definitions/2053063253"
-                },
                 "minecraft:tags": {
                     "$ref": "#/definitions/3315029981"
+                },
+                "minecraft:the_end_surface": {
+                    "$ref": "#/definitions/2053063253"
                 }
             }
         },
@@ -212,7 +212,7 @@
                     "items": {
                         "oneOf": [
                             {
-                                "type": "string"
+                                "$ref": "#/definitions/1527037515"
                             },
                             {
                                 "type": "integer"
@@ -223,7 +223,7 @@
                     "maxItems": 2
                 },
                 {
-                    "type": "string"
+                    "$ref": "#/definitions/1527037515"
                 }
             ]
         },
@@ -231,42 +231,48 @@
             "title": "Biome Replacement",
             "type": "object",
             "properties": {
-                "dimension": {
-                    "type": "string"
-                },
-                "targets": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "minItems": 1
-                },
                 "amount": {
                     "type": "number",
                     "exclusiveMinimum": 0,
                     "maximum": 1
                 },
+                "dimension": {
+                    "type": "string"
+                },
                 "noise_frequency_scale": {
                     "type": "number",
                     "exclusiveMinimum": 0,
                     "maximum": 100
+                },
+                "targets": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/1527037515"
+                    },
+                    "minItems": 1
                 }
             },
             "required": [
-                "dimension",
                 "amount",
-                "targets",
-                "noise_frequency_scale"
+                "dimension",
+                "noise_frequency_scale",
+                "targets"
             ]
         },
         "800202529": {
             "title": "minecraft:climate",
             "type": "object",
             "properties": {
+                "ash": {
+                    "type": "number"
+                },
                 "blue_spores": {
                     "type": "number"
                 },
                 "downfall": {
+                    "type": "number"
+                },
+                "red_spores": {
                     "type": "number"
                 },
                 "snow_accumulation": {
@@ -277,16 +283,10 @@
                     "minItems": 2,
                     "maxItems": 2
                 },
-                "white_ash": {
-                    "type": "number"
-                },
                 "temperature": {
                     "type": "number"
                 },
-                "red_spores": {
-                    "type": "number"
-                },
-                "ash": {
+                "white_ash": {
                     "type": "number"
                 }
             }
@@ -322,14 +322,14 @@
                 "beach_material": {
                     "$ref": "#/definitions/3076687790"
                 },
-                "floor_materials": {
+                "ceiling_materials": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/3076687790"
                     },
                     "minItems": 1
                 },
-                "ceiling_materials": {
+                "floor_materials": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/3076687790"
@@ -344,16 +344,24 @@
                 }
             },
             "required": [
-                "floor_materials",
                 "ceiling_materials",
-                "sea_material",
-                "foundation_material"
+                "floor_materials",
+                "foundation_material",
+                "sea_material"
             ]
         },
         "1042742755": {
             "title": "minecraft:overworld_height",
             "type": "object",
             "properties": {
+                "noise_params": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    },
+                    "minItems": 2,
+                    "maxItems": 2
+                },
                 "noise_type": {
                     "title": "Noise Type",
                     "type": "string",
@@ -374,14 +382,6 @@
                         "mushroom",
                         "swamp"
                     ]
-                },
-                "noise_params": {
-                    "type": "array",
-                    "items": {
-                        "type": "number"
-                    },
-                    "minItems": 2,
-                    "maxItems": 2
                 }
             }
         },
@@ -389,6 +389,9 @@
             "title": "minecraft:surface_parameters",
             "type": "object",
             "properties": {
+                "foundation_material": {
+                    "$ref": "#/definitions/3076687790"
+                },
                 "mid_material": {
                     "$ref": "#/definitions/3076687790"
                 },
@@ -403,79 +406,70 @@
                 },
                 "top_material": {
                     "$ref": "#/definitions/3076687790"
-                },
-                "foundation_material": {
-                    "$ref": "#/definitions/3076687790"
                 }
             },
             "required": [
-                "sea_floor_depth",
-                "mid_material",
-                "sea_floor_material",
                 "foundation_material",
-                "top_material",
-                "sea_material"
+                "mid_material",
+                "sea_floor_depth",
+                "sea_floor_material",
+                "sea_material",
+                "top_material"
             ]
         },
         "1174814411": {
             "title": "minecraft:mesa_surface",
             "type": "object",
             "properties": {
-                "sea_floor_depth": {
-                    "type": "integer"
+                "bryce_pillars": {
+                    "type": "boolean"
                 },
-                "mid_material": {
-                    "$ref": "#/definitions/3076687790"
-                },
-                "sea_floor_material": {
+                "clay_material": {
                     "$ref": "#/definitions/3076687790"
                 },
                 "foundation_material": {
                     "$ref": "#/definitions/3076687790"
                 },
-                "top_material": {
+                "hard_clay_material": {
+                    "$ref": "#/definitions/3076687790"
+                },
+                "has_forest": {
+                    "type": "boolean"
+                },
+                "mid_material": {
+                    "$ref": "#/definitions/3076687790"
+                },
+                "sea_floor_depth": {
+                    "type": "integer"
+                },
+                "sea_floor_material": {
                     "$ref": "#/definitions/3076687790"
                 },
                 "sea_material": {
                     "$ref": "#/definitions/3076687790"
                 },
-                "hard_clay_material": {
+                "top_material": {
                     "$ref": "#/definitions/3076687790"
-                },
-                "clay_material": {
-                    "$ref": "#/definitions/3076687790"
-                },
-                "bryce_pillars": {
-                    "type": "boolean"
-                },
-                "has_forest": {
-                    "type": "boolean"
                 }
             },
             "required": [
+                "bryce_pillars",
+                "clay_material",
+                "foundation_material",
+                "hard_clay_material",
+                "has_forest",
                 "mid_material",
                 "sea_floor_depth",
                 "sea_floor_material",
-                "hard_clay_material",
                 "sea_material",
-                "top_material",
-                "foundation_material",
-                "clay_material",
-                "bryce_pillars",
-                "has_forest"
+                "top_material"
             ]
         },
         "1287813091": {
             "title": "minecraft:surface_material_adjustments - surface adjustment materials settings",
             "type": "object",
             "properties": {
-                "sea_material": {
-                    "$ref": "#/definitions/3076687790"
-                },
                 "foundation_material": {
-                    "$ref": "#/definitions/3076687790"
-                },
-                "top_material": {
                     "$ref": "#/definitions/3076687790"
                 },
                 "mid_material": {
@@ -483,8 +477,36 @@
                 },
                 "sea_floor_material": {
                     "$ref": "#/definitions/3076687790"
+                },
+                "sea_material": {
+                    "$ref": "#/definitions/3076687790"
+                },
+                "top_material": {
+                    "$ref": "#/definitions/3076687790"
                 }
             }
+        },
+        "1493335182": {
+            "title": "struct SharedTypes::Reference<1>",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "1527037515": {
+            "title": "struct SharedTypes::Reference<0>",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ]
         },
         "2053063253": {
             "title": "minecraft:the_end_surface"
@@ -493,11 +515,11 @@
             "title": "minecraft:mountain_parameters - steep_material_adjustment settings",
             "type": "object",
             "properties": {
-                "material": {
-                    "$ref": "#/definitions/3076687790"
-                },
                 "east_slopes": {
                     "type": "boolean"
+                },
+                "material": {
+                    "$ref": "#/definitions/3076687790"
                 },
                 "north_slopes": {
                     "type": "boolean"
@@ -520,7 +542,7 @@
                     }
                 },
                 {
-                    "type": "string"
+                    "$ref": "#/definitions/1527037515"
                 }
             ]
         },
@@ -529,7 +551,7 @@
             "type": "object",
             "properties": {
                 "identifier": {
-                    "type": "string",
+                    "$ref": "#/definitions/3607230573",
                     "pattern": "^[a-z0-9._%+-:]+$"
                 }
             },
@@ -541,13 +563,13 @@
             "title": "Block Specifier",
             "oneOf": [
                 {
-                    "type": "string"
+                    "$ref": "#/definitions/1493335182"
                 },
                 {
                     "type": "object",
                     "properties": {
                         "name": {
-                            "type": "string"
+                            "$ref": "#/definitions/1493335182"
                         },
                         "states": {
                             "type": "object",
@@ -576,17 +598,6 @@
             "title": "minecraft:surface_material_adjustments - surface adjustment settings",
             "type": "object",
             "properties": {
-                "materials": {
-                    "$ref": "#/definitions/1287813091"
-                },
-                "noise_range": {
-                    "type": "array",
-                    "items": {
-                        "type": "number"
-                    },
-                    "minItems": 2,
-                    "maxItems": 2
-                },
                 "height_range": {
                     "type": "array",
                     "items": {
@@ -595,8 +606,19 @@
                     "minItems": 2,
                     "maxItems": 2
                 },
+                "materials": {
+                    "$ref": "#/definitions/1287813091"
+                },
                 "noise_frequency_scale": {
                     "type": "number"
+                },
+                "noise_range": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    },
+                    "minItems": 2,
+                    "maxItems": 2
                 }
             },
             "required": [
@@ -618,6 +640,10 @@
                 "tags"
             ]
         },
+        "3607230573": {
+            "title": "struct SharedTypes::Identifier<0>",
+            "type": "string"
+        },
         "3704131722": {
             "title": "minecraft:surface_material_adjustments",
             "type": "object",
@@ -634,11 +660,11 @@
             "title": "Biome Definition",
             "type": "object",
             "properties": {
-                "description": {
-                    "$ref": "#/definitions/2794612011"
-                },
                 "components": {
                     "$ref": "#/definitions/471566442"
+                },
+                "description": {
+                    "$ref": "#/definitions/2794612011"
                 }
             },
             "required": [
@@ -674,15 +700,15 @@
     "title": "Biome JSON File",
     "type": "object",
     "properties": {
-        "minecraft:biome": {
-            "$ref": "#/definitions/3728836809"
-        },
         "format_version": {
             "type": "string"
+        },
+        "minecraft:biome": {
+            "$ref": "#/definitions/3728836809"
         }
     },
     "required": [
-        "minecraft:biome",
-        "format_version"
+        "format_version",
+        "minecraft:biome"
     ]
 }

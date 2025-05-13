@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "70508991",
     "x-format-version": "1.20.60",
-    "x-minecraft-version": "1.21.90-beta.23",
+    "x-minecraft-version": "1.21.90-beta.25",
     "definitions": {
         "553173857": {
             "title": "struct SharedTypes::v1_20_60::OverworldGenerationRulesBiomeJsonComponent::WeightedBiomeName",
@@ -12,7 +12,7 @@
                     "items": {
                         "oneOf": [
                             {
-                                "type": "string"
+                                "$ref": "#/definitions/1527037515"
                             },
                             {
                                 "type": "integer"
@@ -23,7 +23,7 @@
                     "maxItems": 2
                 },
                 {
-                    "type": "string"
+                    "$ref": "#/definitions/1527037515"
                 }
             ]
         },
@@ -51,6 +51,17 @@
             "minItems": 2,
             "maxItems": 2
         },
+        "1527037515": {
+            "title": "struct SharedTypes::Reference<0>",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
         "2586207614": {
             "title": "minecraft:overworld_generation_rules - Weighted biome names settings",
             "oneOf": [
@@ -61,7 +72,7 @@
                     }
                 },
                 {
-                    "type": "string"
+                    "$ref": "#/definitions/1527037515"
                 }
             ]
         }
@@ -69,17 +80,17 @@
     "title": "minecraft:overworld_generation_rules",
     "type": "object",
     "properties": {
-        "mutate_transformation": {
-            "$ref": "#/definitions/2586207614"
-        },
-        "hills_transformation": {
-            "$ref": "#/definitions/2586207614"
-        },
         "generate_for_climates": {
             "type": "array",
             "items": {
                 "$ref": "#/definitions/891697368"
             }
+        },
+        "hills_transformation": {
+            "$ref": "#/definitions/2586207614"
+        },
+        "mutate_transformation": {
+            "$ref": "#/definitions/2586207614"
         },
         "river_transformation": {
             "$ref": "#/definitions/2586207614"

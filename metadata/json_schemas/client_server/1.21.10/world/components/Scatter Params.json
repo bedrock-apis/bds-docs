@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "2195141389",
     "x-format-version": "1.21.10",
-    "x-minecraft-version": "1.21.90-beta.23",
+    "x-minecraft-version": "1.21.90-beta.25",
     "definitions": {
         "2176758423": {
             "title": "Scatter Chance",
@@ -13,18 +13,18 @@
                 {
                     "type": "object",
                     "properties": {
-                        "numerator": {
+                        "denominator": {
                             "type": "integer",
                             "minimum": 1
                         },
-                        "denominator": {
+                        "numerator": {
                             "type": "integer",
                             "minimum": 1
                         }
                     },
                     "required": [
-                        "numerator",
-                        "denominator"
+                        "denominator",
+                        "numerator"
                     ]
                 }
             ]
@@ -92,13 +92,13 @@
                             "minItems": 2,
                             "maxItems": 2
                         },
-                        "step_size": {
-                            "type": "integer",
-                            "minimum": 1
-                        },
                         "grid_offset": {
                             "type": "integer",
                             "minimum": 0
+                        },
+                        "step_size": {
+                            "type": "integer",
+                            "minimum": 1
                         }
                     },
                     "required": [
@@ -112,15 +112,6 @@
     "title": "Scatter Params",
     "type": "object",
     "properties": {
-        "z": {
-            "$ref": "#/definitions/4150871210"
-        },
-        "iterations": {
-            "$ref": "#/definitions/3178719147"
-        },
-        "scatter_chance": {
-            "$ref": "#/definitions/2176758423"
-        },
         "coordinate_eval_order": {
             "title": "Coordinate Evaluation Order",
             "type": "string",
@@ -133,17 +124,26 @@
                 "zyx"
             ]
         },
+        "iterations": {
+            "$ref": "#/definitions/3178719147"
+        },
+        "scatter_chance": {
+            "$ref": "#/definitions/2176758423"
+        },
         "x": {
             "$ref": "#/definitions/4150871210"
         },
         "y": {
             "$ref": "#/definitions/4150871210"
+        },
+        "z": {
+            "$ref": "#/definitions/4150871210"
         }
     },
     "required": [
         "iterations",
-        "z",
         "x",
-        "y"
+        "y",
+        "z"
     ]
 }

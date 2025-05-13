@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3883188534",
     "x-format-version": "1.21.20",
-    "x-minecraft-version": "1.21.90-beta.23",
+    "x-minecraft-version": "1.21.90-beta.25",
     "definitions": {
         "1088251937": {
             "title": "Filter Group",
@@ -19,6 +19,12 @@
                 {
                     "type": "object",
                     "properties": {
+                        "AND": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "NOT": {
+                            "$ref": "#/definitions/1088251937"
+                        },
                         "OR": {
                             "$ref": "#/definitions/1088251937"
                         },
@@ -28,19 +34,13 @@
                         "all_of": {
                             "$ref": "#/definitions/1088251937"
                         },
-                        "AND": {
+                        "any": {
                             "$ref": "#/definitions/1088251937"
                         },
                         "any_of": {
                             "$ref": "#/definitions/1088251937"
                         },
                         "none_of": {
-                            "$ref": "#/definitions/1088251937"
-                        },
-                        "any": {
-                            "$ref": "#/definitions/1088251937"
-                        },
-                        "NOT": {
                             "$ref": "#/definitions/1088251937"
                         }
                     }
@@ -56,18 +56,18 @@
                 {
                     "type": "object",
                     "properties": {
-                        "numerator": {
+                        "denominator": {
                             "type": "integer",
                             "minimum": 1
                         },
-                        "denominator": {
+                        "numerator": {
                             "type": "integer",
                             "minimum": 1
                         }
                     },
                     "required": [
-                        "numerator",
-                        "denominator"
+                        "denominator",
+                        "numerator"
                     ]
                 }
             ]
@@ -76,15 +76,6 @@
             "title": "Scatter Params",
             "type": "object",
             "properties": {
-                "z": {
-                    "$ref": "#/definitions/4150871210"
-                },
-                "iterations": {
-                    "$ref": "#/definitions/3178719147"
-                },
-                "scatter_chance": {
-                    "$ref": "#/definitions/2176758423"
-                },
                 "coordinate_eval_order": {
                     "title": "Coordinate Evaluation Order",
                     "type": "string",
@@ -97,18 +88,27 @@
                         "zyx"
                     ]
                 },
+                "iterations": {
+                    "$ref": "#/definitions/3178719147"
+                },
+                "scatter_chance": {
+                    "$ref": "#/definitions/2176758423"
+                },
                 "x": {
                     "$ref": "#/definitions/4150871210"
                 },
                 "y": {
                     "$ref": "#/definitions/4150871210"
+                },
+                "z": {
+                    "$ref": "#/definitions/4150871210"
                 }
             },
             "required": [
                 "iterations",
-                "z",
                 "x",
-                "y"
+                "y",
+                "z"
             ]
         },
         "2267778531": {
@@ -190,13 +190,13 @@
                             "minItems": 2,
                             "maxItems": 2
                         },
-                        "step_size": {
-                            "type": "integer",
-                            "minimum": 1
-                        },
                         "grid_offset": {
                             "type": "integer",
                             "minimum": 0
+                        },
+                        "step_size": {
+                            "type": "integer",
+                            "minimum": 1
                         }
                     },
                     "required": [
@@ -210,7 +210,7 @@
             "title": "Filter Test",
             "type": "object",
             "properties": {
-                "operator": {
+                "domain": {
                     "oneOf": [
                         {
                             "type": "boolean"
@@ -226,8 +226,21 @@
                         }
                     ]
                 },
-                "test": {
-                    "type": "string"
+                "operator": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "subject": {
                     "oneOf": [
@@ -245,21 +258,8 @@
                         }
                     ]
                 },
-                "domain": {
-                    "oneOf": [
-                        {
-                            "type": "boolean"
-                        },
-                        {
-                            "type": "integer"
-                        },
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
+                "test": {
+                    "type": "string"
                 },
                 "value": {
                     "oneOf": [
@@ -286,11 +286,11 @@
             "title": "Feature Rule Conditions",
             "type": "object",
             "properties": {
-                "placement_pass": {
-                    "type": "string"
-                },
                 "minecraft:biome_filter": {
                     "$ref": "#/definitions/1088251937"
+                },
+                "placement_pass": {
+                    "type": "string"
                 }
             },
             "required": [
@@ -301,18 +301,18 @@
     "title": "Feature Rule Definition",
     "type": "object",
     "properties": {
-        "description": {
-            "$ref": "#/definitions/3683814853"
-        },
         "conditions": {
             "$ref": "#/definitions/4231469203"
+        },
+        "description": {
+            "$ref": "#/definitions/3683814853"
         },
         "distribution": {
             "$ref": "#/definitions/2195141389"
         }
     },
     "required": [
-        "description",
-        "conditions"
+        "conditions",
+        "description"
     ]
 }

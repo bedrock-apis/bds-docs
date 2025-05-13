@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "857819254",
     "x-format-version": "1.20.50",
-    "x-minecraft-version": "1.21.90-beta.23",
+    "x-minecraft-version": "1.21.90-beta.25",
     "definitions": {
         "517105782": {
             "title": "compound_proxy",
@@ -18,8 +18,8 @@
                 }
             ]
         },
-        "1527037515": {
-            "title": "struct SharedTypes::Reference<0>",
+        "1493335182": {
+            "title": "struct SharedTypes::Reference<1>",
             "oneOf": [
                 {
                     "type": "string"
@@ -36,14 +36,14 @@
                 "name": {
                     "type": "string"
                 },
-                "tags": {
-                    "type": "string"
-                },
                 "states": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "#/definitions/517105782"
                     }
+                },
+                "tags": {
+                    "type": "string"
                 }
             }
         },
@@ -67,16 +67,16 @@
     "type": "object",
     "properties": {
         "block": {
-            "$ref": "#/definitions/1527037515"
+            "$ref": "#/definitions/1493335182"
+        },
+        "replace_block_item": {
+            "type": "boolean"
         },
         "use_on": {
             "type": "array",
             "items": {
                 "$ref": "#/definitions/2794205495"
             }
-        },
-        "replace_block_item": {
-            "type": "boolean"
         }
     },
     "required": [

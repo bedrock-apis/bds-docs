@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3757951932",
     "x-format-version": "1.21.10",
-    "x-minecraft-version": "1.21.90-beta.23",
+    "x-minecraft-version": "1.21.90-beta.25",
     "definitions": {
         "44664202": {
             "title": "emitter_rate_manual",
@@ -20,25 +20,25 @@
             "title": "particle_motion_collision",
             "type": "object",
             "properties": {
-                "enabled": {
-                    "$ref": "#/definitions/3178719147"
+                "coefficient_of_restitution": {
+                    "type": "number"
+                },
+                "collision_drag": {
+                    "type": "number"
                 },
                 "collision_radius": {
                     "type": "number",
                     "minimum": 0,
                     "maximum": 0.5
                 },
-                "collision_drag": {
-                    "type": "number"
-                },
-                "coefficient_of_restitution": {
-                    "type": "number"
-                },
-                "expire_on_contact": {
-                    "type": "boolean"
+                "enabled": {
+                    "$ref": "#/definitions/3178719147"
                 },
                 "events": {
                     "$ref": "#/definitions/2751853296"
+                },
+                "expire_on_contact": {
+                    "type": "boolean"
                 }
             },
             "required": [
@@ -49,92 +49,92 @@
             "title": "particle_effect component",
             "type": "object",
             "properties": {
-                "minecraft:emitter_local_space": {
-                    "$ref": "#/definitions/3582790723"
-                },
-                "minecraft:particle_expire_if_in_blocks": {
-                    "$ref": "#/definitions/1460714494"
-                },
-                "minecraft:emitter_lifetime_expression": {
-                    "$ref": "#/definitions/3040571073"
-                },
                 "minecraft:emitter_initialization": {
                     "$ref": "#/definitions/4239102682"
-                },
-                "minecraft:emitter_rate_instant": {
-                    "$ref": "#/definitions/4022568085"
-                },
-                "minecraft:particle_lifetime_expression": {
-                    "$ref": "#/definitions/3476027947"
-                },
-                "minecraft:emitter_lifetime_looping": {
-                    "$ref": "#/definitions/3738957681"
-                },
-                "minecraft:emitter_rate_steady": {
-                    "$ref": "#/definitions/4286993890"
                 },
                 "minecraft:emitter_lifetime_events": {
                     "$ref": "#/definitions/1684720476"
                 },
+                "minecraft:emitter_lifetime_expression": {
+                    "$ref": "#/definitions/3040571073"
+                },
+                "minecraft:emitter_lifetime_looping": {
+                    "$ref": "#/definitions/3738957681"
+                },
                 "minecraft:emitter_lifetime_once": {
                     "$ref": "#/definitions/795889148"
+                },
+                "minecraft:emitter_local_space": {
+                    "$ref": "#/definitions/3582790723"
+                },
+                "minecraft:emitter_rate_instant": {
+                    "$ref": "#/definitions/4022568085"
                 },
                 "minecraft:emitter_rate_manual": {
                     "$ref": "#/definitions/44664202"
                 },
-                "minecraft:emitter_shape_point": {
-                    "$ref": "#/definitions/384640217"
+                "minecraft:emitter_rate_steady": {
+                    "$ref": "#/definitions/4286993890"
                 },
                 "minecraft:emitter_shape_box": {
                     "$ref": "#/definitions/2315991144"
                 },
-                "minecraft:emitter_shape_sphere": {
-                    "$ref": "#/definitions/2763500436"
-                },
                 "minecraft:emitter_shape_custom": {
                     "$ref": "#/definitions/1107054938"
-                },
-                "minecraft:emitter_shape_entity_aabb": {
-                    "$ref": "#/definitions/3723416124"
                 },
                 "minecraft:emitter_shape_disc": {
                     "$ref": "#/definitions/3649962860"
                 },
+                "minecraft:emitter_shape_entity_aabb": {
+                    "$ref": "#/definitions/3723416124"
+                },
+                "minecraft:emitter_shape_point": {
+                    "$ref": "#/definitions/384640217"
+                },
+                "minecraft:emitter_shape_sphere": {
+                    "$ref": "#/definitions/2763500436"
+                },
                 "minecraft:particle_appearance_billboard": {
                     "$ref": "#/definitions/1499078169"
-                },
-                "minecraft:particle_appearance_tinting": {
-                    "$ref": "#/definitions/2927322813"
                 },
                 "minecraft:particle_appearance_lighting": {
                     "$ref": "#/definitions/3627722690"
                 },
-                "minecraft:particle_kill_plane": {
-                    "$ref": "#/definitions/3331226803"
+                "minecraft:particle_appearance_tinting": {
+                    "$ref": "#/definitions/2927322813"
                 },
-                "minecraft:particle_initial_spin": {
-                    "$ref": "#/definitions/2417259002"
-                },
-                "minecraft:particle_initial_speed": {
-                    "$ref": "#/definitions/2590609581"
-                },
-                "minecraft:particle_initialization": {
-                    "$ref": "#/definitions/3230253040"
+                "minecraft:particle_expire_if_in_blocks": {
+                    "$ref": "#/definitions/1460714494"
                 },
                 "minecraft:particle_expire_if_not_in_blocks": {
                     "$ref": "#/definitions/2039086753"
                 },
+                "minecraft:particle_initial_speed": {
+                    "$ref": "#/definitions/2590609581"
+                },
+                "minecraft:particle_initial_spin": {
+                    "$ref": "#/definitions/2417259002"
+                },
+                "minecraft:particle_initialization": {
+                    "$ref": "#/definitions/3230253040"
+                },
+                "minecraft:particle_kill_plane": {
+                    "$ref": "#/definitions/3331226803"
+                },
                 "minecraft:particle_lifetime_events": {
                     "$ref": "#/definitions/2330565510"
+                },
+                "minecraft:particle_lifetime_expression": {
+                    "$ref": "#/definitions/3476027947"
+                },
+                "minecraft:particle_motion_collision": {
+                    "$ref": "#/definitions/49717204"
                 },
                 "minecraft:particle_motion_dynamic": {
                     "$ref": "#/definitions/3985494251"
                 },
                 "minecraft:particle_motion_parametric": {
                     "$ref": "#/definitions/4184501408"
-                },
-                "minecraft:particle_motion_collision": {
-                    "$ref": "#/definitions/49717204"
                 }
             }
         },
@@ -142,7 +142,7 @@
             "title": "emitter_shape_point",
             "type": "object",
             "properties": {
-                "offset": {
+                "direction": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/3178719147"
@@ -150,7 +150,7 @@
                     "minItems": 3,
                     "maxItems": 3
                 },
-                "direction": {
+                "offset": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/3178719147"
@@ -164,14 +164,6 @@
             "title": "struct SharedTypes::v1_20_80::DirectionSettingsHelper::Proxy",
             "type": "object",
             "properties": {
-                "mode": {
-                    "title": "particle_appearance_billboard direction_settings_mode",
-                    "type": "string",
-                    "enum": [
-                        "derive_from_velocity",
-                        "custom"
-                    ]
-                },
                 "custom_direction": {
                     "type": "array",
                     "items": {
@@ -182,6 +174,14 @@
                 },
                 "min_speed_threshold": {
                     "type": "number"
+                },
+                "mode": {
+                    "title": "particle_appearance_billboard direction_settings_mode",
+                    "type": "string",
+                    "enum": [
+                        "derive_from_velocity",
+                        "custom"
+                    ]
                 }
             },
             "required": [
@@ -214,6 +214,15 @@
                     "minItems": 2,
                     "maxItems": 2
                 },
+                "frames_per_second": {
+                    "type": "number"
+                },
+                "loop": {
+                    "type": "boolean"
+                },
+                "max_frame": {
+                    "$ref": "#/definitions/3178719147"
+                },
                 "size_UV": {
                     "type": "array",
                     "items": {
@@ -229,15 +238,6 @@
                     },
                     "minItems": 2,
                     "maxItems": 2
-                },
-                "max_frame": {
-                    "$ref": "#/definitions/3178719147"
-                },
-                "loop": {
-                    "type": "boolean"
-                },
-                "frames_per_second": {
-                    "type": "number"
                 },
                 "stretch_to_lifetime": {
                     "type": "boolean"
@@ -265,7 +265,7 @@
                     "$ref": "#/definitions/2715320761"
                 },
                 "texture": {
-                    "$ref": "#/definitions/2003508019"
+                    "$ref": "#/definitions/1969805686"
                 }
             },
             "required": [
@@ -277,22 +277,22 @@
             "title": "particle_curve_bezier_chain node_proxy",
             "type": "object",
             "properties": {
+                "left_slope": {
+                    "type": "number"
+                },
                 "left_value": {
                     "type": "number"
                 },
-                "value": {
+                "right_slope": {
                     "type": "number"
                 },
                 "right_value": {
                     "type": "number"
                 },
-                "left_slope": {
-                    "type": "number"
-                },
                 "slope": {
                     "type": "number"
                 },
-                "right_slope": {
+                "value": {
                     "type": "number"
                 }
             }
@@ -301,7 +301,7 @@
             "title": "emitter_shape_custom",
             "type": "object",
             "properties": {
-                "offset": {
+                "direction": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/3178719147"
@@ -309,7 +309,7 @@
                     "minItems": 3,
                     "maxItems": 3
                 },
-                "direction": {
+                "offset": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/3178719147"
@@ -364,13 +364,30 @@
             "title": "particle_expire_if_in_blocks",
             "type": "array",
             "items": {
-                "$ref": "#/definitions/1527037515"
+                "$ref": "#/definitions/1493335182"
             }
+        },
+        "1493335182": {
+            "title": "struct SharedTypes::Reference<1>",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ]
         },
         "1499078169": {
             "title": "particle_appearance_billboard",
             "type": "object",
             "properties": {
+                "direction": {
+                    "$ref": "#/definitions/1135863433"
+                },
+                "facing_camera_mode": {
+                    "$ref": "#/definitions/2715320761"
+                },
                 "size": {
                     "type": "array",
                     "items": {
@@ -379,29 +396,12 @@
                     "minItems": 2,
                     "maxItems": 2
                 },
-                "facing_camera_mode": {
-                    "$ref": "#/definitions/2715320761"
-                },
-                "direction": {
-                    "$ref": "#/definitions/1135863433"
-                },
                 "uv": {
                     "$ref": "#/definitions/2979283012"
                 }
             },
             "required": [
                 "size"
-            ]
-        },
-        "1527037515": {
-            "title": "struct SharedTypes::Reference<0>",
-            "oneOf": [
-                {
-                    "type": "string"
-                },
-                {
-                    "type": "string"
-                }
             ]
         },
         "1626134911": {
@@ -417,6 +417,12 @@
                 "particle_effect": {
                     "$ref": "#/definitions/2245986520"
                 },
+                "randomize": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/2522540092"
+                    }
+                },
                 "sequence": {
                     "type": "array",
                     "items": {
@@ -425,12 +431,6 @@
                 },
                 "sound_effect": {
                     "$ref": "#/definitions/3998097047"
-                },
-                "randomize": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/2522540092"
-                    }
                 }
             }
         },
@@ -438,21 +438,21 @@
             "title": "particle_curve_bezier_chain",
             "type": "object",
             "properties": {
-                "type": {
-                    "type": "string",
-                    "pattern": "^bezier_chain$"
+                "input": {
+                    "$ref": "#/definitions/3178719147"
                 },
                 "nodes": {
                     "$ref": "#/definitions/2325482181"
                 },
-                "input": {
-                    "$ref": "#/definitions/3178719147"
+                "type": {
+                    "type": "string",
+                    "pattern": "^bezier_chain$"
                 }
             },
             "required": [
-                "type",
+                "input",
                 "nodes",
-                "input"
+                "type"
             ]
         },
         "1684720476": {
@@ -476,15 +476,15 @@
                 }
             ]
         },
-        "2003508019": {
-            "title": "struct SharedTypes::FileReference<6>",
+        "1969805686": {
+            "title": "struct SharedTypes::FileReference<7>",
             "type": "string"
         },
         "2039086753": {
             "title": "particle_expire_if_not_in_blocks",
             "type": "array",
             "items": {
-                "$ref": "#/definitions/1527037515"
+                "$ref": "#/definitions/1493335182"
             }
         },
         "2236411444": {
@@ -534,10 +534,10 @@
                 "expiration_event": {
                     "$ref": "#/definitions/771176265"
                 },
-                "travel_distance_events": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "$ref": "#/definitions/771176265"
+                "looping_travel_distance_events": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/3907782844"
                     }
                 },
                 "timeline": {
@@ -546,10 +546,10 @@
                         "$ref": "#/definitions/771176265"
                     }
                 },
-                "looping_travel_distance_events": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/3907782844"
+                "travel_distance_events": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/771176265"
                     }
                 }
             }
@@ -581,7 +581,10 @@
             "title": "emitter_shape_box",
             "type": "object",
             "properties": {
-                "offset": {
+                "direction": {
+                    "$ref": "#/definitions/1399264962"
+                },
+                "half_dimensions": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/3178719147"
@@ -589,10 +592,7 @@
                     "minItems": 3,
                     "maxItems": 3
                 },
-                "direction": {
-                    "$ref": "#/definitions/1399264962"
-                },
-                "half_dimensions": {
+                "offset": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/3178719147"
@@ -639,11 +639,11 @@
             "title": "particle_motion_collision_event",
             "type": "object",
             "properties": {
-                "min_speed": {
-                    "type": "number"
-                },
                 "event": {
                     "$ref": "#/definitions/2715320761"
+                },
+                "min_speed": {
+                    "type": "number"
                 }
             },
             "required": [
@@ -654,23 +654,14 @@
             "title": "particle_event_random_node",
             "type": "object",
             "properties": {
+                "expression": {
+                    "$ref": "#/definitions/3178719147"
+                },
                 "log": {
                     "type": "string"
                 },
                 "particle_effect": {
                     "$ref": "#/definitions/2245986520"
-                },
-                "weight": {
-                    "type": "number"
-                },
-                "sound_effect": {
-                    "$ref": "#/definitions/3998097047"
-                },
-                "sequence": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/1626134911"
-                    }
                 },
                 "randomize": {
                     "type": "array",
@@ -678,8 +669,17 @@
                         "$ref": "#/definitions/2522540092"
                     }
                 },
-                "expression": {
-                    "$ref": "#/definitions/3178719147"
+                "sequence": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/1626134911"
+                    }
+                },
+                "sound_effect": {
+                    "$ref": "#/definitions/3998097047"
+                },
+                "weight": {
+                    "type": "number"
                 }
             },
             "required": [
@@ -693,10 +693,10 @@
                 "position": {
                     "type": "boolean"
                 },
-                "velocity": {
+                "rotation": {
                     "type": "boolean"
                 },
-                "rotation": {
+                "velocity": {
                     "type": "boolean"
                 }
             }
@@ -705,8 +705,11 @@
             "title": "particle_curve_linear",
             "type": "object",
             "properties": {
-                "type": {
-                    "$ref": "#/definitions/2715320761"
+                "horizontal_range": {
+                    "$ref": "#/definitions/3178719147"
+                },
+                "input": {
+                    "$ref": "#/definitions/3178719147"
                 },
                 "nodes": {
                     "type": "array",
@@ -714,17 +717,14 @@
                         "$ref": "#/definitions/3178719147"
                     }
                 },
-                "input": {
-                    "$ref": "#/definitions/3178719147"
-                },
-                "horizontal_range": {
-                    "$ref": "#/definitions/3178719147"
+                "type": {
+                    "$ref": "#/definitions/2715320761"
                 }
             },
             "required": [
-                "type",
+                "input",
                 "nodes",
-                "input"
+                "type"
             ]
         },
         "2590609581": {
@@ -787,6 +787,9 @@
             "title": "emitter_shape_sphere",
             "type": "object",
             "properties": {
+                "direction": {
+                    "$ref": "#/definitions/1399264962"
+                },
                 "offset": {
                     "type": "array",
                     "items": {
@@ -794,9 +797,6 @@
                     },
                     "minItems": 3,
                     "maxItems": 3
-                },
-                "direction": {
-                    "$ref": "#/definitions/1399264962"
                 },
                 "radius": {
                     "$ref": "#/definitions/3178719147"
@@ -873,26 +873,26 @@
             "title": "particle_effect description",
             "type": "object",
             "properties": {
-                "identifier": {
-                    "type": "string"
-                },
                 "basic_render_parameters": {
                     "$ref": "#/definitions/801168425"
+                },
+                "identifier": {
+                    "type": "string"
                 }
             },
             "required": [
-                "identifier",
-                "basic_render_parameters"
+                "basic_render_parameters",
+                "identifier"
             ]
         },
         "3230253040": {
             "title": "particle_initialization",
             "type": "object",
             "properties": {
-                "per_update_expression": {
+                "per_render_expression": {
                     "$ref": "#/definitions/3178719147"
                 },
-                "per_render_expression": {
+                "per_update_expression": {
                     "$ref": "#/definitions/3178719147"
                 }
             }
@@ -910,16 +910,16 @@
             "title": "struct SharedTypes::v1_20_80::UVHelper::Proxy",
             "type": "object",
             "properties": {
-                "texture_width": {
-                    "type": "integer"
-                },
                 "flipbook": {
                     "$ref": "#/definitions/772645837"
                 },
                 "texture_height": {
                     "type": "integer"
                 },
-                "uv_size": {
+                "texture_width": {
+                    "type": "integer"
+                },
+                "uv": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/3178719147"
@@ -927,7 +927,7 @@
                     "minItems": 2,
                     "maxItems": 2
                 },
-                "uv": {
+                "uv_size": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/3178719147"
@@ -941,10 +941,10 @@
             "title": "particle_lifetime_expression",
             "type": "object",
             "properties": {
-                "max_lifetime": {
+                "expiration_expression": {
                     "$ref": "#/definitions/3178719147"
                 },
-                "expiration_expression": {
+                "max_lifetime": {
                     "$ref": "#/definitions/3178719147"
                 }
             }
@@ -960,6 +960,9 @@
             "title": "emitter_shape_disc",
             "type": "object",
             "properties": {
+                "direction": {
+                    "$ref": "#/definitions/1399264962"
+                },
                 "offset": {
                     "type": "array",
                     "items": {
@@ -968,17 +971,14 @@
                     "minItems": 3,
                     "maxItems": 3
                 },
-                "direction": {
-                    "$ref": "#/definitions/1399264962"
+                "plane_normal": {
+                    "$ref": "#/definitions/2706354626"
                 },
                 "radius": {
                     "$ref": "#/definitions/3178719147"
                 },
                 "surface_only": {
                     "type": "boolean"
-                },
-                "plane_normal": {
-                    "$ref": "#/definitions/2706354626"
                 }
             }
         },
@@ -986,11 +986,11 @@
             "title": "emitter_shape_entity_aabb",
             "type": "object",
             "properties": {
-                "surface_only": {
-                    "type": "boolean"
-                },
                 "direction": {
                     "$ref": "#/definitions/1399264962"
+                },
+                "surface_only": {
+                    "type": "boolean"
                 }
             }
         },
@@ -1103,7 +1103,7 @@
             "title": "particle_motion_parametric",
             "type": "object",
             "properties": {
-                "relative_position": {
+                "direction": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/3178719147"
@@ -1111,7 +1111,7 @@
                     "minItems": 3,
                     "maxItems": 3
                 },
-                "direction": {
+                "relative_position": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/3178719147"
@@ -1140,16 +1140,16 @@
             "title": "emitter_rate_steady",
             "type": "object",
             "properties": {
-                "spawn_rate": {
+                "max_particles": {
                     "$ref": "#/definitions/3178719147"
                 },
-                "max_particles": {
+                "spawn_rate": {
                     "$ref": "#/definitions/3178719147"
                 }
             },
             "required": [
-                "spawn_rate",
-                "max_particles"
+                "max_particles",
+                "spawn_rate"
             ]
         }
     },
@@ -1159,14 +1159,14 @@
         "components": {
             "$ref": "#/definitions/101144416"
         },
-        "description": {
-            "$ref": "#/definitions/3226186110"
-        },
         "curves": {
             "type": "object",
             "additionalProperties": {
                 "$ref": "#/definitions/2236411444"
             }
+        },
+        "description": {
+            "$ref": "#/definitions/3226186110"
         },
         "events": {
             "type": "object",
@@ -1176,7 +1176,7 @@
         }
     },
     "required": [
-        "description",
-        "components"
+        "components",
+        "description"
     ]
 }
