@@ -1,5 +1,5 @@
 // Change every time you made a changes to this protocol
-export const PROTOCOL_ID = 2;
+export const PROTOCOL_ID = 3;
 
 // Packet Types, do not remove packet types only comment them and keep their unique Id so we know what ids are or was in use
 export enum PacketTypes {
@@ -62,16 +62,22 @@ export interface ItemsDataPacketData {
 }
 
 export namespace TestReport {
-    export type Primitive = string | { type: "error"; error: string };
+    export interface Error {
+        error: string;
+    }
+
+    export type Primitive = string | Error;
 
     export type Chained = Primitive[];
+
+    export type Result = Primitive | Chained;
 
     interface SuiteSetupFailed {
         setupError: string;
     }
 
     interface SuiteSuccess {
-        results: (Primitive | Chained)[];
+        results: Result[];
     }
 
     export type Suite = {

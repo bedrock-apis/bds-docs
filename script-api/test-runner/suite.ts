@@ -75,10 +75,7 @@ export class TestSuite<T> {
     }
 
     private createErrorReport(error: unknown): TestReport.Primitive {
-        return {
-            type: "error",
-            error: String(error),
-        };
+        return { error: String(error) };
     }
 
     testChain(testFn: (setupData: T) => Generator<unknown, void, unknown>) {
