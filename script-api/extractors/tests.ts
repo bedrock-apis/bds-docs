@@ -8,10 +8,8 @@ export function* TestsResolver() {
     while (!result.done) {
         result = generator.next();
         yield;
-        if (result.done) {
-            return { suites: result.value };
-        }
+        if (result.done) return result.value;
     }
 
-    throw new Error("failed to get repost");
+    throw new Error("Failed to get results");
 }

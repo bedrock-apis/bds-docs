@@ -1,4 +1,4 @@
-import { TestRunResult, TestRunResultChain, TestRunResultSimple, TestSuiteRunResult } from "../net";
+import { TestReport } from "../net";
 import { TestEnviroment, setEnviroment } from "./enviroment";
 
 export class TestSuite<T> {
@@ -28,8 +28,7 @@ export class TestSuite<T> {
 
         const suites = [];
         for (const suite of this.suites.values()) {
-            const suiteResult = yield* suite.run();
-            suites.push(suiteResult);
+            suites.push(yield* suite.run());
         }
         return suites;
     }
@@ -43,42 +42,39 @@ export class TestSuite<T> {
         TestSuite.suites.set(id, this);
     }
 
-    *run(): Generator<unknown, TestSuiteRunResult, unknown> {
+    *run(): Generator<unknown, TestReport.Suite, unknown> {
         let setup;
         try {
             setup = this.setupFn();
             yield;
         } catch (e) {
-            return { id: this.id, setupError: String(e), tests: [] };
+            return { id: this.id, setupError: String(e) };
         }
 
-        const results: (TestRunResultChain | TestRunResultSimple)[] = [];
+        const results: (TestReport.Chained | TestReport.Primitive)[] = [];
         for (const test of this.tests) {
             results.push(test(setup));
             yield;
         }
 
-        return { id: this.id, tests: results };
+        return { id: this.id, results: results };
     }
 
-    protected tests: ((setupData: T) => TestRunResultChain | TestRunResultSimple)[] = [];
+    protected tests: ((setupData: T) => TestReport.Chained | TestReport.Primitive)[] = [];
 
     test(testFn: (setupData: T) => unknown): this {
         this.tests.push((setupData) => {
             try {
                 const result = testFn(setupData);
-                return { type: "simple", result: TestSuite.stringify(result) };
+                return TestSuite.stringify(result);
             } catch (error) {
-                return {
-                    type: "simple",
-                    result: this.createErrorReport(error),
-                };
+                return this.createErrorReport(error);
             }
         });
         return this;
     }
 
-    private createErrorReport(error: unknown): TestRunResult {
+    private createErrorReport(error: unknown): TestReport.Primitive {
         return {
             type: "error",
             error: String(error),
@@ -93,12 +89,9 @@ export class TestSuite<T> {
                     results.push(TestSuite.stringify(iteration));
                 }
 
-                return { type: "chain", result: results };
+                return results;
             } catch (error) {
-                return {
-                    type: "chain",
-                    result: [...results, this.createErrorReport(error)],
-                };
+                return [...results, this.createErrorReport(error)];
             }
         });
         return this;
