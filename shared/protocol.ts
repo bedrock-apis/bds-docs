@@ -1,4 +1,4 @@
-import { TestReport } from "../script-api/test-runner/types";
+import { TestReport } from "../test-runner/types";
 
 // Change every time you made a changes to this protocol
 export const PROTOCOL_ID = 3;
