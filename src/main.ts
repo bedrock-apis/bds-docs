@@ -42,7 +42,6 @@ import {
 } from './functions';
 import { GetRepositoryVersionIncompatibility } from './helpers';
 import type { BDSVersions } from './types';
-//@ts-expect-error JS i know
 import { GENERAL_README } from '../DOCUMENTATION/gen.mjs';
 import { IsPacketTypeOf, PacketTypes, PORT } from '../shared';
 import { createPost } from './discord';

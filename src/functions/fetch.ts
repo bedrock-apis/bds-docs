@@ -3,12 +3,11 @@ import { Extract } from 'unzip-stream';
 
 import { pipeline } from 'node:stream/promises';
 import { Panic } from './utils';
-import { fileURLToPath } from 'node:url';
 
 export async function FetchJson<T extends object = object>(target: string): Promise<T | null> {
    const response = await fetch(target);
    if (!response.ok) return null;
-   return response.json().catch(e => null);
+   return response.json().catch(e => null) as Promise<T | null>;
 }
 
 export async function DownloadZipFile(link: string, outDir: string) {
