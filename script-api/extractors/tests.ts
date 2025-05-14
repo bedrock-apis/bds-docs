@@ -6,7 +6,7 @@ import '../../test-runner/suites/all';
 
 class BedrockDedicatedServerEnviroment extends TestEnviroment {
    onSetup(): void {
-      world.getDimension('overworld').runCommand('tickingarea add circle ~~~ 4');
+      world.getDimension('overworld').runCommand('tickingarea add circle 0 0 0 4 test');
    }
 
    placeBlock(typeId: string): Block {

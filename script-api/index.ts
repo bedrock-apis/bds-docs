@@ -1,7 +1,7 @@
 import { system, world } from '@minecraft/server';
 import { PacketTypes, PROTOCOL_ID } from '../shared';
 import { BlockResolver } from './extractors';
-import { ErrorMessages } from './extractors/error_messages';
+import { ErrorMessages } from './extractors/error-messages';
 import { ItemStackResolver } from './extractors/items';
 import { TestsResolver } from './extractors/tests';
 import { RunThread } from './helper';
