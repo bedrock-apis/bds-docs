@@ -1,1 +1,1 @@
-export const DATA_OUTPUT_FOLDER = "./data";
+export const DATA_OUTPUT_FOLDER = './data';

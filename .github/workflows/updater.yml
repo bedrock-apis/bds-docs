@@ -1,42 +1,41 @@
 name: Update Docs Generator
 on:
-  push:
-    branches: 
-      main
-  schedule: 
-  - cron: '*/20 * * * *'
-  
+   push:
+      branches: main
+   schedule:
+      - cron: '*/20 * * * *'
+
 permissions:
-  contents: write
+   contents: write
 jobs:
-  Main-Updater:
-    runs-on: windows-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      with: 
-        ref: "main"
-        fetch-depth: '0'
-        
-    - name: Setup Node.js environment
-      uses: actions/setup-node@v4.0.4
-      with:
-        node-version: '22'
+   Main-Updater:
+      runs-on: windows-latest
+      steps:
+         - name: Checkout repository
+           uses: actions/checkout@v4
+           with:
+              ref: 'main'
+              fetch-depth: '0'
 
-    - name: Install pnpm
-      run: corepack enable
+         - name: Setup Node.js environment
+           uses: actions/setup-node@v4.0.4
+           with:
+              node-version: '22'
 
-    - name: Install dependencies with pnpm
-      run: pnpm install
+         - name: Install pnpm
+           run: corepack enable
 
-    - name: Check TSC
-      run: |
-        pnpm run check
-    
-    - name: Build
-      run: |
-        npm run build
+         - name: Install dependencies with pnpm
+           run: pnpm install
 
-    - name: Check Build Commit
-      run: |
-        npm run check-for-update
+         - name: Check TSC
+           run: |
+              pnpm run check
+
+         - name: Build
+           run: |
+              npm run build
+
+         - name: Check Build Commit
+           run: |
+              npm run check-for-update

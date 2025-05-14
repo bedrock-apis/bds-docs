@@ -1,2 +1,2 @@
 export const startUpTime = Date.now();
-console.log("Preload");
+console.log('Preload');

@@ -1,42 +1,47 @@
-import { Block, Entity, Vector3 } from "@minecraft/server";
+import { Block, Entity, Vector3 } from '@minecraft/server';
 
 export abstract class TestEnviroment {
-    abstract onSetup(): void;
-    abstract spawnEntity(typeId: string): Entity;
-    abstract placeBlock(typeId: string): Block;
+   abstract onSetup(): void;
+   abstract spawnEntity(typeId: string): Entity;
+   abstract placeBlock(typeId: string): Block;
 
-    private nextLocations = new Map<string, Vector3>();
+   private nextLocations = new Map<string, Vector3>();
 
-    protected getNextLocation(targetType: string, baseLocation: Vector3, offsetCoordinate: keyof Vector3 = "x", offsetNumber: number = 1): Vector3 {
-        let previousOffset = this.nextLocations.get(targetType);
-        if (!previousOffset) {
-            previousOffset = baseLocation;
-            this.nextLocations.set(targetType, previousOffset);
-        }
+   protected getNextLocation(
+      targetType: string,
+      baseLocation: Vector3,
+      offsetCoordinate: keyof Vector3 = 'x',
+      offsetNumber: number = 1,
+   ): Vector3 {
+      let previousOffset = this.nextLocations.get(targetType);
+      if (!previousOffset) {
+         previousOffset = baseLocation;
+         this.nextLocations.set(targetType, previousOffset);
+      }
 
-        previousOffset[offsetCoordinate] += offsetNumber;
-        return {
-            x: previousOffset.x,
-            y: previousOffset.y,
-            z: previousOffset.z,
-        };
-    }
+      previousOffset[offsetCoordinate] += offsetNumber;
+      return {
+         x: previousOffset.x,
+         y: previousOffset.y,
+         z: previousOffset.z,
+      };
+   }
 }
 
 let globalEnviroment: TestEnviroment | null = null;
 
 export function getEnviroment(): TestEnviroment {
-    if (!globalEnviroment) throw new Error("You should setup test enviroment first");
+   if (!globalEnviroment) throw new Error('You should setup test enviroment first');
 
-    return globalEnviroment;
+   return globalEnviroment;
 }
 
 export function setEnviroment(enviroment: TestEnviroment) {
-    globalEnviroment = enviroment;
+   globalEnviroment = enviroment;
 }
 export function spawnEntity(typeId: string): Entity {
-    return getEnviroment().spawnEntity(typeId);
+   return getEnviroment().spawnEntity(typeId);
 }
 export function placeBlock(typeId: string): Block {
-    return getEnviroment().placeBlock(typeId);
+   return getEnviroment().placeBlock(typeId);
 }

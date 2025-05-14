@@ -1,6 +1,6 @@
-import { spawnEntity } from "../enviroment";
-import { TestSuite } from "../suite";
+import { spawnEntity } from '../enviroment';
+import { TestSuite } from '../suite';
 
-TestSuite.withSetup("entity", () => spawnEntity("minecraft:cow"))
-    .test((entity) => entity.typeId)
-    .test((entity) => entity.getComponents());
+TestSuite.withSetup('entity', () => spawnEntity('minecraft:cow'))
+   .test(entity => entity.typeId)
+   .test(entity => entity.getComponents());

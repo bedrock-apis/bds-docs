@@ -1,42 +1,49 @@
 {
-    "name": "bds-docs",
-    "version": "1.0.0",
-    "description": "Releasing BDS Docs",
-    "main": "dist/main.js",
-    "type": "module",
-    "scripts": {
-        "check-for-update": "node .",
-        "build": "rolldown -c",
-        "build-ts": "tsc",
-        "check": "tsc --noEmit",
-        "gen-docs": "node ./DOCUMENTATION/gen.mjs"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Bedrock-APIs/bds-docs.git"
-    },
-    "author": "conmaster2112",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/Bedrock-APIs/bds-docs/issues"
-    },
-    "homepage": "https://github.com/Bedrock-APIs/bds-docs#readme",
-    "dependencies": {
-        "@minecraft/server": "2.1.0-beta.1.21.90-preview.23",
-        "@minecraft/server-net": "1.0.0-beta.1.21.90-preview.23",
-        "@minecraft/server-ui": "2.1.0-beta.1.21.90-preview.23",
-        "minimatch": "^10.0.1",
-        "unzip-stream": "^0.3.4"
-    },
-    "devDependencies": {
-        "@types/node": "^22.7.4",
-        "prettier": "^3.5.3",
-        "rolldown": "^0.15.0-snapshot-3cea4f5-20241211003613",
-        "typescript": "^5.8.3"
-    },
-    "prettier": {
-        "tabWidth": 4,
-        "printWidth": 300
-    },
-    "packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39"
+   "name": "bds-docs",
+   "version": "1.0.0",
+   "description": "Releasing BDS Docs",
+   "main": "dist/main.js",
+   "type": "module",
+   "scripts": {
+      "check-for-update": "node .",
+      "build": "rolldown -c",
+      "build-ts": "tsc",
+      "check": "tsc --noEmit",
+      "gen-docs": "node ./DOCUMENTATION/gen.mjs"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Bedrock-APIs/bds-docs.git"
+   },
+   "author": "conmaster2112",
+   "license": "MIT",
+   "bugs": {
+      "url": "https://github.com/Bedrock-APIs/bds-docs/issues"
+   },
+   "homepage": "https://github.com/Bedrock-APIs/bds-docs#readme",
+   "dependencies": {
+      "@minecraft/server": "2.1.0-beta.1.21.90-preview.23",
+      "@minecraft/server-net": "1.0.0-beta.1.21.90-preview.23",
+      "@minecraft/server-ui": "2.1.0-beta.1.21.90-preview.23",
+      "minimatch": "^10.0.1",
+      "unzip-stream": "^0.3.4"
+   },
+   "devDependencies": {
+      "@types/node": "^22.7.4",
+      "prettier": "^3.5.3",
+      "rolldown": "^0.15.0-snapshot-3cea4f5-20241211003613",
+      "typescript": "^5.8.3"
+   },
+   "prettier": {
+      "arrowParens": "avoid",
+      "endOfLine": "crlf",
+      "plugins": [
+         "prettier-plugin-jsdoc"
+      ],
+      "printWidth": 120,
+      "quoteProps": "consistent",
+      "singleQuote": true,
+      "tabWidth": 3
+   },
+   "packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39"
 }
