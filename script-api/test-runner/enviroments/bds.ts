@@ -17,7 +17,7 @@ export class BedrockDedicatedServerEnviroment extends TestEnviroment {
         return block;
     }
 
-    spawnEnttity(typeId: string): Entity {
+    spawnEntity(typeId: string): Entity {
         const location = this.getNextLocation("entity", { x: 0, y: 0, z: 1 }, "z");
         const entity = world.getDimension("overworld").spawnEntity(typeId as VanillaEntityIdentifier, location);
 
