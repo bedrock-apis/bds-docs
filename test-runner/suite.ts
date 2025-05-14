@@ -3,6 +3,7 @@ import { TestReport } from './types';
 
 export class TestSuite<T> {
    static stringify(object: unknown): string {
+      if (object === undefined) return 'undefined';
       // TODO Better stringify
       return JSON.stringify(object, null, 4);
    }
@@ -53,7 +54,8 @@ export class TestSuite<T> {
 
       const results: (TestReport.Chained | TestReport.Primitive)[] = [];
       for (const test of this.tests) {
-         results.push(test(setup));
+         const result = test(setup);
+         results.push(result);
          yield;
       }
 
@@ -66,6 +68,7 @@ export class TestSuite<T> {
       this.tests.push(setupData => {
          try {
             const result = testFn(setupData);
+            console.log(testFn.toString(), result);
             return TestSuite.stringify(result);
          } catch (error) {
             return this.createErrorReport(error);
