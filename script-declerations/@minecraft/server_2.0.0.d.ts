@@ -54,17 +54,17 @@ export interface BlockFilter { excludePermutations?: BlockPermutation[]; exclude
 export interface BlockHitInformation { block: Block; face: Direction; faceLocation: Vector3};
 export interface BlockRaycastHit { block: Block; face: Direction; faceLocation: Vector3};
 export interface BlockRaycastOptions extends BlockFilter{ includeLiquidBlocks?: boolean; includePassableBlocks?: boolean; maxDistance?: number};
-export interface CameraEaseOptions { easeTime?: number; easeType?: EasingType};
 export interface CameraFadeOptions { fadeColor?: RGB; fadeTime?: CameraFadeTimeOptions};
 export interface CameraFadeTimeOptions { fadeInTime: number; fadeOutTime: number; holdTime: number};
 export interface CameraFixedBoomOptions { entityOffset?: Vector3; viewOffset?: Vector2};
-export interface CameraSetFacingOptions { easeOptions?: CameraEaseOptions; facingEntity: Entity; location?: Vector3};
-export interface CameraSetLocationOptions { easeOptions?: CameraEaseOptions; location: Vector3};
-export interface CameraSetPosOptions { easeOptions?: CameraEaseOptions; facingLocation: Vector3; location?: Vector3};
-export interface CameraSetRotOptions { easeOptions?: CameraEaseOptions; location?: Vector3; rotation: Vector2};
+export interface CameraSetFacingOptions { easeOptions?: EaseOptions; facingEntity: Entity; location?: Vector3};
+export interface CameraSetLocationOptions { easeOptions?: EaseOptions; location: Vector3};
+export interface CameraSetPosOptions { easeOptions?: EaseOptions; facingLocation: Vector3; location?: Vector3};
+export interface CameraSetRotOptions { easeOptions?: EaseOptions; location?: Vector3; rotation: Vector2};
 export interface CameraTargetOptions { offsetFromTargetCenter?: Vector3; targetEntity: Entity};
 export interface DefinitionModifier { addedComponentGroups: string[]; removedComponentGroups: string[]};
 export interface DimensionLocation { dimension: Dimension; x: number; y: number; z: number};
+export interface EaseOptions { easeTime?: number; easeType?: EasingType};
 export interface Enchantment { level: number; type: EnchantmentType};
 export interface EntityApplyDamageByProjectileOptions { damagingEntity?: Entity; damagingProjectile: Entity};
 export interface EntityApplyDamageOptions { cause: EntityDamageCause; damagingEntity?: Entity};
@@ -165,7 +165,7 @@ export class BlockVolumeBase { public getBlockLocationIterator(): BlockLocationI
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ButtonPushAfterEvent extends BlockEvent{ public readonly source: Entity; private constructor();};
 export class ButtonPushAfterEventSignal { public subscribe(callback: (arg0: ButtonPushAfterEvent)=>void): (arg0: ButtonPushAfterEvent)=>void; public unsubscribe(callback: (arg0: ButtonPushAfterEvent)=>void): void; private constructor();};
-export class Camera { public readonly isValid: boolean; public clear(): void; public fade(fadeCameraOptions?: CameraFadeOptions): void; public setCamera(cameraPreset: string, setOptions?: CameraFixedBoomOptions | CameraSetFacingOptions | CameraSetLocationOptions | CameraSetPosOptions | CameraSetRotOptions | CameraTargetOptions): void; public setDefaultCamera(cameraPreset: string, easeOptions?: CameraEaseOptions): void; private constructor();};
+export class Camera { public readonly isValid: boolean; public clear(): void; public fade(fadeCameraOptions?: CameraFadeOptions): void; public setCamera(cameraPreset: string, setOptions?: CameraFixedBoomOptions | CameraSetFacingOptions | CameraSetLocationOptions | CameraSetPosOptions | CameraSetRotOptions | CameraTargetOptions): void; public setDefaultCamera(cameraPreset: string, easeOptions?: EaseOptions): void; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ClientSystemInfo extends SystemInfo{ public readonly maxRenderDistance: number; public readonly platformType: PlatformType; private constructor();};
 export class CommandResult { public readonly successCount: number; private constructor();};
