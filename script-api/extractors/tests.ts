@@ -3,12 +3,11 @@ import { TestEnviroment } from '../../test-runner/enviroment';
 import { TestSuite } from '../../test-runner/suite';
 
 import '../../test-runner/suites/all';
+import { loadChunk } from '../helper';
 
 class BedrockDedicatedServerEnviroment extends TestEnviroment {
    async onSetup(): Promise<void> {
-      world.getDimension('overworld').runCommand('tickingarea add circle 0 0 0 4 test');
-
-      await system.waitTicks(10);
+      await loadChunk({ x: 0, y: 0, z: 0 }, 'test');
    }
 
    placeBlock(typeId: string): Block {

@@ -1,27 +1,24 @@
 import {
+   Block,
    BlockTypes,
    EntityTypes,
    ItemStack,
    ItemTypes,
-   system,
    VanillaEntityIdentifier,
    world,
 } from '@minecraft/server';
+import { loadChunk } from '../helper';
 import { LocalizationKeysPacketData } from '../net';
 
 export function* LocalizationKeysResolver() {
-   world.getDimension('overworld').runCommand('tickingarea add circle 0 0 1000 4 localizationKey');
-
-   yield system.waitTicks(10);
+   const dimension = world.getDimension('overworld');
+   const block: Block = yield loadChunk({ x: 0, y: 0, z: 1000 }, 'localizationKey');
 
    const data: LocalizationKeysPacketData = {
       blocks: {},
       entities: {},
       items: {},
    };
-   const dimension = world.getDimension('overworld');
-   const block = dimension.getBlock({ x: 0, y: 0, z: 1000 });
-   if (!block) throw new TypeError('No block to get!');
 
    for (const { id } of BlockTypes.getAll()) {
       block.setType(id);
