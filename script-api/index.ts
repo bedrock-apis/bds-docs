@@ -26,7 +26,7 @@ async function WorldLoad() {
          });
       },
       error => {
-         console.error(error);
+         console.error(error, error?.stack);
          SendPayload(PacketTypes.EndOfSession, {
             exitCode: -1,
             numberOfPosts: getNumberOfPosts(),
