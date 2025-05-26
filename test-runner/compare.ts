@@ -126,7 +126,7 @@ const wrapDiffLength = 80;
 
 function diff(a: string, b: string) {
    if (!isMultiline(a) && !isMultiline(b) && a.length < wrapDiffLength && b.length < wrapDiffLength) {
-      return `Got ${b}, expected ${a}`;
+      return `${b} != ${a}`;
    }
    const spaces = isMultiline(a) ? '\n\n' : '\n';
    return `\n${a}${spaces}${b}\n`;
