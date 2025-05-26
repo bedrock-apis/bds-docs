@@ -36,9 +36,13 @@ export function* LocalizationKeysResolver() {
    }
 
    for (const { id } of EntityTypes.getAll()) {
-      const entity = dimension.spawnEntity(id as VanillaEntityIdentifier, { x: 0, y: 0, z: 0 });
-      data.entities[id] = entity.localizationKey;
-      entity.remove();
+      try {
+         const entity = dimension.spawnEntity(id as VanillaEntityIdentifier, { x: 0, y: 0, z: 0 });
+         data.entities[id] = entity.localizationKey;
+         entity.remove();
+      } catch (e) {
+         data.entities[id] = 'ERROR ' + e;
+      }
       yield;
    }
 
