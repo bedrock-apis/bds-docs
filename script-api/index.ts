@@ -3,6 +3,7 @@ import { PacketTypes, PROTOCOL_ID } from '../shared';
 import { BlockResolver } from './extractors';
 import { ErrorMessages } from './extractors/error-messages';
 import { ItemStackResolver } from './extractors/items';
+import { LocalizationKeysResolver } from './extractors/localization-key';
 import { TestsResolver } from './extractors/tests';
 import { RunThread } from './helper';
 import { getNumberOfPosts, SendPayload } from './net';
@@ -63,6 +64,12 @@ async function Main(): Promise<number> {
    {
       const errors = await RunThread(ErrorMessages());
       await SendPayload(PacketTypes.ErrorMessages, errors);
+   }
+
+   // Errors
+   {
+      const localization = await RunThread(LocalizationKeysResolver());
+      await SendPayload(PacketTypes.LocalizationKeys, localization);
    }
 
    await system.waitTicks(5);

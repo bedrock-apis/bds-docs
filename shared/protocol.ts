@@ -17,6 +17,7 @@ export enum PacketTypes {
    ItemsData = 6,
    ScriptData = 7,
    ErrorMessages = 8,
+   LocalizationKeys = 9,
 }
 export type PacketBodyType = {
    [PacketTypes.StartUp]: StartUpPacketData;
@@ -28,6 +29,7 @@ export type PacketBodyType = {
    [PacketTypes.ItemsData]: ItemsDataPacketData;
    [PacketTypes.ScriptData]: ScriptDataPacketData;
    [PacketTypes.ErrorMessages]: ErrorMessagesDataPacketData;
+   [PacketTypes.LocalizationKeys]: LocalizationKeysPacketData;
 };
 export interface ErrorMessagesDataPacketData {
    general: {
@@ -61,6 +63,12 @@ export interface ItemsDataPacketData {
          components: Record<string, unknown>;
       }
    >;
+}
+
+export interface LocalizationKeysPacketData {
+   entities: Record<string, string>;
+   items: Record<string, string>;
+   blocks: Record<string, string>;
 }
 
 export type ScriptDataPacketData = TestReport.Run;
