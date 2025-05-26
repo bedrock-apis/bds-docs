@@ -6,7 +6,7 @@ export class TestSuite<T> {
    static stringify(object: unknown): string {
       if (object === undefined) return 'undefined';
       // TODO Better stringify
-      return JSON.stringify(object, null, 4);
+      return JSON.stringify(object);
    }
 
    static withSetup<T>(id: string, setupFn: () => T) {
