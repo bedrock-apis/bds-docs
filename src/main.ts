@@ -1,5 +1,7 @@
 import { mkdir, rm } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { GENERAL_README } from '../DOCUMENTATION/gen.mjs';
+import { IsPacketTypeOf, PacketTypes, PORT } from '../shared';
 import {
    ALWAYS_OVERWRITE,
    BDS_OUTDIR_PATH,
@@ -22,6 +24,7 @@ import {
    SCRIPT_API_SERVER_NET_MODULE_VERSION,
 } from './consts';
 import { GetScriptAPICode, SaveWorkspaceContent } from './content_saver';
+import { createPost } from './discord';
 import { GENERATORS } from './flags';
 import {
    DirectoryTreeRemoval,
@@ -41,12 +44,9 @@ import {
    WriteFile,
 } from './functions';
 import { GetRepositoryVersionIncompatibility } from './helpers';
-import type { BDSVersions } from './types';
-import { GENERAL_README } from '../DOCUMENTATION/gen.mjs';
-import { IsPacketTypeOf, PacketTypes, PORT } from '../shared';
-import { createPost } from './discord';
 import { GetConfigPermissions, GetEditorExtension } from './helpers/bds';
 import { WebServer } from './service';
+import type { BDSVersions } from './types';
 let performanceTime = Date.now();
 // Calling Main EntryPont
 Main()
@@ -261,6 +261,11 @@ async function Main(): Promise<number> {
       if (IsPacketTypeOf(data, PacketTypes.ItemsData)) {
          const { body } = data;
          await WriteFile(resolve(REPORTS_DIR_NAME, 'items.json'), JSON.stringify(body, null, 4));
+      }
+
+      if (IsPacketTypeOf(data, PacketTypes.LocalizationKeys)) {
+         const { body } = data;
+         await WriteFile(resolve(REPORTS_DIR_NAME, 'localization.json'), JSON.stringify(body, null, 4));
       }
    }
 

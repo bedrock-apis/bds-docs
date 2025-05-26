@@ -12,7 +12,7 @@ import { LocalizationKeysPacketData } from '../net';
 
 export function* LocalizationKeysResolver() {
    const dimension = world.getDimension('overworld');
-   const block: Block = yield loadChunk({ x: 0, y: -64, z: 1000 }, 'localizationKey');
+   const block: Block = yield loadChunk({ x: 0, y: 0, z: 0 }, 'localizationKey');
 
    const data: LocalizationKeysPacketData = {
       blocks: {},
@@ -35,12 +35,12 @@ export function* LocalizationKeysResolver() {
       yield;
    }
 
-   //  for (const { id } of EntityTypes.getAll()) {
-   //     const entity = dimension.spawnEntity(id as VanillaEntityIdentifier, { x: 0, y: -64, z: 1000 });
-   //     data.entities[id] = entity.localizationKey;
-   //     entity.remove();
-   //     yield;
-   //  }
+   for (const { id } of EntityTypes.getAll()) {
+      const entity = dimension.spawnEntity(id as VanillaEntityIdentifier, { x: 0, y: 0, z: 0 });
+      data.entities[id] = entity.localizationKey;
+      entity.remove();
+      yield;
+   }
 
    return data;
 }
