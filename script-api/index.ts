@@ -16,26 +16,23 @@ world.afterEvents.worldLoad.subscribe(async () => {
 async function WorldLoad() {
    await null;
    await SendPayload(PacketTypes.StartUp, { protocolId: PROTOCOL_ID });
-   Main()
-      .then(
-         exitCode => {
-            SendPayload(PacketTypes.EndOfSession, {
-               exitCode,
-               numberOfPosts: getNumberOfPosts(),
-               totalTime: Date.now() - startUpTime,
-            });
-         },
-         () => {
-            SendPayload(PacketTypes.EndOfSession, {
-               exitCode: -1,
-               numberOfPosts: getNumberOfPosts(),
-               totalTime: Date.now() - startUpTime,
-            });
-         },
-      )
-      .catch(error => {
+   Main().then(
+      exitCode => {
+         SendPayload(PacketTypes.EndOfSession, {
+            exitCode,
+            numberOfPosts: getNumberOfPosts(),
+            totalTime: Date.now() - startUpTime,
+         });
+      },
+      error => {
          console.error(error);
-      });
+         SendPayload(PacketTypes.EndOfSession, {
+            exitCode: -1,
+            numberOfPosts: getNumberOfPosts(),
+            totalTime: Date.now() - startUpTime,
+         });
+      },
+   );
 }
 
 async function Main(): Promise<number> {
