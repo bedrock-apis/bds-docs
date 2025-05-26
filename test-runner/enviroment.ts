@@ -1,7 +1,7 @@
 import { Block, Entity, Vector3 } from '@minecraft/server';
 
 export abstract class TestEnviroment {
-   abstract onSetup(): void;
+   abstract onSetup(): Promise<void>;
    abstract spawnEntity(typeId: string): Entity;
    abstract placeBlock(typeId: string): Block;
 

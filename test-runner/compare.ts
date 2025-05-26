@@ -1,18 +1,10 @@
+import { ThreadRunner } from './async-generator';
 import { TestEnviroment } from './enviroment';
 import { TestSuite } from './suite';
 import { TestReport } from './types';
 
-export function runAndCompare(bdsDocsResults: TestReport.Run, enviroment: TestEnviroment) {
-   let result;
-
-   const generator = TestSuite.run(enviroment);
-   let step = generator.next();
-   while (!step.done) {
-      step = generator.next();
-      if (step.done) result = step.value;
-   }
-
-   if (!result) throw new Error('Failed to get result');
+export async function runAndCompare(bdsDocsResults: TestReport.Run, enviroment: TestEnviroment, runner?: ThreadRunner) {
+   const result = await TestSuite.r(enviroment, runner);
 
    if (!Array.isArray(bdsDocsResults)) {
       return 'Bds docs enviroment setup failed, skipping...';

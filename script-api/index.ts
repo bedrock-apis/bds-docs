@@ -1,5 +1,6 @@
 import { system, world } from '@minecraft/server';
 import { PacketTypes, PROTOCOL_ID } from '../shared';
+import { RunThreadAsync } from '../test-runner/async-generator';
 import { BlockResolver } from './extractors';
 import { ErrorMessages } from './extractors/error-messages';
 import { ItemStackResolver } from './extractors/items';
@@ -49,9 +50,15 @@ async function Main(): Promise<number> {
       await SendPayload(PacketTypes.BlocksData, blocks);
    }
 
+   // Localization
+   {
+      const localization = await RunThreadAsync(LocalizationKeysResolver(), system.runJob.bind(system));
+      await SendPayload(PacketTypes.LocalizationKeys, localization);
+   }
+
    // Tests
    {
-      const tests = await RunThread(TestsResolver());
+      const tests = await TestsResolver();
       await SendPayload(PacketTypes.ScriptData, tests);
    }
 
@@ -65,12 +72,6 @@ async function Main(): Promise<number> {
    {
       const errors = await RunThread(ErrorMessages());
       await SendPayload(PacketTypes.ErrorMessages, errors);
-   }
-
-   // Errors
-   {
-      const localization = await RunThread(LocalizationKeysResolver());
-      await SendPayload(PacketTypes.LocalizationKeys, localization);
    }
 
    await system.waitTicks(5);

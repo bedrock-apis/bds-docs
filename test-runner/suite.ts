@@ -1,3 +1,4 @@
+import { defaultThreadRunner, RunThreadAsync, ThreadRunner } from './async-generator';
 import { TestEnviroment, setEnviroment } from './enviroment';
 import { TestReport } from './types';
 
@@ -16,11 +17,15 @@ export class TestSuite<T> {
       return new TestSuite(id, () => {});
    }
 
-   static *run(enviroment: TestEnviroment): Generator<unknown, TestReport.Run, unknown> {
+   static r(enviroment: TestEnviroment, runner: ThreadRunner = defaultThreadRunner) {
+      return RunThreadAsync(this.run(enviroment), runner);
+   }
+
+   static *run(enviroment: TestEnviroment): Generator<Promise<void> | unknown, TestReport.Run, unknown> {
       try {
          setEnviroment(enviroment);
 
-         enviroment.onSetup();
+         yield enviroment.onSetup();
       } catch (e) {
          console.error(e);
          return { enviromentSetupError: String(e) };

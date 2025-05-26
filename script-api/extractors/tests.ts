@@ -1,12 +1,14 @@
-import { Block, Entity, VanillaEntityIdentifier, world } from '@minecraft/server';
+import { Block, Entity, system, VanillaEntityIdentifier, world } from '@minecraft/server';
 import { TestEnviroment } from '../../test-runner/enviroment';
 import { TestSuite } from '../../test-runner/suite';
 
 import '../../test-runner/suites/all';
 
 class BedrockDedicatedServerEnviroment extends TestEnviroment {
-   onSetup(): void {
+   async onSetup(): Promise<void> {
       world.getDimension('overworld').runCommand('tickingarea add circle 0 0 0 4 test');
+
+      await system.waitTicks(10);
    }
 
    placeBlock(typeId: string): Block {
@@ -28,14 +30,6 @@ class BedrockDedicatedServerEnviroment extends TestEnviroment {
    }
 }
 
-export function* TestsResolver() {
-   const generator = TestSuite.run(new BedrockDedicatedServerEnviroment());
-   let result = generator.next();
-   while (!result.done) {
-      result = generator.next();
-      yield;
-      if (result.done) return result.value;
-   }
-
-   throw new Error('Failed to get results');
+export function TestsResolver() {
+   return TestSuite.r(new BedrockDedicatedServerEnviroment(), system.runJob.bind(system));
 }
