@@ -1,4 +1,4 @@
-import './block';
-import './dynamic-properties';
-import './entity';
-import './item';
+import './block'
+import './dynamic-properties'
+import './entity'
+import './item'

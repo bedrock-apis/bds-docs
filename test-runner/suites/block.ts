@@ -1,6 +1,6 @@
-import { BlockPermutation } from '@minecraft/server';
-import { placeBlock } from '../enviroment';
-import { TestSuite } from '../suite';
+import { BlockPermutation } from '@minecraft/server'
+import { placeBlock } from '../enviroment'
+import { TestSuite } from '../suite'
 
 TestSuite.withSetup('block', () => placeBlock('minecraft:stone'))
    .test(block => block.typeId)
@@ -13,11 +13,11 @@ TestSuite.withSetup('block', () => placeBlock('minecraft:stone'))
       yield {
          type: block.type,
          states: block.permutation.getAllStates(),
-      };
+      }
 
-      block.trySetPermutation(BlockPermutation.resolve('minecraft:dirt'));
+      block.trySetPermutation(BlockPermutation.resolve('minecraft:dirt'))
       yield {
          type: block.type,
          states: block.permutation.getAllStates(),
-      };
-   });
+      }
+   })
