@@ -395,3 +395,4 @@ class ModuleClass extends ModuleMember {
       );
    }
 }
+export {};

@@ -1,4 +1,4 @@
-import { ItemStack } from '@minecraft/server';
+import { ItemFoodComponent, ItemStack } from '@minecraft/server';
 import { TestSuite } from '../suite';
 
 TestSuite.withSetup('item', () => new ItemStack('minecraft:apple'))
@@ -14,3 +14,8 @@ TestSuite.withSetup('item', () => new ItemStack('minecraft:apple'))
       item.amount++;
       yield item.amount;
    });
+
+TestSuite.withSetup('ItemComponent', () => ItemFoodComponent)
+   .test(c => c.componentId)
+   // @ts-expect-error
+   .test(c => (c.componentId = 'customId')); // Setting static property;
