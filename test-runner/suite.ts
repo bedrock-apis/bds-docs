@@ -1,104 +1,106 @@
-import { defaultThreadRunner, RunThreadAsync, ThreadRunner } from './async-generator';
-import { TestEnviroment, setEnviroment } from './enviroment';
-import { TestReport } from './types';
+import { defaultThreadRunner, RunThreadAsync, ThreadRunner } from './async-generator'
+import { setEnviroment, TestEnviroment } from './enviroment'
+import { TestReport } from './types'
 
 export class TestSuite<T> {
    static stringify(object: unknown): string {
-      if (object === undefined) return 'undefined';
+      if (object === null) return 'null'
+      if (typeof object !== 'object') return String(object)
+
       // TODO Better stringify
-      return JSON.stringify(object);
+      return JSON.stringify(object)
    }
 
    static withSetup<T>(id: string, setupFn: () => T) {
-      return new TestSuite(id, setupFn);
+      return new TestSuite(id, setupFn)
    }
 
    static simple(id: string) {
-      return new TestSuite(id, () => {});
+      return new TestSuite(id, () => {})
    }
 
    static r(enviroment: TestEnviroment, runner: ThreadRunner = defaultThreadRunner) {
-      return RunThreadAsync(this.run(enviroment), runner);
+      return RunThreadAsync(this.run(enviroment), runner)
    }
 
    static *run(enviroment: TestEnviroment): Generator<Promise<void> | unknown, TestReport.Run, unknown> {
       try {
-         setEnviroment(enviroment);
+         setEnviroment(enviroment)
 
-         yield enviroment.onSetup();
+         yield enviroment.onSetup()
       } catch (e) {
-         console.error(e);
-         return { enviromentSetupError: String(e) };
+         console.error(e)
+         return { enviromentSetupError: String(e) }
       }
-      yield;
+      yield
 
-      const suites = [];
+      const suites = []
       for (const suite of this.suites.values()) {
-         suites.push(yield* suite.run());
+         suites.push(yield* suite.run())
       }
-      return suites;
+      return suites
    }
 
-   protected static suites = new Map<string, TestSuite<any>>();
+   protected static suites = new Map<string, TestSuite<any>>()
 
    protected constructor(
       private id: string,
       protected setupFn: () => T,
    ) {
-      TestSuite.suites.set(id, this);
+      TestSuite.suites.set(id, this)
    }
 
    *run(): Generator<unknown, TestReport.Suite, unknown> {
-      let setup;
+      let setup
       try {
-         setup = this.setupFn();
-         yield;
+         setup = this.setupFn()
+         yield
       } catch (e) {
-         return { id: this.id, setupError: String(e) };
+         return { id: this.id, setupError: String(e) }
       }
 
-      const results: (TestReport.Chained | TestReport.Primitive)[] = [];
+      const results: (TestReport.Chained | TestReport.Primitive)[] = []
       for (const test of this.tests) {
-         const result = test(setup);
-         results.push(result);
-         yield;
+         const result = test(setup)
+         results.push(result)
+         yield
       }
 
-      return { id: this.id, results: results };
+      return { id: this.id, results: results }
    }
 
-   protected tests: ((setupData: T) => TestReport.Chained | TestReport.Primitive)[] = [];
+   protected tests: ((setupData: T) => TestReport.Chained | TestReport.Primitive)[] = []
 
    test(testFn: (setupData: T) => unknown): this {
       this.tests.push(setupData => {
          try {
-            const result = testFn(setupData);
-            console.log(testFn.toString(), result);
-            return TestSuite.stringify(result);
+            const result = testFn(setupData)
+            console.log(testFn.toString(), result)
+            return TestSuite.stringify(result)
          } catch (error) {
-            return this.createErrorReport(error);
+            return this.createErrorReport(error)
          }
-      });
-      return this;
+      })
+      return this
    }
 
    private createErrorReport(error: unknown): TestReport.Primitive {
-      return { error: String(error) };
+      return { error: String(error) }
    }
 
    testChain(testFn: (setupData: T) => Generator<unknown, void, unknown>) {
       this.tests.push(setupData => {
-         let results: string[] = [];
+         let results: string[] = []
          try {
             for (const iteration of testFn(setupData)) {
-               results.push(TestSuite.stringify(iteration));
+               results.push(TestSuite.stringify(iteration))
             }
 
-            return results;
+            return results
          } catch (error) {
-            return [...results, this.createErrorReport(error)];
+            return [...results, this.createErrorReport(error)]
          }
-      });
-      return this;
+      })
+      return this
    }
 }

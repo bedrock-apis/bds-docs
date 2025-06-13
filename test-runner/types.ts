@@ -1,30 +1,30 @@
 export namespace TestReport {
    export interface Error {
-      error: string;
+      error: string
    }
 
-   export type Primitive = string | Error;
+   export type Primitive = string | Error
 
-   export type Chained = Primitive[];
+   export type Chained = Primitive[]
 
-   export type Result = Primitive | Chained;
+   export type Result = Primitive | Chained
 
    interface SuiteSetupFailed {
-      setupError: string;
+      setupError: string
    }
 
    interface SuiteSuccess {
-      results: Result[];
+      results: Result[]
    }
 
    export type Suite = {
-      id: string;
-   } & (SuiteSetupFailed | SuiteSuccess);
+      id: string
+   } & (SuiteSetupFailed | SuiteSuccess)
 
-   type RunSuccess = Suite[];
+   type RunSuccess = Suite[]
    interface RunFailed {
-      enviromentSetupError: string;
+      enviromentSetupError: string
    }
 
-   export type Run = RunSuccess | RunFailed;
+   export type Run = RunSuccess | RunFailed
 }
