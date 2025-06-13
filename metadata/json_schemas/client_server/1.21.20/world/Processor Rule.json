@@ -2,10 +2,9 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3035388266",
     "x-format-version": "1.21.20",
-    "x-minecraft-version": "1.21.90-beta.28",
+    "x-minecraft-version": "1.21.100-beta.20",
     "definitions": {
         "45584192": {
-            "title": "struct SharedTypes::v1_21_20::JigsawStructure::ProcessorRule::Passthrough",
             "type": "object",
             "properties": {
                 "type": {
@@ -23,7 +22,6 @@
             ]
         },
         "1134690608": {
-            "title": "struct SharedTypes::v1_21_20::JigsawStructure::ProcessorRule::AppendLoot",
             "type": "object",
             "properties": {
                 "loot_table": {
@@ -44,8 +42,7 @@
                 "type"
             ]
         },
-        "1493335182": {
-            "title": "struct SharedTypes::Reference<1>",
+        "1527331705": {
             "oneOf": [
                 {
                     "type": "string"
@@ -56,7 +53,6 @@
             ]
         },
         "1556792771": {
-            "title": "struct SharedTypes::v1_21_20::JigsawStructure::ProcessorRule::AlwaysTruePos",
             "type": "object",
             "properties": {
                 "predicate_type": {
@@ -73,8 +69,32 @@
                 "predicate_type"
             ]
         },
+        "1766729433": {
+            "type": "object",
+            "properties": {
+                "block_state": {
+                    "$ref": "#/definitions/3076687790"
+                },
+                "predicate_type": {
+                    "title": "PositionalBlockRuleAxis",
+                    "type": "string",
+                    "const": "minecraft:blockstate_match",
+                    "enum": [
+                        "minecraft:always_true",
+                        "minecraft:block_match",
+                        "minecraft:random_block_match",
+                        "minecraft:tag_match",
+                        "minecraft:blockstate_match",
+                        "minecraft:random_blockstate_match"
+                    ]
+                }
+            },
+            "required": [
+                "block_state",
+                "predicate_type"
+            ]
+        },
         "2198589344": {
-            "title": "struct SharedTypes::v1_21_20::JigsawStructure::ProcessorRule::BlockMatch",
             "type": "object",
             "properties": {
                 "block": {
@@ -88,7 +108,9 @@
                         "minecraft:always_true",
                         "minecraft:block_match",
                         "minecraft:random_block_match",
-                        "minecraft:tag_match"
+                        "minecraft:tag_match",
+                        "minecraft:blockstate_match",
+                        "minecraft:random_blockstate_match"
                     ]
                 }
             },
@@ -98,7 +120,6 @@
             ]
         },
         "3034820683": {
-            "title": "struct SharedTypes::v1_21_20::JigsawStructure::ProcessorRule::TagMatch",
             "type": "object",
             "properties": {
                 "predicate_type": {
@@ -109,7 +130,9 @@
                         "minecraft:always_true",
                         "minecraft:block_match",
                         "minecraft:random_block_match",
-                        "minecraft:tag_match"
+                        "minecraft:tag_match",
+                        "minecraft:blockstate_match",
+                        "minecraft:random_blockstate_match"
                     ]
                 },
                 "tag": {
@@ -125,13 +148,13 @@
             "title": "Block Specifier",
             "oneOf": [
                 {
-                    "$ref": "#/definitions/1493335182"
+                    "$ref": "#/definitions/1527331705"
                 },
                 {
                     "type": "object",
                     "properties": {
                         "name": {
-                            "$ref": "#/definitions/1493335182"
+                            "$ref": "#/definitions/1527331705"
                         },
                         "states": {
                             "type": "object",
@@ -157,7 +180,6 @@
             ]
         },
         "3523914459": {
-            "title": "struct SharedTypes::v1_21_20::JigsawStructure::ProcessorRule::RandomBlockMatch",
             "type": "object",
             "properties": {
                 "block": {
@@ -171,13 +193,15 @@
                         "minecraft:always_true",
                         "minecraft:block_match",
                         "minecraft:random_block_match",
-                        "minecraft:tag_match"
+                        "minecraft:tag_match",
+                        "minecraft:blockstate_match",
+                        "minecraft:random_blockstate_match"
                     ]
                 },
                 "probability": {
                     "type": "number",
                     "minimum": 0,
-                    "exclusiveMaximum": 1
+                    "maximum": 1
                 }
             },
             "required": [
@@ -186,8 +210,38 @@
                 "probability"
             ]
         },
+        "3589682888": {
+            "type": "object",
+            "properties": {
+                "block_state": {
+                    "$ref": "#/definitions/3076687790"
+                },
+                "predicate_type": {
+                    "title": "PositionalBlockRuleAxis",
+                    "type": "string",
+                    "const": "minecraft:random_blockstate_match",
+                    "enum": [
+                        "minecraft:always_true",
+                        "minecraft:block_match",
+                        "minecraft:random_block_match",
+                        "minecraft:tag_match",
+                        "minecraft:blockstate_match",
+                        "minecraft:random_blockstate_match"
+                    ]
+                },
+                "probability": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                }
+            },
+            "required": [
+                "block_state",
+                "predicate_type",
+                "probability"
+            ]
+        },
         "3839910888": {
-            "title": "struct SharedTypes::v1_21_20::JigsawStructure::ProcessorRule::AxisAlignedLinear",
             "type": "object",
             "properties": {
                 "axis": {
@@ -232,7 +286,6 @@
             ]
         },
         "4275912652": {
-            "title": "struct SharedTypes::v1_21_20::JigsawStructure::ProcessorRule::AlwaysTrueBlock",
             "type": "object",
             "properties": {
                 "predicate_type": {
@@ -243,7 +296,9 @@
                         "minecraft:always_true",
                         "minecraft:block_match",
                         "minecraft:random_block_match",
-                        "minecraft:tag_match"
+                        "minecraft:tag_match",
+                        "minecraft:blockstate_match",
+                        "minecraft:random_blockstate_match"
                     ]
                 }
             },
@@ -252,7 +307,7 @@
             ]
         }
     },
-    "title": "struct SharedTypes::v1_21_20::JigsawStructure::Rule",
+    "title": "Processor Rule",
     "type": "object",
     "properties": {
         "block_entity_modifier": {
@@ -278,6 +333,12 @@
                 },
                 {
                     "$ref": "#/definitions/3034820683"
+                },
+                {
+                    "$ref": "#/definitions/1766729433"
+                },
+                {
+                    "$ref": "#/definitions/3589682888"
                 }
             ]
         },
@@ -294,6 +355,12 @@
                 },
                 {
                     "$ref": "#/definitions/3034820683"
+                },
+                {
+                    "$ref": "#/definitions/1766729433"
+                },
+                {
+                    "$ref": "#/definitions/3589682888"
                 }
             ]
         },

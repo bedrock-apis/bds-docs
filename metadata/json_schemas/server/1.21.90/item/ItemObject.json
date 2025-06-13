@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3209403096",
     "x-format-version": "1.21.90",
-    "x-minecraft-version": "1.21.90-beta.28",
+    "x-minecraft-version": "1.21.100-beta.20",
     "definitions": {
         "34598326": {
             "title": "minecraft:storage_weight_limit",
@@ -70,7 +70,7 @@
                     "type": "number"
                 },
                 "projectile_entity": {
-                    "$ref": "#/definitions/1493629372",
+                    "$ref": "#/definitions/1492643634",
                     "minLength": 0,
                     "pattern": "^(?:\\w+(?:\\.\\w+)*:(?=\\w))?(?:\\w+(?:\\.\\w+)*)(?:<((?:\\w+(?:\\.\\w+)*:(?=\\w))?\\w+(?:\\.\\w+)*)*>)?$"
                 }
@@ -87,7 +87,7 @@
                     "type": "integer"
                 },
                 "particle_type": {
-                    "title": "enum ParticleType",
+                    "title": "",
                     "type": "string",
                     "enum": [
                         "none",
@@ -182,7 +182,7 @@
                     ]
                 },
                 "sound_event": {
-                    "title": "enum SharedTypes::Legacy::LevelSoundEvent",
+                    "title": "",
                     "type": "string",
                     "enum": [
                         "item.use.on",
@@ -726,7 +726,7 @@
                     }
                 },
                 "entity": {
-                    "$ref": "#/definitions/1493629372",
+                    "$ref": "#/definitions/1492643634",
                     "minLength": 0,
                     "pattern": "^(?:\\w+(?:\\.\\w+)*:(?=\\w))?(?:\\w+(?:\\.\\w+)*)(?:<((?:\\w+(?:\\.\\w+)*:(?=\\w))?\\w+(?:\\.\\w+)*)*>)?$"
                 },
@@ -743,7 +743,7 @@
             "type": "object",
             "properties": {
                 "block": {
-                    "$ref": "#/definitions/1493335182"
+                    "$ref": "#/definitions/1527331705"
                 },
                 "replace_block_item": {
                     "type": "boolean"
@@ -820,7 +820,7 @@
                         "textures": {
                             "type": "object",
                             "additionalProperties": {
-                                "$ref": "#/definitions/1492643634"
+                                "$ref": "#/definitions/3673189651"
                             }
                         }
                     }
@@ -828,7 +828,6 @@
             ]
         },
         "1398826300": {
-            "title": "struct SharedTypes::IntRange",
             "type": "object",
             "properties": {
                 "max": {
@@ -839,12 +838,7 @@
                 }
             }
         },
-        "1460386889": {
-            "title": "struct SharedTypes::Identifier<4>",
-            "type": "string"
-        },
         "1492643634": {
-            "title": "struct SharedTypes::Reference<5>",
             "oneOf": [
                 {
                     "type": "string"
@@ -854,19 +848,7 @@
                 }
             ]
         },
-        "1493335182": {
-            "title": "struct SharedTypes::Reference<1>",
-            "oneOf": [
-                {
-                    "type": "string"
-                },
-                {
-                    "type": "string"
-                }
-            ]
-        },
-        "1493629372": {
-            "title": "struct SharedTypes::Reference<3>",
+        "1527331705": {
             "oneOf": [
                 {
                     "type": "string"
@@ -877,7 +859,7 @@
             ]
         },
         "1531870811": {
-            "title": "struct SharedTypes::Legacy::ItemDescriptor",
+            "title": "Item Descriptor",
             "oneOf": [
                 {
                     "type": "string"
@@ -934,7 +916,7 @@
             "type": "object",
             "properties": {
                 "identifier": {
-                    "$ref": "#/definitions/1460386889"
+                    "$ref": "#/definitions/3573822430"
                 },
                 "menu_category": {
                     "$ref": "#/definitions/3342154574"
@@ -986,7 +968,7 @@
             ]
         },
         "1899103179": {
-            "title": "struct SharedTypes::v1_20_50::DiggerItemComponent::BlockInfo",
+            "title": "BlockInfo",
             "type": "object",
             "properties": {
                 "block": {
@@ -1099,7 +1081,7 @@
             }
         },
         "2681068491": {
-            "title": "struct SharedTypes::v1_20_50::ShooterItemComponent::Ammunition",
+            "title": "Ammunition",
             "type": "object",
             "properties": {
                 "item": {
@@ -1120,7 +1102,6 @@
             ]
         },
         "2770948419": {
-            "title": "struct SharedTypes::Legacy::BlockDescriptorSerializer::BlockDescriptorProxy",
             "type": "object",
             "properties": {
                 "name": {
@@ -1138,7 +1119,7 @@
             }
         },
         "2794205495": {
-            "title": "struct SharedTypes::Legacy::BlockDescriptor",
+            "title": "Block Descriptor",
             "oneOf": [
                 {
                     "$ref": "#/definitions/2770948419"
@@ -1192,7 +1173,7 @@
                     "type": "number"
                 },
                 "sound_event": {
-                    "title": "enum SharedTypes::Legacy::LevelSoundEvent",
+                    "title": "",
                     "type": "string",
                     "enum": [
                         "item.use.on",
@@ -1806,7 +1787,7 @@
             "title": "minecraft:use_animation",
             "oneOf": [
                 {
-                    "title": "enum SharedTypes::Legacy::UseAnimation",
+                    "title": "Animation",
                     "type": "string",
                     "enum": [
                         "none",
@@ -1825,7 +1806,7 @@
                     "type": "object",
                     "properties": {
                         "value": {
-                            "title": "enum SharedTypes::Legacy::UseAnimation",
+                            "title": "Animation",
                             "type": "string",
                             "enum": [
                                 "none",
@@ -1845,7 +1826,7 @@
             ]
         },
         "3256164975": {
-            "title": "struct SharedTypes::v1_20_50::RepairableItemComponent::RepairItemEntry",
+            "title": "Repair",
             "oneOf": [
                 {
                     "type": "array",
@@ -1895,7 +1876,7 @@
             "type": "object",
             "properties": {
                 "category": {
-                    "title": "enum CreativeItemCategory",
+                    "title": "",
                     "type": "string",
                     "enum": [
                         "construction",
@@ -1975,7 +1956,7 @@
                     "minimum": 0
                 },
                 "slot": {
-                    "title": "enum SharedTypes::Legacy::EquipmentSlot",
+                    "title": "",
                     "type": "string",
                     "enum": [
                         "slot.weapon.offhand",
@@ -1989,6 +1970,9 @@
             "required": [
                 "slot"
             ]
+        },
+        "3573822430": {
+            "type": "string"
         },
         "3602397325": {
             "title": "minecraft:dyeable",
@@ -2125,6 +2109,16 @@
                     "$ref": "#/definitions/3553782894"
                 }
             }
+        },
+        "3673189651": {
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ]
         },
         "3715727616": {
             "title": "minecraft:throwable",

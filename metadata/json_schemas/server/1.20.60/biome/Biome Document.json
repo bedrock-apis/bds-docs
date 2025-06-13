@@ -1,8 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "1325498408",
+    "$id": "106251308",
     "x-format-version": "1.20.60",
-    "x-minecraft-version": "1.21.90-beta.28",
+    "x-minecraft-version": "1.21.100-beta.20",
     "definitions": {
         "6061611": {
             "title": "minecraft:creature_spawn_probability",
@@ -153,66 +153,14 @@
                 }
             }
         },
-        "471566442": {
-            "title": "Biome Components",
-            "type": "object",
-            "properties": {
-                "minecraft:capped_surface": {
-                    "$ref": "#/definitions/910282102"
-                },
-                "minecraft:climate": {
-                    "$ref": "#/definitions/800202529"
-                },
-                "minecraft:creature_spawn_probability": {
-                    "$ref": "#/definitions/6061611"
-                },
-                "minecraft:frozen_ocean_surface": {
-                    "$ref": "#/definitions/114123883"
-                },
-                "minecraft:mesa_surface": {
-                    "$ref": "#/definitions/1174814411"
-                },
-                "minecraft:mountain_parameters": {
-                    "$ref": "#/definitions/4185018795"
-                },
-                "minecraft:multinoise_generation_rules": {
-                    "$ref": "#/definitions/458645028"
-                },
-                "minecraft:overworld_generation_rules": {
-                    "$ref": "#/definitions/70508991"
-                },
-                "minecraft:overworld_height": {
-                    "$ref": "#/definitions/1042742755"
-                },
-                "minecraft:replace_biomes": {
-                    "$ref": "#/definitions/320104782"
-                },
-                "minecraft:surface_material_adjustments": {
-                    "$ref": "#/definitions/3704131722"
-                },
-                "minecraft:surface_parameters": {
-                    "$ref": "#/definitions/1167427373"
-                },
-                "minecraft:swamp_surface": {
-                    "$ref": "#/definitions/416340115"
-                },
-                "minecraft:tags": {
-                    "$ref": "#/definitions/3315029981"
-                },
-                "minecraft:the_end_surface": {
-                    "$ref": "#/definitions/2053063253"
-                }
-            }
-        },
         "553173857": {
-            "title": "struct SharedTypes::v1_20_60::OverworldGenerationRulesBiomeJsonComponent::WeightedBiomeName",
             "oneOf": [
                 {
                     "type": "array",
                     "items": {
                         "oneOf": [
                             {
-                                "$ref": "#/definitions/1527037515"
+                                "$ref": "#/definitions/1493335182"
                             },
                             {
                                 "type": "integer"
@@ -223,7 +171,7 @@
                     "maxItems": 2
                 },
                 {
-                    "$ref": "#/definitions/1527037515"
+                    "$ref": "#/definitions/1493335182"
                 }
             ]
         },
@@ -247,7 +195,7 @@
                 "targets": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/1527037515"
+                        "$ref": "#/definitions/1493335182"
                     },
                     "minItems": 1
                 }
@@ -486,8 +434,10 @@
                 }
             }
         },
+        "1425993008": {
+            "type": "string"
+        },
         "1493335182": {
-            "title": "struct SharedTypes::Reference<1>",
             "oneOf": [
                 {
                     "type": "string"
@@ -497,8 +447,7 @@
                 }
             ]
         },
-        "1527037515": {
-            "title": "struct SharedTypes::Reference<0>",
+        "1527331705": {
             "oneOf": [
                 {
                     "type": "string"
@@ -507,6 +456,73 @@
                     "type": "string"
                 }
             ]
+        },
+        "1532434245": {
+            "title": "Biome Definition",
+            "type": "object",
+            "properties": {
+                "components": {
+                    "$ref": "#/definitions/1631445286"
+                },
+                "description": {
+                    "$ref": "#/definitions/2549212327"
+                }
+            },
+            "required": [
+                "components",
+                "description"
+            ]
+        },
+        "1631445286": {
+            "title": "Biome Components",
+            "type": "object",
+            "properties": {
+                "minecraft:capped_surface": {
+                    "$ref": "#/definitions/910282102"
+                },
+                "minecraft:climate": {
+                    "$ref": "#/definitions/800202529"
+                },
+                "minecraft:creature_spawn_probability": {
+                    "$ref": "#/definitions/6061611"
+                },
+                "minecraft:frozen_ocean_surface": {
+                    "$ref": "#/definitions/114123883"
+                },
+                "minecraft:mesa_surface": {
+                    "$ref": "#/definitions/1174814411"
+                },
+                "minecraft:mountain_parameters": {
+                    "$ref": "#/definitions/4185018795"
+                },
+                "minecraft:multinoise_generation_rules": {
+                    "$ref": "#/definitions/458645028"
+                },
+                "minecraft:overworld_generation_rules": {
+                    "$ref": "#/definitions/70508991"
+                },
+                "minecraft:overworld_height": {
+                    "$ref": "#/definitions/1042742755"
+                },
+                "minecraft:replace_biomes": {
+                    "$ref": "#/definitions/320104782"
+                },
+                "minecraft:surface_material_adjustments": {
+                    "$ref": "#/definitions/3704131722"
+                },
+                "minecraft:surface_parameters": {
+                    "$ref": "#/definitions/1167427373"
+                },
+                "minecraft:swamp_surface": {
+                    "$ref": "#/definitions/416340115"
+                },
+                "minecraft:tags": {
+                    "$ref": "#/definitions/3315029981"
+                },
+                "minecraft:the_end_surface": {
+                    "$ref": "#/definitions/2053063253"
+                }
+            }
         },
         "2053063253": {
             "title": "minecraft:the_end_surface"
@@ -532,6 +548,19 @@
                 }
             }
         },
+        "2549212327": {
+            "title": "Biome Description",
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "$ref": "#/definitions/1425993008",
+                    "pattern": "^[a-z0-9._%+-]+:[a-z0-9._%+-]+$"
+                }
+            },
+            "required": [
+                "identifier"
+            ]
+        },
         "2586207614": {
             "title": "minecraft:overworld_generation_rules - Weighted biome names settings",
             "oneOf": [
@@ -542,34 +571,21 @@
                     }
                 },
                 {
-                    "$ref": "#/definitions/1527037515"
+                    "$ref": "#/definitions/1493335182"
                 }
-            ]
-        },
-        "2794612011": {
-            "title": "Biome Description",
-            "type": "object",
-            "properties": {
-                "identifier": {
-                    "$ref": "#/definitions/3607230573",
-                    "pattern": "^[a-z0-9._%+-:]+$"
-                }
-            },
-            "required": [
-                "identifier"
             ]
         },
         "3076687790": {
             "title": "Block Specifier",
             "oneOf": [
                 {
-                    "$ref": "#/definitions/1493335182"
+                    "$ref": "#/definitions/1527331705"
                 },
                 {
                     "type": "object",
                     "properties": {
                         "name": {
-                            "$ref": "#/definitions/1493335182"
+                            "$ref": "#/definitions/1527331705"
                         },
                         "states": {
                             "type": "object",
@@ -640,10 +656,6 @@
                 "tags"
             ]
         },
-        "3607230573": {
-            "title": "struct SharedTypes::Identifier<0>",
-            "type": "string"
-        },
         "3704131722": {
             "title": "minecraft:surface_material_adjustments",
             "type": "object",
@@ -655,22 +667,6 @@
                     }
                 }
             }
-        },
-        "3728836809": {
-            "title": "Biome Definition",
-            "type": "object",
-            "properties": {
-                "components": {
-                    "$ref": "#/definitions/471566442"
-                },
-                "description": {
-                    "$ref": "#/definitions/2794612011"
-                }
-            },
-            "required": [
-                "components",
-                "description"
-            ]
         },
         "3848407258": {
             "title": "minecraft:mountain_parameters - top_slide settings",
@@ -704,7 +700,7 @@
             "type": "string"
         },
         "minecraft:biome": {
-            "$ref": "#/definitions/3728836809"
+            "$ref": "#/definitions/1532434245"
         }
     },
     "required": [

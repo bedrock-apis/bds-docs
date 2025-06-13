@@ -1,8 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "779019467",
+    "$id": "751048717",
     "x-format-version": "1.21.40",
-    "x-minecraft-version": "1.21.90-beta.28",
+    "x-minecraft-version": "1.21.100-beta.20",
     "definitions": {
         "444653910": {
             "title": "minecraft:dry_foliage_color",
@@ -32,6 +32,19 @@
                 }
             }
         },
+        "627767384": {
+            "title": "Client Biome Description",
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "type": "string",
+                    "pattern": "^[a-z0-9._%+-]+:[a-z0-9._%+-]+$"
+                }
+            },
+            "required": [
+                "identifier"
+            ]
+        },
         "658145120": {
             "title": "minecraft:sky_color",
             "type": "object",
@@ -49,7 +62,7 @@
             "type": "object",
             "properties": {
                 "fog_identifier": {
-                    "type": "string"
+                    "$ref": "#/definitions/3674175389"
                 }
             },
             "required": [
@@ -75,6 +88,36 @@
             },
             "required": [
                 "color_map"
+            ]
+        },
+        "1322351274": {
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "1357039345": {
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "1527037515": {
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
             ]
         },
         "1894305624": {
@@ -141,7 +184,7 @@
             "type": "object",
             "properties": {
                 "water_identifier": {
-                    "type": "string"
+                    "$ref": "#/definitions/1322351274"
                 }
             },
             "required": [
@@ -153,13 +196,13 @@
             "type": "object",
             "properties": {
                 "addition": {
-                    "type": "string"
+                    "$ref": "#/definitions/1357039345"
                 },
                 "loop": {
-                    "type": "string"
+                    "$ref": "#/definitions/1357039345"
                 },
                 "mood": {
-                    "type": "string"
+                    "$ref": "#/definitions/1357039345"
                 }
             }
         },
@@ -168,24 +211,51 @@
             "type": "object",
             "properties": {
                 "lighting_identifier": {
-                    "type": "string"
+                    "$ref": "#/definitions/3639487318"
                 }
             },
             "required": [
                 "lighting_identifier"
             ]
         },
-        "3072409085": {
-            "title": "Client Biome Description",
-            "type": "object",
-            "properties": {
-                "identifier": {
-                    "type": "string",
-                    "pattern": "^[a-z0-9._%+-:]+$"
+        "3504177219": {
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
                 }
-            },
-            "required": [
-                "identifier"
+            ]
+        },
+        "3639487318": {
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "3673881199": {
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "3674175389": {
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
             ]
         },
         "3713296728": {
@@ -209,7 +279,7 @@
             "type": "object",
             "properties": {
                 "atmosphere_identifier": {
-                    "type": "string"
+                    "$ref": "#/definitions/1527037515"
                 }
             },
             "required": [
@@ -221,7 +291,7 @@
             "type": "object",
             "properties": {
                 "color_grading_identifier": {
-                    "type": "string"
+                    "$ref": "#/definitions/3673881199"
                 }
             },
             "required": [
@@ -265,7 +335,7 @@
             "type": "object",
             "properties": {
                 "music_definition": {
-                    "type": "string"
+                    "$ref": "#/definitions/3504177219"
                 },
                 "volume_multiplier": {
                     "type": "number"
@@ -280,7 +350,7 @@
             "$ref": "#/definitions/2282391920"
         },
         "description": {
-            "$ref": "#/definitions/3072409085"
+            "$ref": "#/definitions/627767384"
         }
     },
     "required": [

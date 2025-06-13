@@ -5254,11 +5254,6 @@
                                         "name": "RawMessage"
                                     },
                                     {
-                                        "is_bind_type": true,
-                                        "is_errorable": false,
-                                        "name": "RawText"
-                                    },
-                                    {
                                         "is_bind_type": false,
                                         "is_errorable": false,
                                         "name": "string"
@@ -8656,9 +8651,14 @@
                     "return_type": {
                         "error_types": [
                             {
-                                "is_bind_type": false,
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.1.0"
+                                },
+                                "is_bind_type": true,
                                 "is_errorable": false,
-                                "name": "Error"
+                                "name": "ArgumentOutOfBoundsError"
                             },
                             {
                                 "is_bind_type": true,
@@ -11775,6 +11775,23 @@
                     "is_static": false,
                     "name": "applyImpulse",
                     "return_type": {
+                        "error_types": [
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.1.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "ArgumentOutOfBoundsError"
+                            },
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            }
+                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "undefined"
@@ -24094,6 +24111,18 @@
                     "is_static": false,
                     "name": "setLore",
                     "return_type": {
+                        "error_types": [
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.1.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "ArgumentOutOfBoundsError"
+                            }
+                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "undefined"
@@ -44412,6 +44441,34 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "InvalidEntityError"
+            }
+        },
+        {
+            "name": "InvalidItemStackError",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "itemType",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "ItemType"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "InvalidItemStackError"
             }
         },
         {

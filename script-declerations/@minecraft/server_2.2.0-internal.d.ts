@@ -1,6 +1,6 @@
 import * as _1e from '@minecraft/common';
 
-// Enums - 58
+// Enums - 60
 export enum AimAssistTargetMode { Angle = "Angle", Distance = "Distance"};
 export enum BlockComponentTypes { FluidContainer = "minecraft:fluid_container", Inventory = "minecraft:inventory", Piston = "minecraft:piston", RecordPlayer = "minecraft:record_player", Sign = "minecraft:sign"};
 export enum BlockPistonState { Expanded = "Expanded", Expanding = "Expanding", Retracted = "Retracted", Retracting = "Retracting"};
@@ -24,6 +24,8 @@ export enum EnchantmentSlot { ArmorFeet = "ArmorFeet", ArmorHead = "ArmorHead", 
 export enum EntityComponentTypes { AddRider = "minecraft:addrider", Ageable = "minecraft:ageable", Breathable = "minecraft:breathable", CanClimb = "minecraft:can_climb", CanFly = "minecraft:can_fly", CanPowerJump = "minecraft:can_power_jump", Color = "minecraft:color", Color2 = "minecraft:color2", CursorInventory = "minecraft:cursor_inventory", Equippable = "minecraft:equippable", Exhaustion = "minecraft:player.exhaustion", FireImmune = "minecraft:fire_immune", FloatsInLiquid = "minecraft:floats_in_liquid", FlyingSpeed = "minecraft:flying_speed", FrictionModifier = "minecraft:friction_modifier", Healable = "minecraft:healable", Health = "minecraft:health", Hunger = "minecraft:player.hunger", Inventory = "minecraft:inventory", IsBaby = "minecraft:is_baby", IsCharged = "minecraft:is_charged", IsChested = "minecraft:is_chested", IsDyeable = "minecraft:is_dyeable", IsHiddenWhenInvisible = "minecraft:is_hidden_when_invisible", IsIgnited = "minecraft:is_ignited", IsIllagerCaptain = "minecraft:is_illager_captain", IsSaddled = "minecraft:is_saddled", IsShaking = "minecraft:is_shaking", IsSheared = "minecraft:is_sheared", IsStackable = "minecraft:is_stackable", IsStunned = "minecraft:is_stunned", IsTamed = "minecraft:is_tamed", Item = "minecraft:item", LavaMovement = "minecraft:lava_movement", Leashable = "minecraft:leashable", MarkVariant = "minecraft:mark_variant", Movement = "minecraft:movement", MovementAmphibious = "minecraft:movement.amphibious", MovementBasic = "minecraft:movement.basic", MovementFly = "minecraft:movement.fly", MovementGeneric = "minecraft:movement.generic", MovementGlide = "minecraft:movement.glide", MovementHover = "minecraft:movement.hover", MovementJump = "minecraft:movement.jump", MovementSkip = "minecraft:movement.skip", MovementSway = "minecraft:movement.sway", NavigationClimb = "minecraft:navigation.climb", NavigationFloat = "minecraft:navigation.float", NavigationFly = "minecraft:navigation.fly", NavigationGeneric = "minecraft:navigation.generic", NavigationHover = "minecraft:navigation.hover", NavigationWalk = "minecraft:navigation.walk", Npc = "minecraft:npc", OnFire = "minecraft:onfire", Projectile = "minecraft:projectile", PushThrough = "minecraft:push_through", Rideable = "minecraft:rideable", Riding = "minecraft:riding", Saturation = "minecraft:player.saturation", Scale = "minecraft:scale", SkinId = "minecraft:skin_id", Strength = "minecraft:strength", Tameable = "minecraft:tameable", TameMount = "minecraft:tamemount", TypeFamily = "minecraft:type_family", UnderwaterMovement = "minecraft:underwater_movement", Variant = "minecraft:variant", WantsJockey = "minecraft:wants_jockey"};
 export enum EntityDamageCause { anvil = "anvil", blockExplosion = "blockExplosion", campfire = "campfire", charging = "charging", contact = "contact", drowning = "drowning", entityAttack = "entityAttack", entityExplosion = "entityExplosion", fall = "fall", fallingBlock = "fallingBlock", fire = "fire", fireTick = "fireTick", fireworks = "fireworks", flyIntoWall = "flyIntoWall", freezing = "freezing", lava = "lava", lightning = "lightning", maceSmash = "maceSmash", magic = "magic", magma = "magma", none = "none", override = "override", piston = "piston", projectile = "projectile", ramAttack = "ramAttack", selfDestruct = "selfDestruct", sonicBoom = "sonicBoom", soulCampfire = "soulCampfire", stalactite = "stalactite", stalagmite = "stalagmite", starve = "starve", suffocation = "suffocation", temperature = "temperature", thorns = "thorns", void = "void", wither = "wither"};
 export enum EntityInitializationCause { Born = "Born", Event = "Event", Loaded = "Loaded", Spawned = "Spawned", Transformed = "Transformed"};
+export enum EntitySpawnCategory { Ambient = "Ambient", Axolotls = "Axolotls", Creature = "Creature", Misc = "Misc", Monster = "Monster", UndergroundWaterCreature = "UndergroundWaterCreature", WaterAmbient = "WaterAmbient", WaterCreature = "WaterCreature"};
+export enum EntitySpawnReason { Breeding = "Breeding", Bucket = "Bucket", ChunkGeneration = "ChunkGeneration", Command = "Command", Conversion = "Conversion", DimensionTravel = "DimensionTravel", Dispenser = "Dispenser", Event = "Event", Jockey = "Jockey", Load = "Load", MobSummoned = "MobSummoned", Natural = "Natural", Patrol = "Patrol", Reinforcement = "Reinforcement", SpawnEgg = "SpawnEgg", Spawner = "Spawner", Structure = "Structure", TrialSpawner = "TrialSpawner", Triggered = "Triggered"};
 export enum EquipmentSlot { Body = "Body", Chest = "Chest", Feet = "Feet", Head = "Head", Legs = "Legs", Mainhand = "Mainhand", Offhand = "Offhand"};
 export enum FluidType { Lava = "Lava", Potion = "Potion", PowderSnow = "PowderSnow", Water = "Water"};
 export enum GameMode { Adventure = "Adventure", Creative = "Creative", Spectator = "Spectator", Survival = "Survival"};
@@ -137,7 +139,7 @@ export interface Vector3 { x: number; y: number; z: number};
 export interface VectorXZ { x: number; z: number};
 export interface WorldSoundOptions { pitch?: number; volume?: number};
 
-// Classes - 313
+// Classes - 317
 export class AimAssistCategory { public readonly defaultBlockPriority: number; public readonly defaultEntityPriority: number; public readonly identifier: string; public getBlockPriorities(): Record<string,number>; public getEntityPriorities(): Record<string,number>; private constructor();};
 export class AimAssistCategorySettings { public defaultBlockPriority: number; public defaultEntityPriority: number; public readonly identifier: string; public constructor(identifier: string); public getBlockPriorities(): Record<string,number>; public getEntityPriorities(): Record<string,number>; public setBlockPriorities(blockPriorities: Record<string,number>): void; public setEntityPriorities(entityPriorities: Record<string,number>): void;};
 export class AimAssistPreset { public readonly defaultItemSettings?: string; public readonly handSettings?: string; public readonly identifier: string; public getExcludedTargets(): string[]; public getItemSettings(): Record<string,string>; public getLiquidTargetingItems(): string[]; private constructor();};
@@ -191,7 +193,7 @@ export class BlockPistonComponent extends BlockComponent{ public static readonly
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BlockRecordPlayerComponent extends BlockComponent{ public static readonly componentId = "minecraft:record_player"; public ejectRecord(): void; public getRecord(): (ItemStack | undefined); public isPlaying(): boolean; public pauseRecord(): void; public playRecord(): void; public setRecord(recordItemType?: ItemType | string, startPlaying?: boolean): void; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
-export class BlockSignComponent extends BlockComponent{ public static readonly componentId = "minecraft:sign"; public readonly isWaxed: boolean; public getRawText(side?: SignSide): (RawText | undefined); public getText(side?: SignSide): (string | undefined); public getTextDyeColor(side?: SignSide): (DyeColor | undefined); public setText(message: RawMessage | RawText | string, side?: SignSide): void; public setTextDyeColor(color?: DyeColor, side?: SignSide): void; public setWaxed(waxed: boolean): void; private constructor();};
+export class BlockSignComponent extends BlockComponent{ public static readonly componentId = "minecraft:sign"; public readonly isWaxed: boolean; public getRawText(side?: SignSide): (RawText | undefined); public getText(side?: SignSide): (string | undefined); public getTextDyeColor(side?: SignSide): (DyeColor | undefined); public setText(message: RawMessage | string, side?: SignSide): void; public setTextDyeColor(color?: DyeColor, side?: SignSide): void; public setWaxed(waxed: boolean): void; private constructor();};
 export class BlockStates { public static get(stateName: string): (BlockStateType | undefined); public static getAll(): BlockStateType[]; private constructor();};
 export class BlockStateType { public readonly id: string; public readonly validValues: (boolean | number | string)[]; private constructor();};
 export class BlockType { public readonly id: string; private constructor();};
@@ -379,6 +381,8 @@ export class EntityScaleComponent extends EntityComponent{ public static readonl
 export class EntitySkinIdComponent extends EntityComponent{ public static readonly componentId = "minecraft:skin_id"; public readonly value: number; private constructor();};
 export class EntitySpawnAfterEvent { public readonly cause: EntityInitializationCause; public entity: Entity; private constructor();};
 export class EntitySpawnAfterEventSignal { public subscribe(callback: (arg0: EntitySpawnAfterEvent)=>void): (arg0: EntitySpawnAfterEvent)=>void; public unsubscribe(callback: (arg0: EntitySpawnAfterEvent)=>void): void; private constructor();};
+export class EntitySpawnCallbackArgs { public readonly dimensionLocation: DimensionLocation; public readonly spawnReason: EntitySpawnReason; public readonly spawnType: EntitySpawnType; private constructor();};
+export class EntitySpawnType { public readonly entityId: string; public readonly height: number; public readonly isImmuneFire: boolean; public readonly isSummonable: boolean; public readonly spawnCategory: EntitySpawnCategory; public readonly width: number; public getSpawnAABB(position: Vector3): BlockBoundingBox; public isBlockDangerous(block: Block): boolean; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class EntityStrengthComponent extends EntityComponent{ public static readonly componentId = "minecraft:strength"; public readonly max: number; public readonly value: number; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
@@ -466,6 +470,7 @@ export class LeverActionAfterEventSignal { public subscribe(callback: (arg0: Lev
 export class ListBlockVolume extends BlockVolumeBase{ public add(locations: Vector3[]): void; public constructor(locations: Vector3[]); public remove(locations: Vector3[]): void;};
 export class MessageReceiveAfterEvent { public readonly id: string; public readonly message: string; public readonly player: Player; private constructor();};
 export class MolangVariableMap { public constructor(); public setColorRGB(variableName: string, color: RGB): void; public setColorRGBA(variableName: string, color: RGBA): void; public setFloat(variableName: string, number: number): void; public setSpeedAndDirection(variableName: string, speed: number, direction: Vector3): void; public setVector3(variableName: string, vector: Vector3): void;};
+export class ObstructionCallbackArgs { public readonly dimension: Dimension; public readonly entity: Entity; public readonly spawnType: EntitySpawnType; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class PistonActivateAfterEvent extends BlockEvent{ public readonly isExpanding: boolean; public readonly piston: BlockPistonComponent; private constructor();};
 export class PistonActivateAfterEventSignal { public subscribe(callback: (arg0: PistonActivateAfterEvent)=>void): (arg0: PistonActivateAfterEvent)=>void; public unsubscribe(callback: (arg0: PistonActivateAfterEvent)=>void): void; private constructor();};
@@ -546,8 +551,9 @@ export class Seat { public readonly lockRiderRotation: number; public readonly m
 export class ServerMessageAfterEventSignal { public subscribe(callback: (arg0: MessageReceiveAfterEvent)=>void): (arg0: MessageReceiveAfterEvent)=>void; public unsubscribe(callback: (arg0: MessageReceiveAfterEvent)=>void): void; private constructor();};
 export class ShutdownBeforeEventSignal { public subscribe(callback: (arg0: ShutdownEvent)=>void): (arg0: ShutdownEvent)=>void; public unsubscribe(callback: (arg0: ShutdownEvent)=>void): void; private constructor();};
 export class ShutdownEvent { private constructor();};
+export class SpawnRulesRegistry { public registerEntitySpawnCallback(id: string, callback: (arg0: EntitySpawnCallbackArgs)=>boolean): void; public registerObstructionCallback(id: string, callback: (arg0: ObstructionCallbackArgs)=>boolean): void; private constructor();};
 export class StartupBeforeEventSignal { public subscribe(callback: (arg0: StartupEvent)=>void): (arg0: StartupEvent)=>void; public unsubscribe(callback: (arg0: StartupEvent)=>void): void; private constructor();};
-export class StartupEvent { public readonly blockComponentRegistry: BlockComponentRegistry; public readonly customCommandRegistry: CustomCommandRegistry; public readonly itemComponentRegistry: ItemComponentRegistry; private constructor();};
+export class StartupEvent { public readonly blockComponentRegistry: BlockComponentRegistry; public readonly customCommandRegistry: CustomCommandRegistry; public readonly itemComponentRegistry: ItemComponentRegistry; public getSpawnRulesRegistry(): SpawnRulesRegistry; private constructor();};
 export class Structure { public readonly id: string; public readonly isValid: boolean; public readonly size: Vector3; public getBlockPermutation(location: Vector3): (BlockPermutation | undefined); public getIsWaterlogged(location: Vector3): boolean; public saveAs(identifier: string, saveMode?: StructureSaveMode): Structure; public saveToWorld(): void; public setBlockPermutation(location: Vector3, blockPermutation?: BlockPermutation, waterlogged?: boolean): void; private constructor();};
 export class StructureManager { public createEmpty(identifier: string, size: Vector3, saveMode?: StructureSaveMode): Structure; public createFromWorld(identifier: string, dimension: Dimension, from: Vector3, to: Vector3, options?: StructureCreateOptions): Structure; public delete(structure: string | Structure): boolean; public get(identifier: string): (Structure | undefined); public getWorldStructureIds(): string[]; public place(structure: string | Structure, dimension: Dimension, location: Vector3, options?: StructurePlaceOptions): void; public placeJigsaw(pool: string, targetJigsaw: string, maxDepth: number, dimension: Dimension, location: Vector3, options?: JigsawPlaceOptions): BlockBoundingBox; public placeJigsawStructure(identifier: string, dimension: Dimension, location: Vector3, options?: JigsawStructurePlaceOptions): BlockBoundingBox; private constructor();};
 export class System { public readonly afterEvents: SystemAfterEvents; public readonly beforeEvents: SystemBeforeEvents; public readonly currentTick: number; public readonly isEditorWorld: boolean; public readonly serverSystemInfo: SystemInfo; public clearJob(jobId: number): void; public clearRun(runId: number): void; public run(callback: ()=>void): number; public runInterval(callback: ()=>void, tickInterval?: number): number; public runJob(generator: Generator<undefined>): number; public runTimeout(callback: ()=>void, tickDelay?: number): number; public sendScriptEvent(id: string, message: string): void; public waitTicks(ticks: number): Promise<void>; private constructor();};
@@ -573,9 +579,10 @@ export class WorldBeforeEvents { public readonly chatSend: ChatSendBeforeEventSi
 export class WorldLoadAfterEvent { private constructor();};
 export class WorldLoadAfterEventSignal { public subscribe(callback: (arg0: WorldLoadAfterEvent)=>void): (arg0: WorldLoadAfterEvent)=>void; public unsubscribe(callback: (arg0: WorldLoadAfterEvent)=>void): void; private constructor();};
 
-// Constants & Objects - 7
+// Constants & Objects - 8
 export const HudElementsCount = 13;
 export const HudVisibilityCount = 2;
+export const isInternal = true;
 export const MoonPhaseCount = 8;
 export const TicksPerDay = 24000;
 export const TicksPerSecond = 20;
@@ -585,7 +592,7 @@ export const world: World;
 
 // Functions - 0
 
-// Errors - 27
+// Errors - 29
 export class BlockCustomComponentAlreadyRegisteredError extends Error{ private constructor();};
 export class BlockCustomComponentReloadNewComponentError extends Error{ private constructor();};
 export class BlockCustomComponentReloadNewEventError extends Error{ private constructor();};
@@ -601,6 +608,7 @@ export class EnchantmentTypeUnknownIdError extends Error{ private constructor();
 export class InvalidContainerError extends Error{ private constructor();};
 export class InvalidContainerSlotError extends Error{ private constructor();};
 export class InvalidEntityError extends Error{ public readonly id: string; public readonly type: string; private constructor();};
+export class InvalidItemStackError extends Error{ public readonly itemType: ItemType; private constructor();};
 export class InvalidIteratorError extends Error{ private constructor();};
 export class InvalidStructureError extends Error{ private constructor();};
 export class ItemCustomComponentAlreadyRegisteredError extends Error{ private constructor();};
@@ -612,4 +620,5 @@ export class LocationOutOfWorldBoundariesError extends Error{ private constructo
 export class NamespaceNameError extends Error{ public readonly reason: NamespaceNameErrorReason; private constructor();};
 export class PlaceJigsawError extends Error{ private constructor();};
 export class RawMessageError extends Error{ private constructor();};
+export class SpawnRulesInvalidRegistryError extends Error{ private constructor();};
 export class UnloadedChunksError extends Error{ private constructor();};

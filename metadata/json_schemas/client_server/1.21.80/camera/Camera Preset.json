@@ -1,11 +1,10 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "996782454",
+    "$id": "1333709765",
     "x-format-version": "1.21.80",
-    "x-minecraft-version": "1.21.90-beta.28",
+    "x-minecraft-version": "1.21.100-beta.20",
     "definitions": {
         "3530470262": {
-            "title": "struct SharedTypes::v1_21_50::CameraPresetAimAssistDefinition",
             "type": "object",
             "properties": {
                 "angle": {
@@ -52,25 +51,17 @@
             ]
         }
     },
-    "title": "struct SharedTypes::v1_21_80::CameraPreset",
+    "title": "Camera Preset",
     "type": "object",
     "properties": {
         "aim_assist": {
             "$ref": "#/definitions/3530470262"
         },
-        "continue_targeting": {
+        "align_target_and_camera_forward": {
             "type": "boolean"
         },
-        "control_scheme": {
-            "title": "Control Scheme",
-            "type": "string",
-            "enum": [
-                "locked_player_relative_strafe",
-                "camera_relative",
-                "camera_relative_strafe",
-                "player_relative",
-                "player_relative_strafe"
-            ]
+        "continue_targeting": {
+            "type": "boolean"
         },
         "entity_offset": {
             "type": "array",
@@ -101,7 +92,7 @@
             "pattern": "^(\\w+:\\w+)?$"
         },
         "listener": {
-            "title": "enum SharedTypes::v1_21_80::CameraPreset::AudioListener",
+            "title": "AudioListener",
             "type": "string",
             "enum": [
                 "camera",

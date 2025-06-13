@@ -5254,11 +5254,6 @@
                                         "name": "RawMessage"
                                     },
                                     {
-                                        "is_bind_type": true,
-                                        "is_errorable": false,
-                                        "name": "RawText"
-                                    },
-                                    {
                                         "is_bind_type": false,
                                         "is_errorable": false,
                                         "name": "string"
@@ -8656,9 +8651,14 @@
                     "return_type": {
                         "error_types": [
                             {
-                                "is_bind_type": false,
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.1.0"
+                                },
+                                "is_bind_type": true,
                                 "is_errorable": false,
-                                "name": "Error"
+                                "name": "ArgumentOutOfBoundsError"
                             },
                             {
                                 "is_bind_type": true,
@@ -11775,6 +11775,23 @@
                     "is_static": false,
                     "name": "applyImpulse",
                     "return_type": {
+                        "error_types": [
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.1.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "ArgumentOutOfBoundsError"
+                            },
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            }
+                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "undefined"
@@ -19072,234 +19089,6 @@
             }
         },
         {
-            "base_types": [],
-            "constants": [],
-            "functions": [],
-            "name": "EntitySpawnCallbackArgs",
-            "properties": [
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
-                    "name": "dimensionLocation",
-                    "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "DimensionLocation"
-                    }
-                },
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
-                    "name": "spawnReason",
-                    "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "EntitySpawnReason"
-                    }
-                },
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
-                    "name": "spawnType",
-                    "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "EntitySpawnType"
-                    }
-                }
-            ],
-            "runtime_conditions": [
-                "Simplified Spawn Rules"
-            ],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "EntitySpawnCallbackArgs"
-            }
-        },
-        {
-            "base_types": [],
-            "constants": [],
-            "functions": [
-                {
-                    "arguments": [
-                        {
-                            "details": null,
-                            "name": "position",
-                            "type": {
-                                "is_bind_type": true,
-                                "is_errorable": false,
-                                "name": "Vector3"
-                            }
-                        }
-                    ],
-                    "call_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "getSpawnAABB",
-                    "return_type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "BlockBoundingBox"
-                    }
-                },
-                {
-                    "arguments": [
-                        {
-                            "details": null,
-                            "name": "block",
-                            "type": {
-                                "is_bind_type": true,
-                                "is_errorable": false,
-                                "name": "Block"
-                            }
-                        }
-                    ],
-                    "call_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "isBlockDangerous",
-                    "return_type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "boolean"
-                    }
-                }
-            ],
-            "name": "EntitySpawnType",
-            "properties": [
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
-                    "name": "entityId",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    }
-                },
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
-                    "name": "height",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "float",
-                        "valid_range": {
-                            "max": 2147483647,
-                            "min": -2147483648
-                        }
-                    }
-                },
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
-                    "name": "isImmuneFire",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "boolean"
-                    }
-                },
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
-                    "name": "isSummonable",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "boolean"
-                    }
-                },
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
-                    "name": "spawnCategory",
-                    "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "EntitySpawnCategory"
-                    }
-                },
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
-                    "name": "width",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "float",
-                        "valid_range": {
-                            "max": 2147483647,
-                            "min": -2147483648
-                        }
-                    }
-                }
-            ],
-            "runtime_conditions": [
-                "Simplified Spawn Rules"
-            ],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "EntitySpawnType"
-            }
-        },
-        {
             "base_types": [
                 {
                     "is_bind_type": true,
@@ -24322,6 +24111,18 @@
                     "is_static": false,
                     "name": "setLore",
                     "return_type": {
+                        "error_types": [
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.1.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "ArgumentOutOfBoundsError"
+                            }
+                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "undefined"
@@ -26250,67 +26051,6 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "MolangVariableMap"
-            }
-        },
-        {
-            "base_types": [],
-            "constants": [],
-            "functions": [],
-            "name": "ObstructionCallbackArgs",
-            "properties": [
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
-                    "name": "dimension",
-                    "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "Dimension"
-                    }
-                },
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
-                    "name": "entity",
-                    "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "Entity"
-                    }
-                },
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
-                    "name": "spawnType",
-                    "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "EntitySpawnType"
-                    }
-                }
-            ],
-            "runtime_conditions": [
-                "Simplified Spawn Rules"
-            ],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "ObstructionCallbackArgs"
             }
         },
         {
@@ -34536,164 +34276,6 @@
                     "arguments": [
                         {
                             "details": null,
-                            "name": "id",
-                            "type": {
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "string"
-                            }
-                        },
-                        {
-                            "details": null,
-                            "name": "callback",
-                            "type": {
-                                "closure_type": {
-                                    "argument_types": [
-                                        {
-                                            "is_bind_type": true,
-                                            "is_errorable": false,
-                                            "name": "EntitySpawnCallbackArgs"
-                                        }
-                                    ],
-                                    "return_type": {
-                                        "is_bind_type": false,
-                                        "is_errorable": true,
-                                        "name": "boolean"
-                                    }
-                                },
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "closure"
-                            }
-                        }
-                    ],
-                    "call_privilege": [
-                        {
-                            "name": "early_execution"
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "registerEntitySpawnCallback",
-                    "return_type": {
-                        "error_types": [
-                            {
-                                "from_module": {
-                                    "name": "@minecraft/common",
-                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
-                                    "version": "1.1.0"
-                                },
-                                "is_bind_type": true,
-                                "is_errorable": false,
-                                "name": "InvalidArgumentError"
-                            },
-                            {
-                                "is_bind_type": true,
-                                "is_errorable": false,
-                                "name": "NamespaceNameError"
-                            },
-                            {
-                                "is_bind_type": true,
-                                "is_errorable": false,
-                                "name": "SpawnRulesInvalidRegistryError"
-                            }
-                        ],
-                        "is_bind_type": false,
-                        "is_errorable": true,
-                        "name": "undefined"
-                    }
-                },
-                {
-                    "arguments": [
-                        {
-                            "details": null,
-                            "name": "id",
-                            "type": {
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "string"
-                            }
-                        },
-                        {
-                            "details": null,
-                            "name": "callback",
-                            "type": {
-                                "closure_type": {
-                                    "argument_types": [
-                                        {
-                                            "is_bind_type": true,
-                                            "is_errorable": false,
-                                            "name": "ObstructionCallbackArgs"
-                                        }
-                                    ],
-                                    "return_type": {
-                                        "is_bind_type": false,
-                                        "is_errorable": true,
-                                        "name": "boolean"
-                                    }
-                                },
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "closure"
-                            }
-                        }
-                    ],
-                    "call_privilege": [
-                        {
-                            "name": "early_execution"
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "registerObstructionCallback",
-                    "return_type": {
-                        "error_types": [
-                            {
-                                "from_module": {
-                                    "name": "@minecraft/common",
-                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
-                                    "version": "1.1.0"
-                                },
-                                "is_bind_type": true,
-                                "is_errorable": false,
-                                "name": "InvalidArgumentError"
-                            },
-                            {
-                                "is_bind_type": true,
-                                "is_errorable": false,
-                                "name": "NamespaceNameError"
-                            },
-                            {
-                                "is_bind_type": true,
-                                "is_errorable": false,
-                                "name": "SpawnRulesInvalidRegistryError"
-                            }
-                        ],
-                        "is_bind_type": false,
-                        "is_errorable": true,
-                        "name": "undefined"
-                    }
-                }
-            ],
-            "name": "SpawnRulesRegistry",
-            "properties": [],
-            "runtime_conditions": [
-                "Simplified Spawn Rules"
-            ],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "SpawnRulesRegistry"
-            }
-        },
-        {
-            "base_types": [],
-            "constants": [],
-            "functions": [
-                {
-                    "arguments": [
-                        {
-                            "details": null,
                             "name": "callback",
                             "type": {
                                 "closure_type": {
@@ -34796,27 +34378,7 @@
         {
             "base_types": [],
             "constants": [],
-            "functions": [
-                {
-                    "arguments": [],
-                    "call_privilege": [
-                        {
-                            "name": "early_execution"
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "getSpawnRulesRegistry",
-                    "return_type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "SpawnRulesRegistry"
-                    },
-                    "runtime_conditions": [
-                        "Simplified Spawn Rules"
-                    ]
-                }
-            ],
+            "functions": [],
             "name": "StartupEvent",
             "properties": [
                 {
@@ -39498,17 +39060,6 @@
         {
             "is_read_only": true,
             "is_static": true,
-            "name": "isInternal",
-            "type": {
-                "is_bind_type": false,
-                "is_errorable": false,
-                "name": "boolean"
-            },
-            "value": true
-        },
-        {
-            "is_read_only": true,
-            "is_static": true,
             "name": "MoonPhaseCount",
             "type": {
                 "is_bind_type": false,
@@ -42368,313 +41919,6 @@
                 {
                     "is_read_only": true,
                     "is_static": true,
-                    "name": "Ambient",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "Ambient"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "Axolotls",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "Axolotls"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "Creature",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "Creature"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "Misc",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "Misc"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "Monster",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "Monster"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "UndergroundWaterCreature",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "UndergroundWaterCreature"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "WaterAmbient",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "WaterAmbient"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "WaterCreature",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "WaterCreature"
-                }
-            ],
-            "name": "EntitySpawnCategory"
-        },
-        {
-            "constants": [
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "Breeding",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "Breeding"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "Bucket",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "Bucket"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "ChunkGeneration",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "ChunkGeneration"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "Command",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "Command"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "Conversion",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "Conversion"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "DimensionTravel",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "DimensionTravel"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "Dispenser",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "Dispenser"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "Event",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "Event"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "Jockey",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "Jockey"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "Load",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "Load"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "MobSummoned",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "MobSummoned"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "Natural",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "Natural"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "Patrol",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "Patrol"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "Reinforcement",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "Reinforcement"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "SpawnEgg",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "SpawnEgg"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "Spawner",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "Spawner"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "Structure",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "Structure"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "TrialSpawner",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "TrialSpawner"
-                },
-                {
-                    "is_read_only": true,
-                    "is_static": true,
-                    "name": "Triggered",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    },
-                    "value": "Triggered"
-                }
-            ],
-            "name": "EntitySpawnReason"
-        },
-        {
-            "constants": [
-                {
-                    "is_read_only": true,
-                    "is_static": true,
                     "name": "Body",
                     "type": {
                         "is_bind_type": false,
@@ -45178,6 +44422,34 @@
             }
         },
         {
+            "name": "InvalidItemStackError",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "itemType",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "ItemType"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "InvalidItemStackError"
+            }
+        },
+        {
             "name": "InvalidIteratorError",
             "properties": [],
             "type": {
@@ -45293,15 +44565,6 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "RawMessageError"
-            }
-        },
-        {
-            "name": "SpawnRulesInvalidRegistryError",
-            "properties": [],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "SpawnRulesInvalidRegistryError"
             }
         },
         {
@@ -50660,5 +49923,5 @@
         }
     ],
     "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-    "version": "2.1.0-internal"
+    "version": "2.2.0-beta"
 }

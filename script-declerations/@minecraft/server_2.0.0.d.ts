@@ -1,6 +1,6 @@
 import * as _1e from '@minecraft/common';
 
-// Enums - 43
+// Enums - 45
 export enum BlockComponentTypes { FluidContainer = "minecraft:fluid_container", Inventory = "minecraft:inventory", Piston = "minecraft:piston", RecordPlayer = "minecraft:record_player", Sign = "minecraft:sign"};
 export enum BlockPistonState { Expanded = "Expanded", Expanding = "Expanding", Retracted = "Retracted", Retracting = "Retracting"};
 export enum BlockVolumeIntersection { Contains = 1, Disjoint = 0, Intersects = 2};
@@ -25,11 +25,12 @@ export enum HudVisibility { Hide = 0, Reset = 1};
 export enum InputButton { Jump = "Jump", Sneak = "Sneak"};
 export enum InputMode { Gamepad = "Gamepad", KeyboardAndMouse = "KeyboardAndMouse", MotionController = "MotionController", Touch = "Touch"};
 export enum InputPermissionCategory { Camera = 1, Dismount = 8, Jump = 6, LateralMovement = 4, Mount = 7, MoveBackward = 10, MoveForward = 9, MoveLeft = 11, Movement = 2, MoveRight = 12, Sneak = 5};
-export enum ItemComponentTypes { Compostable = "minecraft:compostable", Cooldown = "minecraft:cooldown", Durability = "minecraft:durability", Enchantable = "minecraft:enchantable", Food = "minecraft:food"};
+export enum ItemComponentTypes { Compostable = "minecraft:compostable", Cooldown = "minecraft:cooldown", Durability = "minecraft:durability", Dyeable = "minecraft:dyeable", Enchantable = "minecraft:enchantable", Food = "minecraft:food"};
 export enum ItemLockMode { inventory = "inventory", none = "none", slot = "slot"};
 export enum LiquidType { Water = "Water"};
 export enum MemoryTier { High = 3, Low = 1, Mid = 2, SuperHigh = 4, SuperLow = 0};
 export enum MoonPhase { FirstQuarter = 2, FullMoon = 0, LastQuarter = 6, NewMoon = 4, WaningCrescent = 3, WaningGibbous = 1, WaxingCrescent = 5, WaxingGibbous = 7};
+export enum MovementType { Immovable = "Immovable", Popped = "Popped", Push = "Push", PushPull = "PushPull"};
 export enum NamespaceNameErrorReason { DisallowedNamespace = "DisallowedNamespace", NoNamespace = "NoNamespace"};
 export enum ObjectiveSortOrder { Ascending = 0, Descending = 1};
 export enum PaletteColor { Black = 15, Blue = 11, Brown = 12, Cyan = 9, Gray = 7, Green = 13, LightBlue = 3, Lime = 5, Magenta = 2, Orange = 1, Pink = 6, Purple = 10, Red = 14, Silver = 8, White = 0, Yellow = 4};
@@ -37,6 +38,7 @@ export enum PlatformType { Console = "Console", Desktop = "Desktop", Mobile = "M
 export enum ScoreboardIdentityType { Entity = "Entity", FakePlayer = "FakePlayer", Player = "Player"};
 export enum ScriptEventSource { Block = "Block", Entity = "Entity", NPCDialogue = "NPCDialogue", Server = "Server"};
 export enum SignSide { Back = "Back", Front = "Front"};
+export enum StickyType { None = "None", Same = "Same"};
 export enum StructureAnimationMode { Blocks = "Blocks", Layers = "Layers", None = "None"};
 export enum StructureMirrorAxis { None = "None", X = "X", XZ = "XZ", Z = "Z"};
 export enum StructureRotation { None = "None", Rotate180 = "Rotate180", Rotate270 = "Rotate270", Rotate90 = "Rotate90"};
@@ -112,7 +114,7 @@ export interface Vector3 { x: number; y: number; z: number};
 export interface VectorXZ { x: number; z: number};
 export interface WorldSoundOptions { pitch?: number; volume?: number};
 
-// Classes - 274
+// Classes - 276
 export class Block { public readonly dimension: Dimension; public readonly isAir: boolean; public readonly isLiquid: boolean; public readonly isValid: boolean; public readonly isWaterlogged: boolean; public readonly location: Vector3; public readonly permutation: BlockPermutation; public readonly type: BlockType; public readonly typeId: string; public readonly x: number; public readonly y: number; public readonly z: number; public above(steps?: number): (Block | undefined); public below(steps?: number): (Block | undefined); public bottomCenter(): Vector3; public canBeDestroyedByLiquidSpread(liquidType: LiquidType): boolean; public canContainLiquid(liquidType: LiquidType): boolean; public center(): Vector3; public east(steps?: number): (Block | undefined); public getComponent(componentId: string): (BlockComponent | undefined); public getItemStack(amount?: number, withData?: boolean): (ItemStack | undefined); public getRedstonePower(): (number | undefined); public getTags(): string[]; public hasTag(tag: string): boolean; public isLiquidBlocking(liquidType: LiquidType): boolean; public liquidCanFlowFromDirection(liquidType: LiquidType, flowDirection: Direction): boolean; public liquidSpreadCausesSpawn(liquidType: LiquidType): boolean; public matches(blockName: string, states?: Record<string,boolean | number | string>): boolean; public north(steps?: number): (Block | undefined); public offset(offset: Vector3): (Block | undefined); public setPermutation(permutation: BlockPermutation): void; public setType(blockType: BlockType | string): void; public setWaterlogged(isWaterlogged: boolean): void; public south(steps?: number): (Block | undefined); public west(steps?: number): (Block | undefined); private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BlockComponent extends Component{ public readonly block: Block; private constructor();};
@@ -148,13 +150,15 @@ export class BlockInventoryComponent extends BlockComponent{ public static reado
 export class BlockLocationIterator { public next(): IteratorResult<Vector3>; public [Symbol.iterator](): this; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BlockMapColorComponent extends BlockComponent{ public static readonly componentId = "minecraft:map_color"; public readonly color: RGBA; public readonly tintedColor: RGBA; public readonly tintMethod: TintMethod; private constructor();};
+//@ts-ignore extending for classes with private constructor is possible with native API
+export class BlockMovableComponent extends BlockComponent{ public static readonly componentId = "minecraft:movable"; public readonly movementType: MovementType; public readonly stickyType: StickyType; private constructor();};
 export class BlockPermutation { public readonly type: BlockType; public canBeDestroyedByLiquidSpread(liquidType: LiquidType): boolean; public canContainLiquid(liquidType: LiquidType): boolean; public getAllStates(): Record<string,boolean | number | string>; public getItemStack(amount?: number): (ItemStack | undefined); public getState(stateName: string): (boolean | number | string | undefined); public getTags(): string[]; public hasTag(tag: string): boolean; public isLiquidBlocking(liquidType: LiquidType): boolean; public liquidSpreadCausesSpawn(liquidType: LiquidType): boolean; public matches(blockName: string, states?: Record<string,boolean | number | string>): boolean; public static resolve(blockName: string, states?: Record<string,boolean | number | string>): BlockPermutation; public withState(name: string, value: boolean | number | string): BlockPermutation; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BlockPistonComponent extends BlockComponent{ public static readonly componentId = "minecraft:piston"; public readonly isMoving: boolean; public readonly state: BlockPistonState; public getAttachedBlocks(): Block[]; public getAttachedBlocksLocations(): Vector3[]; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BlockRecordPlayerComponent extends BlockComponent{ public static readonly componentId = "minecraft:record_player"; public ejectRecord(): void; public getRecord(): (ItemStack | undefined); public isPlaying(): boolean; public pauseRecord(): void; public playRecord(): void; public setRecord(recordItemType?: ItemType | string, startPlaying?: boolean): void; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
-export class BlockSignComponent extends BlockComponent{ public static readonly componentId = "minecraft:sign"; public readonly isWaxed: boolean; public getRawText(side?: SignSide): (RawText | undefined); public getText(side?: SignSide): (string | undefined); public getTextDyeColor(side?: SignSide): (DyeColor | undefined); public setText(message: RawMessage | RawText | string, side?: SignSide): void; public setTextDyeColor(color?: DyeColor, side?: SignSide): void; public setWaxed(waxed: boolean): void; private constructor();};
+export class BlockSignComponent extends BlockComponent{ public static readonly componentId = "minecraft:sign"; public readonly isWaxed: boolean; public getRawText(side?: SignSide): (RawText | undefined); public getText(side?: SignSide): (string | undefined); public getTextDyeColor(side?: SignSide): (DyeColor | undefined); public setText(message: RawMessage | string, side?: SignSide): void; public setTextDyeColor(color?: DyeColor, side?: SignSide): void; public setWaxed(waxed: boolean): void; private constructor();};
 export class BlockStates { public static get(stateName: string): (BlockStateType | undefined); public static getAll(): BlockStateType[]; private constructor();};
 export class BlockStateType { public readonly id: string; public readonly validValues: (boolean | number | string)[]; private constructor();};
 export class BlockType { public readonly id: string; private constructor();};
@@ -378,6 +382,8 @@ export class ItemCooldownComponent extends ItemComponent{ public static readonly
 export class ItemCustomComponentInstance extends ItemComponent{ public readonly customComponentParameters: CustomComponentParameters; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ItemDurabilityComponent extends ItemComponent{ public static readonly componentId = "minecraft:durability"; public damage: number; public readonly maxDurability: number; public getDamageChance(unbreakingEnchantmentLevel?: number): number; public getDamageChanceRange(): _1e.NumberRange; private constructor();};
+//@ts-ignore extending for classes with private constructor is possible with native API
+export class ItemDyeableComponent extends ItemComponent{ public static readonly componentId = "minecraft:dyeable"; public color?: RGB; public readonly defaultColor?: RGB; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ItemEnchantableComponent extends ItemComponent{ public static readonly componentId = "minecraft:enchantable"; public readonly slots: EnchantmentSlot[]; public addEnchantment(enchantment: Enchantment): void; public addEnchantments(enchantments: Enchantment[]): void; public canAddEnchantment(enchantment: Enchantment): boolean; public getEnchantment(enchantmentType: EnchantmentType | string): (Enchantment | undefined); public getEnchantments(): Enchantment[]; public hasEnchantment(enchantmentType: EnchantmentType | string): boolean; public removeAllEnchantments(): void; public removeEnchantment(enchantmentType: EnchantmentType | string): void; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API

@@ -1,8 +1,28 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "1417288942",
+    "$id": "3836051660",
     "x-format-version": "1.21.90",
-    "x-minecraft-version": "1.21.90-beta.28",
+    "x-minecraft-version": "1.21.100-beta.20",
+    "definitions": {
+        "1057040869": {
+            "title": "minecraft:tick_world",
+            "type": "object",
+            "properties": {
+                "distance_to_players": {
+                    "type": "number",
+                    "minimum": 128
+                },
+                "never_despawn": {
+                    "type": "boolean"
+                },
+                "radius": {
+                    "type": "integer",
+                    "minimum": 2,
+                    "maximum": 6
+                }
+            }
+        }
+    },
     "title": "Entity component definitions",
     "type": "object",
     "properties": {
@@ -379,9 +399,6 @@
             "description": "Dynamic value"
         },
         "minecraft:body_rotation_always_follows_head": {
-            "description": "Dynamic value"
-        },
-        "minecraft:body_rotation_axis_aligned": {
             "description": "Dynamic value"
         },
         "minecraft:body_rotation_blocked": {
@@ -828,6 +845,9 @@
         "minecraft:rideable": {
             "description": "Dynamic value"
         },
+        "minecraft:rotation_axis_aligned": {
+            "description": "Dynamic value"
+        },
         "minecraft:scale": {
             "description": "Dynamic value"
         },
@@ -877,7 +897,7 @@
             "description": "Dynamic value"
         },
         "minecraft:tick_world": {
-            "description": "Dynamic value"
+            "$ref": "#/definitions/1057040869"
         },
         "minecraft:timer": {
             "description": "Dynamic value"
