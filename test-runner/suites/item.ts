@@ -5,7 +5,9 @@ TestSuite.withSetup('item', () => new ItemStack('minecraft:apple'))
    .test(item => item.typeId)
    .test(item => item.amount)
    .test(item => item.localizationKey)
+   .test(item => Object.getOwnPropertyDescriptor(item, 'localizationKey'))
    .test(item => item.lockMode)
+   .test(item => Object.getOwnPropertyDescriptor(item, 'lockMode'))
    .test(item => item.clone())
    .test(item => item.getCanDestroy())
    .test(item => item.getComponents())
@@ -18,4 +20,5 @@ TestSuite.withSetup('item', () => new ItemStack('minecraft:apple'))
 TestSuite.withSetup('ItemComponent', () => ItemFoodComponent)
    .test(c => c.componentId)
    // @ts-expect-error
-   .test(c => (c.componentId = 'customId')); // Setting static property;
+   .test(c => (c.componentId = 'customId')) // Setting static property;
+   .test(c => Object.getOwnPropertyDescriptor(c, 'componentId'));
