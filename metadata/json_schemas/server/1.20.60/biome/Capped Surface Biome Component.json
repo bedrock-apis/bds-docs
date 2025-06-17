@@ -1,19 +1,31 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "910282102",
-    "x-minecraft-version": "1.21.80",
+    "x-format-version": "1.20.60",
+    "x-minecraft-version": "1.21.90",
     "definitions": {
-        "3076687790": {
-            "title": "Block Specifier",
+        "1493335182": {
+            "title": "struct SharedTypes::Reference<1>",
             "oneOf": [
                 {
                     "type": "string"
                 },
                 {
+                    "type": "string"
+                }
+            ]
+        },
+        "3076687790": {
+            "title": "Block Specifier",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/1493335182"
+                },
+                {
                     "type": "object",
                     "properties": {
                         "name": {
-                            "type": "string"
+                            "$ref": "#/definitions/1493335182"
                         },
                         "states": {
                             "type": "object",
@@ -45,14 +57,14 @@
         "beach_material": {
             "$ref": "#/definitions/3076687790"
         },
-        "floor_materials": {
+        "ceiling_materials": {
             "type": "array",
             "items": {
                 "$ref": "#/definitions/3076687790"
             },
             "minItems": 1
         },
-        "ceiling_materials": {
+        "floor_materials": {
             "type": "array",
             "items": {
                 "$ref": "#/definitions/3076687790"
@@ -67,9 +79,9 @@
         }
     },
     "required": [
-        "floor_materials",
         "ceiling_materials",
-        "sea_material",
-        "foundation_material"
+        "floor_materials",
+        "foundation_material",
+        "sea_material"
     ]
 }

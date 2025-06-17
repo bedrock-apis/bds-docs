@@ -1,19 +1,17 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "2686093684",
-    "x-minecraft-version": "1.21.80",
+    "x-format-version": "1.21.80",
+    "x-minecraft-version": "1.21.90",
     "definitions": {
         "480089458": {
             "title": "class SharedTypes::v1_21_80::JigsawBlockMetadata",
             "type": "object",
             "properties": {
-                "name": {
+                "block": {
                     "type": "string"
                 },
-                "pool": {
-                    "type": "string"
-                },
-                "target": {
+                "final_block": {
                     "type": "string"
                 },
                 "joint_type": {
@@ -24,32 +22,35 @@
                         "aligned"
                     ]
                 },
-                "block": {
+                "name": {
                     "type": "string"
                 },
-                "selection_priority": {
+                "placement_priority": {
                     "type": "integer"
                 },
-                "final_block": {
+                "pool": {
                     "type": "string"
                 },
                 "pos": {
                     "$ref": "#/definitions/820712576"
                 },
-                "placement_priority": {
+                "selection_priority": {
                     "type": "integer"
+                },
+                "target": {
+                    "type": "string"
                 }
             },
             "required": [
-                "name",
-                "pool",
-                "joint_type",
-                "target",
                 "block",
-                "selection_priority",
-                "pos",
                 "final_block",
-                "placement_priority"
+                "joint_type",
+                "name",
+                "placement_priority",
+                "pool",
+                "pos",
+                "selection_priority",
+                "target"
             ]
         },
         "820712576": {
@@ -65,14 +66,14 @@
             "title": "struct SharedTypes::v1_21_80::JigsawStructureMetadata",
             "type": "object",
             "properties": {
-                "size": {
-                    "$ref": "#/definitions/820712576"
-                },
                 "markers": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/480089458"
                     }
+                },
+                "size": {
+                    "$ref": "#/definitions/820712576"
                 }
             },
             "required": [

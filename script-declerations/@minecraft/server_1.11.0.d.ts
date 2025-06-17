@@ -405,8 +405,9 @@ export const world: World;
 
 // Functions - 0
 
-// Errors - 10
+// Errors - 11
 export class CommandError extends Error{ private constructor();};
+export class ContainerRulesError extends Error{ private constructor();};
 export class EnchantmentLevelOutOfBoundsError extends Error{ private constructor();};
 export class EnchantmentTypeNotCompatibleError extends Error{ private constructor();};
 export class EnchantmentTypeUnknownIdError extends Error{ private constructor();};

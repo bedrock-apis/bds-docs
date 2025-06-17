@@ -8,7 +8,7 @@ export enum ScoreboardIdentityType { entity = 2, fakePlayer = 3, player = 1};
 
 // Interfaces - 0
 
-// Classes - 172
+// Classes - 171
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BeforeChatEvent extends ChatEvent{ public cancel: boolean; public targets: Player[]; private constructor();};
 export class BeforeChatEventSignal { public subscribe(callback: (arg0: BeforeChatEvent)=>void): (arg0: BeforeChatEvent)=>void; public unsubscribe(callback: (arg0: BeforeChatEvent)=>void): void; private constructor();};
@@ -89,7 +89,7 @@ export class EntityFrictionModifierComponent extends IEntityComponent{ public va
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class EntityGroundOffsetComponent extends IEntityComponent{ public value: number; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
-export class EntityHealableComponent extends IEntityComponent{ public readonly filters: FilterGroup; public readonly forceUse: boolean; public readonly items: FeedItem[]; private constructor();};
+export class EntityHealableComponent extends IEntityComponent{ public readonly forceUse: boolean; public readonly items: FeedItem[]; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class EntityHealthComponent extends EntityAttributeComponent{ private constructor();};
 export class EntityHitEvent { public readonly entity: Entity; public readonly hitBlock?: Block; public readonly hitEntity?: Entity; private constructor();};
@@ -195,7 +195,6 @@ export class Events { public readonly beforeChat: BeforeChatEventSignal; public 
 export class ExplosionOptions { public allowUnderwater?: boolean; public breaksBlocks?: boolean; public causesFire?: boolean; public source?: Entity; public constructor();};
 export class FeedItem { public readonly effects: FeedItemEffect[]; public readonly healAmount: number; public readonly item: string; private constructor();};
 export class FeedItemEffect { public readonly amplifier: number; public readonly chance: number; public readonly duration: number; public readonly name: string; private constructor();};
-export class FilterGroup { private constructor();};
 export class FluidContainer { public static readonly maxFillLevel = 6; public static readonly minFillLevel = 0; private constructor();};
 export class IBlockProperty { public readonly name: string; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API

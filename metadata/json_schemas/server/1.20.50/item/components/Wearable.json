@@ -1,10 +1,18 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "2041267453",
-    "x-minecraft-version": "1.21.80",
+    "$id": "3553782894",
+    "x-format-version": "1.20.50",
+    "x-minecraft-version": "1.21.90",
     "title": "minecraft:wearable",
     "type": "object",
     "properties": {
+        "hides_player_location": {
+            "type": "boolean"
+        },
+        "protection": {
+            "type": "integer",
+            "minimum": 0
+        },
         "slot": {
             "title": "enum SharedTypes::Legacy::EquipmentSlot",
             "type": "string",
@@ -15,10 +23,6 @@
                 "slot.armor.legs",
                 "slot.armor.feet"
             ]
-        },
-        "protection": {
-            "type": "integer",
-            "minimum": 0
         }
     },
     "required": [

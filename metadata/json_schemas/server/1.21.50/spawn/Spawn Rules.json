@@ -1,7 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1785036358",
-    "x-minecraft-version": "1.21.80",
+    "x-format-version": "1.21.50",
+    "x-minecraft-version": "1.21.90",
     "definitions": {
         "517105782": {
             "title": "compound_proxy",
@@ -38,10 +39,10 @@
             "title": "struct SharedTypes::Legacy::Spawn::HeightFilter",
             "type": "object",
             "properties": {
-                "min": {
+                "max": {
                     "type": "integer"
                 },
-                "max": {
+                "min": {
                     "type": "integer"
                 }
             }
@@ -50,17 +51,17 @@
             "title": "struct SharedTypes::Legacy::Spawn::DelayFilter",
             "type": "object",
             "properties": {
+                "identifier": {
+                    "type": "string"
+                },
+                "max": {
+                    "type": "integer"
+                },
                 "min": {
                     "type": "integer"
                 },
                 "spawn_chance": {
                     "type": "integer"
-                },
-                "max": {
-                    "type": "integer"
-                },
-                "identifier": {
-                    "type": "string"
                 }
             }
         },
@@ -68,32 +69,29 @@
             "title": "struct SharedTypes::Legacy::Spawn::BiomeConditions",
             "type": "object",
             "properties": {
-                "minecraft:difficulty_filter": {
-                    "$ref": "#/definitions/2018407047"
-                },
-                "minecraft:weight": {
-                    "$ref": "#/definitions/517650772"
-                },
-                "minecraft:height_filter": {
-                    "$ref": "#/definitions/581732209"
-                },
-                "minecraft:distance_filter": {
-                    "$ref": "#/definitions/2164548425"
+                "minecraft:biome_filter": {
+                    "$ref": "#/definitions/1088251937"
                 },
                 "minecraft:brightness_filter": {
                     "$ref": "#/definitions/2826784789"
                 },
+                "minecraft:delay_filter": {
+                    "$ref": "#/definitions/584090557"
+                },
                 "minecraft:density_limit": {
                     "$ref": "#/definitions/3571280975"
                 },
-                "minecraft:mob_event_filter": {
-                    "$ref": "#/definitions/1159543840"
+                "minecraft:difficulty_filter": {
+                    "$ref": "#/definitions/2018407047"
                 },
-                "minecraft:world_age_filter": {
-                    "$ref": "#/definitions/921020165"
+                "minecraft:disallow_spawns_in_bubble": {
+                    "$ref": "#/definitions/1774774273"
                 },
-                "minecraft:delay_filter": {
-                    "$ref": "#/definitions/584090557"
+                "minecraft:distance_filter": {
+                    "$ref": "#/definitions/2164548425"
+                },
+                "minecraft:height_filter": {
+                    "$ref": "#/definitions/581732209"
                 },
                 "minecraft:herd": {
                     "oneOf": [
@@ -107,6 +105,15 @@
                             "$ref": "#/definitions/1551459349"
                         }
                     ]
+                },
+                "minecraft:is_experimental": {
+                    "$ref": "#/definitions/2614685946"
+                },
+                "minecraft:is_persistent": {
+                    "$ref": "#/definitions/1142137845"
+                },
+                "minecraft:mob_event_filter": {
+                    "$ref": "#/definitions/1159543840"
                 },
                 "minecraft:permute_type": {
                     "oneOf": [
@@ -123,6 +130,15 @@
                 },
                 "minecraft:player_in_village_filter": {
                     "$ref": "#/definitions/1491617288"
+                },
+                "minecraft:spawn_event": {
+                    "$ref": "#/definitions/1159543840"
+                },
+                "minecraft:spawns_above_block_filter": {
+                    "$ref": "#/definitions/2617991491"
+                },
+                "minecraft:spawns_lava": {
+                    "$ref": "#/definitions/1945762166"
                 },
                 "minecraft:spawns_on_block_filter": {
                     "oneOf": [
@@ -150,15 +166,6 @@
                         }
                     ]
                 },
-                "minecraft:spawns_above_block_filter": {
-                    "$ref": "#/definitions/2617991491"
-                },
-                "minecraft:disallow_spawns_in_bubble": {
-                    "$ref": "#/definitions/1774774273"
-                },
-                "minecraft:biome_filter": {
-                    "$ref": "#/definitions/1088251937"
-                },
                 "minecraft:spawns_on_surface": {
                     "$ref": "#/definitions/1215845429"
                 },
@@ -168,17 +175,11 @@
                 "minecraft:spawns_underwater": {
                     "$ref": "#/definitions/1503426398"
                 },
-                "minecraft:spawns_lava": {
-                    "$ref": "#/definitions/1945762166"
+                "minecraft:weight": {
+                    "$ref": "#/definitions/517650772"
                 },
-                "minecraft:is_persistent": {
-                    "$ref": "#/definitions/1142137845"
-                },
-                "minecraft:is_experimental": {
-                    "$ref": "#/definitions/2614685946"
-                },
-                "minecraft:spawn_event": {
-                    "$ref": "#/definitions/1159543840"
+                "minecraft:world_age_filter": {
+                    "$ref": "#/definitions/921020165"
                 }
             }
         },
@@ -186,10 +187,10 @@
             "title": "struct SharedTypes::Legacy::Spawn::WorldAgeFilter",
             "type": "object",
             "properties": {
-                "min": {
+                "max": {
                     "type": "integer"
                 },
-                "max": {
+                "min": {
                     "type": "integer"
                 }
             }
@@ -209,6 +210,12 @@
                 {
                     "type": "object",
                     "properties": {
+                        "AND": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "NOT": {
+                            "$ref": "#/definitions/1088251937"
+                        },
                         "OR": {
                             "$ref": "#/definitions/1088251937"
                         },
@@ -218,19 +225,13 @@
                         "all_of": {
                             "$ref": "#/definitions/1088251937"
                         },
-                        "AND": {
+                        "any": {
                             "$ref": "#/definitions/1088251937"
                         },
                         "any_of": {
                             "$ref": "#/definitions/1088251937"
                         },
                         "none_of": {
-                            "$ref": "#/definitions/1088251937"
-                        },
-                        "any": {
-                            "$ref": "#/definitions/1088251937"
-                        },
-                        "NOT": {
                             "$ref": "#/definitions/1088251937"
                         }
                     }
@@ -289,13 +290,11 @@
             "title": "struct SharedTypes::Legacy::Spawn::Herd",
             "type": "object",
             "properties": {
-                "min_size": {
-                    "type": "integer",
-                    "minimum": 0
+                "event": {
+                    "type": "string"
                 },
-                "max_size": {
-                    "type": "integer",
-                    "minimum": 0
+                "event_skip_count": {
+                    "type": "integer"
                 },
                 "initial_event": {
                     "type": "string"
@@ -303,11 +302,13 @@
                 "initial_event_count": {
                     "type": "integer"
                 },
-                "event_skip_count": {
-                    "type": "integer"
+                "max_size": {
+                    "type": "integer",
+                    "minimum": 0
                 },
-                "event": {
-                    "type": "string"
+                "min_size": {
+                    "type": "integer",
+                    "minimum": 0
                 }
             }
         },
@@ -324,7 +325,7 @@
             "title": "struct SharedTypes::Legacy::Spawn::DifficultyFilter",
             "type": "object",
             "properties": {
-                "min": {
+                "max": {
                     "title": "enum SharedTypes::Legacy::Spawn::Difficulty",
                     "type": "string",
                     "enum": [
@@ -334,7 +335,7 @@
                         "hard"
                     ]
                 },
-                "max": {
+                "min": {
                     "title": "enum SharedTypes::Legacy::Spawn::Difficulty",
                     "type": "string",
                     "enum": [
@@ -350,10 +351,10 @@
             "title": "struct SharedTypes::Legacy::Spawn::DistanceFilter",
             "type": "object",
             "properties": {
-                "min": {
+                "max": {
                     "type": "integer"
                 },
-                "max": {
+                "min": {
                     "type": "integer"
                 }
             }
@@ -362,16 +363,16 @@
             "title": "struct SharedTypes::Legacy::Spawn::PermuteType",
             "type": "object",
             "properties": {
-                "weight": {
-                    "type": "integer",
-                    "minimum": 0
+                "entity_type": {
+                    "type": "string"
                 },
                 "min_guaranteed": {
                     "type": "integer",
                     "minimum": 0
                 },
-                "entity_type": {
-                    "type": "string"
+                "weight": {
+                    "type": "integer",
+                    "minimum": 0
                 }
             },
             "required": [
@@ -410,14 +411,14 @@
                 "name": {
                     "type": "string"
                 },
-                "tags": {
-                    "type": "string"
-                },
                 "states": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "#/definitions/517105782"
                     }
+                },
+                "tags": {
+                    "type": "string"
                 }
             }
         },
@@ -440,18 +441,18 @@
             "title": "struct SharedTypes::Legacy::Spawn::BrightnessFilter",
             "type": "object",
             "properties": {
-                "min": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 15
+                "adjust_for_weather": {
+                    "type": "boolean"
                 },
                 "max": {
                     "type": "integer",
                     "minimum": 0,
                     "maximum": 15
                 },
-                "adjust_for_weather": {
-                    "type": "boolean"
+                "min": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 15
                 }
             }
         },
@@ -473,7 +474,7 @@
             "title": "Filter Test",
             "type": "object",
             "properties": {
-                "operator": {
+                "domain": {
                     "oneOf": [
                         {
                             "type": "boolean"
@@ -489,8 +490,21 @@
                         }
                     ]
                 },
-                "test": {
-                    "type": "string"
+                "operator": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "subject": {
                     "oneOf": [
@@ -508,21 +522,8 @@
                         }
                     ]
                 },
-                "domain": {
-                    "oneOf": [
-                        {
-                            "type": "boolean"
-                        },
-                        {
-                            "type": "integer"
-                        },
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
+                "test": {
+                    "type": "string"
                 },
                 "value": {
                     "oneOf": [
@@ -549,14 +550,14 @@
     "title": "struct SharedTypes::Legacy::Spawn::Contents",
     "type": "object",
     "properties": {
-        "description": {
-            "$ref": "#/definitions/1253883150"
-        },
         "conditions": {
             "type": "array",
             "items": {
                 "$ref": "#/definitions/904344786"
             }
+        },
+        "description": {
+            "$ref": "#/definitions/1253883150"
         }
     },
     "required": [

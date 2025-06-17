@@ -1,7 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "2427056231",
-    "x-minecraft-version": "1.21.80",
+    "x-format-version": "1.21.20",
+    "x-minecraft-version": "1.21.90",
     "definitions": {
         "4201740570": {
             "title": "struct SharedTypes::v1_21_20::VerticalAnchorValue<0>",
@@ -55,15 +56,6 @@
     "title": "struct SharedTypes::v1_21_20::UniformHeight",
     "type": "object",
     "properties": {
-        "type": {
-            "title": "enum SharedTypes::v1_21_20::HeightProviderHelper::HeightProviderType",
-            "type": "string",
-            "const": "uniform",
-            "enum": [
-                "uniform",
-                "constant"
-            ]
-        },
         "max": {
             "oneOf": [
                 {
@@ -95,11 +87,20 @@
                     "$ref": "#/definitions/4235737093"
                 }
             ]
+        },
+        "type": {
+            "title": "enum SharedTypes::v1_21_20::HeightProviderHelper::HeightProviderType",
+            "type": "string",
+            "const": "uniform",
+            "enum": [
+                "uniform",
+                "constant"
+            ]
         }
     },
     "required": [
-        "type",
         "max",
-        "min"
+        "min",
+        "type"
     ]
 }

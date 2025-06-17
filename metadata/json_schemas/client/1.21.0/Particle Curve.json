@@ -1,16 +1,20 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "2236411444",
-    "x-minecraft-version": "1.21.80",
+    "x-format-version": "1.21.0",
+    "x-minecraft-version": "1.21.90",
     "definitions": {
         "963106671": {
             "title": "particle_curve_bezier_chain node_proxy",
             "type": "object",
             "properties": {
-                "value": {
+                "left_slope": {
                     "type": "number"
                 },
                 "left_value": {
+                    "type": "number"
+                },
+                "right_slope": {
                     "type": "number"
                 },
                 "right_value": {
@@ -19,10 +23,7 @@
                 "slope": {
                     "type": "number"
                 },
-                "left_slope": {
-                    "type": "number"
-                },
-                "right_slope": {
+                "value": {
                     "type": "number"
                 }
             }
@@ -31,25 +32,25 @@
             "title": "particle_curve_bezier_chain",
             "type": "object",
             "properties": {
-                "type": {
-                    "type": "string",
-                    "pattern": "^bezier_chain$"
+                "input": {
+                    "$ref": "#/definitions/3178719147"
                 },
                 "nodes": {
                     "$ref": "#/definitions/2325482181"
                 },
-                "input": {
-                    "$ref": "#/definitions/3178719147"
+                "type": {
+                    "type": "string",
+                    "pattern": "^bezier_chain$"
                 }
             },
             "required": [
-                "type",
+                "input",
                 "nodes",
-                "input"
+                "type"
             ]
         },
         "2267778531": {
-            "title": "struct SharedTypes::Legacy::ExpressionNode::StringRepresentation",
+            "title": "Molang string",
             "oneOf": [
                 {
                     "type": "string"
@@ -86,8 +87,11 @@
             "title": "particle_curve_linear",
             "type": "object",
             "properties": {
-                "type": {
-                    "$ref": "#/definitions/2715320761"
+                "horizontal_range": {
+                    "$ref": "#/definitions/3178719147"
+                },
+                "input": {
+                    "$ref": "#/definitions/3178719147"
                 },
                 "nodes": {
                     "type": "array",
@@ -95,17 +99,14 @@
                         "$ref": "#/definitions/3178719147"
                     }
                 },
-                "input": {
-                    "$ref": "#/definitions/3178719147"
-                },
-                "horizontal_range": {
-                    "$ref": "#/definitions/3178719147"
+                "type": {
+                    "$ref": "#/definitions/2715320761"
                 }
             },
             "required": [
-                "type",
+                "input",
                 "nodes",
-                "input"
+                "type"
             ]
         },
         "2715320761": {
@@ -113,7 +114,7 @@
             "type": "string"
         },
         "3178719147": {
-            "title": "struct SharedTypes::Legacy::ExpressionNode",
+            "title": "Molang expression",
             "oneOf": [
                 {
                     "$ref": "#/definitions/2267778531"

@@ -3163,7 +3163,7 @@
             ],
             "constants": [],
             "functions": [],
-            "name": "BlockComponentPlayerDestroyEvent",
+            "name": "BlockComponentPlayerBreakEvent",
             "properties": [
                 {
                     "get_privilege": [
@@ -3173,7 +3173,7 @@
                     ],
                     "is_baked": false,
                     "is_read_only": true,
-                    "name": "destroyedBlockPermutation",
+                    "name": "brokenBlockPermutation",
                     "type": {
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -3204,7 +3204,7 @@
             "type": {
                 "is_bind_type": true,
                 "is_errorable": false,
-                "name": "BlockComponentPlayerDestroyEvent"
+                "name": "BlockComponentPlayerBreakEvent"
             }
         },
         {
@@ -3593,7 +3593,23 @@
             "constants": [],
             "functions": [],
             "name": "BlockCustomComponentInstance",
-            "properties": [],
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": true,
+                    "is_read_only": true,
+                    "name": "customComponentParameters",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "CustomComponentParameters"
+                    }
+                }
+            ],
             "type": {
                 "is_bind_type": true,
                 "is_errorable": false,
@@ -4218,6 +4234,91 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "BlockMapColorComponent"
+            }
+        },
+        {
+            "base_types": [
+                {
+                    "is_bind_type": true,
+                    "is_errorable": false,
+                    "name": "BlockComponent"
+                }
+            ],
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "componentId",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "minecraft:movable"
+                }
+            ],
+            "functions": [],
+            "name": "BlockMovableComponent",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "movementType",
+                    "type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "LocationInUnloadedChunkError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "LocationOutOfWorldBoundariesError"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "MovementType"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "stickyType",
+                    "type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "LocationInUnloadedChunkError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "LocationOutOfWorldBoundariesError"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "StickyType"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "BlockMovableComponent"
             }
         },
         {
@@ -6072,11 +6173,6 @@
                                         {
                                             "is_bind_type": true,
                                             "is_errorable": false,
-                                            "name": "CameraDefaultOptions"
-                                        },
-                                        {
-                                            "is_bind_type": true,
-                                            "is_errorable": false,
                                             "name": "CameraFixedBoomOptions"
                                         },
                                         {
@@ -6117,6 +6213,48 @@
                     "is_constructor": false,
                     "is_static": false,
                     "name": "setCamera",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "cameraPreset",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "easeOptions",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "EaseOptions"
+                                }
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "setDefaultCamera",
                     "return_type": {
                         "is_bind_type": false,
                         "is_errorable": true,
@@ -7123,6 +7261,18 @@
                     "is_static": false,
                     "name": "addItem",
                     "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "ContainerRulesError"
+                            },
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            }
+                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "optional",
@@ -7212,10 +7362,57 @@
                         ],
                         "is_bind_type": false,
                         "is_errorable": true,
-                        "name": "int32",
-                        "valid_range": {
-                            "max": 2147483647,
-                            "min": -2147483648
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "int32",
+                            "valid_range": {
+                                "max": 2147483647,
+                                "min": -2147483648
+                            }
+                        }
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "itemStack",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "ItemStack"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "findLast",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidContainerError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "int32",
+                            "valid_range": {
+                                "max": 2147483647,
+                                "min": -2147483648
+                            }
                         }
                     }
                 },
@@ -7239,10 +7436,15 @@
                         ],
                         "is_bind_type": false,
                         "is_errorable": true,
-                        "name": "int32",
-                        "valid_range": {
-                            "max": 2147483647,
-                            "min": -2147483648
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "int32",
+                            "valid_range": {
+                                "max": 2147483647,
+                                "min": -2147483648
+                            }
                         }
                     }
                 },
@@ -7266,10 +7468,15 @@
                         ],
                         "is_bind_type": false,
                         "is_errorable": true,
-                        "name": "int32",
-                        "valid_range": {
-                            "max": 2147483647,
-                            "min": -2147483648
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "int32",
+                            "valid_range": {
+                                "max": 2147483647,
+                                "min": -2147483648
+                            }
                         }
                     }
                 },
@@ -7397,46 +7604,21 @@
                     "is_static": false,
                     "name": "moveItem",
                     "return_type": {
-                        "is_bind_type": false,
-                        "is_errorable": true,
-                        "name": "undefined"
-                    }
-                },
-                {
-                    "arguments": [
-                        {
-                            "details": null,
-                            "name": "itemStack",
-                            "type": {
-                                "is_bind_type": true,
-                                "is_errorable": false,
-                                "name": "ItemStack"
-                            }
-                        }
-                    ],
-                    "call_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "reverseFind",
-                    "return_type": {
                         "error_types": [
                             {
                                 "is_bind_type": true,
                                 "is_errorable": false,
-                                "name": "InvalidContainerError"
+                                "name": "ContainerRulesError"
+                            },
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
                             }
                         ],
                         "is_bind_type": false,
                         "is_errorable": true,
-                        "name": "int32",
-                        "valid_range": {
-                            "max": 2147483647,
-                            "min": -2147483648
-                        }
+                        "name": "undefined"
                     }
                 },
                 {
@@ -7483,6 +7665,18 @@
                     "is_static": false,
                     "name": "setItem",
                     "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "ContainerRulesError"
+                            },
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            }
+                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "undefined"
@@ -7541,6 +7735,18 @@
                     "is_static": false,
                     "name": "swapItems",
                     "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "ContainerRulesError"
+                            },
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            }
+                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "undefined"
@@ -7583,6 +7789,18 @@
                     "is_static": false,
                     "name": "transferItem",
                     "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "ContainerRulesError"
+                            },
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            }
+                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "optional",
@@ -7596,6 +7814,26 @@
             ],
             "name": "Container",
             "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": true,
+                    "is_read_only": true,
+                    "name": "containerRules",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "ContainerRules"
+                        }
+                    }
+                },
                 {
                     "get_privilege": [
                         {
@@ -7640,6 +7878,32 @@
                     "is_read_only": true,
                     "name": "size",
                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "weight",
+                    "type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidContainerError"
+                            }
+                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "int32",
@@ -8341,6 +8605,11 @@
                     "name": "setItem",
                     "return_type": {
                         "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "ContainerRulesError"
+                            },
                             {
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -10429,6 +10698,48 @@
                         "is_errorable": true,
                         "name": "undefined"
                     }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "stopAllSounds",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "soundId",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "stopSound",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "undefined"
+                    }
                 }
             ],
             "name": "Dimension",
@@ -10462,6 +10773,21 @@
                     "is_baked": true,
                     "is_read_only": true,
                     "name": "id",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "localizationKey",
                     "type": {
                         "is_bind_type": false,
                         "is_errorable": false,
@@ -13300,6 +13626,23 @@
                     "is_static": false,
                     "name": "setCurrentValue",
                     "return_type": {
+                        "error_types": [
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.1.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "ArgumentOutOfBoundsError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidEntityError"
+                            }
+                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "boolean"
@@ -14242,11 +14585,94 @@
                 }
             ],
             "name": "EntityEquippableComponent",
-            "properties": [],
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "totalArmor",
+                    "type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidEntityError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "totalToughness",
+                    "type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidEntityError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                }
+            ],
             "type": {
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "EntityEquippableComponent"
+            }
+        },
+        {
+            "base_types": [
+                {
+                    "is_bind_type": true,
+                    "is_errorable": false,
+                    "name": "EntityAttributeComponent"
+                }
+            ],
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "componentId",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "minecraft:player.exhaustion"
+                }
+            ],
+            "functions": [],
+            "name": "EntityExhaustionComponent",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "EntityExhaustionComponent"
             }
         },
         {
@@ -15064,6 +15490,36 @@
             }
         },
         {
+            "base_types": [
+                {
+                    "is_bind_type": true,
+                    "is_errorable": false,
+                    "name": "EntityAttributeComponent"
+                }
+            ],
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "componentId",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "minecraft:player.hunger"
+                }
+            ],
+            "functions": [],
+            "name": "EntityHungerComponent",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "EntityHungerComponent"
+            }
+        },
+        {
             "base_types": [],
             "constants": [],
             "functions": [],
@@ -15833,28 +16289,6 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "EntityItemComponent"
-            }
-        },
-        {
-            "base_types": [],
-            "constants": [],
-            "functions": [],
-            "iterator": {
-                "is_bind_type": false,
-                "is_errorable": false,
-                "name": "optional",
-                "optional_type": {
-                    "is_bind_type": true,
-                    "is_errorable": false,
-                    "name": "Entity"
-                }
-            },
-            "name": "EntityIterator",
-            "properties": [],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "EntityIterator"
             }
         },
         {
@@ -18357,6 +18791,36 @@
                 {
                     "is_bind_type": true,
                     "is_errorable": false,
+                    "name": "EntityAttributeComponent"
+                }
+            ],
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "componentId",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "minecraft:player.saturation"
+                }
+            ],
+            "functions": [],
+            "name": "EntitySaturationComponent",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "EntitySaturationComponent"
+            }
+        },
+        {
+            "base_types": [
+                {
+                    "is_bind_type": true,
+                    "is_errorable": false,
                     "name": "EntityComponent"
                 }
             ],
@@ -19100,28 +19564,6 @@
         {
             "base_types": [],
             "constants": [],
-            "functions": [],
-            "iterator": {
-                "is_bind_type": false,
-                "is_errorable": false,
-                "name": "optional",
-                "optional_type": {
-                    "is_bind_type": true,
-                    "is_errorable": false,
-                    "name": "EntityType"
-                }
-            },
-            "name": "EntityTypeIterator",
-            "properties": [],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "EntityTypeIterator"
-            }
-        },
-        {
-            "base_types": [],
-            "constants": [],
             "functions": [
                 {
                     "arguments": [
@@ -19801,18 +20243,6 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "FeedItemEffect"
-            }
-        },
-        {
-            "base_types": [],
-            "constants": [],
-            "functions": [],
-            "name": "FilterGroup",
-            "properties": [],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "FilterGroup"
             }
         },
         {
@@ -21889,7 +22319,23 @@
             "constants": [],
             "functions": [],
             "name": "ItemCustomComponentInstance",
-            "properties": [],
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": true,
+                    "is_read_only": true,
+                    "name": "customComponentParameters",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "CustomComponentParameters"
+                    }
+                }
+            ],
             "type": {
                 "is_bind_type": true,
                 "is_errorable": false,
@@ -22576,6 +23022,59 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "ItemFoodComponent"
+            }
+        },
+        {
+            "base_types": [
+                {
+                    "is_bind_type": true,
+                    "is_errorable": false,
+                    "name": "ItemComponent"
+                }
+            ],
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "componentId",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "minecraft:inventory"
+                }
+            ],
+            "functions": [],
+            "name": "ItemInventoryComponent",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "container",
+                    "type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidContainerError"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "Container"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "ItemInventoryComponent"
             }
         },
         {
@@ -23781,6 +24280,25 @@
                         "is_bind_type": false,
                         "is_errorable": false,
                         "name": "string"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "weight",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
                     }
                 }
             ],
@@ -25902,22 +26420,6 @@
                     }
                 },
                 {
-                    "arguments": [],
-                    "call_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "isOp",
-                    "return_type": {
-                        "is_bind_type": false,
-                        "is_errorable": true,
-                        "name": "boolean"
-                    }
-                },
-                {
                     "arguments": [
                         {
                             "details": null,
@@ -26238,32 +26740,6 @@
                     "arguments": [
                         {
                             "details": null,
-                            "name": "isOp",
-                            "type": {
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "boolean"
-                            }
-                        }
-                    ],
-                    "call_privilege": [
-                        {
-                            "name": "none"
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "setOp",
-                    "return_type": {
-                        "is_bind_type": false,
-                        "is_errorable": true,
-                        "name": "undefined"
-                    }
-                },
-                {
-                    "arguments": [
-                        {
-                            "details": null,
                             "name": "targetEntity",
                             "type": {
                                 "is_bind_type": true,
@@ -26489,8 +26965,64 @@
                     ],
                     "is_constructor": false,
                     "is_static": false,
+                    "name": "stopAllSounds",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidEntityError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
                     "name": "stopMusic",
                     "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "soundId",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "stopSound",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidEntityError"
+                            }
+                        ],
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "undefined"
@@ -26527,6 +27059,26 @@
                         "is_bind_type": true,
                         "is_errorable": true,
                         "name": "ClientSystemInfo"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "commandPermissionLevel",
+                    "set_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "CommandPermissionLevel"
                     }
                 },
                 {
@@ -26688,6 +27240,28 @@
                         "is_bind_type": true,
                         "is_errorable": true,
                         "name": "ScreenDisplay"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "playerPermissionLevel",
+                    "type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidEntityError"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "PlayerPermissionLevel"
                     }
                 },
                 {
@@ -28240,6 +28814,215 @@
             "base_types": [],
             "constants": [],
             "functions": [],
+            "name": "PlayerHotbarSelectedSlotChangeAfterEvent",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "itemStack",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "ItemStack"
+                        }
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": true,
+                    "is_read_only": true,
+                    "name": "newSlotSelected",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "player",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Player"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": true,
+                    "is_read_only": true,
+                    "name": "previousSlotSelected",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PlayerHotbarSelectedSlotChangeAfterEvent"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "callback",
+                            "type": {
+                                "closure_type": {
+                                    "argument_types": [
+                                        {
+                                            "is_bind_type": true,
+                                            "is_errorable": false,
+                                            "name": "PlayerHotbarSelectedSlotChangeAfterEvent"
+                                        }
+                                    ],
+                                    "return_type": {
+                                        "is_bind_type": false,
+                                        "is_errorable": true,
+                                        "name": "undefined"
+                                    }
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "closure"
+                            }
+                        },
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "options",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "HotbarEventOptions"
+                                }
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "subscribe",
+                    "return_type": {
+                        "closure_type": {
+                            "argument_types": [
+                                {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "PlayerHotbarSelectedSlotChangeAfterEvent"
+                                }
+                            ],
+                            "return_type": {
+                                "is_bind_type": false,
+                                "is_errorable": true,
+                                "name": "undefined"
+                            }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "callback",
+                            "type": {
+                                "closure_type": {
+                                    "argument_types": [
+                                        {
+                                            "is_bind_type": true,
+                                            "is_errorable": false,
+                                            "name": "PlayerHotbarSelectedSlotChangeAfterEvent"
+                                        }
+                                    ],
+                                    "return_type": {
+                                        "is_bind_type": false,
+                                        "is_errorable": true,
+                                        "name": "undefined"
+                                    }
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "closure"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "unsubscribe",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "undefined"
+                    }
+                }
+            ],
+            "name": "PlayerHotbarSelectedSlotChangeAfterEventSignal",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PlayerHotbarSelectedSlotChangeAfterEventSignal"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [],
             "name": "PlayerInputModeChangeAfterEvent",
             "properties": [
                 {
@@ -29494,22 +30277,225 @@
             "base_types": [],
             "constants": [],
             "functions": [],
-            "iterator": {
-                "is_bind_type": false,
-                "is_errorable": false,
-                "name": "optional",
-                "optional_type": {
-                    "is_bind_type": true,
-                    "is_errorable": false,
-                    "name": "Player"
+            "name": "PlayerInventoryItemChangeAfterEvent",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "beforeItemStack",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "ItemStack"
+                        }
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": true,
+                    "is_read_only": true,
+                    "name": "inventoryType",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PlayerInventoryType"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "itemStack",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "ItemStack"
+                        }
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "player",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Player"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": true,
+                    "is_read_only": true,
+                    "name": "slot",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
                 }
-            },
-            "name": "PlayerIterator",
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PlayerInventoryItemChangeAfterEvent"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "callback",
+                            "type": {
+                                "closure_type": {
+                                    "argument_types": [
+                                        {
+                                            "is_bind_type": true,
+                                            "is_errorable": false,
+                                            "name": "PlayerInventoryItemChangeAfterEvent"
+                                        }
+                                    ],
+                                    "return_type": {
+                                        "is_bind_type": false,
+                                        "is_errorable": true,
+                                        "name": "undefined"
+                                    }
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "closure"
+                            }
+                        },
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "options",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "InventoryItemEventOptions"
+                                }
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "subscribe",
+                    "return_type": {
+                        "closure_type": {
+                            "argument_types": [
+                                {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "PlayerInventoryItemChangeAfterEvent"
+                                }
+                            ],
+                            "return_type": {
+                                "is_bind_type": false,
+                                "is_errorable": true,
+                                "name": "undefined"
+                            }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "callback",
+                            "type": {
+                                "closure_type": {
+                                    "argument_types": [
+                                        {
+                                            "is_bind_type": true,
+                                            "is_errorable": false,
+                                            "name": "PlayerInventoryItemChangeAfterEvent"
+                                        }
+                                    ],
+                                    "return_type": {
+                                        "is_bind_type": false,
+                                        "is_errorable": true,
+                                        "name": "undefined"
+                                    }
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "closure"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "unsubscribe",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "undefined"
+                    }
+                }
+            ],
+            "name": "PlayerInventoryItemChangeAfterEventSignal",
             "properties": [],
             "type": {
                 "is_bind_type": true,
                 "is_errorable": false,
-                "name": "PlayerIterator"
+                "name": "PlayerInventoryItemChangeAfterEventSignal"
             }
         },
         {
@@ -30174,7 +31160,7 @@
                     ],
                     "is_baked": false,
                     "is_read_only": true,
-                    "name": "permutationBeingPlaced",
+                    "name": "permutationToPlace",
                     "type": {
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -37342,6 +38328,24 @@
                     ],
                     "is_baked": false,
                     "is_read_only": true,
+                    "name": "playerHotbarSelectedSlotChange",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PlayerHotbarSelectedSlotChangeAfterEventSignal"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
                     "name": "playerInputModeChange",
                     "type": {
                         "is_bind_type": true,
@@ -37401,6 +38405,24 @@
                         "is_bind_type": true,
                         "is_errorable": false,
                         "name": "PlayerInteractWithEntityAfterEventSignal"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "playerInventoryItemChange",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PlayerInventoryItemChangeAfterEventSignal"
                     }
                 },
                 {
@@ -38406,6 +39428,66 @@
                 {
                     "is_read_only": true,
                     "is_static": true,
+                    "name": "BannedItem",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "BannedItem"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "NestedStorageItem",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "NestedStorageItem"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "NotAllowedItem",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "NotAllowedItem"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "OverWeightLimit",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "OverWeightLimit"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "ZeroWeightItem",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "ZeroWeightItem"
+                }
+            ],
+            "name": "ContainerRulesErrorReason"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
                     "name": "AlreadyRegistered",
                     "type": {
                         "is_bind_type": false,
@@ -38479,110 +39561,121 @@
                     "is_static": true,
                     "name": "BlockType",
                     "type": {
-                        "is_bind_type": true,
+                        "is_bind_type": false,
                         "is_errorable": false,
-                        "name": "CustomCommandParamType"
+                        "name": "string"
                     },
-                    "value": 7
+                    "value": "BlockType"
                 },
                 {
                     "is_read_only": true,
                     "is_static": true,
                     "name": "Boolean",
                     "type": {
-                        "is_bind_type": true,
+                        "is_bind_type": false,
                         "is_errorable": false,
-                        "name": "CustomCommandParamType"
+                        "name": "string"
                     },
-                    "value": 0
+                    "value": "Boolean"
                 },
                 {
                     "is_read_only": true,
                     "is_static": true,
                     "name": "EntitySelector",
                     "type": {
-                        "is_bind_type": true,
+                        "is_bind_type": false,
                         "is_errorable": false,
-                        "name": "CustomCommandParamType"
+                        "name": "string"
                     },
-                    "value": 4
+                    "value": "EntitySelector"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "EntityType",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "EntityType"
                 },
                 {
                     "is_read_only": true,
                     "is_static": true,
                     "name": "Enum",
                     "type": {
-                        "is_bind_type": true,
+                        "is_bind_type": false,
                         "is_errorable": false,
-                        "name": "CustomCommandParamType"
+                        "name": "string"
                     },
-                    "value": 9
+                    "value": "Enum"
                 },
                 {
                     "is_read_only": true,
                     "is_static": true,
                     "name": "Float",
                     "type": {
-                        "is_bind_type": true,
+                        "is_bind_type": false,
                         "is_errorable": false,
-                        "name": "CustomCommandParamType"
+                        "name": "string"
                     },
-                    "value": 2
+                    "value": "Float"
                 },
                 {
                     "is_read_only": true,
                     "is_static": true,
                     "name": "Integer",
                     "type": {
-                        "is_bind_type": true,
+                        "is_bind_type": false,
                         "is_errorable": false,
-                        "name": "CustomCommandParamType"
+                        "name": "string"
                     },
-                    "value": 1
+                    "value": "Integer"
                 },
                 {
                     "is_read_only": true,
                     "is_static": true,
                     "name": "ItemType",
                     "type": {
-                        "is_bind_type": true,
+                        "is_bind_type": false,
                         "is_errorable": false,
-                        "name": "CustomCommandParamType"
+                        "name": "string"
                     },
-                    "value": 8
+                    "value": "ItemType"
                 },
                 {
                     "is_read_only": true,
                     "is_static": true,
                     "name": "Location",
                     "type": {
-                        "is_bind_type": true,
+                        "is_bind_type": false,
                         "is_errorable": false,
-                        "name": "CustomCommandParamType"
+                        "name": "string"
                     },
-                    "value": 6
+                    "value": "Location"
                 },
                 {
                     "is_read_only": true,
                     "is_static": true,
                     "name": "PlayerSelector",
                     "type": {
-                        "is_bind_type": true,
+                        "is_bind_type": false,
                         "is_errorable": false,
-                        "name": "CustomCommandParamType"
+                        "name": "string"
                     },
-                    "value": 5
+                    "value": "PlayerSelector"
                 },
                 {
                     "is_read_only": true,
                     "is_static": true,
                     "name": "String",
                     "type": {
-                        "is_bind_type": true,
+                        "is_bind_type": false,
                         "is_errorable": false,
-                        "name": "CustomCommandParamType"
+                        "name": "string"
                     },
-                    "value": 3
+                    "value": "String"
                 }
             ],
             "name": "CustomCommandParamType"
@@ -39715,6 +40808,17 @@
                 {
                     "is_read_only": true,
                     "is_static": true,
+                    "name": "Exhaustion",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "minecraft:player.exhaustion"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
                     "name": "FireImmune",
                     "type": {
                         "is_bind_type": false,
@@ -39777,6 +40881,17 @@
                         "name": "string"
                     },
                     "value": "minecraft:health"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Hunger",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "minecraft:player.hunger"
                 },
                 {
                     "is_read_only": true,
@@ -40217,6 +41332,17 @@
                         "name": "string"
                     },
                     "value": "minecraft:riding"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Saturation",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "minecraft:player.saturation"
                 },
                 {
                     "is_read_only": true,
@@ -40917,46 +42043,46 @@
                 {
                     "is_read_only": true,
                     "is_static": true,
-                    "name": "adventure",
+                    "name": "Adventure",
                     "type": {
                         "is_bind_type": false,
                         "is_errorable": false,
                         "name": "string"
                     },
-                    "value": "adventure"
+                    "value": "Adventure"
                 },
                 {
                     "is_read_only": true,
                     "is_static": true,
-                    "name": "creative",
+                    "name": "Creative",
                     "type": {
                         "is_bind_type": false,
                         "is_errorable": false,
                         "name": "string"
                     },
-                    "value": "creative"
+                    "value": "Creative"
                 },
                 {
                     "is_read_only": true,
                     "is_static": true,
-                    "name": "spectator",
+                    "name": "Spectator",
                     "type": {
                         "is_bind_type": false,
                         "is_errorable": false,
                         "name": "string"
                     },
-                    "value": "spectator"
+                    "value": "Spectator"
                 },
                 {
                     "is_read_only": true,
                     "is_static": true,
-                    "name": "survival",
+                    "name": "Survival",
                     "type": {
                         "is_bind_type": false,
                         "is_errorable": false,
                         "name": "string"
                     },
-                    "value": "survival"
+                    "value": "Survival"
                 }
             ],
             "name": "GameMode"
@@ -41881,6 +43007,17 @@
                 {
                     "is_read_only": true,
                     "is_static": true,
+                    "name": "Inventory",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "minecraft:inventory"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
                     "name": "Potion",
                     "type": {
                         "is_bind_type": false,
@@ -41929,6 +43066,33 @@
                 }
             ],
             "name": "ItemLockMode"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "ApplyWaterlogging",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "ApplyWaterlogging"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "IgnoreWaterlogging",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "IgnoreWaterlogging"
+                }
+            ],
+            "name": "LiquidSettings"
         },
         {
             "constants": [
@@ -42098,6 +43262,55 @@
                 }
             ],
             "name": "MoonPhase"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Immovable",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Immovable"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Popped",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Popped"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Push",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Push"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "PushPull",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "PushPull"
+                }
+            ],
+            "name": "MovementType"
         },
         {
             "constants": [
@@ -42377,6 +43590,82 @@
                 {
                     "is_read_only": true,
                     "is_static": true,
+                    "name": "Hotbar",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Hotbar"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Inventory",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Inventory"
+                }
+            ],
+            "name": "PlayerInventoryType"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Custom",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PlayerPermissionLevel"
+                    },
+                    "value": 3
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Member",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PlayerPermissionLevel"
+                    },
+                    "value": 1
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Operator",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PlayerPermissionLevel"
+                    },
+                    "value": 2
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Visitor",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PlayerPermissionLevel"
+                    },
+                    "value": 0
+                }
+            ],
+            "name": "PlayerPermissionLevel"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
                     "name": "Entity",
                     "type": {
                         "is_bind_type": false,
@@ -42485,6 +43774,33 @@
                 }
             ],
             "name": "SignSide"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "None",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "None"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Same",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Same"
+                }
+            ],
+            "name": "StickyType"
         },
         {
             "constants": [
@@ -42912,6 +44228,34 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "CommandError"
+            }
+        },
+        {
+            "name": "ContainerRulesError",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "reason",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "ContainerRulesErrorReason"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "ContainerRulesError"
             }
         },
         {
@@ -43366,7 +44710,7 @@
                 {
                     "is_baked": false,
                     "is_read_only": false,
-                    "name": "onPlayerDestroy",
+                    "name": "onPlayerBreak",
                     "type": {
                         "is_bind_type": false,
                         "is_errorable": false,
@@ -43377,7 +44721,7 @@
                                     {
                                         "is_bind_type": true,
                                         "is_errorable": false,
-                                        "name": "BlockComponentPlayerDestroyEvent"
+                                        "name": "BlockComponentPlayerBreakEvent"
                                     },
                                     {
                                         "is_bind_type": true,
@@ -43947,72 +45291,6 @@
         },
         {
             "base_types": [],
-            "name": "CameraDefaultOptions",
-            "properties": [
-                {
-                    "is_baked": false,
-                    "is_read_only": false,
-                    "name": "easeOptions",
-                    "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "CameraEaseOptions"
-                    }
-                }
-            ],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "CameraDefaultOptions"
-            }
-        },
-        {
-            "base_types": [],
-            "name": "CameraEaseOptions",
-            "properties": [
-                {
-                    "is_baked": false,
-                    "is_read_only": false,
-                    "name": "easeTime",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                            "is_bind_type": false,
-                            "is_errorable": false,
-                            "name": "float",
-                            "valid_range": {
-                                "max": 2147483647,
-                                "min": -2147483648
-                            }
-                        }
-                    }
-                },
-                {
-                    "is_baked": false,
-                    "is_read_only": false,
-                    "name": "easeType",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                            "is_bind_type": true,
-                            "is_errorable": false,
-                            "name": "EasingType"
-                        }
-                    }
-                }
-            ],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "CameraEaseOptions"
-            }
-        },
-        {
-            "base_types": [],
             "name": "CameraFadeOptions",
             "properties": [
                 {
@@ -44161,7 +45439,7 @@
                         "optional_type": {
                             "is_bind_type": true,
                             "is_errorable": false,
-                            "name": "CameraEaseOptions"
+                            "name": "EaseOptions"
                         }
                     }
                 },
@@ -44212,7 +45490,7 @@
                         "optional_type": {
                             "is_bind_type": true,
                             "is_errorable": false,
-                            "name": "CameraEaseOptions"
+                            "name": "EaseOptions"
                         }
                     }
                 },
@@ -44248,7 +45526,7 @@
                         "optional_type": {
                             "is_bind_type": true,
                             "is_errorable": false,
-                            "name": "CameraEaseOptions"
+                            "name": "EaseOptions"
                         }
                     }
                 },
@@ -44299,7 +45577,7 @@
                         "optional_type": {
                             "is_bind_type": true,
                             "is_errorable": false,
-                            "name": "CameraEaseOptions"
+                            "name": "EaseOptions"
                         }
                     }
                 },
@@ -44424,8 +45702,93 @@
         },
         {
             "base_types": [],
+            "name": "ContainerRules",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "allowedItems",
+                    "type": {
+                        "element_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "string"
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "array"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "allowNestedStorageItems",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "bannedItems",
+                    "type": {
+                        "element_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "string"
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "array"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "weightLimit",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "int32",
+                            "valid_range": {
+                                "max": 2147483647,
+                                "min": -2147483648
+                            }
+                        }
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "ContainerRules"
+            }
+        },
+        {
+            "base_types": [],
             "name": "CustomCommand",
             "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "cheatsRequired",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "boolean"
+                        }
+                    }
+                },
                 {
                     "is_baked": false,
                     "is_read_only": false,
@@ -44687,6 +46050,51 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "DimensionLocation"
+            }
+        },
+        {
+            "base_types": [],
+            "name": "EaseOptions",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "easeTime",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "float",
+                            "valid_range": {
+                                "max": 2147483647,
+                                "min": -2147483648
+                            }
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "easeType",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "EasingType"
+                        }
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "EaseOptions"
             }
         },
         {
@@ -45978,6 +47386,41 @@
         },
         {
             "base_types": [],
+            "name": "HotbarEventOptions",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "allowedSlots",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "element_type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "int32",
+                                "valid_range": {
+                                    "max": 2147483647,
+                                    "min": -2147483648
+                                }
+                            },
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "array"
+                        }
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "HotbarEventOptions"
+            }
+        },
+        {
+            "base_types": [],
             "name": "InputEventOptions",
             "properties": [
                 {
@@ -46020,6 +47463,151 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "InputEventOptions"
+            }
+        },
+        {
+            "base_types": [],
+            "name": "InventoryItemEventOptions",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "allowedSlots",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "element_type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "int32",
+                                "valid_range": {
+                                    "max": 2147483647,
+                                    "min": -2147483648
+                                }
+                            },
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "array"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "excludeItems",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "element_type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            },
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "array"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "excludeTags",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "element_type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            },
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "array"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "ignoreQuantityChange",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "boolean"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "includeItems",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "element_type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            },
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "array"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "includeTags",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "element_type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            },
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "array"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "inventoryType",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "PlayerInventoryType"
+                        }
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "InventoryItemEventOptions"
             }
         },
         {
@@ -46304,6 +47892,21 @@
                             "name": "boolean"
                         }
                     }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "liquidSettings",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "LiquidSettings"
+                        }
+                    }
                 }
             ],
             "type": {
@@ -46358,6 +47961,21 @@
                             "is_bind_type": false,
                             "is_errorable": false,
                             "name": "boolean"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "liquidSettings",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "LiquidSettings"
                         }
                     }
                 }
@@ -46587,9 +48205,9 @@
                         "name": "optional",
                         "optional_type": {
                             "element_type": {
-                                "is_bind_type": false,
+                                "is_bind_type": true,
                                 "is_errorable": false,
-                                "name": "string"
+                                "name": "Player"
                             },
                             "is_bind_type": false,
                             "is_errorable": false,
@@ -47919,6 +49537,10 @@
                     "value": "BlockMapColorComponent"
                 },
                 {
+                    "name": "minecraft:movable",
+                    "value": "BlockMovableComponent"
+                },
+                {
                     "name": "minecraft:piston",
                     "value": "BlockPistonComponent"
                 },
@@ -48150,6 +49772,18 @@
                     "value": "EntityOnFireComponent"
                 },
                 {
+                    "name": "minecraft:player.exhaustion",
+                    "value": "EntityExhaustionComponent"
+                },
+                {
+                    "name": "minecraft:player.hunger",
+                    "value": "EntityHungerComponent"
+                },
+                {
+                    "name": "minecraft:player.saturation",
+                    "value": "EntitySaturationComponent"
+                },
+                {
                     "name": "minecraft:projectile",
                     "value": "EntityProjectileComponent"
                 },
@@ -48235,6 +49869,10 @@
                 {
                     "name": "minecraft:food",
                     "value": "ItemFoodComponent"
+                },
+                {
+                    "name": "minecraft:inventory",
+                    "value": "ItemInventoryComponent"
                 },
                 {
                     "name": "minecraft:potion",

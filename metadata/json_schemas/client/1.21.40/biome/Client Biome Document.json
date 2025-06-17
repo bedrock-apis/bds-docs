@@ -1,7 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "2329982793",
-    "x-minecraft-version": "1.21.80",
+    "x-format-version": "1.21.40",
+    "x-minecraft-version": "1.21.90",
     "definitions": {
         "444653910": {
             "title": "minecraft:dry_foliage_color",
@@ -47,11 +48,11 @@
             "title": "Client Biome Definition",
             "type": "object",
             "properties": {
-                "description": {
-                    "$ref": "#/definitions/3072409085"
-                },
                 "components": {
                     "$ref": "#/definitions/2282391920"
+                },
+                "description": {
+                    "$ref": "#/definitions/3072409085"
                 }
             },
             "required": [
@@ -116,8 +117,17 @@
                 "minecraft:ambient_sounds": {
                     "$ref": "#/definitions/2544684648"
                 },
-                "minecraft:sky_color": {
-                    "$ref": "#/definitions/658145120"
+                "minecraft:atmosphere_identifier": {
+                    "$ref": "#/definitions/3762876268"
+                },
+                "minecraft:biome_music": {
+                    "$ref": "#/definitions/4184661767"
+                },
+                "minecraft:color_grading_identifier": {
+                    "$ref": "#/definitions/3904986305"
+                },
+                "minecraft:dry_foliage_color": {
+                    "$ref": "#/definitions/444653910"
                 },
                 "minecraft:fog_appearance": {
                     "$ref": "#/definitions/783532490"
@@ -125,29 +135,20 @@
                 "minecraft:foliage_appearance": {
                     "$ref": "#/definitions/3713296728"
                 },
+                "minecraft:grass_appearance": {
+                    "$ref": "#/definitions/569860384"
+                },
                 "minecraft:lighting_identifier": {
                     "$ref": "#/definitions/2571640896"
+                },
+                "minecraft:sky_color": {
+                    "$ref": "#/definitions/658145120"
                 },
                 "minecraft:water_appearance": {
                     "$ref": "#/definitions/4061100221"
                 },
-                "minecraft:grass_appearance": {
-                    "$ref": "#/definitions/569860384"
-                },
-                "minecraft:dry_foliage_color": {
-                    "$ref": "#/definitions/444653910"
-                },
-                "minecraft:atmosphere_identifier": {
-                    "$ref": "#/definitions/3762876268"
-                },
-                "minecraft:color_grading_identifier": {
-                    "$ref": "#/definitions/3904986305"
-                },
                 "minecraft:water_identifier": {
                     "$ref": "#/definitions/2503601769"
-                },
-                "minecraft:biome_music": {
-                    "$ref": "#/definitions/4184661767"
                 }
             }
         },
@@ -195,7 +196,8 @@
             "type": "object",
             "properties": {
                 "identifier": {
-                    "type": "string"
+                    "type": "string",
+                    "pattern": "^[a-z0-9._%+-:]+$"
                 }
             },
             "required": [
@@ -259,7 +261,7 @@
                 }
             ],
             "$metaProperties": {
-                "CEREAL_EDITOR_SCHEMA_TAG": "[editor(type:color)]"
+                "CEREAL_EDITOR_SCHEMA_TAG": "type:color"
             }
         },
         "4061100221": {
@@ -278,11 +280,11 @@
             "title": "minecraft:biome_music",
             "type": "object",
             "properties": {
-                "volume_multiplier": {
-                    "type": "number"
-                },
                 "music_definition": {
                     "type": "string"
+                },
+                "volume_multiplier": {
+                    "type": "number"
                 }
             }
         }
@@ -290,15 +292,15 @@
     "title": "Client Biome JSON File",
     "type": "object",
     "properties": {
-        "minecraft:client_biome": {
-            "$ref": "#/definitions/779019467"
-        },
         "format_version": {
             "type": "string"
+        },
+        "minecraft:client_biome": {
+            "$ref": "#/definitions/779019467"
         }
     },
     "required": [
-        "minecraft:client_biome",
-        "format_version"
+        "format_version",
+        "minecraft:client_biome"
     ]
 }

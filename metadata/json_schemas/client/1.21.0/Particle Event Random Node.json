@@ -1,7 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "2522540092",
-    "x-minecraft-version": "1.21.80",
+    "x-format-version": "1.21.0",
+    "x-minecraft-version": "1.21.90",
     "definitions": {
         "1626134911": {
             "title": "particle_event_node",
@@ -16,6 +17,12 @@
                 "particle_effect": {
                     "$ref": "#/definitions/2245986520"
                 },
+                "randomize": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "2522540092"
+                    }
+                },
                 "sequence": {
                     "type": "array",
                     "items": {
@@ -24,12 +31,6 @@
                 },
                 "sound_effect": {
                     "$ref": "#/definitions/3998097047"
-                },
-                "randomize": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "2522540092"
-                    }
                 }
             }
         },
@@ -60,7 +61,7 @@
             ]
         },
         "2267778531": {
-            "title": "struct SharedTypes::Legacy::ExpressionNode::StringRepresentation",
+            "title": "Molang string",
             "oneOf": [
                 {
                     "type": "string"
@@ -87,7 +88,7 @@
             "type": "string"
         },
         "3178719147": {
-            "title": "struct SharedTypes::Legacy::ExpressionNode",
+            "title": "Molang expression",
             "oneOf": [
                 {
                     "$ref": "#/definitions/2267778531"
@@ -113,23 +114,14 @@
     "title": "particle_event_random_node",
     "type": "object",
     "properties": {
+        "expression": {
+            "$ref": "#/definitions/3178719147"
+        },
         "log": {
             "type": "string"
         },
         "particle_effect": {
             "$ref": "#/definitions/2245986520"
-        },
-        "weight": {
-            "type": "number"
-        },
-        "sound_effect": {
-            "$ref": "#/definitions/3998097047"
-        },
-        "sequence": {
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/1626134911"
-            }
         },
         "randomize": {
             "type": "array",
@@ -137,8 +129,17 @@
                 "$ref": "2522540092"
             }
         },
-        "expression": {
-            "$ref": "#/definitions/3178719147"
+        "sequence": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/1626134911"
+            }
+        },
+        "sound_effect": {
+            "$ref": "#/definitions/3998097047"
+        },
+        "weight": {
+            "type": "number"
         }
     },
     "required": [

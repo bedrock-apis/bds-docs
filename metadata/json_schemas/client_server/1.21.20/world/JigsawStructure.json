@@ -1,7 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1007525655",
-    "x-minecraft-version": "1.21.80",
+    "x-format-version": "1.21.20",
+    "x-minecraft-version": "1.21.90",
     "definitions": {
         "169701669": {
             "title": "struct SharedTypes::v1_21_20::PoolAliases::Random",
@@ -26,10 +27,10 @@
             "title": "struct SharedTypes::v1_21_20::DimensionPaddingRange",
             "type": "object",
             "properties": {
-                "top": {
+                "bottom": {
                     "type": "integer"
                 },
-                "bottom": {
+                "top": {
                     "type": "integer"
                 }
             }
@@ -49,6 +50,12 @@
                 {
                     "type": "object",
                     "properties": {
+                        "AND": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "NOT": {
+                            "$ref": "#/definitions/1088251937"
+                        },
                         "OR": {
                             "$ref": "#/definitions/1088251937"
                         },
@@ -58,19 +65,13 @@
                         "all_of": {
                             "$ref": "#/definitions/1088251937"
                         },
-                        "AND": {
+                        "any": {
                             "$ref": "#/definitions/1088251937"
                         },
                         "any_of": {
                             "$ref": "#/definitions/1088251937"
                         },
                         "none_of": {
-                            "$ref": "#/definitions/1088251937"
-                        },
-                        "any": {
-                            "$ref": "#/definitions/1088251937"
-                        },
-                        "NOT": {
                             "$ref": "#/definitions/1088251937"
                         }
                     }
@@ -93,9 +94,6 @@
             "title": "struct SharedTypes::v1_21_20::WeightedRandomItem<class std::vector<class std::variant<struct SharedTypes::v1_21_20::PoolAliases::Direct,struct SharedTypes::v1_21_20::PoolAliases::Random>,class std::allocator<class std::variant<struct SharedTypes::v1_21_20::PoolAliases::Direct,struct SharedTypes::v1_21_20::PoolAliases::Random> > > >",
             "type": "object",
             "properties": {
-                "weight": {
-                    "type": "integer"
-                },
                 "data": {
                     "type": "array",
                     "items": {
@@ -108,27 +106,30 @@
                             }
                         ]
                     }
+                },
+                "weight": {
+                    "type": "integer"
                 }
             },
             "required": [
-                "weight",
-                "data"
+                "data",
+                "weight"
             ]
         },
         "2318795732": {
             "title": "struct SharedTypes::v1_21_20::WeightedRandomItem<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >",
             "type": "object",
             "properties": {
-                "weight": {
-                    "type": "integer"
-                },
                 "data": {
                     "type": "string"
+                },
+                "weight": {
+                    "type": "integer"
                 }
             },
             "required": [
-                "weight",
-                "data"
+                "data",
+                "weight"
             ]
         },
         "2375908812": {
@@ -150,15 +151,6 @@
             "title": "struct SharedTypes::v1_21_20::UniformHeight",
             "type": "object",
             "properties": {
-                "type": {
-                    "title": "enum SharedTypes::v1_21_20::HeightProviderHelper::HeightProviderType",
-                    "type": "string",
-                    "const": "uniform",
-                    "enum": [
-                        "uniform",
-                        "constant"
-                    ]
-                },
                 "max": {
                     "oneOf": [
                         {
@@ -190,12 +182,21 @@
                             "$ref": "#/definitions/4235737093"
                         }
                     ]
+                },
+                "type": {
+                    "title": "enum SharedTypes::v1_21_20::HeightProviderHelper::HeightProviderType",
+                    "type": "string",
+                    "const": "uniform",
+                    "enum": [
+                        "uniform",
+                        "constant"
+                    ]
                 }
             },
             "required": [
-                "type",
                 "max",
-                "min"
+                "min",
+                "type"
             ]
         },
         "3138104923": {
@@ -253,7 +254,7 @@
             "title": "Filter Test",
             "type": "object",
             "properties": {
-                "operator": {
+                "domain": {
                     "oneOf": [
                         {
                             "type": "boolean"
@@ -269,8 +270,21 @@
                         }
                     ]
                 },
-                "test": {
-                    "type": "string"
+                "operator": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "subject": {
                     "oneOf": [
@@ -288,21 +302,8 @@
                         }
                     ]
                 },
-                "domain": {
-                    "oneOf": [
-                        {
-                            "type": "boolean"
-                        },
-                        {
-                            "type": "integer"
-                        },
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
+                "test": {
+                    "type": "string"
                 },
                 "value": {
                     "oneOf": [
@@ -377,11 +378,79 @@
     "title": "JigsawStructure",
     "type": "object",
     "properties": {
+        "biome_filters": {
+            "$ref": "#/definitions/1088251937"
+        },
         "description": {
             "$ref": "#/definitions/1292959213"
         },
-        "biome_filters": {
-            "$ref": "#/definitions/1088251937"
+        "dimension_padding": {
+            "oneOf": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "$ref": "#/definitions/781829906"
+                }
+            ]
+        },
+        "heightmap_projection": {
+            "title": "enum SharedTypes::v1_21_20::JigsawStructureDefinition::HeightmapProjection",
+            "type": "string",
+            "enum": [
+                "world_surface",
+                "ocean_floor"
+            ]
+        },
+        "liquid_settings": {
+            "title": "enum SharedTypes::v1_21_20::JigsawStructureDefinition::LiquidSettings",
+            "type": "string",
+            "enum": [
+                "apply_waterlogging",
+                "ignore_waterlogging"
+            ]
+        },
+        "max_depth": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 20
+        },
+        "max_distance_from_center": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 128
+        },
+        "pool_aliases": {
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "$ref": "#/definitions/3138104923"
+                    },
+                    {
+                        "$ref": "#/definitions/169701669"
+                    },
+                    {
+                        "$ref": "#/definitions/2375908812"
+                    }
+                ]
+            }
+        },
+        "start_height": {
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/2427056231"
+                },
+                {
+                    "$ref": "#/definitions/3176878115"
+                }
+            ]
+        },
+        "start_jigsaw_name": {
+            "type": "string"
+        },
+        "start_pool": {
+            "type": "string"
         },
         "step": {
             "title": "GenerationStep",
@@ -410,73 +479,13 @@
                 "beard_box",
                 "encapsulate"
             ]
-        },
-        "start_pool": {
-            "type": "string"
-        },
-        "max_distance_from_center": {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 128
-        },
-        "start_height": {
-            "oneOf": [
-                {
-                    "$ref": "#/definitions/2427056231"
-                },
-                {
-                    "$ref": "#/definitions/3176878115"
-                }
-            ]
-        },
-        "start_jigsaw_name": {
-            "type": "string"
-        },
-        "max_depth": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 20
-        },
-        "heightmap_projection": {
-            "title": "enum SharedTypes::v1_21_20::JigsawStructureDefinition::HeightmapProjection",
-            "type": "string",
-            "enum": [
-                "world_surface",
-                "ocean_floor"
-            ]
-        },
-        "dimension_padding": {
-            "oneOf": [
-                {
-                    "type": "integer"
-                },
-                {
-                    "$ref": "#/definitions/781829906"
-                }
-            ]
-        },
-        "pool_aliases": {
-            "type": "array",
-            "items": {
-                "oneOf": [
-                    {
-                        "$ref": "#/definitions/3138104923"
-                    },
-                    {
-                        "$ref": "#/definitions/169701669"
-                    },
-                    {
-                        "$ref": "#/definitions/2375908812"
-                    }
-                ]
-            }
         }
     },
     "required": [
         "description",
-        "step",
-        "start_pool",
+        "max_depth",
         "start_height",
-        "max_depth"
+        "start_pool",
+        "step"
     ]
 }

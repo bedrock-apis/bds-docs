@@ -1,10 +1,19 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1042742755",
-    "x-minecraft-version": "1.21.80",
+    "x-format-version": "1.20.60",
+    "x-minecraft-version": "1.21.90",
     "title": "minecraft:overworld_height",
     "type": "object",
     "properties": {
+        "noise_params": {
+            "type": "array",
+            "items": {
+                "type": "number"
+            },
+            "minItems": 2,
+            "maxItems": 2
+        },
         "noise_type": {
             "title": "Noise Type",
             "type": "string",
@@ -25,14 +34,6 @@
                 "mushroom",
                 "swamp"
             ]
-        },
-        "noise_params": {
-            "type": "array",
-            "items": {
-                "type": "number"
-            },
-            "minItems": 2,
-            "maxItems": 2
         }
     }
 }

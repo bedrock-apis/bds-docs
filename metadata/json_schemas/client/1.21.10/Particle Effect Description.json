@@ -1,7 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3226186110",
-    "x-minecraft-version": "1.21.80",
+    "x-format-version": "1.21.10",
+    "x-minecraft-version": "1.21.90",
     "definitions": {
         "801168425": {
             "title": "particle_effect basic_render_parameters",
@@ -11,13 +12,17 @@
                     "$ref": "#/definitions/2715320761"
                 },
                 "texture": {
-                    "type": "string"
+                    "$ref": "#/definitions/1969805686"
                 }
             },
             "required": [
                 "material",
                 "texture"
             ]
+        },
+        "1969805686": {
+            "title": "struct SharedTypes::FileReference<7>",
+            "type": "string"
         },
         "2715320761": {
             "title": "hashed_string",
@@ -27,15 +32,15 @@
     "title": "particle_effect description",
     "type": "object",
     "properties": {
-        "identifier": {
-            "type": "string"
-        },
         "basic_render_parameters": {
             "$ref": "#/definitions/801168425"
+        },
+        "identifier": {
+            "type": "string"
         }
     },
     "required": [
-        "identifier",
-        "basic_render_parameters"
+        "basic_render_parameters",
+        "identifier"
     ]
 }
