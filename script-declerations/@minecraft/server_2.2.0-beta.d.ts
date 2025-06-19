@@ -137,7 +137,7 @@ export interface Vector3 { x: number; y: number; z: number};
 export interface VectorXZ { x: number; z: number};
 export interface WorldSoundOptions { pitch?: number; volume?: number};
 
-// Classes - 313
+// Classes - 312
 export class AimAssistCategory { public readonly defaultBlockPriority: number; public readonly defaultEntityPriority: number; public readonly identifier: string; public getBlockPriorities(): Record<string,number>; public getEntityPriorities(): Record<string,number>; private constructor();};
 export class AimAssistCategorySettings { public defaultBlockPriority: number; public defaultEntityPriority: number; public readonly identifier: string; public constructor(identifier: string); public getBlockPriorities(): Record<string,number>; public getEntityPriorities(): Record<string,number>; public setBlockPriorities(blockPriorities: Record<string,number>): void; public setEntityPriorities(entityPriorities: Record<string,number>): void;};
 export class AimAssistPreset { public readonly defaultItemSettings?: string; public readonly handSettings?: string; public readonly identifier: string; public getExcludedTargets(): string[]; public getItemSettings(): Record<string,string>; public getLiquidTargetingItems(): string[]; private constructor();};
@@ -170,8 +170,6 @@ export class BlockComponentStepOnEvent extends BlockEvent{ public readonly entit
 export class BlockComponentTickEvent extends BlockEvent{ private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BlockCustomComponentInstance extends BlockComponent{ public readonly customComponentParameters: CustomComponentParameters; private constructor();};
-//@ts-ignore extending for classes with private constructor is possible with native API
-export class BlockDestructionParticlesComponent extends BlockComponent{ public static readonly componentId = "minecraft:destruction_particles"; public readonly texture: string; public readonly tintMethod: TintMethod; private constructor();};
 export class BlockEvent { public readonly block: Block; public readonly dimension: Dimension; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BlockExplodeAfterEvent extends BlockEvent{ public readonly explodedBlockPermutation: BlockPermutation; public readonly source?: Entity; private constructor();};

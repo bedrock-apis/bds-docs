@@ -2,13 +2,14 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1391327946",
     "x-format-version": "1.21.20",
-    "x-minecraft-version": "1.21.100-beta.20",
+    "x-minecraft-version": "1.21.100-beta.21",
     "definitions": {
         "45584192": {
+            "title": "Passthrough",
             "type": "object",
             "properties": {
                 "type": {
-                    "title": "PositionalBlockRuleAxis",
+                    "title": "BlockEntityModifierType",
                     "type": "string",
                     "const": "minecraft:passthrough",
                     "enum": [
@@ -21,14 +22,19 @@
                 "type"
             ]
         },
+        "1102139064": {
+            "title": "File Reference",
+            "type": "string"
+        },
         "1134690608": {
+            "title": "AppendLoot",
             "type": "object",
             "properties": {
                 "loot_table": {
-                    "type": "string"
+                    "$ref": "#/definitions/1102139064"
                 },
                 "type": {
-                    "title": "PositionalBlockRuleAxis",
+                    "title": "BlockEntityModifierType",
                     "type": "string",
                     "const": "minecraft:append_loot",
                     "enum": [
@@ -43,10 +49,11 @@
             ]
         },
         "1218029234": {
+            "title": "Processor List Description",
             "type": "object",
             "properties": {
                 "identifier": {
-                    "type": "string"
+                    "$ref": "#/definitions/1424713080"
                 }
             },
             "required": [
@@ -54,10 +61,11 @@
             ]
         },
         "1354340864": {
+            "title": "ConstantIntProvider",
             "type": "object",
             "properties": {
                 "type": {
-                    "title": "",
+                    "title": "IntProviderType",
                     "type": "string",
                     "const": "constant",
                     "enum": [
@@ -74,7 +82,12 @@
                 "value"
             ]
         },
+        "1424713080": {
+            "title": "Identifier",
+            "type": "string"
+        },
         "1527331705": {
+            "title": "Reference",
             "oneOf": [
                 {
                     "type": "string"
@@ -85,10 +98,11 @@
             ]
         },
         "1556792771": {
+            "title": "AlwaysTruePos",
             "type": "object",
             "properties": {
                 "predicate_type": {
-                    "title": "PositionalBlockRuleAxis",
+                    "title": "PosType",
                     "type": "string",
                     "const": "minecraft:always_true",
                     "enum": [
@@ -102,6 +116,7 @@
             ]
         },
         "1740413124": {
+            "title": "UniformIntProvider",
             "type": "object",
             "properties": {
                 "max_inclusive": {
@@ -111,7 +126,7 @@
                     "type": "integer"
                 },
                 "type": {
-                    "title": "",
+                    "title": "IntProviderType",
                     "type": "string",
                     "const": "uniform",
                     "enum": [
@@ -127,13 +142,14 @@
             ]
         },
         "1766729433": {
+            "title": "BlockStateMatch",
             "type": "object",
             "properties": {
                 "block_state": {
                     "$ref": "#/definitions/3076687790"
                 },
                 "predicate_type": {
-                    "title": "PositionalBlockRuleAxis",
+                    "title": "BlockType",
                     "type": "string",
                     "const": "minecraft:blockstate_match",
                     "enum": [
@@ -152,10 +168,11 @@
             ]
         },
         "1810898542": {
+            "title": "Protected Block",
             "type": "object",
             "properties": {
                 "processor_type": {
-                    "title": "",
+                    "title": "Jigsaw Processro Type",
                     "type": "string",
                     "const": "minecraft:protected_blocks",
                     "enum": [
@@ -175,13 +192,14 @@
             ]
         },
         "2198589344": {
+            "title": "BlockMatch",
             "type": "object",
             "properties": {
                 "block": {
-                    "type": "string"
+                    "$ref": "#/definitions/1527331705"
                 },
                 "predicate_type": {
-                    "title": "PositionalBlockRuleAxis",
+                    "title": "BlockType",
                     "type": "string",
                     "const": "minecraft:block_match",
                     "enum": [
@@ -200,6 +218,7 @@
             ]
         },
         "2581260060": {
+            "title": "Capped",
             "type": "object",
             "properties": {
                 "delegate": {
@@ -229,7 +248,7 @@
                     ]
                 },
                 "processor_type": {
-                    "title": "",
+                    "title": "Jigsaw Processro Type",
                     "type": "string",
                     "const": "minecraft:capped",
                     "enum": [
@@ -247,10 +266,11 @@
             ]
         },
         "3016468321": {
+            "title": "BlockRules",
             "type": "object",
             "properties": {
                 "processor_type": {
-                    "title": "",
+                    "title": "Jigsaw Processro Type",
                     "type": "string",
                     "const": "minecraft:rule",
                     "enum": [
@@ -273,10 +293,11 @@
             ]
         },
         "3034820683": {
+            "title": "TagMatch",
             "type": "object",
             "properties": {
                 "predicate_type": {
-                    "title": "PositionalBlockRuleAxis",
+                    "title": "BlockType",
                     "type": "string",
                     "const": "minecraft:tag_match",
                     "enum": [
@@ -409,16 +430,17 @@
             ]
         },
         "3518228880": {
+            "title": "BlockIgnore",
             "type": "object",
             "properties": {
                 "blocks": {
                     "type": "array",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/definitions/1527331705"
                     }
                 },
                 "processor_type": {
-                    "title": "",
+                    "title": "Jigsaw Processro Type",
                     "type": "string",
                     "const": "minecraft:block_ignore",
                     "enum": [
@@ -435,13 +457,14 @@
             ]
         },
         "3523914459": {
+            "title": "RandomBlockMatch",
             "type": "object",
             "properties": {
                 "block": {
-                    "type": "string"
+                    "$ref": "#/definitions/1527331705"
                 },
                 "predicate_type": {
-                    "title": "PositionalBlockRuleAxis",
+                    "title": "BlockType",
                     "type": "string",
                     "const": "minecraft:random_block_match",
                     "enum": [
@@ -466,13 +489,14 @@
             ]
         },
         "3589682888": {
+            "title": "RandomBlockStateMatch",
             "type": "object",
             "properties": {
                 "block_state": {
                     "$ref": "#/definitions/3076687790"
                 },
                 "predicate_type": {
-                    "title": "PositionalBlockRuleAxis",
+                    "title": "BlockType",
                     "type": "string",
                     "const": "minecraft:random_blockstate_match",
                     "enum": [
@@ -497,6 +521,7 @@
             ]
         },
         "3839910888": {
+            "title": "AxisAlignedLinear",
             "type": "object",
             "properties": {
                 "axis": {
@@ -527,7 +552,7 @@
                     "minimum": 0
                 },
                 "predicate_type": {
-                    "title": "PositionalBlockRuleAxis",
+                    "title": "PosType",
                     "type": "string",
                     "const": "minecraft:axis_aligned_linear_pos",
                     "enum": [
@@ -541,10 +566,11 @@
             ]
         },
         "4275912652": {
+            "title": "AlwaysTrueBlock",
             "type": "object",
             "properties": {
                 "predicate_type": {
-                    "title": "PositionalBlockRuleAxis",
+                    "title": "BlockType",
                     "type": "string",
                     "const": "minecraft:always_true",
                     "enum": [

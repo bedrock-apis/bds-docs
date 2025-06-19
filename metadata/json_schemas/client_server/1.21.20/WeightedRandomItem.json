@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "2155635173",
     "x-format-version": "1.21.20",
-    "x-minecraft-version": "1.21.100-beta.20",
+    "x-minecraft-version": "1.21.100-beta.21",
     "definitions": {
         "169701669": {
             "title": "RandomPoolAlias",
@@ -14,7 +14,7 @@
                 "targets": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/2318795732"
+                        "$ref": "#/definitions/219465748"
                     }
                 }
             },
@@ -23,12 +23,12 @@
                 "targets"
             ]
         },
-        "2318795732": {
+        "219465748": {
             "title": "WeightedRandomItem",
             "type": "object",
             "properties": {
                 "data": {
-                    "type": "string"
+                    "$ref": "#/definitions/1323337012"
                 },
                 "weight": {
                     "type": "integer"
@@ -39,6 +39,17 @@
                 "weight"
             ]
         },
+        "1323337012": {
+            "title": "Reference",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
         "3138104923": {
             "title": "DirectPoolAlias",
             "type": "object",
@@ -47,7 +58,7 @@
                     "type": "string"
                 },
                 "target": {
-                    "type": "string"
+                    "$ref": "#/definitions/1323337012"
                 }
             },
             "required": [

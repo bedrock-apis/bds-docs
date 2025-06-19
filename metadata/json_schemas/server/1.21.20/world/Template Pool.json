@@ -2,9 +2,21 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1382973118",
     "x-format-version": "1.21.20",
-    "x-minecraft-version": "1.21.100-beta.20",
+    "x-minecraft-version": "1.21.100-beta.21",
     "definitions": {
+        "1323337012": {
+            "title": "Reference",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
         "1755372388": {
+            "title": "TemplatePoolElement",
             "type": "object",
             "properties": {
                 "element": {
@@ -28,10 +40,11 @@
             ]
         },
         "1872243302": {
+            "title": "Description",
             "type": "object",
             "properties": {
                 "identifier": {
-                    "type": "string"
+                    "$ref": "#/definitions/3681370654"
                 }
             },
             "required": [
@@ -39,10 +52,11 @@
             ]
         },
         "2360259677": {
+            "title": "EmptyPoolElement",
             "type": "object",
             "properties": {
                 "element_type": {
-                    "title": "",
+                    "title": "ElementType",
                     "type": "string",
                     "const": "minecraft:empty_pool_element",
                     "enum": [
@@ -56,10 +70,11 @@
             ]
         },
         "2726507774": {
+            "title": "SinglePoolElement",
             "type": "object",
             "properties": {
                 "element_type": {
-                    "title": "",
+                    "title": "ElementType",
                     "type": "string",
                     "const": "minecraft:single_pool_element",
                     "enum": [
@@ -68,13 +83,13 @@
                     ]
                 },
                 "location": {
-                    "type": "string"
+                    "$ref": "#/definitions/3251542604"
                 },
                 "processors": {
-                    "type": "string"
+                    "$ref": "#/definitions/3639487318"
                 },
                 "projection": {
-                    "title": "",
+                    "title": "Projection",
                     "type": "string",
                     "enum": [
                         "rigid",
@@ -86,6 +101,25 @@
                 "element_type",
                 "location"
             ]
+        },
+        "3251542604": {
+            "title": "File Reference",
+            "type": "string"
+        },
+        "3639487318": {
+            "title": "Reference",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "3681370654": {
+            "title": "Identifier",
+            "type": "string"
         }
     },
     "title": "Used to pair block rules with Structure Templates and to randomly place Structure Templates using a weighted list.",
@@ -101,7 +135,7 @@
             }
         },
         "fallback": {
-            "type": "string"
+            "$ref": "#/definitions/1323337012"
         }
     },
     "required": [

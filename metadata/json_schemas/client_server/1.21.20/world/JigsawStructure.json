@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1007525655",
     "x-format-version": "1.21.20",
-    "x-minecraft-version": "1.21.100-beta.20",
+    "x-minecraft-version": "1.21.100-beta.21",
     "definitions": {
         "169701669": {
             "title": "RandomPoolAlias",
@@ -14,13 +14,29 @@
                 "targets": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/2318795732"
+                        "$ref": "#/definitions/219465748"
                     }
                 }
             },
             "required": [
                 "alias",
                 "targets"
+            ]
+        },
+        "219465748": {
+            "title": "WeightedRandomItem",
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/1323337012"
+                },
+                "weight": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "data",
+                "weight"
             ]
         },
         "781829906": {
@@ -83,11 +99,22 @@
             "type": "object",
             "properties": {
                 "identifier": {
-                    "type": "string"
+                    "$ref": "#/definitions/3681664844"
                 }
             },
             "required": [
                 "identifier"
+            ]
+        },
+        "1323337012": {
+            "title": "Reference",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
             ]
         },
         "2155635173": {
@@ -106,22 +133,6 @@
                             }
                         ]
                     }
-                },
-                "weight": {
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "data",
-                "weight"
-            ]
-        },
-        "2318795732": {
-            "title": "WeightedRandomItem",
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "string"
                 },
                 "weight": {
                     "type": "integer"
@@ -235,7 +246,7 @@
                     "type": "string"
                 },
                 "target": {
-                    "type": "string"
+                    "$ref": "#/definitions/1323337012"
                 }
             },
             "required": [
@@ -277,6 +288,10 @@
                 "type",
                 "value"
             ]
+        },
+        "3681664844": {
+            "title": "Identifier",
+            "type": "string"
         },
         "4150989894": {
             "title": "Filter Test",
@@ -477,7 +492,7 @@
             "type": "string"
         },
         "start_pool": {
-            "type": "string"
+            "$ref": "#/definitions/1323337012"
         },
         "step": {
             "title": "GenerationStep",

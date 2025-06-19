@@ -2,9 +2,10 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "760104054",
     "x-format-version": "1.21.20",
-    "x-minecraft-version": "1.21.100-beta.20",
+    "x-minecraft-version": "1.21.100-beta.21",
     "definitions": {
         "741112715": {
+            "title": "RandomSpreadPlacement",
             "type": "object",
             "properties": {
                 "salt": {
@@ -19,7 +20,7 @@
                     "minimum": 1
                 },
                 "spread_type": {
-                    "title": "",
+                    "title": "SpreadType",
                     "type": "string",
                     "enum": [
                         "linear",
@@ -27,7 +28,7 @@
                     ]
                 },
                 "type": {
-                    "title": "",
+                    "title": "PlacementType",
                     "type": "string",
                     "enum": [
                         "minecraft:random_spread"
@@ -42,21 +43,27 @@
             ]
         },
         "1509348670": {
+            "title": "Description",
             "type": "object",
             "properties": {
                 "identifier": {
-                    "type": "string"
+                    "$ref": "#/definitions/1567935113"
                 }
             },
             "required": [
                 "identifier"
             ]
         },
+        "1567935113": {
+            "title": "Identifier",
+            "type": "string"
+        },
         "3295675449": {
+            "title": "Structure",
             "type": "object",
             "properties": {
                 "structure": {
-                    "type": "string"
+                    "$ref": "#/definitions/3470474886"
                 },
                 "weight": {
                     "type": "integer",
@@ -67,6 +74,17 @@
             "required": [
                 "structure",
                 "weight"
+            ]
+        },
+        "3470474886": {
+            "title": "Reference",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
             ]
         }
     },
