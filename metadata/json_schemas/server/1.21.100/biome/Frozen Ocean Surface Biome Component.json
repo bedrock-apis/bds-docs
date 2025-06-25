@@ -1,8 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "1174814411",
-    "x-format-version": "1.20.60",
-    "x-minecraft-version": "1.21.100-beta.21",
+    "$id": "2608925209",
+    "x-format-version": "1.21.100",
+    "x-minecraft-version": "1.21.100-beta.22",
     "definitions": {
         "1527331705": {
             "title": "Reference",
@@ -51,23 +51,11 @@
             ]
         }
     },
-    "title": "minecraft:mesa_surface",
+    "title": "minecraft:frozen_ocean",
     "type": "object",
     "properties": {
-        "bryce_pillars": {
-            "type": "boolean"
-        },
-        "clay_material": {
-            "$ref": "#/definitions/3076687790"
-        },
         "foundation_material": {
             "$ref": "#/definitions/3076687790"
-        },
-        "hard_clay_material": {
-            "$ref": "#/definitions/3076687790"
-        },
-        "has_forest": {
-            "type": "boolean"
         },
         "mid_material": {
             "$ref": "#/definitions/3076687790"
@@ -83,18 +71,28 @@
         },
         "top_material": {
             "$ref": "#/definitions/3076687790"
+        },
+        "type": {
+            "title": "SurfaceBuilderType",
+            "type": "string",
+            "const": "minecraft:frozen_ocean",
+            "enum": [
+                "minecraft:overworld",
+                "minecraft:frozen_ocean",
+                "minecraft:mesa",
+                "minecraft:swamp",
+                "minecraft:capped",
+                "minecraft:the_end"
+            ]
         }
     },
     "required": [
-        "bryce_pillars",
-        "clay_material",
         "foundation_material",
-        "hard_clay_material",
-        "has_forest",
         "mid_material",
         "sea_floor_depth",
         "sea_floor_material",
         "sea_material",
-        "top_material"
+        "top_material",
+        "type"
     ]
 }

@@ -1,10 +1,11 @@
 import * as _1e from '@minecraft/common';
 
-// Enums - 58
+// Enums - 59
 export enum AimAssistTargetMode { Angle = "Angle", Distance = "Distance"};
 export enum BlockComponentTypes { FluidContainer = "minecraft:fluid_container", Inventory = "minecraft:inventory", Piston = "minecraft:piston", RecordPlayer = "minecraft:record_player", Sign = "minecraft:sign"};
 export enum BlockPistonState { Expanded = "Expanded", Expanding = "Expanding", Retracted = "Retracted", Retracting = "Retracting"};
 export enum BlockVolumeIntersection { Contains = 1, Disjoint = 0, Intersects = 2};
+export enum BookErrorReason { ExceedsMaxPageLength = "ExceedsMaxPageLength", ExceedsMaxPages = "ExceedsMaxPages", ExceedsTitleLength = "ExceedsTitleLength"};
 export enum ButtonState { Pressed = "Pressed", Released = "Released"};
 export enum CommandPermissionLevel { Admin = 2, Any = 0, GameDirectors = 1, Host = 3, Owner = 4};
 export enum CompoundBlockVolumeAction { Add = 0, Subtract = 1};
@@ -34,7 +35,7 @@ export enum HudVisibility { Hide = 0, Reset = 1};
 export enum InputButton { Jump = "Jump", Sneak = "Sneak"};
 export enum InputMode { Gamepad = "Gamepad", KeyboardAndMouse = "KeyboardAndMouse", MotionController = "MotionController", Touch = "Touch"};
 export enum InputPermissionCategory { Camera = 1, Dismount = 8, Jump = 6, LateralMovement = 4, Mount = 7, MoveBackward = 10, MoveForward = 9, MoveLeft = 11, Movement = 2, MoveRight = 12, Sneak = 5};
-export enum ItemComponentTypes { Compostable = "minecraft:compostable", Cooldown = "minecraft:cooldown", Durability = "minecraft:durability", Dyeable = "minecraft:dyeable", Enchantable = "minecraft:enchantable", Food = "minecraft:food", Inventory = "minecraft:inventory", Potion = "minecraft:potion"};
+export enum ItemComponentTypes { Book = "minecraft:book", Compostable = "minecraft:compostable", Cooldown = "minecraft:cooldown", Durability = "minecraft:durability", Dyeable = "minecraft:dyeable", Enchantable = "minecraft:enchantable", Food = "minecraft:food", Inventory = "minecraft:inventory", Potion = "minecraft:potion"};
 export enum ItemLockMode { inventory = "inventory", none = "none", slot = "slot"};
 export enum LiquidSettings { ApplyWaterlogging = "ApplyWaterlogging", IgnoreWaterlogging = "IgnoreWaterlogging"};
 export enum LiquidType { Water = "Water"};
@@ -137,7 +138,7 @@ export interface Vector3 { x: number; y: number; z: number};
 export interface VectorXZ { x: number; z: number};
 export interface WorldSoundOptions { pitch?: number; volume?: number};
 
-// Classes - 312
+// Classes - 313
 export class AimAssistCategory { public readonly defaultBlockPriority: number; public readonly defaultEntityPriority: number; public readonly identifier: string; public getBlockPriorities(): Record<string,number>; public getEntityPriorities(): Record<string,number>; private constructor();};
 export class AimAssistCategorySettings { public defaultBlockPriority: number; public defaultEntityPriority: number; public readonly identifier: string; public constructor(identifier: string); public getBlockPriorities(): Record<string,number>; public getEntityPriorities(): Record<string,number>; public setBlockPriorities(blockPriorities: Record<string,number>): void; public setEntityPriorities(entityPriorities: Record<string,number>): void;};
 export class AimAssistPreset { public readonly defaultItemSettings?: string; public readonly handSettings?: string; public readonly identifier: string; public getExcludedTargets(): string[]; public getItemSettings(): Record<string,string>; public getLiquidTargetingItems(): string[]; private constructor();};
@@ -405,6 +406,8 @@ export class GameRuleChangeAfterEvent { public readonly rule: GameRule; public r
 export class GameRuleChangeAfterEventSignal { public subscribe(callback: (arg0: GameRuleChangeAfterEvent)=>void): (arg0: GameRuleChangeAfterEvent)=>void; public unsubscribe(callback: (arg0: GameRuleChangeAfterEvent)=>void): void; private constructor();};
 export class GameRules { public commandBlockOutput: boolean; public commandBlocksEnabled: boolean; public doDayLightCycle: boolean; public doEntityDrops: boolean; public doFireTick: boolean; public doImmediateRespawn: boolean; public doInsomnia: boolean; public doLimitedCrafting: boolean; public doMobLoot: boolean; public doMobSpawning: boolean; public doTileDrops: boolean; public doWeatherCycle: boolean; public drowningDamage: boolean; public fallDamage: boolean; public fireDamage: boolean; public freezeDamage: boolean; public functionCommandLimit: number; public keepInventory: boolean; public locatorBar: boolean; public maxCommandChainLength: number; public mobGriefing: boolean; public naturalRegeneration: boolean; public playersSleepingPercentage: number; public projectilesCanBreakBlocks: boolean; public pvp: boolean; public randomTickSpeed: number; public recipesUnlock: boolean; public respawnBlocksExplode: boolean; public sendCommandFeedback: boolean; public showBorderEffect: boolean; public showCoordinates: boolean; public showDaysPlayed: boolean; public showDeathMessages: boolean; public showRecipeMessages: boolean; public showTags: boolean; public spawnRadius: number; public tntExplodes: boolean; public tntExplosionDropDecay: boolean; private constructor();};
 export class InputInfo { public readonly lastInputModeUsed: InputMode; public readonly touchOnlyAffectsHotbar: boolean; public getButtonState(button: InputButton): ButtonState; public getMovementVector(): Vector2; private constructor();};
+//@ts-ignore extending for classes with private constructor is possible with native API
+export class ItemBookComponent extends ItemComponent{ public static readonly componentId = "minecraft:book"; public readonly author?: string; public readonly contents: (string | undefined)[]; public readonly isSigned: boolean; public readonly pageCount: number; public readonly rawContents: (RawMessage | undefined)[]; public readonly title?: string; public getPageContent(pageIndex: number): (string | undefined); public getRawPageContent(pageIndex: number): (RawMessage | undefined); public insertPage(pageIndex: number, content: (RawMessage | string)[] | RawMessage | string): void; public removePage(pageIndex: number): void; public setContents(contents: ((RawMessage | string)[] | RawMessage | string)[]): void; public setPageContent(pageIndex: number, content: (RawMessage | string)[] | RawMessage | string): void; public signBook(title: string, author: string): void; private constructor();};
 export class ItemCompleteUseAfterEvent { public readonly itemStack: ItemStack; public readonly source: Player; public readonly useDuration: number; private constructor();};
 export class ItemCompleteUseAfterEventSignal { public subscribe(callback: (arg0: ItemCompleteUseAfterEvent)=>void): (arg0: ItemCompleteUseAfterEvent)=>void; public unsubscribe(callback: (arg0: ItemCompleteUseAfterEvent)=>void): void; private constructor();};
 export class ItemCompleteUseEvent { public readonly itemStack: ItemStack; public readonly source: Player; private constructor();};
@@ -585,11 +588,13 @@ export const world: World;
 
 // Functions - 0
 
-// Errors - 28
+// Errors - 30
 export class BlockCustomComponentAlreadyRegisteredError extends Error{ private constructor();};
 export class BlockCustomComponentReloadNewComponentError extends Error{ private constructor();};
 export class BlockCustomComponentReloadNewEventError extends Error{ private constructor();};
 export class BlockCustomComponentReloadVersionError extends Error{ private constructor();};
+export class BookError extends Error{ public readonly reason: BookErrorReason; private constructor();};
+export class BookPageContentError extends Error{ public readonly pageIndex: number; public readonly reason: BookErrorReason; private constructor();};
 export class CommandError extends Error{ private constructor();};
 export class ContainerRulesError extends Error{ public readonly reason: ContainerRulesErrorReason; private constructor();};
 export class CustomCommandError extends Error{ public readonly reason: CustomCommandErrorReason; private constructor();};

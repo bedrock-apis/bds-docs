@@ -1,8 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "416340115",
-    "x-format-version": "1.20.60",
-    "x-minecraft-version": "1.21.100-beta.21",
+    "$id": "424552073",
+    "x-format-version": "1.21.100",
+    "x-minecraft-version": "1.21.100-beta.22",
     "definitions": {
         "1527331705": {
             "title": "Reference",
@@ -51,7 +51,7 @@
             ]
         }
     },
-    "title": "minecraft:swamp_surface",
+    "title": "minecraft:swamp",
     "type": "object",
     "properties": {
         "foundation_material": {
@@ -71,6 +71,19 @@
         },
         "top_material": {
             "$ref": "#/definitions/3076687790"
+        },
+        "type": {
+            "title": "SurfaceBuilderType",
+            "type": "string",
+            "const": "minecraft:swamp",
+            "enum": [
+                "minecraft:overworld",
+                "minecraft:frozen_ocean",
+                "minecraft:mesa",
+                "minecraft:swamp",
+                "minecraft:capped",
+                "minecraft:the_end"
+            ]
         }
     },
     "required": [
@@ -79,6 +92,7 @@
         "sea_floor_depth",
         "sea_floor_material",
         "sea_material",
-        "top_material"
+        "top_material",
+        "type"
     ]
 }

@@ -1,8 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "751048717",
+    "$id": "1062484207",
     "x-format-version": "1.21.40",
-    "x-minecraft-version": "1.21.100-beta.21",
+    "x-minecraft-version": "1.21.100-beta.22",
     "definitions": {
         "444653910": {
             "title": "minecraft:dry_foliage_color",
@@ -15,22 +15,6 @@
             "required": [
                 "color"
             ]
-        },
-        "569860384": {
-            "title": "minecraft:grass_appearance",
-            "type": "object",
-            "properties": {
-                "color": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/3915697282"
-                        },
-                        {
-                            "$ref": "#/definitions/1894305624"
-                        }
-                    ]
-                }
-            }
         },
         "627767384": {
             "title": "Client Biome Description",
@@ -68,6 +52,48 @@
             "required": [
                 "fog_identifier"
             ]
+        },
+        "827959380": {
+            "title": "Client Biome Components",
+            "type": "object",
+            "properties": {
+                "minecraft:ambient_sounds": {
+                    "$ref": "#/definitions/2544684648"
+                },
+                "minecraft:atmosphere_identifier": {
+                    "$ref": "#/definitions/3762876268"
+                },
+                "minecraft:biome_music": {
+                    "$ref": "#/definitions/4184661767"
+                },
+                "minecraft:color_grading_identifier": {
+                    "$ref": "#/definitions/3904986305"
+                },
+                "minecraft:dry_foliage_color": {
+                    "$ref": "#/definitions/444653910"
+                },
+                "minecraft:fog_appearance": {
+                    "$ref": "#/definitions/783532490"
+                },
+                "minecraft:foliage_appearance": {
+                    "$ref": "#/definitions/3713296728"
+                },
+                "minecraft:grass_appearance": {
+                    "$ref": "#/definitions/1754577721"
+                },
+                "minecraft:lighting_identifier": {
+                    "$ref": "#/definitions/2571640896"
+                },
+                "minecraft:sky_color": {
+                    "$ref": "#/definitions/658145120"
+                },
+                "minecraft:water_appearance": {
+                    "$ref": "#/definitions/4061100221"
+                },
+                "minecraft:water_identifier": {
+                    "$ref": "#/definitions/2503601769"
+                }
+            }
         },
         "969725495": {
             "title": "Foliage Color Map",
@@ -134,7 +160,26 @@
                 }
             ]
         },
-        "1894305624": {
+        "1754577721": {
+            "title": "minecraft:grass_appearance",
+            "type": "object",
+            "properties": {
+                "color": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/3915697282"
+                        },
+                        {
+                            "$ref": "#/definitions/2318322665"
+                        }
+                    ]
+                },
+                "grass_is_shaded": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "2318322665": {
             "title": "Grass Color Map",
             "type": "object",
             "properties": {
@@ -150,48 +195,6 @@
             "required": [
                 "color_map"
             ]
-        },
-        "2282391920": {
-            "title": "Client Biome Components",
-            "type": "object",
-            "properties": {
-                "minecraft:ambient_sounds": {
-                    "$ref": "#/definitions/2544684648"
-                },
-                "minecraft:atmosphere_identifier": {
-                    "$ref": "#/definitions/3762876268"
-                },
-                "minecraft:biome_music": {
-                    "$ref": "#/definitions/4184661767"
-                },
-                "minecraft:color_grading_identifier": {
-                    "$ref": "#/definitions/3904986305"
-                },
-                "minecraft:dry_foliage_color": {
-                    "$ref": "#/definitions/444653910"
-                },
-                "minecraft:fog_appearance": {
-                    "$ref": "#/definitions/783532490"
-                },
-                "minecraft:foliage_appearance": {
-                    "$ref": "#/definitions/3713296728"
-                },
-                "minecraft:grass_appearance": {
-                    "$ref": "#/definitions/569860384"
-                },
-                "minecraft:lighting_identifier": {
-                    "$ref": "#/definitions/2571640896"
-                },
-                "minecraft:sky_color": {
-                    "$ref": "#/definitions/658145120"
-                },
-                "minecraft:water_appearance": {
-                    "$ref": "#/definitions/4061100221"
-                },
-                "minecraft:water_identifier": {
-                    "$ref": "#/definitions/2503601769"
-                }
-            }
         },
         "2503601769": {
             "title": "minecraft:water_identifier",
@@ -354,7 +357,7 @@
     "type": "object",
     "properties": {
         "components": {
-            "$ref": "#/definitions/2282391920"
+            "$ref": "#/definitions/827959380"
         },
         "description": {
             "$ref": "#/definitions/627767384"

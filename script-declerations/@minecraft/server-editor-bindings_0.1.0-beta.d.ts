@@ -1,7 +1,8 @@
 import * as _1e from '@minecraft/common';
 import * as _2c from '@minecraft/server';
 
-// Enums - 31
+// Enums - 32
+export enum AudioSettingsProperty { AreSoundsMuted = "AreSoundsMuted", IsMusicMuted = "IsMusicMuted"};
 export enum Axis { None = 0, X = 1, Y = 2, Z = 4};
 export enum BlockMaskListType { Disabled = "Disabled", Mask = "Mask", Replace = "Replace"};
 export enum BlockPaletteItemType { Probability = 1, Simple = 0};
@@ -61,7 +62,8 @@ export interface WidgetComponentVolumeOutlineOptions extends WidgetComponentBase
 export interface WidgetCreateOptions { bindPositionToBlockCursor?: boolean; collisionOffset?: _2c.Vector3; collisionRadius?: number; lockToSurface?: boolean; selectable?: boolean; snapToBlockLocation?: boolean; stateChangeEvent?: (arg0: WidgetStateChangeEventData)=>void; visible?: boolean; widgetName?: string; worldBoundsMax?: _2c.Vector3; worldBoundsMin?: _2c.Vector3};
 export interface WidgetGroupCreateOptions { groupSelectionMode?: WidgetGroupSelectionMode; showBounds?: boolean; visible?: boolean};
 
-// Classes - 67
+// Classes - 68
+export class AudioSettings { public get(property: AudioSettingsProperty): (boolean | number | undefined); public getAll(): Record<string,boolean | number | undefined>; public set(property: AudioSettingsProperty, value: boolean | number): void; public setAll(properties: Record<string,boolean | number | undefined>): void; private constructor();};
 export class BlockPalette { public constructor(); public getItem(index: number): IBlockPaletteItem; public removeItemAt(index: number): void; public removeItems(): void; public setItem(blockPaletteItem: IBlockPaletteItem, index: number): void;};
 export class BlockPaletteManager { public addOrReplacePalette(paletteId: string, palette: BlockPalette): void; public getPalette(paletteId: string): (BlockPalette | undefined); public getPaletteIdList(): string[]; public getPaletteItem(paletteId: string, index: number): IBlockPaletteItem; public getPrimaryPalette(): BlockPalette; public getSelectedBlockType(): _2c.BlockType; public getSelectedItem(): IBlockPaletteItem; public removePalette(paletteId: string): void; public setPaletteItem(paletteId: string, index: number, item: IBlockPaletteItem): void; public setPrimaryPalette(paletteId: string): void; public setSelectedItem(item: IBlockPaletteItem): void; private constructor();};
 export class BlockUtilities { public fillVolume(volume: _2c.BlockVolumeBase | _2c.CompoundBlockVolume | RelativeVolumeListBlockVolume, block?: _2c.BlockPermutation | _2c.BlockType | string): void; public findObscuredBlocksWithinVolume(volume: _2c.BlockVolumeBase | RelativeVolumeListBlockVolume): RelativeVolumeListBlockVolume; public getContiguousSelection(properties?: ContiguousSelectionProperties): _2c.CompoundBlockVolume; public getDimensionLocationBoundingBox(): _2c.BlockBoundingBox; public getDimensionMaxLocation(): _2c.Vector3; public getDimensionMinLocation(): _2c.Vector3; public getFacePreviewSelection(properties?: QuickExtrudeProperties): _2c.ListBlockVolume; public isLocationInsideCurrentDimensionBounds(locationOrVolumeOrBounds: _2c.BlockBoundingBox | _2c.BlockVolumeBase | RelativeVolumeListBlockVolume | _2c.Vector3): boolean; public quickExtrude(properties?: QuickExtrudeProperties): void; public shrinkWrapVolume(volume: _2c.BlockVolumeBase | RelativeVolumeListBlockVolume): RelativeVolumeListBlockVolume; public trimVolumeToFitContents(volume: _2c.BlockVolumeBase | RelativeVolumeListBlockVolume, retainMarqueeAfterTrimming: boolean, ignoreLiquid: boolean, ignoreNoCollision: boolean, blockMask?: BlockMaskList): RelativeVolumeListBlockVolume; private constructor();};
@@ -104,7 +106,7 @@ export class SelectionContainerVolume extends SelectionContainerBase{ public rea
 export class SelectionContainerVolumeEvent { public readonly type: SelectionVolumeEventType; private constructor();};
 export class SelectionEventAfterEvent { public readonly volumeEventData?: SelectionContainerVolumeEvent; private constructor();};
 export class SelectionManager { public readonly entity: SelectionContainerEntity; public readonly volume: SelectionContainerVolume; private constructor();};
-export class SettingsManager { public readonly graphics: GraphicsSettings; public readonly speed: SpeedSettings; public readonly theme: ThemeSettings; private constructor();};
+export class SettingsManager { public readonly audio: AudioSettings; public readonly graphics: GraphicsSettings; public readonly speed: SpeedSettings; public readonly theme: ThemeSettings; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class SimpleBlockPaletteItem extends IBlockPaletteItem{ public constructor(displayName?: string);};
 export class SimulationState { public isPaused(): boolean; public setPaused(isPaused: boolean): void; private constructor();};
