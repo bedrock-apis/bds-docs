@@ -162,9 +162,10 @@ export const world: World;
 
 // Functions - 0
 
-// Errors - 6
+// Errors - 7
 export class CommandError extends Error{ private constructor();};
 export class ContainerRulesError extends Error{ private constructor();};
+export class EntitySpawnError extends Error{ private constructor();};
 export class InvalidEntityError extends Error{ public readonly id: string; public readonly type: string; private constructor();};
 export class LocationInUnloadedChunkError extends Error{ private constructor();};
 export class LocationOutOfWorldBoundariesError extends Error{ private constructor();};

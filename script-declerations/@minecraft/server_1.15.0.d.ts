@@ -490,7 +490,7 @@ export const world: World;
 
 // Functions - 0
 
-// Errors - 22
+// Errors - 23
 export class BlockCustomComponentAlreadyRegisteredError extends Error{ private constructor();};
 export class BlockCustomComponentReloadNewComponentError extends Error{ private constructor();};
 export class BlockCustomComponentReloadNewEventError extends Error{ private constructor();};
@@ -502,6 +502,7 @@ export class CustomComponentNameError extends Error{ public readonly reason: Cus
 export class EnchantmentLevelOutOfBoundsError extends Error{ private constructor();};
 export class EnchantmentTypeNotCompatibleError extends Error{ private constructor();};
 export class EnchantmentTypeUnknownIdError extends Error{ private constructor();};
+export class EntitySpawnError extends Error{ private constructor();};
 export class InvalidContainerSlotError extends Error{ private constructor();};
 export class InvalidEntityError extends Error{ public readonly id: string; public readonly type: string; private constructor();};
 export class InvalidIteratorError extends Error{ private constructor();};

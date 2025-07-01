@@ -1,7 +1,7 @@
 import * as _1e from '@minecraft/common';
 import * as _2c from '@minecraft/server';
 
-// Enums - 32
+// Enums - 33
 export enum AudioSettingsProperty { AreSoundsMuted = "AreSoundsMuted", IsMusicMuted = "IsMusicMuted"};
 export enum Axis { None = 0, X = 1, Y = 2, Z = 4};
 export enum BlockMaskListType { Disabled = "Disabled", Mask = "Mask", Replace = "Replace"};
@@ -17,6 +17,7 @@ export enum ExportResult { EditorSystemFailure = 7, FileArchiverFetchFailed = 2,
 export enum GamePublishSetting { FriendsOfFriends = 3, FriendsOnly = 2, InviteOnly = 1, NoMultiPlay = 0, Public = 4};
 export enum GraphicsSettingsProperty { GraphicsMode = "GraphicsMode", NightVision = "NightVision", ShowChunkBoundaries = "ShowChunkBoundaries", ShowCompass = "ShowCompass", ShowInvisibleBlocks = "ShowInvisibleBlocks"};
 export enum InputModifier { Alt = 2, Any = 15, Control = 4, None = 1, Shift = 8, Unused = 0};
+export enum LogChannel { All = 3, Message = 1, Toast = 2};
 export enum MouseActionCategory { Button = 1, Drag = 3, Wheel = 2};
 export enum PaintCompletionState { Canceled = 1, Failed = 2, Success = 0};
 export enum PaintMode { BlockPaint = 0, Flatten = 4, FreehandSelect = 1, Roughen = 3, Smooth = 2};
@@ -45,7 +46,7 @@ export interface CursorRay { end: _2c.Vector3; hit: boolean; start: _2c.Vector3}
 export interface EditorStructureSearchOptions { displayName?: string; idPattern?: string; includeSources?: StructureSource[]; includeTags?: string[]};
 export interface ExtensionOptionalParameters { description?: string; notes?: string; toolGroupId?: string};
 export interface GameOptions { bedsWork?: boolean; bonusChest?: boolean; cheats?: boolean; commandBlockEnabled?: boolean; commandBlockOutput?: boolean; daylightCycle?: DaylightCycle; difficulty?: _2c.Difficulty; dimensionId?: string; disableWeather?: boolean; drowningDamage?: boolean; educationEdition?: boolean; entitiesDropLoot?: boolean; exportType?: ProjectExportType; fallDamage?: boolean; fireDamage?: boolean; fireSpreads?: boolean; freezeDamage?: boolean; friendlyFire?: boolean; functionCommandLimit?: number; gameMode?: _2c.GameMode; hardcore?: boolean; immediateRespawn?: boolean; insomnia?: boolean; keepInventory?: boolean; lanVisibility?: boolean; limitedCrafting?: boolean; locatorBar?: boolean; maxCommandChainLength?: number; mobGriefing?: boolean; mobLoot?: boolean; mobSpawning?: boolean; multiplayerGame?: boolean; naturalRegeneration?: boolean; playerAccess?: GamePublishSetting; playerPermissions?: _2c.PlayerPermissionLevel; randomTickSpeed?: number; recipeUnlocking?: boolean; respawnBlocksExplode?: boolean; respawnRadius?: number; sendCommandFeedback?: boolean; showBorderEffect?: boolean; showCoordinates?: boolean; showDaysPlayed?: boolean; showDeathMessage?: boolean; showItemTags?: boolean; simulationDistance?: number; sleepSkipPercent?: number; spawnPosition?: _2c.Vector3; startingMap?: boolean; tileDrops?: boolean; timeOfDay?: number; tntExplodes?: boolean; weather?: number; worldName?: string};
-export interface LogProperties { player?: _2c.Player; tags?: string[]};
+export interface LogProperties { channelMask?: LogChannel; player?: _2c.Player; subMessage?: string; tags?: string[]};
 export interface ProjectExportOptions { alwaysDay?: boolean; difficulty?: _2c.Difficulty; disableWeather?: boolean; exportName?: string; exportType: ProjectExportType; gameMode?: _2c.GameMode; initialTimOfDay?: number};
 export interface QuickExtrudeProperties { checkForAdjacentFace?: boolean; contiguousSelectionBlockList?: string[]; contiguousSelectionType?: ContiguousSelectionType; isShrink?: boolean; layerCount?: number; selectionDirection?: number; size?: number; startingLocation?: _2c.Vector3};
 export interface WeightedBlock { block: _2c.BlockType; weight: number};

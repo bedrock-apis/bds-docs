@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "2375908812",
     "x-format-version": "1.21.20",
-    "x-minecraft-version": "1.21.100-beta.22",
+    "x-minecraft-version": "1.21.100-beta.23",
     "definitions": {
         "169701669": {
             "title": "RandomPoolAlias",
@@ -14,40 +14,13 @@
                 "targets": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/219465748"
+                        "$ref": "#/definitions/2318795732"
                     }
                 }
             },
             "required": [
                 "alias",
                 "targets"
-            ]
-        },
-        "219465748": {
-            "title": "WeightedRandomItem",
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/1323337012"
-                },
-                "weight": {
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "data",
-                "weight"
-            ]
-        },
-        "1323337012": {
-            "title": "Reference",
-            "oneOf": [
-                {
-                    "type": "string"
-                },
-                {
-                    "type": "string"
-                }
             ]
         },
         "2155635173": {
@@ -76,6 +49,22 @@
                 "weight"
             ]
         },
+        "2318795732": {
+            "title": "WeightedRandomItem",
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "string"
+                },
+                "weight": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "data",
+                "weight"
+            ]
+        },
         "3138104923": {
             "title": "DirectPoolAlias",
             "type": "object",
@@ -84,7 +73,7 @@
                     "type": "string"
                 },
                 "target": {
-                    "$ref": "#/definitions/1323337012"
+                    "type": "string"
                 }
             },
             "required": [

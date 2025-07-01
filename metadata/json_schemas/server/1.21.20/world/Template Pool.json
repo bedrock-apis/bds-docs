@@ -2,19 +2,8 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1382973118",
     "x-format-version": "1.21.20",
-    "x-minecraft-version": "1.21.100-beta.22",
+    "x-minecraft-version": "1.21.100-beta.23",
     "definitions": {
-        "1323337012": {
-            "title": "Reference",
-            "oneOf": [
-                {
-                    "type": "string"
-                },
-                {
-                    "type": "string"
-                }
-            ]
-        },
         "1755372388": {
             "title": "TemplatePoolElement",
             "type": "object",
@@ -44,7 +33,7 @@
             "type": "object",
             "properties": {
                 "identifier": {
-                    "$ref": "#/definitions/3681370654"
+                    "type": "string"
                 }
             },
             "required": [
@@ -83,10 +72,10 @@
                     ]
                 },
                 "location": {
-                    "$ref": "#/definitions/3251542604"
+                    "type": "string"
                 },
                 "processors": {
-                    "$ref": "#/definitions/3639487318"
+                    "type": "string"
                 },
                 "projection": {
                     "title": "Projection",
@@ -101,25 +90,6 @@
                 "element_type",
                 "location"
             ]
-        },
-        "3251542604": {
-            "title": "File Reference",
-            "type": "string"
-        },
-        "3639487318": {
-            "title": "Reference",
-            "oneOf": [
-                {
-                    "type": "string"
-                },
-                {
-                    "type": "string"
-                }
-            ]
-        },
-        "3681370654": {
-            "title": "Identifier",
-            "type": "string"
         }
     },
     "title": "Used to pair block rules with Structure Templates and to randomly place Structure Templates using a weighted list.",
@@ -135,7 +105,7 @@
             }
         },
         "fallback": {
-            "$ref": "#/definitions/1323337012"
+            "type": "string"
         }
     },
     "required": [

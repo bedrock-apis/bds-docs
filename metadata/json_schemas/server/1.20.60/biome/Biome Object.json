@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1532434245",
     "x-format-version": "1.20.60",
-    "x-minecraft-version": "1.21.100-beta.22",
+    "x-minecraft-version": "1.21.100-beta.23",
     "definitions": {
         "6061611": {
             "title": "minecraft:creature_spawn_probability",
@@ -112,6 +112,28 @@
             },
             "required": [
                 "replacements"
+            ]
+        },
+        "333666056": {
+            "title": "minecraft:map_tints",
+            "type": "object",
+            "properties": {
+                "foliage": {
+                    "$ref": "#/definitions/3915697282"
+                },
+                "grass": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/3937875407"
+                        },
+                        {
+                            "$ref": "#/definitions/1703738264"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "grass"
             ]
         },
         "415084889": {
@@ -416,25 +438,11 @@
         },
         "1493335182": {
             "title": "Reference",
-            "oneOf": [
-                {
-                    "type": "string"
-                },
-                {
-                    "type": "string"
-                }
-            ]
+            "type": "string"
         },
         "1527331705": {
             "title": "Reference",
-            "oneOf": [
-                {
-                    "type": "string"
-                },
-                {
-                    "type": "string"
-                }
-            ]
+            "type": "string"
         },
         "1631445286": {
             "title": "Biome Components",
@@ -448,6 +456,9 @@
                 },
                 "minecraft:humidity": {
                     "$ref": "#/definitions/3654699498"
+                },
+                "minecraft:map_tints": {
+                    "$ref": "#/definitions/333666056"
                 },
                 "minecraft:mountain_parameters": {
                     "$ref": "#/definitions/4185018795"
@@ -477,6 +488,24 @@
                     "$ref": "#/definitions/3315029981"
                 }
             }
+        },
+        "1703738264": {
+            "title": "grass",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "title": "GrassType",
+                    "type": "string",
+                    "const": "noise",
+                    "enum": [
+                        "tint",
+                        "noise"
+                    ]
+                }
+            },
+            "required": [
+                "type"
+            ]
         },
         "2278320139": {
             "title": "minecraft:mountain_parameters - steep_material_adjustment settings",
@@ -771,6 +800,48 @@
         },
         "3878857055": {
             "title": "minecraft:partially_frozen"
+        },
+        "3915697282": {
+            "title": "Color255RGB",
+            "oneOf": [
+                {
+                    "type": "string",
+                    "pattern": "^#[a-fA-F0-9]{6}$"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                }
+            ],
+            "$metaProperties": {
+                "CEREAL_EDITOR_SCHEMA_TAG": "type:color"
+            }
+        },
+        "3937875407": {
+            "title": "grass",
+            "type": "object",
+            "properties": {
+                "tint": {
+                    "$ref": "#/definitions/3915697282"
+                },
+                "type": {
+                    "title": "GrassType",
+                    "type": "string",
+                    "const": "tint",
+                    "enum": [
+                        "tint",
+                        "noise"
+                    ]
+                }
+            },
+            "required": [
+                "tint",
+                "type"
+            ]
         },
         "3978796423": {
             "title": "minecraft:the_end",

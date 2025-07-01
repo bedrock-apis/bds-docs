@@ -8,7 +8,7 @@ export enum FormRejectReason { MalformedResponse = "MalformedResponse", PlayerQu
 // Interfaces - 4
 export interface ModalFormDataDropdownOptions { defaultValueIndex?: number; tooltip?: _2c.RawMessage | string};
 export interface ModalFormDataSliderOptions { defaultValue?: number; tooltip?: _2c.RawMessage | string; valueStep?: number};
-export interface ModalFormDataTextFieldOptions { defaultValue?: string; tooltip?: _2c.RawMessage | string};
+export interface ModalFormDataTextFieldOptions { defaultValue?: _2c.RawMessage | string; tooltip?: _2c.RawMessage | string};
 export interface ModalFormDataToggleOptions { defaultValue?: boolean; tooltip?: _2c.RawMessage | string};
 
 // Classes - 8
