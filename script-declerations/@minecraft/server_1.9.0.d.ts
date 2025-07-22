@@ -1,4 +1,3 @@
-import * as _1e from '@minecraft/common';
 
 // Enums - 18
 export enum BlockPistonState { Expanded = "Expanded", Expanding = "Expanding", Retracted = "Retracted", Retracting = "Retracting"};

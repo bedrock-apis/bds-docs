@@ -1,4 +1,3 @@
-import * as _1e from '@minecraft/common';
 
 // Enums - 25
 export enum BlockComponentTypes { Inventory = "minecraft:inventory", Piston = "minecraft:piston", Sign = "minecraft:sign"};

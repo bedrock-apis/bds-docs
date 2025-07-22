@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1678203137",
     "x-format-version": "1.21.60",
-    "x-minecraft-version": "1.21.100-beta.25",
+    "x-minecraft-version": "1.21.110-beta.20",
     "definitions": {
         "2254328111": {
             "title": "Crafting Catalog Group Icon",
@@ -24,14 +24,14 @@
             "title": "Crafting Catalog Item",
             "oneOf": [
                 {
-                    "type": "string",
+                    "$ref": "#/definitions/3470474886",
                     "pattern": "^(?:.)+:(?:.)+$"
                 },
                 {
                     "type": "object",
                     "properties": {
                         "name": {
-                            "type": "string",
+                            "$ref": "#/definitions/3470474886",
                             "pattern": "^(?:.)+:(?:.)+$"
                         }
                     },
@@ -40,6 +40,10 @@
                     ]
                 }
             ]
+        },
+        "3470474886": {
+            "title": "Reference",
+            "type": "string"
         },
         "3571599612": {
             "title": "Crafting Catalog Group",

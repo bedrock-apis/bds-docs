@@ -1,32 +1,197 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "662705489",
+    "$id": "1785036358",
     "x-format-version": "1.21.50",
-    "x-minecraft-version": "1.21.100-beta.25",
+    "x-minecraft-version": "1.21.110-beta.20",
     "definitions": {
-        "98158070": {
-            "title": "Herd",
+        "517105782": {
+            "title": "compound_proxy",
+            "oneOf": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "boolean"
+                }
+            ]
+        },
+        "517650772": {
+            "title": "Spawn Weight",
             "type": "object",
             "properties": {
-                "event": {
-                    "type": "string"
-                },
-                "event_skip_count": {
-                    "type": "integer"
-                },
-                "initial_event": {
-                    "type": "string"
-                },
-                "initial_event_count": {
-                    "type": "integer"
-                },
-                "max": {
+                "default": {
                     "type": "integer",
                     "minimum": 0
+                },
+                "rarity": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            },
+            "required": [
+                "default"
+            ]
+        },
+        "581732209": {
+            "title": "Spawn HeightFilter",
+            "type": "object",
+            "properties": {
+                "max": {
+                    "type": "integer"
                 },
                 "min": {
-                    "type": "integer",
-                    "minimum": 0
+                    "type": "integer"
+                }
+            }
+        },
+        "584090557": {
+            "title": "Spawn DelayFilter",
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "type": "string"
+                },
+                "max": {
+                    "type": "integer"
+                },
+                "min": {
+                    "type": "integer"
+                },
+                "spawn_chance": {
+                    "type": "integer"
+                }
+            }
+        },
+        "904344786": {
+            "title": "Spawn BiomeConditions",
+            "type": "object",
+            "properties": {
+                "minecraft:biome_filter": {
+                    "$ref": "#/definitions/1088251937"
+                },
+                "minecraft:brightness_filter": {
+                    "$ref": "#/definitions/2826784789"
+                },
+                "minecraft:delay_filter": {
+                    "$ref": "#/definitions/584090557"
+                },
+                "minecraft:density_limit": {
+                    "$ref": "#/definitions/3571280975"
+                },
+                "minecraft:difficulty_filter": {
+                    "$ref": "#/definitions/2018407047"
+                },
+                "minecraft:disallow_spawns_in_bubble": {
+                    "$ref": "#/definitions/1774774273"
+                },
+                "minecraft:distance_filter": {
+                    "$ref": "#/definitions/2164548425"
+                },
+                "minecraft:height_filter": {
+                    "$ref": "#/definitions/581732209"
+                },
+                "minecraft:herd": {
+                    "oneOf": [
+                        {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/1551459349"
+                            }
+                        },
+                        {
+                            "$ref": "#/definitions/1551459349"
+                        }
+                    ]
+                },
+                "minecraft:is_experimental": {
+                    "$ref": "#/definitions/2614685946"
+                },
+                "minecraft:is_persistent": {
+                    "$ref": "#/definitions/1142137845"
+                },
+                "minecraft:mob_event_filter": {
+                    "$ref": "#/definitions/1159543840"
+                },
+                "minecraft:permute_type": {
+                    "oneOf": [
+                        {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/2437706690"
+                            }
+                        },
+                        {
+                            "$ref": "#/definitions/2437706690"
+                        }
+                    ]
+                },
+                "minecraft:player_in_village_filter": {
+                    "$ref": "#/definitions/1491617288"
+                },
+                "minecraft:spawn_event": {
+                    "$ref": "#/definitions/1159543840"
+                },
+                "minecraft:spawns_above_block_filter": {
+                    "$ref": "#/definitions/2617991491"
+                },
+                "minecraft:spawns_lava": {
+                    "$ref": "#/definitions/1945762166"
+                },
+                "minecraft:spawns_on_block_filter": {
+                    "oneOf": [
+                        {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/2794205495"
+                            }
+                        },
+                        {
+                            "$ref": "#/definitions/2794205495"
+                        }
+                    ]
+                },
+                "minecraft:spawns_on_block_prevented_filter": {
+                    "oneOf": [
+                        {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/2794205495"
+                            }
+                        },
+                        {
+                            "$ref": "#/definitions/2794205495"
+                        }
+                    ]
+                },
+                "minecraft:spawns_on_surface": {
+                    "$ref": "#/definitions/1215845429"
+                },
+                "minecraft:spawns_underground": {
+                    "$ref": "#/definitions/1900867328"
+                },
+                "minecraft:spawns_underwater": {
+                    "$ref": "#/definitions/1503426398"
+                },
+                "minecraft:weight": {
+                    "$ref": "#/definitions/517650772"
+                },
+                "minecraft:world_age_filter": {
+                    "$ref": "#/definitions/921020165"
+                }
+            }
+        },
+        "921020165": {
+            "title": "Spawn WorldAgeFilter",
+            "type": "object",
+            "properties": {
+                "max": {
+                    "type": "integer"
+                },
+                "min": {
+                    "type": "integer"
                 }
             }
         },
@@ -73,33 +238,29 @@
                 }
             ]
         },
-        "1492643634": {
-            "title": "Reference",
-            "type": "string"
+        "1142137845": {
+            "title": "Spawn IsPersistant"
         },
-        "1564953790": {
-            "title": "Placement",
+        "1159543840": {
+            "title": "Spawn MobEventFilter",
             "type": "object",
             "properties": {
-                "heightmap": {
-                    "type": "string"
-                },
-                "spawn_obstruction_predicate": {
-                    "type": "string"
-                },
-                "spawn_predicate": {
-                    "type": "string"
-                },
-                "type": {
+                "event": {
                     "type": "string"
                 }
             }
         },
-        "1743975235": {
-            "title": "Description",
+        "1215845429": {
+            "title": "Spawn SpawnOnSurface"
+        },
+        "1253883150": {
+            "title": "Spawn Description",
             "type": "object",
             "properties": {
                 "identifier": {
+                    "type": "string"
+                },
+                "population_control": {
                     "type": "string"
                 }
             },
@@ -107,12 +268,107 @@
                 "identifier"
             ]
         },
-        "3424466759": {
-            "title": "PermuteType",
+        "1491617288": {
+            "title": "Spawn PlayerInVillageFilter",
+            "type": "object",
+            "properties": {
+                "distance": {
+                    "type": "integer"
+                },
+                "village_border_tolerance": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "distance"
+            ]
+        },
+        "1493335182": {
+            "title": "Reference",
+            "type": "string"
+        },
+        "1503426398": {
+            "title": "Spawn SpawnUnderwater"
+        },
+        "1551459349": {
+            "title": "Spawn Herd",
+            "type": "object",
+            "properties": {
+                "event": {
+                    "type": "string"
+                },
+                "event_skip_count": {
+                    "type": "integer"
+                },
+                "initial_event": {
+                    "type": "string"
+                },
+                "initial_event_count": {
+                    "type": "integer"
+                },
+                "max_size": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "min_size": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            }
+        },
+        "1774774273": {
+            "title": "Spawn DisallowSpawnInBubble"
+        },
+        "1900867328": {
+            "title": "Spawn SpawnUnderground"
+        },
+        "1945762166": {
+            "title": "Spawn SpawnInLava"
+        },
+        "2018407047": {
+            "title": "Spawn DifficultyFilter",
+            "type": "object",
+            "properties": {
+                "max": {
+                    "title": "SpawnDifficulty Legacy",
+                    "type": "string",
+                    "enum": [
+                        "peaceful",
+                        "easy",
+                        "normal",
+                        "hard"
+                    ]
+                },
+                "min": {
+                    "title": "SpawnDifficulty Legacy",
+                    "type": "string",
+                    "enum": [
+                        "peaceful",
+                        "easy",
+                        "normal",
+                        "hard"
+                    ]
+                }
+            }
+        },
+        "2164548425": {
+            "title": "Spawn DistanceFilter",
+            "type": "object",
+            "properties": {
+                "max": {
+                    "type": "integer"
+                },
+                "min": {
+                    "type": "integer"
+                }
+            }
+        },
+        "2437706690": {
+            "title": "Spawn PermuteType",
             "type": "object",
             "properties": {
                 "entity_type": {
-                    "$ref": "#/definitions/1492643634"
+                    "$ref": "#/definitions/1493335182"
                 },
                 "min_guaranteed": {
                     "type": "integer",
@@ -127,36 +383,96 @@
                 "weight"
             ]
         },
-        "3629386827": {
-            "title": "BiomeConditions",
+        "2614685946": {
+            "title": "Spawn IsExperimental"
+        },
+        "2617991491": {
+            "title": "Spawn SpawnAboveBlockFilter",
             "type": "object",
             "properties": {
-                "biome_filter": {
-                    "$ref": "#/definitions/1088251937"
+                "blocks": {
+                    "oneOf": [
+                        {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/2794205495"
+                            }
+                        },
+                        {
+                            "$ref": "#/definitions/2794205495"
+                        }
+                    ]
                 },
-                "herds": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/98158070"
-                    }
-                },
-                "mob_event_filter": {
+                "distance": {
+                    "type": "integer"
+                }
+            }
+        },
+        "2770948419": {
+            "title": "BlockDescriptorProxy",
+            "type": "object",
+            "properties": {
+                "name": {
                     "type": "string"
                 },
-                "permute_types": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/3424466759"
+                "states": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/517105782"
                     }
                 },
-                "weight": {
-                    "type": "integer",
-                    "minimum": 0
+                "tags": {
+                    "type": "string"
                 }
-            },
-            "required": [
-                "weight"
+            }
+        },
+        "2794205495": {
+            "title": "Block Descriptor",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/2770948419"
+                },
+                {
+                    "type": "string",
+                    "minLength": 1
+                },
+                {
+                    "$ref": "#/definitions/2770948419"
+                }
             ]
+        },
+        "2826784789": {
+            "title": "Spawn BrightnessFilter",
+            "type": "object",
+            "properties": {
+                "adjust_for_weather": {
+                    "type": "boolean"
+                },
+                "max": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 15
+                },
+                "min": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 15
+                }
+            }
+        },
+        "3571280975": {
+            "title": "Spawn DensityLimit",
+            "type": "object",
+            "properties": {
+                "surface": {
+                    "type": "integer",
+                    "minimum": -1
+                },
+                "underground": {
+                    "type": "integer",
+                    "minimum": -1
+                }
+            }
         },
         "4150989894": {
             "title": "Filter Test",
@@ -241,14 +557,11 @@
         "conditions": {
             "type": "array",
             "items": {
-                "$ref": "#/definitions/3629386827"
+                "$ref": "#/definitions/904344786"
             }
         },
         "description": {
-            "$ref": "#/definitions/1743975235"
-        },
-        "placement": {
-            "$ref": "#/definitions/1564953790"
+            "$ref": "#/definitions/1253883150"
         }
     },
     "required": [

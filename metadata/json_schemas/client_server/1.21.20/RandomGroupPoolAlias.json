@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "2375908812",
     "x-format-version": "1.21.20",
-    "x-minecraft-version": "1.21.100-beta.25",
+    "x-minecraft-version": "1.21.110-beta.20",
     "definitions": {
         "169701669": {
             "title": "RandomPoolAlias",
@@ -14,13 +14,33 @@
                 "targets": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/2318795732"
+                        "$ref": "#/definitions/1715022163"
                     }
                 }
             },
             "required": [
                 "alias",
                 "targets"
+            ]
+        },
+        "1356053607": {
+            "title": "Reference",
+            "type": "string"
+        },
+        "1715022163": {
+            "title": "WeightedRandomItem",
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/1356053607"
+                },
+                "weight": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "data",
+                "weight"
             ]
         },
         "2155635173": {
@@ -49,22 +69,6 @@
                 "weight"
             ]
         },
-        "2318795732": {
-            "title": "WeightedRandomItem",
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "string"
-                },
-                "weight": {
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "data",
-                "weight"
-            ]
-        },
         "3138104923": {
             "title": "DirectPoolAlias",
             "type": "object",
@@ -73,7 +77,7 @@
                     "type": "string"
                 },
                 "target": {
-                    "type": "string"
+                    "$ref": "#/definitions/1356053607"
                 }
             },
             "required": [

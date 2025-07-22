@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "2005366640",
     "x-format-version": "1.21.80",
-    "x-minecraft-version": "1.21.100-beta.25",
+    "x-minecraft-version": "1.21.110-beta.20",
     "definitions": {
         "996782454": {
             "title": "Camera Preset",
@@ -46,11 +46,11 @@
                     "maxItems": 2
                 },
                 "identifier": {
-                    "type": "string",
+                    "$ref": "#/definitions/3573822430",
                     "pattern": "^(\\w+:\\w+)?$"
                 },
                 "inherit_from": {
-                    "type": "string",
+                    "$ref": "#/definitions/3640473056",
                     "pattern": "^(\\w+:\\w+)?$"
                 },
                 "listener": {
@@ -132,6 +132,10 @@
                 "identifier"
             ]
         },
+        "1492643634": {
+            "title": "Reference",
+            "type": "string"
+        },
         "3530470262": {
             "title": "CameraPresetAimAssistDefinition",
             "type": "object",
@@ -143,7 +147,7 @@
                     "type": "number"
                 },
                 "preset": {
-                    "type": "string"
+                    "$ref": "#/definitions/1492643634"
                 },
                 "target_mode": {
                     "title": "Aim-Assist Target Mode",
@@ -154,6 +158,14 @@
                     ]
                 }
             }
+        },
+        "3573822430": {
+            "title": "Identifier",
+            "type": "string"
+        },
+        "3640473056": {
+            "title": "Reference",
+            "type": "string"
         },
         "4021724221": {
             "title": "Vec2",

@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3035388266",
     "x-format-version": "1.21.20",
-    "x-minecraft-version": "1.21.100-beta.25",
+    "x-minecraft-version": "1.21.110-beta.20",
     "definitions": {
         "45584192": {
             "title": "Passthrough",
@@ -27,7 +27,7 @@
             "type": "object",
             "properties": {
                 "loot_table": {
-                    "type": "string"
+                    "$ref": "#/definitions/1135547207"
                 },
                 "type": {
                     "title": "BlockEntityModifierType",
@@ -44,7 +44,11 @@
                 "type"
             ]
         },
-        "1527331705": {
+        "1135547207": {
+            "title": "File Reference",
+            "type": "string"
+        },
+        "1527037515": {
             "title": "Reference",
             "type": "string"
         },
@@ -97,7 +101,7 @@
             "type": "object",
             "properties": {
                 "block": {
-                    "type": "string"
+                    "$ref": "#/definitions/1527037515"
                 },
                 "predicate_type": {
                     "title": "BlockType",
@@ -148,13 +152,13 @@
             "title": "Block Specifier",
             "oneOf": [
                 {
-                    "$ref": "#/definitions/1527331705"
+                    "$ref": "#/definitions/1527037515"
                 },
                 {
                     "type": "object",
                     "properties": {
                         "name": {
-                            "$ref": "#/definitions/1527331705"
+                            "$ref": "#/definitions/1527037515"
                         },
                         "states": {
                             "type": "object",
@@ -184,7 +188,7 @@
             "type": "object",
             "properties": {
                 "block": {
-                    "type": "string"
+                    "$ref": "#/definitions/1527037515"
                 },
                 "predicate_type": {
                     "title": "BlockType",

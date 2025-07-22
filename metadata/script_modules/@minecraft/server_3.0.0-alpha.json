@@ -806,6 +806,17 @@
                 {
                     "is_read_only": true,
                     "is_static": true,
+                    "name": "DefaultCategoryId",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "minecraft:default"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
                     "name": "DefaultPresetId",
                     "type": {
                         "is_bind_type": false,
@@ -10135,6 +10146,53 @@
                 {
                     "arguments": [
                         {
+                            "details": null,
+                            "name": "location",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getLightLevel",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.2.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidArgumentError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "LocationInUnloadedChunkError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                },
+                {
+                    "arguments": [
+                        {
                             "details": {
                                 "default_value": "null"
                             },
@@ -10185,6 +10243,53 @@
                         "is_bind_type": false,
                         "is_errorable": true,
                         "name": "array"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "location",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getSkyLightLevel",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.2.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidArgumentError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "LocationInUnloadedChunkError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
                     }
                 },
                 {
@@ -27773,6 +27878,172 @@
             }
         },
         {
+            "base_types": [],
+            "constants": [],
+            "functions": [],
+            "name": "PackSettingChangeAfterEvent",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "settingName",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "settingValue",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "variant",
+                        "variant_types": [
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "boolean"
+                            },
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "float",
+                                "valid_range": {
+                                    "max": 2147483647,
+                                    "min": -2147483648
+                                }
+                            }
+                        ]
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PackSettingChangeAfterEvent"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "callback",
+                            "type": {
+                                "closure_type": {
+                                    "argument_types": [
+                                        {
+                                            "is_bind_type": true,
+                                            "is_errorable": false,
+                                            "name": "PackSettingChangeAfterEvent"
+                                        }
+                                    ],
+                                    "return_type": {
+                                        "is_bind_type": false,
+                                        "is_errorable": true,
+                                        "name": "undefined"
+                                    }
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "closure"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "subscribe",
+                    "return_type": {
+                        "closure_type": {
+                            "argument_types": [
+                                {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "PackSettingChangeAfterEvent"
+                                }
+                            ],
+                            "return_type": {
+                                "is_bind_type": false,
+                                "is_errorable": true,
+                                "name": "undefined"
+                            }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "callback",
+                            "type": {
+                                "closure_type": {
+                                    "argument_types": [
+                                        {
+                                            "is_bind_type": true,
+                                            "is_errorable": false,
+                                            "name": "PackSettingChangeAfterEvent"
+                                        }
+                                    ],
+                                    "return_type": {
+                                        "is_bind_type": false,
+                                        "is_errorable": true,
+                                        "name": "undefined"
+                                    }
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "closure"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "unsubscribe",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "undefined"
+                    }
+                }
+            ],
+            "name": "PackSettingChangeAfterEventSignal",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PackSettingChangeAfterEventSignal"
+            }
+        },
+        {
             "base_types": [
                 {
                     "is_bind_type": true,
@@ -37309,7 +37580,7 @@
                     ],
                     "call_privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "is_constructor": false,
@@ -38942,6 +39213,51 @@
                     }
                 },
                 {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getPackSettings",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "key_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "string"
+                        },
+                        "name": "map",
+                        "value_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "variant",
+                            "variant_types": [
+                                {
+                                    "is_bind_type": false,
+                                    "is_errorable": false,
+                                    "name": "boolean"
+                                },
+                                {
+                                    "is_bind_type": false,
+                                    "is_errorable": false,
+                                    "name": "float",
+                                    "valid_range": {
+                                        "max": 2147483647,
+                                        "min": -2147483648
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
                     "arguments": [
                         {
                             "details": {
@@ -40066,6 +40382,24 @@
                     ],
                     "is_baked": false,
                     "is_read_only": true,
+                    "name": "packSettingChange",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PackSettingChangeAfterEventSignal"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
                     "name": "pistonActivate",
                     "type": {
                         "is_bind_type": true,
@@ -40942,17 +41276,7 @@
             "value": 20
         }
     ],
-    "dependencies": [
-        {
-            "name": "@minecraft/common",
-            "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
-            "versions": [
-                {
-                    "version": "1.2.0"
-                }
-            ]
-        }
-    ],
+    "dependencies": [],
     "enums": [
         {
             "constants": [
@@ -51572,6 +51896,17 @@
                 "is_errorable": false,
                 "name": "World"
             }
+        }
+    ],
+    "peer_dependencies": [
+        {
+            "name": "@minecraft/common",
+            "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+            "versions": [
+                {
+                    "version": "1.2.0"
+                }
+            ]
         }
     ],
     "type_aliases": [

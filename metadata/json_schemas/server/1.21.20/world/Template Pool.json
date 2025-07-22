@@ -2,8 +2,20 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1382973118",
     "x-format-version": "1.21.20",
-    "x-minecraft-version": "1.21.100-beta.25",
+    "x-minecraft-version": "1.21.110-beta.20",
     "definitions": {
+        "1323337012": {
+            "title": "Reference",
+            "type": "string"
+        },
+        "1356053607": {
+            "title": "Reference",
+            "type": "string"
+        },
+        "1428261416": {
+            "title": "File Reference",
+            "type": "string"
+        },
         "1755372388": {
             "title": "TemplatePoolElement",
             "type": "object",
@@ -33,7 +45,7 @@
             "type": "object",
             "properties": {
                 "identifier": {
-                    "type": "string"
+                    "$ref": "#/definitions/3714778797"
                 }
             },
             "required": [
@@ -72,10 +84,10 @@
                     ]
                 },
                 "location": {
-                    "type": "string"
+                    "$ref": "#/definitions/1428261416"
                 },
                 "processors": {
-                    "type": "string"
+                    "$ref": "#/definitions/1323337012"
                 },
                 "projection": {
                     "title": "Projection",
@@ -90,6 +102,10 @@
                 "element_type",
                 "location"
             ]
+        },
+        "3714778797": {
+            "title": "Identifier",
+            "type": "string"
         }
     },
     "title": "Used to pair block rules with Structure Templates and to randomly place Structure Templates using a weighted list.",
@@ -105,7 +121,7 @@
             }
         },
         "fallback": {
-            "type": "string"
+            "$ref": "#/definitions/1356053607"
         }
     },
     "required": [

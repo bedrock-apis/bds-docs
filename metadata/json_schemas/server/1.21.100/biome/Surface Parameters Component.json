@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3626244290",
     "x-format-version": "1.21.100",
-    "x-minecraft-version": "1.21.100-beta.25",
+    "x-minecraft-version": "1.21.110-beta.20",
     "definitions": {
         "72946555": {
             "title": "minecraft:overworld",
@@ -15,7 +15,9 @@
                     "$ref": "#/definitions/3076687790"
                 },
                 "sea_floor_depth": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 127
                 },
                 "sea_floor_material": {
                     "$ref": "#/definitions/3076687790"
@@ -73,7 +75,9 @@
                     "$ref": "#/definitions/3076687790"
                 },
                 "sea_floor_depth": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 127
                 },
                 "sea_floor_material": {
                     "$ref": "#/definitions/3076687790"
@@ -119,11 +123,18 @@
                 "foundation_material": {
                     "$ref": "#/definitions/3076687790"
                 },
+                "max_puddle_depth_below_sea_level": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 127
+                },
                 "mid_material": {
                     "$ref": "#/definitions/3076687790"
                 },
                 "sea_floor_depth": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 127
                 },
                 "sea_floor_material": {
                     "$ref": "#/definitions/3076687790"
@@ -150,6 +161,7 @@
             },
             "required": [
                 "foundation_material",
+                "max_puddle_depth_below_sea_level",
                 "mid_material",
                 "sea_floor_depth",
                 "sea_floor_material",
@@ -158,7 +170,7 @@
                 "type"
             ]
         },
-        "1527331705": {
+        "1527037515": {
             "title": "Reference",
             "type": "string"
         },
@@ -222,7 +234,9 @@
                     "$ref": "#/definitions/3076687790"
                 },
                 "sea_floor_depth": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 127
                 },
                 "sea_floor_material": {
                     "$ref": "#/definitions/3076687790"
@@ -261,13 +275,13 @@
             "title": "Block Specifier",
             "oneOf": [
                 {
-                    "$ref": "#/definitions/1527331705"
+                    "$ref": "#/definitions/1527037515"
                 },
                 {
                     "type": "object",
                     "properties": {
                         "name": {
-                            "$ref": "#/definitions/1527331705"
+                            "$ref": "#/definitions/1527037515"
                         },
                         "states": {
                             "type": "object",

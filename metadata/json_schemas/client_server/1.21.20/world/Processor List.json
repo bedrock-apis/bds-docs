@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1391327946",
     "x-format-version": "1.21.20",
-    "x-minecraft-version": "1.21.100-beta.25",
+    "x-minecraft-version": "1.21.110-beta.20",
     "definitions": {
         "45584192": {
             "title": "Passthrough",
@@ -27,7 +27,7 @@
             "type": "object",
             "properties": {
                 "loot_table": {
-                    "type": "string"
+                    "$ref": "#/definitions/1135547207"
                 },
                 "type": {
                     "title": "BlockEntityModifierType",
@@ -44,12 +44,16 @@
                 "type"
             ]
         },
+        "1135547207": {
+            "title": "File Reference",
+            "type": "string"
+        },
         "1218029234": {
             "title": "Processor List Description",
             "type": "object",
             "properties": {
                 "identifier": {
-                    "type": "string"
+                    "$ref": "#/definitions/3681370654"
                 }
             },
             "required": [
@@ -78,7 +82,7 @@
                 "value"
             ]
         },
-        "1527331705": {
+        "1527037515": {
             "title": "Reference",
             "type": "string"
         },
@@ -181,7 +185,7 @@
             "type": "object",
             "properties": {
                 "block": {
-                    "type": "string"
+                    "$ref": "#/definitions/1527037515"
                 },
                 "predicate_type": {
                     "title": "BlockType",
@@ -383,13 +387,13 @@
             "title": "Block Specifier",
             "oneOf": [
                 {
-                    "$ref": "#/definitions/1527331705"
+                    "$ref": "#/definitions/1527037515"
                 },
                 {
                     "type": "object",
                     "properties": {
                         "name": {
-                            "$ref": "#/definitions/1527331705"
+                            "$ref": "#/definitions/1527037515"
                         },
                         "states": {
                             "type": "object",
@@ -421,7 +425,7 @@
                 "blocks": {
                     "type": "array",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/definitions/1527037515"
                     }
                 },
                 "processor_type": {
@@ -446,7 +450,7 @@
             "type": "object",
             "properties": {
                 "block": {
-                    "type": "string"
+                    "$ref": "#/definitions/1527037515"
                 },
                 "predicate_type": {
                     "title": "BlockType",
@@ -504,6 +508,10 @@
                 "predicate_type",
                 "probability"
             ]
+        },
+        "3681370654": {
+            "title": "Identifier",
+            "type": "string"
         },
         "3839910888": {
             "title": "AxisAlignedLinear",

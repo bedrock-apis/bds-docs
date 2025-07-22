@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "760104054",
     "x-format-version": "1.21.20",
-    "x-minecraft-version": "1.21.100-beta.25",
+    "x-minecraft-version": "1.21.110-beta.20",
     "definitions": {
         "741112715": {
             "title": "RandomSpreadPlacement",
@@ -42,24 +42,32 @@
                 "type"
             ]
         },
+        "1357039345": {
+            "title": "Reference",
+            "type": "string"
+        },
         "1509348670": {
             "title": "Description",
             "type": "object",
             "properties": {
                 "identifier": {
-                    "type": "string"
+                    "$ref": "#/definitions/1533541232"
                 }
             },
             "required": [
                 "identifier"
             ]
         },
+        "1533541232": {
+            "title": "Identifier",
+            "type": "string"
+        },
         "3295675449": {
             "title": "Structure",
             "type": "object",
             "properties": {
                 "structure": {
-                    "type": "string"
+                    "$ref": "#/definitions/1357039345"
                 },
                 "weight": {
                     "type": "integer",

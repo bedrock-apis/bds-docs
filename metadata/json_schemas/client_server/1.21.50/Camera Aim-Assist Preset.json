@@ -2,43 +2,67 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3639918135",
     "x-format-version": "1.21.50",
-    "x-minecraft-version": "1.21.100-beta.25",
+    "x-minecraft-version": "1.21.110-beta.20",
     "definitions": {
+        "69792695": {
+            "title": "Reference",
+            "type": "string"
+        },
         "484447252": {
             "title": "CameraAimAssistPresetDefinition",
             "type": "object",
             "properties": {
                 "default_item_settings": {
-                    "type": "string"
+                    "$ref": "#/definitions/3674175389"
                 },
                 "exclusion_list": {
                     "type": "array",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/definitions/69792695"
                     }
                 },
                 "hand_settings": {
-                    "type": "string"
+                    "$ref": "#/definitions/3674175389"
                 },
                 "identifier": {
-                    "type": "string"
+                    "$ref": "#/definitions/3574116620"
                 },
                 "item_settings": {
                     "type": "object",
                     "additionalProperties": {
-                        "type": "string"
+                        "type": "object",
+                        "properties": {
+                            "key": {
+                                "$ref": "#/definitions/3470474886"
+                            },
+                            "value": {
+                                "$ref": "#/definitions/3674175389"
+                            }
+                        }
                     }
                 },
                 "liquid_targeting_list": {
                     "type": "array",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/definitions/3470474886"
                     }
                 }
             },
             "required": [
                 "identifier"
             ]
+        },
+        "3470474886": {
+            "title": "Reference",
+            "type": "string"
+        },
+        "3574116620": {
+            "title": "Identifier",
+            "type": "string"
+        },
+        "3674175389": {
+            "title": "Reference",
+            "type": "string"
         }
     },
     "title": "minecraft:aim_assist_preset",
