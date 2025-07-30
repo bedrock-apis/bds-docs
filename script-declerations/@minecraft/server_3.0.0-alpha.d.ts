@@ -10,7 +10,7 @@ export enum CommandPermissionLevel { Admin = 2, Any = 0, GameDirectors = 1, Host
 export enum CompoundBlockVolumeAction { Add = 0, Subtract = 1};
 export enum CompoundBlockVolumePositionRelativity { Absolute = 1, Relative = 0};
 export enum ContainerRulesErrorReason { BannedItem = "BannedItem", NestedStorageItem = "NestedStorageItem", NotAllowedItem = "NotAllowedItem", OverWeightLimit = "OverWeightLimit", ZeroWeightItem = "ZeroWeightItem"};
-export enum CustomCommandErrorReason { AlreadyRegistered = "AlreadyRegistered", EnumDependencyMissing = "EnumDependencyMissing", NamespaceMismatch = "NamespaceMismatch", ParameterLimit = "ParameterLimit", RegistryInvalid = "RegistryInvalid", RegistryReadOnly = "RegistryReadOnly"};
+export enum CustomCommandErrorReason { AlreadyRegistered = "AlreadyRegistered", EnumDependencyMissing = "EnumDependencyMissing", NamespaceMismatch = "NamespaceMismatch", ParameterLimit = "ParameterLimit", RegistryInvalid = "RegistryInvalid", RegistryReadOnly = "RegistryReadOnly", UnexpectedEnumName = "UnexpectedEnumName"};
 export enum CustomCommandParamType { BlockType = "BlockType", Boolean = "Boolean", EntitySelector = "EntitySelector", EntityType = "EntityType", Enum = "Enum", Float = "Float", Integer = "Integer", ItemType = "ItemType", Location = "Location", PlayerSelector = "PlayerSelector", String = "String"};
 export enum CustomCommandSource { Block = "Block", Entity = "Entity", NPCDialogue = "NPCDialogue", Server = "Server"};
 export enum CustomCommandStatus { Failure = 1, Success = 0};
@@ -82,7 +82,7 @@ export interface CameraTargetOptions { offsetFromTargetCenter?: Vector3; targetE
 export interface CompoundBlockVolumeItem { action?: CompoundBlockVolumeAction; locationRelativity?: CompoundBlockVolumePositionRelativity; volume: BlockVolume};
 export interface ContainerRules { allowedItems: string[]; allowNestedStorageItems: boolean; bannedItems: string[]; weightLimit?: number};
 export interface CustomCommand { cheatsRequired?: boolean; description: string; mandatoryParameters?: CustomCommandParameter[]; name: string; optionalParameters?: CustomCommandParameter[]; permissionLevel: CommandPermissionLevel};
-export interface CustomCommandParameter { name: string; type: CustomCommandParamType};
+export interface CustomCommandParameter { enumName?: string; name: string; type: CustomCommandParamType};
 export interface CustomCommandResult { message?: string; status: CustomCommandStatus};
 export interface DefinitionModifier { addedComponentGroups: string[]; removedComponentGroups: string[]; triggers: Trigger[]};
 export interface DimensionLocation { dimension: Dimension; x: number; y: number; z: number};

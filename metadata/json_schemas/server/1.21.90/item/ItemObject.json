@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3209403096",
     "x-format-version": "1.21.90",
-    "x-minecraft-version": "1.21.110-beta.20",
+    "x-minecraft-version": "1.21.110-beta.22",
     "definitions": {
         "34598326": {
             "title": "minecraft:storage_weight_limit",
@@ -799,6 +799,22 @@
         },
         "1206516236": {
             "title": "minecraft:glint",
+            "oneOf": [
+                {
+                    "type": "boolean"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "value": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+            ]
+        },
+        "1326498368": {
+            "title": "minecraft:fire_resistant",
             "oneOf": [
                 {
                     "type": "boolean"
@@ -2036,6 +2052,9 @@
                 },
                 "minecraft:entity_placer": {
                     "$ref": "#/definitions/853889472"
+                },
+                "minecraft:fire_resistant": {
+                    "$ref": "#/definitions/1326498368"
                 },
                 "minecraft:food": {
                     "$ref": "#/definitions/268086052"
