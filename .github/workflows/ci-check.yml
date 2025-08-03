@@ -9,6 +9,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check versions
+        id: version
+        run: |
+          bash check-version.sh
+          if [ $? -eq 0 ]; then
+              echo "should_continue=false" >> $GITHUB_OUTPUT
+              echo "No update required. Exiting early."
+          else
+              echo "should_continue=true" >> $GITHUB_OUTPUT
+              echo "Update required. Continuing."
+          fi
+
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0  # needed for git diff to work properly
@@ -30,9 +42,6 @@ jobs:
 
       - name: Build the project
         run: pnpm run build
-
-      - name: Bash Version Check
-        run: bash ./version-check.sh
 
       - name: Check for uncommitted changes
         run: |
