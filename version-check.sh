@@ -18,7 +18,10 @@ curl -sSL "$PREVIEW_EXISTS_URL" -o exist_preview.json
 # Extract version info from versions.json
 STABLE_VERSION=$(jq -r '.linux.stable' versions.json)
 PREVIEW_VERSION=$(jq -r '.linux.preview' versions.json)
-STABLE_BASE=$(echo "$STABLE_VERSION" | cut -d. -f1-3)
+
+IFS='.' read -r major minor patch _ <<< "$STABLE_VERSION"
+rounded_patch=$(( (patch / 10) * 10 ))
+STABLE_BASE="${major}.${minor}.${rounded_patch}"
 
 # Extract deployed versions
 EXISTS_STABLE_VERSION=$(jq -r '.version' exist_stable.json)
