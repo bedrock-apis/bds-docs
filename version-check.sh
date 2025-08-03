@@ -22,7 +22,7 @@ STABLE_BASE=$(echo "$STABLE_VERSION" | cut -d. -f1-3)
 
 # Extract deployed versions
 EXISTS_STABLE_VERSION=$(jq -r '.version' exist_stable.json)
-EXISTS_PREVIEW_BUILD=$(jq -r '.build-version' exist_preview.json)
+EXISTS_PREVIEW_BUILD=$(jq -r '.version' exist_preview.json)
 
 # Output for debugging
 echo "Expected stable: $STABLE_BASE"
