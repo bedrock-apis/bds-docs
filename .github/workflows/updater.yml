@@ -1,30 +1,61 @@
-name: Update Docs Generator
+name: CI Generate
 on:
-  push:
-    branches: 
-      main
-  schedule: 
-  - cron: '*/300 * * * *'
+   push:
+      branches: main
+   workflow_dispatch:
+
 permissions:
-  contents: write
+   contents: write
 jobs:
-  Main-Updater:
-    runs-on: windows-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      with: 
-        ref: "main"
-        fetch-depth: '0'
-    - name: Setup Node.js environment
-      uses: actions/setup-node@v4.0.4
-      with:
-        node-version: '22'
-        cache: 'npm'
-        cache-dependency-path: './package-lock.json'
-    - name: Install NPM
-      run: |
-        npm ci
-    - name: Check Build Commit
-      run: |
-        npm run check-for-update
+   generator:
+      runs-on: ubuntu-latest
+      steps:
+         - name: Check versions
+           id: version
+           run: |
+              bash check-version.sh
+              if [ $? -eq 0 ]; then
+                 echo "should_continue=false" >> $GITHUB_OUTPUT
+                 echo "No update required. Exiting early."
+              else
+                 echo "should_continue=true" >> $GITHUB_OUTPUT
+                 echo "Update required. Continuing."
+              fi
+
+         - uses: actions/checkout@v4
+           if: steps.version.outputs.should_continue == 'true'
+           with:
+              ref: "main"
+              fetch-depth: "0"
+
+         - name: Setup Latest NodeJS
+           uses: actions/setup-node@v4
+           if: steps.version.outputs.should_continue == 'true'
+           with:
+              node-version: "latest"
+              run_install: false
+
+         - name: Setup pnpm
+           uses: pnpm/action-setup@v2
+           if: steps.version.outputs.should_continue == 'true'
+           with:
+              version: latest
+
+         - name: Install dependencies with pnpm
+           if: steps.version.outputs.should_continue == 'true'
+           run: pnpm install
+
+         - name: Check TSC
+           if: steps.version.outputs.should_continue == 'true'
+           run: |
+              pnpm run check
+
+         - name: Build
+           if: steps.version.outputs.should_continue == 'true'
+           run: |
+              npm run build
+
+         - name: Check Build Commit
+           if: steps.version.outputs.should_continue == 'true'
+           run: |
+              npm run check-for-update

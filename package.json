@@ -1,29 +1,47 @@
 {
-  "name": "bds-docs",
-  "version": "1.0.0",
-  "description": "Releasing BDS Docs",
-  "main": "src/main.js",
-  "type": "module",
-  "scripts": {
-    "check-for-update": "node .",
-    "gen-docs": "node ./DOCUMENTATION/gen.mjs"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Bedrock-APIs/bds-docs.git"
-  },
-  "author": "conmaster2112",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Bedrock-APIs/bds-docs/issues"
-  },
-  "homepage": "https://github.com/Bedrock-APIs/bds-docs#readme",
-  "dependencies": {
-    "minimatch": "^10.0.1",
-    "unzip-stream": "^0.3.4"
-  },
-  "devDependencies": {
-    "@types/node": "^22.7.4",
-    "typescript": "^5.7.0-dev.20241004"
-  }
+   "name": "bds-docs",
+   "version": "1.0.0",
+   "description": "Releasing BDS Docs",
+   "main": "dist/main.js",
+   "type": "module",
+   "scripts": {
+      "build": "rolldown -c",
+      "check": "tsgo --noEmit"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Bedrock-APIs/bds-docs.git"
+   },
+   "author": "conmaster2112",
+   "license": "MIT",
+   "bugs": {
+      "url": "https://github.com/Bedrock-APIs/bds-docs/issues"
+   },
+   "homepage": "https://github.com/Bedrock-APIs/bds-docs#readme",
+   "dependencies": {
+      "@minecraft/server": "2.1.0-beta.1.21.90-preview.23",
+      "@minecraft/server-net": "1.0.0-beta.1.21.90-preview.23",
+      "@minecraft/server-ui": "2.1.0-beta.1.21.90-preview.23",
+      "minimatch": "^10.0.1",
+      "unzip-web-stream": "0.0.0-alpha.1"
+   },
+   "devDependencies": {
+      "@types/node": "^24.1.0",
+      "@typescript/native-preview": "7.0.0-dev.20250803.1",
+      "prettier": "^3.5.3",
+      "rolldown": "1.0.0-beta.29-commit.fe1bea3"
+   },
+   "prettier": {
+      "arrowParens": "avoid",
+      "endOfLine": "crlf",
+      "plugins": [
+         "prettier-plugin-jsdoc"
+      ],
+      "printWidth": 120,
+      "quoteProps": "consistent",
+      "singleQuote": true,
+      "tabWidth": 3,
+      "semi": false
+   },
+   "packageManager": "pnpm@10.14.0+sha512.ad27a79641b49c3e481a16a805baa71817a04bbe06a38d17e60e2eaee83f6a146c6a688125f5792e48dd5ba30e7da52a5cda4c3992b9ccf333f9ce223af84748"
 }
