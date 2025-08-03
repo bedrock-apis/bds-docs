@@ -6,6 +6,8 @@ VERSION_URL="https://raw.githubusercontent.com/Bedrock-OSS/BDS-Versions/main/ver
 STABLE_EXISTS_URL="https://raw.githubusercontent.com/${REPO}/stable/exists.json"
 PREVIEW_EXISTS_URL="https://raw.githubusercontent.com/${REPO}/preview/exists.json"
 
+echo "$REPO"
+echo "$STABLE_EXISTS_URL"
 # Download reference version data
 curl -sSL "$VERSION_URL" -o versions.json
 
