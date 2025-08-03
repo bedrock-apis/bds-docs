@@ -1,29 +1,30 @@
-name: Update Docs Generator
+name: CI Generate
 on:
    push:
       branches: main
-   schedule:
-      - cron: '*/20 * * * *'
+   workflow_dispatch:
 
 permissions:
    contents: write
 jobs:
-   Main-Updater:
-      runs-on: windows-latest
+   generator:
+      runs-on: ubuntu-latest
       steps:
-         - name: Checkout repository
-           uses: actions/checkout@v4
+         - uses: actions/checkout@v4
            with:
               ref: 'main'
               fetch-depth: '0'
 
-         - name: Setup Node.js environment
-           uses: actions/setup-node@v4.0.4
+         - name: Setup Latest NodeJS
+           uses: actions/setup-node@v4
            with:
-              node-version: '22'
+              node-version: 'latest'
+              cache: 'pnpm'
 
-         - name: Install pnpm
-           run: corepack enable
+         - name: Setup pnpm
+           uses: pnpm/action-setup@v2
+           with:
+               version: latest
 
          - name: Install dependencies with pnpm
            run: pnpm install

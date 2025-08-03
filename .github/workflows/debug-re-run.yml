@@ -1,38 +1,37 @@
-name: Update Docs (Debug Mode)
+name: Check Build Sync
+
 on:
-   workflow_dispatch:
-   push:
-      branches: main
-   pull_request:
+  pull_request:
+    branches: [main]
 
 jobs:
-   debugger:
-      runs-on: windows-latest
-      env:
-         ALWAYS_OVERWRITE: true
-         DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+  verify-build-sync:
+    runs-on: ubuntu-latest
 
-      steps:
-         - name: Checkout repository
-           uses: actions/checkout@v4
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # needed for git diff to work properly
 
-         - name: Enable corepack
-           run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'latest'
+          cache: 'pnpm'
 
-         - name: Setup Node.js environment
-           uses: actions/setup-node@v4
-           with:
-              node-version: 24
-              cache: pnpm
+      - uses: pnpm/action-setup@v2
+        with:
+          version: latest
 
-         - name: Install dependencies with pnpm
-           run: pnpm install
+      - name: Install dependencies
+        run: pnpm install
 
-         - name: Run TSC without emit
-           run: pnpm run check
+      - name: Build the project
+        run: pnpm run build
 
-         - name: Build
-           run: pnpm run build
-
-         - name: Check Build Commit
-           run: pnpm run check-for-update
+      - name: Check for uncommitted changes
+        run: |
+          git diff --quiet || {
+            echo "::error::Build output is not up to date. Please run the build and commit the result.";
+            git diff --name-only;
+            exit 1;
+          }
