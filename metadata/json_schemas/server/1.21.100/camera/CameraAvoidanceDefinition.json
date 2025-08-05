@@ -1,0 +1,46 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "263889029",
+    "x-format-version": "1.21.100",
+    "x-minecraft-version": "1.21.100",
+    "definitions": {
+        "2566215512": {
+            "title": "ray",
+            "type": "object",
+            "properties": {
+                "angle": {
+                    "type": "number"
+                },
+                "weight": {
+                    "type": "number"
+                }
+            }
+        }
+    },
+    "title": "minecraft:camera_avoidance",
+    "type": "object",
+    "properties": {
+        "avoidance_rays_horizontal": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/2566215512"
+            },
+            "minItems": 1
+        },
+        "avoidance_rays_vertical": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/2566215512"
+            },
+            "minItems": 1
+        },
+        "distance_constraint_min": {
+            "type": "number",
+            "minimum": 0
+        },
+        "relax_distance_smoothing_spring": {
+            "type": "number",
+            "minimum": 0
+        }
+    }
+}

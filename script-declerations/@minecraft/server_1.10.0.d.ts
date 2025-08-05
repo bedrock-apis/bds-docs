@@ -88,7 +88,7 @@ export class BlockPermutation { public getAllStates(): Record<string,boolean | n
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BlockPistonComponent extends BlockComponent{ public static readonly componentId = "minecraft:piston"; public readonly isMoving: boolean; public readonly state: BlockPistonState; public getAttachedBlocks(): Block[]; public getAttachedBlocksLocations(): Vector3[]; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
-export class BlockSignComponent extends BlockComponent{ public static readonly componentId = "minecraft:sign"; public readonly isWaxed: boolean; public getRawText(side?: SignSide): (RawText | undefined); public getText(side?: SignSide): (string | undefined); public getTextDyeColor(side?: SignSide): (DyeColor | undefined); public setText(message: RawMessage | RawText | string, side?: SignSide): void; public setTextDyeColor(color?: DyeColor, side?: SignSide): void; public setWaxed(waxed: boolean): void; private constructor();};
+export class BlockSignComponent extends BlockComponent{ public static readonly componentId = "minecraft:sign"; public readonly isWaxed: boolean; public getRawText(side?: SignSide): (RawText | undefined); public getText(side?: SignSide): (string | undefined); public getTextDyeColor(side?: SignSide): (DyeColor | undefined); public setText(message: RawMessage | string, side?: SignSide): void; public setTextDyeColor(color?: DyeColor, side?: SignSide): void; public setWaxed(waxed: boolean): void; private constructor();};
 export class BlockStates { public static get(stateName: string): (BlockStateType | undefined); public static getAll(): BlockStateType[]; private constructor();};
 export class BlockStateType { public readonly id: string; public readonly validValues: (boolean | number | string)[]; private constructor();};
 export class BlockType { private constructor();};
@@ -355,9 +355,10 @@ export const world: World;
 
 // Functions - 0
 
-// Errors - 8
+// Errors - 9
 export class CommandError extends Error{ private constructor();};
 export class ContainerRulesError extends Error{ private constructor();};
+export class EntitySpawnError extends Error{ private constructor();};
 export class InvalidContainerSlotError extends Error{ private constructor();};
 export class InvalidEntityError extends Error{ public readonly id: string; public readonly type: string; private constructor();};
 export class InvalidStructureError extends Error{ private constructor();};

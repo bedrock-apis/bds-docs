@@ -2,10 +2,10 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3714031231",
     "x-format-version": "1.21.30",
-    "x-minecraft-version": "1.21.90",
+    "x-minecraft-version": "1.21.100",
     "definitions": {
         "56017534": {
-            "title": "struct SharedTypes::v1_21_30::TradeItem",
+            "title": "TradeItem",
             "type": "object",
             "properties": {
                 "__DEP_fltrs": {
@@ -26,7 +26,7 @@
                     }
                 },
                 "item": {
-                    "$ref": "#/definitions/3673881199"
+                    "$ref": "#/definitions/3640473056"
                 },
                 "price_multiplier": {
                     "type": "number"
@@ -40,10 +40,10 @@
             ]
         },
         "315535208": {
-            "title": "class Json::Value"
+            "title": "Blob JSON object"
         },
         "943617905": {
-            "title": "struct SharedTypes::v1_21_30::TradeTier",
+            "title": "TradeTier",
             "type": "object",
             "properties": {
                 "groups": {
@@ -105,7 +105,7 @@
             ]
         },
         "1093643626": {
-            "title": "struct SharedTypes::v1_21_30::TradeItemList",
+            "title": "TradeItemList",
             "oneOf": [
                 {
                     "$ref": "#/definitions/56017534"
@@ -127,7 +127,7 @@
             ]
         },
         "2298823339": {
-            "title": "struct SharedTypes::v1_21_30::TradeItem::Quantity",
+            "title": "Trade Quantity",
             "oneOf": [
                 {
                     "type": "integer",
@@ -149,7 +149,7 @@
             ]
         },
         "3153354884": {
-            "title": "struct SharedTypes::v1_21_30::TradeGroup",
+            "title": "TradeGroup",
             "type": "object",
             "properties": {
                 "num_to_select": {
@@ -168,19 +168,12 @@
                 "trades"
             ]
         },
-        "3673881199": {
-            "title": "struct SharedTypes::Reference<4>",
-            "oneOf": [
-                {
-                    "type": "string"
-                },
-                {
-                    "type": "string"
-                }
-            ]
+        "3640473056": {
+            "title": "Reference",
+            "type": "string"
         },
         "3738829565": {
-            "title": "struct SharedTypes::v1_21_30::Trade",
+            "title": "Trade",
             "type": "object",
             "properties": {
                 "gives": {
@@ -293,7 +286,7 @@
             ]
         }
     },
-    "title": "struct SharedTypes::v1_21_30::TradeTableData",
+    "title": "Trade Table",
     "type": "array",
     "items": {
         "$ref": "#/definitions/943617905"

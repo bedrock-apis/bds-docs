@@ -2,21 +2,20 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1382973118",
     "x-format-version": "1.21.20",
-    "x-minecraft-version": "1.21.90",
+    "x-minecraft-version": "1.21.100",
     "definitions": {
         "1755372388": {
-            "title": "struct SharedTypes::v1_21_20::JigsawStructureTemplatePool::TemplatePoolElement",
+            "title": "TemplatePoolElement",
             "type": "object",
             "properties": {
                 "element": {
-                    "$ref": "#/definitions/2726507774"
-                },
-                "projection": {
-                    "title": "enum SharedTypes::v1_21_20::JigsawStructureTemplatePool::Projection",
-                    "type": "string",
-                    "enum": [
-                        "rigid",
-                        "terrain_matching"
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/2360259677"
+                        },
+                        {
+                            "$ref": "#/definitions/2726507774"
+                        }
                     ]
                 },
                 "weight": {
@@ -30,7 +29,7 @@
             ]
         },
         "1872243302": {
-            "title": "struct SharedTypes::v1_21_20::JigsawStructureTemplatePool::Description",
+            "title": "Description",
             "type": "object",
             "properties": {
                 "identifier": {
@@ -41,14 +40,34 @@
                 "identifier"
             ]
         },
-        "2726507774": {
-            "title": "struct SharedTypes::v1_21_20::JigsawStructureTemplatePool::SinglePoolElement",
+        "2360259677": {
+            "title": "EmptyPoolElement",
             "type": "object",
             "properties": {
                 "element_type": {
-                    "title": "enum SharedTypes::v1_21_20::JigsawStructureTemplatePool::ElementType",
+                    "title": "ElementType",
                     "type": "string",
+                    "const": "minecraft:empty_pool_element",
                     "enum": [
+                        "minecraft:empty_pool_element",
+                        "minecraft:single_pool_element"
+                    ]
+                }
+            },
+            "required": [
+                "element_type"
+            ]
+        },
+        "2726507774": {
+            "title": "SinglePoolElement",
+            "type": "object",
+            "properties": {
+                "element_type": {
+                    "title": "ElementType",
+                    "type": "string",
+                    "const": "minecraft:single_pool_element",
+                    "enum": [
+                        "minecraft:empty_pool_element",
                         "minecraft:single_pool_element"
                     ]
                 },
@@ -57,12 +76,19 @@
                 },
                 "processors": {
                     "type": "string"
+                },
+                "projection": {
+                    "title": "Projection",
+                    "type": "string",
+                    "enum": [
+                        "rigid",
+                        "terrain_matching"
+                    ]
                 }
             },
             "required": [
                 "element_type",
-                "location",
-                "processors"
+                "location"
             ]
         }
     },

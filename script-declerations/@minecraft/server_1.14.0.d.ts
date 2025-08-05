@@ -131,7 +131,7 @@ export class BlockPistonComponent extends BlockComponent{ public static readonly
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BlockRecordPlayerComponent extends BlockComponent{ public static readonly componentId = "minecraft:record_player"; public ejectRecord(): void; public getRecord(): (ItemStack | undefined); public isPlaying(): boolean; public pauseRecord(): void; public playRecord(): void; public setRecord(recordItemType?: ItemType | string, startPlaying?: boolean): void; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
-export class BlockSignComponent extends BlockComponent{ public static readonly componentId = "minecraft:sign"; public readonly isWaxed: boolean; public getRawText(side?: SignSide): (RawText | undefined); public getText(side?: SignSide): (string | undefined); public getTextDyeColor(side?: SignSide): (DyeColor | undefined); public setText(message: RawMessage | RawText | string, side?: SignSide): void; public setTextDyeColor(color?: DyeColor, side?: SignSide): void; public setWaxed(waxed: boolean): void; private constructor();};
+export class BlockSignComponent extends BlockComponent{ public static readonly componentId = "minecraft:sign"; public readonly isWaxed: boolean; public getRawText(side?: SignSide): (RawText | undefined); public getText(side?: SignSide): (string | undefined); public getTextDyeColor(side?: SignSide): (DyeColor | undefined); public setText(message: RawMessage | string, side?: SignSide): void; public setTextDyeColor(color?: DyeColor, side?: SignSide): void; public setWaxed(waxed: boolean): void; private constructor();};
 export class BlockStates { public static get(stateName: string): (BlockStateType | undefined); public static getAll(): BlockStateType[]; private constructor();};
 export class BlockStateType { public readonly id: string; public readonly validValues: (boolean | number | string)[]; private constructor();};
 export class BlockType { public readonly id: string; private constructor();};
@@ -484,7 +484,7 @@ export const world: World;
 
 // Functions - 0
 
-// Errors - 21
+// Errors - 22
 export class BlockCustomComponentAlreadyRegisteredError extends Error{ private constructor();};
 export class BlockCustomComponentReloadNewComponentError extends Error{ private constructor();};
 export class BlockCustomComponentReloadNewEventError extends Error{ private constructor();};
@@ -496,6 +496,7 @@ export class CustomComponentNameError extends Error{ public readonly reason: Cus
 export class EnchantmentLevelOutOfBoundsError extends Error{ private constructor();};
 export class EnchantmentTypeNotCompatibleError extends Error{ private constructor();};
 export class EnchantmentTypeUnknownIdError extends Error{ private constructor();};
+export class EntitySpawnError extends Error{ private constructor();};
 export class InvalidContainerSlotError extends Error{ private constructor();};
 export class InvalidEntityError extends Error{ public readonly id: string; public readonly type: string; private constructor();};
 export class InvalidStructureError extends Error{ private constructor();};

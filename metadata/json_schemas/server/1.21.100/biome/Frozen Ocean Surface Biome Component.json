@@ -1,0 +1,91 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "2608925209",
+    "x-format-version": "1.21.100",
+    "x-minecraft-version": "1.21.100",
+    "definitions": {
+        "1527331705": {
+            "title": "Reference",
+            "type": "string"
+        },
+        "3076687790": {
+            "title": "Block Specifier",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/1527331705"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "$ref": "#/definitions/1527331705"
+                        },
+                        "states": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "oneOf": [
+                                    {
+                                        "type": "integer"
+                                    },
+                                    {
+                                        "type": "boolean"
+                                    },
+                                    {
+                                        "type": "string"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "required": [
+                        "name"
+                    ]
+                }
+            ]
+        }
+    },
+    "title": "minecraft:frozen_ocean",
+    "type": "object",
+    "properties": {
+        "foundation_material": {
+            "$ref": "#/definitions/3076687790"
+        },
+        "mid_material": {
+            "$ref": "#/definitions/3076687790"
+        },
+        "sea_floor_depth": {
+            "type": "integer"
+        },
+        "sea_floor_material": {
+            "$ref": "#/definitions/3076687790"
+        },
+        "sea_material": {
+            "$ref": "#/definitions/3076687790"
+        },
+        "top_material": {
+            "$ref": "#/definitions/3076687790"
+        },
+        "type": {
+            "title": "SurfaceBuilderType",
+            "type": "string",
+            "const": "minecraft:frozen_ocean",
+            "enum": [
+                "minecraft:overworld",
+                "minecraft:frozen_ocean",
+                "minecraft:mesa",
+                "minecraft:swamp",
+                "minecraft:capped",
+                "minecraft:the_end"
+            ]
+        }
+    },
+    "required": [
+        "foundation_material",
+        "mid_material",
+        "sea_floor_depth",
+        "sea_floor_material",
+        "sea_material",
+        "top_material",
+        "type"
+    ]
+}
