@@ -1,0 +1,257 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "662705489",
+    "x-format-version": "1.21.60",
+    "x-minecraft-version": "1.21.110-beta.23",
+    "definitions": {
+        "98158070": {
+            "title": "Herd",
+            "type": "object",
+            "properties": {
+                "event": {
+                    "type": "string"
+                },
+                "event_skip_count": {
+                    "type": "integer"
+                },
+                "initial_event": {
+                    "type": "string"
+                },
+                "initial_event_count": {
+                    "type": "integer"
+                },
+                "max": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "min": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            }
+        },
+        "1088251937": {
+            "title": "Filter Group",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/4150989894"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/1088251937"
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "AND": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "NOT": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "OR": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "all": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "all_of": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "any": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "any_of": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "none_of": {
+                            "$ref": "#/definitions/1088251937"
+                        }
+                    }
+                }
+            ]
+        },
+        "1493335182": {
+            "title": "Reference",
+            "type": "string"
+        },
+        "1564953790": {
+            "title": "Placement",
+            "type": "object",
+            "properties": {
+                "heightmap": {
+                    "type": "string"
+                },
+                "spawn_obstruction_predicate": {
+                    "type": "string"
+                },
+                "spawn_predicate": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "1743975235": {
+            "title": "Description",
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "identifier"
+            ]
+        },
+        "3424466759": {
+            "title": "PermuteType",
+            "type": "object",
+            "properties": {
+                "entity_type": {
+                    "$ref": "#/definitions/1493335182"
+                },
+                "min_guaranteed": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "weight": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            },
+            "required": [
+                "weight"
+            ]
+        },
+        "3629386827": {
+            "title": "BiomeConditions",
+            "type": "object",
+            "properties": {
+                "biome_filter": {
+                    "$ref": "#/definitions/1088251937"
+                },
+                "herds": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/98158070"
+                    }
+                },
+                "mob_event_filter": {
+                    "type": "string"
+                },
+                "permute_types": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/3424466759"
+                    }
+                },
+                "weight": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            },
+            "required": [
+                "weight"
+            ]
+        },
+        "4150989894": {
+            "title": "Filter Test",
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "operator": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "subject": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "test": {
+                    "type": "string"
+                },
+                "value": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "test"
+            ]
+        }
+    },
+    "title": "Spawn Rules",
+    "type": "object",
+    "properties": {
+        "conditions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/3629386827"
+            }
+        },
+        "description": {
+            "$ref": "#/definitions/1743975235"
+        },
+        "placement": {
+            "$ref": "#/definitions/1564953790"
+        }
+    },
+    "required": [
+        "description"
+    ]
+}

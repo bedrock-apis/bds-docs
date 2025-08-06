@@ -1,0 +1,95 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "70508991",
+    "x-format-version": "1.20.60",
+    "x-minecraft-version": "1.21.110-beta.23",
+    "definitions": {
+        "553173857": {
+            "title": "WeightedBiomeName",
+            "oneOf": [
+                {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/definitions/1493629372"
+                            },
+                            {
+                                "type": "integer"
+                            }
+                        ]
+                    },
+                    "minItems": 2,
+                    "maxItems": 2
+                },
+                {
+                    "$ref": "#/definitions/1493629372"
+                }
+            ]
+        },
+        "891697368": {
+            "title": "minecraft:overworld_generation_rules - Weighted climate categories settings",
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "title": "BiomeTemperatureCategory",
+                        "type": "string",
+                        "enum": [
+                            "medium",
+                            "warm",
+                            "lukewarm",
+                            "cold",
+                            "frozen"
+                        ]
+                    },
+                    {
+                        "type": "integer"
+                    }
+                ]
+            },
+            "minItems": 2,
+            "maxItems": 2
+        },
+        "1493629372": {
+            "title": "Reference",
+            "type": "string"
+        },
+        "2586207614": {
+            "title": "minecraft:overworld_generation_rules - Weighted biome names settings",
+            "oneOf": [
+                {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/553173857"
+                    }
+                },
+                {
+                    "$ref": "#/definitions/1493629372"
+                }
+            ]
+        }
+    },
+    "title": "minecraft:overworld_generation_rules",
+    "type": "object",
+    "properties": {
+        "generate_for_climates": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/891697368"
+            }
+        },
+        "hills_transformation": {
+            "$ref": "#/definitions/2586207614"
+        },
+        "mutate_transformation": {
+            "$ref": "#/definitions/2586207614"
+        },
+        "river_transformation": {
+            "$ref": "#/definitions/2586207614"
+        },
+        "shore_transformation": {
+            "$ref": "#/definitions/2586207614"
+        }
+    }
+}

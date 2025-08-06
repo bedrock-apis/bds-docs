@@ -27,10 +27,12 @@ export class Test { public assert(condition: boolean, message: string): void; pu
 // Constants & Objects - 0
 
 
-// Functions - 4
+// Functions - 6
 export function getPlayerSkin(player: _1e.Player): PlayerSkinData
 export function register(testClassName: string, testName: string, testFunction: (arg0: Test)=>void): RegistrationBuilder
 export function registerAsync(testClassName: string, testName: string, testFunction: (arg0: Test)=>Promise<void>): RegistrationBuilder
+export function setAfterBatchCallback(batchName: string, batchCallback: ()=>void): void
+export function setBeforeBatchCallback(batchName: string, batchCallback: ()=>void): void
 export function spawnSimulatedPlayer(location: _1e.DimensionLocation, name: string, gameMode?: _1e.GameMode): SimulatedPlayer
 
 // Errors - 2

@@ -1,0 +1,318 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "3883188534",
+    "x-format-version": "1.21.20",
+    "x-minecraft-version": "1.21.110-beta.23",
+    "definitions": {
+        "1088251937": {
+            "title": "Filter Group",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/4150989894"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/1088251937"
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "AND": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "NOT": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "OR": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "all": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "all_of": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "any": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "any_of": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "none_of": {
+                            "$ref": "#/definitions/1088251937"
+                        }
+                    }
+                }
+            ]
+        },
+        "2176758423": {
+            "title": "Scatter Chance",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/3178719147"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "denominator": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "numerator": {
+                            "type": "integer",
+                            "minimum": 1
+                        }
+                    },
+                    "required": [
+                        "denominator",
+                        "numerator"
+                    ]
+                }
+            ]
+        },
+        "2195141389": {
+            "title": "Scatter Params",
+            "type": "object",
+            "properties": {
+                "coordinate_eval_order": {
+                    "title": "Coordinate Evaluation Order",
+                    "type": "string",
+                    "enum": [
+                        "xyz",
+                        "xzy",
+                        "yxz",
+                        "yzx",
+                        "zxy",
+                        "zyx"
+                    ]
+                },
+                "iterations": {
+                    "$ref": "#/definitions/3178719147"
+                },
+                "scatter_chance": {
+                    "$ref": "#/definitions/2176758423"
+                },
+                "x": {
+                    "$ref": "#/definitions/4150871210"
+                },
+                "y": {
+                    "$ref": "#/definitions/4150871210"
+                },
+                "z": {
+                    "$ref": "#/definitions/4150871210"
+                }
+            },
+            "required": [
+                "iterations",
+                "x",
+                "y",
+                "z"
+            ]
+        },
+        "2267778531": {
+            "title": "Molang string",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "expression": {
+                            "type": "string"
+                        },
+                        "version": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "expression",
+                        "version"
+                    ]
+                }
+            ]
+        },
+        "3178719147": {
+            "title": "Molang expression",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/2267778531"
+                },
+                {
+                    "type": "number"
+                }
+            ]
+        },
+        "3683814853": {
+            "title": "Feature Rule Description",
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "type": "string"
+                },
+                "places_feature": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "identifier",
+                "places_feature"
+            ]
+        },
+        "4150871210": {
+            "title": "Coordinate Range",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/3178719147"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "distribution": {
+                            "title": "Random Distribution Type",
+                            "type": "string",
+                            "enum": [
+                                "uniform",
+                                "gaussian",
+                                "inverse_gaussian",
+                                "triangle",
+                                "fixed_grid",
+                                "jittered_grid"
+                            ]
+                        },
+                        "extent": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/3178719147"
+                            },
+                            "minItems": 2,
+                            "maxItems": 2
+                        },
+                        "grid_offset": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "step_size": {
+                            "type": "integer",
+                            "minimum": 1
+                        }
+                    },
+                    "required": [
+                        "distribution",
+                        "extent"
+                    ]
+                }
+            ]
+        },
+        "4150989894": {
+            "title": "Filter Test",
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "operator": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "subject": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "test": {
+                    "type": "string"
+                },
+                "value": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "test"
+            ]
+        },
+        "4231469203": {
+            "title": "Feature Rule Conditions",
+            "type": "object",
+            "properties": {
+                "minecraft:biome_filter": {
+                    "$ref": "#/definitions/1088251937"
+                },
+                "placement_pass": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "placement_pass"
+            ]
+        }
+    },
+    "title": "Feature Rule Definition",
+    "type": "object",
+    "properties": {
+        "conditions": {
+            "$ref": "#/definitions/4231469203"
+        },
+        "description": {
+            "$ref": "#/definitions/3683814853"
+        },
+        "distribution": {
+            "$ref": "#/definitions/2195141389"
+        }
+    },
+    "required": [
+        "conditions",
+        "description"
+    ]
+}

@@ -730,6 +730,141 @@
         {
             "base_types": [],
             "constants": [],
+            "functions": [],
+            "name": "BlockPaletteSelectedItemChangeAfterEvent",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "selectedPaletteItem",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "IBlockPaletteItem"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "BlockPaletteSelectedItemChangeAfterEvent"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "callback",
+                            "type": {
+                                "closure_type": {
+                                    "argument_types": [
+                                        {
+                                            "is_bind_type": true,
+                                            "is_errorable": false,
+                                            "name": "BlockPaletteSelectedItemChangeAfterEvent"
+                                        }
+                                    ],
+                                    "return_type": {
+                                        "is_bind_type": false,
+                                        "is_errorable": true,
+                                        "name": "undefined"
+                                    }
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "closure"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "subscribe",
+                    "return_type": {
+                        "closure_type": {
+                            "argument_types": [
+                                {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "BlockPaletteSelectedItemChangeAfterEvent"
+                                }
+                            ],
+                            "return_type": {
+                                "is_bind_type": false,
+                                "is_errorable": true,
+                                "name": "undefined"
+                            }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "callback",
+                            "type": {
+                                "closure_type": {
+                                    "argument_types": [
+                                        {
+                                            "is_bind_type": true,
+                                            "is_errorable": false,
+                                            "name": "BlockPaletteSelectedItemChangeAfterEvent"
+                                        }
+                                    ],
+                                    "return_type": {
+                                        "is_bind_type": false,
+                                        "is_errorable": true,
+                                        "name": "undefined"
+                                    }
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "closure"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "unsubscribe",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "undefined"
+                    }
+                }
+            ],
+            "name": "BlockPaletteSelectedItemChangeAfterEventSignal",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "BlockPaletteSelectedItemChangeAfterEventSignal"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
             "functions": [
                 {
                     "arguments": [
@@ -2030,6 +2165,27 @@
                     }
                 },
                 {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getNormalizedOrigin",
+                    "return_type": {
+                        "from_module": {
+                            "name": "@minecraft/server",
+                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                            "version": "2.3.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                    }
+                },
+                {
                     "arguments": [
                         {
                             "details": null,
@@ -3309,6 +3465,33 @@
                             "name": "read_only"
                         }
                     ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "displayName",
+                    "type": {
+                        "error_types": [
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/server",
+                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                    "version": "2.3.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidStructureError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "string"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
                     "is_baked": true,
                     "is_read_only": true,
                     "name": "id",
@@ -4002,6 +4185,24 @@
             "functions": [],
             "name": "ExtensionContextAfterEvents",
             "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "blockPaletteSelectedItemChange",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "BlockPaletteSelectedItemChangeAfterEventSignal"
+                    }
+                },
                 {
                     "get_privilege": [
                         {
@@ -12160,6 +12361,17 @@
                         "name": "string"
                     },
                     "value": "ShowInvisibleBlocks"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "ShowToastNotifications",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "ShowToastNotifications"
                 }
             ],
             "name": "GraphicsSettingsProperty"
