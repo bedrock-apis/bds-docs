@@ -6250,6 +6250,41 @@
                             }
                         },
                         {
+                            "details": null,
+                            "name": "easeOptions",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "EaseOptions"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "setCameraWithEase",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "cameraPreset",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
                             "details": {
                                 "default_value": "null"
                             },
@@ -9806,6 +9841,44 @@
                     ],
                     "is_constructor": false,
                     "is_static": false,
+                    "name": "getBiome",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "LocationInUnloadedChunkError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "LocationOutOfWorldBoundariesError"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "BiomeType"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "location",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
                     "name": "getBlock",
                     "return_type": {
                         "error_types": [
@@ -12336,6 +12409,51 @@
                                 "optional_type": {
                                     "is_bind_type": true,
                                     "is_errorable": false,
+                                    "name": "GetBlocksStandingOnOptions"
+                                }
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getAllBlocksStandingOn",
+                    "return_type": {
+                        "element_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "Block"
+                        },
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidEntityError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "array"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "options",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
                                     "name": "BlockRaycastOptions"
                                 }
                             }
@@ -12364,6 +12482,51 @@
                             "is_bind_type": true,
                             "is_errorable": false,
                             "name": "BlockRaycastHit"
+                        }
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "options",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "GetBlocksStandingOnOptions"
+                                }
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getBlockStandingOn",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidEntityError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "Block"
                         }
                     }
                 },
@@ -27992,6 +28155,11 @@
                                     "max": 2147483647,
                                     "min": -2147483648
                                 }
+                            },
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
                             }
                         ]
                     }
@@ -39419,6 +39587,11 @@
                                         "max": 2147483647,
                                         "min": -2147483648
                                     }
+                                },
+                                {
+                                    "is_bind_type": false,
+                                    "is_errorable": false,
+                                    "name": "string"
                                 }
                             ]
                         }
@@ -49925,6 +50098,47 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "ExplosionOptions"
+            }
+        },
+        {
+            "base_types": [],
+            "name": "GetBlocksStandingOnOptions",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "blockFilter",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "BlockFilter"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "ignoreThinBlocks",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "boolean"
+                        }
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "GetBlocksStandingOnOptions"
             }
         },
         {
