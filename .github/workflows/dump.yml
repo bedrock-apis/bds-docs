@@ -56,10 +56,8 @@ jobs:
                # Fail step if nothing to update (optional)
                if [[ -z "$SHOULD_UPDATE" ]]; then
                   echo "No update required. Exiting."
-                  exit 0
                else
                   echo "Update required for $SHOULD_UPDATE"
-                  exit 1
                fi
 
        - uses: denoland/setup-deno@v1
