@@ -1,7 +1,5 @@
 name: CI Generate
 on:
-   push:
-      branches: main
    workflow_dispatch:
 
 permissions:
@@ -54,7 +52,7 @@ jobs:
 
                # Optional: print debug info
                echo "Branch to update: $SHOULD_UPDATE"
-
+               echo "BRANCH_TO_UPDATE=$SHOULD_UPDATE" >> $GITHUB_OUTPUT
                # Fail step if nothing to update (optional)
                if [[ -z "$SHOULD_UPDATE" ]]; then
                   echo "No update required. Exiting."
@@ -65,10 +63,10 @@ jobs:
                fi
 
        - uses: denoland/setup-deno@v1
-         #if: steps.version.outputs.should_continue == 'true'
+         if: steps.version.outputs.BRANCH_TO_UPDATE != ''
          with:
             deno-version: ">=2.4"
 
        - name: Run Deno
-         #if: steps.version.outputs.should_continue == 'true'
+         if: steps.version.outputs.BRANCH_TO_UPDATE != ''
          run: deno run --allow-all "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/main/dist/main.js"
