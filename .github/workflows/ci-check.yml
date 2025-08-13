@@ -58,6 +58,7 @@ jobs:
             fi
 
       - uses: actions/checkout@v4
+        if: steps.version.outputs.should_continue == 'true'
         with:
           fetch-depth: 0  # needed for git diff to work properly
 
