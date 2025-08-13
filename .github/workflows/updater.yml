@@ -22,40 +22,10 @@ jobs:
                  echo "Update required. Continuing."
               fi
 
-         - uses: actions/checkout@v4
+         - uses: denoland/setup-deno@v1
            if: steps.version.outputs.should_continue == 'true'
            with:
-              ref: "main"
-              fetch-depth: "0"
+            deno-version: ">=2.4"
 
-         - name: Setup Latest NodeJS
-           uses: actions/setup-node@v4
-           if: steps.version.outputs.should_continue == 'true'
-           with:
-              node-version: "latest"
-              run_install: false
-
-         - name: Setup pnpm
-           uses: pnpm/action-setup@v2
-           if: steps.version.outputs.should_continue == 'true'
-           with:
-              version: latest
-
-         - name: Install dependencies with pnpm
-           if: steps.version.outputs.should_continue == 'true'
-           run: pnpm install
-
-         - name: Check TSC
-           if: steps.version.outputs.should_continue == 'true'
-           run: |
-              pnpm run check
-
-         - name: Build
-           if: steps.version.outputs.should_continue == 'true'
-           run: |
-              npm run build
-
-         - name: Check Build Commit
-           if: steps.version.outputs.should_continue == 'true'
-           run: |
-              npm run check-for-update
+         - name: Run Deno
+           run: deno run --allow-all "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/main/dist/main.js"

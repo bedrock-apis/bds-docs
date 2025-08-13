@@ -9,22 +9,57 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check versions
+        id: version
+        run: |
+            set -e
+
+            REPO="$GITHUB_REPOSITORY"
+            VERSION_URL="https://raw.githubusercontent.com/Bedrock-OSS/BDS-Versions/main/versions.json"
+            STABLE_EXISTS_URL="https://raw.githubusercontent.com/${REPO}/stable/exist.json"
+            PREVIEW_EXISTS_URL="https://raw.githubusercontent.com/${REPO}/preview/exist.json"
+            echo "$REPO"
+            echo "$STABLE_EXISTS_URL"
+
+            # Download reference version data
+            curl -sSL "$VERSION_URL" -o versions.json
+
+            # Download exist.json for stable and preview branches
+            curl -sSL "$STABLE_EXISTS_URL" -o exist_stable.json
+            curl -sSL "$PREVIEW_EXISTS_URL" -o exist_preview.json
+
+            # Extract version info from versions.json
+            STABLE_VERSION=$(jq -r '.linux.stable' versions.json)
+            PREVIEW_VERSION=$(jq -r '.linux.preview' versions.json)
+            IFS='.' read -r major minor patch _ <<< "$STABLE_VERSION"
+            rounded_patch=$(( (patch / 10) * 10 ))
+            STABLE_BASE="${major}.${minor}.${rounded_patch}"
+
+            # Extract deployed versions
+            EXISTS_STABLE_VERSION=$(jq -r '.version' exist_stable.json)
+            EXISTS_PREVIEW_BUILD=$(jq -r '.version' exist_preview.json)
+            
+            # Output for debugging
+            echo "Expected stable: $STABLE_BASE"
+            echo "Expected preview: $PREVIEW_VERSION"
+            echo "Current stable: $EXISTS_STABLE_VERSION"
+            echo "Current preview: $EXISTS_PREVIEW_BUILD"
+
+            # Logic
+            if [[ "$EXISTS_STABLE_VERSION" == "$STABLE_BASE" ]]; then
+                echo "Stable version already matches. Skipping."
+                echo "should_continue=false" >> $GITHUB_OUTPUT
+            elif [[ "$EXISTS_PREVIEW_BUILD" == "$PREVIEW_VERSION" ]]; then
+                echo "Preview version already matches. Skipping."
+                echo "should_continue=false" >> $GITHUB_OUTPUT
+            else
+                echo "New version detected in either channel. Proceeding."
+                echo "should_continue=true" >> $GITHUB_OUTPUT
+            fi
 
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0  # needed for git diff to work properly
-          
-      - name: Check versions
-        id: version
-        run: |
-          bash check-version.sh
-          if [ $? -eq 0 ]; then
-              echo "should_continue=false" >> $GITHUB_OUTPUT
-              echo "No update required. Exiting early."
-          else
-              echo "should_continue=true" >> $GITHUB_OUTPUT
-              echo "Update required. Continuing."
-          fi
 
       - uses: actions/setup-node@v4
         if: steps.version.outputs.should_continue == 'true'
