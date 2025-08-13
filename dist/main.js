@@ -1,1 +1,1 @@
-await Promise.resolve(0),await Promise.resolve(`Not the same`);
+await Promise.resolve(0),await Promise.resolve(`Not the same`),console.log(`Branch to update`,Deno.env.get(`BRANCH_TO_UPDATE`));
