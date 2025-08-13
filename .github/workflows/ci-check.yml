@@ -10,35 +10,28 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-        if: steps.version.outputs.should_continue == 'true'
         with:
           fetch-depth: 0  # needed for git diff to work properly
 
       - uses: actions/setup-node@v4
-        if: steps.version.outputs.should_continue == 'true'
         with:
           node-version: 'latest'
           run_install: false
 
       - uses: pnpm/action-setup@v2
-        if: steps.version.outputs.should_continue == 'true'
         with:
           version: latest
 
       - name: Install dependencies
-        if: steps.version.outputs.should_continue == 'true'
         run: pnpm install
 
       - name: Build the project
-        if: steps.version.outputs.should_continue == 'true'
         run: pnpm run check
 
       - name: Build the project
-        if: steps.version.outputs.should_continue == 'true'
         run: pnpm run build
 
       - name: Check for uncommitted changes
-        if: steps.version.outputs.should_continue == 'true'
         run: |
           git diff --quiet || {
             echo "::error::Build output is not up to date. Please run the build and commit the result.";
