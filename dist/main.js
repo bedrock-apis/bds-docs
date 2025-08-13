@@ -1,0 +1,1 @@
+await Promise.resolve(0),await Promise.resolve(`Not the same`);
