@@ -32,8 +32,8 @@ jobs:
 
       - name: Check for uncommitted changes
         run: |
-          git diff --quiet || {
-            echo "::error::Build output is not up to date. Please run the build and commit the result.";
-            git diff --name-only;
-            exit 1;
-          }
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "::error::Build output is not up to date. Please run the build and commit the result."
+            git status --short
+            exit 1
+          fi
