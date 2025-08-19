@@ -1447,6 +1447,22 @@
                     ],
                     "is_constructor": false,
                     "is_static": false,
+                    "name": "clearBlockStateOverrides",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
                     "name": "deactivateBrushTool",
                     "return_type": {
                         "is_bind_type": false,
@@ -1620,6 +1636,88 @@
                     "arguments": [
                         {
                             "details": null,
+                            "name": "stateName",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "stateValue",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "variant",
+                                "variant_types": [
+                                    {
+                                        "is_bind_type": false,
+                                        "is_errorable": false,
+                                        "name": "boolean"
+                                    },
+                                    {
+                                        "is_bind_type": false,
+                                        "is_errorable": false,
+                                        "name": "int32",
+                                        "valid_range": {
+                                            "max": 2147483647,
+                                            "min": -2147483648
+                                        }
+                                    },
+                                    {
+                                        "is_bind_type": false,
+                                        "is_errorable": false,
+                                        "name": "string"
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "pushBlockStateOverride",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "enabled",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "boolean"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "setBlockFacePlacementBasedOnCamera",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
                             "name": "mask",
                             "type": {
                                 "is_bind_type": true,
@@ -1776,19 +1874,12 @@
                 {
                     "arguments": [
                         {
-                            "details": {
-                                "max_value": 2147483647,
-                                "min_value": -2147483648
-                            },
-                            "name": "flattenHeight",
+                            "details": null,
+                            "name": "flattenMode",
                             "type": {
-                                "is_bind_type": false,
+                                "is_bind_type": true,
                                 "is_errorable": false,
-                                "name": "int32",
-                                "valid_range": {
-                                    "max": 2147483647,
-                                    "min": -2147483648
-                                }
+                                "name": "FlattenMode"
                             }
                         }
                     ],
@@ -1799,7 +1890,7 @@
                     ],
                     "is_constructor": false,
                     "is_static": false,
-                    "name": "setFlattenHeight",
+                    "name": "setFlattenMode",
                     "return_type": {
                         "is_bind_type": false,
                         "is_errorable": false,
@@ -1813,7 +1904,7 @@
                                 "max_value": 2147483647,
                                 "min_value": -2147483648
                             },
-                            "name": "flattenRadius",
+                            "name": "flattenSmoothing",
                             "type": {
                                 "is_bind_type": false,
                                 "is_errorable": false,
@@ -1832,7 +1923,33 @@
                     ],
                     "is_constructor": false,
                     "is_static": false,
-                    "name": "setFlattenRadius",
+                    "name": "setFlattenSmoothing",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "floorBlockOverride",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "boolean"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "setFloorBlockOverride",
                     "return_type": {
                         "is_bind_type": false,
                         "is_errorable": false,
@@ -4892,6 +5009,24 @@
                     "get_privilege": [
                         {
                             "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_baked": true,
+                    "is_read_only": true,
+                    "name": "afterEvents",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "ProjectAfterEvents"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
                         }
                     ],
                     "is_baked": true,
@@ -5327,6 +5462,37 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "ProbabilityBlockPaletteItem"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [],
+            "name": "ProjectAfterEvents",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "simulationStateChange",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "SimulationStateChangeAfterEventSignal"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "ProjectAfterEvents"
             }
         },
         {
@@ -6659,6 +6825,141 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "SimulationState"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [],
+            "name": "SimulationStateAfterEvent",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "paused",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "SimulationStateAfterEvent"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "callback",
+                            "type": {
+                                "closure_type": {
+                                    "argument_types": [
+                                        {
+                                            "is_bind_type": true,
+                                            "is_errorable": false,
+                                            "name": "SimulationStateAfterEvent"
+                                        }
+                                    ],
+                                    "return_type": {
+                                        "is_bind_type": false,
+                                        "is_errorable": true,
+                                        "name": "undefined"
+                                    }
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "closure"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "subscribe",
+                    "return_type": {
+                        "closure_type": {
+                            "argument_types": [
+                                {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "SimulationStateAfterEvent"
+                                }
+                            ],
+                            "return_type": {
+                                "is_bind_type": false,
+                                "is_errorable": true,
+                                "name": "undefined"
+                            }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "callback",
+                            "type": {
+                                "closure_type": {
+                                    "argument_types": [
+                                        {
+                                            "is_bind_type": true,
+                                            "is_errorable": false,
+                                            "name": "SimulationStateAfterEvent"
+                                        }
+                                    ],
+                                    "return_type": {
+                                        "is_bind_type": false,
+                                        "is_errorable": true,
+                                        "name": "undefined"
+                                    }
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "closure"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "unsubscribe",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "undefined"
+                    }
+                }
+            ],
+            "name": "SimulationStateChangeAfterEventSignal",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "SimulationStateChangeAfterEventSignal"
             }
         },
         {
@@ -11921,7 +12222,128 @@
                 {
                     "is_read_only": true,
                     "is_static": true,
-                    "name": "ByCamera",
+                    "name": "CameraFromAbove",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "BrushDirectionalPlacementMode"
+                    },
+                    "value": 5
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "CameraFromBelow",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "BrushDirectionalPlacementMode"
+                    },
+                    "value": 6
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "CameraLeft",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "BrushDirectionalPlacementMode"
+                    },
+                    "value": 3
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "CameraRight",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "BrushDirectionalPlacementMode"
+                    },
+                    "value": 4
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "FrontFaceNegX",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "BrushDirectionalPlacementMode"
+                    },
+                    "value": 8
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "FrontFaceNegY",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "BrushDirectionalPlacementMode"
+                    },
+                    "value": 12
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "FrontFaceNegZ",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "BrushDirectionalPlacementMode"
+                    },
+                    "value": 10
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "FrontFacePosX",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "BrushDirectionalPlacementMode"
+                    },
+                    "value": 7
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "FrontFacePosY",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "BrushDirectionalPlacementMode"
+                    },
+                    "value": 11
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "FrontFacePosZ",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "BrushDirectionalPlacementMode"
+                    },
+                    "value": 9
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "IgnoreCamera",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "BrushDirectionalPlacementMode"
+                    },
+                    "value": 0
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "NormalCamera",
                     "type": {
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -11932,13 +12354,35 @@
                 {
                     "is_read_only": true,
                     "is_static": true,
-                    "name": "Default",
+                    "name": "OppositeCamera",
                     "type": {
                         "is_bind_type": true,
                         "is_errorable": false,
                         "name": "BrushDirectionalPlacementMode"
                     },
-                    "value": 0
+                    "value": 2
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Random2Axes",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "BrushDirectionalPlacementMode"
+                    },
+                    "value": 13
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Random3Axes",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "BrushDirectionalPlacementMode"
+                    },
+                    "value": 14
                 }
             ],
             "name": "BrushDirectionalPlacementMode"
@@ -12263,6 +12707,44 @@
                 }
             ],
             "name": "ExportResult"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Both",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "FlattenMode"
+                    },
+                    "value": 0
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Down",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "FlattenMode"
+                    },
+                    "value": 1
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Up",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "FlattenMode"
+                    },
+                    "value": 2
+                }
+            ],
+            "name": "FlattenMode"
         },
         {
             "constants": [
