@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1677381825",
     "x-format-version": "1.21.110",
-    "x-minecraft-version": "1.21.110-beta.26",
+    "x-minecraft-version": "1.21.120-beta.20",
     "definitions": {
         "6632766": {
             "title": "Range",
@@ -48,6 +48,32 @@
             },
             "required": [
                 "enabled_states"
+            ]
+        },
+        "2369685306": {
+            "title": "Menu Category",
+            "type": "object",
+            "properties": {
+                "category": {
+                    "title": "CreativeItemCategory",
+                    "type": "string",
+                    "enum": [
+                        "construction",
+                        "nature",
+                        "equipment",
+                        "items",
+                        "none"
+                    ]
+                },
+                "group": {
+                    "type": "string"
+                },
+                "is_hidden_in_commands": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "category"
             ]
         },
         "3142471136": {
@@ -100,6 +126,9 @@
             "properties": {
                 "identifier": {
                     "type": "string"
+                },
+                "menu_category": {
+                    "$ref": "#/definitions/2369685306"
                 },
                 "states": {
                     "$ref": "#/definitions/3925154510"
