@@ -5159,6 +5159,120 @@
                         "is_errorable": false,
                         "name": "string"
                     },
+                    "value": "minecraft:redstone_producer"
+                }
+            ],
+            "functions": [
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getConnectedFaces",
+                    "return_type": {
+                        "element_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "Direction"
+                        },
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidBlockComponentError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "array"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getStronglyPoweredFace",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidBlockComponentError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "Direction"
+                        }
+                    }
+                }
+            ],
+            "name": "BlockRedstoneProducerComponent",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "power",
+                    "type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidBlockComponentError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "BlockRedstoneProducerComponent"
+            }
+        },
+        {
+            "base_types": [
+                {
+                    "is_bind_type": true,
+                    "is_errorable": false,
+                    "name": "BlockComponent"
+                }
+            ],
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "componentId",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
                     "value": "minecraft:sign"
                 }
             ],
@@ -9675,21 +9789,9 @@
                             "details": null,
                             "name": "volume",
                             "type": {
-                                "is_bind_type": false,
+                                "is_bind_type": true,
                                 "is_errorable": false,
-                                "name": "variant",
-                                "variant_types": [
-                                    {
-                                        "is_bind_type": true,
-                                        "is_errorable": false,
-                                        "name": "BlockVolumeBase"
-                                    },
-                                    {
-                                        "is_bind_type": true,
-                                        "is_errorable": false,
-                                        "name": "CompoundBlockVolume"
-                                    }
-                                ]
+                                "name": "BlockVolumeBase"
                             }
                         },
                         {
@@ -49588,6 +49690,15 @@
             }
         },
         {
+            "name": "InvalidBlockComponentError",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "InvalidBlockComponentError"
+            }
+        },
+        {
             "name": "InvalidContainerError",
             "properties": [],
             "type": {
@@ -54886,6 +54997,10 @@
                 {
                     "name": "minecraft:record_player",
                     "value": "BlockRecordPlayerComponent"
+                },
+                {
+                    "name": "minecraft:redstone_producer",
+                    "value": "BlockRedstoneProducerComponent"
                 },
                 {
                     "name": "minecraft:sign",

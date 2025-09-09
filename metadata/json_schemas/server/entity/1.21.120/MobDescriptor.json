@@ -1,0 +1,167 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "792012262",
+    "x-format-version": "1.21.120",
+    "x-minecraft-version": "1.21.120-beta.21",
+    "definitions": {
+        "1088251937": {
+            "title": "Filter Group",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/4150989894"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/1088251937"
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "AND": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "NOT": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "OR": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "all": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "all_of": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "any": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "any_of": {
+                            "$ref": "#/definitions/1088251937"
+                        },
+                        "none_of": {
+                            "$ref": "#/definitions/1088251937"
+                        }
+                    }
+                }
+            ]
+        },
+        "4150989894": {
+            "title": "Filter Test",
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "operator": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "subject": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "test": {
+                    "type": "string"
+                },
+                "value": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "test"
+            ]
+        }
+    },
+    "title": "MobDescriptor",
+    "type": "object",
+    "properties": {
+        "check_if_outnumbered": {
+            "type": "boolean"
+        },
+        "cooldown": {
+            "type": "integer"
+        },
+        "filters": {
+            "$ref": "#/definitions/1088251937"
+        },
+        "max_dist": {
+            "type": "number"
+        },
+        "max_flee": {
+            "type": "number"
+        },
+        "max_height": {
+            "type": "number"
+        },
+        "must_see": {
+            "type": "boolean"
+        },
+        "must_see_forget_duration": {
+            "type": "integer"
+        },
+        "priority": {
+            "type": "integer"
+        },
+        "reevaluate_description": {
+            "type": "boolean"
+        },
+        "sprint_speed_multiplier": {
+            "type": "number"
+        },
+        "walk_speed_multiplier": {
+            "type": "number"
+        }
+    }
+}
