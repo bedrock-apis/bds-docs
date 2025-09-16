@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3635230096",
     "x-format-version": "1.21.90",
-    "x-minecraft-version": "1.21.120-beta.21",
+    "x-minecraft-version": "1.21.120-beta.22",
     "definitions": {
         "34598326": {
             "title": "minecraft:storage_weight_limit",
@@ -817,19 +817,12 @@
         },
         "1326498368": {
             "title": "minecraft:fire_resistant",
-            "oneOf": [
-                {
+            "type": "object",
+            "properties": {
+                "value": {
                     "type": "boolean"
-                },
-                {
-                    "type": "object",
-                    "properties": {
-                        "value": {
-                            "type": "boolean"
-                        }
-                    }
                 }
-            ]
+            }
         },
         "1372809227": {
             "title": "minecraft:icon v1.21.80",
@@ -1741,6 +1734,16 @@
                 }
             }
         },
+        "3168878935": {
+            "title": "minecraft:swing_duration",
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "number",
+                    "minimum": 0
+                }
+            }
+        },
         "3173009623": {
             "title": "minecraft:damage",
             "oneOf": [
@@ -2163,6 +2166,9 @@
         },
         "minecraft:storage_weight_modifier": {
             "$ref": "#/definitions/842194090"
+        },
+        "minecraft:swing_duration": {
+            "$ref": "#/definitions/3168878935"
         },
         "minecraft:tags": {
             "$ref": "#/definitions/3168558347"

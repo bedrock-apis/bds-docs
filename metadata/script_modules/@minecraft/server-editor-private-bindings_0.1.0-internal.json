@@ -2370,6 +2370,21 @@
                     ],
                     "is_baked": false,
                     "is_read_only": true,
+                    "name": "jigsawService",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "JigsawService"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
                     "name": "realmsService",
                     "type": {
                         "is_bind_type": true,
@@ -2397,6 +2412,248 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "InternalPlayerServiceContext"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "registryName",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "startingPool",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "seed",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.4.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        },
+                        {
+                            "details": {
+                                "max_value": 2147483647,
+                                "min_value": -2147483648
+                            },
+                            "name": "depth",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "int32",
+                                "valid_range": {
+                                    "max": 2147483647,
+                                    "min": -2147483648
+                                }
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "generateJigsaw",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "promise",
+                        "promise_type": {
+                            "element_type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "EditorJigsawSection"
+                            },
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "array"
+                        }
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "registryName",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getRegistryData",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "key_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "string"
+                        },
+                        "name": "map",
+                        "value_type": {
+                            "element_type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "EditorRegistryFile"
+                            },
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "array"
+                        }
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getRegistryList",
+                    "return_type": {
+                        "element_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "string"
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "array"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "registryName",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "processorData",
+                            "type": {
+                                "element_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "EditorRegistryFile"
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "array"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "structureData",
+                            "type": {
+                                "element_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "EditorRegistryFile"
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "array"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "structureSetData",
+                            "type": {
+                                "element_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "EditorRegistryFile"
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "array"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "templatePoolData",
+                            "type": {
+                                "element_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "EditorRegistryFile"
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "array"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "setRegistryData",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "promise",
+                        "promise_type": {
+                            "element_type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            },
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "array"
+                        }
+                    }
+                }
+            ],
+            "name": "JigsawService",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "JigsawService"
             }
         },
         {
@@ -4384,6 +4641,55 @@
                 {
                     "is_read_only": true,
                     "is_static": true,
+                    "name": "Processor",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "JigsawJsonType"
+                    },
+                    "value": 0
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Structure",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "JigsawJsonType"
+                    },
+                    "value": 1
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "StructureSet",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "JigsawJsonType"
+                    },
+                    "value": 2
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "TemplatePool",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "JigsawJsonType"
+                    },
+                    "value": 3
+                }
+            ],
+            "name": "JigsawJsonType"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
                     "name": "Local",
                     "type": {
                         "is_bind_type": true,
@@ -4650,6 +4956,72 @@
         },
         {
             "base_types": [],
+            "name": "EditorJigsawSection",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "bounds",
+                    "type": {
+                        "from_module": {
+                            "name": "@minecraft/server-bindings",
+                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                            "version": "2.4.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "BlockBoundingBox"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "offset",
+                    "type": {
+                        "from_module": {
+                            "name": "@minecraft/server-bindings",
+                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                            "version": "2.4.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "rotation",
+                    "type": {
+                        "from_module": {
+                            "name": "@minecraft/server-bindings",
+                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                            "version": "2.4.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "StructureRotation"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "structureId",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "EditorJigsawSection"
+            }
+        },
+        {
+            "base_types": [],
             "name": "EditorRealmsWorld",
             "properties": [
                 {
@@ -4712,6 +5084,37 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "EditorRealmsWorldSlot"
+            }
+        },
+        {
+            "base_types": [],
+            "name": "EditorRegistryFile",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "fileJson",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "fileName",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "EditorRegistryFile"
             }
         },
         {
