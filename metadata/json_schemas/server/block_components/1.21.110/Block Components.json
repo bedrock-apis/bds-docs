@@ -2,11 +2,20 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "471923105",
     "x-format-version": "1.21.110",
-    "x-minecraft-version": "1.21.120-beta.22",
+    "x-minecraft-version": "1.21.120-beta.23",
     "definitions": {
+        "2735968029": {
+            "title": "Tags",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "pattern": "^(?:.)+:(?:.)+$"
+            }
+        },
         "2879220220": {
             "title": "Display Name",
-            "type": "string"
+            "type": "string",
+            "maxLength": 256
         }
     },
     "title": "Components",
@@ -14,6 +23,9 @@
     "properties": {
         "minecraft:display_name": {
             "$ref": "#/definitions/2879220220"
+        },
+        "minecraft:tags": {
+            "$ref": "#/definitions/2735968029"
         }
     }
 }
