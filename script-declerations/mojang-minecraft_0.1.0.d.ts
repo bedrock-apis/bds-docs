@@ -1,4 +1,3 @@
-import * as _1e from '@minecraft/common';
 
 // Enums - 4
 export enum Direction { down = 0, east = 5, north = 2, south = 3, up = 1, west = 4};

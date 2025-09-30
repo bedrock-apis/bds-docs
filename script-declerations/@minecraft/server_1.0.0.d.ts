@@ -1,4 +1,3 @@
-import * as _1e from '@minecraft/common';
 
 // Enums - 0
 

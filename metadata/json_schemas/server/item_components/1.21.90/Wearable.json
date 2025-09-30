@@ -1,0 +1,31 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "3553782894",
+    "x-format-version": "1.21.90",
+    "x-minecraft-version": "1.21.111",
+    "title": "minecraft:wearable",
+    "type": "object",
+    "properties": {
+        "hides_player_location": {
+            "type": "boolean"
+        },
+        "protection": {
+            "type": "integer",
+            "minimum": 0
+        },
+        "slot": {
+            "title": "EquipmentSlot",
+            "type": "string",
+            "enum": [
+                "slot.weapon.offhand",
+                "slot.armor.head",
+                "slot.armor.chest",
+                "slot.armor.legs",
+                "slot.armor.feet"
+            ]
+        }
+    },
+    "required": [
+        "slot"
+    ]
+}

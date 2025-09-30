@@ -1,0 +1,56 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "1949055570",
+    "x-format-version": "1.21.110",
+    "x-minecraft-version": "1.21.111",
+    "definitions": {
+        "1057349585": {
+            "title": "FloatRange",
+            "type": "object",
+            "properties": {
+                "max": {
+                    "type": "number"
+                },
+                "min": {
+                    "type": "number"
+                }
+            }
+        }
+    },
+    "title": "minecraft:behavior.sniff",
+    "type": "object",
+    "properties": {
+        "control_flags": {
+            "type": "array",
+            "items": {
+                "title": "Goal's control flags",
+                "type": "string",
+                "enum": [
+                    "move",
+                    "look",
+                    "jump"
+                ]
+            }
+        },
+        "cooldown_range": {
+            "$ref": "#/definitions/1057349585"
+        },
+        "duration": {
+            "type": "number"
+        },
+        "priority": {
+            "type": "integer",
+            "minimum": 0
+        },
+        "sniffing_radius": {
+            "type": "number"
+        },
+        "suspicion_radius_horizontal": {
+            "type": "number"
+        },
+        "suspicion_radius_vertical": {
+            "type": "number",
+            "minimum": 1
+        }
+    }
+}

@@ -1,4 +1,3 @@
-import * as _1e from '@minecraft/common';
 
 // Enums - 1
 export enum GameMode { adventure = "adventure", creative = "creative", spectator = "spectator", survival = "survival"};

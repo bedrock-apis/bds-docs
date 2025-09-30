@@ -5698,7 +5698,19 @@
                                     "element_type": {
                                         "is_bind_type": false,
                                         "is_errorable": false,
-                                        "name": "string"
+                                        "name": "variant",
+                                        "variant_types": [
+                                            {
+                                                "is_bind_type": true,
+                                                "is_errorable": false,
+                                                "name": "RawMessage"
+                                            },
+                                            {
+                                                "is_bind_type": false,
+                                                "is_errorable": false,
+                                                "name": "string"
+                                            }
+                                        ]
                                     },
                                     "is_bind_type": false,
                                     "is_errorable": false,
@@ -5726,6 +5738,11 @@
                                 "is_bind_type": true,
                                 "is_errorable": false,
                                 "name": "ArgumentOutOfBoundsError"
+                            },
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
                             },
                             {
                                 "is_bind_type": true,
@@ -6465,7 +6482,7 @@
                     ],
                     "call_privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "is_constructor": false,
@@ -6512,7 +6529,7 @@
                     ],
                     "call_privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "is_constructor": false,
@@ -6911,7 +6928,7 @@
                     ],
                     "call_privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "is_constructor": false,
@@ -8613,16 +8630,6 @@
                                 "is_bind_type": true,
                                 "is_errorable": false,
                                 "name": "InvalidEntityError"
-                            },
-                            {
-                                "from_module": {
-                                    "name": "@minecraft/common",
-                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
-                                    "version": "1.2.0"
-                                },
-                                "is_bind_type": true,
-                                "is_errorable": false,
-                                "name": "UnsupportedFunctionalityError"
                             }
                         ],
                         "is_bind_type": false,
@@ -8728,16 +8735,6 @@
                                 "is_bind_type": true,
                                 "is_errorable": false,
                                 "name": "InvalidEntityError"
-                            },
-                            {
-                                "from_module": {
-                                    "name": "@minecraft/common",
-                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
-                                    "version": "1.2.0"
-                                },
-                                "is_bind_type": true,
-                                "is_errorable": false,
-                                "name": "UnsupportedFunctionalityError"
                             }
                         ],
                         "is_bind_type": false,
@@ -20784,7 +20781,19 @@
                                     "element_type": {
                                         "is_bind_type": false,
                                         "is_errorable": false,
-                                        "name": "string"
+                                        "name": "variant",
+                                        "variant_types": [
+                                            {
+                                                "is_bind_type": true,
+                                                "is_errorable": false,
+                                                "name": "RawMessage"
+                                            },
+                                            {
+                                                "is_bind_type": false,
+                                                "is_errorable": false,
+                                                "name": "string"
+                                            }
+                                        ]
                                     },
                                     "is_bind_type": false,
                                     "is_errorable": false,
@@ -20812,6 +20821,11 @@
                                 "is_bind_type": true,
                                 "is_errorable": false,
                                 "name": "ArgumentOutOfBoundsError"
+                            },
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
                             }
                         ],
                         "is_bind_type": false,
@@ -30917,7 +30931,7 @@
                     ],
                     "call_privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "is_constructor": false,
@@ -34097,17 +34111,7 @@
             "value": 20
         }
     ],
-    "dependencies": [
-        {
-            "name": "@minecraft/common",
-            "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
-            "versions": [
-                {
-                    "version": "1.2.0"
-                }
-            ]
-        }
-    ],
+    "dependencies": [],
     "enums": [
         {
             "constants": [
@@ -43050,6 +43054,17 @@
                 "is_errorable": false,
                 "name": "World"
             }
+        }
+    ],
+    "peer_dependencies": [
+        {
+            "name": "@minecraft/common",
+            "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+            "versions": [
+                {
+                    "version": "1.2.0"
+                }
+            ]
         }
     ],
     "type_aliases": [

@@ -1610,6 +1610,17 @@
                                 "is_errorable": false,
                                 "name": "string"
                             }
+                        },
+                        {
+                            "details": {
+                                "default_value": false
+                            },
+                            "name": "useSnapshot",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "boolean"
+                            }
                         }
                     ],
                     "call_privilege": [
@@ -1866,7 +1877,7 @@
                                 "from_module": {
                                     "name": "@minecraft/server-editor-bindings",
                                     "uuid": "8518d9c7-a1f5-4bf3-acc7-78e87df595fc",
-                                    "version": "0.1.0-beta"
+                                    "version": "0.1.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -1924,7 +1935,7 @@
                                 "from_module": {
                                     "name": "@minecraft/server-editor-bindings",
                                     "uuid": "8518d9c7-a1f5-4bf3-acc7-78e87df595fc",
-                                    "version": "0.1.0-beta"
+                                    "version": "0.1.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -2154,11 +2165,11 @@
                     ],
                     "is_baked": false,
                     "is_read_only": true,
-                    "name": "tickingArea",
+                    "name": "regionManager",
                     "type": {
                         "is_bind_type": true,
                         "is_errorable": false,
-                        "name": "TickingAreaManager"
+                        "name": "ProjectRegionManager"
                     }
                 }
             ],
@@ -2181,7 +2192,7 @@
                                 "from_module": {
                                     "name": "@minecraft/server",
                                     "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.2.0-beta"
+                                    "version": "2.3.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -2239,57 +2250,7 @@
                                 "from_module": {
                                     "name": "@minecraft/server",
                                     "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.2.0-beta"
-                                },
-                                "is_bind_type": true,
-                                "is_errorable": false,
-                                "name": "Player"
-                            }
-                        },
-                        {
-                            "details": null,
-                            "name": "coordinate",
-                            "type": {
-                                "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.2.0-beta"
-                                },
-                                "is_bind_type": true,
-                                "is_errorable": false,
-                                "name": "Vector3"
-                            }
-                        }
-                    ],
-                    "call_privilege": [
-                        {
-                            "name": "none"
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "getMapColorUnsafe",
-                    "return_type": {
-                        "from_module": {
-                            "name": "@minecraft/server",
-                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                            "version": "2.2.0-beta"
-                        },
-                        "is_bind_type": true,
-                        "is_errorable": true,
-                        "name": "RGBA"
-                    }
-                },
-                {
-                    "arguments": [
-                        {
-                            "details": null,
-                            "name": "player",
-                            "type": {
-                                "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.2.0-beta"
+                                    "version": "2.3.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -2332,7 +2293,7 @@
                                             "from_module": {
                                                 "name": "@minecraft/server-editor-bindings",
                                                 "uuid": "8518d9c7-a1f5-4bf3-acc7-78e87df595fc",
-                                                "version": "0.1.0-beta"
+                                                "version": "0.1.0-internal"
                                             },
                                             "is_bind_type": true,
                                             "is_errorable": false,
@@ -2360,7 +2321,7 @@
                                             "from_module": {
                                                 "name": "@minecraft/server-editor-bindings",
                                                 "uuid": "8518d9c7-a1f5-4bf3-acc7-78e87df595fc",
-                                                "version": "0.1.0-beta"
+                                                "version": "0.1.0-internal"
                                             },
                                             "is_bind_type": true,
                                             "is_errorable": false,
@@ -2391,7 +2352,7 @@
                                     "from_module": {
                                         "name": "@minecraft/server-editor-bindings",
                                         "uuid": "8518d9c7-a1f5-4bf3-acc7-78e87df595fc",
-                                        "version": "0.1.0-beta"
+                                        "version": "0.1.0-internal"
                                     },
                                     "is_bind_type": true,
                                     "is_errorable": false,
@@ -2412,7 +2373,7 @@
                         "from_module": {
                             "name": "@minecraft/server-editor-bindings",
                             "uuid": "8518d9c7-a1f5-4bf3-acc7-78e87df595fc",
-                            "version": "0.1.0-beta"
+                            "version": "0.1.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -2442,6 +2403,1110 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "MinecraftEditorInternal"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "dispose",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "boolean"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "location",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server",
+                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                    "version": "2.3.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "direction",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server",
+                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                    "version": "2.3.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        },
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "options",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "from_module": {
+                                        "name": "@minecraft/server",
+                                        "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                        "version": "2.3.0-internal"
+                                    },
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "BlockRaycastOptions"
+                                }
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getAvailableLocationFromRay",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "optional",
+                        "optional_type": {
+                            "from_module": {
+                                "name": "@minecraft/server",
+                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                "version": "2.3.0-internal"
+                            },
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "Vector3"
+                        }
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "location",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server",
+                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                    "version": "2.3.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getBlock",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "optional",
+                        "optional_type": {
+                            "from_module": {
+                                "name": "@minecraft/server",
+                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                "version": "2.3.0-internal"
+                            },
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "Block"
+                        }
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "location",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server",
+                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                    "version": "2.3.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getBlockMapColor",
+                    "return_type": {
+                        "from_module": {
+                            "name": "@minecraft/server",
+                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                            "version": "2.3.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "RGBA"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "location",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server",
+                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                    "version": "2.3.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getBlockPermutation",
+                    "return_type": {
+                        "from_module": {
+                            "name": "@minecraft/server",
+                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                            "version": "2.3.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "BlockPermutation"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "location",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server",
+                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                    "version": "2.3.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getBlockTypeId",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "string"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getBounds",
+                    "return_type": {
+                        "from_module": {
+                            "name": "@minecraft/server",
+                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                            "version": "2.3.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "BlockBoundingBox"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "location",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server",
+                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                    "version": "2.3.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "isAirBlock",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "boolean"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "boundingBox",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server",
+                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                    "version": "2.3.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "BlockBoundingBox"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "isAreaAvailable",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "boolean"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "isAvailable",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "boolean"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "location",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server",
+                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                    "version": "2.3.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "isBlockWaterLogged",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "boolean"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "location",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server",
+                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                    "version": "2.3.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "isLiquidBlock",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "boolean"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "location",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server",
+                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                    "version": "2.3.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "isLocationAvailable",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "boolean"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "location",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server",
+                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                    "version": "2.3.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "isSolidBlock",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "boolean"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "volume",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server-editor-bindings",
+                                    "uuid": "8518d9c7-a1f5-4bf3-acc7-78e87df595fc",
+                                    "version": "0.1.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "RelativeVolumeListBlockVolume"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "callback",
+                            "type": {
+                                "closure_type": {
+                                    "argument_types": [
+                                        {
+                                            "from_module": {
+                                                "name": "@minecraft/server",
+                                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                                "version": "2.3.0-internal"
+                                            },
+                                            "is_bind_type": true,
+                                            "is_errorable": false,
+                                            "name": "BlockLocationIterator"
+                                        }
+                                    ],
+                                    "return_type": {
+                                        "is_bind_type": false,
+                                        "is_errorable": true,
+                                        "name": "undefined"
+                                    }
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "closure"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "requestBlockOperationArea",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "promise",
+                        "promise_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "undefined"
+                        }
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "extentX",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.2.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "NumberRange"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "extentZ",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.2.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "NumberRange"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "requestExpandToContain",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "promise",
+                        "promise_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "undefined"
+                        }
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "extentX",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.2.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "NumberRange"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "extentZ",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.2.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "NumberRange"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "requestExtentsUpdate",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "promise",
+                        "promise_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "undefined"
+                        }
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "center",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server",
+                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                    "version": "2.3.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "requestMove",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "promise",
+                        "promise_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "undefined"
+                        }
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "location",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server",
+                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                    "version": "2.3.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "blockType",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "variant",
+                                "variant_types": [
+                                    {
+                                        "from_module": {
+                                            "name": "@minecraft/server",
+                                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                            "version": "2.3.0-internal"
+                                        },
+                                        "is_bind_type": true,
+                                        "is_errorable": false,
+                                        "name": "BlockType"
+                                    },
+                                    {
+                                        "is_bind_type": false,
+                                        "is_errorable": false,
+                                        "name": "string"
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "setBlockType",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "location",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server",
+                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                    "version": "2.3.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "isWaterlogged",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "boolean"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "setBlockWaterlogged",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "identifier",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "variant",
+                                "variant_types": [
+                                    {
+                                        "from_module": {
+                                            "name": "@minecraft/server",
+                                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                            "version": "2.3.0-internal"
+                                        },
+                                        "is_bind_type": true,
+                                        "is_errorable": false,
+                                        "name": "EntityType"
+                                    },
+                                    {
+                                        "is_bind_type": false,
+                                        "is_errorable": false,
+                                        "name": "string"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "location",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server",
+                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                    "version": "2.3.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        },
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "rotation",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": false,
+                                    "is_errorable": false,
+                                    "name": "float",
+                                    "valid_range": {
+                                        "max": 2147483647,
+                                        "min": -2147483648
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "spawnEntity",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/server",
+                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                    "version": "2.3.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "EntitySpawnError"
+                            },
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            },
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.2.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidArgumentError"
+                            },
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/server",
+                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                    "version": "2.3.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidEntityError"
+                            }
+                        ],
+                        "from_module": {
+                            "name": "@minecraft/server",
+                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                            "version": "2.3.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "Entity"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "waitUntilAvailable",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "promise",
+                        "promise_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "undefined"
+                        }
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "boundingBox",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server",
+                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+                                    "version": "2.3.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "BlockBoundingBox"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "waitUntilBoundsAvailable",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "promise",
+                        "promise_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "undefined"
+                        }
+                    }
+                }
+            ],
+            "name": "ProjectRegion",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": true,
+                    "is_read_only": true,
+                    "name": "availabilityMode",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "ProjectRegionAvailabilityMode"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": true,
+                    "is_read_only": true,
+                    "name": "id",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "isValid",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "ProjectRegion"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "disposeAllRegions",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "id",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "disposeRegion",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "boolean"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getCursorRegion",
+                    "return_type": {
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "ProjectRegion"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getSelectionRegion",
+                    "return_type": {
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "ProjectRegion"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "options",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "ProjectRegionOptions"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "leaseRegion",
+                    "return_type": {
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "ProjectRegion"
+                    }
+                }
+            ],
+            "name": "ProjectRegionManager",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "ProjectRegionManager"
             }
         },
         {
@@ -2529,7 +3594,7 @@
                                 "from_module": {
                                     "name": "@minecraft/server-editor-bindings",
                                     "uuid": "8518d9c7-a1f5-4bf3-acc7-78e87df595fc",
-                                    "version": "0.1.0-beta"
+                                    "version": "0.1.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -2674,179 +3739,19 @@
                 "is_errorable": false,
                 "name": "RealmsService"
             }
-        },
-        {
-            "base_types": [],
-            "constants": [],
-            "functions": [
-                {
-                    "arguments": [
-                        {
-                            "details": null,
-                            "name": "areaIdentifier",
-                            "type": {
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "string"
-                            }
-                        }
-                    ],
-                    "call_privilege": [
-                        {
-                            "name": "none"
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "isTickingAreaActive",
-                    "return_type": {
-                        "is_bind_type": false,
-                        "is_errorable": true,
-                        "name": "boolean"
-                    }
-                },
-                {
-                    "arguments": [
-                        {
-                            "details": null,
-                            "name": "areaIdentifier",
-                            "type": {
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "string"
-                            }
-                        }
-                    ],
-                    "call_privilege": [
-                        {
-                            "name": "none"
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "purgeTickingAreas",
-                    "return_type": {
-                        "is_bind_type": false,
-                        "is_errorable": true,
-                        "name": "boolean"
-                    }
-                },
-                {
-                    "arguments": [
-                        {
-                            "details": null,
-                            "name": "areaIdentifier",
-                            "type": {
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "string"
-                            }
-                        }
-                    ],
-                    "call_privilege": [
-                        {
-                            "name": "none"
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "releaseTickingArea",
-                    "return_type": {
-                        "is_bind_type": false,
-                        "is_errorable": true,
-                        "name": "boolean"
-                    }
-                },
-                {
-                    "arguments": [
-                        {
-                            "details": null,
-                            "name": "areaIdentifier",
-                            "type": {
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "string"
-                            }
-                        },
-                        {
-                            "details": null,
-                            "name": "from",
-                            "type": {
-                                "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.2.0-beta"
-                                },
-                                "is_bind_type": true,
-                                "is_errorable": false,
-                                "name": "Vector3"
-                            }
-                        },
-                        {
-                            "details": null,
-                            "name": "to",
-                            "type": {
-                                "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.2.0-beta"
-                                },
-                                "is_bind_type": true,
-                                "is_errorable": false,
-                                "name": "Vector3"
-                            }
-                        }
-                    ],
-                    "call_privilege": [
-                        {
-                            "name": "none"
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": false,
-                    "name": "requestTickingArea",
-                    "return_type": {
-                        "is_bind_type": false,
-                        "is_errorable": true,
-                        "name": "boolean"
-                    }
-                }
-            ],
-            "name": "TickingAreaManager",
-            "properties": [],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "TickingAreaManager"
-            }
         }
     ],
     "constants": [],
     "dependencies": [
-        {
-            "name": "@minecraft/common",
-            "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
-            "versions": [
-                {
-                    "version": "1.0.0"
-                }
-            ]
-        },
-        {
-            "name": "@minecraft/server",
-            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-            "versions": [
-                {
-                    "version": "2.2.0-beta"
-                }
-            ]
-        },
         {
             "name": "@minecraft/server-editor-bindings",
             "uuid": "8518d9c7-a1f5-4bf3-acc7-78e87df595fc",
             "versions": [
                 {
                     "version": "0.1.0-beta"
+                },
+                {
+                    "version": "0.1.0-internal"
                 }
             ]
         }
@@ -2922,6 +3827,33 @@
                 }
             ],
             "name": "EditorRealmsServiceAvailability"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Loaded",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "ProjectRegionAvailabilityMode"
+                    },
+                    "value": 0
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Ticking",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "ProjectRegionAvailabilityMode"
+                    },
+                    "value": 1
+                }
+            ],
+            "name": "ProjectRegionAvailabilityMode"
         },
         {
             "constants": [
@@ -3220,6 +4152,62 @@
                 "is_errorable": false,
                 "name": "InputBindingInfo"
             }
+        },
+        {
+            "base_types": [],
+            "name": "ProjectRegionOptions",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "availabilityMode",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "ProjectRegionAvailabilityMode"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "extentX",
+                    "type": {
+                        "from_module": {
+                            "name": "@minecraft/common",
+                            "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                            "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "NumberRange"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "extentZ",
+                    "type": {
+                        "from_module": {
+                            "name": "@minecraft/common",
+                            "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                            "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "NumberRange"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "ProjectRegionOptions"
+            }
         }
     ],
     "module_type": "script",
@@ -3234,6 +4222,29 @@
                 "is_errorable": false,
                 "name": "MinecraftEditorInternal"
             }
+        }
+    ],
+    "peer_dependencies": [
+        {
+            "name": "@minecraft/common",
+            "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+            "versions": [
+                {
+                    "version": "1.0.0"
+                }
+            ]
+        },
+        {
+            "name": "@minecraft/server",
+            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+            "versions": [
+                {
+                    "version": "2.3.0-beta"
+                },
+                {
+                    "version": "2.3.0-internal"
+                }
+            ]
         }
     ],
     "type_aliases": [],

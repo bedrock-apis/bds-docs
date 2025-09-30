@@ -806,6 +806,17 @@
                 {
                     "is_read_only": true,
                     "is_static": true,
+                    "name": "DefaultCategoryId",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "minecraft:default"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
                     "name": "DefaultPresetId",
                     "type": {
                         "is_bind_type": false,
@@ -1598,6 +1609,43 @@
                     "arguments": [],
                     "call_privilege": [
                         {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getLightLevel",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.2.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidArgumentError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "LocationInUnloadedChunkError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
                             "name": "read_only"
                         }
                     ],
@@ -1656,6 +1704,43 @@
                                 "max": 2147483647,
                                 "min": -2147483648
                             }
+                        }
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getSkyLightLevel",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.2.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidArgumentError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "LocationInUnloadedChunkError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
                         }
                     }
                 },
@@ -6165,6 +6250,41 @@
                             }
                         },
                         {
+                            "details": null,
+                            "name": "easeOptions",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "EaseOptions"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "setCameraWithEase",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "cameraPreset",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
                             "details": {
                                 "default_value": "null"
                             },
@@ -9668,7 +9788,7 @@
                     ],
                     "call_privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "is_constructor": false,
@@ -9700,6 +9820,44 @@
                             "is_errorable": false,
                             "name": "Vector3"
                         }
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "location",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getBiome",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "LocationInUnloadedChunkError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "LocationOutOfWorldBoundariesError"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "BiomeType"
                     }
                 },
                 {
@@ -9775,7 +9933,7 @@
                     ],
                     "call_privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "is_constructor": false,
@@ -9822,7 +9980,7 @@
                     ],
                     "call_privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "is_constructor": false,
@@ -10135,6 +10293,53 @@
                 {
                     "arguments": [
                         {
+                            "details": null,
+                            "name": "location",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getLightLevel",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.2.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidArgumentError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "LocationInUnloadedChunkError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                },
+                {
+                    "arguments": [
+                        {
                             "details": {
                                 "default_value": "null"
                             },
@@ -10191,6 +10396,53 @@
                     "arguments": [
                         {
                             "details": null,
+                            "name": "location",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getSkyLightLevel",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.2.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidArgumentError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "LocationInUnloadedChunkError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
                             "name": "locationXZ",
                             "type": {
                                 "is_bind_type": true,
@@ -10221,7 +10473,7 @@
                     ],
                     "call_privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "is_constructor": false,
@@ -10242,7 +10494,7 @@
                     "arguments": [],
                     "call_privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "is_constructor": false,
@@ -10252,6 +10504,32 @@
                         "is_bind_type": true,
                         "is_errorable": false,
                         "name": "WeatherType"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "location",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "isChunkLoaded",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
                     }
                 },
                 {
@@ -11586,6 +11864,24 @@
             }
         },
         {
+            "base_types": [
+                {
+                    "is_bind_type": true,
+                    "is_errorable": false,
+                    "name": "LootPoolEntry"
+                }
+            ],
+            "constants": [],
+            "functions": [],
+            "name": "EmptyLootItem",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "EmptyLootItem"
+            }
+        },
+        {
             "base_types": [],
             "constants": [],
             "functions": [
@@ -12157,6 +12453,51 @@
                                 "optional_type": {
                                     "is_bind_type": true,
                                     "is_errorable": false,
+                                    "name": "GetBlocksStandingOnOptions"
+                                }
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getAllBlocksStandingOn",
+                    "return_type": {
+                        "element_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "Block"
+                        },
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidEntityError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "array"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "options",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
                                     "name": "BlockRaycastOptions"
                                 }
                             }
@@ -12185,6 +12526,51 @@
                             "is_bind_type": true,
                             "is_errorable": false,
                             "name": "BlockRaycastHit"
+                        }
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "options",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "GetBlocksStandingOnOptions"
+                                }
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getBlockStandingOn",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidEntityError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "Block"
                         }
                     }
                 },
@@ -24466,41 +24852,60 @@
                     ],
                     "is_baked": false,
                     "is_read_only": true,
+                    "name": "potionDeliveryType",
+                    "type": {
+                        "error_types": [
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.2.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "EngineError"
+                            },
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "PotionDeliveryType"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
                     "name": "potionEffectType",
                     "type": {
+                        "error_types": [
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.2.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "EngineError"
+                            },
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            }
+                        ],
                         "is_bind_type": true,
                         "is_errorable": true,
                         "name": "PotionEffectType"
-                    }
-                },
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
-                    "name": "potionLiquidType",
-                    "type": {
-                        "is_bind_type": true,
-                        "is_errorable": true,
-                        "name": "PotionLiquidType"
-                    }
-                },
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
-                    "name": "potionModifierType",
-                    "type": {
-                        "is_bind_type": true,
-                        "is_errorable": true,
-                        "name": "PotionModifierType"
                     }
                 }
             ],
@@ -24768,32 +25173,6 @@
                     ],
                     "is_constructor": true,
                     "name": "constructor",
-                    "return_type": {
-                        "is_bind_type": true,
-                        "is_errorable": true,
-                        "name": "ItemStack"
-                    }
-                },
-                {
-                    "arguments": [
-                        {
-                            "details": null,
-                            "name": "options",
-                            "type": {
-                                "is_bind_type": true,
-                                "is_errorable": false,
-                                "name": "PotionOptions"
-                            }
-                        }
-                    ],
-                    "call_privilege": [
-                        {
-                            "name": "none"
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": true,
-                    "name": "createPotion",
                     "return_type": {
                         "is_bind_type": true,
                         "is_errorable": true,
@@ -27192,6 +27571,361 @@
             }
         },
         {
+            "base_types": [
+                {
+                    "is_bind_type": true,
+                    "is_errorable": false,
+                    "name": "LootPoolEntry"
+                }
+            ],
+            "constants": [],
+            "functions": [],
+            "name": "LootItem",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "name",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "ItemType"
+                        }
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "LootItem"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [],
+            "name": "LootPool",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "bonusRolls",
+                    "type": {
+                        "from_module": {
+                            "name": "@minecraft/common",
+                            "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                            "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "NumberRange"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "entries",
+                    "type": {
+                        "element_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "LootPoolEntry"
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "array"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "rolls",
+                    "type": {
+                        "from_module": {
+                            "name": "@minecraft/common",
+                            "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                            "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "NumberRange"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "tiers",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "LootPoolTiers"
+                        }
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "LootPool"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [],
+            "name": "LootPoolEntry",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "quality",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "subTable",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "LootPoolEntry"
+                        }
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "weight",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "LootPoolEntry"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [],
+            "name": "LootPoolTiers",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "bonusChance",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "float",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "bonusRolls",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "initialRange",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "LootPoolTiers"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [],
+            "name": "LootTable",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "path",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "pools",
+                    "type": {
+                        "element_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "LootPool"
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "array"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "LootTable"
+            }
+        },
+        {
+            "base_types": [
+                {
+                    "is_bind_type": true,
+                    "is_errorable": false,
+                    "name": "LootPoolEntry"
+                }
+            ],
+            "constants": [],
+            "functions": [],
+            "name": "LootTableEntry",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "lootTable",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LootTable"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "LootTableEntry"
+            }
+        },
+        {
             "base_types": [],
             "constants": [],
             "functions": [
@@ -27478,6 +28212,89 @@
                             "name": "array"
                         }
                     }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "lootTable",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "LootTable"
+                            }
+                        },
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "tool",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "ItemStack"
+                                }
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "generateLootFromTable",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "element_type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "ItemStack"
+                            },
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "array"
+                        }
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "path",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getLootTable",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "LootTable"
+                        }
+                    }
                 }
             ],
             "name": "LootTableManager",
@@ -27486,6 +28303,40 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "LootTableManager"
+            }
+        },
+        {
+            "base_types": [
+                {
+                    "is_bind_type": true,
+                    "is_errorable": false,
+                    "name": "LootPoolEntry"
+                }
+            ],
+            "constants": [],
+            "functions": [],
+            "name": "LootTableReference",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "path",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "LootTableReference"
             }
         },
         {
@@ -27770,6 +28621,177 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "MolangVariableMap"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [],
+            "name": "PackSettingChangeAfterEvent",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "settingName",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "settingValue",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "variant",
+                        "variant_types": [
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "boolean"
+                            },
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "float",
+                                "valid_range": {
+                                    "max": 2147483647,
+                                    "min": -2147483648
+                                }
+                            },
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PackSettingChangeAfterEvent"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "callback",
+                            "type": {
+                                "closure_type": {
+                                    "argument_types": [
+                                        {
+                                            "is_bind_type": true,
+                                            "is_errorable": false,
+                                            "name": "PackSettingChangeAfterEvent"
+                                        }
+                                    ],
+                                    "return_type": {
+                                        "is_bind_type": false,
+                                        "is_errorable": true,
+                                        "name": "undefined"
+                                    }
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "closure"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "subscribe",
+                    "return_type": {
+                        "closure_type": {
+                            "argument_types": [
+                                {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "PackSettingChangeAfterEvent"
+                                }
+                            ],
+                            "return_type": {
+                                "is_bind_type": false,
+                                "is_errorable": true,
+                                "name": "undefined"
+                            }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "callback",
+                            "type": {
+                                "closure_type": {
+                                    "argument_types": [
+                                        {
+                                            "is_bind_type": true,
+                                            "is_errorable": false,
+                                            "name": "PackSettingChangeAfterEvent"
+                                        }
+                                    ],
+                                    "return_type": {
+                                        "is_bind_type": false,
+                                        "is_errorable": true,
+                                        "name": "undefined"
+                                    }
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "closure"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "unsubscribe",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "undefined"
+                    }
+                }
+            ],
+            "name": "PackSettingChangeAfterEventSignal",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PackSettingChangeAfterEventSignal"
             }
         },
         {
@@ -33224,7 +34246,7 @@
             "base_types": [],
             "constants": [],
             "functions": [],
-            "name": "PotionEffectType",
+            "name": "PlayerSwingStartAfterEvent",
             "properties": [
                 {
                     "get_privilege": [
@@ -33233,6 +34255,241 @@
                         }
                     ],
                     "is_baked": false,
+                    "is_read_only": true,
+                    "name": "heldItemStack",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "ItemStack"
+                        }
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "player",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Player"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PlayerSwingStartAfterEvent"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "callback",
+                            "type": {
+                                "closure_type": {
+                                    "argument_types": [
+                                        {
+                                            "is_bind_type": true,
+                                            "is_errorable": false,
+                                            "name": "PlayerSwingStartAfterEvent"
+                                        }
+                                    ],
+                                    "return_type": {
+                                        "is_bind_type": false,
+                                        "is_errorable": true,
+                                        "name": "undefined"
+                                    }
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "closure"
+                            }
+                        },
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "options",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "PlayerSwingEventOptions"
+                                }
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "subscribe",
+                    "return_type": {
+                        "closure_type": {
+                            "argument_types": [
+                                {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "PlayerSwingStartAfterEvent"
+                                }
+                            ],
+                            "return_type": {
+                                "is_bind_type": false,
+                                "is_errorable": true,
+                                "name": "undefined"
+                            }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "callback",
+                            "type": {
+                                "closure_type": {
+                                    "argument_types": [
+                                        {
+                                            "is_bind_type": true,
+                                            "is_errorable": false,
+                                            "name": "PlayerSwingStartAfterEvent"
+                                        }
+                                    ],
+                                    "return_type": {
+                                        "is_bind_type": false,
+                                        "is_errorable": true,
+                                        "name": "undefined"
+                                    }
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "closure"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "unsubscribe",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "undefined"
+                    }
+                }
+            ],
+            "name": "PlayerSwingStartAfterEventSignal",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PlayerSwingStartAfterEventSignal"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [],
+            "name": "PotionDeliveryType",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": true,
+                    "is_read_only": true,
+                    "name": "id",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PotionDeliveryType"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [],
+            "name": "PotionEffectType",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": true,
+                    "is_read_only": true,
+                    "name": "durationTicks",
+                    "type": {
+                        "error_types": [
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.2.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "EngineError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "int32",
+                            "valid_range": {
+                                "max": 2147483647,
+                                "min": -2147483648
+                            }
+                        }
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": true,
                     "is_read_only": true,
                     "name": "id",
                     "type": {
@@ -33251,63 +34508,80 @@
         {
             "base_types": [],
             "constants": [],
-            "functions": [],
-            "name": "PotionLiquidType",
-            "properties": [
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
-                    "name": "id",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    }
-                }
-            ],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "PotionLiquidType"
-            }
-        },
-        {
-            "base_types": [],
-            "constants": [],
-            "functions": [],
-            "name": "PotionModifierType",
-            "properties": [
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
-                    "name": "id",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                    }
-                }
-            ],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "PotionModifierType"
-            }
-        },
-        {
-            "base_types": [],
-            "constants": [],
             "functions": [
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": true,
+                    "name": "getAllDeliveryTypes",
+                    "return_type": {
+                        "element_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "PotionDeliveryType"
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "array"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": true,
+                    "name": "getAllEffectTypes",
+                    "return_type": {
+                        "element_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "PotionEffectType"
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "array"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "potionDeliveryId",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": true,
+                    "name": "getDeliveryType",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "PotionDeliveryType"
+                        }
+                    }
+                },
                 {
                     "arguments": [
                         {
@@ -33327,7 +34601,7 @@
                     ],
                     "is_constructor": false,
                     "is_static": true,
-                    "name": "getPotionEffectType",
+                    "name": "getEffectType",
                     "return_type": {
                         "is_bind_type": false,
                         "is_errorable": false,
@@ -33343,42 +34617,44 @@
                     "arguments": [
                         {
                             "details": null,
-                            "name": "potionLiquidId",
+                            "name": "potionEffectType",
                             "type": {
                                 "is_bind_type": false,
                                 "is_errorable": false,
-                                "name": "string"
+                                "name": "variant",
+                                "variant_types": [
+                                    {
+                                        "is_bind_type": true,
+                                        "is_errorable": false,
+                                        "name": "PotionEffectType"
+                                    },
+                                    {
+                                        "is_bind_type": false,
+                                        "is_errorable": false,
+                                        "name": "string"
+                                    }
+                                ]
                             }
-                        }
-                    ],
-                    "call_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_constructor": false,
-                    "is_static": true,
-                    "name": "getPotionLiquidType",
-                    "return_type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                            "is_bind_type": true,
-                            "is_errorable": false,
-                            "name": "PotionLiquidType"
-                        }
-                    }
-                },
-                {
-                    "arguments": [
+                        },
                         {
                             "details": null,
-                            "name": "potionModifierId",
+                            "name": "potionDeliveryType",
                             "type": {
                                 "is_bind_type": false,
                                 "is_errorable": false,
-                                "name": "string"
+                                "name": "variant",
+                                "variant_types": [
+                                    {
+                                        "is_bind_type": true,
+                                        "is_errorable": false,
+                                        "name": "PotionDeliveryType"
+                                    },
+                                    {
+                                        "is_bind_type": false,
+                                        "is_errorable": false,
+                                        "name": "string"
+                                    }
+                                ]
                             }
                         }
                     ],
@@ -33389,16 +34665,33 @@
                     ],
                     "is_constructor": false,
                     "is_static": true,
-                    "name": "getPotionModifierType",
+                    "name": "resolve",
                     "return_type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                            "is_bind_type": true,
-                            "is_errorable": false,
-                            "name": "PotionModifierType"
-                        }
+                        "error_types": [
+                            {
+                                "from_module": {
+                                    "name": "@minecraft/common",
+                                    "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                                    "version": "1.2.0"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "EngineError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidPotionDeliveryTypeError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "InvalidPotionEffectTypeError"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "ItemStack"
                     }
                 }
             ],
@@ -37309,7 +38602,7 @@
                     ],
                     "call_privilege": [
                         {
-                            "name": "none"
+                            "name": "read_only"
                         }
                     ],
                     "is_constructor": false,
@@ -38942,6 +40235,56 @@
                     }
                 },
                 {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getPackSettings",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "key_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "string"
+                        },
+                        "name": "map",
+                        "value_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "variant",
+                            "variant_types": [
+                                {
+                                    "is_bind_type": false,
+                                    "is_errorable": false,
+                                    "name": "boolean"
+                                },
+                                {
+                                    "is_bind_type": false,
+                                    "is_errorable": false,
+                                    "name": "float",
+                                    "valid_range": {
+                                        "max": 2147483647,
+                                        "min": -2147483648
+                                    }
+                                },
+                                {
+                                    "is_bind_type": false,
+                                    "is_errorable": false,
+                                    "name": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
                     "arguments": [
                         {
                             "details": {
@@ -40066,6 +41409,24 @@
                     ],
                     "is_baked": false,
                     "is_read_only": true,
+                    "name": "packSettingChange",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PackSettingChangeAfterEventSignal"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
                     "name": "pistonActivate",
                     "type": {
                         "is_bind_type": true,
@@ -40341,6 +41702,24 @@
                         "is_bind_type": true,
                         "is_errorable": false,
                         "name": "PlayerSpawnAfterEventSignal"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "playerSwingStart",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PlayerSwingStartAfterEventSignal"
                     }
                 },
                 {
@@ -40942,17 +42321,7 @@
             "value": 20
         }
     ],
-    "dependencies": [
-        {
-            "name": "@minecraft/common",
-            "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
-            "versions": [
-                {
-                    "version": "1.2.0"
-                }
-            ]
-        }
-    ],
+    "dependencies": [],
     "enums": [
         {
             "constants": [
@@ -41434,6 +42803,17 @@
                         "name": "string"
                     },
                     "value": "RegistryReadOnly"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "UnexpectedEnumName",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "UnexpectedEnumName"
                 }
             ],
             "name": "CustomCommandErrorReason"
@@ -44448,6 +45828,33 @@
                 {
                     "is_read_only": true,
                     "is_static": true,
+                    "name": "AnyItem",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "AnyItem"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "NoItem",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "NoItem"
+                }
+            ],
+            "name": "HeldItemOption"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
                     "name": "AirBubbles",
                     "type": {
                         "is_bind_type": true,
@@ -46434,6 +47841,24 @@
             }
         },
         {
+            "name": "InvalidPotionDeliveryTypeError",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "InvalidPotionDeliveryTypeError"
+            }
+        },
+        {
+            "name": "InvalidPotionEffectTypeError",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "InvalidPotionEffectTypeError"
+            }
+        },
+        {
             "name": "InvalidStructureError",
             "properties": [],
             "type": {
@@ -47473,9 +48898,6 @@
                     }
                 }
             ],
-            "runtime_conditions": [
-                "Required Experiment Toggle: Experimental Creator Cameras"
-            ],
             "type": {
                 "is_bind_type": true,
                 "is_errorable": false,
@@ -47928,6 +49350,21 @@
             "base_types": [],
             "name": "CustomCommandParameter",
             "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "enumName",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "string"
+                        }
+                    }
+                },
                 {
                     "is_baked": false,
                     "is_read_only": false,
@@ -49394,6 +50831,47 @@
         },
         {
             "base_types": [],
+            "name": "GetBlocksStandingOnOptions",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "blockFilter",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "BlockFilter"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "ignoreThinBlocks",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "boolean"
+                        }
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "GetBlocksStandingOnOptions"
+            }
+        },
+        {
+            "base_types": [],
             "name": "GreaterThanComparison",
             "properties": [
                 {
@@ -50431,81 +51909,20 @@
         },
         {
             "base_types": [],
-            "name": "PotionOptions",
+            "name": "PlayerSwingEventOptions",
             "properties": [
                 {
                     "is_baked": false,
                     "is_read_only": false,
-                    "name": "effect",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "variant",
-                        "variant_types": [
-                            {
-                                "is_bind_type": true,
-                                "is_errorable": false,
-                                "name": "PotionEffectType"
-                            },
-                            {
-                                "is_bind_type": false,
-                                "is_errorable": false,
-                                "name": "string"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "is_baked": false,
-                    "is_read_only": false,
-                    "name": "liquid",
+                    "name": "heldItemOption",
                     "type": {
                         "is_bind_type": false,
                         "is_errorable": false,
                         "name": "optional",
                         "optional_type": {
-                            "is_bind_type": false,
+                            "is_bind_type": true,
                             "is_errorable": false,
-                            "name": "variant",
-                            "variant_types": [
-                                {
-                                    "is_bind_type": true,
-                                    "is_errorable": false,
-                                    "name": "PotionLiquidType"
-                                },
-                                {
-                                    "is_bind_type": false,
-                                    "is_errorable": false,
-                                    "name": "string"
-                                }
-                            ]
-                        }
-                    }
-                },
-                {
-                    "is_baked": false,
-                    "is_read_only": false,
-                    "name": "modifier",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                            "is_bind_type": false,
-                            "is_errorable": false,
-                            "name": "variant",
-                            "variant_types": [
-                                {
-                                    "is_bind_type": true,
-                                    "is_errorable": false,
-                                    "name": "PotionModifierType"
-                                },
-                                {
-                                    "is_bind_type": false,
-                                    "is_errorable": false,
-                                    "name": "string"
-                                }
-                            ]
+                            "name": "HeldItemOption"
                         }
                     }
                 }
@@ -50513,7 +51930,7 @@
             "type": {
                 "is_bind_type": true,
                 "is_errorable": false,
-                "name": "PotionOptions"
+                "name": "PlayerSwingEventOptions"
             }
         },
         {
@@ -51572,6 +52989,17 @@
                 "is_errorable": false,
                 "name": "World"
             }
+        }
+    ],
+    "peer_dependencies": [
+        {
+            "name": "@minecraft/common",
+            "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+            "versions": [
+                {
+                    "version": "1.2.0"
+                }
+            ]
         }
     ],
     "type_aliases": [

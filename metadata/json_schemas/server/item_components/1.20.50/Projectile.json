@@ -1,0 +1,27 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "608914689",
+    "x-format-version": "1.20.50",
+    "x-minecraft-version": "1.21.111",
+    "definitions": {
+        "1493335182": {
+            "title": "Reference",
+            "type": "string"
+        }
+    },
+    "title": "minecraft:projectile",
+    "type": "object",
+    "properties": {
+        "minimum_critical_power": {
+            "type": "number"
+        },
+        "projectile_entity": {
+            "$ref": "#/definitions/1493335182",
+            "minLength": 0,
+            "pattern": "^(?:\\w+(?:\\.\\w+)*:(?=\\w))?(?:\\w+(?:\\.\\w+)*)(?:<((?:\\w+(?:\\.\\w+)*:(?=\\w))?\\w+(?:\\.\\w+)*)*>)?$"
+        }
+    },
+    "required": [
+        "projectile_entity"
+    ]
+}
