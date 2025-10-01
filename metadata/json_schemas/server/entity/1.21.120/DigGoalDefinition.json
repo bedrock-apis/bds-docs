@@ -2,8 +2,36 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "911233651",
     "x-format-version": "1.21.120",
-    "x-minecraft-version": "1.21.120-beta.23",
+    "x-minecraft-version": "1.21.120-beta.24",
     "definitions": {
+        "121353999": {
+            "title": "ActorDefinitionTrigger",
+            "type": "object",
+            "properties": {
+                "event": {
+                    "type": "string"
+                },
+                "filters": {
+                    "$ref": "#/definitions/1088251937"
+                },
+                "target": {
+                    "title": "FilterSubject",
+                    "type": "string",
+                    "enum": [
+                        "self",
+                        "other",
+                        "player",
+                        "target",
+                        "parent",
+                        "baby",
+                        "block",
+                        "damager",
+                        "holder",
+                        "item"
+                    ]
+                }
+            }
+        },
         "1088251937": {
             "title": "Filter Group",
             "oneOf": [
@@ -46,34 +74,6 @@
                     }
                 }
             ]
-        },
-        "1447642202": {
-            "title": "ActorDefinitionTrigger",
-            "type": "object",
-            "properties": {
-                "event": {
-                    "type": "string"
-                },
-                "filters": {
-                    "$ref": "#/definitions/1088251937"
-                },
-                "target": {
-                    "title": "FilterSubject",
-                    "type": "string",
-                    "enum": [
-                        "self",
-                        "other",
-                        "player",
-                        "target",
-                        "parent",
-                        "baby",
-                        "block",
-                        "damager",
-                        "holder",
-                        "item"
-                    ]
-                }
-            }
         },
         "4150989894": {
             "title": "Filter Test",
@@ -180,7 +180,7 @@
             "type": "number"
         },
         "on_start": {
-            "$ref": "#/definitions/1447642202"
+            "$ref": "#/definitions/121353999"
         },
         "priority": {
             "type": "integer",

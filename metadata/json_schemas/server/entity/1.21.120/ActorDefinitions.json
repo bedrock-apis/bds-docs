@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "999323822",
     "x-format-version": "1.21.120",
-    "x-minecraft-version": "1.21.120-beta.23",
+    "x-minecraft-version": "1.21.120-beta.24",
     "definitions": {
         "61802587": {
             "title": "minecraft:behavior.swim_wander",
@@ -35,6 +35,34 @@
                 },
                 "wander_time": {
                     "type": "number"
+                }
+            }
+        },
+        "121353999": {
+            "title": "ActorDefinitionTrigger",
+            "type": "object",
+            "properties": {
+                "event": {
+                    "type": "string"
+                },
+                "filters": {
+                    "$ref": "#/definitions/1088251937"
+                },
+                "target": {
+                    "title": "FilterSubject",
+                    "type": "string",
+                    "enum": [
+                        "self",
+                        "other",
+                        "player",
+                        "target",
+                        "parent",
+                        "baby",
+                        "block",
+                        "damager",
+                        "holder",
+                        "item"
+                    ]
                 }
             }
         },
@@ -71,6 +99,15 @@
                     "type": "number"
                 }
             }
+        },
+        "319286572": {
+            "title": "IsStackableDefinition"
+        },
+        "374016963": {
+            "title": "FireImmuneDefinition"
+        },
+        "387887038": {
+            "title": "BodyRotationBlockedDefinition"
         },
         "517105782": {
             "title": "compound_proxy",
@@ -123,6 +160,9 @@
                 }
             }
         },
+        "708168268": {
+            "title": "IsChargedDefinition"
+        },
         "792012262": {
             "title": "MobDescriptor",
             "type": "object",
@@ -165,6 +205,9 @@
                 }
             }
         },
+        "801311387": {
+            "title": "IsPregnantDefinition"
+        },
         "911233651": {
             "title": "minecraft:behavior.dig",
             "type": "object",
@@ -194,7 +237,7 @@
                     "type": "number"
                 },
                 "on_start": {
-                    "$ref": "#/definitions/1447642202"
+                    "$ref": "#/definitions/121353999"
                 },
                 "priority": {
                     "type": "integer",
@@ -306,6 +349,9 @@
                     }
                 }
             ]
+        },
+        "1106829505": {
+            "title": "RotationAxisAlignedDefinition"
         },
         "1143284943": {
             "title": "minecraft:behavior.charge_attack",
@@ -868,33 +914,8 @@
                 }
             }
         },
-        "1447642202": {
-            "title": "ActorDefinitionTrigger",
-            "type": "object",
-            "properties": {
-                "event": {
-                    "type": "string"
-                },
-                "filters": {
-                    "$ref": "#/definitions/1088251937"
-                },
-                "target": {
-                    "title": "FilterSubject",
-                    "type": "string",
-                    "enum": [
-                        "self",
-                        "other",
-                        "player",
-                        "target",
-                        "parent",
-                        "baby",
-                        "block",
-                        "damager",
-                        "holder",
-                        "item"
-                    ]
-                }
-            }
+        "1306911011": {
+            "title": "WASDControlledDefinition"
         },
         "1492465940": {
             "title": "minecraft:behavior.dragonflaming",
@@ -955,6 +976,15 @@
         },
         "1682332161": {
             "title": "CanClimbDefinition"
+        },
+        "1703168766": {
+            "title": "IsBabyDefinition"
+        },
+        "1729146119": {
+            "title": "IsTamedDefinition"
+        },
+        "1820403110": {
+            "title": "IsIllagerCaptainDefinition"
         },
         "1861715976": {
             "title": "minecraft:behavior.transport_items",
@@ -1145,6 +1175,15 @@
                 }
             }
         },
+        "2023027994": {
+            "title": "RendersWhenInvisibleDefinition"
+        },
+        "2023415389": {
+            "title": "IsShakingDefinition"
+        },
+        "2041076969": {
+            "title": "IsSaddledDefinition"
+        },
         "2159667979": {
             "title": "minecraft:behavior.eat_mob",
             "type": "object",
@@ -1301,6 +1340,9 @@
                 }
             }
         },
+        "2337874215": {
+            "title": "IsStunnedDefinition"
+        },
         "2379072710": {
             "title": "minecraft:behavior.drink_milk",
             "type": "object",
@@ -1382,6 +1424,12 @@
                 }
             }
         },
+        "2704775729": {
+            "title": "BodyRotationAlwaysFollowsHeadDefinition"
+        },
+        "2736897213": {
+            "title": "CanPowerJumpDefinition"
+        },
         "2770948419": {
             "title": "BlockDescriptorProxy",
             "type": "object",
@@ -1414,6 +1462,9 @@
                     "$ref": "#/definitions/2770948419"
                 }
             ]
+        },
+        "2865523930": {
+            "title": "IsIgnitedDefinition"
         },
         "3178719147": {
             "title": "Molang expression",
@@ -1456,6 +1507,9 @@
                     "type": "integer"
                 }
             }
+        },
+        "3310298976": {
+            "title": "IsChestedDefinition"
         },
         "3326653763": {
             "title": "minecraft:behavior.avoid_block",
@@ -2003,7 +2057,7 @@
                 "on_escape": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/1447642202"
+                        "$ref": "#/definitions/121353999"
                     }
                 },
                 "priority": {
@@ -2038,6 +2092,9 @@
                     "type": "number"
                 }
             }
+        },
+        "3387735008": {
+            "title": "IsShearedDefinition"
         },
         "3425495100": {
             "title": "minecraft:behavior.avoid_mob_type",
@@ -2604,7 +2661,7 @@
                     "type": "number"
                 },
                 "on_escape_event": {
-                    "$ref": "#/definitions/1447642202"
+                    "$ref": "#/definitions/121353999"
                 },
                 "priority": {
                     "type": "integer",
@@ -2633,6 +2690,9 @@
                     "type": "number"
                 }
             }
+        },
+        "3703296437": {
+            "title": "CanFlyDefinition"
         },
         "3731384245": {
             "title": "minecraft:behavior.breed",
@@ -2736,6 +2796,9 @@
                     }
                 }
             ]
+        },
+        "4114573755": {
+            "title": "IsHiddenWhenInvisibleDefinition"
         },
         "4150989894": {
             "title": "Filter Test",
@@ -3455,10 +3518,10 @@
             "description": "Dynamic value"
         },
         "minecraft:body_rotation_always_follows_head": {
-            "description": "Dynamic value"
+            "$ref": "#/definitions/2704775729"
         },
         "minecraft:body_rotation_blocked": {
-            "description": "Dynamic value"
+            "$ref": "#/definitions/387887038"
         },
         "minecraft:boostable": {
             "description": "Dynamic value"
@@ -3491,13 +3554,13 @@
             "$ref": "#/definitions/1682332161"
         },
         "minecraft:can_fly": {
-            "description": "Dynamic value"
+            "$ref": "#/definitions/3703296437"
         },
         "minecraft:can_join_raid": {
             "description": "Dynamic value"
         },
         "minecraft:can_power_jump": {
-            "description": "Dynamic value"
+            "$ref": "#/definitions/2736897213"
         },
         "minecraft:cannot_be_attacked": {
             "description": "Dynamic value"
@@ -3578,7 +3641,7 @@
             "description": "Dynamic value"
         },
         "minecraft:fire_immune": {
-            "description": "Dynamic value"
+            "$ref": "#/definitions/374016963"
         },
         "minecraft:floats_in_liquid": {
             "description": "Dynamic value"
@@ -3641,7 +3704,7 @@
             "description": "Dynamic value"
         },
         "minecraft:input_ground_controlled": {
-            "description": "Dynamic value"
+            "$ref": "#/definitions/1306911011"
         },
         "minecraft:inside_block_notifier": {
             "description": "Dynamic value"
@@ -3659,13 +3722,13 @@
             "description": "Dynamic value"
         },
         "minecraft:is_baby": {
-            "description": "Dynamic value"
+            "$ref": "#/definitions/1703168766"
         },
         "minecraft:is_charged": {
-            "description": "Dynamic value"
+            "$ref": "#/definitions/708168268"
         },
         "minecraft:is_chested": {
-            "description": "Dynamic value"
+            "$ref": "#/definitions/3310298976"
         },
         "minecraft:is_collidable": {
             "description": "Dynamic value"
@@ -3674,34 +3737,34 @@
             "description": "Dynamic value"
         },
         "minecraft:is_hidden_when_invisible": {
-            "description": "Dynamic value"
+            "$ref": "#/definitions/4114573755"
         },
         "minecraft:is_ignited": {
-            "description": "Dynamic value"
+            "$ref": "#/definitions/2865523930"
         },
         "minecraft:is_illager_captain": {
-            "description": "Dynamic value"
+            "$ref": "#/definitions/1820403110"
         },
         "minecraft:is_pregnant": {
-            "description": "Dynamic value"
+            "$ref": "#/definitions/801311387"
         },
         "minecraft:is_saddled": {
-            "description": "Dynamic value"
+            "$ref": "#/definitions/2041076969"
         },
         "minecraft:is_shaking": {
-            "description": "Dynamic value"
+            "$ref": "#/definitions/2023415389"
         },
         "minecraft:is_sheared": {
-            "description": "Dynamic value"
+            "$ref": "#/definitions/3387735008"
         },
         "minecraft:is_stackable": {
-            "description": "Dynamic value"
+            "$ref": "#/definitions/319286572"
         },
         "minecraft:is_stunned": {
-            "description": "Dynamic value"
+            "$ref": "#/definitions/2337874215"
         },
         "minecraft:is_tamed": {
-            "description": "Dynamic value"
+            "$ref": "#/definitions/1729146119"
         },
         "minecraft:item_controllable": {
             "description": "Dynamic value"
@@ -3896,13 +3959,13 @@
             "description": "Dynamic value"
         },
         "minecraft:renders_when_invisible": {
-            "description": "Dynamic value"
+            "$ref": "#/definitions/2023027994"
         },
         "minecraft:rideable": {
             "description": "Dynamic value"
         },
         "minecraft:rotation_axis_aligned": {
-            "description": "Dynamic value"
+            "$ref": "#/definitions/1106829505"
         },
         "minecraft:scale": {
             "description": "Dynamic value"

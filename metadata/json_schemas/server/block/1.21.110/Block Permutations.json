@@ -1,0 +1,64 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "3404364787",
+    "x-format-version": "1.21.110",
+    "x-minecraft-version": "1.21.120-beta.24",
+    "definitions": {
+        "471923105": {
+            "title": "Components",
+            "type": "object",
+            "properties": {
+                "minecraft:display_name": {
+                    "$ref": "#/definitions/2879220220"
+                },
+                "minecraft:light_dampening": {
+                    "$ref": "#/definitions/2155690250"
+                },
+                "minecraft:light_emission": {
+                    "$ref": "#/definitions/3655705218"
+                },
+                "minecraft:tags": {
+                    "$ref": "#/definitions/2735968029"
+                }
+            }
+        },
+        "2155690250": {
+            "title": "Light Dampening",
+            "type": "integer",
+            "maximum": 15
+        },
+        "2735968029": {
+            "title": "Tags",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "pattern": "^(?:.)+:(?:.)+$",
+                "x-regex-flags": "ECMAScript,icase"
+            }
+        },
+        "2879220220": {
+            "title": "Display Name",
+            "type": "string",
+            "maxLength": 256
+        },
+        "3655705218": {
+            "title": "Light Emission",
+            "type": "integer",
+            "maximum": 15
+        }
+    },
+    "title": "Permutation",
+    "type": "object",
+    "properties": {
+        "components": {
+            "$ref": "#/definitions/471923105"
+        },
+        "condition": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "components",
+        "condition"
+    ]
+}

@@ -62,11 +62,12 @@ export enum TintMethod { BirchFoliage = "BirchFoliage", DefaultFoliage = "Defaul
 export enum WatchdogTerminateReason { Hang = "Hang", StackOverflow = "StackOverflow"};
 export enum WeatherType { Clear = "Clear", Rain = "Rain", Thunder = "Thunder"};
 
-// Interfaces - 78
+// Interfaces - 82
 export interface AABB { center: Vector3; extent: Vector3};
+export interface AnimationOptions { animation: SplineAnimation; totalTimeSeconds: number};
 export interface BiomeSearchOptions { boundingSize?: Vector3};
 export interface BlockBoundingBox { max: Vector3; min: Vector3};
-export interface BlockCustomComponent { beforeOnPlayerPlace?: (arg0: BlockComponentPlayerPlaceBeforeEvent, arg1: CustomComponentParameters)=>void; onEntityFallOn?: (arg0: BlockComponentEntityFallOnEvent, arg1: CustomComponentParameters)=>void; onPlace?: (arg0: BlockComponentOnPlaceEvent, arg1: CustomComponentParameters)=>void; onPlayerBreak?: (arg0: BlockComponentPlayerBreakEvent, arg1: CustomComponentParameters)=>void; onPlayerInteract?: (arg0: BlockComponentPlayerInteractEvent, arg1: CustomComponentParameters)=>void; onRandomTick?: (arg0: BlockComponentRandomTickEvent, arg1: CustomComponentParameters)=>void; onStepOff?: (arg0: BlockComponentStepOffEvent, arg1: CustomComponentParameters)=>void; onStepOn?: (arg0: BlockComponentStepOnEvent, arg1: CustomComponentParameters)=>void; onTick?: (arg0: BlockComponentTickEvent, arg1: CustomComponentParameters)=>void};
+export interface BlockCustomComponent { beforeOnPlayerPlace?: (arg0: BlockComponentPlayerPlaceBeforeEvent, arg1: CustomComponentParameters)=>void; onBreak?: (arg0: BlockComponentBlockBreakEvent, arg1: CustomComponentParameters)=>void; onEntityFallOn?: (arg0: BlockComponentEntityFallOnEvent, arg1: CustomComponentParameters)=>void; onPlace?: (arg0: BlockComponentOnPlaceEvent, arg1: CustomComponentParameters)=>void; onPlayerBreak?: (arg0: BlockComponentPlayerBreakEvent, arg1: CustomComponentParameters)=>void; onPlayerInteract?: (arg0: BlockComponentPlayerInteractEvent, arg1: CustomComponentParameters)=>void; onRandomTick?: (arg0: BlockComponentRandomTickEvent, arg1: CustomComponentParameters)=>void; onStepOff?: (arg0: BlockComponentStepOffEvent, arg1: CustomComponentParameters)=>void; onStepOn?: (arg0: BlockComponentStepOnEvent, arg1: CustomComponentParameters)=>void; onTick?: (arg0: BlockComponentTickEvent, arg1: CustomComponentParameters)=>void};
 export interface BlockEventOptions { blockTypes?: string[]; permutations?: BlockPermutation[]};
 export interface BlockFillOptions { blockFilter?: BlockFilter; ignoreChunkBoundErrors?: boolean};
 export interface BlockFilter { excludePermutations?: BlockPermutation[]; excludeTags?: string[]; excludeTypes?: string[]; includePermutations?: BlockPermutation[]; includeTags?: string[]; includeTypes?: string[]};
@@ -123,6 +124,7 @@ export interface PlayAnimationOptions { blendOutTime?: number; controller?: stri
 export interface PlayerAimAssistSettings { distance?: number; presetId: string; targetMode?: AimAssistTargetMode; viewAngle?: Vector2};
 export interface PlayerSoundOptions { location?: Vector3; pitch?: number; volume?: number};
 export interface PlayerSwingEventOptions { heldItemOption?: HeldItemOption};
+export interface ProgressKeyFrame { alpha: number; timeSeconds: number};
 export interface ProjectileShootOptions { uncertainty?: number};
 export interface RangeComparison { lowerBound: number; upperBound: number};
 export interface RawMessage { rawtext?: RawMessage[]; score?: RawMessageScore; text?: string; translate?: string; with?: string[] | RawMessage};
@@ -130,9 +132,11 @@ export interface RawMessageScore { name?: string; objective?: string};
 export interface RawText { rawtext?: RawMessage[]};
 export interface RGB { blue: number; green: number; red: number};
 export interface RGBA extends RGB{ alpha: number};
+export interface RotationKeyFrame { rotation: Vector3; timeSeconds: number};
 export interface ScoreboardObjectiveDisplayOptions { objective: ScoreboardObjective; sortOrder?: ObjectiveSortOrder};
 export interface ScriptEventMessageFilterOptions { namespaces: string[]};
 export interface SpawnEntityOptions { initialPersistence?: boolean; initialRotation?: number; spawnEvent?: string};
+export interface SplineAnimation { progressKeyFrames: ProgressKeyFrame[]; rotationKeyFrames: RotationKeyFrame[]};
 export interface StructureCreateOptions { includeBlocks?: boolean; includeEntities?: boolean; saveMode?: StructureSaveMode};
 export interface StructurePlaceOptions { animationMode?: StructureAnimationMode; animationSeconds?: number; includeBlocks?: boolean; includeEntities?: boolean; integrity?: number; integritySeed?: string; mirror?: StructureMirrorAxis; rotation?: StructureRotation; waterlogged?: boolean};
 export interface TeleportOptions { checkForBlocks?: boolean; dimension?: Dimension; facingLocation?: Vector3; keepVelocity?: boolean; rotation?: Vector2};
@@ -142,7 +146,7 @@ export interface Vector3 { x: number; y: number; z: number};
 export interface VectorXZ { x: number; z: number};
 export interface WorldSoundOptions { pitch?: number; volume?: number};
 
-// Classes - 371
+// Classes - 374
 export class AimAssistCategory { public readonly defaultBlockPriority: number; public readonly defaultEntityPriority: number; public readonly identifier: string; public getBlockPriorities(): Record<string,number>; public getEntityPriorities(): Record<string,number>; private constructor();};
 export class AimAssistCategorySettings { public defaultBlockPriority: number; public defaultEntityPriority: number; public readonly identifier: string; public constructor(identifier: string); public getBlockPriorities(): Record<string,number>; public getEntityPriorities(): Record<string,number>; public setBlockPriorities(blockPriorities: Record<string,number>): void; public setEntityPriorities(entityPriorities: Record<string,number>): void;};
 export class AimAssistPreset { public readonly defaultItemSettings?: string; public readonly handSettings?: string; public readonly identifier: string; public getExcludedTargets(): string[]; public getItemSettings(): Record<string,string>; public getLiquidTargetingItems(): string[]; private constructor();};
@@ -154,6 +158,8 @@ export class Block { public readonly dimension: Dimension; public readonly isAir
 export class BlockBoundingBoxUtils { public static createValid(min: Vector3, max: Vector3): BlockBoundingBox; public static dilate(box: BlockBoundingBox, size: Vector3): BlockBoundingBox; public static equals(box: BlockBoundingBox, other: BlockBoundingBox): boolean; public static expand(box: BlockBoundingBox, other: BlockBoundingBox): BlockBoundingBox; public static getCenter(box: BlockBoundingBox): Vector3; public static getIntersection(box: BlockBoundingBox, other: BlockBoundingBox): (BlockBoundingBox | undefined); public static getSpan(box: BlockBoundingBox): Vector3; public static intersects(box: BlockBoundingBox, other: BlockBoundingBox): boolean; public static isInside(box: BlockBoundingBox, pos: Vector3): boolean; public static isValid(box: BlockBoundingBox): boolean; public static translate(box: BlockBoundingBox, delta: Vector3): BlockBoundingBox; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BlockComponent extends Component{ public readonly block: Block; private constructor();};
+//@ts-ignore extending for classes with private constructor is possible with native API
+export class BlockComponentBlockBreakEvent extends BlockEvent{ public readonly blockDestructionSource?: Block; public readonly brokenBlockPermutation: BlockPermutation; public readonly entitySource?: Entity; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BlockComponentEntityFallOnEvent extends BlockEvent{ public readonly entity?: Entity; public readonly fallDistance: number; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
@@ -209,7 +215,8 @@ export class BlockVolumeBase { public getBlockLocationIterator(): BlockLocationI
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ButtonPushAfterEvent extends BlockEvent{ public readonly source: Entity; private constructor();};
 export class ButtonPushAfterEventSignal { public subscribe(callback: (arg0: ButtonPushAfterEvent)=>void): (arg0: ButtonPushAfterEvent)=>void; public unsubscribe(callback: (arg0: ButtonPushAfterEvent)=>void): void; private constructor();};
-export class Camera { public readonly isValid: boolean; public clear(): void; public fade(fadeCameraOptions?: CameraFadeOptions): void; public setCamera(cameraPreset: string, setOptions?: CameraFixedBoomOptions | CameraSetFacingOptions | CameraSetLocationOptions | CameraSetPosOptions | CameraSetRotOptions | CameraTargetOptions): void; public setCameraWithEase(cameraPreset: string, easeOptions: EaseOptions): void; public setDefaultCamera(cameraPreset: string, easeOptions?: EaseOptions): void; public setFov(fovCameraOptions?: CameraFovOptions): void; private constructor();};
+export class Camera { public readonly isValid: boolean; public clear(): void; public fade(fadeCameraOptions?: CameraFadeOptions): void; public playAnimation(splineType: CatmullRomSpline | LinearSpline, cameraAnimationOptions: AnimationOptions): void; public setCamera(cameraPreset: string, setOptions?: CameraFixedBoomOptions | CameraSetFacingOptions | CameraSetLocationOptions | CameraSetPosOptions | CameraSetRotOptions | CameraTargetOptions): void; public setCameraWithEase(cameraPreset: string, easeOptions: EaseOptions): void; public setDefaultCamera(cameraPreset: string, easeOptions?: EaseOptions): void; public setFov(fovCameraOptions?: CameraFovOptions): void; private constructor();};
+export class CatmullRomSpline { public controlPoints: Vector3[]; public constructor();};
 export class ChatSendAfterEvent { public readonly message: string; public readonly sender: Player; public readonly targets?: Player[]; private constructor();};
 export class ChatSendAfterEventSignal { public subscribe(callback: (arg0: ChatSendAfterEvent)=>void): (arg0: ChatSendAfterEvent)=>void; public unsubscribe(callback: (arg0: ChatSendAfterEvent)=>void): void; private constructor();};
 export class ChatSendBeforeEvent { public cancel: boolean; public readonly message: string; public readonly sender: Player; public readonly targets?: Player[]; private constructor();};
@@ -502,6 +509,7 @@ export class KilledByPlayerOrPetsCondition extends LootItemCondition{ private co
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class LeverActionAfterEvent extends BlockEvent{ public readonly isPowered: boolean; public readonly player: Player; private constructor();};
 export class LeverActionAfterEventSignal { public subscribe(callback: (arg0: LeverActionAfterEvent)=>void): (arg0: LeverActionAfterEvent)=>void; public unsubscribe(callback: (arg0: LeverActionAfterEvent)=>void): void; private constructor();};
+export class LinearSpline { public controlPoints: Vector3[]; public constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ListBlockVolume extends BlockVolumeBase{ public add(locations: Vector3[]): void; public constructor(locations: Vector3[]); public remove(locations: Vector3[]): void;};
 //@ts-ignore extending for classes with private constructor is possible with native API

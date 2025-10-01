@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3027887553",
     "x-format-version": "1.21.40",
-    "x-minecraft-version": "1.21.120-beta.23",
+    "x-minecraft-version": "1.21.120-beta.24",
     "definitions": {
         "120997796": {
             "title": "minecraft:storage_item",
@@ -803,7 +803,8 @@
             "type": "object",
             "properties": {
                 "slot": {
-                    "type": "string"
+                    "type": "string",
+                    "pattern": "none|all|g_armor|armor_head|armor_torso|armor_feet|armor_legs|sword|bow|spear|crossbow|g_tool|hoe|shears|flintsteel|shield|g_digging|axe|pickaxe|shovel|fishing_rod|carrot_stick|elytra|cosmetic_head"
                 },
                 "value": {
                     "type": "integer",
@@ -1896,7 +1897,8 @@
             "type": "array",
             "items": {
                 "type": "string",
-                "pattern": "^(?:(?!^(minecraft):).)+:(?:.)+$"
+                "pattern": "^(?:(?!^(minecraft):).)+:(?:.)+$",
+                "x-regex-flags": "ECMAScript,icase"
             }
         },
         "3494639353": {

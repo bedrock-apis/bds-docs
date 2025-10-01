@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1677381825",
     "x-format-version": "1.21.110",
-    "x-minecraft-version": "1.21.120-beta.23",
+    "x-minecraft-version": "1.21.120-beta.24",
     "definitions": {
         "6632766": {
             "title": "Range",
@@ -27,6 +27,12 @@
                 "minecraft:display_name": {
                     "$ref": "#/definitions/2879220220"
                 },
+                "minecraft:light_dampening": {
+                    "$ref": "#/definitions/2155690250"
+                },
+                "minecraft:light_emission": {
+                    "$ref": "#/definitions/3655705218"
+                },
                 "minecraft:tags": {
                     "$ref": "#/definitions/2735968029"
                 }
@@ -43,6 +49,11 @@
             "required": [
                 "values"
             ]
+        },
+        "2155690250": {
+            "title": "Light Dampening",
+            "type": "integer",
+            "maximum": 15
         },
         "2208326140": {
             "title": "Placement Direction",
@@ -99,7 +110,8 @@
             "type": "array",
             "items": {
                 "type": "string",
-                "pattern": "^(?:.)+:(?:.)+$"
+                "pattern": "^(?:.)+:(?:.)+$",
+                "x-regex-flags": "ECMAScript,icase"
             }
         },
         "2879220220": {
@@ -125,6 +137,22 @@
                 "enabled_states"
             ]
         },
+        "3404364787": {
+            "title": "Permutation",
+            "type": "object",
+            "properties": {
+                "components": {
+                    "$ref": "#/definitions/471923105"
+                },
+                "condition": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "components",
+                "condition"
+            ]
+        },
         "3463543465": {
             "title": "Traits",
             "type": "object",
@@ -136,6 +164,11 @@
                     "$ref": "#/definitions/3142471136"
                 }
             }
+        },
+        "3655705218": {
+            "title": "Light Emission",
+            "type": "integer",
+            "maximum": 15
         },
         "3925154510": {
             "title": "States",
@@ -184,6 +217,12 @@
         },
         "description": {
             "$ref": "#/definitions/3993091038"
+        },
+        "permutations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/3404364787"
+            }
         }
     },
     "required": [
