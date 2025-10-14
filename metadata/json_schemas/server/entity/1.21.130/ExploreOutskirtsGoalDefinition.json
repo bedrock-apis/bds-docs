@@ -1,0 +1,88 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "1557623393",
+    "x-format-version": "1.21.130",
+    "x-minecraft-version": "1.21.130-beta.20",
+    "definitions": {
+        "4004946602": {
+            "title": "vec3",
+            "oneOf": [
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "x": {
+                            "type": "number"
+                        },
+                        "y": {
+                            "type": "number"
+                        },
+                        "z": {
+                            "type": "number"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "title": "minecraft:behavior.explore_outskirts",
+    "type": "object",
+    "properties": {
+        "control_flags": {
+            "type": "array",
+            "items": {
+                "title": "Goal's control flags",
+                "type": "string",
+                "enum": [
+                    "move",
+                    "look",
+                    "jump"
+                ]
+            }
+        },
+        "dist_from_boundary": {
+            "$ref": "#/definitions/4004946602"
+        },
+        "explore_dist": {
+            "type": "number"
+        },
+        "max_travel_time": {
+            "type": "number"
+        },
+        "max_wait_time": {
+            "type": "number"
+        },
+        "min_dist_from_target": {
+            "type": "number"
+        },
+        "min_perimeter": {
+            "type": "number"
+        },
+        "min_wait_time": {
+            "type": "number"
+        },
+        "next_xz": {
+            "type": "integer"
+        },
+        "next_y": {
+            "type": "integer"
+        },
+        "priority": {
+            "type": "integer",
+            "minimum": 0
+        },
+        "speed_multiplier": {
+            "type": "number"
+        },
+        "timer_ratio": {
+            "type": "number"
+        }
+    }
+}

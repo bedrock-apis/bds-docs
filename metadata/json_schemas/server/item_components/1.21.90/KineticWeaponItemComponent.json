@@ -1,0 +1,65 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "1096025372",
+    "x-format-version": "1.21.90",
+    "x-minecraft-version": "1.21.130-beta.20",
+    "definitions": {
+        "1057349585": {
+            "title": "FloatRange",
+            "type": "object",
+            "properties": {
+                "max": {
+                    "type": "number"
+                },
+                "min": {
+                    "type": "number"
+                }
+            }
+        },
+        "2960610777": {
+            "title": "minecraft:kinetic_weapon kinetic_effect_conditions",
+            "type": "object",
+            "properties": {
+                "max_duration": {
+                    "type": "integer"
+                },
+                "min_relative_speed": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "min_speed": {
+                    "type": "number",
+                    "minimum": 0
+                }
+            }
+        }
+    },
+    "title": "minecraft:kinetic_weapon",
+    "type": "object",
+    "properties": {
+        "damage_conditions": {
+            "$ref": "#/definitions/2960610777"
+        },
+        "damage_modifier": {
+            "type": "number"
+        },
+        "damage_multiplier": {
+            "type": "number"
+        },
+        "delay": {
+            "type": "integer"
+        },
+        "dismount_conditions": {
+            "$ref": "#/definitions/2960610777"
+        },
+        "hitbox_margin": {
+            "type": "number"
+        },
+        "knockback_conditions": {
+            "$ref": "#/definitions/2960610777"
+        },
+        "reach": {
+            "$ref": "#/definitions/1057349585"
+        }
+    }
+}

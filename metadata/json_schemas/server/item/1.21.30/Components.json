@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3253453142",
     "x-format-version": "1.21.30",
-    "x-minecraft-version": "1.21.120-beta.25",
+    "x-minecraft-version": "1.21.130-beta.20",
     "definitions": {
         "120997796": {
             "title": "minecraft:storage_item",
@@ -751,6 +751,14 @@
                         "place_item",
                         "single_swap",
                         "multi_swap",
+                        "item.enchant.lunge1",
+                        "item.enchant.lunge2",
+                        "item.enchant.lunge3",
+                        "attack.critical",
+                        "item.spear.attack_hit",
+                        "item.spear.attack_miss",
+                        "item.wooden_spear.attack_hit",
+                        "item.wooden_spear.attack_miss",
                         "undefined"
                     ]
                 }
@@ -788,6 +796,14 @@
                 },
                 "duration": {
                     "type": "number"
+                },
+                "type": {
+                    "title": "ItemCooldownType",
+                    "type": "string",
+                    "enum": [
+                        "use",
+                        "attack"
+                    ]
                 }
             },
             "required": [
@@ -801,7 +817,7 @@
             "properties": {
                 "slot": {
                     "type": "string",
-                    "pattern": "none|all|g_armor|armor_head|armor_torso|armor_feet|armor_legs|sword|bow|spear|crossbow|g_tool|hoe|shears|flintsteel|shield|g_digging|axe|pickaxe|shovel|fishing_rod|carrot_stick|elytra|cosmetic_head"
+                    "pattern": "none|all|g_armor|armor_head|armor_torso|armor_feet|armor_legs|sword|bow|spear|crossbow|melee_spear|g_tool|hoe|shears|flintsteel|shield|g_digging|axe|pickaxe|shovel|fishing_rod|carrot_stick|elytra|cosmetic_head"
                 },
                 "value": {
                     "type": "integer",
@@ -1117,14 +1133,16 @@
             "title": "Block Descriptor",
             "oneOf": [
                 {
-                    "$ref": "#/definitions/2770948419"
+                    "$ref": "#/definitions/2770948419",
+                    "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
                 },
                 {
                     "type": "string",
                     "minLength": 1
                 },
                 {
-                    "$ref": "#/definitions/2770948419"
+                    "$ref": "#/definitions/2770948419",
+                    "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
                 }
             ]
         },
@@ -1691,6 +1709,14 @@
                         "place_item",
                         "single_swap",
                         "multi_swap",
+                        "item.enchant.lunge1",
+                        "item.enchant.lunge2",
+                        "item.enchant.lunge3",
+                        "attack.critical",
+                        "item.spear.attack_hit",
+                        "item.spear.attack_miss",
+                        "item.wooden_spear.attack_hit",
+                        "item.wooden_spear.attack_miss",
                         "undefined"
                     ]
                 }
@@ -1903,7 +1929,8 @@
             "type": "object",
             "properties": {
                 "damage_chance": {
-                    "$ref": "#/definitions/1398826300"
+                    "$ref": "#/definitions/1398826300",
+                    "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
                 },
                 "max_durability": {
                     "type": "integer",

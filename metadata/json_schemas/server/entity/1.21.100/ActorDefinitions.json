@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3836051660",
     "x-format-version": "1.21.100",
-    "x-minecraft-version": "1.21.120-beta.25",
+    "x-minecraft-version": "1.21.130-beta.20",
     "definitions": {
         "517105782": {
             "title": "compound_proxy",
@@ -598,6 +598,14 @@
                         "place_item",
                         "single_swap",
                         "multi_swap",
+                        "item.enchant.lunge1",
+                        "item.enchant.lunge2",
+                        "item.enchant.lunge3",
+                        "attack.critical",
+                        "item.spear.attack_hit",
+                        "item.spear.attack_miss",
+                        "item.wooden_spear.attack_hit",
+                        "item.wooden_spear.attack_miss",
                         "undefined"
                     ]
                 },
@@ -848,14 +856,16 @@
             "title": "Block Descriptor",
             "oneOf": [
                 {
-                    "$ref": "#/definitions/2770948419"
+                    "$ref": "#/definitions/2770948419",
+                    "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
                 },
                 {
                     "type": "string",
                     "minLength": 1
                 },
                 {
-                    "$ref": "#/definitions/2770948419"
+                    "$ref": "#/definitions/2770948419",
+                    "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
                 }
             ]
         },
@@ -931,7 +941,8 @@
                     "type": "number"
                 },
                 "height_above_target_range": {
-                    "$ref": "#/definitions/1057349585"
+                    "$ref": "#/definitions/1057349585",
+                    "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
                 },
                 "height_adjustment_chance": {
                     "type": "number"
@@ -950,7 +961,8 @@
                     "type": "number"
                 },
                 "radius_range": {
-                    "$ref": "#/definitions/1057349585"
+                    "$ref": "#/definitions/1057349585",
+                    "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
                 },
                 "speed_multiplier": {
                     "type": "number"
@@ -1555,6 +1567,9 @@
         "minecraft:body_rotation_blocked": {
             "description": "Dynamic value"
         },
+        "minecraft:body_rotation_locked_to_vehicle": {
+            "description": "Dynamic value"
+        },
         "minecraft:boostable": {
             "description": "Dynamic value"
         },
@@ -2075,6 +2090,9 @@
             "description": "Dynamic value"
         },
         "minecraft:type_family": {
+            "description": "Dynamic value"
+        },
+        "minecraft:underwater_mount_breathing": {
             "description": "Dynamic value"
         },
         "minecraft:underwater_movement": {

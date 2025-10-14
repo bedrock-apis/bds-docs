@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "217838805",
     "x-format-version": "1.21.90",
-    "x-minecraft-version": "1.21.120-beta.25",
+    "x-minecraft-version": "1.21.130-beta.20",
     "definitions": {
         "1492643634": {
             "title": "Reference",
@@ -42,7 +42,8 @@
                 "horizontal_rotation_limit": {
                     "$ref": "#/definitions/4021724221",
                     "minimum": 0,
-                    "maximum": 360
+                    "maximum": 360,
+                    "x-runtime-constraint-description": "Verify that vector elements added together are not greater than a given total"
                 },
                 "identifier": {
                     "$ref": "#/definitions/3573822430",
@@ -99,7 +100,8 @@
                 "vertical_rotation_limit": {
                     "$ref": "#/definitions/4021724221",
                     "minimum": 0,
-                    "maximum": 180
+                    "maximum": 180,
+                    "x-runtime-constraint-description": "Check that x is less than y"
                 },
                 "view_offset": {
                     "$ref": "#/definitions/4021724221",

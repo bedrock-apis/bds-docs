@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "853889472",
     "x-format-version": "1.20.50",
-    "x-minecraft-version": "1.21.120-beta.25",
+    "x-minecraft-version": "1.21.130-beta.20",
     "definitions": {
         "517105782": {
             "title": "compound_proxy",
@@ -44,14 +44,16 @@
             "title": "Block Descriptor",
             "oneOf": [
                 {
-                    "$ref": "#/definitions/2770948419"
+                    "$ref": "#/definitions/2770948419",
+                    "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
                 },
                 {
                     "type": "string",
                     "minLength": 1
                 },
                 {
-                    "$ref": "#/definitions/2770948419"
+                    "$ref": "#/definitions/2770948419",
+                    "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
                 }
             ]
         }

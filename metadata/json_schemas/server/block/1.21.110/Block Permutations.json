@@ -2,12 +2,15 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3404364787",
     "x-format-version": "1.21.110",
-    "x-minecraft-version": "1.21.120-beta.25",
+    "x-minecraft-version": "1.21.130-beta.20",
     "definitions": {
         "471923105": {
             "title": "Components",
             "type": "object",
             "properties": {
+                "minecraft:destruction_particles": {
+                    "$ref": "#/definitions/3527967830"
+                },
                 "minecraft:display_name": {
                     "$ref": "#/definitions/2879220220"
                 },
@@ -17,14 +20,43 @@
                 "minecraft:light_emission": {
                     "$ref": "#/definitions/3655705218"
                 },
+                "minecraft:map_color": {
+                    "$ref": "#/definitions/1567399336"
+                },
                 "minecraft:tags": {
                     "$ref": "#/definitions/2735968029"
                 }
             }
         },
+        "1567399336": {
+            "title": "Map Color",
+            "type": "object",
+            "properties": {
+                "color": {
+                    "$ref": "#/definitions/3915697282"
+                },
+                "tint_method": {
+                    "title": "Tint Method",
+                    "type": "string",
+                    "enum": [
+                        "none",
+                        "default_foliage",
+                        "birch_foliage",
+                        "evergreen_foliage",
+                        "dry_foliage",
+                        "grass",
+                        "water"
+                    ]
+                }
+            },
+            "required": [
+                "color"
+            ]
+        },
         "2155690250": {
             "title": "Light Dampening",
             "type": "integer",
+            "minimum": 0,
             "maximum": 15
         },
         "2735968029": {
@@ -41,10 +73,58 @@
             "type": "string",
             "maxLength": 256
         },
+        "3527967830": {
+            "title": "Destruction Particles",
+            "type": "object",
+            "properties": {
+                "particle_count": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 255
+                },
+                "texture": {
+                    "type": "string"
+                },
+                "tint_method": {
+                    "title": "Tint Method",
+                    "type": "string",
+                    "enum": [
+                        "none",
+                        "default_foliage",
+                        "birch_foliage",
+                        "evergreen_foliage",
+                        "dry_foliage",
+                        "grass",
+                        "water"
+                    ]
+                }
+            }
+        },
         "3655705218": {
             "title": "Light Emission",
             "type": "integer",
+            "minimum": 0,
             "maximum": 15
+        },
+        "3915697282": {
+            "title": "Color255RGB",
+            "oneOf": [
+                {
+                    "type": "string",
+                    "pattern": "^#[a-fA-F0-9]{6}$"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                }
+            ],
+            "$metaProperties": {
+                "CEREAL_EDITOR_SCHEMA_TAG": "type:color"
+            }
         }
     },
     "title": "Permutation",

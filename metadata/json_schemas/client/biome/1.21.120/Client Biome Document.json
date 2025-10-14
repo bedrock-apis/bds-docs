@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "4134892367",
     "x-format-version": "1.21.120",
-    "x-minecraft-version": "1.21.120-beta.25",
+    "x-minecraft-version": "1.21.130-beta.20",
     "definitions": {
         "379658027": {
             "title": "Reference",
@@ -146,21 +146,21 @@
                 "color_map"
             ]
         },
+        "2493785116": {
+            "title": "Reference",
+            "type": "string"
+        },
         "2503601769": {
             "title": "minecraft:water_identifier",
             "type": "object",
             "properties": {
                 "water_identifier": {
-                    "$ref": "#/definitions/2527487449"
+                    "$ref": "#/definitions/2493785116"
                 }
             },
             "required": [
                 "water_identifier"
             ]
-        },
-        "2527487449": {
-            "title": "Reference",
-            "type": "string"
         },
         "2571640896": {
             "title": "minecraft:lighting_identifier",
@@ -247,7 +247,8 @@
                     "$ref": "#/definitions/658145120"
                 },
                 "minecraft:water_appearance": {
-                    "$ref": "#/definitions/4061100221"
+                    "$ref": "#/definitions/4061100221",
+                    "x-runtime-constraint-description": "Make sure that at least either the surface color or the opacity is specified"
                 },
                 "minecraft:water_identifier": {
                     "$ref": "#/definitions/2503601769"

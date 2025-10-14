@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "999323822",
     "x-format-version": "1.21.120",
-    "x-minecraft-version": "1.21.120-beta.25",
+    "x-minecraft-version": "1.21.130-beta.20",
     "definitions": {
         "61802587": {
             "title": "minecraft:behavior.swim_wander",
@@ -122,6 +122,52 @@
                     "type": "boolean"
                 }
             ]
+        },
+        "541278563": {
+            "title": "minecraft:behavior.aquatic_charge_attack",
+            "type": "object",
+            "properties": {
+                "attack_reach": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "charge_cooldown_time": {
+                    "$ref": "#/definitions/1057349585",
+                    "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
+                },
+                "charge_overshoot_distance": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "charge_speed_multiplier": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "control_flags": {
+                    "type": "array",
+                    "items": {
+                        "title": "Goal's control flags",
+                        "type": "string",
+                        "enum": [
+                            "move",
+                            "look",
+                            "jump"
+                        ]
+                    }
+                },
+                "knockback_force": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "max_charge_distance": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "priority": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            }
         },
         "597030358": {
             "title": "minecraft:behavior.slime_attack",
@@ -903,6 +949,14 @@
                         "place_item",
                         "single_swap",
                         "multi_swap",
+                        "item.enchant.lunge1",
+                        "item.enchant.lunge2",
+                        "item.enchant.lunge3",
+                        "attack.critical",
+                        "item.spear.attack_hit",
+                        "item.spear.attack_miss",
+                        "item.wooden_spear.attack_hit",
+                        "item.wooden_spear.attack_miss",
                         "undefined"
                     ]
                 },
@@ -982,6 +1036,9 @@
         },
         "1729146119": {
             "title": "IsTamedDefinition"
+        },
+        "1743972227": {
+            "title": "BodyRotationLockedToVehicleDefinition"
         },
         "1820403110": {
             "title": "IsIllagerCaptainDefinition"
@@ -1452,14 +1509,16 @@
             "title": "Block Descriptor",
             "oneOf": [
                 {
-                    "$ref": "#/definitions/2770948419"
+                    "$ref": "#/definitions/2770948419",
+                    "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
                 },
                 {
                     "type": "string",
                     "minLength": 1
                 },
                 {
-                    "$ref": "#/definitions/2770948419"
+                    "$ref": "#/definitions/2770948419",
+                    "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
                 }
             ]
         },
@@ -2039,6 +2098,14 @@
                         "place_item",
                         "single_swap",
                         "multi_swap",
+                        "item.enchant.lunge1",
+                        "item.enchant.lunge2",
+                        "item.enchant.lunge3",
+                        "attack.critical",
+                        "item.spear.attack_hit",
+                        "item.spear.attack_miss",
+                        "item.wooden_spear.attack_hit",
+                        "item.wooden_spear.attack_miss",
                         "undefined"
                     ]
                 },
@@ -2624,6 +2691,14 @@
                         "place_item",
                         "single_swap",
                         "multi_swap",
+                        "item.enchant.lunge1",
+                        "item.enchant.lunge2",
+                        "item.enchant.lunge3",
+                        "attack.critical",
+                        "item.spear.attack_hit",
+                        "item.spear.attack_miss",
+                        "item.wooden_spear.attack_hit",
+                        "item.wooden_spear.attack_miss",
                         "undefined"
                     ]
                 },
@@ -2899,7 +2974,8 @@
                     "type": "number"
                 },
                 "height_above_target_range": {
-                    "$ref": "#/definitions/1057349585"
+                    "$ref": "#/definitions/1057349585",
+                    "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
                 },
                 "height_adjustment_chance": {
                     "type": "number"
@@ -2918,7 +2994,8 @@
                     "type": "number"
                 },
                 "radius_range": {
-                    "$ref": "#/definitions/1057349585"
+                    "$ref": "#/definitions/1057349585",
+                    "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
                 },
                 "speed_multiplier": {
                     "type": "number"
@@ -2979,6 +3056,9 @@
         },
         "minecraft:behavior.admire_item": {
             "description": "Dynamic value"
+        },
+        "minecraft:behavior.aquatic_charge_attack": {
+            "$ref": "#/definitions/541278563"
         },
         "minecraft:behavior.avoid_block": {
             "$ref": "#/definitions/3326653763"
@@ -3523,6 +3603,9 @@
         "minecraft:body_rotation_blocked": {
             "$ref": "#/definitions/387887038"
         },
+        "minecraft:body_rotation_locked_to_vehicle": {
+            "$ref": "#/definitions/1743972227"
+        },
         "minecraft:boostable": {
             "description": "Dynamic value"
         },
@@ -4043,6 +4126,9 @@
             "description": "Dynamic value"
         },
         "minecraft:type_family": {
+            "description": "Dynamic value"
+        },
+        "minecraft:underwater_mount_breathing": {
             "description": "Dynamic value"
         },
         "minecraft:underwater_movement": {

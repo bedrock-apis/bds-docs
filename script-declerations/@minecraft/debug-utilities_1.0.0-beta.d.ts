@@ -8,19 +8,19 @@ export interface RuntimeStats { arrayCount: number; atomCount: number; atomSize:
 
 // Classes - 8
 //@ts-ignore extending for classes with private constructor is possible with native API
-export class DebugArrow extends DebugLine{ public headLength: number; public headRadius: number; public headSegments: number; public constructor(location: _1e.Vector3, endLocation: _1e.Vector3);};
+export class DebugArrow extends DebugLine{ public headLength: number; public headRadius: number; public headSegments: number; public constructor(location: _1e.DimensionLocation | _1e.Vector3, endLocation: _1e.Vector3);};
 //@ts-ignore extending for classes with private constructor is possible with native API
-export class DebugBox extends DebugShape{ public bound: _1e.Vector3; public constructor(location: _1e.Vector3);};
+export class DebugBox extends DebugShape{ public bound: _1e.Vector3; public constructor(location: _1e.DimensionLocation | _1e.Vector3);};
 //@ts-ignore extending for classes with private constructor is possible with native API
-export class DebugCircle extends DebugShape{ public constructor(location: _1e.Vector3);};
-export class DebugDrawer { public addShape(shape: DebugShape): void; public removeAll(): void; public removeShape(shape: DebugShape): void; private constructor();};
+export class DebugCircle extends DebugShape{ public constructor(location: _1e.DimensionLocation | _1e.Vector3);};
+export class DebugDrawer { public addShape(shape: DebugShape, dimension?: _1e.Dimension): void; public removeAll(): void; public removeShape(shape: DebugShape): void; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
-export class DebugLine extends DebugShape{ public endLocation: _1e.Vector3; public constructor(location: _1e.Vector3, endLocation: _1e.Vector3);};
-export class DebugShape { public color: _1e.RGB; public readonly hasDuration: boolean; public location: _1e.Vector3; public rotation: _1e.Vector3; public scale: number; public timeLeft?: number; public readonly totalTimeLeft?: number; public remove(): void; private constructor();};
+export class DebugLine extends DebugShape{ public endLocation: _1e.Vector3; public constructor(location: _1e.DimensionLocation | _1e.Vector3, endLocation: _1e.Vector3);};
+export class DebugShape { public color: _1e.RGB; public readonly dimension: _1e.Dimension; public readonly hasDuration: boolean; public readonly location: _1e.Vector3; public rotation: _1e.Vector3; public scale: number; public timeLeft?: number; public readonly totalTimeLeft?: number; public remove(): void; public setLocation(location: _1e.DimensionLocation | _1e.Vector3): void; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
-export class DebugSphere extends DebugShape{ public constructor(location: _1e.Vector3);};
+export class DebugSphere extends DebugShape{ public constructor(location: _1e.DimensionLocation | _1e.Vector3);};
 //@ts-ignore extending for classes with private constructor is possible with native API
-export class DebugText extends DebugShape{ public text: string; public constructor(location: _1e.Vector3, text: string);};
+export class DebugText extends DebugShape{ public text: string; public constructor(location: _1e.DimensionLocation | _1e.Vector3, text: string);};
 
 // Constants & Objects - 1
 
