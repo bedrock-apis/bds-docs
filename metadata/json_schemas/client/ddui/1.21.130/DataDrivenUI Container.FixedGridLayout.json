@@ -1,0 +1,114 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "2831017291",
+    "x-format-version": "1.21.130",
+    "x-minecraft-version": "1.21.130-beta.22",
+    "definitions": {
+        "1789890441": {
+            "title": "Context.List",
+            "type": "object",
+            "properties": {
+                "attribs": {
+                    "description": "Dynamic value"
+                },
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/2276716442"
+                    }
+                },
+                "tag": {
+                    "title": "TagType",
+                    "type": "string",
+                    "const": "context.list",
+                    "enum": [
+                        "Container",
+                        "Panel",
+                        "Panel.Text",
+                        "Panel.Decoration",
+                        "Panel.Spacing",
+                        "Panel.CloseButton",
+                        "Context",
+                        "Context.List",
+                        "Container.FixedGridLayout",
+                        "Container.Item"
+                    ]
+                }
+            },
+            "required": [
+                "children",
+                "tag"
+            ]
+        },
+        "2276716442": {
+            "title": "Container.Item",
+            "type": "object",
+            "properties": {
+                "attribs": {
+                    "description": "Dynamic value"
+                },
+                "tag": {
+                    "title": "TagType",
+                    "type": "string",
+                    "const": "container.item",
+                    "enum": [
+                        "Container",
+                        "Panel",
+                        "Panel.Text",
+                        "Panel.Decoration",
+                        "Panel.Spacing",
+                        "Panel.CloseButton",
+                        "Context",
+                        "Context.List",
+                        "Container.FixedGridLayout",
+                        "Container.Item"
+                    ]
+                }
+            },
+            "required": [
+                "tag"
+            ]
+        }
+    },
+    "title": "Container.FixedGridLayout",
+    "type": "object",
+    "properties": {
+        "attribs": {
+            "description": "Dynamic value"
+        },
+        "children": {
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "$ref": "#/definitions/2276716442"
+                    },
+                    {
+                        "$ref": "#/definitions/1789890441"
+                    }
+                ]
+            }
+        },
+        "tag": {
+            "title": "TagType",
+            "type": "string",
+            "const": "container.fixedgridlayout",
+            "enum": [
+                "Container",
+                "Panel",
+                "Panel.Text",
+                "Panel.Decoration",
+                "Panel.Spacing",
+                "Panel.CloseButton",
+                "Context",
+                "Context.List",
+                "Container.FixedGridLayout",
+                "Container.Item"
+            ]
+        }
+    },
+    "required": [
+        "children",
+        "tag"
+    ]
+}

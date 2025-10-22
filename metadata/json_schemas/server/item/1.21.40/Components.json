@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3027887553",
     "x-format-version": "1.21.40",
-    "x-minecraft-version": "1.21.130-beta.20",
+    "x-minecraft-version": "1.21.130-beta.22",
     "definitions": {
         "120997796": {
             "title": "minecraft:storage_item",
@@ -61,7 +61,8 @@
             "type": "object",
             "properties": {
                 "emit_vibrations": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": true
                 },
                 "movement_modifier": {
                     "type": "number",
@@ -70,6 +71,7 @@
                 },
                 "use_duration": {
                     "type": "number",
+                    "default": 0,
                     "minimum": 0
                 }
             }
@@ -803,6 +805,7 @@
                 "type": {
                     "title": "ItemCooldownType",
                     "type": "string",
+                    "default": "use",
                     "enum": [
                         "use",
                         "attack"
@@ -1004,7 +1007,8 @@
                         "slot.armor.head",
                         "slot.armor.chest",
                         "slot.armor.legs",
-                        "slot.armor.feet"
+                        "slot.armor.feet",
+                        "slot.armor.body"
                     ]
                 }
             },

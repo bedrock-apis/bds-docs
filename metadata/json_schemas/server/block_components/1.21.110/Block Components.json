@@ -2,8 +2,80 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "471923105",
     "x-format-version": "1.21.110",
-    "x-minecraft-version": "1.21.130-beta.20",
+    "x-minecraft-version": "1.21.130-beta.22",
     "definitions": {
+        "800260518": {
+            "title": "Material Instances Component",
+            "type": "object",
+            "propertyNames": {
+                "type": "string",
+                "pattern": "^[a-zA-Z0-9_.:*]+$"
+            },
+            "additionalProperties": {
+                "oneOf": [
+                    {
+                        "type": "string"
+                    },
+                    {
+                        "$ref": "#/definitions/840481292"
+                    }
+                ]
+            },
+            "maxProperties": 64
+        },
+        "840481292": {
+            "title": "Material Instance",
+            "type": "object",
+            "properties": {
+                "alpha_masked_tint": {
+                    "type": "boolean"
+                },
+                "ambient_occlusion": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 10
+                },
+                "emissive": {
+                    "type": "boolean"
+                },
+                "face_dimming": {
+                    "type": "boolean"
+                },
+                "isotropic": {
+                    "type": "boolean"
+                },
+                "render_method": {
+                    "title": "Block Render Layer",
+                    "type": "string",
+                    "enum": [
+                        "double_sided",
+                        "blend",
+                        "blend_to_opaque",
+                        "opaque",
+                        "alpha_test_to_opaque",
+                        "alpha_test",
+                        "alpha_test_single_side",
+                        "alpha_test_single_side_to_opaque"
+                    ]
+                },
+                "texture": {
+                    "$ref": "#/definitions/3673881199"
+                },
+                "tint_method": {
+                    "title": "Tint Method",
+                    "type": "string",
+                    "enum": [
+                        "none",
+                        "default_foliage",
+                        "birch_foliage",
+                        "evergreen_foliage",
+                        "dry_foliage",
+                        "grass",
+                        "water"
+                    ]
+                }
+            }
+        },
         "1567399336": {
             "title": "Map Color",
             "type": "object",
@@ -82,6 +154,10 @@
             "minimum": 0,
             "maximum": 15
         },
+        "3673881199": {
+            "title": "Reference",
+            "type": "string"
+        },
         "3915697282": {
             "title": "Color255RGB",
             "oneOf": [
@@ -120,6 +196,9 @@
         },
         "minecraft:map_color": {
             "$ref": "#/definitions/1567399336"
+        },
+        "minecraft:material_instances": {
+            "$ref": "#/definitions/800260518"
         },
         "minecraft:tags": {
             "$ref": "#/definitions/2735968029"

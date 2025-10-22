@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1096025372",
     "x-format-version": "1.21.90",
-    "x-minecraft-version": "1.21.130-beta.20",
+    "x-minecraft-version": "1.21.130-beta.22",
     "definitions": {
         "1057349585": {
             "title": "FloatRange",
@@ -21,14 +21,17 @@
             "type": "object",
             "properties": {
                 "max_duration": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": -1
                 },
                 "min_relative_speed": {
                     "type": "number",
+                    "default": 0,
                     "minimum": 0
                 },
                 "min_speed": {
                     "type": "number",
+                    "default": 0,
                     "minimum": 0
                 }
             }
@@ -41,24 +44,32 @@
             "$ref": "#/definitions/2960610777"
         },
         "damage_modifier": {
-            "type": "number"
+            "type": "number",
+            "default": 0
         },
         "damage_multiplier": {
-            "type": "number"
+            "type": "number",
+            "default": 1
         },
         "delay": {
-            "type": "integer"
+            "type": "integer",
+            "default": 0
         },
         "dismount_conditions": {
             "$ref": "#/definitions/2960610777"
         },
         "hitbox_margin": {
-            "type": "number"
+            "type": "number",
+            "default": 0
         },
         "knockback_conditions": {
             "$ref": "#/definitions/2960610777"
         },
         "reach": {
+            "default": {
+                "min": 0,
+                "max": 3
+            },
             "$ref": "#/definitions/1057349585"
         }
     }

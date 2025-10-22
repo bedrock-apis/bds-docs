@@ -1,0 +1,439 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "495569988",
+    "x-format-version": "1.21.130",
+    "x-minecraft-version": "1.21.130-beta.22",
+    "definitions": {
+        "793474382": {
+            "title": "Panel.Decoration",
+            "type": "object",
+            "properties": {
+                "tag": {
+                    "title": "TagType",
+                    "type": "string",
+                    "const": "panel.decoration",
+                    "enum": [
+                        "Container",
+                        "Panel",
+                        "Panel.Text",
+                        "Panel.Decoration",
+                        "Panel.Spacing",
+                        "Panel.CloseButton",
+                        "Context",
+                        "Context.List",
+                        "Container.FixedGridLayout",
+                        "Container.Item"
+                    ]
+                }
+            },
+            "required": [
+                "tag"
+            ]
+        },
+        "828768353": {
+            "title": "Panel.Spacing",
+            "type": "object",
+            "properties": {
+                "tag": {
+                    "title": "TagType",
+                    "type": "string",
+                    "const": "panel.spacing",
+                    "enum": [
+                        "Container",
+                        "Panel",
+                        "Panel.Text",
+                        "Panel.Decoration",
+                        "Panel.Spacing",
+                        "Panel.CloseButton",
+                        "Context",
+                        "Context.List",
+                        "Container.FixedGridLayout",
+                        "Container.Item"
+                    ]
+                }
+            },
+            "required": [
+                "tag"
+            ]
+        },
+        "906352983": {
+            "title": "Panel.Text",
+            "type": "object",
+            "properties": {
+                "attribs": {
+                    "description": "Dynamic value"
+                },
+                "tag": {
+                    "title": "TagType",
+                    "type": "string",
+                    "const": "panel.text",
+                    "enum": [
+                        "Container",
+                        "Panel",
+                        "Panel.Text",
+                        "Panel.Decoration",
+                        "Panel.Spacing",
+                        "Panel.CloseButton",
+                        "Context",
+                        "Context.List",
+                        "Container.FixedGridLayout",
+                        "Container.Item"
+                    ]
+                }
+            },
+            "required": [
+                "attribs",
+                "tag"
+            ]
+        },
+        "1513401747": {
+            "title": "description",
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "type": "string",
+                    "pattern": "^(?:.)+:(?:.)+$",
+                    "x-regex-flags": "ECMAScript,icase"
+                }
+            },
+            "required": [
+                "identifier"
+            ]
+        },
+        "1789890441": {
+            "title": "Context.List",
+            "type": "object",
+            "properties": {
+                "attribs": {
+                    "description": "Dynamic value"
+                },
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/2276716442"
+                    }
+                },
+                "tag": {
+                    "title": "TagType",
+                    "type": "string",
+                    "const": "context.list",
+                    "enum": [
+                        "Container",
+                        "Panel",
+                        "Panel.Text",
+                        "Panel.Decoration",
+                        "Panel.Spacing",
+                        "Panel.CloseButton",
+                        "Context",
+                        "Context.List",
+                        "Container.FixedGridLayout",
+                        "Container.Item"
+                    ]
+                }
+            },
+            "required": [
+                "children",
+                "tag"
+            ]
+        },
+        "2276716442": {
+            "title": "Container.Item",
+            "type": "object",
+            "properties": {
+                "attribs": {
+                    "description": "Dynamic value"
+                },
+                "tag": {
+                    "title": "TagType",
+                    "type": "string",
+                    "const": "container.item",
+                    "enum": [
+                        "Container",
+                        "Panel",
+                        "Panel.Text",
+                        "Panel.Decoration",
+                        "Panel.Spacing",
+                        "Panel.CloseButton",
+                        "Context",
+                        "Context.List",
+                        "Container.FixedGridLayout",
+                        "Container.Item"
+                    ]
+                }
+            },
+            "required": [
+                "tag"
+            ]
+        },
+        "2407906912": {
+            "title": "Panel.CloseButton",
+            "type": "object",
+            "properties": {
+                "attribs": {
+                    "description": "Dynamic value"
+                },
+                "tag": {
+                    "title": "TagType",
+                    "type": "string",
+                    "const": "panel.closebutton",
+                    "enum": [
+                        "Container",
+                        "Panel",
+                        "Panel.Text",
+                        "Panel.Decoration",
+                        "Panel.Spacing",
+                        "Panel.CloseButton",
+                        "Context",
+                        "Context.List",
+                        "Container.FixedGridLayout",
+                        "Container.Item"
+                    ]
+                }
+            },
+            "required": [
+                "tag"
+            ]
+        },
+        "2487332864": {
+            "title": "Panel",
+            "type": "object",
+            "properties": {
+                "attribs": {
+                    "description": "Dynamic value"
+                },
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/definitions/2831017291"
+                            },
+                            {
+                                "$ref": "#/definitions/2407906912"
+                            },
+                            {
+                                "$ref": "#/definitions/793474382"
+                            },
+                            {
+                                "$ref": "#/definitions/828768353"
+                            },
+                            {
+                                "$ref": "#/definitions/906352983"
+                            }
+                        ]
+                    }
+                },
+                "tag": {
+                    "title": "TagType",
+                    "type": "string",
+                    "const": "panel",
+                    "enum": [
+                        "Container",
+                        "Panel",
+                        "Panel.Text",
+                        "Panel.Decoration",
+                        "Panel.Spacing",
+                        "Panel.CloseButton",
+                        "Context",
+                        "Context.List",
+                        "Container.FixedGridLayout",
+                        "Container.Item"
+                    ]
+                }
+            },
+            "required": [
+                "children",
+                "tag"
+            ]
+        },
+        "2831017291": {
+            "title": "Container.FixedGridLayout",
+            "type": "object",
+            "properties": {
+                "attribs": {
+                    "description": "Dynamic value"
+                },
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/definitions/2276716442"
+                            },
+                            {
+                                "$ref": "#/definitions/1789890441"
+                            }
+                        ]
+                    }
+                },
+                "tag": {
+                    "title": "TagType",
+                    "type": "string",
+                    "const": "container.fixedgridlayout",
+                    "enum": [
+                        "Container",
+                        "Panel",
+                        "Panel.Text",
+                        "Panel.Decoration",
+                        "Panel.Spacing",
+                        "Panel.CloseButton",
+                        "Context",
+                        "Context.List",
+                        "Container.FixedGridLayout",
+                        "Container.Item"
+                    ]
+                }
+            },
+            "required": [
+                "children",
+                "tag"
+            ]
+        },
+        "2952736141": {
+            "title": "Context",
+            "type": "object",
+            "properties": {
+                "attribs": {
+                    "description": "Dynamic value"
+                },
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/definitions/3605492257"
+                            },
+                            {
+                                "$ref": "#/definitions/2952736141"
+                            },
+                            {
+                                "$ref": "#/definitions/2487332864"
+                            }
+                        ]
+                    }
+                },
+                "tag": {
+                    "title": "TagType",
+                    "type": "string",
+                    "const": "context",
+                    "enum": [
+                        "Container",
+                        "Panel",
+                        "Panel.Text",
+                        "Panel.Decoration",
+                        "Panel.Spacing",
+                        "Panel.CloseButton",
+                        "Context",
+                        "Context.List",
+                        "Container.FixedGridLayout",
+                        "Container.Item"
+                    ]
+                }
+            },
+            "required": [
+                "children",
+                "tag"
+            ]
+        },
+        "3605492257": {
+            "title": "Container",
+            "type": "object",
+            "properties": {
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/definitions/3605492257"
+                            },
+                            {
+                                "$ref": "#/definitions/2952736141"
+                            },
+                            {
+                                "$ref": "#/definitions/2487332864"
+                            }
+                        ]
+                    }
+                },
+                "tag": {
+                    "title": "TagType",
+                    "type": "string",
+                    "const": "container",
+                    "enum": [
+                        "Container",
+                        "Panel",
+                        "Panel.Text",
+                        "Panel.Decoration",
+                        "Panel.Spacing",
+                        "Panel.CloseButton",
+                        "Context",
+                        "Context.List",
+                        "Container.FixedGridLayout",
+                        "Container.Item"
+                    ]
+                }
+            },
+            "required": [
+                "children",
+                "tag"
+            ]
+        },
+        "3772464731": {
+            "title": "Root.Attribs",
+            "type": "object",
+            "properties": {
+                "root_point": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            },
+            "required": [
+                "root_point"
+            ]
+        },
+        "3983142748": {
+            "title": "layout",
+            "type": "object",
+            "properties": {
+                "markup": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/definitions/3605492257"
+                            },
+                            {
+                                "$ref": "#/definitions/2952736141"
+                            },
+                            {
+                                "$ref": "#/definitions/2487332864"
+                            }
+                        ]
+                    },
+                    "minItems": 1
+                }
+            },
+            "required": [
+                "markup"
+            ]
+        }
+    },
+    "title": "minecraft:ui-root",
+    "type": "object",
+    "properties": {
+        "attribs": {
+            "$ref": "#/definitions/3772464731"
+        },
+        "description": {
+            "$ref": "#/definitions/1513401747"
+        },
+        "layout": {
+            "$ref": "#/definitions/3983142748"
+        }
+    },
+    "required": [
+        "attribs",
+        "description",
+        "layout"
+    ]
+}

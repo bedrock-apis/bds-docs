@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "541278563",
     "x-format-version": "1.21.120",
-    "x-minecraft-version": "1.21.130-beta.20",
+    "x-minecraft-version": "1.21.130-beta.22",
     "definitions": {
         "1057349585": {
             "title": "FloatRange",
@@ -22,18 +22,25 @@
     "properties": {
         "attack_reach": {
             "type": "number",
+            "default": 0.05000000074505806,
             "minimum": 0
         },
         "charge_cooldown_time": {
+            "default": {
+                "min": 2,
+                "max": 6
+            },
             "$ref": "#/definitions/1057349585",
             "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
         },
         "charge_overshoot_distance": {
             "type": "number",
+            "default": 1.5,
             "minimum": 0
         },
         "charge_speed_multiplier": {
             "type": "number",
+            "default": 10,
             "minimum": 0
         },
         "control_flags": {
@@ -50,10 +57,12 @@
         },
         "knockback_force": {
             "type": "number",
+            "default": 2,
             "minimum": 0
         },
         "max_charge_distance": {
             "type": "number",
+            "default": 16,
             "minimum": 0
         },
         "priority": {

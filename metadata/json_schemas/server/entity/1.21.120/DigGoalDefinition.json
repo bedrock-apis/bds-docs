@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "911233651",
     "x-format-version": "1.21.120",
-    "x-minecraft-version": "1.21.130-beta.20",
+    "x-minecraft-version": "1.21.130-beta.22",
     "definitions": {
         "121353999": {
             "title": "ActorDefinitionTrigger",
@@ -156,7 +156,8 @@
     "type": "object",
     "properties": {
         "allow_dig_when_named": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
         },
         "control_flags": {
             "type": "array",
@@ -171,13 +172,16 @@
             }
         },
         "digs_in_daylight": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
         },
         "duration": {
-            "type": "number"
+            "type": "number",
+            "default": 0
         },
         "idle_time": {
-            "type": "number"
+            "type": "number",
+            "default": 0
         },
         "on_start": {
             "$ref": "#/definitions/121353999"
@@ -187,10 +191,12 @@
             "minimum": 0
         },
         "suspicion_is_disturbance": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
         },
         "vibration_is_disturbance": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
         }
     }
 }

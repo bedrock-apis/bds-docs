@@ -2,8 +2,31 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "217838805",
     "x-format-version": "1.21.90",
-    "x-minecraft-version": "1.21.130-beta.20",
+    "x-minecraft-version": "1.21.130-beta.22",
     "definitions": {
+        "950654229": {
+            "title": "CameraAimAssistCommandPresetDefinition",
+            "type": "object",
+            "properties": {
+                "angle": {
+                    "$ref": "#/definitions/4021724221"
+                },
+                "distance": {
+                    "type": "number"
+                },
+                "preset": {
+                    "$ref": "#/definitions/1492643634"
+                },
+                "target_mode": {
+                    "title": "Aim-Assist Target Mode",
+                    "type": "string",
+                    "enum": [
+                        "angle",
+                        "distance"
+                    ]
+                }
+            }
+        },
         "1492643634": {
             "title": "Reference",
             "type": "string"
@@ -13,7 +36,7 @@
             "type": "object",
             "properties": {
                 "aim_assist": {
-                    "$ref": "#/definitions/3530470262"
+                    "$ref": "#/definitions/950654229"
                 },
                 "continue_targeting": {
                     "type": "boolean"
@@ -122,29 +145,6 @@
             "required": [
                 "identifier"
             ]
-        },
-        "3530470262": {
-            "title": "CameraPresetAimAssistDefinition",
-            "type": "object",
-            "properties": {
-                "angle": {
-                    "$ref": "#/definitions/4021724221"
-                },
-                "distance": {
-                    "type": "number"
-                },
-                "preset": {
-                    "$ref": "#/definitions/1492643634"
-                },
-                "target_mode": {
-                    "title": "Aim-Assist Target Mode",
-                    "type": "string",
-                    "enum": [
-                        "angle",
-                        "distance"
-                    ]
-                }
-            }
         },
         "3573822430": {
             "title": "Identifier",

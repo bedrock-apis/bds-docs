@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1979855054",
     "x-format-version": "1.21.110",
-    "x-minecraft-version": "1.21.130-beta.20",
+    "x-minecraft-version": "1.21.130-beta.22",
     "definitions": {
         "1057349585": {
             "title": "FloatRange",
@@ -33,9 +33,14 @@
             }
         },
         "damage_reach": {
-            "type": "number"
+            "type": "number",
+            "default": 0.20000000298023224
         },
         "delay_range": {
+            "default": {
+                "min": 10,
+                "max": 20
+            },
             "$ref": "#/definitions/1057349585"
         },
         "priority": {
@@ -43,7 +48,8 @@
             "minimum": 0
         },
         "speed_multiplier": {
-            "type": "number"
+            "type": "number",
+            "default": 1
         }
     }
 }

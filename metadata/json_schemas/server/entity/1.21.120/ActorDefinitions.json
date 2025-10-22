@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "999323822",
     "x-format-version": "1.21.120",
-    "x-minecraft-version": "1.21.130-beta.20",
+    "x-minecraft-version": "1.21.130-beta.22",
     "definitions": {
         "61802587": {
             "title": "minecraft:behavior.swim_wander",
@@ -21,20 +21,24 @@
                     }
                 },
                 "interval": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0.008329999633133411
                 },
                 "look_ahead": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 5
                 },
                 "priority": {
                     "type": "integer",
                     "minimum": 0
                 },
                 "speed_multiplier": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 },
                 "wander_time": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 5
                 }
             }
         },
@@ -83,20 +87,24 @@
                     }
                 },
                 "listen_time": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 30
                 },
                 "priority": {
                     "type": "integer",
                     "minimum": 0
                 },
                 "speed": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 },
                 "start_distance": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 10
                 },
                 "stop_distance": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 2
                 }
             }
         },
@@ -129,18 +137,25 @@
             "properties": {
                 "attack_reach": {
                     "type": "number",
+                    "default": 0.05000000074505806,
                     "minimum": 0
                 },
                 "charge_cooldown_time": {
+                    "default": {
+                        "min": 2,
+                        "max": 6
+                    },
                     "$ref": "#/definitions/1057349585",
                     "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
                 },
                 "charge_overshoot_distance": {
                     "type": "number",
+                    "default": 1.5,
                     "minimum": 0
                 },
                 "charge_speed_multiplier": {
                     "type": "number",
+                    "default": 10,
                     "minimum": 0
                 },
                 "control_flags": {
@@ -157,10 +172,12 @@
                 },
                 "knockback_force": {
                     "type": "number",
+                    "default": 2,
                     "minimum": 0
                 },
                 "max_charge_distance": {
                     "type": "number",
+                    "default": 16,
                     "minimum": 0
                 },
                 "priority": {
@@ -193,16 +210,20 @@
                     "minimum": 0
                 },
                 "set_persistent": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 },
                 "speed_multiplier": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 },
                 "x_max_rotation": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 10
                 },
                 "y_max_rotation": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 10
                 }
             }
         },
@@ -259,7 +280,8 @@
             "type": "object",
             "properties": {
                 "allow_dig_when_named": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 },
                 "control_flags": {
                     "type": "array",
@@ -274,13 +296,16 @@
                     }
                 },
                 "digs_in_daylight": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 },
                 "duration": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 },
                 "idle_time": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 },
                 "on_start": {
                     "$ref": "#/definitions/121353999"
@@ -290,10 +315,12 @@
                     "minimum": 0
                 },
                 "suspicion_is_disturbance": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 },
                 "vibration_is_disturbance": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 }
             }
         },
@@ -329,13 +356,16 @@
             "properties": {
                 "distance_to_players": {
                     "type": "number",
+                    "default": 128,
                     "minimum": 128
                 },
                 "never_despawn": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": true
                 },
                 "radius": {
                     "type": "integer",
+                    "default": 2,
                     "minimum": 2,
                     "maximum": 6
                 }
@@ -416,10 +446,12 @@
                     }
                 },
                 "max_distance": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 3
                 },
                 "min_distance": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 2
                 },
                 "priority": {
                     "type": "integer",
@@ -961,10 +993,12 @@
                     ]
                 },
                 "speed_multiplier": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 },
                 "success_rate": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0.1428000032901764
                 }
             }
         },
@@ -988,29 +1022,36 @@
                     }
                 },
                 "cooldown_time": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 10
                 },
                 "flame_time": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0.5
                 },
                 "ground_flame_count": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 4
                 },
                 "priority": {
                     "type": "integer",
                     "minimum": 0
                 },
                 "roar_time": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 2
                 },
                 "smoke_color": {
-                    "type": "string"
+                    "type": "string",
+                    "default": "#DC00EF"
                 },
                 "smoke_radius": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 5
                 },
                 "smoke_time": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 10
                 }
             }
         },
@@ -1048,10 +1089,12 @@
             "type": "object",
             "properties": {
                 "allow_simultaneous_interaction": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 },
                 "allowed_items": {
                     "type": "array",
+                    "default": [],
                     "items": {
                         "$ref": "#/definitions/1531870811"
                     }
@@ -1070,37 +1113,45 @@
                 },
                 "destination_container_types": {
                     "type": "array",
+                    "default": [],
                     "items": {
                         "$ref": "#/definitions/2794205495"
                     }
                 },
                 "disallowed_items": {
                     "type": "array",
+                    "default": [],
                     "items": {
                         "$ref": "#/definitions/1531870811"
                     }
                 },
                 "idle_cooldown": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 20
                 },
                 "initial_cooldown": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 0
                 },
                 "interaction_time": {
                     "type": "number",
+                    "default": 3,
                     "minimum": 0
                 },
                 "max_stack_size": {
                     "type": "integer",
+                    "default": 64,
                     "minimum": 1,
                     "maximum": 64
                 },
                 "max_visited_containers": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 16
                 },
                 "place_strategy": {
                     "title": "place_strategy",
                     "type": "string",
+                    "default": "any",
                     "enum": [
                         "any",
                         "with_matching",
@@ -1112,11 +1163,16 @@
                     "minimum": 0
                 },
                 "search_distance": {
+                    "default": [
+                        64,
+                        32
+                    ],
                     "$ref": "#/definitions/4021724221"
                 },
                 "search_strategy": {
                     "title": "search_strategy",
                     "type": "string",
+                    "default": "random",
                     "enum": [
                         "nearest",
                         "random"
@@ -1124,9 +1180,152 @@
                 },
                 "source_container_types": {
                     "type": "array",
+                    "default": [],
                     "items": {
                         "$ref": "#/definitions/2794205495"
                     }
+                }
+            }
+        },
+        "1900210559": {
+            "title": "minecraft:behavior.use_kinetic_weapon",
+            "type": "object",
+            "properties": {
+                "approach_distance": {
+                    "type": "number",
+                    "default": 8,
+                    "minimum": 0
+                },
+                "attack_once": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "can_spread_on_fire": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "control_flags": {
+                    "type": "array",
+                    "items": {
+                        "title": "Goal's control flags",
+                        "type": "string",
+                        "enum": [
+                            "move",
+                            "look",
+                            "jump"
+                        ]
+                    }
+                },
+                "cooldown_distance": {
+                    "default": {
+                        "min": 8,
+                        "max": 8
+                    },
+                    "$ref": "#/definitions/1057349585"
+                },
+                "cooldown_speed_multiplier": {
+                    "type": "number",
+                    "default": 1,
+                    "minimum": 0
+                },
+                "cooldown_time": {
+                    "type": "number",
+                    "default": 1,
+                    "minimum": 0
+                },
+                "inner_boundary_time_increase": {
+                    "type": "number",
+                    "default": 0.25,
+                    "minimum": 0
+                },
+                "max_path_time": {
+                    "type": "number",
+                    "default": 0.550000011920929,
+                    "minimum": 0
+                },
+                "melee_fov": {
+                    "type": "number",
+                    "default": 90,
+                    "minimum": 0
+                },
+                "min_path_time": {
+                    "type": "number",
+                    "default": 0.20000000298023224,
+                    "minimum": 0
+                },
+                "outer_boundary_time_increase": {
+                    "type": "number",
+                    "default": 0.5,
+                    "minimum": 0
+                },
+                "path_fail_time_increase": {
+                    "type": "number",
+                    "default": 0.75,
+                    "minimum": 0
+                },
+                "path_inner_boundary": {
+                    "type": "number",
+                    "default": 16,
+                    "minimum": 0
+                },
+                "path_outer_boundary": {
+                    "type": "number",
+                    "default": 32,
+                    "minimum": 0
+                },
+                "priority": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "random_stop_interval": {
+                    "type": "integer",
+                    "default": 0,
+                    "minimum": 0
+                },
+                "reposition_distance": {
+                    "default": {
+                        "min": 2,
+                        "max": 2
+                    },
+                    "$ref": "#/definitions/1057349585"
+                },
+                "reposition_speed_multiplier": {
+                    "type": "number",
+                    "default": 1,
+                    "minimum": 0
+                },
+                "require_complete_path": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "speed_multiplier": {
+                    "type": "number",
+                    "default": 1,
+                    "minimum": 0
+                },
+                "track_target": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "weapon_min_speed_multiplier": {
+                    "type": "number",
+                    "default": 1,
+                    "minimum": 0
+                },
+                "weapon_reach_multiplier": {
+                    "type": "number",
+                    "default": 1,
+                    "minimum": 0
+                },
+                "x_max_rotation": {
+                    "type": "number",
+                    "default": 30,
+                    "minimum": 0
+                },
+                "y_max_head_rotation": {
+                    "type": "number",
+                    "default": 30,
+                    "minimum": 0
                 }
             }
         },
@@ -1148,14 +1347,17 @@
                 },
                 "fractional_rotation": {
                     "type": "number",
+                    "default": 0.5,
                     "minimum": 0.5,
                     "maximum": 1
                 },
                 "fractional_rotation_limit": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 5
                 },
                 "mount_speed_multiplier": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 },
                 "priority": {
                     "type": "integer",
@@ -1180,23 +1382,31 @@
                     }
                 },
                 "cooldown_range": {
+                    "default": {
+                        "min": 3,
+                        "max": 10
+                    },
                     "$ref": "#/definitions/1057349585"
                 },
                 "duration": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 },
                 "priority": {
                     "type": "integer",
                     "minimum": 0
                 },
                 "sniffing_radius": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 5
                 },
                 "suspicion_radius_horizontal": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 3
                 },
                 "suspicion_radius_vertical": {
                     "type": "number",
+                    "default": 3,
                     "minimum": 1
                 }
             }
@@ -1218,9 +1428,14 @@
                     }
                 },
                 "damage_reach": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0.20000000298023224
                 },
                 "delay_range": {
+                    "default": {
+                        "min": 10,
+                        "max": 20
+                    },
                     "$ref": "#/definitions/1057349585"
                 },
                 "priority": {
@@ -1228,7 +1443,8 @@
                     "minimum": 0
                 },
                 "speed_multiplier": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 }
             }
         },
@@ -1258,7 +1474,8 @@
                     }
                 },
                 "eat_animation_time": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 },
                 "eat_mob_sound": {
                     "type": "string"
@@ -1271,13 +1488,16 @@
                     "minimum": 0
                 },
                 "pull_in_force": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 },
                 "reach_mob_distance": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 },
                 "run_speed": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 }
             }
         },
@@ -1321,20 +1541,24 @@
                     }
                 },
                 "material_type": {
-                    "type": "string"
+                    "type": "string",
+                    "default": "water"
                 },
                 "priority": {
                     "type": "integer",
                     "minimum": 0
                 },
                 "search_height": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 16
                 },
                 "search_radius": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 4
                 },
                 "speed_mod": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1.399999976158142
                 }
             }
         },
@@ -1343,16 +1567,20 @@
             "type": "object",
             "properties": {
                 "attack_cooldown": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 5
                 },
                 "attack_damage": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 30
                 },
                 "attack_range_horizontal": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 15
                 },
                 "attack_range_vertical": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 20
                 },
                 "attack_sound": {
                     "type": "string"
@@ -1374,26 +1602,32 @@
                 },
                 "duration": {
                     "type": "number",
+                    "default": 0,
                     "minimum": 0
                 },
                 "duration_until_attack_sound": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1.7000000476837158
                 },
                 "knockback_height_cap": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 },
                 "knockback_horizontal_strength": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 },
                 "knockback_vertical_strength": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 },
                 "priority": {
                     "type": "integer",
                     "minimum": 0
                 },
                 "speed_multiplier": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 }
             }
         },
@@ -1417,7 +1651,8 @@
                     }
                 },
                 "cooldown_seconds": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 5
                 },
                 "filters": {
                     "$ref": "#/definitions/1088251937"
@@ -1445,14 +1680,16 @@
                     }
                 },
                 "jump_chance_percentage": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0.800000011920929
                 },
                 "priority": {
                     "type": "integer",
                     "minimum": 0
                 },
                 "speed_multiplier": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1.2000000476837158
                 }
             }
         },
@@ -1477,7 +1714,8 @@
                     "minimum": 0
                 },
                 "speed_multiplier": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 }
             }
         },
@@ -1541,7 +1779,8 @@
             "type": "object",
             "properties": {
                 "add_random_time_range": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 3
                 },
                 "control_flags": {
                     "type": "array",
@@ -1556,14 +1795,16 @@
                     }
                 },
                 "min_change_direction_time": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 2
                 },
                 "priority": {
                     "type": "integer",
                     "minimum": 0
                 },
                 "turn_range": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 360
                 }
             }
         },
@@ -2132,16 +2373,23 @@
                     "minimum": 0
                 },
                 "search_height": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 0
                 },
                 "search_range": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 0
                 },
                 "sound_interval": {
+                    "default": {
+                        "min": 3,
+                        "max": 8
+                    },
                     "$ref": "#/definitions/1057349585"
                 },
                 "sprint_speed_modifier": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 },
                 "target_blocks": {
                     "type": "array",
@@ -2150,13 +2398,16 @@
                     }
                 },
                 "target_selection_method": {
-                    "type": "string"
+                    "type": "string",
+                    "default": "nearest"
                 },
                 "tick_interval": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 1
                 },
                 "walk_speed_modifier": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 }
             }
         },
@@ -2703,10 +2954,12 @@
                     ]
                 },
                 "avoid_target_xz": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 16
                 },
                 "avoid_target_y": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 7
                 },
                 "control_flags": {
                     "type": "array",
@@ -2721,19 +2974,19 @@
                     }
                 },
                 "entity_types": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/792012262"
-                    }
+                    "$ref": "#/definitions/4227886613"
                 },
                 "ignore_visibility": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 },
                 "max_dist": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 3
                 },
                 "max_flee": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 10
                 },
                 "on_escape_event": {
                     "$ref": "#/definitions/121353999"
@@ -2744,25 +2997,35 @@
                 },
                 "probability_per_strength": {
                     "type": "number",
+                    "default": 1,
                     "maximum": 1
                 },
                 "remove_target": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 },
                 "river_speed_multiplier": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0.75
                 },
                 "sound_interval": {
+                    "default": {
+                        "min": 3,
+                        "max": 8
+                    },
                     "$ref": "#/definitions/1057349585"
                 },
                 "sprint_distance": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 7
                 },
                 "sprint_speed_multiplier": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 },
                 "walk_speed_multiplier": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 }
             }
         },
@@ -2790,7 +3053,8 @@
                     "minimum": 0
                 },
                 "speed_multiplier": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 }
             }
         },
@@ -2811,14 +3075,16 @@
                     }
                 },
                 "idle_time": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 5
                 },
                 "priority": {
                     "type": "integer",
                     "minimum": 0
                 },
                 "success_rate": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0.10000000149011612
                 }
             }
         },
@@ -2840,6 +3106,7 @@
                 },
                 "duration": {
                     "type": "number",
+                    "default": 0,
                     "minimum": 0
                 },
                 "priority": {
@@ -2951,12 +3218,27 @@
                 "test"
             ]
         },
+        "4227886613": {
+            "title": "EntityTypes",
+            "oneOf": [
+                {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/792012262"
+                    }
+                },
+                {
+                    "$ref": "#/definitions/792012262"
+                }
+            ]
+        },
         "4231633335": {
             "title": "minecraft:behavior.circle_around_anchor",
             "type": "object",
             "properties": {
                 "angle_change": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 15
                 },
                 "control_flags": {
                     "type": "array",
@@ -2971,16 +3253,26 @@
                     }
                 },
                 "goal_radius": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0.5
                 },
                 "height_above_target_range": {
+                    "default": {
+                        "min": 0,
+                        "max": 0
+                    },
                     "$ref": "#/definitions/1057349585",
                     "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
                 },
                 "height_adjustment_chance": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0.0028570001013576984
                 },
                 "height_offset_range": {
+                    "default": {
+                        "min": 0,
+                        "max": 0
+                    },
                     "$ref": "#/definitions/1057349585"
                 },
                 "priority": {
@@ -2988,17 +3280,24 @@
                     "minimum": 0
                 },
                 "radius_adjustment_chance": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0.004000000189989805
                 },
                 "radius_change": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 },
                 "radius_range": {
+                    "default": {
+                        "min": 5,
+                        "max": 15
+                    },
                     "$ref": "#/definitions/1057349585",
                     "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
                 },
                 "speed_multiplier": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 }
             }
         }
@@ -3572,6 +3871,9 @@
         },
         "minecraft:behavior.transport_items": {
             "$ref": "#/definitions/1861715976"
+        },
+        "minecraft:behavior.use_kinetic_weapon": {
+            "$ref": "#/definitions/1900210559"
         },
         "minecraft:behavior.vex_copy_owner_target": {
             "description": "Dynamic value"

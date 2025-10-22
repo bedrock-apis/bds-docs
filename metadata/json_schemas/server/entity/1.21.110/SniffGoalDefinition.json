@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1949055570",
     "x-format-version": "1.21.110",
-    "x-minecraft-version": "1.21.130-beta.20",
+    "x-minecraft-version": "1.21.130-beta.22",
     "definitions": {
         "1057349585": {
             "title": "FloatRange",
@@ -33,23 +33,31 @@
             }
         },
         "cooldown_range": {
+            "default": {
+                "min": 3,
+                "max": 10
+            },
             "$ref": "#/definitions/1057349585"
         },
         "duration": {
-            "type": "number"
+            "type": "number",
+            "default": 1
         },
         "priority": {
             "type": "integer",
             "minimum": 0
         },
         "sniffing_radius": {
-            "type": "number"
+            "type": "number",
+            "default": 5
         },
         "suspicion_radius_horizontal": {
-            "type": "number"
+            "type": "number",
+            "default": 3
         },
         "suspicion_radius_vertical": {
             "type": "number",
+            "default": 3,
             "minimum": 1
         }
     }

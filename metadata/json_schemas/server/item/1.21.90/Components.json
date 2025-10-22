@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3635230096",
     "x-format-version": "1.21.90",
-    "x-minecraft-version": "1.21.130-beta.20",
+    "x-minecraft-version": "1.21.130-beta.22",
     "definitions": {
         "34598326": {
             "title": "minecraft:storage_weight_limit",
@@ -19,9 +19,14 @@
             "type": "object",
             "properties": {
                 "hitbox_margin": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 },
                 "reach": {
+                    "default": {
+                        "min": 0,
+                        "max": 3
+                    },
                     "$ref": "#/definitions/1057349585"
                 }
             }
@@ -50,7 +55,8 @@
             "type": "object",
             "properties": {
                 "emit_vibrations": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": true
                 },
                 "movement_modifier": {
                     "type": "number",
@@ -59,6 +65,7 @@
                 },
                 "use_duration": {
                     "type": "number",
+                    "default": 0,
                     "minimum": 0
                 }
             }
@@ -802,6 +809,7 @@
                 "type": {
                     "title": "ItemCooldownType",
                     "type": "string",
+                    "default": "use",
                     "enum": [
                         "use",
                         "attack"
@@ -851,24 +859,32 @@
                     "$ref": "#/definitions/2960610777"
                 },
                 "damage_modifier": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 },
                 "damage_multiplier": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 },
                 "delay": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 0
                 },
                 "dismount_conditions": {
                     "$ref": "#/definitions/2960610777"
                 },
                 "hitbox_margin": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 },
                 "knockback_conditions": {
                     "$ref": "#/definitions/2960610777"
                 },
                 "reach": {
+                    "default": {
+                        "min": 0,
+                        "max": 3
+                    },
                     "$ref": "#/definitions/1057349585"
                 }
             }
@@ -894,7 +910,8 @@
             "type": "object",
             "properties": {
                 "value": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": true
                 }
             }
         },
@@ -2845,14 +2862,17 @@
             "type": "object",
             "properties": {
                 "max_duration": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": -1
                 },
                 "min_relative_speed": {
                     "type": "number",
+                    "default": 0,
                     "minimum": 0
                 },
                 "min_speed": {
                     "type": "number",
+                    "default": 0,
                     "minimum": 0
                 }
             }
@@ -3452,6 +3472,7 @@
             "properties": {
                 "value": {
                     "type": "number",
+                    "default": 0.30000001192092896,
                     "minimum": 0
                 }
             }
@@ -3661,7 +3682,8 @@
                         "slot.armor.head",
                         "slot.armor.chest",
                         "slot.armor.legs",
-                        "slot.armor.feet"
+                        "slot.armor.feet",
+                        "slot.armor.body"
                     ]
                 }
             },

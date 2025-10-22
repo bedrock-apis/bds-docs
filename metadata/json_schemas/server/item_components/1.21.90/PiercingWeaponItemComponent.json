@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "203634330",
     "x-format-version": "1.21.90",
-    "x-minecraft-version": "1.21.130-beta.20",
+    "x-minecraft-version": "1.21.130-beta.22",
     "definitions": {
         "1057349585": {
             "title": "FloatRange",
@@ -21,9 +21,14 @@
     "type": "object",
     "properties": {
         "hitbox_margin": {
-            "type": "number"
+            "type": "number",
+            "default": 0
         },
         "reach": {
+            "default": {
+                "min": 0,
+                "max": 3
+            },
             "$ref": "#/definitions/1057349585"
         }
     }

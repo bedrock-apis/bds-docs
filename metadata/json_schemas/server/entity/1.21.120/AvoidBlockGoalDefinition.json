@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3326653763",
     "x-format-version": "1.21.120",
-    "x-minecraft-version": "1.21.130-beta.20",
+    "x-minecraft-version": "1.21.130-beta.22",
     "definitions": {
         "121353999": {
             "title": "ActorDefinitionTrigger",
@@ -739,16 +739,23 @@
             "minimum": 0
         },
         "search_height": {
-            "type": "integer"
+            "type": "integer",
+            "default": 0
         },
         "search_range": {
-            "type": "integer"
+            "type": "integer",
+            "default": 0
         },
         "sound_interval": {
+            "default": {
+                "min": 3,
+                "max": 8
+            },
             "$ref": "#/definitions/1057349585"
         },
         "sprint_speed_modifier": {
-            "type": "number"
+            "type": "number",
+            "default": 1
         },
         "target_blocks": {
             "type": "array",
@@ -757,13 +764,16 @@
             }
         },
         "target_selection_method": {
-            "type": "string"
+            "type": "string",
+            "default": "nearest"
         },
         "tick_interval": {
-            "type": "integer"
+            "type": "integer",
+            "default": 1
         },
         "walk_speed_modifier": {
-            "type": "number"
+            "type": "number",
+            "default": 1
         }
     }
 }

@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3425495100",
     "x-format-version": "1.21.120",
-    "x-minecraft-version": "1.21.130-beta.20",
+    "x-minecraft-version": "1.21.130-beta.22",
     "definitions": {
         "121353999": {
             "title": "ActorDefinitionTrigger",
@@ -203,6 +203,20 @@
             },
             "required": [
                 "test"
+            ]
+        },
+        "4227886613": {
+            "title": "EntityTypes",
+            "oneOf": [
+                {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/792012262"
+                    }
+                },
+                {
+                    "$ref": "#/definitions/792012262"
+                }
             ]
         }
     },
@@ -745,10 +759,12 @@
             ]
         },
         "avoid_target_xz": {
-            "type": "integer"
+            "type": "integer",
+            "default": 16
         },
         "avoid_target_y": {
-            "type": "integer"
+            "type": "integer",
+            "default": 7
         },
         "control_flags": {
             "type": "array",
@@ -763,19 +779,19 @@
             }
         },
         "entity_types": {
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/792012262"
-            }
+            "$ref": "#/definitions/4227886613"
         },
         "ignore_visibility": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
         },
         "max_dist": {
-            "type": "number"
+            "type": "number",
+            "default": 3
         },
         "max_flee": {
-            "type": "number"
+            "type": "number",
+            "default": 10
         },
         "on_escape_event": {
             "$ref": "#/definitions/121353999"
@@ -786,25 +802,35 @@
         },
         "probability_per_strength": {
             "type": "number",
+            "default": 1,
             "maximum": 1
         },
         "remove_target": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
         },
         "river_speed_multiplier": {
-            "type": "number"
+            "type": "number",
+            "default": 0.75
         },
         "sound_interval": {
+            "default": {
+                "min": 3,
+                "max": 8
+            },
             "$ref": "#/definitions/1057349585"
         },
         "sprint_distance": {
-            "type": "number"
+            "type": "number",
+            "default": 7
         },
         "sprint_speed_multiplier": {
-            "type": "number"
+            "type": "number",
+            "default": 1
         },
         "walk_speed_multiplier": {
-            "type": "number"
+            "type": "number",
+            "default": 1
         }
     }
 }

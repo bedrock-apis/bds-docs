@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "4231633335",
     "x-format-version": "1.21.100",
-    "x-minecraft-version": "1.21.130-beta.20",
+    "x-minecraft-version": "1.21.130-beta.22",
     "definitions": {
         "1057349585": {
             "title": "FloatRange",
@@ -21,7 +21,8 @@
     "type": "object",
     "properties": {
         "angle_change": {
-            "type": "number"
+            "type": "number",
+            "default": 15
         },
         "control_flags": {
             "type": "array",
@@ -36,16 +37,26 @@
             }
         },
         "goal_radius": {
-            "type": "number"
+            "type": "number",
+            "default": 0.5
         },
         "height_above_target_range": {
+            "default": {
+                "min": 0,
+                "max": 0
+            },
             "$ref": "#/definitions/1057349585",
             "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
         },
         "height_adjustment_chance": {
-            "type": "number"
+            "type": "number",
+            "default": 0.0028570001013576984
         },
         "height_offset_range": {
+            "default": {
+                "min": 0,
+                "max": 0
+            },
             "$ref": "#/definitions/1057349585"
         },
         "priority": {
@@ -53,17 +64,24 @@
             "minimum": 0
         },
         "radius_adjustment_chance": {
-            "type": "number"
+            "type": "number",
+            "default": 0.004000000189989805
         },
         "radius_change": {
-            "type": "number"
+            "type": "number",
+            "default": 1
         },
         "radius_range": {
+            "default": {
+                "min": 5,
+                "max": 15
+            },
             "$ref": "#/definitions/1057349585",
             "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
         },
         "speed_multiplier": {
-            "type": "number"
+            "type": "number",
+            "default": 1
         }
     }
 }

@@ -382,7 +382,28 @@
                     ],
                     "is_constructor": false,
                     "is_static": false,
-                    "name": "getExcludedTargets",
+                    "name": "getExcludedBlockTargets",
+                    "return_type": {
+                        "element_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "string"
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "array"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getExcludedEntityTargets",
                     "return_type": {
                         "element_type": {
                             "is_bind_type": false,
@@ -544,7 +565,33 @@
                     ],
                     "is_constructor": false,
                     "is_static": false,
-                    "name": "getExcludedTargets",
+                    "name": "getExcludedBlockTargets",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "element_type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            },
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "array"
+                        }
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getExcludedEntityTargets",
                     "return_type": {
                         "is_bind_type": false,
                         "is_errorable": false,
@@ -619,7 +666,7 @@
                             "details": {
                                 "default_value": "null"
                             },
-                            "name": "targets",
+                            "name": "blockTargets",
                             "type": {
                                 "is_bind_type": false,
                                 "is_errorable": false,
@@ -644,7 +691,45 @@
                     ],
                     "is_constructor": false,
                     "is_static": false,
-                    "name": "setExcludedTargets",
+                    "name": "setExcludedBlockTargets",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "entityTargets",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "element_type": {
+                                        "is_bind_type": false,
+                                        "is_errorable": false,
+                                        "name": "string"
+                                    },
+                                    "is_bind_type": false,
+                                    "is_errorable": false,
+                                    "name": "array"
+                                }
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "setExcludedEntityTargets",
                     "return_type": {
                         "is_bind_type": false,
                         "is_errorable": false,
@@ -16031,6 +16116,21 @@
                         "is_errorable": false,
                         "name": "string"
                     }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "resultItem",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
                 }
             ],
             "type": {
@@ -22052,6 +22152,21 @@
                     "is_baked": false,
                     "is_read_only": true,
                     "name": "item",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "resultItem",
                     "type": {
                         "is_bind_type": false,
                         "is_errorable": false,

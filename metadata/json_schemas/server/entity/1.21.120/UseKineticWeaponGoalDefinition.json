@@ -1,0 +1,160 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "1900210559",
+    "x-format-version": "1.21.120",
+    "x-minecraft-version": "1.21.130-beta.22",
+    "definitions": {
+        "1057349585": {
+            "title": "FloatRange",
+            "type": "object",
+            "properties": {
+                "max": {
+                    "type": "number"
+                },
+                "min": {
+                    "type": "number"
+                }
+            }
+        }
+    },
+    "title": "minecraft:behavior.use_kinetic_weapon",
+    "type": "object",
+    "properties": {
+        "approach_distance": {
+            "type": "number",
+            "default": 8,
+            "minimum": 0
+        },
+        "attack_once": {
+            "type": "boolean",
+            "default": false
+        },
+        "can_spread_on_fire": {
+            "type": "boolean",
+            "default": false
+        },
+        "control_flags": {
+            "type": "array",
+            "items": {
+                "title": "Goal's control flags",
+                "type": "string",
+                "enum": [
+                    "move",
+                    "look",
+                    "jump"
+                ]
+            }
+        },
+        "cooldown_distance": {
+            "default": {
+                "min": 8,
+                "max": 8
+            },
+            "$ref": "#/definitions/1057349585"
+        },
+        "cooldown_speed_multiplier": {
+            "type": "number",
+            "default": 1,
+            "minimum": 0
+        },
+        "cooldown_time": {
+            "type": "number",
+            "default": 1,
+            "minimum": 0
+        },
+        "inner_boundary_time_increase": {
+            "type": "number",
+            "default": 0.25,
+            "minimum": 0
+        },
+        "max_path_time": {
+            "type": "number",
+            "default": 0.550000011920929,
+            "minimum": 0
+        },
+        "melee_fov": {
+            "type": "number",
+            "default": 90,
+            "minimum": 0
+        },
+        "min_path_time": {
+            "type": "number",
+            "default": 0.20000000298023224,
+            "minimum": 0
+        },
+        "outer_boundary_time_increase": {
+            "type": "number",
+            "default": 0.5,
+            "minimum": 0
+        },
+        "path_fail_time_increase": {
+            "type": "number",
+            "default": 0.75,
+            "minimum": 0
+        },
+        "path_inner_boundary": {
+            "type": "number",
+            "default": 16,
+            "minimum": 0
+        },
+        "path_outer_boundary": {
+            "type": "number",
+            "default": 32,
+            "minimum": 0
+        },
+        "priority": {
+            "type": "integer",
+            "minimum": 0
+        },
+        "random_stop_interval": {
+            "type": "integer",
+            "default": 0,
+            "minimum": 0
+        },
+        "reposition_distance": {
+            "default": {
+                "min": 2,
+                "max": 2
+            },
+            "$ref": "#/definitions/1057349585"
+        },
+        "reposition_speed_multiplier": {
+            "type": "number",
+            "default": 1,
+            "minimum": 0
+        },
+        "require_complete_path": {
+            "type": "boolean",
+            "default": false
+        },
+        "speed_multiplier": {
+            "type": "number",
+            "default": 1,
+            "minimum": 0
+        },
+        "track_target": {
+            "type": "boolean",
+            "default": false
+        },
+        "weapon_min_speed_multiplier": {
+            "type": "number",
+            "default": 1,
+            "minimum": 0
+        },
+        "weapon_reach_multiplier": {
+            "type": "number",
+            "default": 1,
+            "minimum": 0
+        },
+        "x_max_rotation": {
+            "type": "number",
+            "default": 30,
+            "minimum": 0
+        },
+        "y_max_head_rotation": {
+            "type": "number",
+            "default": 30,
+            "minimum": 0
+        }
+    }
+}

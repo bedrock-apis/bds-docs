@@ -2,12 +2,13 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3273917994",
     "x-format-version": "1.21.110",
-    "x-minecraft-version": "1.21.130-beta.20",
+    "x-minecraft-version": "1.21.130-beta.22",
     "title": "minecraft:behavior.slime_random_direction",
     "type": "object",
     "properties": {
         "add_random_time_range": {
-            "type": "integer"
+            "type": "integer",
+            "default": 3
         },
         "control_flags": {
             "type": "array",
@@ -22,14 +23,16 @@
             }
         },
         "min_change_direction_time": {
-            "type": "number"
+            "type": "number",
+            "default": 2
         },
         "priority": {
             "type": "integer",
             "minimum": 0
         },
         "turn_range": {
-            "type": "integer"
+            "type": "integer",
+            "default": 360
         }
     }
 }
