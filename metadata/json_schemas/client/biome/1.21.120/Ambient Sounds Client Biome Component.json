@@ -1,0 +1,53 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "516903831",
+    "x-format-version": "1.21.120",
+    "x-minecraft-version": "1.21.120",
+    "definitions": {
+        "379658027": {
+            "title": "Reference",
+            "type": "string"
+        },
+        "2772549390": {
+            "title": "Sound Addition",
+            "type": "object",
+            "properties": {
+                "asset": {
+                    "$ref": "#/definitions/379658027",
+                    "minLength": 1
+                },
+                "chance": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                }
+            },
+            "required": [
+                "asset",
+                "chance"
+            ]
+        }
+    },
+    "title": "minecraft:ambient_sounds",
+    "type": "object",
+    "properties": {
+        "addition": {
+            "$ref": "#/definitions/2772549390"
+        },
+        "loop": {
+            "$ref": "#/definitions/379658027"
+        },
+        "mood": {
+            "$ref": "#/definitions/379658027"
+        },
+        "underwater_addition": {
+            "$ref": "#/definitions/2772549390"
+        },
+        "underwater_loop": {
+            "$ref": "#/definitions/379658027"
+        },
+        "underwater_mood": {
+            "$ref": "#/definitions/379658027"
+        }
+    }
+}

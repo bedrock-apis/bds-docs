@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1677381825",
     "x-format-version": "1.21.110",
-    "x-minecraft-version": "1.21.111",
+    "x-minecraft-version": "1.21.120",
     "definitions": {
         "6632766": {
             "title": "Range",
@@ -20,6 +20,24 @@
                 "min"
             ]
         },
+        "471923105": {
+            "title": "Components",
+            "type": "object",
+            "properties": {
+                "minecraft:display_name": {
+                    "$ref": "#/definitions/2879220220"
+                },
+                "minecraft:light_dampening": {
+                    "$ref": "#/definitions/2155690250"
+                },
+                "minecraft:light_emission": {
+                    "$ref": "#/definitions/3655705218"
+                },
+                "minecraft:tags": {
+                    "$ref": "#/definitions/2735968029"
+                }
+            }
+        },
         "825755857": {
             "title": "Values",
             "type": "object",
@@ -32,6 +50,11 @@
                 "values"
             ]
         },
+        "2155690250": {
+            "title": "Light Dampening",
+            "type": "integer",
+            "maximum": 15
+        },
         "2208326140": {
             "title": "Placement Direction",
             "type": "object",
@@ -39,16 +62,62 @@
                 "enabled_states": {
                     "type": "array",
                     "items": {
-                        "type": "string"
-                    }
+                        "type": "string",
+                        "pattern": "^(minecraft:cardinal_direction|minecraft:facing_direction)$"
+                    },
+                    "minItems": 1,
+                    "maxItems": 2
                 },
                 "y_rotation_offset": {
-                    "type": "number"
+                    "type": "number",
+                    "multipleOf": 90,
+                    "minimum": 0,
+                    "maximum": 360
                 }
             },
             "required": [
                 "enabled_states"
             ]
+        },
+        "2369685306": {
+            "title": "Menu Category",
+            "type": "object",
+            "properties": {
+                "category": {
+                    "title": "CreativeItemCategory",
+                    "type": "string",
+                    "enum": [
+                        "construction",
+                        "nature",
+                        "equipment",
+                        "items",
+                        "none"
+                    ]
+                },
+                "group": {
+                    "type": "string"
+                },
+                "is_hidden_in_commands": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "category"
+            ]
+        },
+        "2735968029": {
+            "title": "Tags",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "pattern": "^(?:.)+:(?:.)+$",
+                "x-regex-flags": "ECMAScript,icase"
+            }
+        },
+        "2879220220": {
+            "title": "Display Name",
+            "type": "string",
+            "maxLength": 256
         },
         "3142471136": {
             "title": "Placement Position",
@@ -57,12 +126,31 @@
                 "enabled_states": {
                     "type": "array",
                     "items": {
-                        "type": "string"
-                    }
+                        "type": "string",
+                        "pattern": "^(minecraft:block_face|minecraft:vertical_half)$"
+                    },
+                    "minItems": 1,
+                    "maxItems": 2
                 }
             },
             "required": [
                 "enabled_states"
+            ]
+        },
+        "3404364787": {
+            "title": "Permutation",
+            "type": "object",
+            "properties": {
+                "components": {
+                    "$ref": "#/definitions/471923105"
+                },
+                "condition": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "components",
+                "condition"
             ]
         },
         "3463543465": {
@@ -76,6 +164,11 @@
                     "$ref": "#/definitions/3142471136"
                 }
             }
+        },
+        "3655705218": {
+            "title": "Light Emission",
+            "type": "integer",
+            "maximum": 15
         },
         "3925154510": {
             "title": "States",
@@ -101,6 +194,9 @@
                 "identifier": {
                     "type": "string"
                 },
+                "menu_category": {
+                    "$ref": "#/definitions/2369685306"
+                },
                 "states": {
                     "$ref": "#/definitions/3925154510"
                 },
@@ -116,8 +212,17 @@
     "title": "BlockDefinitionDocument",
     "type": "object",
     "properties": {
+        "components": {
+            "$ref": "#/definitions/471923105"
+        },
         "description": {
             "$ref": "#/definitions/3993091038"
+        },
+        "permutations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/3404364787"
+            }
         }
     },
     "required": [

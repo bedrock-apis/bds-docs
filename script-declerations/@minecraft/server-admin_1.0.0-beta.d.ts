@@ -7,7 +7,7 @@ export interface TransferPlayerNetherNetOptions { netherNetId: string};
 
 // Classes - 6
 export class AdminBeforeEvents { public readonly asyncPlayerJoin: AsyncPlayerJoinBeforeEventSignal; private constructor();};
-export class AsyncPlayerJoinBeforeEvent { public readonly name: string; public readonly persistentId: string; public disconnect(reason?: string): void; public isValid(): boolean; private constructor();};
+export class AsyncPlayerJoinBeforeEvent { public readonly name: string; public readonly persistentId: string; public allowJoin(): void; public disallowJoin(reason?: string): void; public disconnect(reason?: string): void; public isValid(): boolean; private constructor();};
 export class AsyncPlayerJoinBeforeEventSignal { public subscribe(callback: (arg0: AsyncPlayerJoinBeforeEvent)=>Promise<void>): (arg0: AsyncPlayerJoinBeforeEvent)=>Promise<void>; public unsubscribe(callback: (arg0: AsyncPlayerJoinBeforeEvent)=>Promise<void>): boolean; private constructor();};
 export class SecretString { public constructor(value: string);};
 export class ServerSecrets { public readonly names: string[]; public get(name: string): (SecretString | undefined); private constructor();};

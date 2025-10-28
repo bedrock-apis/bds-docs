@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3209403096",
     "x-format-version": "1.21.90",
-    "x-minecraft-version": "1.21.111",
+    "x-minecraft-version": "1.21.120",
     "definitions": {
         "34598326": {
             "title": "minecraft:storage_weight_limit",
@@ -37,6 +37,9 @@
             "title": "minecraft:use_modifiers",
             "type": "object",
             "properties": {
+                "emit_vibrations": {
+                    "type": "boolean"
+                },
                 "movement_modifier": {
                     "type": "number",
                     "minimum": 0,
@@ -787,7 +790,8 @@
             "type": "object",
             "properties": {
                 "slot": {
-                    "type": "string"
+                    "type": "string",
+                    "pattern": "none|all|g_armor|armor_head|armor_torso|armor_feet|armor_legs|sword|bow|spear|crossbow|g_tool|hoe|shears|flintsteel|shield|g_digging|axe|pickaxe|shovel|fishing_rod|carrot_stick|elytra|cosmetic_head"
                 },
                 "value": {
                     "type": "integer",
@@ -817,19 +821,12 @@
         },
         "1326498368": {
             "title": "minecraft:fire_resistant",
-            "oneOf": [
-                {
+            "type": "object",
+            "properties": {
+                "value": {
                     "type": "boolean"
-                },
-                {
-                    "type": "object",
-                    "properties": {
-                        "value": {
-                            "type": "boolean"
-                        }
-                    }
                 }
-            ]
+            }
         },
         "1372809227": {
             "title": "minecraft:icon v1.21.80",
@@ -1756,6 +1753,16 @@
                 }
             }
         },
+        "3168878935": {
+            "title": "minecraft:swing_duration",
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "number",
+                    "minimum": 0
+                }
+            }
+        },
         "3173009623": {
             "title": "minecraft:damage",
             "oneOf": [
@@ -1907,7 +1914,8 @@
                 "group": {
                     "type": "string",
                     "maxLength": 256,
-                    "pattern": "^(?:.)+:(?:.)+$"
+                    "pattern": "^(?:.)+:(?:.)+$",
+                    "x-regex-flags": "ECMAScript,icase"
                 },
                 "is_hidden_in_commands": {
                     "type": "boolean"
@@ -2115,6 +2123,9 @@
                 "minecraft:storage_weight_modifier": {
                     "$ref": "#/definitions/842194090"
                 },
+                "minecraft:swing_duration": {
+                    "$ref": "#/definitions/3168878935"
+                },
                 "minecraft:tags": {
                     "$ref": "#/definitions/3168558347"
                 },
@@ -2222,7 +2233,8 @@
             "type": "array",
             "items": {
                 "type": "string",
-                "pattern": "^(?:(?!^(minecraft):).)+:(?:.)+$"
+                "pattern": "^(?:(?!^(minecraft):).)+:(?:.)+$",
+                "x-regex-flags": "ECMAScript,icase"
             }
         }
     },

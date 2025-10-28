@@ -2094,6 +2094,211 @@
         {
             "base_types": [],
             "constants": [],
+            "functions": [
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "namespacedName",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "options",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PersistenceGroupCreationOptions"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "createGroup",
+                    "return_type": {
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "PersistenceGroup"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "namespacedName",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "options",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PersistenceGroupCreationOptions"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "deleteGroup",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "disposeAllGroups",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "options",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PersistenceQueryGroupOptions"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "fetchGroups",
+                    "return_type": {
+                        "element_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "PersistenceGroup"
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "array"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "namespacedName",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "options",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PersistenceGroupCreationOptions"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getGroup",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "PersistenceGroup"
+                        }
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "namespacedName",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "options",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PersistenceGroupCreationOptions"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getOrCreateGroup",
+                    "return_type": {
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "PersistenceGroup"
+                    }
+                }
+            ],
+            "name": "InternalPersistenceManager",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "InternalPersistenceManager"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
             "functions": [],
             "name": "InternalPlayerServiceContext",
             "properties": [
@@ -2150,6 +2355,36 @@
                     ],
                     "is_baked": false,
                     "is_read_only": true,
+                    "name": "internalPersistenceManager",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InternalPersistenceManager"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "jigsawService",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "JigsawService"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
                     "name": "realmsService",
                     "type": {
                         "is_bind_type": true,
@@ -2187,12 +2422,344 @@
                     "arguments": [
                         {
                             "details": null,
+                            "name": "registryName",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "startingPool",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "startTarget",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "seed",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.4.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        },
+                        {
+                            "details": {
+                                "max_value": 2147483647,
+                                "min_value": -2147483648
+                            },
+                            "name": "depth",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "int32",
+                                "valid_range": {
+                                    "max": 2147483647,
+                                    "min": -2147483648
+                                }
+                            }
+                        },
+                        {
+                            "details": {
+                                "max_value": 2147483647,
+                                "min_value": -2147483648
+                            },
+                            "name": "maxHorizontalDistanceFromCenter",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "int32",
+                                "valid_range": {
+                                    "max": 2147483647,
+                                    "min": -2147483648
+                                }
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "validateRegistry",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "boolean"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "clipboardItem",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server-editor-bindings",
+                                    "uuid": "8518d9c7-a1f5-4bf3-acc7-78e87df595fc",
+                                    "version": "0.1.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "ClipboardItem"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "generateJigsaw",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "promise",
+                        "promise_type": {
+                            "element_type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "EditorJigsawSection"
+                            },
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "array"
+                        }
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getEmptyRegistryFiles",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "key_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "string"
+                        },
+                        "name": "map",
+                        "value_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "string"
+                        }
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getExportLocation",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "registryName",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getRegistryData",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "key_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "string"
+                        },
+                        "name": "map",
+                        "value_type": {
+                            "element_type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "EditorRegistryFile"
+                            },
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "array"
+                        }
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getRegistryList",
+                    "return_type": {
+                        "element_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "string"
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "array"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "registryName",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "processorData",
+                            "type": {
+                                "element_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "EditorRegistryFile"
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "array"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "structureData",
+                            "type": {
+                                "element_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "EditorRegistryFile"
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "array"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "structureSetData",
+                            "type": {
+                                "element_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "EditorRegistryFile"
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "array"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "templatePoolData",
+                            "type": {
+                                "element_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "EditorRegistryFile"
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "array"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "setRegistryData",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "promise",
+                        "promise_type": {
+                            "element_type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            },
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "array"
+                        }
+                    }
+                }
+            ],
+            "name": "JigsawService",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "JigsawService"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [
+                {
+                    "arguments": [
+                        {
+                            "details": null,
                             "name": "player",
                             "type": {
                                 "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.3.0-internal"
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.4.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -2248,9 +2815,9 @@
                             "name": "player",
                             "type": {
                                 "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.3.0-internal"
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.4.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -2410,6 +2977,337 @@
             "constants": [],
             "functions": [
                 {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "itemName",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "defaultJsonValue",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": false,
+                                    "is_errorable": false,
+                                    "name": "string"
+                                }
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "createItem",
+                    "return_type": {
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "PersistenceGroupItem"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "itemName",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "deleteItem",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "dispose",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "boolean"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "disposeAllGroupItems",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "key",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "disposeGroupItem",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "boolean"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "itemName",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "fetchItem",
+                    "return_type": {
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "PersistenceGroupItem"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "itemName",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "defaultJsonValue",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": false,
+                                    "is_errorable": false,
+                                    "name": "string"
+                                }
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getOrCreateItem",
+                    "return_type": {
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "PersistenceGroupItem"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "listItems",
+                    "return_type": {
+                        "element_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "string"
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "array"
+                    }
+                }
+            ],
+            "name": "PersistenceGroup",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PersistenceGroup"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "commit",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getAsJSON",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "string"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getKey",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "string"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getValue",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "string"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "value",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "setValue",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                }
+            ],
+            "name": "PersistenceGroupItem",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PersistenceGroupItem"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [
+                {
                     "arguments": [],
                     "call_privilege": [
                         {
@@ -2432,9 +3330,9 @@
                             "name": "location",
                             "type": {
                                 "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.3.0-internal"
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.4.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -2446,9 +3344,9 @@
                             "name": "direction",
                             "type": {
                                 "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.3.0-internal"
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.4.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -2466,9 +3364,9 @@
                                 "name": "optional",
                                 "optional_type": {
                                     "from_module": {
-                                        "name": "@minecraft/server",
-                                        "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                        "version": "2.3.0-internal"
+                                        "name": "@minecraft/server-bindings",
+                                        "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                        "version": "2.4.0-internal"
                                     },
                                     "is_bind_type": true,
                                     "is_errorable": false,
@@ -2491,9 +3389,9 @@
                         "name": "optional",
                         "optional_type": {
                             "from_module": {
-                                "name": "@minecraft/server",
-                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                "version": "2.3.0-internal"
+                                "name": "@minecraft/server-bindings",
+                                "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                "version": "2.4.0-internal"
                             },
                             "is_bind_type": true,
                             "is_errorable": false,
@@ -2508,9 +3406,9 @@
                             "name": "location",
                             "type": {
                                 "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.3.0-internal"
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.4.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -2532,9 +3430,9 @@
                         "name": "optional",
                         "optional_type": {
                             "from_module": {
-                                "name": "@minecraft/server",
-                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                "version": "2.3.0-internal"
+                                "name": "@minecraft/server-bindings",
+                                "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                "version": "2.4.0-internal"
                             },
                             "is_bind_type": true,
                             "is_errorable": false,
@@ -2549,9 +3447,9 @@
                             "name": "location",
                             "type": {
                                 "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.3.0-internal"
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.4.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -2569,9 +3467,9 @@
                     "name": "getBlockMapColor",
                     "return_type": {
                         "from_module": {
-                            "name": "@minecraft/server",
-                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                            "version": "2.3.0-internal"
+                            "name": "@minecraft/server-bindings",
+                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                            "version": "2.4.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": true,
@@ -2585,9 +3483,9 @@
                             "name": "location",
                             "type": {
                                 "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.3.0-internal"
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.4.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -2605,9 +3503,9 @@
                     "name": "getBlockPermutation",
                     "return_type": {
                         "from_module": {
-                            "name": "@minecraft/server",
-                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                            "version": "2.3.0-internal"
+                            "name": "@minecraft/server-bindings",
+                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                            "version": "2.4.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": true,
@@ -2621,9 +3519,9 @@
                             "name": "location",
                             "type": {
                                 "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.3.0-internal"
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.4.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -2657,9 +3555,9 @@
                     "name": "getBounds",
                     "return_type": {
                         "from_module": {
-                            "name": "@minecraft/server",
-                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                            "version": "2.3.0-internal"
+                            "name": "@minecraft/server-bindings",
+                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                            "version": "2.4.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": true,
@@ -2673,9 +3571,9 @@
                             "name": "location",
                             "type": {
                                 "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.3.0-internal"
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.4.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -2704,9 +3602,9 @@
                             "name": "boundingBox",
                             "type": {
                                 "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.3.0-internal"
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.4.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -2751,9 +3649,9 @@
                             "name": "location",
                             "type": {
                                 "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.3.0-internal"
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.4.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -2782,9 +3680,9 @@
                             "name": "location",
                             "type": {
                                 "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.3.0-internal"
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.4.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -2813,9 +3711,9 @@
                             "name": "location",
                             "type": {
                                 "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.3.0-internal"
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.4.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -2844,9 +3742,9 @@
                             "name": "location",
                             "type": {
                                 "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.3.0-internal"
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.4.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -2892,9 +3790,9 @@
                                     "argument_types": [
                                         {
                                             "from_module": {
-                                                "name": "@minecraft/server",
-                                                "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                                "version": "2.3.0-internal"
+                                                "name": "@minecraft/server-bindings",
+                                                "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                                "version": "2.4.0-internal"
                                             },
                                             "is_bind_type": true,
                                             "is_errorable": false,
@@ -3039,9 +3937,9 @@
                             "name": "center",
                             "type": {
                                 "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.3.0-internal"
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.4.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -3075,9 +3973,9 @@
                             "name": "location",
                             "type": {
                                 "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.3.0-internal"
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.4.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -3094,9 +3992,9 @@
                                 "variant_types": [
                                     {
                                         "from_module": {
-                                            "name": "@minecraft/server",
-                                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                            "version": "2.3.0-internal"
+                                            "name": "@minecraft/server-bindings",
+                                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                            "version": "2.4.0-internal"
                                         },
                                         "is_bind_type": true,
                                         "is_errorable": false,
@@ -3132,9 +4030,9 @@
                             "name": "location",
                             "type": {
                                 "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.3.0-internal"
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.4.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -3177,9 +4075,9 @@
                                 "variant_types": [
                                     {
                                         "from_module": {
-                                            "name": "@minecraft/server",
-                                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                            "version": "2.3.0-internal"
+                                            "name": "@minecraft/server-bindings",
+                                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                            "version": "2.4.0-internal"
                                         },
                                         "is_bind_type": true,
                                         "is_errorable": false,
@@ -3198,9 +4096,9 @@
                             "name": "location",
                             "type": {
                                 "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.3.0-internal"
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.4.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -3240,9 +4138,9 @@
                         "error_types": [
                             {
                                 "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.3.0-internal"
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.4.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -3265,9 +4163,9 @@
                             },
                             {
                                 "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.3.0-internal"
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.4.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -3275,9 +4173,9 @@
                             }
                         ],
                         "from_module": {
-                            "name": "@minecraft/server",
-                            "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                            "version": "2.3.0-internal"
+                            "name": "@minecraft/server-bindings",
+                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                            "version": "2.4.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": true,
@@ -3312,9 +4210,9 @@
                             "name": "boundingBox",
                             "type": {
                                 "from_module": {
-                                    "name": "@minecraft/server",
-                                    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-                                    "version": "2.3.0-internal"
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.4.0-internal"
                                 },
                                 "is_bind_type": true,
                                 "is_errorable": false,
@@ -3833,6 +4731,131 @@
                 {
                     "is_read_only": true,
                     "is_static": true,
+                    "name": "Processor",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "JigsawJsonType"
+                    },
+                    "value": 0
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Structure",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "JigsawJsonType"
+                    },
+                    "value": 1
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "StructureSet",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "JigsawJsonType"
+                    },
+                    "value": 2
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "TemplatePool",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "JigsawJsonType"
+                    },
+                    "value": 3
+                }
+            ],
+            "name": "JigsawJsonType"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Local",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PersistenceGroupType"
+                    },
+                    "value": 0
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Shared",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PersistenceGroupType"
+                    },
+                    "value": 2
+                }
+            ],
+            "name": "PersistenceGroupType"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "ClientGlobal",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PersistenceScope"
+                    },
+                    "value": 1
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "ClientProject",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PersistenceScope"
+                    },
+                    "value": 0
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "ServerGlobal",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PersistenceScope"
+                    },
+                    "value": 3
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "ServerProject",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PersistenceScope"
+                    },
+                    "value": 2
+                }
+            ],
+            "name": "PersistenceScope"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
                     "name": "Loaded",
                     "type": {
                         "is_bind_type": true,
@@ -4023,6 +5046,72 @@
         },
         {
             "base_types": [],
+            "name": "EditorJigsawSection",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "bounds",
+                    "type": {
+                        "from_module": {
+                            "name": "@minecraft/server-bindings",
+                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                            "version": "2.4.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "BlockBoundingBox"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "offset",
+                    "type": {
+                        "from_module": {
+                            "name": "@minecraft/server-bindings",
+                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                            "version": "2.4.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "rotation",
+                    "type": {
+                        "from_module": {
+                            "name": "@minecraft/server-bindings",
+                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                            "version": "2.4.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "StructureRotation"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "structureId",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "EditorJigsawSection"
+            }
+        },
+        {
+            "base_types": [],
             "name": "EditorRealmsWorld",
             "properties": [
                 {
@@ -4089,6 +5178,37 @@
         },
         {
             "base_types": [],
+            "name": "EditorRegistryFile",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "fileJson",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "fileName",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "EditorRegistryFile"
+            }
+        },
+        {
+            "base_types": [],
             "name": "InputBindingInfo",
             "properties": [
                 {
@@ -4151,6 +5271,136 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "InputBindingInfo"
+            }
+        },
+        {
+            "base_types": [],
+            "name": "PersistenceGroupCreationOptions",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "groupType",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "PersistenceGroupType"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "scope",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PersistenceScope"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "version",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "int32",
+                            "valid_range": {
+                                "max": 2147483647,
+                                "min": -2147483648
+                            }
+                        }
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PersistenceGroupCreationOptions"
+            }
+        },
+        {
+            "base_types": [],
+            "name": "PersistenceQueryGroupOptions",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "namespace",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "string"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "namespacedName",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "string"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "scope",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "PersistenceScope"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "version",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "int32",
+                            "valid_range": {
+                                "max": 2147483647,
+                                "min": -2147483648
+                            }
+                        }
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PersistenceQueryGroupOptions"
             }
         },
         {
@@ -4239,10 +5489,10 @@
             "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
             "versions": [
                 {
-                    "version": "2.3.0-beta"
+                    "version": "2.4.0-beta"
                 },
                 {
-                    "version": "2.3.0-internal"
+                    "version": "2.4.0-internal"
                 }
             ]
         }
