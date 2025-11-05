@@ -1,1 +1,1 @@
-Deno.env.get(`BRANCH_TO_UPDATE`),Deno.env.get(`ENGINE_VERSION`);const e=-1;async function t(){return console.log(Deno.env.get(`BRANCH_TO_UPDATE`)),0}t().catch(t=>(console.error(t),t.CODE??e)).then(Deno.exit);
+const e=Deno.env.get(`BRANCH_TO_UPDATE`)??null,t=Deno.env.get(`ENGINE_VERSION`)??null,n=-1;async function r(){return console.log(e,t),0}r().catch(e=>(console.error(e),e.CODE??n)).then(Deno.exit);

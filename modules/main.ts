@@ -1,9 +1,9 @@
-import { UNKNOWN_ERROR_CODE } from "./constants";
+import { BRANCH, UNKNOWN_ERROR_CODE, VERSION } from "./constants";
 
 
 // Main entry point
 async function main(): Promise<number>{
-    console.log(Deno.env.get("BRANCH_TO_UPDATE"));
+    console.log(BRANCH, VERSION);
     return 0;
 }
 
