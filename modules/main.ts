@@ -3,7 +3,7 @@ import { UNKNOWN_ERROR_CODE } from "./constants";
 
 // Main entry point
 async function main(): Promise<number>{
-    Deno.env.get("BRANCH_TO_UPDATE");
+    console.log(Deno.env.get("BRANCH_TO_UPDATE"));
     return 0;
 }
 
