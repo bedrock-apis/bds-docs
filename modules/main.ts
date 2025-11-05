@@ -2,6 +2,7 @@ import { BRANCH_TO_UPDATE, DumperError, ErrorCodes, INSTALLATION_FOLDER, UNKNOWN
 import {Installation} from "@bedrock-apis/bds-utils/install";
 import {getLatestDownloadLink} from "@bedrock-apis/bds-utils/links";
 import { platform } from "node:process";
+import runnable from "./dump-metadata";
 
 // Main entry point
 async function main(): Promise<number>{
@@ -20,23 +21,12 @@ async function main(): Promise<number>{
     console.info("Installation started");
     await installation.installFromURL(link);
     console.info("Installed")
-    const process = await installation.runWithTestConfig({
-        generate_documentation: true,
-        generate_api_metadata: true,
-    }, []);
-    console.log("Process started. . .");
-
-    setTimeout(()=>process.stop(true, 5000), 5000);
-    console.log("Waiting for process. . .");
-    const result = await process.wait().catch(_=>null);
-    if(result === null)
-        throw new DumperError(ErrorCodes.BedrockServerProcessCriticalExit, `BDS critical fail . . .`);
-
-    if(result !== 0)
-        throw new DumperError(ErrorCodes.BedrockServerProcessExitedWithErrorCode, `BDS run failed with exit code: ${result}`);
-
-    console.log("End . . .");
-    console.log(Array.fromAsync(Deno.readDir(".")));
+    
+    let failed = await runnable(installation); 
+    if(failed)
+        throw new DumperError(ErrorCodes.SubModuleFailed,"Submodule failed with error code: " + failed);
+    
+    console.log(await Array.fromAsync(Deno.readDir(".")));
     return 0;
 }
 

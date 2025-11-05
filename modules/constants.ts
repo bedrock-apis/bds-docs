@@ -21,4 +21,6 @@ export enum ErrorCodes {
 
     BedrockServerProcessCriticalExit = 0x11,
     BedrockServerProcessExitedWithErrorCode = 0x12,
+
+    SubModuleFailed = 0x20,
 }
