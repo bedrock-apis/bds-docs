@@ -13,6 +13,7 @@ export default class Metadata {
         const process = await installation.runWithTestConfig({
             generate_all: true,
         }, null);
+        process.enabledOutputRedirection();
         process.stop(true, BDS_PROCESS_MAX_LIFE_TIME); //15s should more more than good
         const result = await process.wait().catch(_ => (console.error(_), null));
         if (result === null) return -1;
