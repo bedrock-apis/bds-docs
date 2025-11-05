@@ -1,1 +1,1 @@
-await Promise.resolve(0),await Promise.resolve(`Not the same`),console.log(`Branch to update`,Deno.env.get(`BRANCH_TO_UPDATE`));
+Deno.env.get(`BRANCH_TO_UPDATE`),Deno.env.get(`ENGINE_VERSION`);const e=-1;async function t(){return Deno.env.get(`BRANCH_TO_UPDATE`),0}t().catch(t=>(console.error(t),t.CODE??e)).then(Deno.exit);
