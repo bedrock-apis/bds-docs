@@ -23,7 +23,7 @@ export default class Metadata {
     public static async CopyDocsTask(source: string, destination: string): Promise<number>{
         let i = 0;
         for await (const file of readDirRecursive(source)){
-            console.log(++i,file);
+            console.info(++i,file);
         }
         return 0;
     }

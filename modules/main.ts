@@ -2,7 +2,6 @@ import { BRANCH_TO_UPDATE, DumperError, ErrorCodes, INSTALLATION_FOLDER, UNKNOWN
 import {Installation} from "@bedrock-apis/bds-utils/install";
 import {getLatestDownloadLink} from "@bedrock-apis/bds-utils/links";
 import { platform } from "node:process";
-import runnable from "./dump-metadata";
 import Metadata from "./dump-metadata";
 
 // Main entry point
@@ -28,7 +27,6 @@ async function main(): Promise<number>{
         throw new DumperError(ErrorCodes.SubModuleFailed,"Submodule failed with error code: " + failed);
     
     const values = await Promise.allSettled(Metadata.GetTasks(installation));
-
     return 0;
 }
 
