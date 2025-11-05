@@ -10,8 +10,7 @@ export default class Metadata {
     public static async Init(installation: Installation): Promise<number> {
         await Deno.remove(installation.worlds.directory, { recursive: true }).catch(_=>null);
         const process = await installation.runWithTestConfig({
-            generate_api_metadata: true,
-            generate_documentation: true,
+            generate_all: true,
         }, null);
         process.stop(true, BDS_PROCESS_MAX_LIFE_TIME); //15s should more more than good
         const result = await process.wait().catch(_ => (console.error(_), null));
@@ -22,8 +21,9 @@ export default class Metadata {
         yield this.CopyDocsTask(join(installation.directory, BDS_DOCS_FOLDER_NAME), OUTPUT_FOLDER);
     }
     public static async CopyDocsTask(source: string, destination: string): Promise<number>{
+        let i = 0;
         for await (const file of readDirRecursive(source)){
-            console.log(file);
+            console.log(++i,file);
         }
         return 0;
     }

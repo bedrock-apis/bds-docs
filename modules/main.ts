@@ -29,8 +29,6 @@ async function main(): Promise<number>{
     
     const values = await Promise.allSettled(Metadata.GetTasks(installation));
 
-    console.log(values);
-    console.log(await Array.fromAsync(Deno.readDir(".")));
     return 0;
 }
 
