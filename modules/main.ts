@@ -3,6 +3,7 @@ import {Installation} from "@bedrock-apis/bds-utils/install";
 import {getLatestDownloadLink} from "@bedrock-apis/bds-utils/links";
 import { platform } from "node:process";
 import runnable from "./dump-metadata";
+import Metadata from "./dump-metadata";
 
 // Main entry point
 async function main(): Promise<number>{
@@ -22,10 +23,13 @@ async function main(): Promise<number>{
     await installation.installFromURL(link);
     console.info("Installed")
     
-    let failed = await runnable(installation); 
+    let failed = await Metadata.Init(installation); 
     if(failed)
         throw new DumperError(ErrorCodes.SubModuleFailed,"Submodule failed with error code: " + failed);
     
+    const values = await Promise.allSettled(Metadata.GetTasks(installation));
+
+    console.log(values);
     console.log(await Array.fromAsync(Deno.readDir(".")));
     return 0;
 }
