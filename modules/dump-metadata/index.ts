@@ -8,7 +8,7 @@ const OUTPUT_FOLDER = "metadata";
 export default class Metadata {
     public static DESCRIPTION = `METADATA DESCRIPTION`;
     public static async Init(installation: Installation): Promise<number> {
-        await Deno.remove(installation.worlds.directory, { recursive: true });
+        await Deno.remove(installation.worlds.directory, { recursive: true }).catch(_=>null);
         const process = await installation.runWithTestConfig({
             generate_api_metadata: true,
             generate_documentation: true,
