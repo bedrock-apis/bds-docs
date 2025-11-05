@@ -14,16 +14,20 @@ async function main(): Promise<number>{
     });
 
     if(!link) throw new DumperError(ErrorCodes.UnavailableInstallationLink, `Link not available branch:${BRANCH_TO_UPDATE} platform:${platform}`);
-
+    console.info("Link found: " + link);
 
     const installation = new Installation(INSTALLATION_FOLDER);
+    console.info("Installation started");
     await installation.installFromURL(link);
+    console.info("Installed")
     const process = await installation.runWithTestConfig({
         generate_documentation: true,
         generate_api_metadata: true,
     }, []);
+    console.log("Process started. . .");
 
-
+    setTimeout(()=>process.stop(true, 5000), 5000);
+    console.log("Waiting for process. . .");
     const result = await process.wait().catch(_=>null);
     if(result === null)
         throw new DumperError(ErrorCodes.BedrockServerProcessCriticalExit, `BDS critical fail . . .`);
@@ -31,6 +35,7 @@ async function main(): Promise<number>{
     if(result !== 0)
         throw new DumperError(ErrorCodes.BedrockServerProcessExitedWithErrorCode, `BDS run failed with exit code: ${result}`);
 
+    console.log("End . . .");
     console.log(Array.fromAsync(Deno.readDir(".")));
     return 0;
 }
