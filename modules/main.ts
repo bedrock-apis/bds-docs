@@ -24,9 +24,9 @@ async function main(): Promise<number>{
     
     let failed = await Metadata.Init(installation); 
     if(failed)
-        throw new DumperError(ErrorCodes.SubModuleFailed,"Submodule failed with error code: " + failed);
+        throw new DumperError(ErrorCodes.SubModuleFailed, "Submodule failed with error code: " + failed);
     
-    const values = await Promise.allSettled(Metadata.GetTasks(installation));
+    for(const promise of Metadata.GetTasks(installation)) await promise;
     return 0;
 }
 

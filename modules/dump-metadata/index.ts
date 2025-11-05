@@ -8,6 +8,7 @@ const OUTPUT_FOLDER = "metadata";
 export default class Metadata {
     public static DESCRIPTION = `METADATA DESCRIPTION`;
     public static async Init(installation: Installation): Promise<number> {
+        console.info("Initializing Metadata");
         await Deno.remove(installation.worlds.directory, { recursive: true }).catch(_=>null);
         const process = await installation.runWithTestConfig({
             generate_all: true,
@@ -15,6 +16,7 @@ export default class Metadata {
         process.stop(true, BDS_PROCESS_MAX_LIFE_TIME); //15s should more more than good
         const result = await process.wait().catch(_ => (console.error(_), null));
         if (result === null) return -1;
+        console.info("Metadata initialized");
         return result;
     }
     public static * GetTasks(installation: Installation): Generator<Promise<number>>{
