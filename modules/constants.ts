@@ -1,7 +1,7 @@
 
+export const INSTALLATION_FOLDER = "__installation__";
 export const PORT_NUMBER = 29132;
-export const BRANCH: string | null = Deno.env.get("BRANCH_TO_UPDATE")??null;
-export const VERSION: string | null = Deno.env.get("ENGINE_VERSION")??null;
+export const BRANCH_TO_UPDATE: "stable" | "preview" | `${string}` | null = Deno.env.get("BRANCH_TO_UPDATE")??null;
 
 // Error Codes
 export const SUCCESS_CODE = 0;
@@ -13,4 +13,12 @@ export class DumperError extends Error{
         super(message);
         this.CODE = code;
     }
+}
+
+export enum ErrorCodes {
+    UnsupportedPlatform = 1,
+    UnavailableInstallationLink = 2,
+
+    BedrockServerProcessCriticalExit = 0x11,
+    BedrockServerProcessExitedWithErrorCode = 0x12,
 }
