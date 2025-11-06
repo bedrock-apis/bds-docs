@@ -2,17 +2,29 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1677381825",
     "x-format-version": "1.21.110",
-    "x-minecraft-version": "1.21.130-beta.22",
+    "x-minecraft-version": "1.21.130-beta.26",
     "definitions": {
         "471923105": {
             "title": "Components",
             "type": "object",
             "properties": {
+                "minecraft:destructible_by_explosion": {
+                    "$ref": "#/definitions/1778015353"
+                },
+                "minecraft:destructible_by_mining": {
+                    "$ref": "#/definitions/2144332438"
+                },
                 "minecraft:destruction_particles": {
                     "$ref": "#/definitions/3527967830"
                 },
                 "minecraft:display_name": {
                     "$ref": "#/definitions/2879220220"
+                },
+                "minecraft:flammable": {
+                    "$ref": "#/definitions/2123787678"
+                },
+                "minecraft:geometry": {
+                    "$ref": "#/definitions/1483802163"
                 },
                 "minecraft:light_dampening": {
                     "$ref": "#/definitions/2155690250"
@@ -26,10 +38,32 @@
                 "minecraft:material_instances": {
                     "$ref": "#/definitions/800260518"
                 },
+                "minecraft:redstone_conductivity": {
+                    "$ref": "#/definitions/3212487924"
+                },
+                "minecraft:redstone_producer": {
+                    "$ref": "#/definitions/4203318441"
+                },
+                "minecraft:support": {
+                    "$ref": "#/definitions/2279409622"
+                },
                 "minecraft:tags": {
                     "$ref": "#/definitions/2735968029"
                 }
             }
+        },
+        "691321428": {
+            "title": "Detailed Resistance",
+            "type": "object",
+            "properties": {
+                "explosion_resistance": {
+                    "type": "number",
+                    "minimum": 0
+                }
+            },
+            "required": [
+                "explosion_resistance"
+            ]
         },
         "800260518": {
             "title": "Material Instances Component",
@@ -71,25 +105,31 @@
             "type": "object",
             "properties": {
                 "alpha_masked_tint": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 },
                 "ambient_occlusion": {
                     "type": "number",
+                    "default": 1,
                     "minimum": 0,
                     "maximum": 10
                 },
                 "emissive": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": true
                 },
                 "face_dimming": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": true
                 },
                 "isotropic": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 },
                 "render_method": {
                     "title": "Block Render Layer",
                     "type": "string",
+                    "default": "opaque",
                     "enum": [
                         "double_sided",
                         "blend",
@@ -102,11 +142,13 @@
                     ]
                 },
                 "texture": {
+                    "default": "",
                     "$ref": "#/definitions/3673881199"
                 },
                 "tint_method": {
                     "title": "Tint Method",
                     "type": "string",
+                    "default": "none",
                     "enum": [
                         "none",
                         "default_foliage",
@@ -119,6 +161,95 @@
                 }
             }
         },
+        "1088021931": {
+            "title": "Detailed Geometry",
+            "type": "object",
+            "properties": {
+                "bone_visibility": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/3178719147"
+                    },
+                    "default": {},
+                    "maxProperties": 64
+                },
+                "culling": {
+                    "type": "string",
+                    "default": "",
+                    "maxLength": 256
+                },
+                "culling_layer": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256,
+                    "pattern": "^(?:minecraft:culling_layer.undefined|minecraft:culling_layer.leaves|(?!minecraft:)[a-z0-9].*[a-z0-9])$",
+                    "x-regex-flags": "ECMAScript,icase"
+                },
+                "identifier": {
+                    "type": "string",
+                    "maxLength": 256
+                },
+                "uv_lock": {
+                    "default": false,
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "maxItems": 64
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "identifier"
+            ]
+        },
+        "1483802163": {
+            "title": "Geometry",
+            "oneOf": [
+                {
+                    "type": "string",
+                    "maxLength": 256
+                },
+                {
+                    "$ref": "#/definitions/1088021931",
+                    "x-runtime-constraint-description": "Cannot use bone visibility feature with Vanilla geometries"
+                }
+            ]
+        },
+        "1522107605": {
+            "title": "Detailed Flammable",
+            "type": "object",
+            "properties": {
+                "catch_chance_modifier": {
+                    "type": "integer",
+                    "default": 5
+                },
+                "destroy_chance_modifier": {
+                    "type": "integer",
+                    "default": 20
+                }
+            }
+        },
+        "1531870811": {
+            "title": "Item Descriptor",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
         "1567399336": {
             "title": "Map Color",
             "type": "object",
@@ -129,6 +260,7 @@
                 "tint_method": {
                     "title": "Tint Method",
                     "type": "string",
+                    "default": "none",
                     "enum": [
                         "none",
                         "default_foliage",
@@ -142,6 +274,39 @@
             },
             "required": [
                 "color"
+            ]
+        },
+        "1778015353": {
+            "title": "Destructible By Explosion",
+            "oneOf": [
+                {
+                    "type": "boolean"
+                },
+                {
+                    "$ref": "#/definitions/691321428"
+                }
+            ]
+        },
+        "2123787678": {
+            "title": "Detailed Flammable",
+            "oneOf": [
+                {
+                    "type": "boolean"
+                },
+                {
+                    "$ref": "#/definitions/1522107605"
+                }
+            ]
+        },
+        "2144332438": {
+            "title": "Destructible By Mining",
+            "oneOf": [
+                {
+                    "type": "boolean"
+                },
+                {
+                    "$ref": "#/definitions/3591050949"
+                }
             ]
         },
         "2155690250": {
@@ -172,6 +337,46 @@
             },
             "required": [
                 "enabled_states"
+            ]
+        },
+        "2267778531": {
+            "title": "Molang string",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "expression": {
+                            "type": "string"
+                        },
+                        "version": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "expression",
+                        "version"
+                    ]
+                }
+            ]
+        },
+        "2279409622": {
+            "title": "Support",
+            "type": "object",
+            "properties": {
+                "shape": {
+                    "title": "Support Shape",
+                    "type": "string",
+                    "enum": [
+                        "fence",
+                        "stair"
+                    ]
+                }
+            },
+            "required": [
+                "shape"
             ]
         },
         "2369685306": {
@@ -233,12 +438,42 @@
                 "enabled_states"
             ]
         },
+        "3178719147": {
+            "title": "Molang expression",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/2267778531"
+                },
+                {
+                    "type": "number"
+                }
+            ]
+        },
+        "3212487924": {
+            "title": "Redstone Conductivity",
+            "type": "object",
+            "properties": {
+                "allows_wire_to_step_down": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "redstone_conductor": {
+                    "type": "boolean",
+                    "default": false
+                }
+            }
+        },
         "3404364787": {
             "title": "Permutation",
             "type": "object",
             "properties": {
                 "components": {
-                    "$ref": "#/definitions/471923105"
+                    "propertyNames": {
+                        "type": "string",
+                        "pattern": "^(?!(minecraft:support)$)"
+                    },
+                    "$ref": "#/definitions/471923105",
+                    "x-runtime-constraint-description": "Block needs both a geometry and material instances component."
                 },
                 "condition": {
                     "type": "string"
@@ -246,6 +481,7 @@
                 "mOrderedV1CustomComponents": {
                     "type": "array",
                     "deprecated": true,
+                    "default": [],
                     "items": {
                         "type": "string"
                     }
@@ -261,9 +497,16 @@
             "type": "object",
             "properties": {
                 "minecraft:placement_direction": {
+                    "default": {
+                        "enabled_states": [],
+                        "y_rotation_offset": null
+                    },
                     "$ref": "#/definitions/2208326140"
                 },
                 "minecraft:placement_position": {
+                    "default": {
+                        "enabled_states": []
+                    },
                     "$ref": "#/definitions/3142471136"
                 }
             }
@@ -274,15 +517,18 @@
             "properties": {
                 "particle_count": {
                     "type": "integer",
+                    "default": 100,
                     "minimum": 0,
                     "maximum": 255
                 },
                 "texture": {
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 },
                 "tint_method": {
                     "title": "Tint Method",
                     "type": "string",
+                    "default": "none",
                     "enum": [
                         "none",
                         "default_foliage",
@@ -294,6 +540,26 @@
                     ]
                 }
             }
+        },
+        "3591050949": {
+            "title": "Detailed Mining Speed",
+            "type": "object",
+            "properties": {
+                "item_specific_speeds": {
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "$ref": "#/definitions/4005170816"
+                    }
+                },
+                "seconds_to_destroy": {
+                    "type": "number",
+                    "minimum": 0
+                }
+            },
+            "required": [
+                "seconds_to_destroy"
+            ]
         },
         "3655705218": {
             "title": "Light Emission",
@@ -351,20 +617,99 @@
             "type": "object",
             "properties": {
                 "identifier": {
-                    "type": "string"
+                    "type": "string",
+                    "pattern": "^(?![^:]*\\b[mM][iI][nN][eE][cC][rR][aA][fF][tT]\\b)[^:\\s]+:[^:\\s]+$"
                 },
                 "menu_category": {
                     "$ref": "#/definitions/2369685306"
                 },
                 "states": {
+                    "default": {},
                     "$ref": "#/definitions/3925154510"
                 },
                 "traits": {
+                    "default": {
+                        "minecraft:placement_direction": {
+                            "enabled_states": [],
+                            "y_rotation_offset": null
+                        },
+                        "minecraft:placement_position": {
+                            "enabled_states": []
+                        }
+                    },
                     "$ref": "#/definitions/3463543465"
                 }
             },
             "required": [
                 "identifier"
+            ]
+        },
+        "4005170816": {
+            "title": "Item Specific Speed",
+            "type": "object",
+            "properties": {
+                "destroy_speed": {
+                    "type": "number"
+                },
+                "item": {
+                    "$ref": "#/definitions/1531870811"
+                }
+            },
+            "required": [
+                "destroy_speed",
+                "item"
+            ]
+        },
+        "4203318441": {
+            "title": "Redstone Producer",
+            "type": "object",
+            "properties": {
+                "connected_faces": {
+                    "type": "array",
+                    "default": [
+                        "down",
+                        "up",
+                        "north",
+                        "south",
+                        "west",
+                        "east"
+                    ],
+                    "items": {
+                        "title": "Facing",
+                        "type": "string",
+                        "enum": [
+                            "down",
+                            "up",
+                            "north",
+                            "south",
+                            "west",
+                            "east"
+                        ]
+                    }
+                },
+                "power": {
+                    "type": "integer",
+                    "maximum": 15
+                },
+                "strongly_powered_face": {
+                    "title": "Facing",
+                    "type": "string",
+                    "enum": [
+                        "down",
+                        "up",
+                        "north",
+                        "south",
+                        "west",
+                        "east"
+                    ]
+                },
+                "transform_relative": {
+                    "type": "boolean",
+                    "default": true
+                }
+            },
+            "required": [
+                "power"
             ]
         },
         "4240371320": {
@@ -398,7 +743,8 @@
     "type": "object",
     "properties": {
         "components": {
-            "$ref": "#/definitions/471923105"
+            "$ref": "#/definitions/471923105",
+            "x-runtime-constraint-description": "Block needs both a geometry and material instances component."
         },
         "description": {
             "$ref": "#/definitions/3993091038"
@@ -406,12 +752,14 @@
         "mOrderedV1CustomComponents": {
             "type": "array",
             "deprecated": true,
+            "default": [],
             "items": {
                 "type": "string"
             }
         },
         "permutations": {
             "type": "array",
+            "default": [],
             "items": {
                 "$ref": "#/definitions/3404364787"
             }

@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "772645837",
     "x-format-version": "1.21.0",
-    "x-minecraft-version": "1.21.130-beta.22",
+    "x-minecraft-version": "1.21.130-beta.26",
     "definitions": {
         "2267778531": {
             "title": "Molang string",
@@ -51,16 +51,22 @@
             "maxItems": 2
         },
         "frames_per_second": {
-            "type": "number"
+            "type": "number",
+            "default": 0
         },
         "loop": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
         },
         "max_frame": {
             "$ref": "#/definitions/3178719147"
         },
         "size_UV": {
             "type": "array",
+            "default": [
+                1,
+                1
+            ],
             "items": {
                 "type": "number"
             },
@@ -69,6 +75,10 @@
         },
         "step_UV": {
             "type": "array",
+            "default": [
+                0,
+                0
+            ],
             "items": {
                 "type": "number"
             },
@@ -76,7 +86,8 @@
             "maxItems": 2
         },
         "stretch_to_lifetime": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
         }
     },
     "required": [

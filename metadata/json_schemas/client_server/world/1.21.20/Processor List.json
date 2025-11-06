@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1391327946",
     "x-format-version": "1.21.20",
-    "x-minecraft-version": "1.21.130-beta.22",
+    "x-minecraft-version": "1.21.130-beta.26",
     "definitions": {
         "45584192": {
             "title": "Passthrough",
@@ -323,6 +323,9 @@
                     ]
                 },
                 "input_predicate": {
+                    "default": {
+                        "predicate_type": "minecraft:always_true"
+                    },
                     "oneOf": [
                         {
                             "$ref": "#/definitions/4275912652"
@@ -345,6 +348,9 @@
                     ]
                 },
                 "location_predicate": {
+                    "default": {
+                        "predicate_type": "minecraft:always_true"
+                    },
                     "oneOf": [
                         {
                             "$ref": "#/definitions/4275912652"
@@ -410,7 +416,8 @@
                                         "type": "string"
                                     }
                                 ]
-                            }
+                            },
+                            "default": {}
                         }
                     },
                     "required": [
@@ -521,6 +528,7 @@
                 "axis": {
                     "title": "PositionalBlockRuleAxis",
                     "type": "string",
+                    "default": "y",
                     "enum": [
                         "x",
                         "y",
@@ -529,20 +537,24 @@
                 },
                 "max_chance": {
                     "type": "number",
+                    "default": 0,
                     "minimum": 0,
                     "exclusiveMaximum": 1
                 },
                 "max_dist": {
                     "type": "integer",
+                    "default": 0,
                     "minimum": 0
                 },
                 "min_chance": {
                     "type": "number",
+                    "default": 0,
                     "minimum": 0,
                     "exclusiveMaximum": 1
                 },
                 "min_dist": {
                     "type": "integer",
+                    "default": 0,
                     "minimum": 0
                 },
                 "predicate_type": {

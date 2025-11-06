@@ -2,47 +2,67 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "4227886613",
     "x-format-version": "1.21.120",
-    "x-minecraft-version": "1.21.130-beta.22",
+    "x-minecraft-version": "1.21.130-beta.26",
     "definitions": {
         "792012262": {
             "title": "MobDescriptor",
             "type": "object",
             "properties": {
                 "check_if_outnumbered": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 },
                 "cooldown": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 0
                 },
                 "filters": {
+                    "default": {
+                        "all_of": null,
+                        "all": null,
+                        "OR": null,
+                        "AND": null,
+                        "any_of": null,
+                        "any": null,
+                        "none_of": null,
+                        "NOT": null
+                    },
                     "$ref": "#/definitions/1088251937"
                 },
                 "max_dist": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 16
                 },
                 "max_flee": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 10
                 },
                 "max_height": {
-                    "type": "number"
+                    "type": "number",
+                    "default": -1
                 },
                 "must_see": {
                     "type": "boolean"
                 },
                 "must_see_forget_duration": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 3
                 },
                 "priority": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 0
                 },
                 "reevaluate_description": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 },
                 "sprint_speed_multiplier": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 },
                 "walk_speed_multiplier": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 }
             }
         },

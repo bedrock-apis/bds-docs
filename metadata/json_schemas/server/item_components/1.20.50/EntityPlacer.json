@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "853889472",
     "x-format-version": "1.20.50",
-    "x-minecraft-version": "1.21.130-beta.22",
+    "x-minecraft-version": "1.21.130-beta.26",
     "definitions": {
         "517105782": {
             "title": "compound_proxy",
@@ -27,16 +27,19 @@
             "type": "object",
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 },
                 "states": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "#/definitions/517105782"
-                    }
+                    },
+                    "default": {}
                 },
                 "tags": {
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 }
             }
         },
@@ -63,17 +66,20 @@
     "properties": {
         "dispense_on": {
             "type": "array",
+            "default": [],
             "items": {
                 "$ref": "#/definitions/2794205495"
             }
         },
         "entity": {
+            "default": "",
             "$ref": "#/definitions/1493335182",
             "minLength": 0,
             "pattern": "^(?:\\w+(?:\\.\\w+)*:(?=\\w))?(?:\\w+(?:\\.\\w+)*)(?:<((?:\\w+(?:\\.\\w+)*:(?=\\w))?\\w+(?:\\.\\w+)*)*>)?$"
         },
         "use_on": {
             "type": "array",
+            "default": [],
             "items": {
                 "$ref": "#/definitions/2794205495"
             }

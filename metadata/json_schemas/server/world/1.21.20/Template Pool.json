@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1382973118",
     "x-format-version": "1.21.20",
-    "x-minecraft-version": "1.21.130-beta.22",
+    "x-minecraft-version": "1.21.130-beta.26",
     "definitions": {
         "1323337012": {
             "title": "Reference",
@@ -28,6 +28,7 @@
                 },
                 "weight": {
                     "type": "integer",
+                    "default": 1,
                     "minimum": 1,
                     "maximum": 200
                 }
@@ -83,11 +84,13 @@
                     "$ref": "#/definitions/3609101623"
                 },
                 "processors": {
+                    "default": "",
                     "$ref": "#/definitions/1323337012"
                 },
                 "projection": {
                     "title": "Projection",
                     "type": "string",
+                    "default": "rigid",
                     "enum": [
                         "rigid",
                         "terrain_matching"
@@ -122,6 +125,7 @@
             }
         },
         "fallback": {
+            "default": "minecraft:empty",
             "$ref": "#/definitions/1356053607"
         }
     },

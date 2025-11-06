@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "2499855414",
     "x-format-version": "1.20.50",
-    "x-minecraft-version": "1.21.130-beta.22",
+    "x-minecraft-version": "1.21.130-beta.26",
     "definitions": {
         "517105782": {
             "title": "compound_proxy",
@@ -39,16 +39,19 @@
             "type": "object",
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 },
                 "states": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "#/definitions/517105782"
-                    }
+                    },
+                    "default": {}
                 },
                 "tags": {
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 }
             }
         },
@@ -75,12 +78,14 @@
     "properties": {
         "destroy_speeds": {
             "type": "array",
+            "default": [],
             "items": {
                 "$ref": "#/definitions/1899103179"
             }
         },
         "use_efficiency": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
         }
     }
 }

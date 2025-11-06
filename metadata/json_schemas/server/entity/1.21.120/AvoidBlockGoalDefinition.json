@@ -2,21 +2,33 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3326653763",
     "x-format-version": "1.21.120",
-    "x-minecraft-version": "1.21.130-beta.22",
+    "x-minecraft-version": "1.21.130-beta.26",
     "definitions": {
         "121353999": {
             "title": "ActorDefinitionTrigger",
             "type": "object",
             "properties": {
                 "event": {
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 },
                 "filters": {
+                    "default": {
+                        "all_of": null,
+                        "all": null,
+                        "OR": null,
+                        "AND": null,
+                        "any_of": null,
+                        "any": null,
+                        "none_of": null,
+                        "NOT": null
+                    },
                     "$ref": "#/definitions/1088251937"
                 },
                 "target": {
                     "title": "FilterSubject",
                     "type": "string",
+                    "default": "self",
                     "enum": [
                         "self",
                         "other",
@@ -37,10 +49,12 @@
             "type": "object",
             "properties": {
                 "max": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 },
                 "min": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 }
             }
         },
@@ -184,6 +198,7 @@
         "avoid_block_sound": {
             "title": "LevelSoundEvent",
             "type": "string",
+            "default": "undefined",
             "enum": [
                 "item.use.on",
                 "hit",
@@ -713,11 +728,14 @@
                 "item.spear.attack_miss",
                 "item.wooden_spear.attack_hit",
                 "item.wooden_spear.attack_miss",
+                "imitate.parched",
+                "imitate.camel_husk",
                 "undefined"
             ]
         },
         "control_flags": {
             "type": "array",
+            "default": [],
             "items": {
                 "title": "Goal's control flags",
                 "type": "string",
@@ -730,12 +748,14 @@
         },
         "on_escape": {
             "type": "array",
+            "default": [],
             "items": {
                 "$ref": "#/definitions/121353999"
             }
         },
         "priority": {
             "type": "integer",
+            "default": 0,
             "minimum": 0
         },
         "search_height": {
@@ -759,6 +779,7 @@
         },
         "target_blocks": {
             "type": "array",
+            "default": [],
             "items": {
                 "$ref": "#/definitions/1531870811"
             }

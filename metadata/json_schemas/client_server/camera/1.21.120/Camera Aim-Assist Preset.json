@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3259471955",
     "x-format-version": "1.21.120",
-    "x-minecraft-version": "1.21.130-beta.22",
+    "x-minecraft-version": "1.21.130-beta.26",
     "definitions": {
         "1493335182": {
             "title": "Reference",
@@ -16,14 +16,23 @@
             "title": "CameraAimAssistPresetExclusionDefinition",
             "type": "object",
             "properties": {
+                "block_tags": {
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "blocks": {
                     "type": "array",
+                    "default": [],
                     "items": {
                         "$ref": "#/definitions/1527037515"
                     }
                 },
                 "entities": {
                     "type": "array",
+                    "default": [],
                     "items": {
                         "$ref": "#/definitions/1493335182"
                     }
@@ -38,6 +47,11 @@
                     "$ref": "#/definitions/3674175389"
                 },
                 "exclusion_settings": {
+                    "default": {
+                        "blocks": [],
+                        "entities": [],
+                        "block_tags": []
+                    },
                     "$ref": "#/definitions/1582287622"
                 },
                 "hand_settings": {
@@ -58,10 +72,12 @@
                                 "$ref": "#/definitions/3674175389"
                             }
                         }
-                    }
+                    },
+                    "default": []
                 },
                 "liquid_targeting_list": {
                     "type": "array",
+                    "default": [],
                     "items": {
                         "$ref": "#/definitions/3470474886"
                     }

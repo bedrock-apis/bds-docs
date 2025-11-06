@@ -2,21 +2,33 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3425495100",
     "x-format-version": "1.21.120",
-    "x-minecraft-version": "1.21.130-beta.22",
+    "x-minecraft-version": "1.21.130-beta.26",
     "definitions": {
         "121353999": {
             "title": "ActorDefinitionTrigger",
             "type": "object",
             "properties": {
                 "event": {
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 },
                 "filters": {
+                    "default": {
+                        "all_of": null,
+                        "all": null,
+                        "OR": null,
+                        "AND": null,
+                        "any_of": null,
+                        "any": null,
+                        "none_of": null,
+                        "NOT": null
+                    },
                     "$ref": "#/definitions/1088251937"
                 },
                 "target": {
                     "title": "FilterSubject",
                     "type": "string",
+                    "default": "self",
                     "enum": [
                         "self",
                         "other",
@@ -37,40 +49,60 @@
             "type": "object",
             "properties": {
                 "check_if_outnumbered": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 },
                 "cooldown": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 0
                 },
                 "filters": {
+                    "default": {
+                        "all_of": null,
+                        "all": null,
+                        "OR": null,
+                        "AND": null,
+                        "any_of": null,
+                        "any": null,
+                        "none_of": null,
+                        "NOT": null
+                    },
                     "$ref": "#/definitions/1088251937"
                 },
                 "max_dist": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 16
                 },
                 "max_flee": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 10
                 },
                 "max_height": {
-                    "type": "number"
+                    "type": "number",
+                    "default": -1
                 },
                 "must_see": {
                     "type": "boolean"
                 },
                 "must_see_forget_duration": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 3
                 },
                 "priority": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 0
                 },
                 "reevaluate_description": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 },
                 "sprint_speed_multiplier": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 },
                 "walk_speed_multiplier": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 }
             }
         },
@@ -79,10 +111,12 @@
             "type": "object",
             "properties": {
                 "max": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 },
                 "min": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 }
             }
         },
@@ -226,6 +260,7 @@
         "avoid_mob_sound": {
             "title": "LevelSoundEvent",
             "type": "string",
+            "default": "undefined",
             "enum": [
                 "item.use.on",
                 "hit",
@@ -755,6 +790,8 @@
                 "item.spear.attack_miss",
                 "item.wooden_spear.attack_hit",
                 "item.wooden_spear.attack_miss",
+                "imitate.parched",
+                "imitate.camel_husk",
                 "undefined"
             ]
         },
@@ -768,6 +805,7 @@
         },
         "control_flags": {
             "type": "array",
+            "default": [],
             "items": {
                 "title": "Goal's control flags",
                 "type": "string",
@@ -779,6 +817,7 @@
             }
         },
         "entity_types": {
+            "default": [],
             "$ref": "#/definitions/4227886613"
         },
         "ignore_visibility": {
@@ -794,10 +833,25 @@
             "default": 10
         },
         "on_escape_event": {
+            "default": {
+                "event": "",
+                "target": "self",
+                "filters": {
+                    "all_of": null,
+                    "all": null,
+                    "OR": null,
+                    "AND": null,
+                    "any_of": null,
+                    "any": null,
+                    "none_of": null,
+                    "NOT": null
+                }
+            },
             "$ref": "#/definitions/121353999"
         },
         "priority": {
             "type": "integer",
+            "default": 0,
             "minimum": 0
         },
         "probability_per_strength": {

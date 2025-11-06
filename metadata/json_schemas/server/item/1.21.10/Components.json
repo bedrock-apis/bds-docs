@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1472144296",
     "x-format-version": "1.21.10",
-    "x-minecraft-version": "1.21.130-beta.22",
+    "x-minecraft-version": "1.21.130-beta.26",
     "definitions": {
         "239137998": {
             "title": "minecraft:block_placer",
@@ -13,6 +13,7 @@
                 },
                 "use_on": {
                     "type": "array",
+                    "default": [],
                     "items": {
                         "$ref": "#/definitions/2794205495"
                     }
@@ -27,16 +28,20 @@
             "type": "object",
             "properties": {
                 "can_always_eat": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 },
                 "nutrition": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 0
                 },
                 "saturation_modifier": {
                     "type": "number",
+                    "default": 0.6000000238418579,
                     "minimum": 0
                 },
                 "using_converts_to": {
+                    "default": {},
                     "$ref": "#/definitions/1531870811"
                 }
             }
@@ -80,7 +85,8 @@
             "type": "object",
             "properties": {
                 "minimum_critical_power": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 },
                 "projectile_entity": {
                     "$ref": "#/definitions/1493335182",
@@ -97,11 +103,13 @@
             "type": "object",
             "properties": {
                 "durability": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 0
                 },
                 "particle_type": {
                     "title": "ParticleType",
                     "type": "string",
+                    "default": "none",
                     "enum": [
                         "none",
                         "bubble",
@@ -199,6 +207,7 @@
                 "sound_event": {
                     "title": "LevelSoundEvent",
                     "type": "string",
+                    "default": "undefined",
                     "enum": [
                         "item.use.on",
                         "hit",
@@ -728,6 +737,8 @@
                         "item.spear.attack_miss",
                         "item.wooden_spear.attack_hit",
                         "item.wooden_spear.attack_miss",
+                        "imitate.parched",
+                        "imitate.camel_husk",
                         "undefined"
                     ]
                 }
@@ -739,17 +750,20 @@
             "properties": {
                 "dispense_on": {
                     "type": "array",
+                    "default": [],
                     "items": {
                         "$ref": "#/definitions/2794205495"
                     }
                 },
                 "entity": {
+                    "default": "",
                     "$ref": "#/definitions/1493335182",
                     "minLength": 0,
                     "pattern": "^(?:\\w+(?:\\.\\w+)*:(?=\\w))?(?:\\w+(?:\\.\\w+)*)(?:<((?:\\w+(?:\\.\\w+)*:(?=\\w))?\\w+(?:\\.\\w+)*)*>)?$"
                 },
                 "use_on": {
                     "type": "array",
+                    "default": [],
                     "items": {
                         "$ref": "#/definitions/2794205495"
                     }
@@ -809,7 +823,8 @@
                     "type": "object",
                     "properties": {
                         "value": {
-                            "type": "boolean"
+                            "type": "boolean",
+                            "default": false
                         }
                     }
                 }
@@ -820,10 +835,12 @@
             "type": "object",
             "properties": {
                 "max": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 0
                 },
                 "min": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 0
                 }
             }
         },
@@ -862,7 +879,8 @@
                             "type": "object",
                             "additionalProperties": {
                                 "$ref": "#/definitions/3504177219"
-                            }
+                            },
+                            "default": {}
                         }
                     }
                 }
@@ -874,6 +892,7 @@
             "properties": {
                 "repair_items": {
                     "type": "array",
+                    "default": [],
                     "items": {
                         "$ref": "#/definitions/3256164975"
                     }
@@ -890,7 +909,8 @@
                     "type": "object",
                     "properties": {
                         "value": {
-                            "type": "string"
+                            "type": "string",
+                            "default": ""
                         }
                     }
                 }
@@ -917,7 +937,8 @@
                     "type": "object",
                     "properties": {
                         "value": {
-                            "type": "boolean"
+                            "type": "boolean",
+                            "default": false
                         }
                     }
                 }
@@ -961,6 +982,7 @@
             "properties": {
                 "protection": {
                     "type": "integer",
+                    "default": 0,
                     "minimum": 0
                 },
                 "slot": {
@@ -1029,7 +1051,8 @@
                     "type": "object",
                     "properties": {
                         "value": {
-                            "type": "boolean"
+                            "type": "boolean",
+                            "default": false
                         }
                     }
                 }
@@ -1041,12 +1064,14 @@
             "properties": {
                 "destroy_speeds": {
                     "type": "array",
+                    "default": [],
                     "items": {
                         "$ref": "#/definitions/1899103179"
                     }
                 },
                 "use_efficiency": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 }
             }
         },
@@ -1058,13 +1083,16 @@
                     "$ref": "#/definitions/1531870811"
                 },
                 "search_inventory": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 },
                 "use_in_creative": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 },
                 "use_offhand": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 }
             },
             "required": [
@@ -1076,16 +1104,19 @@
             "type": "object",
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 },
                 "states": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "#/definitions/517105782"
-                    }
+                    },
+                    "default": {}
                 },
                 "tags": {
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 }
             }
         },
@@ -1119,6 +1150,7 @@
                     "properties": {
                         "value": {
                             "type": "integer",
+                            "default": 1,
                             "minimum": 1,
                             "maximum": 64
                         }
@@ -1131,7 +1163,8 @@
             "type": "object",
             "properties": {
                 "value": {
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 }
             }
         },
@@ -1140,14 +1173,17 @@
             "type": "object",
             "properties": {
                 "comparator_signal": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 1
                 },
                 "duration": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 },
                 "sound_event": {
                     "title": "LevelSoundEvent",
                     "type": "string",
+                    "default": "undefined",
                     "enum": [
                         "item.use.on",
                         "hit",
@@ -1677,6 +1713,8 @@
                         "item.spear.attack_miss",
                         "item.wooden_spear.attack_hit",
                         "item.wooden_spear.attack_miss",
+                        "imitate.parched",
+                        "imitate.camel_husk",
                         "undefined"
                     ]
                 }
@@ -1692,7 +1730,8 @@
                     "type": "object",
                     "properties": {
                         "value": {
-                            "type": "boolean"
+                            "type": "boolean",
+                            "default": false
                         }
                     }
                 }
@@ -1704,6 +1743,7 @@
             "properties": {
                 "tags": {
                     "type": "array",
+                    "default": [],
                     "items": {
                         "type": "string"
                     }
@@ -1722,6 +1762,7 @@
                     "properties": {
                         "value": {
                             "type": "integer",
+                            "default": 0,
                             "minimum": 0
                         }
                     }
@@ -1738,7 +1779,8 @@
                     "type": "object",
                     "properties": {
                         "value": {
-                            "type": "boolean"
+                            "type": "boolean",
+                            "default": false
                         }
                     }
                 }
@@ -1780,6 +1822,7 @@
                         "value": {
                             "title": "Animation",
                             "type": "string",
+                            "default": "none",
                             "enum": [
                                 "none",
                                 "eat",
@@ -1816,6 +1859,10 @@
                             }
                         },
                         "repair_amount": {
+                            "default": {
+                                "expression": "",
+                                "version": -1
+                            },
                             "$ref": "#/definitions/3178719147"
                         }
                     },
@@ -1837,6 +1884,7 @@
                     "properties": {
                         "duration": {
                             "type": "number",
+                            "default": 0.05000000074505806,
                             "minimum": 0.05000000074505806
                         }
                     }
@@ -1853,7 +1901,8 @@
                     "type": "object",
                     "properties": {
                         "value": {
-                            "type": "boolean"
+                            "type": "boolean",
+                            "default": false
                         }
                     }
                 }
@@ -1873,6 +1922,10 @@
             "type": "object",
             "properties": {
                 "damage_chance": {
+                    "default": {
+                        "min": 100,
+                        "max": 100
+                    },
                     "$ref": "#/definitions/1398826300",
                     "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
                 },
@@ -1894,22 +1947,28 @@
             "type": "object",
             "properties": {
                 "do_swing_animation": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 },
                 "launch_power_scale": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 },
                 "max_draw_duration": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 },
                 "max_launch_power": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 1
                 },
                 "min_draw_duration": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 },
                 "scale_power_by_draw_duration": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 }
             }
         },
@@ -1919,18 +1978,22 @@
             "properties": {
                 "ammunition": {
                     "type": "array",
+                    "default": [],
                     "items": {
                         "$ref": "#/definitions/2681068491"
                     }
                 },
                 "charge_on_draw": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 },
                 "max_draw_duration": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 },
                 "scale_power_by_draw_duration": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 }
             }
         },
@@ -1944,7 +2007,8 @@
                     "type": "object",
                     "properties": {
                         "value": {
-                            "type": "boolean"
+                            "type": "boolean",
+                            "default": false
                         }
                     }
                 }

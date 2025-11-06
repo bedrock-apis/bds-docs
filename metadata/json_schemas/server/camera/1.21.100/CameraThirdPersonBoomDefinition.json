@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3360816904",
     "x-format-version": "1.21.100",
-    "x-minecraft-version": "1.21.130-beta.22",
+    "x-minecraft-version": "1.21.130-beta.26",
     "definitions": {
         "1347636330": {
             "title": "vec2",
@@ -19,10 +19,12 @@
                     "type": "object",
                     "properties": {
                         "x": {
-                            "type": "number"
+                            "type": "number",
+                            "default": 0
                         },
                         "y": {
-                            "type": "number"
+                            "type": "number",
+                            "default": 0
                         }
                     }
                 }
@@ -35,15 +37,21 @@
         "rotation_space": {
             "title": "rotation_space",
             "type": "string",
+            "default": "local",
             "enum": [
                 "local",
                 "world"
             ]
         },
         "starting_radius": {
-            "type": "number"
+            "type": "number",
+            "default": 0
         },
         "starting_rot": {
+            "default": [
+                0,
+                0
+            ],
             "$ref": "#/definitions/1347636330"
         }
     }

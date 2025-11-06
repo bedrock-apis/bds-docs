@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1007525655",
     "x-format-version": "1.21.20",
-    "x-minecraft-version": "1.21.130-beta.22",
+    "x-minecraft-version": "1.21.130-beta.26",
     "definitions": {
         "169701669": {
             "title": "RandomPoolAlias",
@@ -28,10 +28,12 @@
             "type": "object",
             "properties": {
                 "bottom": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 0
                 },
                 "top": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 0
                 }
             }
         },
@@ -221,6 +223,7 @@
                         },
                         "vertical": {
                             "type": "integer",
+                            "default": 2147483647,
                             "minimum": 1,
                             "maximum": 2147483647
                         }
@@ -415,6 +418,16 @@
     "type": "object",
     "properties": {
         "biome_filters": {
+            "default": {
+                "all_of": null,
+                "all": null,
+                "OR": null,
+                "AND": null,
+                "any_of": null,
+                "any": null,
+                "none_of": null,
+                "NOT": null
+            },
             "$ref": "#/definitions/1088251937"
         },
         "description": {
@@ -433,6 +446,7 @@
         "heightmap_projection": {
             "title": "HeightmapProjection",
             "type": "string",
+            "default": "none",
             "enum": [
                 "world_surface",
                 "ocean_floor",
@@ -442,6 +456,7 @@
         "liquid_settings": {
             "title": "LiquidSettings",
             "type": "string",
+            "default": "apply_waterlogging",
             "enum": [
                 "apply_waterlogging",
                 "ignore_waterlogging"
@@ -453,10 +468,15 @@
             "maximum": 20
         },
         "max_distance_from_center": {
+            "default": {
+                "horizontal": 80,
+                "vertical": 2147483647
+            },
             "$ref": "#/definitions/2580189731"
         },
         "pool_aliases": {
             "type": "array",
+            "default": [],
             "items": {
                 "oneOf": [
                     {
@@ -482,7 +502,8 @@
             ]
         },
         "start_jigsaw_name": {
-            "type": "string"
+            "type": "string",
+            "default": ""
         },
         "start_pool": {
             "$ref": "#/definitions/1356053607"
@@ -507,6 +528,7 @@
         "terrain_adaptation": {
             "title": "TerrainAdaptation",
             "type": "string",
+            "default": "none",
             "enum": [
                 "none",
                 "bury",

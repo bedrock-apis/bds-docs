@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3714031231",
     "x-format-version": "1.21.30",
-    "x-minecraft-version": "1.21.130-beta.22",
+    "x-minecraft-version": "1.21.130-beta.26",
     "definitions": {
         "56017534": {
             "title": "TradeItem",
@@ -10,13 +10,25 @@
             "properties": {
                 "__DEP_fltrs": {
                     "deprecated": true,
+                    "default": {},
                     "$ref": "#/definitions/315535208"
                 },
                 "__DEP_fnctns": {
                     "deprecated": true,
+                    "default": {},
                     "$ref": "#/definitions/315535208"
                 },
                 "filters": {
+                    "default": {
+                        "OR": null,
+                        "all": null,
+                        "all_of": null,
+                        "AND": null,
+                        "any_of": null,
+                        "none_of": null,
+                        "any": null,
+                        "NOT": null
+                    },
                     "$ref": "#/definitions/1088251937"
                 },
                 "functions": {
@@ -29,9 +41,14 @@
                     "$ref": "#/definitions/3470474886"
                 },
                 "price_multiplier": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 },
                 "quantity": {
+                    "default": {
+                        "min": 1,
+                        "max": 1
+                    },
                     "$ref": "#/definitions/2298823339",
                     "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
                 }
@@ -139,10 +156,12 @@
                     "properties": {
                         "max": {
                             "type": "integer",
+                            "default": 1,
                             "minimum": 1
                         },
                         "min": {
                             "type": "integer",
+                            "default": 1,
                             "minimum": 1
                         }
                     }
@@ -155,6 +174,7 @@
             "properties": {
                 "num_to_select": {
                     "type": "integer",
+                    "default": 0,
                     "minimum": 0
                 },
                 "trades": {
@@ -185,13 +205,16 @@
                     "minItems": 1
                 },
                 "max_uses": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 7
                 },
                 "reward_exp": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": true
                 },
                 "trader_exp": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 1
                 },
                 "wants": {
                     "type": "array",
@@ -202,6 +225,7 @@
                 },
                 "weight": {
                     "type": "integer",
+                    "default": 1,
                     "minimum": 1
                 }
             },

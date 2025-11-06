@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3310109924",
     "x-format-version": "1.21.50",
-    "x-minecraft-version": "1.21.130-beta.22",
+    "x-minecraft-version": "1.21.130-beta.26",
     "definitions": {
         "1493335182": {
             "title": "Reference",
@@ -36,6 +36,15 @@
                     "minimum": 0,
                     "maximum": 100
                 },
+                "block_tags": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 100
+                    },
+                    "default": {}
+                },
                 "blocks": {
                     "type": "object",
                     "additionalProperties": {
@@ -50,7 +59,8 @@
                         },
                         "minimum": 0,
                         "maximum": 100
-                    }
+                    },
+                    "default": []
                 },
                 "entities": {
                     "type": "object",
@@ -66,7 +76,8 @@
                         },
                         "minimum": 0,
                         "maximum": 100
-                    }
+                    },
+                    "default": []
                 },
                 "entity_default": {
                     "type": "integer",

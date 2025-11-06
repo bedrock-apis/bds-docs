@@ -9,10 +9,11 @@ export interface ModalFormDataSliderOptions { defaultValue?: number; tooltip?: _
 export interface ModalFormDataTextFieldOptions { defaultValue?: _1e.RawMessage | string; tooltip?: _1e.RawMessage | string};
 export interface ModalFormDataToggleOptions { defaultValue?: boolean; tooltip?: _1e.RawMessage | string};
 
-// Classes - 8
+// Classes - 9
 export class ActionFormData { public body(bodyText: _1e.RawMessage | string): ActionFormData; public button(text: _1e.RawMessage | string, iconPath?: string): ActionFormData; public constructor(); public divider(): ActionFormData; public header(text: _1e.RawMessage | string): ActionFormData; public label(text: _1e.RawMessage | string): ActionFormData; public show(player: _1e.Player): Promise<ActionFormResponse>; public title(titleText: _1e.RawMessage | string): ActionFormData;};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class ActionFormResponse extends FormResponse{ public readonly selection?: number; private constructor();};
+export class DataStore { public getProperty(player: _1e.Player, dataStoreName: string, property: string): (string | undefined); public getPropertyPath(player: _1e.Player, dataStoreName: string, property: string, path: string): (string | undefined); public setClientWritable(player: _1e.Player, dataStoreName: string, property: string, path: string, isWritable?: boolean): void; public setProperty(player: _1e.Player, dataStoreName: string, property: string, data: string): void; public setPropertyPath(player: _1e.Player, dataStoreName: string, property: string, path: string, data: boolean | number | string): void; public subscribe(player: _1e.Player, dataStoreName: string, property: string, onChange: (arg0?: string)=>void): (arg0?: string)=>void; public subscribePath(player: _1e.Player, dataStoreName: string, property: string, path: string, onChange: (arg0?: string)=>void): (arg0?: string)=>void; public unsubscribe(onChange: (arg0?: string)=>void): boolean; private constructor();};
 export class FormResponse { public readonly cancelationReason?: FormCancelationReason; public readonly canceled: boolean; private constructor();};
 export class MessageFormData { public body(bodyText: _1e.RawMessage | string): MessageFormData; public button1(text: _1e.RawMessage | string): MessageFormData; public button2(text: _1e.RawMessage | string): MessageFormData; public constructor(); public show(player: _1e.Player): Promise<MessageFormResponse>; public title(titleText: _1e.RawMessage | string): MessageFormData;};
 //@ts-ignore extending for classes with private constructor is possible with native API
@@ -22,11 +23,13 @@ export class ModalFormData { public constructor(); public divider(): ModalFormDa
 export class ModalFormResponse extends FormResponse{ public readonly formValues?: (boolean | number | string | undefined)[]; private constructor();};
 export class UIManager { public closeAllForms(player: _1e.Player): void; private constructor();};
 
-// Constants & Objects - 1
+// Constants & Objects - 2
 
+export const ddui: DataStore;
 export const uiManager: UIManager;
 
 // Functions - 0
 
-// Errors - 1
+// Errors - 2
 export class FormRejectError extends Error{ public readonly reason: FormRejectReason; private constructor();};
+export class InvalidPathError extends Error{ public readonly path: string; private constructor();};

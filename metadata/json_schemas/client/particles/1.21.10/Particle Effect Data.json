@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3757951932",
     "x-format-version": "1.21.10",
-    "x-minecraft-version": "1.21.130-beta.22",
+    "x-minecraft-version": "1.21.130-beta.26",
     "definitions": {
         "44664202": {
             "title": "emitter_rate_manual",
@@ -21,10 +21,12 @@
             "type": "object",
             "properties": {
                 "coefficient_of_restitution": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 },
                 "collision_drag": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 },
                 "collision_radius": {
                     "type": "number",
@@ -32,13 +34,15 @@
                     "maximum": 0.5
                 },
                 "enabled": {
+                    "default": 1,
                     "$ref": "#/definitions/3178719147"
                 },
                 "events": {
                     "$ref": "#/definitions/2751853296"
                 },
                 "expire_on_contact": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 }
             },
             "required": [
@@ -152,6 +156,11 @@
                 },
                 "offset": {
                     "type": "array",
+                    "default": [
+                        0,
+                        0,
+                        0
+                    ],
                     "items": {
                         "$ref": "#/definitions/3178719147"
                     },
@@ -173,7 +182,8 @@
                     "maxItems": 3
                 },
                 "min_speed_threshold": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 },
                 "mode": {
                     "title": "particle_appearance_billboard direction_settings_mode",
@@ -215,16 +225,22 @@
                     "maxItems": 2
                 },
                 "frames_per_second": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 },
                 "loop": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 },
                 "max_frame": {
                     "$ref": "#/definitions/3178719147"
                 },
                 "size_UV": {
                     "type": "array",
+                    "default": [
+                        1,
+                        1
+                    ],
                     "items": {
                         "type": "number"
                     },
@@ -233,6 +249,10 @@
                 },
                 "step_UV": {
                     "type": "array",
+                    "default": [
+                        0,
+                        0
+                    ],
                     "items": {
                         "type": "number"
                     },
@@ -240,7 +260,8 @@
                     "maxItems": 2
                 },
                 "stretch_to_lifetime": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 }
             },
             "required": [
@@ -253,6 +274,7 @@
             "type": "object",
             "properties": {
                 "active_time": {
+                    "default": 0,
                     "$ref": "#/definitions/3178719147"
                 }
             }
@@ -303,6 +325,11 @@
             "properties": {
                 "direction": {
                     "type": "array",
+                    "default": [
+                        0,
+                        0,
+                        0
+                    ],
                     "items": {
                         "$ref": "#/definitions/3178719147"
                     },
@@ -311,6 +338,11 @@
                 },
                 "offset": {
                     "type": "array",
+                    "default": [
+                        0,
+                        0,
+                        0
+                    ],
                     "items": {
                         "$ref": "#/definitions/3178719147"
                     },
@@ -407,12 +439,19 @@
             "type": "object",
             "properties": {
                 "expression": {
+                    "default": 0,
                     "$ref": "#/definitions/3178719147"
                 },
                 "log": {
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 },
                 "particle_effect": {
+                    "default": {
+                        "effect": "",
+                        "type": null,
+                        "pre_effect_expression": 0
+                    },
                     "$ref": "#/definitions/2245986520"
                 },
                 "randomize": {
@@ -500,6 +539,7 @@
                     "$ref": "#/definitions/2715320761"
                 },
                 "pre_effect_expression": {
+                    "default": 0,
                     "$ref": "#/definitions/3178719147"
                 },
                 "type": {
@@ -523,13 +563,16 @@
             "type": "object",
             "properties": {
                 "creation_event": {
+                    "default": [],
                     "$ref": "#/definitions/771176265"
                 },
                 "expiration_event": {
+                    "default": [],
                     "$ref": "#/definitions/771176265"
                 },
                 "looping_travel_distance_events": {
                     "type": "array",
+                    "default": [],
                     "items": {
                         "$ref": "#/definitions/3907782844"
                     }
@@ -538,13 +581,15 @@
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "#/definitions/771176265"
-                    }
+                    },
+                    "default": {}
                 },
                 "travel_distance_events": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "#/definitions/771176265"
-                    }
+                    },
+                    "default": {}
                 }
             }
         },
@@ -588,6 +633,11 @@
                 },
                 "offset": {
                     "type": "array",
+                    "default": [
+                        0,
+                        0,
+                        0
+                    ],
                     "items": {
                         "$ref": "#/definitions/3178719147"
                     },
@@ -595,7 +645,8 @@
                     "maxItems": 3
                 },
                 "surface_only": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 }
             },
             "required": [
@@ -622,9 +673,11 @@
             "type": "object",
             "properties": {
                 "rotation": {
+                    "default": 0,
                     "$ref": "#/definitions/3178719147"
                 },
                 "rotation_rate": {
+                    "default": 0,
                     "$ref": "#/definitions/3178719147"
                 }
             }
@@ -637,7 +690,8 @@
                     "$ref": "#/definitions/2715320761"
                 },
                 "min_speed": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 2
                 }
             },
             "required": [
@@ -649,12 +703,19 @@
             "type": "object",
             "properties": {
                 "expression": {
+                    "default": 0,
                     "$ref": "#/definitions/3178719147"
                 },
                 "log": {
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 },
                 "particle_effect": {
+                    "default": {
+                        "effect": "",
+                        "type": null,
+                        "pre_effect_expression": 0
+                    },
                     "$ref": "#/definitions/2245986520"
                 },
                 "randomize": {
@@ -685,13 +746,16 @@
             "type": "object",
             "properties": {
                 "position": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 },
                 "rotation": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 },
                 "velocity": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 }
             }
         },
@@ -700,6 +764,7 @@
             "type": "object",
             "properties": {
                 "horizontal_range": {
+                    "default": 1,
                     "$ref": "#/definitions/3178719147"
                 },
                 "input": {
@@ -786,6 +851,11 @@
                 },
                 "offset": {
                     "type": "array",
+                    "default": [
+                        0,
+                        0,
+                        0
+                    ],
                     "items": {
                         "$ref": "#/definitions/3178719147"
                     },
@@ -793,10 +863,12 @@
                     "maxItems": 3
                 },
                 "radius": {
+                    "default": 1,
                     "$ref": "#/definitions/3178719147"
                 },
                 "surface_only": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 }
             }
         },
@@ -837,9 +909,11 @@
             "type": "object",
             "properties": {
                 "activation_expression": {
+                    "default": 1,
                     "$ref": "#/definitions/3178719147"
                 },
                 "expiration_expression": {
+                    "default": 0,
                     "$ref": "#/definitions/3178719147"
                 }
             }
@@ -876,9 +950,11 @@
             "type": "object",
             "properties": {
                 "per_render_expression": {
+                    "default": 0,
                     "$ref": "#/definitions/3178719147"
                 },
                 "per_update_expression": {
+                    "default": 0,
                     "$ref": "#/definitions/3178719147"
                 }
             }
@@ -900,10 +976,12 @@
                     "$ref": "#/definitions/772645837"
                 },
                 "texture_height": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 1
                 },
                 "texture_width": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 1
                 },
                 "uv": {
                     "type": "array",
@@ -928,6 +1006,7 @@
             "type": "object",
             "properties": {
                 "expiration_expression": {
+                    "default": 0,
                     "$ref": "#/definitions/3178719147"
                 },
                 "max_lifetime": {
@@ -951,6 +1030,11 @@
                 },
                 "offset": {
                     "type": "array",
+                    "default": [
+                        0,
+                        0,
+                        0
+                    ],
                     "items": {
                         "$ref": "#/definitions/3178719147"
                     },
@@ -958,13 +1042,20 @@
                     "maxItems": 3
                 },
                 "plane_normal": {
+                    "default": [
+                        0,
+                        1,
+                        0
+                    ],
                     "$ref": "#/definitions/2706354626"
                 },
                 "radius": {
+                    "default": 1,
                     "$ref": "#/definitions/3178719147"
                 },
                 "surface_only": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 }
             }
         },
@@ -976,7 +1067,8 @@
                     "$ref": "#/definitions/1399264962"
                 },
                 "surface_only": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 }
             }
         },
@@ -985,9 +1077,11 @@
             "type": "object",
             "properties": {
                 "active_time": {
+                    "default": 0,
                     "$ref": "#/definitions/3178719147"
                 },
                 "sleep_time": {
+                    "default": 0,
                     "$ref": "#/definitions/3178719147"
                 }
             }
@@ -1026,6 +1120,11 @@
             "properties": {
                 "linear_acceleration": {
                     "type": "array",
+                    "default": [
+                        0,
+                        0,
+                        0
+                    ],
                     "items": {
                         "$ref": "#/definitions/3178719147"
                     },
@@ -1033,12 +1132,15 @@
                     "maxItems": 3
                 },
                 "linear_drag_coefficient": {
+                    "default": 0,
                     "$ref": "#/definitions/3178719147"
                 },
                 "rotation_acceleration": {
+                    "default": 0,
                     "$ref": "#/definitions/3178719147"
                 },
                 "rotation_drag_coefficient": {
+                    "default": 0,
                     "$ref": "#/definitions/3178719147"
                 }
             }
@@ -1072,9 +1174,11 @@
             "type": "object",
             "properties": {
                 "creation_event": {
+                    "default": [],
                     "$ref": "#/definitions/771176265"
                 },
                 "expiration_event": {
+                    "default": [],
                     "$ref": "#/definitions/771176265"
                 },
                 "timeline": {
@@ -1115,9 +1219,11 @@
             "type": "object",
             "properties": {
                 "creation_expression": {
+                    "default": 0,
                     "$ref": "#/definitions/3178719147"
                 },
                 "per_update_expression": {
+                    "default": 0,
                     "$ref": "#/definitions/3178719147"
                 }
             }

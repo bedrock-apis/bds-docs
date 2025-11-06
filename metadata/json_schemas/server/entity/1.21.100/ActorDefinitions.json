@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3836051660",
     "x-format-version": "1.21.100",
-    "x-minecraft-version": "1.21.130-beta.22",
+    "x-minecraft-version": "1.21.130-beta.26",
     "definitions": {
         "517105782": {
             "title": "compound_proxy",
@@ -44,10 +44,12 @@
             "type": "object",
             "properties": {
                 "max": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 },
                 "min": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 0
                 }
             }
         },
@@ -57,6 +59,7 @@
             "properties": {
                 "control_flags": {
                     "type": "array",
+                    "default": [],
                     "items": {
                         "title": "Goal's control flags",
                         "type": "string",
@@ -77,11 +80,13 @@
                 },
                 "priority": {
                     "type": "integer",
+                    "default": 0,
                     "minimum": 0
                 },
                 "sound_event": {
                     "title": "LevelSoundEvent",
                     "type": "string",
+                    "default": "charge",
                     "enum": [
                         "item.use.on",
                         "hit",
@@ -611,6 +616,8 @@
                         "item.spear.attack_miss",
                         "item.wooden_spear.attack_hit",
                         "item.wooden_spear.attack_miss",
+                        "imitate.parched",
+                        "imitate.camel_husk",
                         "undefined"
                     ]
                 },
@@ -630,6 +637,7 @@
             "properties": {
                 "control_flags": {
                     "type": "array",
+                    "default": [],
                     "items": {
                         "title": "Goal's control flags",
                         "type": "string",
@@ -654,6 +662,7 @@
                 },
                 "priority": {
                     "type": "integer",
+                    "default": 0,
                     "minimum": 0
                 },
                 "roar_time": {
@@ -705,6 +714,7 @@
                 },
                 "control_flags": {
                     "type": "array",
+                    "default": [],
                     "items": {
                         "title": "Goal's control flags",
                         "type": "string",
@@ -764,6 +774,7 @@
                 },
                 "priority": {
                     "type": "integer",
+                    "default": 0,
                     "minimum": 0
                 },
                 "search_distance": {
@@ -797,6 +808,7 @@
             "properties": {
                 "control_flags": {
                     "type": "array",
+                    "default": [],
                     "items": {
                         "title": "Goal's control flags",
                         "type": "string",
@@ -823,6 +835,7 @@
                 },
                 "priority": {
                     "type": "integer",
+                    "default": 0,
                     "minimum": 0
                 }
             }
@@ -833,6 +846,7 @@
             "properties": {
                 "control_flags": {
                     "type": "array",
+                    "default": [],
                     "items": {
                         "title": "Goal's control flags",
                         "type": "string",
@@ -848,13 +862,16 @@
                     "default": 1
                 },
                 "eat_mob_sound": {
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 },
                 "loot_table": {
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 },
                 "priority": {
                     "type": "integer",
+                    "default": 0,
                     "minimum": 0
                 },
                 "pull_in_force": {
@@ -876,16 +893,19 @@
             "type": "object",
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 },
                 "states": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "#/definitions/517105782"
-                    }
+                    },
+                    "default": {}
                 },
                 "tags": {
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 }
             }
         },
@@ -912,6 +932,7 @@
             "properties": {
                 "control_flags": {
                     "type": "array",
+                    "default": [],
                     "items": {
                         "title": "Goal's control flags",
                         "type": "string",
@@ -924,6 +945,7 @@
                 },
                 "priority": {
                     "type": "integer",
+                    "default": 0,
                     "minimum": 0
                 },
                 "speed_multiplier": {
@@ -947,10 +969,12 @@
                     "type": "object",
                     "properties": {
                         "x": {
-                            "type": "number"
+                            "type": "number",
+                            "default": 0
                         },
                         "y": {
-                            "type": "number"
+                            "type": "number",
+                            "default": 0
                         }
                     }
                 }
@@ -966,6 +990,7 @@
                 },
                 "control_flags": {
                     "type": "array",
+                    "default": [],
                     "items": {
                         "title": "Goal's control flags",
                         "type": "string",
@@ -1001,6 +1026,7 @@
                 },
                 "priority": {
                     "type": "integer",
+                    "default": 0,
                     "minimum": 0
                 },
                 "radius_adjustment_chance": {
@@ -1623,9 +1649,6 @@
         "minecraft:body_rotation_blocked": {
             "description": "Dynamic value"
         },
-        "minecraft:body_rotation_locked_to_vehicle": {
-            "description": "Dynamic value"
-        },
         "minecraft:boostable": {
             "description": "Dynamic value"
         },
@@ -2068,6 +2091,9 @@
             "description": "Dynamic value"
         },
         "minecraft:rotation_axis_aligned": {
+            "description": "Dynamic value"
+        },
+        "minecraft:rotation_locked_to_vehicle": {
             "description": "Dynamic value"
         },
         "minecraft:scale": {

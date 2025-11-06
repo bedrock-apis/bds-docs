@@ -2,12 +2,13 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3044673183",
     "x-format-version": "1.21.100",
-    "x-minecraft-version": "1.21.130-beta.22",
+    "x-minecraft-version": "1.21.130-beta.26",
     "title": "minecraft:target",
     "type": "object",
     "properties": {
         "continue_targeting": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
         },
         "horizontal_rotation_limit": {
             "type": "array",
@@ -21,14 +22,17 @@
         },
         "rotation_speed": {
             "type": "number",
+            "default": 0,
             "minimum": 0,
             "maximum": 360
         },
         "snap_to_target": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
         },
         "tracking_radius": {
-            "type": "number"
+            "type": "number",
+            "default": 50
         },
         "vertical_rotation_limit": {
             "type": "array",

@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1785036358",
     "x-format-version": "1.21.50",
-    "x-minecraft-version": "1.21.130-beta.22",
+    "x-minecraft-version": "1.21.130-beta.26",
     "definitions": {
         "517105782": {
             "title": "compound_proxy",
@@ -28,6 +28,7 @@
                 },
                 "rarity": {
                     "type": "integer",
+                    "default": 0,
                     "minimum": 0
                 }
             },
@@ -40,10 +41,12 @@
             "type": "object",
             "properties": {
                 "max": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 128
                 },
                 "min": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 24
                 }
             }
         },
@@ -52,16 +55,20 @@
             "type": "object",
             "properties": {
                 "identifier": {
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 },
                 "max": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 0
                 },
                 "min": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 0
                 },
                 "spawn_chance": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 100
                 }
             }
         },
@@ -70,6 +77,16 @@
             "type": "object",
             "properties": {
                 "minecraft:biome_filter": {
+                    "default": {
+                        "all_of": null,
+                        "all": null,
+                        "OR": null,
+                        "AND": null,
+                        "any_of": null,
+                        "any": null,
+                        "none_of": null,
+                        "NOT": null
+                    },
                     "$ref": "#/definitions/1088251937"
                 },
                 "minecraft:brightness_filter": {
@@ -94,6 +111,7 @@
                     "$ref": "#/definitions/581732209"
                 },
                 "minecraft:herd": {
+                    "default": [],
                     "oneOf": [
                         {
                             "type": "array",
@@ -116,6 +134,7 @@
                     "$ref": "#/definitions/1159543840"
                 },
                 "minecraft:permute_type": {
+                    "default": [],
                     "oneOf": [
                         {
                             "type": "array",
@@ -132,15 +151,23 @@
                     "$ref": "#/definitions/1491617288"
                 },
                 "minecraft:spawn_event": {
+                    "default": {
+                        "event": ""
+                    },
                     "$ref": "#/definitions/1159543840"
                 },
                 "minecraft:spawns_above_block_filter": {
+                    "default": {
+                        "blocks": [],
+                        "distance": 1
+                    },
                     "$ref": "#/definitions/2617991491"
                 },
                 "minecraft:spawns_lava": {
                     "$ref": "#/definitions/1945762166"
                 },
                 "minecraft:spawns_on_block_filter": {
+                    "default": [],
                     "oneOf": [
                         {
                             "type": "array",
@@ -154,6 +181,7 @@
                     ]
                 },
                 "minecraft:spawns_on_block_prevented_filter": {
+                    "default": [],
                     "oneOf": [
                         {
                             "type": "array",
@@ -188,10 +216,12 @@
             "type": "object",
             "properties": {
                 "max": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": -1
                 },
                 "min": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 0
                 }
             }
         },
@@ -246,7 +276,8 @@
             "type": "object",
             "properties": {
                 "event": {
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 }
             }
         },
@@ -261,7 +292,8 @@
                     "type": "string"
                 },
                 "population_control": {
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 }
             },
             "required": [
@@ -276,7 +308,8 @@
                     "type": "integer"
                 },
                 "village_border_tolerance": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 10
                 }
             },
             "required": [
@@ -295,23 +328,29 @@
             "type": "object",
             "properties": {
                 "event": {
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 },
                 "event_skip_count": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 0
                 },
                 "initial_event": {
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 },
                 "initial_event_count": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 0
                 },
                 "max_size": {
                     "type": "integer",
+                    "default": 1,
                     "minimum": 0
                 },
                 "min_size": {
                     "type": "integer",
+                    "default": 1,
                     "minimum": 0
                 }
             }
@@ -332,6 +371,7 @@
                 "max": {
                     "title": "SpawnDifficulty Legacy",
                     "type": "string",
+                    "default": "hard",
                     "enum": [
                         "peaceful",
                         "easy",
@@ -342,6 +382,7 @@
                 "min": {
                     "title": "SpawnDifficulty Legacy",
                     "type": "string",
+                    "default": "peaceful",
                     "enum": [
                         "peaceful",
                         "easy",
@@ -356,10 +397,12 @@
             "type": "object",
             "properties": {
                 "max": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 128
                 },
                 "min": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 24
                 }
             }
         },
@@ -368,10 +411,12 @@
             "type": "object",
             "properties": {
                 "entity_type": {
+                    "default": "",
                     "$ref": "#/definitions/1493335182"
                 },
                 "min_guaranteed": {
                     "type": "integer",
+                    "default": 0,
                     "minimum": 0
                 },
                 "weight": {
@@ -391,6 +436,7 @@
             "type": "object",
             "properties": {
                 "blocks": {
+                    "default": [],
                     "oneOf": [
                         {
                             "type": "array",
@@ -404,7 +450,8 @@
                     ]
                 },
                 "distance": {
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 1
                 }
             }
         },
@@ -413,16 +460,19 @@
             "type": "object",
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 },
                 "states": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "#/definitions/517105782"
-                    }
+                    },
+                    "default": {}
                 },
                 "tags": {
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 }
             }
         },
@@ -448,15 +498,18 @@
             "type": "object",
             "properties": {
                 "adjust_for_weather": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 },
                 "max": {
                     "type": "integer",
+                    "default": 15,
                     "minimum": 0,
                     "maximum": 15
                 },
                 "min": {
                     "type": "integer",
+                    "default": 0,
                     "minimum": 0,
                     "maximum": 15
                 }
@@ -468,10 +521,12 @@
             "properties": {
                 "surface": {
                     "type": "integer",
+                    "default": -1,
                     "minimum": -1
                 },
                 "underground": {
                     "type": "integer",
+                    "default": -1,
                     "minimum": -1
                 }
             }
@@ -558,6 +613,7 @@
     "properties": {
         "conditions": {
             "type": "array",
+            "default": [],
             "items": {
                 "$ref": "#/definitions/904344786"
             }

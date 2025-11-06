@@ -2484,6 +2484,21 @@
                     ],
                     "is_baked": false,
                     "is_read_only": true,
+                    "name": "prefabManager",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabManager"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
                     "name": "realmsService",
                     "type": {
                         "is_bind_type": true,
@@ -2686,6 +2701,37 @@
                     "arguments": [
                         {
                             "details": null,
+                            "name": "pos",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.5.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getJigsawBlockData",
+                    "return_type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "JigsawBlockData"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
                             "name": "registryName",
                             "type": {
                                 "is_bind_type": false,
@@ -2742,6 +2788,46 @@
                         "is_bind_type": false,
                         "is_errorable": false,
                         "name": "array"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "pos",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.5.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "jigsawData",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "JigsawBlockData"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "setJigsawBlockData",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "undefined"
                     }
                 },
                 {
@@ -3405,6 +3491,1668 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "PersistenceGroupItem"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [],
+            "name": "PrefabInstanceInteractionEvent",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": true,
+                    "is_read_only": true,
+                    "name": "eventData",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "variant",
+                        "variant_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabInstanceInteractionEventClicked"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabInstanceInteractionEventMoved"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": true,
+                    "is_read_only": true,
+                    "name": "eventType",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabInstanceInteractionEventType"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": true,
+                    "is_read_only": true,
+                    "name": "instance",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabTemplateInstance"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PrefabInstanceInteractionEvent"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "beginCapturingMouseClicks",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabServiceError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "clearSelectedInstances",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabServiceError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "templateOrMetadataToClone",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "variant",
+                                "variant_types": [
+                                    {
+                                        "is_bind_type": true,
+                                        "is_errorable": false,
+                                        "name": "PrefabTemplate"
+                                    },
+                                    {
+                                        "is_bind_type": true,
+                                        "is_errorable": false,
+                                        "name": "PrefabTemplateMetadata"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "newName",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "optionalNewDisplayName",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": false,
+                                    "is_errorable": false,
+                                    "name": "string"
+                                }
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "cloneTemplate",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidName"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidTemplate"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabServiceError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabTemplateExists"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabTemplateNotFound"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "PrefabTemplate"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "name",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        },
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "options",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "PrefabServiceCreateTemplateOptions"
+                                }
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "createTemplate",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidName"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorStringInvalidLength"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabServiceError"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "PrefabTemplate"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "instance",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabTemplateInstance"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "deleteInstance",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidInstance"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabServiceError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "templateOrMetadata",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "variant",
+                                "variant_types": [
+                                    {
+                                        "is_bind_type": true,
+                                        "is_errorable": false,
+                                        "name": "PrefabTemplate"
+                                    },
+                                    {
+                                        "is_bind_type": true,
+                                        "is_errorable": false,
+                                        "name": "PrefabTemplateMetadata"
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "deleteTemplate",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidName"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidTemplate"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabServiceError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabTemplateNotFound"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "instance",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabTemplateInstance"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "deselectInstance",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidInstance"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabServiceError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "endCapturingMouseClicks",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabServiceError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "searchMetadata_or_fullyQualifiedName",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "variant",
+                                "variant_types": [
+                                    {
+                                        "is_bind_type": true,
+                                        "is_errorable": false,
+                                        "name": "PrefabTemplateMetadata"
+                                    },
+                                    {
+                                        "is_bind_type": false,
+                                        "is_errorable": false,
+                                        "name": "string"
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getTemplate",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidName"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabServiceError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabTemplateNotFound"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "PrefabTemplate"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getTemplateList",
+                    "return_type": {
+                        "element_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "PrefabTemplateMetadata"
+                        },
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabServiceError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "array"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "instance",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabTemplateInstance"
+                            }
+                        },
+                        {
+                            "details": null,
+                            "name": "append",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "boolean"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "selectInstance",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidInstance"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabServiceError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                }
+            ],
+            "name": "PrefabManager",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "instanceInteractionEvents",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabServiceInstanceInteractionEvent"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PrefabManager"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "callback",
+                            "type": {
+                                "closure_type": {
+                                    "argument_types": [
+                                        {
+                                            "is_bind_type": true,
+                                            "is_errorable": false,
+                                            "name": "PrefabInstanceInteractionEvent"
+                                        }
+                                    ],
+                                    "return_type": {
+                                        "is_bind_type": false,
+                                        "is_errorable": true,
+                                        "name": "undefined"
+                                    }
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "closure"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "subscribe",
+                    "return_type": {
+                        "closure_type": {
+                            "argument_types": [
+                                {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "PrefabInstanceInteractionEvent"
+                                }
+                            ],
+                            "return_type": {
+                                "is_bind_type": false,
+                                "is_errorable": true,
+                                "name": "undefined"
+                            }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "callback",
+                            "type": {
+                                "closure_type": {
+                                    "argument_types": [
+                                        {
+                                            "is_bind_type": true,
+                                            "is_errorable": false,
+                                            "name": "PrefabInstanceInteractionEvent"
+                                        }
+                                    ],
+                                    "return_type": {
+                                        "is_bind_type": false,
+                                        "is_errorable": true,
+                                        "name": "undefined"
+                                    }
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "closure"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "unsubscribe",
+                    "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "undefined"
+                    }
+                }
+            ],
+            "name": "PrefabServiceInstanceInteractionEvent",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PrefabServiceInstanceInteractionEvent"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "structure",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server-editor-bindings",
+                                    "uuid": "8518d9c7-a1f5-4bf3-acc7-78e87df595fc",
+                                    "version": "0.1.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "EditorStructure"
+                            }
+                        },
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "options",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "PrefabTemplateAddStructureOptions"
+                                }
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "addStructure",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidStructure"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidTemplate"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorValueOutOfBounds"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "PrefabTemplateStructure"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "location",
+                            "type": {
+                                "from_module": {
+                                    "name": "@minecraft/server-bindings",
+                                    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                    "version": "2.5.0-internal"
+                                },
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "Vector3"
+                            }
+                        },
+                        {
+                            "details": {
+                                "default_value": "null"
+                            },
+                            "name": "options",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "optional",
+                                "optional_type": {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "PrefabTemplateCreateInstanceOptions"
+                                }
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "createInstance",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidInstance"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidTemplate"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabServiceError"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "PrefabTemplateInstance"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getMetadata",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidTemplate"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "PrefabTemplateMetadata"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getTags",
+                    "return_type": {
+                        "element_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "string"
+                        },
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidTemplate"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "array"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getTemplateStructures",
+                    "return_type": {
+                        "element_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "PrefabTemplateStructure"
+                        },
+                        "error_types": [
+                            {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "Error"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidTemplate"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "array"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "templateStructure",
+                            "type": {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabTemplateStructure"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "removeStructure",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidTemplate"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidTemplateStructure"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "newName",
+                            "type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "setName",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidName"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidTemplate"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabServiceError"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabTemplateExists"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                },
+                {
+                    "arguments": [
+                        {
+                            "details": null,
+                            "name": "newTags",
+                            "type": {
+                                "element_type": {
+                                    "is_bind_type": false,
+                                    "is_errorable": false,
+                                    "name": "string"
+                                },
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "array"
+                            }
+                        }
+                    ],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "setTags",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidTemplate"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorStringInvalidLength"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabServiceError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                    }
+                }
+            ],
+            "name": "PrefabTemplate",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "description",
+                    "set_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "displayName",
+                    "set_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "instanceCount",
+                    "type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidTemplate"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabServiceError"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "name",
+                    "type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidTemplate"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "string"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "notes",
+                    "set_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "source",
+                    "type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidTemplate"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "PrefabSource"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PrefabTemplate"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getStructureRefs",
+                    "return_type": {
+                        "element_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "PrefabTemplateInstanceStructure"
+                        },
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidInstance"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "array"
+                    }
+                },
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getTemplate",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidInstance"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidTemplate"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabServiceError"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "PrefabTemplate"
+                    }
+                }
+            ],
+            "name": "PrefabTemplateInstance",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "instanceMirror",
+                    "set_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabMirror"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "instanceRotation",
+                    "set_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabRotation"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "location",
+                    "set_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "type": {
+                        "from_module": {
+                            "name": "@minecraft/server-bindings",
+                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                            "version": "2.5.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PrefabTemplateInstance"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getTemplateStructure",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidInstance"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidTemplate"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidTemplateStructure"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabServiceError"
+                            }
+                        ],
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "PrefabTemplateStructure"
+                    }
+                }
+            ],
+            "name": "PrefabTemplateInstanceStructure",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "instanceMirror",
+                    "set_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabMirror"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "instanceRotation",
+                    "set_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabRotation"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PrefabTemplateInstanceStructure"
+            }
+        },
+        {
+            "base_types": [],
+            "constants": [],
+            "functions": [
+                {
+                    "arguments": [],
+                    "call_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "is_constructor": false,
+                    "is_static": false,
+                    "name": "getStructure",
+                    "return_type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidStructure"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidTemplateStructure"
+                            },
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabServiceError"
+                            }
+                        ],
+                        "from_module": {
+                            "name": "@minecraft/server-editor-bindings",
+                            "uuid": "8518d9c7-a1f5-4bf3-acc7-78e87df595fc",
+                            "version": "0.1.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "EditorStructure"
+                    }
+                }
+            ],
+            "name": "PrefabTemplateStructure",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "id",
+                    "type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidTemplateStructure"
+                            }
+                        ],
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "string"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "instanceMirror",
+                    "set_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabMirror"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "instanceOffset",
+                    "set_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "type": {
+                        "from_module": {
+                            "name": "@minecraft/server-bindings",
+                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                            "version": "2.5.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "instanceRotation",
+                    "set_privilege": [
+                        {
+                            "name": "none"
+                        }
+                    ],
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabRotation"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "structureNormalizedOrigin",
+                    "type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidTemplateStructure"
+                            }
+                        ],
+                        "from_module": {
+                            "name": "@minecraft/server-bindings",
+                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                            "version": "2.5.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "Vector3"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "structureOffset",
+                    "type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidTemplateStructure"
+                            }
+                        ],
+                        "from_module": {
+                            "name": "@minecraft/server-bindings",
+                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                            "version": "2.5.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "Vector3"
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "structureSize",
+                    "type": {
+                        "error_types": [
+                            {
+                                "is_bind_type": true,
+                                "is_errorable": false,
+                                "name": "PrefabErrorInvalidTemplateStructure"
+                            }
+                        ],
+                        "from_module": {
+                            "name": "@minecraft/server-bindings",
+                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                            "version": "2.5.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": true,
+                        "name": "Vector3"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PrefabTemplateStructure"
             }
         },
         {
@@ -4835,6 +6583,33 @@
                 {
                     "is_read_only": true,
                     "is_static": true,
+                    "name": "Aligned",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "JigsawJointType"
+                    },
+                    "value": 1
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Rollable",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "JigsawJointType"
+                    },
+                    "value": 0
+                }
+            ],
+            "name": "JigsawJointType"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
                     "name": "Processor",
                     "type": {
                         "is_bind_type": true,
@@ -4965,6 +6740,191 @@
                 }
             ],
             "name": "PersistenceScope"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Clicked",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Clicked"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Moved",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Moved"
+                }
+            ],
+            "name": "PrefabInstanceInteractionEventType"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Default",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Default"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "None",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "None"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "X",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "X"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "XZ",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "XZ"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Z",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Z"
+                }
+            ],
+            "name": "PrefabMirror"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Default",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Default"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "None",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "None"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Rotate180",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Rotate180"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Rotate270",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Rotate270"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Rotate90",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Rotate90"
+                }
+            ],
+            "name": "PrefabRotation"
+        },
+        {
+            "constants": [
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Global",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Global"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Project",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Project"
+                },
+                {
+                    "is_read_only": true,
+                    "is_static": true,
+                    "name": "Unknown",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    },
+                    "value": "Unknown"
+                }
+            ],
+            "name": "PrefabSource"
         },
         {
             "constants": [
@@ -5125,7 +7085,161 @@
             "name": "RealmsWorldUploadResult"
         }
     ],
-    "errors": [],
+    "errors": [
+        {
+            "name": "PrefabErrorInvalidInstance",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PrefabErrorInvalidInstance"
+            }
+        },
+        {
+            "name": "PrefabErrorInvalidName",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PrefabErrorInvalidName"
+            }
+        },
+        {
+            "name": "PrefabErrorInvalidStructure",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PrefabErrorInvalidStructure"
+            }
+        },
+        {
+            "name": "PrefabErrorInvalidTemplate",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PrefabErrorInvalidTemplate"
+            }
+        },
+        {
+            "name": "PrefabErrorInvalidTemplateStructure",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PrefabErrorInvalidTemplateStructure"
+            }
+        },
+        {
+            "name": "PrefabErrorStringInvalidLength",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "length",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "maxLength",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                },
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        },
+                        {
+                            "name": "early_execution"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "string",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PrefabErrorStringInvalidLength"
+            }
+        },
+        {
+            "name": "PrefabErrorValueOutOfBounds",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PrefabErrorValueOutOfBounds"
+            }
+        },
+        {
+            "name": "PrefabServiceError",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PrefabServiceError"
+            }
+        },
+        {
+            "name": "PrefabTemplateExists",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PrefabTemplateExists"
+            }
+        },
+        {
+            "name": "PrefabTemplateNotFound",
+            "properties": [],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PrefabTemplateNotFound"
+            }
+        }
+    ],
     "functions": [],
     "interfaces": [
         {
@@ -5390,6 +7504,105 @@
         },
         {
             "base_types": [],
+            "name": "JigsawBlockData",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "finalBlock",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "jointType",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "JigsawJointType"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "jointTypeVisible",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "name",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "placementPriority",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "selectionPriority",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "target",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "targetPool",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "JigsawBlockData"
+            }
+        },
+        {
+            "base_types": [],
             "name": "PersistenceGroupCreationOptions",
             "properties": [
                 {
@@ -5516,6 +7729,375 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "PersistenceQueryGroupOptions"
+            }
+        },
+        {
+            "base_types": [],
+            "name": "PrefabInstanceInteractionEventClicked",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "altPressed",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "ctrlPressed",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "shiftPressed",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PrefabInstanceInteractionEventClicked"
+            }
+        },
+        {
+            "base_types": [],
+            "name": "PrefabInstanceInteractionEventMoved",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "location",
+                    "type": {
+                        "from_module": {
+                            "name": "@minecraft/server-bindings",
+                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                            "version": "2.5.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PrefabInstanceInteractionEventMoved"
+            }
+        },
+        {
+            "base_types": [],
+            "name": "PrefabServiceCreateTemplateOptions",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "description",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "string"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "displayName",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "string"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "notes",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "string"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "tags",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "element_type": {
+                                "is_bind_type": false,
+                                "is_errorable": false,
+                                "name": "string"
+                            },
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "array"
+                        }
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PrefabServiceCreateTemplateOptions"
+            }
+        },
+        {
+            "base_types": [],
+            "name": "PrefabTemplateAddStructureOptions",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "mirror",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "PrefabMirror"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "offset",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "from_module": {
+                                "name": "@minecraft/server-bindings",
+                                "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                                "version": "2.5.0-internal"
+                            },
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "Vector3"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "rotation",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "PrefabRotation"
+                        }
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PrefabTemplateAddStructureOptions"
+            }
+        },
+        {
+            "base_types": [],
+            "name": "PrefabTemplateCreateInstanceOptions",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "mirror",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "PrefabMirror"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "rotation",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "is_bind_type": true,
+                            "is_errorable": false,
+                            "name": "PrefabRotation"
+                        }
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PrefabTemplateCreateInstanceOptions"
+            }
+        },
+        {
+            "base_types": [],
+            "name": "PrefabTemplateMetadata",
+            "properties": [
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "description",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "displayName",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "instanceReferenceCount",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "name",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "notes",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "readOnly",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "source",
+                    "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabSource"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "structureReferenceCount",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "tags",
+                    "type": {
+                        "element_type": {
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "string"
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "array"
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "templateId",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "PrefabTemplateMetadata"
             }
         },
         {

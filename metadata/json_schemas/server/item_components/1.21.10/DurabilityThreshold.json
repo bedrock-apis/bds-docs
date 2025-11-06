@@ -2,16 +2,18 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "764203503",
     "x-format-version": "1.21.10",
-    "x-minecraft-version": "1.21.130-beta.22",
+    "x-minecraft-version": "1.21.130-beta.26",
     "title": "minecraft:durability_sensor durability_threshold",
     "type": "object",
     "properties": {
         "durability": {
-            "type": "integer"
+            "type": "integer",
+            "default": 0
         },
         "particle_type": {
             "title": "ParticleType",
             "type": "string",
+            "default": "none",
             "enum": [
                 "none",
                 "bubble",
@@ -109,6 +111,7 @@
         "sound_event": {
             "title": "LevelSoundEvent",
             "type": "string",
+            "default": "undefined",
             "enum": [
                 "item.use.on",
                 "hit",
@@ -638,6 +641,8 @@
                 "item.spear.attack_miss",
                 "item.wooden_spear.attack_hit",
                 "item.wooden_spear.attack_miss",
+                "imitate.parched",
+                "imitate.camel_husk",
                 "undefined"
             ]
         }

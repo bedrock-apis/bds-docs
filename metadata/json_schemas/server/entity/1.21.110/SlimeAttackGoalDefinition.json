@@ -2,12 +2,13 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "597030358",
     "x-format-version": "1.21.110",
-    "x-minecraft-version": "1.21.130-beta.22",
+    "x-minecraft-version": "1.21.130-beta.26",
     "title": "minecraft:behavior.slime_attack",
     "type": "object",
     "properties": {
         "control_flags": {
             "type": "array",
+            "default": [],
             "items": {
                 "title": "Goal's control flags",
                 "type": "string",
@@ -19,10 +20,12 @@
             }
         },
         "grow_tired_cooldown_time": {
-            "type": "number"
+            "type": "number",
+            "default": 15
         },
         "priority": {
             "type": "integer",
+            "default": 0,
             "minimum": 0
         },
         "set_persistent": {

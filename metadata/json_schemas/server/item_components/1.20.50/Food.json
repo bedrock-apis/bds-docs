@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "268086052",
     "x-format-version": "1.20.50",
-    "x-minecraft-version": "1.21.130-beta.22",
+    "x-minecraft-version": "1.21.130-beta.26",
     "definitions": {
         "1531870811": {
             "title": "Item Descriptor",
@@ -23,16 +23,20 @@
     "type": "object",
     "properties": {
         "can_always_eat": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
         },
         "nutrition": {
-            "type": "integer"
+            "type": "integer",
+            "default": 0
         },
         "saturation_modifier": {
             "type": "number",
+            "default": 0.6000000238418579,
             "minimum": 0
         },
         "using_converts_to": {
+            "default": {},
             "$ref": "#/definitions/1531870811"
         }
     }

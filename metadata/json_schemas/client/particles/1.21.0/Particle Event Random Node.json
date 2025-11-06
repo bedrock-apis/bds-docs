@@ -2,19 +2,26 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "2522540092",
     "x-format-version": "1.21.0",
-    "x-minecraft-version": "1.21.130-beta.22",
+    "x-minecraft-version": "1.21.130-beta.26",
     "definitions": {
         "1626134911": {
             "title": "particle_event_node",
             "type": "object",
             "properties": {
                 "expression": {
+                    "default": 0,
                     "$ref": "#/definitions/3178719147"
                 },
                 "log": {
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 },
                 "particle_effect": {
+                    "default": {
+                        "effect": "",
+                        "type": null,
+                        "pre_effect_expression": 0
+                    },
                     "$ref": "#/definitions/2245986520"
                 },
                 "randomize": {
@@ -42,6 +49,7 @@
                     "$ref": "#/definitions/2715320761"
                 },
                 "pre_effect_expression": {
+                    "default": 0,
                     "$ref": "#/definitions/3178719147"
                 },
                 "type": {
@@ -115,12 +123,19 @@
     "type": "object",
     "properties": {
         "expression": {
+            "default": 0,
             "$ref": "#/definitions/3178719147"
         },
         "log": {
-            "type": "string"
+            "type": "string",
+            "default": ""
         },
         "particle_effect": {
+            "default": {
+                "effect": "",
+                "type": null,
+                "pre_effect_expression": 0
+            },
             "$ref": "#/definitions/2245986520"
         },
         "randomize": {
