@@ -3,19 +3,26 @@ import { Installation } from "@bedrock-apis/bds-utils/install";
 import { getLatestDownloadLink } from "@bedrock-apis/bds-utils/links";
 import { platform } from "node:process";
 import Metadata from "./dump-metadata";
+import MetadataDumper from "./dump-metadata";
 import { GithubUtils } from "./utils";
+import TypePrinterDumper from "./dump-types";
+import { TheDumper } from "./dumper";
 
 // Main entry point
 async function main(): Promise<number> {
+    // Platform check
     if (platform !== "win32" && platform !== "linux")
         throw new DumperError(ErrorCodes.UnsupportedPlatform, `Unknown OS platform: ${platform}`);
 
+    // Github setup
     let failed: number = 0;
     if((failed = await GithubUtils.login())) return failed;
     if((failed = await GithubUtils.initRepo())) return failed;
     if((failed = await GithubUtils.checkoutBranch("stable", true))) return failed;
     GithubUtils.clear();
-    
+
+
+    // BDS Setup
     const link = await getLatestDownloadLink({
         is_preview: BRANCH_TO_UPDATE === "preview",
         platform: platform
@@ -30,12 +37,13 @@ async function main(): Promise<number> {
         await installation.installFromURL(link);
     } else await installation.load();
 
-    failed = await Metadata.Init(installation);
-    if (failed)
-        throw new DumperError(ErrorCodes.SubModuleFailed, "Submodule failed with error code: " + failed);
+    const DUMPERS: TheDumper[] = [MetadataDumper, TypePrinterDumper];
+    for(const dumper of DUMPERS)
+        if((failed = await dumper.init?.(installation)??0)) return failed;
 
-    for (const promise of Metadata.GetTasks(installation)) await promise;
-
+    for(const dumper of DUMPERS)
+        if((failed = await dumper.run?.(installation)??0)) return failed;
+    
     await Deno.writeFile(".gitignore", new TextEncoder().encode(`__*__`));
     if((failed = await GithubUtils.commitAndPush("stable", "New message"))) return failed;
     return 0;

@@ -1,14 +1,17 @@
 import type { Installation } from "@bedrock-apis/bds-utils/install";
 import { dirname, join } from "node:path";
 import { getFilesRecursiveIterator } from "../utils";
+import { TheDumper } from "../dumper";
+import { ErrorCodes } from "../constants";
 
 const BDS_PROCESS_MAX_LIFE_TIME = 15_000; //15s
 const BDS_DOCS_FOLDER_NAME = "docs";
 const OUTPUT_FOLDER = "metadata";
 
-export default class Metadata {
-    public static DESCRIPTION = `METADATA DESCRIPTION`;
-    public static async Init(installation: Installation): Promise<number> {
+export class MetadataDumper {
+    public static output = OUTPUT_FOLDER;
+    public static description = `METADATA DESCRIPTION`;
+    public static async init(installation: Installation): Promise<number> {
         await Deno.remove(installation.worlds.directory, { recursive: true }).catch(_ => null);
         const process = await installation.runWithTestConfig({
             generate_api_metadata: true,
@@ -20,13 +23,13 @@ export default class Metadata {
         if (result === null) return -1;
         return result;
     }
-    public static * GetTasks(installation: Installation): Generator<Promise<number>> {
-        yield this.CopyDocsTask(join(installation.directory, BDS_DOCS_FOLDER_NAME), OUTPUT_FOLDER);
+    public static run(installation: Installation): Promise<number>{
+        return this.CopyDocsTask(join(installation.directory, BDS_DOCS_FOLDER_NAME), OUTPUT_FOLDER).catch(_=>-1);
     }
     public static async CopyDocsTask(source: string, destination: string): Promise<number> {
         const contents: string[] = [];
         const action = async (fileName: string) => {
-            contents.push(fileName);
+            contents.push(fileName.replaceAll("\\", "/"));
             let data: Uint8Array = await Deno.readFile(join(source, fileName));
             if (fileName.endsWith(".json")) try {
                 let object = JSON.parse(new TextDecoder().decode(data as Uint8Array)) as Record<string, any>;
@@ -46,3 +49,4 @@ export default class Metadata {
         return 0;
     }
 }
+export default MetadataDumper satisfies TheDumper as TheDumper;

@@ -912,6 +912,7 @@ var GithubUtils = class {
 		]);
 	}
 	static async clear() {
+		if (!GIT_IS_GITHUB_ACTION) return;
 		const tasks = [];
 		for await (const entry of Deno.readDir(".")) {
 			if (entry.name === ".git") continue;
@@ -925,10 +926,11 @@ var GithubUtils = class {
 //#region modules/dump-metadata/index.ts
 const BDS_PROCESS_MAX_LIFE_TIME = 15e3;
 const BDS_DOCS_FOLDER_NAME = "docs";
-const OUTPUT_FOLDER = "metadata";
-var Metadata = class {
-	static DESCRIPTION = `METADATA DESCRIPTION`;
-	static async Init(installation) {
+const OUTPUT_FOLDER$1 = "metadata";
+var MetadataDumper = class {
+	static output = OUTPUT_FOLDER$1;
+	static description = `METADATA DESCRIPTION`;
+	static async init(installation) {
 		await Deno.remove(installation.worlds.directory, { recursive: true }).catch((_) => null);
 		const process = await installation.runWithTestConfig({
 			generate_api_metadata: true,
@@ -940,13 +942,13 @@ var Metadata = class {
 		if (result === null) return -1;
 		return result;
 	}
-	static *GetTasks(installation) {
-		yield this.CopyDocsTask(join(installation.directory, BDS_DOCS_FOLDER_NAME), OUTPUT_FOLDER);
+	static run(installation) {
+		return this.CopyDocsTask(join(installation.directory, BDS_DOCS_FOLDER_NAME), OUTPUT_FOLDER$1).catch((_) => -1);
 	}
 	static async CopyDocsTask(source, destination) {
 		const contents = [];
 		const action = async (fileName) => {
-			contents.push(fileName);
+			contents.push(fileName.replaceAll("\\", "/"));
 			let data = await Deno.readFile(join(source, fileName));
 			if (fileName.endsWith(".json")) try {
 				let object = JSON.parse(new TextDecoder().decode(data));
@@ -965,6 +967,194 @@ var Metadata = class {
 		return 0;
 	}
 };
+var dump_metadata_default = MetadataDumper;
+
+//#endregion
+//#region modules/dump-types/printer.ts
+var Printer = class Printer {
+	static SPACING = "   ";
+	static *printModule(def) {
+		yield* def.dependencies.values().map(Printer.imports);
+		yield* def.peer_dependencies.values().map(Printer.imports);
+		yield "";
+		for (const gen of (def.enums ?? []).values().map(Printer.printEnums)) yield* gen;
+		yield "";
+		for (const gen of (def.interfaces ?? []).values().map(Printer.printInterface)) yield* gen;
+		yield "";
+		for (const gen of (def.classes ?? []).values().map(Printer.printClass)) yield* gen;
+		yield "";
+		yield* def.constants.values().map(Printer.printConstant).map(Printer.consts).map(Printer.exports).map(Printer.suffix(";"));
+		yield "";
+		yield* def.objects.values().map(Printer.printObject).map(Printer.consts).map(Printer.exports).map(Printer.suffix(";"));
+		yield "";
+		yield* def.functions.values().map(Printer.printMethod).map(Printer.functions).map(Printer.exports).map(Printer.suffix(";"));
+		yield "";
+		for (const gen of (def.errors ?? []).values().map(Printer.printError)) yield* gen;
+	}
+	static *printEnums(type) {
+		if (type.constants.length === 0) return void (yield `export enum ${type.name} {}`);
+		yield `export enum ${type.name} {`;
+		yield* type.constants.map(Printer.printConstant).map(Printer.suffix(",")).map(Printer.prefix(Printer.SPACING));
+		yield "}";
+	}
+	static printError(type) {
+		return Printer.printClass({
+			base_types: [{
+				name: "Error",
+				is_bind_type: true,
+				is_errorable: false
+			}],
+			constants: [],
+			functions: [],
+			name: type.name,
+			properties: type.properties,
+			type: type.type
+		});
+	}
+	static *printClass(type) {
+		const hasParent = type.base_types.length > 0;
+		if (hasParent) yield "//@ts-ignore";
+		yield `export class ${type.name}${hasParent ? ` extends ${Printer.getType(type.base_types[0])}` : ""} {`;
+		const prefix = Printer.prefix(Printer.SPACING);
+		const suffix = Printer.suffix(";");
+		let hadConstructor = false;
+		yield* type.constants.map(Printer.printProperty(Printer.printConstant)).map(Printer.publics).map(prefix).map(suffix);
+		yield* type.properties.map(Printer.printProperty(Printer.printObject)).map(Printer.publics).map(prefix).map(suffix);
+		yield* type.functions.map((e) => {
+			let code;
+			if (e.is_constructor) {
+				hadConstructor = true;
+				code = `constructor(${Printer.printParams(e.arguments)})`;
+			} else code = Printer.printMethod(e);
+			if (e.is_static) code = Printer.statics(code);
+			return suffix(prefix(Printer.publics(code)));
+		});
+		if (!hadConstructor) yield suffix(prefix("private constructor()"));
+		if (type.iterator) yield suffix(prefix(`public [Symbol.iterator](): Iterator<${Printer.getType(type.iterator.optional_type ? type.iterator.optional_type : type.iterator)}>`));
+		yield "}";
+	}
+	static *printInterface(type) {
+		const hasParent = type.base_types.length > 0;
+		if (hasParent) yield "//@ts-ignore";
+		yield `export interface ${type.name}${hasParent ? ` extends ${Printer.getType(type.base_types[0])}` : ""} {`;
+		const prefix = Printer.prefix(Printer.SPACING);
+		const suffix = Printer.suffix(";");
+		yield* type.properties.map(Printer.printProperty(Printer.printObject)).map(prefix).map(suffix);
+		yield "}";
+	}
+	static printProperty(func) {
+		return (t) => {
+			let code = func(t);
+			if (t.is_read_only) code = Printer.readonlies(code);
+			if (t.is_static) code = Printer.statics(code);
+			return code;
+		};
+	}
+	static printParams(types) {
+		return types.map((e) => `${e.name}${e.details?.default_value !== void 0 || e.type.optional_type ? "?" : ""}: ${Printer.getType(e.type.optional_type ? e.type.optional_type : e.type)}`).join(", ");
+	}
+	static printMethod(type) {
+		return `${type.name}(${Printer.printParams(type.arguments)}): ${Printer.getType(type.return_type, true, false)}`;
+	}
+	static printObject(type) {
+		return `${type.name}${type.type.optional_type ? "?" : ""}: ${Printer.getType(type.type.optional_type ? type.type.optional_type : type.type)}`;
+	}
+	static printConstant(type) {
+		return `${type.name} = ${JSON.stringify(type.value)}`;
+	}
+	static prefix(prefix) {
+		return (t) => `${prefix}${t}`;
+	}
+	static suffix(suffix) {
+		return (t) => `${t}${suffix}`;
+	}
+	static exports(text) {
+		return `export ${text}`;
+	}
+	static consts(text) {
+		return `const ${text}`;
+	}
+	static readonlies(text) {
+		return `readonly ${text}`;
+	}
+	static statics(text) {
+		return `static ${text}`;
+	}
+	static publics(text) {
+		return `public ${text}`;
+	}
+	static functions(text) {
+		return `function ${text}`;
+	}
+	static imports(dependency) {
+		return `import * as ${Printer.getSafeModuleName(dependency.name)} from ${JSON.stringify(dependency.name)};`;
+	}
+	static getSafeModuleName(name) {
+		name = name.split("/")?.at(-1) ?? name;
+		if (name.endsWith("-bindings")) name = name.substring(0, name.length - 9);
+		return Printer.getSafeName(name);
+	}
+	static getSafeName(text) {
+		return text.replaceAll(/-|@|\/|\\/g, "_");
+	}
+	static getType(type, isReturnType = false, safeContext = true) {
+		if (type.is_bind_type) {
+			if (type.from_module) return `${Printer.getSafeModuleName(type.from_module.name)}.${type.name}`;
+			return `${type.name}`;
+		}
+		switch (type.name) {
+			case "array": return `Array<${type.element_type.name == "undefined" ? "never" : Printer.getType(type.element_type, isReturnType)}>`;
+			case "boolean": return type.name;
+			case "string": return type.name;
+			case "this": return type.name;
+			case "undefined": return isReturnType ? "void" : "undefined";
+			case "generator": return `Generator<${Printer.getType(type.generator_type.next_type, isReturnType, true)}${type.generator_type.return_type.name != "undefined" || type.generator_type.yield_type.name != "undefined" ? ", " + Printer.getType(type.generator_type.return_type, isReturnType, true) : ""}${type.generator_type.yield_type.name != "undefined" ? ", " + Printer.getType(type.generator_type.yield_type, isReturnType, true) : ""}>`;
+			case "optional": return safeContext ? `${Printer.getType(type.optional_type, isReturnType)} | undefined` : `(${Printer.getType(type.optional_type, isReturnType, true)} | undefined)`;
+			case "promise": return `Promise<${Printer.getType(type.promise_type, isReturnType, true)}>`;
+			case "iterator": return `IteratorResult<${Printer.getType(type.iterator_result, isReturnType, safeContext)}>`;
+			case "variant": return safeContext ? `${type.variant_types.map((s) => Printer.getType(s, isReturnType, safeContext)).join(" | ")}` : `(${type.variant_types.map((s) => Printer.getType(s, isReturnType, true)).join(" | ")})`;
+			case "map": return `Record<${Printer.getType(type.key_type, false, true)},${Printer.getType(type.value_type, isReturnType, true)}>`;
+			case "closure": return `(${type.closure_type.argument_types.map((s, i) => `arg${i}${s.optional_type ? `?: ${Printer.getType(s.optional_type, false, true)}` : `: ${Printer.getType(s, false, true)}`}`).join(", ")})=>${Printer.getType(type.closure_type.return_type, true, false)}`;
+			case "uint8":
+			case "uint16":
+			case "uint32":
+			case "uint64":
+			case "int8":
+			case "int16":
+			case "int32":
+			case "int64":
+			case "double":
+			case "float": return "number";
+			default: return "unknown";
+		}
+	}
+};
+
+//#endregion
+//#region modules/dump-types/index.ts
+const OUTPUT_FOLDER = "types";
+var TypePrinterDumper = class TypePrinterDumper {
+	static output = OUTPUT_FOLDER;
+	static async run(_) {
+		const baseSource = join(MetadataDumper.output, "script_modules");
+		const baseDestination = TypePrinterDumper.output;
+		const contents = [];
+		for await (const file of getFilesRecursiveIterator(baseSource)) {
+			const text = await Deno.readTextFile(join(baseSource, file));
+			const data = JSON.parse(text);
+			if (data.classes.length + data.constants.length + data.objects.length + data.errors.length + (data.enums?.length ?? 0) + data.functions.length + data.interfaces.length + data.type_aliases.length === 0) continue;
+			const poorFileName = file.replace(/.json$/, ".d.ts");
+			const filename = join(baseDestination, poorFileName);
+			console.log(filename);
+			await Deno.mkdir(dirname(filename), { recursive: true }).catch((_$1) => null);
+			await Deno.writeTextFile(filename, Printer.printModule(data).toArray().join("\r\n"));
+			contents.push(poorFileName);
+		}
+		await Deno.writeTextFile(join(baseDestination, "contents.json"), JSON.stringify(contents, null, 3));
+		return 0;
+	}
+};
+var dump_types_default = TypePrinterDumper;
 
 //#endregion
 //#region modules/main.ts
@@ -986,9 +1176,9 @@ async function main() {
 		console.info("No executable installing");
 		await installation.installFromURL(link);
 	} else await installation.load();
-	failed = await Metadata.Init(installation);
-	if (failed) throw new DumperError(ErrorCodes.SubModuleFailed, "Submodule failed with error code: " + failed);
-	for (const promise of Metadata.GetTasks(installation)) await promise;
+	const DUMPERS = [dump_metadata_default, dump_types_default];
+	for (const dumper of DUMPERS) if (failed = await dumper.init?.(installation) ?? 0) return failed;
+	for (const dumper of DUMPERS) if (failed = await dumper.run?.(installation) ?? 0) return failed;
 	await Deno.writeFile(".gitignore", new TextEncoder().encode(`__*__`));
 	if (failed = await GithubUtils.commitAndPush("stable", "New message")) return failed;
 	return 0;

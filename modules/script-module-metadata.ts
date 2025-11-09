@@ -78,6 +78,7 @@ export interface MetadataModuleBaseDefinition extends MetadataDefinition {
 export interface MetadataModuleDefinition extends MetadataModuleBaseDefinition {
    module_type: 'script';
    dependencies: MetadataModuleBaseDefinition[];
+   peer_dependencies: MetadataModuleBaseDefinition[];
    objects: MetadataObjectDefinition[];
    constants: MetadataConstantDefinition[];
    enums: MetadataEnumDefinition[] | null;
