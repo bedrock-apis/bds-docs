@@ -842,11 +842,7 @@ var GithubUtils = class {
 			remoteUrl
 		]);
 		if (failed) return failed;
-		return await this.cmd("git", [
-			"fetch",
-			"--depth=0",
-			"origin"
-		]);
+		return await this.cmd("git", ["fetch", "origin"]);
 	}
 	static async login(name, email) {
 		if (!GIT_IS_GITHUB_ACTION || IS_LOGGED_IN) return 0;

@@ -36,7 +36,7 @@ export class GithubUtils {
         failed = await this.cmd("git", ["remote", "add", "origin", remoteUrl]);
         if (failed) return failed;
 
-        return await this.cmd("git", ["fetch", "--depth=0", "origin"]);
+        return await this.cmd("git", ["fetch", "origin"]);
     }
 
     public static async login(name?: string, email?: string): Promise<number> {
