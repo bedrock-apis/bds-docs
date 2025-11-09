@@ -16,12 +16,12 @@ export class GithubUtils {
         proc.on("close", (code) => awaiter.resolve(code ?? 1));
         return awaiter.promise;
     }
-    public static async initRepo(branch: string): Promise<number> {
+    public static async initRepo(): Promise<number> {
         if (!GIT_IS_GITHUB_ACTION) return 0;
 
         let failed = 0;
         if (!IS_LOGGED_IN) if ((failed = await this.login())) return failed;
-        
+
         if (!GIT_REPO || !GIT_TOKEN) {
             console.error("Missing GITHUB_REPOSITORY or GITHUB_TOKEN.");
             return 1;
@@ -35,7 +35,7 @@ export class GithubUtils {
         failed = await this.cmd("git", ["remote", "add", "origin", remoteUrl]);
         if (failed) return failed;
 
-        return await this.cmd("git", ["fetch", "origin", branch]);
+        return await this.cmd("git", ["fetch", "origin"]);
     }
 
     public static async login(name?: string, email?: string): Promise<number> {
@@ -66,7 +66,7 @@ export class GithubUtils {
         return failed = await this.cmd("git", ["push", "-u", "origin", branch]);
     }
 
-    public static async checkoutBranch(branch: BranchKind, force = false, noOverlay = false): Promise<number> {
+    public static async checkoutBranch(branch: BranchKind, force = false): Promise<number> {
         if (!GIT_IS_GITHUB_ACTION)
             return 0;
 
@@ -76,10 +76,10 @@ export class GithubUtils {
         failed = await this.cmd("git", ["fetch"]);
         if (failed) return failed;
 
-        return failed = await this.cmd("git", ["checkout", branch, ...(force ? ["-f"] : []), ...(noOverlay?["--no-overlay"]:[])]);
+        return failed = await this.cmd("git", ["checkout", branch, ...(force ? ["-f"] : [])]);
     }
 
-    public static async commitAndPush(branch: BranchKind, version: VersionFull, isPreview: boolean): Promise<number> {
+    public static async commitAndPush(branch: BranchKind, message: string): Promise<number> {
         if (!GIT_IS_GITHUB_ACTION) return 0;
 
         let failed = 0;
@@ -88,10 +88,17 @@ export class GithubUtils {
         failed = await this.cmd("git", ["add", "."]);
         if (failed) return failed;
 
-        const message = `New ${branch} v${isPreview ? version : getEngineVersion(version)}`;
         failed = await this.cmd("git", ["commit", "-m", `"${message}"`]);
         if (failed) return failed;
 
         return failed = await this.cmd("git", ["push", "--force", "origin", branch]);
+    }
+    public static async clear(): Promise<void> {
+        const tasks = [];
+        for await (const entry of Deno.readDir(".")) {
+            if (entry.name === ".git") continue;
+            tasks.push(Deno.remove(`./${entry.name}`, { recursive: true }));
+        }
+        await Promise.all(tasks);
     }
 }

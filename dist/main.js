@@ -804,12 +804,6 @@ async function* getFilesRecursiveIterator(base, src) {
 }
 
 //#endregion
-//#region modules/utils/general.ts
-function getEngineVersion(fullVersion) {
-	return fullVersion.split(".").slice(0, 3).join(".");
-}
-
-//#endregion
 //#region modules/utils/github.ts
 let IS_LOGGED_IN = false;
 var GithubUtils = class {
@@ -821,7 +815,7 @@ var GithubUtils = class {
 		}).on("close", (code) => awaiter.resolve(code ?? 1));
 		return awaiter.promise;
 	}
-	static async initRepo(branch) {
+	static async initRepo() {
 		if (!GIT_IS_GITHUB_ACTION) return 0;
 		let failed = 0;
 		if (!IS_LOGGED_IN) {
@@ -841,11 +835,7 @@ var GithubUtils = class {
 			remoteUrl
 		]);
 		if (failed) return failed;
-		return await this.cmd("git", [
-			"fetch",
-			"origin",
-			branch
-		]);
+		return await this.cmd("git", ["fetch", "origin"]);
 	}
 	static async login(name, email) {
 		if (!GIT_IS_GITHUB_ACTION || IS_LOGGED_IN) return 0;
@@ -886,7 +876,7 @@ var GithubUtils = class {
 			branch
 		]);
 	}
-	static async checkoutBranch(branch, force = false, noOverlay = false) {
+	static async checkoutBranch(branch, force = false) {
 		if (!GIT_IS_GITHUB_ACTION) return 0;
 		let failed = 0;
 		if (!IS_LOGGED_IN) {
@@ -897,11 +887,10 @@ var GithubUtils = class {
 		return failed = await this.cmd("git", [
 			"checkout",
 			branch,
-			...force ? ["-f"] : [],
-			...noOverlay ? ["--no-overlay"] : []
+			...force ? ["-f"] : []
 		]);
 	}
-	static async commitAndPush(branch, version, isPreview) {
+	static async commitAndPush(branch, message) {
 		if (!GIT_IS_GITHUB_ACTION) return 0;
 		let failed = 0;
 		if (!IS_LOGGED_IN) {
@@ -909,7 +898,6 @@ var GithubUtils = class {
 		}
 		failed = await this.cmd("git", ["add", "."]);
 		if (failed) return failed;
-		const message = `New ${branch} v${isPreview ? version : getEngineVersion(version)}`;
 		failed = await this.cmd("git", [
 			"commit",
 			"-m",
@@ -922,6 +910,14 @@ var GithubUtils = class {
 			"origin",
 			branch
 		]);
+	}
+	static async clear() {
+		const tasks = [];
+		for await (const entry of Deno.readDir(".")) {
+			if (entry.name === ".git") continue;
+			tasks.push(Deno.remove(`./${entry.name}`, { recursive: true }));
+		}
+		await Promise.all(tasks);
 	}
 };
 
@@ -976,8 +972,9 @@ async function main() {
 	if (platform !== "win32" && platform !== "linux") throw new DumperError(ErrorCodes.UnsupportedPlatform, `Unknown OS platform: ${platform}`);
 	let failed = 0;
 	if (failed = await GithubUtils.login()) return failed;
-	if (failed = await GithubUtils.initRepo("stable")) return failed;
-	if (failed = await GithubUtils.checkoutBranch("stable", true, true)) return failed;
+	if (failed = await GithubUtils.initRepo()) return failed;
+	if (failed = await GithubUtils.checkoutBranch("stable", true)) return failed;
+	GithubUtils.clear();
 	const link = await getLatestDownloadLink({
 		is_preview: BRANCH_TO_UPDATE === "preview",
 		platform
@@ -993,7 +990,7 @@ async function main() {
 	if (failed) throw new DumperError(ErrorCodes.SubModuleFailed, "Submodule failed with error code: " + failed);
 	for (const promise of Metadata.GetTasks(installation)) await promise;
 	await Deno.writeFile(".gitignore", new TextEncoder().encode(`__*__`));
-	if (failed = await GithubUtils.commitAndPush("stable", "1.0.0.0", false)) return failed;
+	if (failed = await GithubUtils.commitAndPush("stable", "New message")) return failed;
 	return 0;
 }
 main().catch((e) => (console.error(e), e.CODE ?? UNKNOWN_ERROR_CODE)).then(Deno.exit);
