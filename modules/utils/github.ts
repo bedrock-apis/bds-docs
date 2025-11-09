@@ -22,7 +22,6 @@ export class GithubUtils {
         let failed = 0;
         if (!IS_LOGGED_IN) if ((failed = await this.login())) return failed;
         
-        console.log(GIT_REPO, GIT_TOKEN, Object.keys(Deno.env.toObject()))
         if (!GIT_REPO || !GIT_TOKEN) {
             console.error("Missing GITHUB_REPOSITORY or GITHUB_TOKEN.");
             return 1;
@@ -67,7 +66,7 @@ export class GithubUtils {
         return failed = await this.cmd("git", ["push", "-u", "origin", branch]);
     }
 
-    public static async checkoutBranch(branch: BranchKind, force = false): Promise<number> {
+    public static async checkoutBranch(branch: BranchKind, force = false, noOverlay = false): Promise<number> {
         if (!GIT_IS_GITHUB_ACTION)
             return 0;
 
@@ -77,7 +76,7 @@ export class GithubUtils {
         failed = await this.cmd("git", ["fetch"]);
         if (failed) return failed;
 
-        return failed = await this.cmd("git", ["checkout", branch, ...(force ? ["-f"] : [])]);
+        return failed = await this.cmd("git", ["checkout", branch, ...(force ? ["-f"] : []), ...(noOverlay?["--no-overlay"]:[])]);
     }
 
     public static async commitAndPush(branch: BranchKind, version: VersionFull, isPreview: boolean): Promise<number> {

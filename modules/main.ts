@@ -13,7 +13,7 @@ async function main(): Promise<number> {
     let failed: number = 0;
     if((failed = await GithubUtils.login())) return failed;
     if((failed = await GithubUtils.initRepo())) return failed;
-    if((failed = await GithubUtils.checkoutBranch("stable"))) return failed;
+    if((failed = await GithubUtils.checkoutBranch("stable", true, true))) return failed;
     
     const link = await getLatestDownloadLink({
         is_preview: BRANCH_TO_UPDATE === "preview",
@@ -36,6 +36,7 @@ async function main(): Promise<number> {
     for (const promise of Metadata.GetTasks(installation)) await promise;
 
     await Deno.writeFile(".gitignore", new TextEncoder().encode(`__*__`));
+    if((failed = await GithubUtils.commitAndPush("stable", "1.0.0.0", false))) return failed;
     return 0;
 }
 

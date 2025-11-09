@@ -827,7 +827,6 @@ var GithubUtils = class {
 		if (!IS_LOGGED_IN) {
 			if (failed = await this.login()) return failed;
 		}
-		console.log(GIT_REPO, GIT_TOKEN, Object.keys(Deno.env.toObject()));
 		if (!GIT_REPO || !GIT_TOKEN) {
 			console.error("Missing GITHUB_REPOSITORY or GITHUB_TOKEN.");
 			return 1;
@@ -883,7 +882,7 @@ var GithubUtils = class {
 			branch
 		]);
 	}
-	static async checkoutBranch(branch, force = false) {
+	static async checkoutBranch(branch, force = false, noOverlay = false) {
 		if (!GIT_IS_GITHUB_ACTION) return 0;
 		let failed = 0;
 		if (!IS_LOGGED_IN) {
@@ -894,7 +893,8 @@ var GithubUtils = class {
 		return failed = await this.cmd("git", [
 			"checkout",
 			branch,
-			...force ? ["-f"] : []
+			...force ? ["-f"] : [],
+			...noOverlay ? ["--no-overlay"] : []
 		]);
 	}
 	static async commitAndPush(branch, version, isPreview) {
@@ -973,7 +973,7 @@ async function main() {
 	let failed = 0;
 	if (failed = await GithubUtils.login()) return failed;
 	if (failed = await GithubUtils.initRepo()) return failed;
-	if (failed = await GithubUtils.checkoutBranch("stable")) return failed;
+	if (failed = await GithubUtils.checkoutBranch("stable", true, true)) return failed;
 	const link = await getLatestDownloadLink({
 		is_preview: BRANCH_TO_UPDATE === "preview",
 		platform
@@ -989,6 +989,7 @@ async function main() {
 	if (failed) throw new DumperError(ErrorCodes.SubModuleFailed, "Submodule failed with error code: " + failed);
 	for (const promise of Metadata.GetTasks(installation)) await promise;
 	await Deno.writeFile(".gitignore", new TextEncoder().encode(`__*__`));
+	if (failed = await GithubUtils.commitAndPush("stable", "1.0.0.0", false)) return failed;
 	return 0;
 }
 main().catch((e) => (console.error(e), e.CODE ?? UNKNOWN_ERROR_CODE)).then(Deno.exit);
