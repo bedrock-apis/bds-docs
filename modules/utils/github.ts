@@ -1,6 +1,6 @@
 
 // github-utils.ts
-import { spawn } from "child_process";
+import { spawn } from "node:child_process";
 import { GIT_IS_GITHUB_ACTION, GIT_LOGIN_AS_EMAIL, GIT_LOGIN_AS_NAME } from "../constants";
 import { getEngineVersion } from "./general";
 

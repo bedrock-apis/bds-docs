@@ -4,7 +4,6 @@ import { createWriteStream, existsSync } from "node:fs";
 import { chmod, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { Writable } from "node:stream";
-import { spawn as spawn$1 } from "child_process";
 
 //#region modules/constants.ts
 const GIT_IS_GITHUB_ACTION = Deno.env.get("GITHUB_ACTIONS")?.toLocaleLowerCase() === "true";
@@ -813,7 +812,7 @@ let IS_LOGGED_IN = false;
 var GithubUtils = class {
 	static async cmd(command, args = []) {
 		const awaiter = Promise.withResolvers();
-		spawn$1(command, args, {
+		spawn(command, args, {
 			stdio: "inherit",
 			shell: true
 		}).on("close", (code) => awaiter.resolve(code ?? 1));
