@@ -45,6 +45,7 @@ async function main(): Promise<number> {
         if((failed = await dumper.run?.(installation)??0)) return failed;
     
     await Deno.writeFile(".gitignore", new TextEncoder().encode(`__*__`));
+    await Deno.writeTextFile("contents.json", JSON.stringify(Deno.readDirSync(".").filter(e=>(e.isDirectory && !e.name.startsWith(".") && !e.name.startsWith("__"))), null, 3))
     if((failed = await GithubUtils.commitAndPush("stable", "New message"))) return failed;
     return 0;
 }
