@@ -2,7 +2,7 @@
 export const INSTALLATION_FOLDER = "__installation__";
 export const PORT_NUMBER = 29132;
 export const BRANCH_TO_UPDATE: "stable" | "preview" | `${string}` | null = Deno.env.get("BRANCH_TO_UPDATE")??null;
-
+export const IS_GITHUB_ACTION: boolean = Deno.env.get("GITHUB_ACTIONS")?.toLocaleLowerCase()==="true";
 // Error Codes
 export const SUCCESS_CODE = 0;
 export const UNKNOWN_ERROR_CODE = -1;

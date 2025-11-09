@@ -1,4 +1,4 @@
-import { BRANCH_TO_UPDATE, DumperError, ErrorCodes, INSTALLATION_FOLDER, UNKNOWN_ERROR_CODE } from "./constants";
+import { BRANCH_TO_UPDATE, DumperError, ErrorCodes, INSTALLATION_FOLDER, IS_GITHUB_ACTION, UNKNOWN_ERROR_CODE } from "./constants";
 import {Installation} from "@bedrock-apis/bds-utils/install";
 import {getLatestDownloadLink} from "@bedrock-apis/bds-utils/links";
 import { platform } from "node:process";
@@ -6,6 +6,7 @@ import Metadata from "./dump-metadata";
 
 // Main entry point
 async function main(): Promise<number>{
+    console.log("Is github action:", IS_GITHUB_ACTION);
     if(platform !== "win32" && platform !== "linux")
         throw new DumperError(ErrorCodes.UnsupportedPlatform, `Unknown OS platform: ${platform}`);
 
@@ -20,7 +21,7 @@ async function main(): Promise<number>{
     const installation = new Installation(INSTALLATION_FOLDER);
     console.info("Installation started");
     await installation.installFromURL(link);
-    console.info("Installed")
+    console.info("Installed");
     
     let failed = await Metadata.Init(installation); 
     if(failed)

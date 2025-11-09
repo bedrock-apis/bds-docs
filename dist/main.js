@@ -1,4 +1,848 @@
-import{spawn as e}from"node:child_process";import{platform as t,stderr as n,stdout as r}from"node:process";import{createWriteStream as i,existsSync as a}from"node:fs";import{chmod as o,mkdir as s,readFile as c,rm as l,writeFile as u}from"node:fs/promises";import{dirname as d,join as f,resolve as p}from"node:path";import{Writable as m}from"node:stream";const h=`__installation__`,g=Deno.env.get(`BRANCH_TO_UPDATE`)??null,ee=-1;var _=class extends Error{CODE;constructor(e,t){super(t),this.CODE=e}};let v=function(e){return e[e.UnsupportedPlatform=1]=`UnsupportedPlatform`,e[e.UnavailableInstallationLink=2]=`UnavailableInstallationLink`,e[e.BedrockServerProcessCriticalExit=17]=`BedrockServerProcessCriticalExit`,e[e.BedrockServerProcessExitedWithErrorCode=18]=`BedrockServerProcessExitedWithErrorCode`,e[e.SubModuleFailed=32]=`SubModuleFailed`,e}({});var y=class t{stopTimeout=3e3;process;promise;_timeout_ref=null;_was_redirected=!1;constructor(e){this.process=e;let{promise:t,resolve:n}=Promise.withResolvers();this.promise=t,this.process.on(`exit`,e=>{this._timeout_ref!==null&&clearTimeout(this._timeout_ref),this._timeout_ref=null,n(e)})}static async from(e){return new t(e)}static async run(t,n,r){let i=e(t,n??[],{cwd:r,stdio:[`pipe`]});return this.from(i)}enabledOutputRedirection(){this._was_redirected||(this.process.stdout.pipe(r),this.process.stderr.pipe(n),this._was_redirected=!0)}stop(e,t=this.stopTimeout){return this.process.exitCode===null?(this.process.stdin.write(`stop
-`),e&&this._timeout_ref===null&&(this._timeout_ref=setTimeout(()=>void this.kill(),t??this.stopTimeout)),this.wait()):this.wait()}kill(){return this.process.kill(`SIGKILL`),this.wait()}runCommand(e){e=e.trim(),e.toLowerCase()===`stop`?this.stop(!1):this.process.stdin.write(e+`
-`)}wait(){return this.promise}};let b=function(e){return e[e.LocalFileHeader=67324752]=`LocalFileHeader`,e[e.CentralDirectoryHeader=33639248]=`CentralDirectoryHeader`,e[e.DataDescriptor=134695760]=`DataDescriptor`,e[e.EndOfCentralDirectory=101010256]=`EndOfCentralDirectory`,e[e.ZIP64EndOfCentralDirectory=101075792]=`ZIP64EndOfCentralDirectory`,e[e.ZIP64EndOfCentralDirectoryLocator=117853008]=`ZIP64EndOfCentralDirectoryLocator`,e}({}),x=function(e){return e[e.Zip64=1]=`Zip64`,e[e.ExtendedTimestamp=21589]=`ExtendedTimestamp`,e[e.NTFS=10]=`NTFS`,e[e.StrongEncryption=23]=`StrongEncryption`,e[e.UnixUIDGID=30805]=`UnixUIDGID`,e[e.UnicodeFileName=30062]=`UnicodeFileName`,e[e.UnicodeComment=25461]=`UnicodeComment`,e[e.UTF8FileName=28789]=`UTF8FileName`,e[e.AES=39169]=`AES`,e[e.OS2ExtendedAttributes=20300]=`OS2ExtendedAttributes`,e[e.MacOSXMetadata=1992]=`MacOSXMetadata`,e[e.CentralDirectoryProtection=17217]=`CentralDirectoryProtection`,e[e.X509CertificatePKCS7=20]=`X509CertificatePKCS7`,e[e.X509CertificatePKCS7Attributes=21]=`X509CertificatePKCS7Attributes`,e[e.X509CertificatePKCS1RSA=22]=`X509CertificatePKCS1RSA`,e[e.WavPack=256]=`WavPack`,e[e.PPMdVersionI=257]=`PPMdVersionI`,e[e.IBMTERSE=24]=`IBMTERSE`,e}({}),te=function(e){return e[e.Store=0]=`Store`,e[e.Shrink=1]=`Shrink`,e[e.Reduce1=2]=`Reduce1`,e[e.Reduce2=3]=`Reduce2`,e[e.Reduce3=4]=`Reduce3`,e[e.Reduce4=5]=`Reduce4`,e[e.Implode=6]=`Implode`,e[e.Deflate=8]=`Deflate`,e[e.Deflate64=9]=`Deflate64`,e[e.PKWareImplode=10]=`PKWareImplode`,e[e.BZIP2=12]=`BZIP2`,e[e.LZMA=14]=`LZMA`,e[e.IBMTERSE_Old=16]=`IBMTERSE_Old`,e[e.IBMLZ77=17]=`IBMLZ77`,e[e.PPMd=18]=`PPMd`,e[e.IBMTERSE_New=19]=`IBMTERSE_New`,e[e.ZStandard=93]=`ZStandard`,e[e.XZ=98]=`XZ`,e[e.JPEG=99]=`JPEG`,e[e.WavPack=100]=`WavPack`,e[e.PPMdVersionI=101]=`PPMdVersionI`,e[e.AES=102]=`AES`,e}({});var ne=class e{static ReaderConstructor=class{constructor(e){this.dataProvider=e}createStreamController(){let e,t=new ReadableStream({start(t){e=t}});return{controller:e,readable:t}}*bufferUpController(e,t,n=!0){let r=0;for(;r<t;){let n=yield 1,i=Math.min(n,t-r);if(i===0)break;e.enqueue(this.rentSlice(i)),r+=i}n&&e.close()}createReadable(e){let{controller:t,readable:n}=this.createStreamController(),r=this.bufferUpController(t,e);return r.readable=n,r}*bufferUp(e){let t=0;for(;t<e.length;){let n=yield 1,r=Math.min(n,e.length-t);if(r===0)return e;e.set(this.rentSlice(r),t),t+=r}return e}*batchSkip(e){let t=0;for(;t<e;){let n=yield 1,r=Math.min(n,e-t);if(r===0)return;this.movePointer(r),t+=r}}movePointer(e){this.dataProvider.moveActivePointer(e)}rentSlice(e){let t=this.dataProvider.u8Array.slice(this.dataProvider.activePointer,this.dataProvider.activePointer+e);return this.movePointer(e),t}readUint8(){let e=this.dataProvider.view.getUint8(this.dataProvider.activePointer);return this.movePointer(1),e}readUint16(){let e=this.dataProvider.view.getUint16(this.dataProvider.activePointer,!0);return this.movePointer(2),e}readUint32(){let e=this.dataProvider.view.getUint32(this.dataProvider.activePointer,!0);return this.movePointer(4),e}readBigUint64(){let e=this.dataProvider.view.getBigUint64(this.dataProvider.activePointer,!0);return this.movePointer(8),e}rentDataView(e){let t=new DataView(this.dataProvider.buffer,this.dataProvider.view.byteOffset+this.dataProvider.activePointer,e);return this.movePointer(e),t}};reader=new e.ReaderConstructor(this);view;u8Array;absoluteOffset=0;_activePointer=0;get activePointer(){return this._activePointer}moveActivePointer(e){this._activePointer+=e,this.absoluteOffset+=e}activeLength=0;maxSubChunkSize;isRunning=!1;constructor(e,t){this.maxRequestedSize=e,this.buffer=t,this.view=new DataView(this.buffer),this.u8Array=new Uint8Array(this.buffer),this.maxSubChunkSize=t.byteLength-e}async consume(e){if(this.isRunning)throw ReferenceError(`Each consumer instance can run only one task at the time. You can reset this instance and run next task once current task quits.`);return void await this.process(e).finally(()=>this.isRunning=!1)}async process(t){this.isRunning=!0;let n=this.getProgram(),r=0,i=!1;for await(let a of t)for(let t of e.getChunkIterator(a,this.maxSubChunkSize)){if(i)continue;for(this.flush(),this.set(t);r<=this.activeLength-this.activePointer;){let{done:e,value:t}=n.next(this.activeLength-this.activePointer);if(e)return;if((r=t)===-1){r=this.activeLength=this._activePointer=0,i=!0;break}}}let a=n.next(this.activeLength-this.activePointer);for(;!a.done;)a=n.next(this.activeLength-this.activePointer)}set(e){if(this.activeLength+e.length>this.buffer.byteLength)throw Error(`Buffer overflow error, ${this.activeLength}, ${this.buffer.byteLength}, ${e.length}`);this.u8Array.set(e,this.activeLength),this.activeLength+=e.length}flush(){this.activePointer<=0||this.activeLength<=0||(this.u8Array.set(this.u8Array.subarray(this.activePointer,this.activeLength),0),this.activeLength-=this.activePointer,this._activePointer=0)}reset(){if(this.isRunning)throw ReferenceError(`Instance is locked, you can reset only instance with no tasks running.`);this.activeLength=0,this._activePointer=0}static*getChunkIterator(e,t){let n=0;for(;n<e.length;)yield e.subarray(n,n+=t)}};const S=256*2,C=256,w=16384+C,T=new TextDecoder(`utf-8`),E=26,D=42,O=18;var k=class{parsers;constructor(){this.parsers=Object.create(A)}registryParser(e,t){return this.parsers[e]=t,this}};const A={*[x.UnicodeFileName](e,t){yield 1;let n=e.readUint8();if(n!=1)return;yield 4,e.readUint32();let r=t.size-5;if(r>S)throw Error(`File name too long, bytes: `+r);let i=yield*e.bufferUp(new Uint8Array(r));return{path:T.decode(i)}},*[x.UTF8FileName](e,t){yield 1;let n=e.readUint8();if(n!=1)return;let r=t.size-1;if(r>S)throw Error(`File name too long, bytes: `+r);let i=yield*e.bufferUp(new Uint8Array(r));return{path:T.decode(i)}},*[x.Zip64](e){console.log(`Zip64`),yield 8;let t=Number(e.readBigUint64()),n=Number(e.readBigUint64());return{uncompressedSize:t,compressedSize:n}},*[x.ExtendedTimestamp](e){yield 1;let t=e.readUint8(),n={};return t&1&&(yield 4,n.modificationTime=e.readUint32()),t&2&&(yield 4,n.accessTime=e.readUint32()),t&4&&(yield 4,n.creationTime=e.readUint32()),n}};let j=function(e){return e[e.Encrypted=1]=`Encrypted`,e[e.CompressionOption1=2]=`CompressionOption1`,e[e.CompressionOption2=4]=`CompressionOption2`,e[e.HasDataDescriptor=8]=`HasDataDescriptor`,e[e.ReservedPkware1=16]=`ReservedPkware1`,e[e.StrongEncryption=32]=`StrongEncryption`,e[e.UTF8Encoding=2048]=`UTF8Encoding`,e[e.MaskHeaderValues=8192]=`MaskHeaderValues`,e}({});var M=class extends ne{static textDecoder=new TextDecoder;onFileRead;onDirectoryInfo;constructor(e=new k,t=new ArrayBuffer(w)){super(C,t),this.parser=e,this.buffer=t}*getProgram(){for(;;){let e=yield 4;if(e<4)throw SyntaxError(`Unexpected end of input`);let t=this.getMagic();if(this.reader.movePointer(4),typeof this[t]!=`function`)throw Error(`Unexpected magic number: `+t.toString(16)+` `+b[t]);let n=yield*this[t]();if(n){yield-1;return}}}*101010256(){let e=yield O;if(e<O)throw Error(`Invalid EndOfCentralDirectoryHeader size: `+e);let t=N.readEndOfCentralDirectoryHeader(this.reader);return yield*this.reader.batchSkip(t.commentLength),!0}*33639248(){let e=yield D;if(e<D)throw Error(`Invalid CentralDirectoryHeader size: `+e);let t=N.readCentralDirectoryHeader(this.reader);yield*this.reader.batchSkip(t.nameLength),yield*this.reader.batchSkip(t.extraDataLength),yield*this.reader.batchSkip(t.commentLength)}*67324752(){let e=yield E;if(e<E)return void console.error(`Invalid header size`);let t=N.readLocalFileHeader(this.reader);if(t.nameLength>S)throw Error(`File name path is too long: `+t.nameLength);if((yield t.nameLength)<t.nameLength)throw Error(`Unexpected end of input`);let n=T.decode(this.reader.rentSlice(t.nameLength)),r={time:t.time,date:t.date,compressionMethod:t.compressionMethod,bits:t.bitFlags,isZIP64:!1,isStreamSized:(t.bitFlags&j.HasDataDescriptor)===j.HasDataDescriptor,compressedSize:t.compressedSize,uncompressedSize:t.uncompressedSize,path:n,crc:t.crc},i=this.absoluteOffset;for(;this.absoluteOffset-i<t.extraDataLength;){let{id:e,size:t}=yield*this.readExtraDataHeader(),n=this.parser.parsers[e];if(n){let i=yield*n(this.reader,{id:e,size:t});typeof i==`object`&&Object.assign(r,i)}else yield*this.reader.batchSkip(t)}if(r.uncompressedSize===0&&!r.isStreamSized&&r.path.match(/^.*[\\/]{1}$/))return void this.onDirectoryInfo?.(r);let a,o;if(r.isStreamSized){let e=this.reader.createStreamController();a=e.readable,o=this.streamReadData(e.controller,r.isZIP64)}else{let e=o=this.reader.createReadable(r.compressedSize);a=e.readable}this.onFileRead?.(r,a),yield*o}*streamReadData(e,t){let n=t?24:16,r=t?e=>Number(this.view.getBigUint64(e,!0)):e=>this.view.getUint32(e,!0),i=0;for(;;){let a=yield n+1,o=a-n,s=this.activePointer,c=0;for(;c<=o;c++,i++)if(this.view.getUint32(s+c,!0)===b.DataDescriptor&&r(s+c+8)===i){e.enqueue(this.reader.rentSlice(c)),this.reader.movePointer(t?24:16),e.close();return}e.enqueue(this.reader.rentSlice(c))}}getMagic(){return this.view.getUint32(this.activePointer,!0)}*readExtraDataHeader(){if((yield 4)<4)throw Error(`Unexpected end of input`);return{id:this.reader.readUint16(),size:this.reader.readUint16()}}};let N;(function(e){function t(e){return{version:e.readUint16(),bitFlags:e.readUint16(),compressionMethod:e.readUint16(),time:e.readUint16(),date:e.readUint16(),crc:e.readUint32(),compressedSize:e.readUint32(),uncompressedSize:e.readUint32(),nameLength:e.readUint16(),extraDataLength:e.readUint16()}}e.readLocalFileHeader=t;function n(e){return{versionMadeBy:e.readUint16(),versionNeeded:e.readUint16(),bitFlags:e.readUint16(),compressionMethod:e.readUint16(),time:e.readUint16(),date:e.readUint16(),crc:e.readUint32(),compressedSize:e.readUint32(),uncompressedSize:e.readUint32(),nameLength:e.readUint16(),extraDataLength:e.readUint16(),commentLength:e.readUint16(),diskNumberStart:e.readUint16(),internalAttributes:e.readUint16(),externalAttributes:e.readUint32(),offsetLocalHeader:e.readUint32()}}e.readCentralDirectoryHeader=n;function r(e){return{diskNumber:e.readUint16(),centralDirectoryDisk:e.readUint16(),centralDirectoryRecordsOnDisk:e.readUint16(),totalCentralDirectoryRecords:e.readUint16(),centralDirectorySize:e.readUint32(),centralDirectoryOffset:e.readUint32(),commentLength:e.readUint16()}}e.readEndOfCentralDirectoryHeader=r;function i(e){return{versionMadeBy:e.readUint16(),versionNeeded:e.readUint16(),bitFlags:e.readUint16(),compressionMethod:e.readUint16(),time:e.readUint16(),date:e.readUint16(),crc:e.readUint32(),compressedSize:Number(e.readBigUint64()),uncompressedSize:Number(e.readBigUint64()),nameLength:e.readUint16(),extraDataLength:e.readUint16(),commentLength:e.readUint16(),diskNumberStart:e.readUint32(),internalAttributes:e.readUint16(),externalAttributes:e.readUint32(),offsetLocalHeader:Number(e.readBigUint64())}}e.readZIP64CentralDirectoryHeader=i;function a(e){return{diskWithEOCD:e.readUint32(),offsetEOCD:e.readBigUint64(),totalDisks:e.readUint32()}}e.readZip64EndOfCentralDirectoryLocator=a})(N||={});var P=class extends WritableStream{unzipExtractor;transformer=new TransformStream;constructor(e){super({abort:e=>t.abort(e),close:()=>t.close(),write:e=>t.write(e)}),this.unzipExtractor=e?.zipExtractor??new M;let t=this.transformer.writable.getWriter();this.unzipExtractor.consume(this.transformer.readable).catch(e=>{console.error(`Abort:`,e),t.abort(e)}),this.unzipExtractor.onFileRead=(t,r)=>e?.onFile?.(t,e?.pipeThrough?.(t,r)??n(t,r)),this.unzipExtractor.onDirectoryInfo=t=>e?.onDirectory?.(t);let n=(e,t)=>e.compressionMethod===te.Deflate?t.pipeThrough(new DecompressionStream(`deflate-raw`)):t}},F=class extends Map{constructor(e){super(),this.path=e}async load(e=!1){try{e&&this.clear();let t=(await c(this.path)).toString(`utf8`);for(let e of t.split(/\n|\r\n|\r/).map(e=>e.trim())){if(e.startsWith(`#`)||e===``)continue;let t=e.indexOf(`=`),n=e.substring(0,t),r=e.substring(t+1);r===`true`||r===`false`?r=r===`true`:isFinite(Number(r))&&(r=Number(r)),this.has(n)||this.set(n,r)}}catch{}return this}async save(){return await s(d(this.path)).catch(e=>null),await u(this.path,this.entries().map(([e,t])=>`${e}=${t}`).toArray().join(`
-`)),this}merge(e){for(let t of Object.keys(e))this.set(t,e[t]);return this}},I=class{constructor(e){this.path=e}raw={};async load(){try{let e=(await c(this.path)).toString(`utf8`);this.raw=JSON.parse(e)}catch{}return this}getAllowedModules(){return Array.prototype.values.call(this.raw.allowed_modules??=[])}addAllowedModules(...e){this.raw.allowed_modules=new Set([...e,...this.raw.allowed_modules??[]]).values().toArray()}removeAllowedModules(...e){let t=new Set(this.raw.allowed_modules??[]);this.raw.allowed_modules=t.difference(new Set(e)).values().toArray()}async save(){return await s(d(this.path)).catch(e=>null),await u(this.path,JSON.stringify(this.raw,null,3)),this}};const L=`test_config.json`,R=`server.properties`,z=`permissions.json`,B=f(`config`,`default`),V=`world_behavior_packs.json`,H=`world_resource_packs.json`,U=`worlds`;var W=class{properties={};constructor(e){this.name=e}name},G=class{directory;worlds=new Map;constructor(e){this.directory=e}async create(e){e.options??={};let t=f(this.directory,e.options[`level-name`]??=crypto.randomUUID()),n=new W(e.options[`level-name`]);return Object.assign(n.properties,e.options),a(t)||await s(t),e.behaviorPacks&&await u(f(t,V),JSON.stringify(e.behaviorPacks.map(({version:e,uuid:t})=>({version:e,pack_id:t})))),e.resourcePacks&&await u(f(t,H),JSON.stringify(e.resourcePacks.map(({version:e,uuid:t})=>({version:e,pack_id:t})))),n}},K=class{directory;properties;configPermissions;worlds;constructor(e){this.directory=p(e),this.properties=new F(p(this.directory,R)),this.configPermissions=new I(p(this.directory,B,z)),this.worlds=new G(p(this.directory,U))}async include(e){}async install(e){let t=new Set;return await e.pipeTo(new P({onFile:async(e,n)=>{let r=p(this.directory,e.path);if(!r.startsWith(this.directory))throw ReferenceError(`Security critical path provided: `+e.path);a(d(r))||await s(d(r),{recursive:!0});let c=n.pipeTo(m.toWeb(i(r))).then(t=>e.path===`bedrock_server`?o(r,493):null).then(e=>void t.delete(c),e=>void 0);t.add(c)}})),await Promise.all(t),this.load()}async installFromURL(e){let t=await fetch(e).catch(e=>null);if(!t||!t.ok)throw ReferenceError(`Failed to fetch resource from: `+e);let n=t.body;if(!n)throw ReferenceError(`Failed to fetch resource data: `+e);return this.install(n)}async load(){return await this.properties.load(),await this.configPermissions.load(),this}async runWithTestConfig(e,t){return await u(f(this.directory,L),JSON.stringify(e)),await this.runInternal(t)}async run(e){return await l(f(this.directory,L)).catch(e=>null),this.runInternal(e)}getExecutableFile(){let e=f(this.directory,`bedrock_server`);return a(e)?e:a(e+`.exe`)?e+`.exe`:null}async runInternal(e){let t=this.getExecutableFile();if(!t)throw ReferenceError(`Corrupted installation, failed to found executable`);return await this.properties.save(),await this.configPermissions.save(),y.run(t,e??[],this.directory)}async runWorld(e){return this.properties.merge(e.properties),this.run([])}};const q=`https://net-secondary.web.minecraft-services.net/api/v1.0/download/links`,J=`https://raw.githubusercontent.com/Bedrock-OSS/BDS-Versions/main`,Y=`${J}/versions.json`;async function X(e){let t=`serverBedrock`;switch(e.is_preview&&(t+=`Preview`),e.platform){case`win32`:t+=`Windows`;break;case`linux`:t+=`Linux`;break;default:return null}let n=await fetch(q).catch(e=>null);if(!n||!n.ok)return null;let r=await n.json().catch(e=>null);return!r||!r.result||!Array.isArray(r.result.links)?null:r.result.links.find(e=>e?.downloadType===t)?.downloadUrl??null}async function re(e){let t=e.platform===`win32`?`windows`:e.platform,n=await fetch(Y).catch(e=>null);if(!n||!n.ok)return null;let r=await n.json().catch(e=>null);if(!r)return null;let i=r[t];if(!i)return null;let a=i[e.is_preview?`preview`:`stable`];return!a||(n=await fetch(`${J}/${t}${e.is_preview?`_preview`:``}/${a}.json`),!n||!n.ok)||(r=await n.json().catch(e=>null),!r)?null:r.download_url??null}function Z(e){return re(e).then(t=>t??X(e))}const ie=15e3,ae=`docs`,oe=`metadata`;var Q=class{static DESCRIPTION=`METADATA DESCRIPTION`;static async Init(e){console.info(`Initializing Metadata`),await Deno.remove(e.worlds.directory,{recursive:!0}).catch(e=>null);let t=await e.runWithTestConfig({generate_all:!0},null);t.enabledOutputRedirection(),t.stop(!0,ie);let n=await t.wait().catch(e=>(console.error(e),null));return n===null?-1:(console.info(`Metadata initialized`),n)}static*GetTasks(e){yield this.CopyDocsTask(f(e.directory,ae),oe)}static async CopyDocsTask(e,t){let n=0;for await(let t of $(e))console.info(++n,t);return 0}};async function*$(e,t){for await(let{name:n,isFile:r,isDirectory:i}of Deno.readDir(f(e,t??``))){let a=f(t??``,n);r&&(yield a),i&&(yield*$(e,a))}}async function se(){if(t!==`win32`&&t!==`linux`)throw new _(v.UnsupportedPlatform,`Unknown OS platform: ${t}`);let e=await Z({is_preview:g===`preview`,platform:t});if(!e)throw new _(v.UnavailableInstallationLink,`Link not available branch:${g} platform:${t}`);console.info(`Link found: `+e);let n=new K(h);console.info(`Installation started`),await n.installFromURL(e),console.info(`Installed`);let r=await Q.Init(n);if(r)throw new _(v.SubModuleFailed,`Submodule failed with error code: `+r);for(let e of Q.GetTasks(n))await e;return 0}se().catch(e=>(console.error(e),e.CODE??ee)).then(Deno.exit);
+import { spawn } from "node:child_process";
+import { platform, stderr, stdout } from "node:process";
+import { createWriteStream, existsSync } from "node:fs";
+import { chmod, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { dirname, join, resolve } from "node:path";
+import { Writable } from "node:stream";
+
+//#region modules/constants.ts
+const INSTALLATION_FOLDER = "__installation__";
+const BRANCH_TO_UPDATE = Deno.env.get("BRANCH_TO_UPDATE") ?? null;
+const IS_GITHUB_ACTION = Deno.env.get("GITHUB_ACTIONS")?.toLocaleLowerCase() === "true";
+const UNKNOWN_ERROR_CODE = -1;
+var DumperError = class extends Error {
+	CODE;
+	constructor(code, message) {
+		super(message);
+		this.CODE = code;
+	}
+};
+let ErrorCodes = /* @__PURE__ */ function(ErrorCodes$1) {
+	ErrorCodes$1[ErrorCodes$1["UnsupportedPlatform"] = 1] = "UnsupportedPlatform";
+	ErrorCodes$1[ErrorCodes$1["UnavailableInstallationLink"] = 2] = "UnavailableInstallationLink";
+	ErrorCodes$1[ErrorCodes$1["BedrockServerProcessCriticalExit"] = 17] = "BedrockServerProcessCriticalExit";
+	ErrorCodes$1[ErrorCodes$1["BedrockServerProcessExitedWithErrorCode"] = 18] = "BedrockServerProcessExitedWithErrorCode";
+	ErrorCodes$1[ErrorCodes$1["SubModuleFailed"] = 32] = "SubModuleFailed";
+	return ErrorCodes$1;
+}({});
+
+//#endregion
+//#region node_modules/.pnpm/@bedrock-apis+bds-utils@1.0.0-alpha.4/node_modules/@bedrock-apis/bds-utils/dist/process-Dld4Rerl.js
+var BedrockDedicatedServerProcess = class BedrockDedicatedServerProcess$1 {
+	stopTimeout = 3e3;
+	process;
+	promise;
+	_timeout_ref = null;
+	_was_redirected = false;
+	constructor(prc) {
+		this.process = prc;
+		const { promise, resolve: resolve$1 } = Promise.withResolvers();
+		this.promise = promise;
+		this.process.on("exit", (e) => {
+			if (this._timeout_ref !== null) clearTimeout(this._timeout_ref);
+			this._timeout_ref = null;
+			resolve$1(e);
+		});
+	}
+	static async "from"(process) {
+		return new BedrockDedicatedServerProcess$1(process);
+	}
+	static async run(executable, args, cwd) {
+		const process = spawn(executable, args ?? [], {
+			cwd,
+			stdio: ["pipe"]
+		});
+		return this.from(process);
+	}
+	enabledOutputRedirection() {
+		if (this._was_redirected) return;
+		this.process.stdout.pipe(stdout);
+		this.process.stderr.pipe(stderr);
+		this._was_redirected = true;
+	}
+	stop(force, timeout = this.stopTimeout) {
+		if (this.process.exitCode !== null) return this.wait();
+		this.process.stdin.write("stop\n");
+		if (force && this._timeout_ref === null) this._timeout_ref = setTimeout(() => void this.kill(), timeout ?? this.stopTimeout);
+		return this.wait();
+	}
+	kill() {
+		this.process.kill("SIGKILL");
+		return this.wait();
+	}
+	runCommand(cmd) {
+		cmd = cmd.trim();
+		if (cmd.toLowerCase() === "stop") this.stop(false);
+		else this.process.stdin.write(cmd + "\n");
+	}
+	wait() {
+		return this.promise;
+	}
+};
+
+//#endregion
+//#region node_modules/.pnpm/unzip-web-stream@0.0.0-alpha.1/node_modules/unzip-web-stream/dist/index.js
+let MagicNumber = /* @__PURE__ */ function(MagicNumber$1) {
+	MagicNumber$1[MagicNumber$1["LocalFileHeader"] = 67324752] = "LocalFileHeader";
+	MagicNumber$1[MagicNumber$1["CentralDirectoryHeader"] = 33639248] = "CentralDirectoryHeader";
+	MagicNumber$1[MagicNumber$1["DataDescriptor"] = 134695760] = "DataDescriptor";
+	MagicNumber$1[MagicNumber$1["EndOfCentralDirectory"] = 101010256] = "EndOfCentralDirectory";
+	MagicNumber$1[MagicNumber$1["ZIP64EndOfCentralDirectory"] = 101075792] = "ZIP64EndOfCentralDirectory";
+	MagicNumber$1[MagicNumber$1["ZIP64EndOfCentralDirectoryLocator"] = 117853008] = "ZIP64EndOfCentralDirectoryLocator";
+	return MagicNumber$1;
+}({});
+let ExtraFieldId = /* @__PURE__ */ function(ExtraFieldId$1) {
+	ExtraFieldId$1[ExtraFieldId$1["Zip64"] = 1] = "Zip64";
+	ExtraFieldId$1[ExtraFieldId$1["ExtendedTimestamp"] = 21589] = "ExtendedTimestamp";
+	ExtraFieldId$1[ExtraFieldId$1["NTFS"] = 10] = "NTFS";
+	ExtraFieldId$1[ExtraFieldId$1["StrongEncryption"] = 23] = "StrongEncryption";
+	ExtraFieldId$1[ExtraFieldId$1["UnixUIDGID"] = 30805] = "UnixUIDGID";
+	ExtraFieldId$1[ExtraFieldId$1["UnicodeFileName"] = 30062] = "UnicodeFileName";
+	ExtraFieldId$1[ExtraFieldId$1["UnicodeComment"] = 25461] = "UnicodeComment";
+	ExtraFieldId$1[ExtraFieldId$1["UTF8FileName"] = 28789] = "UTF8FileName";
+	ExtraFieldId$1[ExtraFieldId$1["AES"] = 39169] = "AES";
+	ExtraFieldId$1[ExtraFieldId$1["OS2ExtendedAttributes"] = 20300] = "OS2ExtendedAttributes";
+	ExtraFieldId$1[ExtraFieldId$1["MacOSXMetadata"] = 1992] = "MacOSXMetadata";
+	ExtraFieldId$1[ExtraFieldId$1["CentralDirectoryProtection"] = 17217] = "CentralDirectoryProtection";
+	ExtraFieldId$1[ExtraFieldId$1["X509CertificatePKCS7"] = 20] = "X509CertificatePKCS7";
+	ExtraFieldId$1[ExtraFieldId$1["X509CertificatePKCS7Attributes"] = 21] = "X509CertificatePKCS7Attributes";
+	ExtraFieldId$1[ExtraFieldId$1["X509CertificatePKCS1RSA"] = 22] = "X509CertificatePKCS1RSA";
+	ExtraFieldId$1[ExtraFieldId$1["WavPack"] = 256] = "WavPack";
+	ExtraFieldId$1[ExtraFieldId$1["PPMdVersionI"] = 257] = "PPMdVersionI";
+	ExtraFieldId$1[ExtraFieldId$1["IBMTERSE"] = 24] = "IBMTERSE";
+	return ExtraFieldId$1;
+}({});
+let CompressionMethod = /* @__PURE__ */ function(CompressionMethod$1) {
+	CompressionMethod$1[CompressionMethod$1["Store"] = 0] = "Store";
+	CompressionMethod$1[CompressionMethod$1["Shrink"] = 1] = "Shrink";
+	CompressionMethod$1[CompressionMethod$1["Reduce1"] = 2] = "Reduce1";
+	CompressionMethod$1[CompressionMethod$1["Reduce2"] = 3] = "Reduce2";
+	CompressionMethod$1[CompressionMethod$1["Reduce3"] = 4] = "Reduce3";
+	CompressionMethod$1[CompressionMethod$1["Reduce4"] = 5] = "Reduce4";
+	CompressionMethod$1[CompressionMethod$1["Implode"] = 6] = "Implode";
+	CompressionMethod$1[CompressionMethod$1["Deflate"] = 8] = "Deflate";
+	CompressionMethod$1[CompressionMethod$1["Deflate64"] = 9] = "Deflate64";
+	CompressionMethod$1[CompressionMethod$1["PKWareImplode"] = 10] = "PKWareImplode";
+	CompressionMethod$1[CompressionMethod$1["BZIP2"] = 12] = "BZIP2";
+	CompressionMethod$1[CompressionMethod$1["LZMA"] = 14] = "LZMA";
+	CompressionMethod$1[CompressionMethod$1["IBMTERSE_Old"] = 16] = "IBMTERSE_Old";
+	CompressionMethod$1[CompressionMethod$1["IBMLZ77"] = 17] = "IBMLZ77";
+	CompressionMethod$1[CompressionMethod$1["PPMd"] = 18] = "PPMd";
+	CompressionMethod$1[CompressionMethod$1["IBMTERSE_New"] = 19] = "IBMTERSE_New";
+	CompressionMethod$1[CompressionMethod$1["ZStandard"] = 93] = "ZStandard";
+	CompressionMethod$1[CompressionMethod$1["XZ"] = 98] = "XZ";
+	CompressionMethod$1[CompressionMethod$1["JPEG"] = 99] = "JPEG";
+	CompressionMethod$1[CompressionMethod$1["WavPack"] = 100] = "WavPack";
+	CompressionMethod$1[CompressionMethod$1["PPMdVersionI"] = 101] = "PPMdVersionI";
+	CompressionMethod$1[CompressionMethod$1["AES"] = 102] = "AES";
+	return CompressionMethod$1;
+}({});
+var StreamDataProvider = class StreamDataProvider$1 {
+	static ReaderConstructor = class Readable {
+		constructor(dataProvider) {
+			this.dataProvider = dataProvider;
+		}
+		createStreamController() {
+			let controller;
+			const readable = new ReadableStream({ start(c) {
+				controller = c;
+			} });
+			return {
+				controller,
+				readable
+			};
+		}
+		*bufferUpController(controller, length, close = true) {
+			let offset = 0;
+			while (offset < length) {
+				const available = yield 1;
+				let toRead = Math.min(available, length - offset);
+				if (toRead === 0) break;
+				controller.enqueue(this.rentSlice(toRead));
+				offset += toRead;
+			}
+			if (close) controller.close();
+		}
+		createReadable(length) {
+			const { controller, readable } = this.createStreamController();
+			const generator = this.bufferUpController(controller, length);
+			generator.readable = readable;
+			return generator;
+		}
+		*bufferUp(buffer) {
+			let offset = 0;
+			while (offset < buffer.length) {
+				const available = yield 1;
+				let toRead = Math.min(available, buffer.length - offset);
+				if (toRead === 0) return buffer;
+				buffer.set(this.rentSlice(toRead), offset);
+				offset += toRead;
+			}
+			return buffer;
+		}
+		*batchSkip(length) {
+			let offset = 0;
+			while (offset < length) {
+				const available = yield 1;
+				let toRead = Math.min(available, length - offset);
+				if (toRead === 0) return;
+				this.movePointer(toRead);
+				offset += toRead;
+			}
+		}
+		movePointer(length) {
+			this.dataProvider.moveActivePointer(length);
+		}
+		rentSlice(length) {
+			const _ = this.dataProvider.u8Array.slice(this.dataProvider.activePointer, this.dataProvider.activePointer + length);
+			this.movePointer(length);
+			return _;
+		}
+		readUint8() {
+			const _ = this.dataProvider.view.getUint8(this.dataProvider.activePointer);
+			this.movePointer(1);
+			return _;
+		}
+		readUint16() {
+			const _ = this.dataProvider.view.getUint16(this.dataProvider.activePointer, true);
+			this.movePointer(2);
+			return _;
+		}
+		readUint32() {
+			const _ = this.dataProvider.view.getUint32(this.dataProvider.activePointer, true);
+			this.movePointer(4);
+			return _;
+		}
+		readBigUint64() {
+			const _ = this.dataProvider.view.getBigUint64(this.dataProvider.activePointer, true);
+			this.movePointer(8);
+			return _;
+		}
+		rentDataView(length) {
+			const _ = new DataView(this.dataProvider.buffer, this.dataProvider.view.byteOffset + this.dataProvider.activePointer, length);
+			this.movePointer(length);
+			return _;
+		}
+	};
+	reader = new StreamDataProvider$1.ReaderConstructor(this);
+	view;
+	u8Array;
+	absoluteOffset = 0;
+	_activePointer = 0;
+	get activePointer() {
+		return this._activePointer;
+	}
+	moveActivePointer(offset) {
+		this._activePointer += offset;
+		this.absoluteOffset += offset;
+	}
+	activeLength = 0;
+	maxSubChunkSize;
+	isRunning = false;
+	constructor(maxRequestedSize, buffer) {
+		this.maxRequestedSize = maxRequestedSize;
+		this.buffer = buffer;
+		this.view = new DataView(this.buffer);
+		this.u8Array = new Uint8Array(this.buffer);
+		this.maxSubChunkSize = buffer.byteLength - maxRequestedSize;
+	}
+	async consume(readable) {
+		if (this.isRunning) throw new ReferenceError("Each consumer instance can run only one task at the time. You can reset this instance and run next task once current task quits.");
+		await this.process(readable).finally(() => this.isRunning = false);
+	}
+	async process(_readable) {
+		this.isRunning = true;
+		const program = this.getProgram();
+		let requested = 0;
+		let endRequested = false;
+		for await (const raw_chunk of _readable) for (const chunk of StreamDataProvider$1.getChunkIterator(raw_chunk, this.maxSubChunkSize)) {
+			if (endRequested) continue;
+			this.flush();
+			this.set(chunk);
+			while (requested <= this.activeLength - this.activePointer) {
+				const { done, value } = program.next(this.activeLength - this.activePointer);
+				if (done) return;
+				if ((requested = value) === -1) {
+					requested = this.activeLength = this._activePointer = 0;
+					endRequested = true;
+					break;
+				}
+			}
+		}
+		let nextValue = program.next(this.activeLength - this.activePointer);
+		while (!nextValue.done) nextValue = program.next(this.activeLength - this.activePointer);
+	}
+	set(u8) {
+		if (this.activeLength + u8.length > this.buffer.byteLength) throw new Error(`Buffer overflow error, ${this.activeLength}, ${this.buffer.byteLength}, ${u8.length}`);
+		this.u8Array.set(u8, this.activeLength);
+		this.activeLength += u8.length;
+	}
+	flush() {
+		if (this.activePointer <= 0 || this.activeLength <= 0) return;
+		this.u8Array.set(this.u8Array.subarray(this.activePointer, this.activeLength), 0);
+		this.activeLength -= this.activePointer;
+		this._activePointer = 0;
+	}
+	reset() {
+		if (this.isRunning) throw new ReferenceError("Instance is locked, you can reset only instance with no tasks running.");
+		this.activeLength = 0;
+		this._activePointer = 0;
+	}
+	static *getChunkIterator(buffer, chunkLength) {
+		let start = 0;
+		while (start < buffer.length) yield buffer.subarray(start, start += chunkLength);
+	}
+};
+const MAX_FILENAME_SIZE = 256 * 2;
+const MAX_REQUESTED_SIZE = 256;
+const BUFFER_SIZE = 16384 + MAX_REQUESTED_SIZE;
+const UTF8_DECODER = new TextDecoder("utf-8");
+const LOCAL_FILE_HEADER_SIZE = 26;
+const CENTRAL_DIRECTORY_HEADER_SIZE = 42;
+const END_OF_CENTRAL_DIRECTORY_HEADER_SIZE = 18;
+var ExtraDataParser = class {
+	parsers;
+	constructor() {
+		this.parsers = Object.create(DEFAULT_PARSERS);
+	}
+	registryParser(id, parser) {
+		this.parsers[id] = parser;
+		return this;
+	}
+};
+const DEFAULT_PARSERS = {
+	*[ExtraFieldId.UnicodeFileName](reader, info) {
+		yield 1;
+		if (reader.readUint8() != 1) return;
+		yield 4;
+		reader.readUint32();
+		const fileNameSize = info.size - 5;
+		if (fileNameSize > MAX_FILENAME_SIZE) throw new Error("File name too long, bytes: " + fileNameSize);
+		const textBuffer = yield* reader.bufferUp(new Uint8Array(fileNameSize));
+		return { path: UTF8_DECODER.decode(textBuffer) };
+	},
+	*[ExtraFieldId.UTF8FileName](reader, info) {
+		yield 1;
+		if (reader.readUint8() != 1) return;
+		const fileNameSize = info.size - 1;
+		if (fileNameSize > MAX_FILENAME_SIZE) throw new Error("File name too long, bytes: " + fileNameSize);
+		const textBuffer = yield* reader.bufferUp(new Uint8Array(fileNameSize));
+		return { path: UTF8_DECODER.decode(textBuffer) };
+	},
+	*[ExtraFieldId.Zip64](reader) {
+		console.log("Zip64");
+		yield 8;
+		return {
+			uncompressedSize: Number(reader.readBigUint64()),
+			compressedSize: Number(reader.readBigUint64())
+		};
+	},
+	*[ExtraFieldId.ExtendedTimestamp](reader) {
+		yield 1;
+		const flags = reader.readUint8();
+		const _ = {};
+		if (flags & 1) {
+			yield 4;
+			_.modificationTime = reader.readUint32();
+		}
+		if (flags & 2) {
+			yield 4;
+			_.accessTime = reader.readUint32();
+		}
+		if (flags & 4) {
+			yield 4;
+			_.creationTime = reader.readUint32();
+		}
+		return _;
+	}
+};
+let ZipBitFlags = /* @__PURE__ */ function(ZipBitFlags$1) {
+	ZipBitFlags$1[ZipBitFlags$1["Encrypted"] = 1] = "Encrypted";
+	ZipBitFlags$1[ZipBitFlags$1["CompressionOption1"] = 2] = "CompressionOption1";
+	ZipBitFlags$1[ZipBitFlags$1["CompressionOption2"] = 4] = "CompressionOption2";
+	ZipBitFlags$1[ZipBitFlags$1["HasDataDescriptor"] = 8] = "HasDataDescriptor";
+	ZipBitFlags$1[ZipBitFlags$1["ReservedPkware1"] = 16] = "ReservedPkware1";
+	ZipBitFlags$1[ZipBitFlags$1["StrongEncryption"] = 32] = "StrongEncryption";
+	ZipBitFlags$1[ZipBitFlags$1["UTF8Encoding"] = 2048] = "UTF8Encoding";
+	ZipBitFlags$1[ZipBitFlags$1["MaskHeaderValues"] = 8192] = "MaskHeaderValues";
+	return ZipBitFlags$1;
+}({});
+var ZipStreamExtractor = class extends StreamDataProvider {
+	static textDecoder = new TextDecoder();
+	onFileRead;
+	onDirectoryInfo;
+	constructor(parser = new ExtraDataParser(), buffer = new ArrayBuffer(BUFFER_SIZE)) {
+		super(MAX_REQUESTED_SIZE, buffer);
+		this.parser = parser;
+		this.buffer = buffer;
+	}
+	*getProgram() {
+		while (true) {
+			if ((yield 4) < 4) throw new SyntaxError("Unexpected end of input");
+			const magic = this.getMagic();
+			this.reader.movePointer(4);
+			if (typeof this[magic] !== "function") throw new Error("Unexpected magic number: " + magic.toString(16) + " " + MagicNumber[magic]);
+			if (yield* this[magic]()) {
+				yield -1;
+				return;
+			}
+		}
+	}
+	*[101010256]() {
+		const headerSize = yield END_OF_CENTRAL_DIRECTORY_HEADER_SIZE;
+		if (headerSize < END_OF_CENTRAL_DIRECTORY_HEADER_SIZE) throw new Error("Invalid EndOfCentralDirectoryHeader size: " + headerSize);
+		const header = BatchReadHelpers.readEndOfCentralDirectoryHeader(this.reader);
+		yield* this.reader.batchSkip(header.commentLength);
+		return true;
+	}
+	*[33639248]() {
+		const headerSize = yield CENTRAL_DIRECTORY_HEADER_SIZE;
+		if (headerSize < CENTRAL_DIRECTORY_HEADER_SIZE) throw new Error("Invalid CentralDirectoryHeader size: " + headerSize);
+		const header = BatchReadHelpers.readCentralDirectoryHeader(this.reader);
+		yield* this.reader.batchSkip(header.nameLength);
+		yield* this.reader.batchSkip(header.extraDataLength);
+		yield* this.reader.batchSkip(header.commentLength);
+	}
+	*[67324752]() {
+		if ((yield LOCAL_FILE_HEADER_SIZE) < LOCAL_FILE_HEADER_SIZE) return void console.error("Invalid header size");
+		const header = BatchReadHelpers.readLocalFileHeader(this.reader);
+		if (header.nameLength > MAX_FILENAME_SIZE) throw new Error("File name path is too long: " + header.nameLength);
+		if ((yield header.nameLength) < header.nameLength) throw new Error("Unexpected end of input");
+		const path = UTF8_DECODER.decode(this.reader.rentSlice(header.nameLength));
+		const report = {
+			time: header.time,
+			date: header.date,
+			compressionMethod: header.compressionMethod,
+			bits: header.bitFlags,
+			isZIP64: false,
+			isStreamSized: (header.bitFlags & ZipBitFlags.HasDataDescriptor) === ZipBitFlags.HasDataDescriptor,
+			compressedSize: header.compressedSize,
+			uncompressedSize: header.uncompressedSize,
+			path,
+			crc: header.crc
+		};
+		let startingOffset = this.absoluteOffset;
+		while (this.absoluteOffset - startingOffset < header.extraDataLength) {
+			const { id, size } = yield* this.readExtraDataHeader();
+			const parser = this.parser.parsers[id];
+			if (parser) {
+				const data = yield* parser(this.reader, {
+					id,
+					size
+				});
+				if (typeof data === "object") Object.assign(report, data);
+			} else yield* this.reader.batchSkip(size);
+		}
+		if (report.uncompressedSize === 0 && !report.isStreamSized && report.path.match(/^.*[\\/]{1}$/)) return void this.onDirectoryInfo?.(report);
+		let readable;
+		let generator;
+		if (report.isStreamSized) {
+			const data = this.reader.createStreamController();
+			readable = data.readable;
+			generator = this.streamReadData(data.controller, report.isZIP64);
+		} else readable = (generator = this.reader.createReadable(report.compressedSize)).readable;
+		this.onFileRead?.(report, readable);
+		yield* generator;
+	}
+	*streamReadData(controller, isZIP64) {
+		const descriptorSize = isZIP64 ? 24 : 16;
+		const readSize = isZIP64 ? (offset$1) => Number(this.view.getBigUint64(offset$1, true)) : (offset$1) => this.view.getUint32(offset$1, true);
+		let offset = 0;
+		while (true) {
+			const toRead = (yield descriptorSize + 1) - descriptorSize;
+			const startingOffset = this.activePointer;
+			let i = 0;
+			for (; i <= toRead; i++, offset++) if (this.view.getUint32(startingOffset + i, true) === MagicNumber.DataDescriptor && readSize(startingOffset + i + 8) === offset) {
+				controller.enqueue(this.reader.rentSlice(i));
+				this.reader.movePointer(isZIP64 ? 24 : 16);
+				controller.close();
+				return;
+			}
+			controller.enqueue(this.reader.rentSlice(i));
+		}
+	}
+	getMagic() {
+		return this.view.getUint32(this.activePointer, true);
+	}
+	*readExtraDataHeader() {
+		if ((yield 4) < 4) throw new Error("Unexpected end of input");
+		return {
+			id: this.reader.readUint16(),
+			size: this.reader.readUint16()
+		};
+	}
+};
+let BatchReadHelpers;
+(function(_BatchReadHelpers) {
+	function readLocalFileHeader(reader) {
+		return {
+			version: reader.readUint16(),
+			bitFlags: reader.readUint16(),
+			compressionMethod: reader.readUint16(),
+			time: reader.readUint16(),
+			date: reader.readUint16(),
+			crc: reader.readUint32(),
+			compressedSize: reader.readUint32(),
+			uncompressedSize: reader.readUint32(),
+			nameLength: reader.readUint16(),
+			extraDataLength: reader.readUint16()
+		};
+	}
+	_BatchReadHelpers.readLocalFileHeader = readLocalFileHeader;
+	function readCentralDirectoryHeader(reader) {
+		return {
+			versionMadeBy: reader.readUint16(),
+			versionNeeded: reader.readUint16(),
+			bitFlags: reader.readUint16(),
+			compressionMethod: reader.readUint16(),
+			time: reader.readUint16(),
+			date: reader.readUint16(),
+			crc: reader.readUint32(),
+			compressedSize: reader.readUint32(),
+			uncompressedSize: reader.readUint32(),
+			nameLength: reader.readUint16(),
+			extraDataLength: reader.readUint16(),
+			commentLength: reader.readUint16(),
+			diskNumberStart: reader.readUint16(),
+			internalAttributes: reader.readUint16(),
+			externalAttributes: reader.readUint32(),
+			offsetLocalHeader: reader.readUint32()
+		};
+	}
+	_BatchReadHelpers.readCentralDirectoryHeader = readCentralDirectoryHeader;
+	function readEndOfCentralDirectoryHeader(reader) {
+		return {
+			diskNumber: reader.readUint16(),
+			centralDirectoryDisk: reader.readUint16(),
+			centralDirectoryRecordsOnDisk: reader.readUint16(),
+			totalCentralDirectoryRecords: reader.readUint16(),
+			centralDirectorySize: reader.readUint32(),
+			centralDirectoryOffset: reader.readUint32(),
+			commentLength: reader.readUint16()
+		};
+	}
+	_BatchReadHelpers.readEndOfCentralDirectoryHeader = readEndOfCentralDirectoryHeader;
+	function readZIP64CentralDirectoryHeader(reader) {
+		return {
+			versionMadeBy: reader.readUint16(),
+			versionNeeded: reader.readUint16(),
+			bitFlags: reader.readUint16(),
+			compressionMethod: reader.readUint16(),
+			time: reader.readUint16(),
+			date: reader.readUint16(),
+			crc: reader.readUint32(),
+			compressedSize: Number(reader.readBigUint64()),
+			uncompressedSize: Number(reader.readBigUint64()),
+			nameLength: reader.readUint16(),
+			extraDataLength: reader.readUint16(),
+			commentLength: reader.readUint16(),
+			diskNumberStart: reader.readUint32(),
+			internalAttributes: reader.readUint16(),
+			externalAttributes: reader.readUint32(),
+			offsetLocalHeader: Number(reader.readBigUint64())
+		};
+	}
+	_BatchReadHelpers.readZIP64CentralDirectoryHeader = readZIP64CentralDirectoryHeader;
+	function readZip64EndOfCentralDirectoryLocator(reader) {
+		return {
+			diskWithEOCD: reader.readUint32(),
+			offsetEOCD: reader.readBigUint64(),
+			totalDisks: reader.readUint32()
+		};
+	}
+	_BatchReadHelpers.readZip64EndOfCentralDirectoryLocator = readZip64EndOfCentralDirectoryLocator;
+})(BatchReadHelpers || (BatchReadHelpers = {}));
+var UnzipStreamConsumer = class extends WritableStream {
+	unzipExtractor;
+	transformer = new TransformStream();
+	constructor(options) {
+		super({
+			abort: (e) => writer.abort(e),
+			close: () => writer.close(),
+			write: (chunk) => writer.write(chunk)
+		});
+		this.unzipExtractor = options?.zipExtractor ?? new ZipStreamExtractor();
+		const writer = this.transformer.writable.getWriter();
+		this.unzipExtractor.consume(this.transformer.readable).catch((e) => {
+			console.error("Abort:", e);
+			writer.abort(e);
+		});
+		this.unzipExtractor.onFileRead = (r, s) => options?.onFile?.(r, options?.pipeThrough?.(r, s) ?? fallbackPipeThrough(r, s));
+		this.unzipExtractor.onDirectoryInfo = (r) => options?.onDirectory?.(r);
+		const fallbackPipeThrough = (report, readable) => {
+			if (report.compressionMethod === CompressionMethod.Deflate) return readable.pipeThrough(new DecompressionStream("deflate-raw"));
+			return readable;
+		};
+	}
+};
+
+//#endregion
+//#region node_modules/.pnpm/@bedrock-apis+bds-utils@1.0.0-alpha.4/node_modules/@bedrock-apis/bds-utils/dist/install-BlU8hABz.js
+var ServerProperties = class extends Map {
+	constructor(path) {
+		super();
+		this.path = path;
+	}
+	async load(clean = false) {
+		try {
+			if (clean) this.clear();
+			const file = (await readFile(this.path)).toString("utf8");
+			for (const line of file.split(/\n|\r\n|\r/).map((e) => e.trim())) {
+				if (line.startsWith("#")) continue;
+				if (line === "") continue;
+				const indexOfEqual = line.indexOf("=");
+				const name = line.substring(0, indexOfEqual);
+				let data = line.substring(indexOfEqual + 1);
+				if (data === "true" || data === "false") data = data === "true";
+				else if (isFinite(Number(data))) data = Number(data);
+				if (!this.has(name)) this.set(name, data);
+			}
+		} catch {}
+		return this;
+	}
+	async save() {
+		await mkdir(dirname(this.path)).catch((_) => null);
+		await writeFile(this.path, this.entries().map(([k, v]) => `${k}=${v}`).toArray().join("\n"));
+		return this;
+	}
+	merge(record) {
+		for (const key of Object.keys(record)) this.set(key, record[key]);
+		return this;
+	}
+};
+var ConfigPermissions = class {
+	constructor(path) {
+		this.path = path;
+	}
+	raw = {};
+	async load() {
+		try {
+			const theText = (await readFile(this.path)).toString("utf8");
+			this.raw = JSON.parse(theText);
+		} catch {}
+		return this;
+	}
+	getAllowedModules() {
+		return Array.prototype.values.call(this.raw.allowed_modules ??= []);
+	}
+	addAllowedModules(...moduleNames) {
+		this.raw.allowed_modules = new Set([...moduleNames, ...this.raw.allowed_modules ?? []]).values().toArray();
+	}
+	removeAllowedModules(...modulesNames) {
+		const base = new Set(this.raw.allowed_modules ?? []);
+		this.raw.allowed_modules = base.difference(new Set(modulesNames)).values().toArray();
+	}
+	async save() {
+		await mkdir(dirname(this.path)).catch((_) => null);
+		await writeFile(this.path, JSON.stringify(this.raw, null, 3));
+		return this;
+	}
+};
+const TEST_CONFIG_FILE_NAME = "test_config.json";
+const SERVER_PROPERTIES_FILE_NAME = "server.properties";
+const CONFIG_PERMISSIONS_FILE_NAME = "permissions.json";
+const DEFAULT_CONFIG_DIR_PATH = join("config", "default");
+const WORLD_BEHAVIOR_PACKS_FILE_NAME = "world_behavior_packs.json";
+const WORLD_RESOURCE_PACKS_FILE_NAME = "world_resource_packs.json";
+const WORLDS_DIR_NAME = "worlds";
+var WorldLevel = class {
+	properties = {};
+	constructor(name) {
+		this.name = name;
+	}
+	name;
+};
+var WorldsFolderOptions = class {
+	directory;
+	worlds = /* @__PURE__ */ new Map();
+	constructor(worlds) {
+		this.directory = worlds;
+	}
+	async create(world) {
+		world.options ??= {};
+		const folderName = join(this.directory, world.options["level-name"] ??= crypto.randomUUID());
+		const ww = new WorldLevel(world.options["level-name"]);
+		Object.assign(ww.properties, world.options);
+		if (!existsSync(folderName)) await mkdir(folderName);
+		if (world.behaviorPacks) await writeFile(join(folderName, WORLD_BEHAVIOR_PACKS_FILE_NAME), JSON.stringify(world.behaviorPacks.map(({ version, uuid }) => ({
+			version,
+			pack_id: uuid
+		}))));
+		if (world.resourcePacks) await writeFile(join(folderName, WORLD_RESOURCE_PACKS_FILE_NAME), JSON.stringify(world.resourcePacks.map(({ version, uuid }) => ({
+			version,
+			pack_id: uuid
+		}))));
+		return ww;
+	}
+};
+var Installation = class {
+	/** Installation directory */
+	directory;
+	/** Server Properties, file referenced */
+	properties;
+	configPermissions;
+	worlds;
+	constructor(installationDirectory) {
+		this.directory = resolve(installationDirectory);
+		this.properties = new ServerProperties(resolve(this.directory, SERVER_PROPERTIES_FILE_NAME));
+		this.configPermissions = new ConfigPermissions(resolve(this.directory, DEFAULT_CONFIG_DIR_PATH, CONFIG_PERMISSIONS_FILE_NAME));
+		this.worlds = new WorldsFolderOptions(resolve(this.directory, WORLDS_DIR_NAME));
+	}
+	async include(dataPacks) {}
+	async install(stream) {
+		const tasks = /* @__PURE__ */ new Set();
+		await stream.pipeTo(new UnzipStreamConsumer({ onFile: async (report, readable) => {
+			const path = resolve(this.directory, report.path);
+			if (!path.startsWith(this.directory)) throw new ReferenceError("Security critical path provided: " + report.path);
+			if (!existsSync(dirname(path))) await mkdir(dirname(path), { recursive: true });
+			const task = readable.pipeTo(Writable.toWeb(createWriteStream(path))).then((_) => report.path === "bedrock_server" ? chmod(path, 493) : null).then((_) => void tasks.delete(task), (_) => void 0);
+			tasks.add(task);
+		} }));
+		await Promise.all(tasks);
+		return this.load();
+	}
+	async installFromURL(url) {
+		const response = await fetch(url).catch((_) => null);
+		if (!response || !response.ok) throw new ReferenceError("Failed to fetch resource from: " + url);
+		const body = response.body;
+		if (!body) throw new ReferenceError("Failed to fetch resource data: " + url);
+		return this.install(body);
+	}
+	async load() {
+		await this.properties.load();
+		await this.configPermissions.load();
+		return this;
+	}
+	async runWithTestConfig(config, args) {
+		await writeFile(join(this.directory, TEST_CONFIG_FILE_NAME), JSON.stringify(config));
+		return await this.runInternal(args);
+	}
+	async run(args) {
+		await rm(join(this.directory, TEST_CONFIG_FILE_NAME)).catch((_) => null);
+		return this.runInternal(args);
+	}
+	getExecutableFile() {
+		const exePath = join(this.directory, "bedrock_server");
+		if (existsSync(exePath)) return exePath;
+		if (existsSync(exePath + ".exe")) return exePath + ".exe";
+		return null;
+	}
+	async runInternal(args) {
+		const exe = this.getExecutableFile();
+		if (!exe) throw new ReferenceError("Corrupted installation, failed to found executable");
+		await this.properties.save();
+		await this.configPermissions.save();
+		return BedrockDedicatedServerProcess.run(exe, args ?? [], this.directory);
+	}
+	/**
+	* @deprecated
+	*/
+	async runWorld(world) {
+		this.properties.merge(world.properties);
+		return this.run([]);
+	}
+};
+
+//#endregion
+//#region node_modules/.pnpm/@bedrock-apis+bds-utils@1.0.0-alpha.4/node_modules/@bedrock-apis/bds-utils/dist/links-BdkFQIGc.js
+const SERVICES_LATEST_DOWNLOAD_LINK = "https://net-secondary.web.minecraft-services.net/api/v1.0/download/links";
+const OSS_GIT_VERSIONS_ROOT = "https://raw.githubusercontent.com/Bedrock-OSS/BDS-Versions/main";
+const OSS_GIT_VERSIONS_FILE = `${OSS_GIT_VERSIONS_ROOT}/versions.json`;
+async function getLatestDownloadLinkFromServices(options) {
+	let DOWNLOAD_TYPE = "serverBedrock";
+	if (options.is_preview) DOWNLOAD_TYPE += "Preview";
+	switch (options.platform) {
+		case "win32":
+			DOWNLOAD_TYPE += "Windows";
+			break;
+		case "linux":
+			DOWNLOAD_TYPE += "Linux";
+			break;
+		default: return null;
+	}
+	const response = await fetch(SERVICES_LATEST_DOWNLOAD_LINK).catch((_) => null);
+	if (!response || !response.ok) return null;
+	const DATA = await response.json().catch((_) => null);
+	if (!DATA) return null;
+	if (!DATA.result) return null;
+	if (!Array.isArray(DATA.result.links)) return null;
+	return DATA.result.links.find((e) => e?.downloadType === DOWNLOAD_TYPE)?.downloadUrl ?? null;
+}
+async function getLatestDownloadLinkFromOSSGit(options) {
+	let platform$1 = options.platform === "win32" ? "windows" : options.platform;
+	let response = await fetch(OSS_GIT_VERSIONS_FILE).catch((_) => null);
+	if (!response || !response.ok) return null;
+	let data = await response.json().catch((_) => null);
+	if (!data) return null;
+	const version_set = data[platform$1];
+	if (!version_set) return null;
+	const version = version_set[options.is_preview ? "preview" : "stable"];
+	if (!version) return null;
+	response = await fetch(`${OSS_GIT_VERSIONS_ROOT}/${platform$1}${options.is_preview ? "_preview" : ""}/${version}.json`);
+	if (!response || !response.ok) return null;
+	data = await response.json().catch((_) => null);
+	if (!data) return null;
+	return data.download_url ?? null;
+}
+function getLatestDownloadLink(options) {
+	return getLatestDownloadLinkFromOSSGit(options).then((_) => _ ?? getLatestDownloadLinkFromServices(options));
+}
+
+//#endregion
+//#region modules/dump-metadata/index.ts
+const BDS_PROCESS_MAX_LIFE_TIME = 15e3;
+const BDS_DOCS_FOLDER_NAME = "docs";
+const OUTPUT_FOLDER = "metadata";
+var Metadata = class {
+	static DESCRIPTION = `METADATA DESCRIPTION`;
+	static async Init(installation) {
+		console.info("Initializing Metadata");
+		await Deno.remove(installation.worlds.directory, { recursive: true }).catch((_) => null);
+		const process = await installation.runWithTestConfig({ generate_all: true }, null);
+		process.enabledOutputRedirection();
+		process.stop(true, BDS_PROCESS_MAX_LIFE_TIME);
+		const result = await process.wait().catch((_) => (console.error(_), null));
+		if (result === null) return -1;
+		console.info("Metadata initialized");
+		return result;
+	}
+	static *GetTasks(installation) {
+		yield this.CopyDocsTask(join(installation.directory, BDS_DOCS_FOLDER_NAME), OUTPUT_FOLDER);
+	}
+	static async CopyDocsTask(source, destination) {
+		let i = 0;
+		for await (const file of readDirRecursive(source)) console.info(++i, file);
+		return 0;
+	}
+};
+async function* readDirRecursive(base, src) {
+	for await (const { name, isFile, isDirectory } of Deno.readDir(join(base, src ?? ""))) {
+		let path = join(src ?? "", name);
+		if (isFile) yield path;
+		if (isDirectory) yield* readDirRecursive(base, path);
+	}
+}
+
+//#endregion
+//#region modules/main.ts
+async function main() {
+	console.log("Is github action:", IS_GITHUB_ACTION);
+	if (platform !== "win32" && platform !== "linux") throw new DumperError(ErrorCodes.UnsupportedPlatform, `Unknown OS platform: ${platform}`);
+	const link = await getLatestDownloadLink({
+		is_preview: BRANCH_TO_UPDATE === "preview",
+		platform
+	});
+	if (!link) throw new DumperError(ErrorCodes.UnavailableInstallationLink, `Link not available branch:${BRANCH_TO_UPDATE} platform:${platform}`);
+	console.info("Link found: " + link);
+	const installation = new Installation(INSTALLATION_FOLDER);
+	console.info("Installation started");
+	await installation.installFromURL(link);
+	console.info("Installed");
+	let failed = await Metadata.Init(installation);
+	if (failed) throw new DumperError(ErrorCodes.SubModuleFailed, "Submodule failed with error code: " + failed);
+	for (const promise of Metadata.GetTasks(installation)) await promise;
+	return 0;
+}
+main().catch((e) => (console.error(e), e.CODE ?? UNKNOWN_ERROR_CODE)).then(Deno.exit);
+
+//#endregion

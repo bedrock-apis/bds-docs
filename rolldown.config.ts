@@ -6,7 +6,6 @@ export default defineConfig([
       external: /^node:/,
       output: {
          file: './dist/main.js',
-         minify: true
       }
    },
    {

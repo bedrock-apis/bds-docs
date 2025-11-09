@@ -1,70 +1,60 @@
-name: CI Generate
+name: Base Version Dumper
 on:
    workflow_dispatch:
 
 permissions:
    contents: write
 jobs:
-   generator:
-      runs-on: ubuntu-latest
-      steps:
-       - name: Check versions
-         id: version
-         run: |
-               set -e
-               REPO="$GITHUB_REPOSITORY"
-               VERSION_URL="https://raw.githubusercontent.com/Bedrock-OSS/BDS-Versions/main/versions.json"
-               STABLE_EXISTS_URL="https://raw.githubusercontent.com/${REPO}/stable/exist.json"
-               PREVIEW_EXISTS_URL="https://raw.githubusercontent.com/${REPO}/preview/exist.json"
+  generator:
+    runs-on: ubuntu-latest
+    outputs:
+      branch: ${{ steps.version.outputs.BRANCH_TO_UPDATE }}
+    steps:
+      - name: Check versions
+        id: version
+        run: |
+          set -e
+          REPO="$GITHUB_REPOSITORY"
+          VERSION_URL="https://raw.githubusercontent.com/Bedrock-OSS/BDS-Versions/main/versions.json"
+          STABLE_EXISTS_URL="https://raw.githubusercontent.com/${REPO}/stable/exist.json"
+          PREVIEW_EXISTS_URL="https://raw.githubusercontent.com/${REPO}/preview/exist.json"
 
-               # Download reference version data
-               curl -sSL "$VERSION_URL" -o versions.json
+          curl -sSL "$VERSION_URL" -o versions.json
+          curl -sSL "$STABLE_EXISTS_URL" -o exist_stable.json
+          curl -sSL "$PREVIEW_EXISTS_URL" -o exist_preview.json
 
-               # Download exist.json for stable and preview branches
-               curl -sSL "$STABLE_EXISTS_URL" -o exist_stable.json
-               curl -sSL "$PREVIEW_EXISTS_URL" -o exist_preview.json
+          STABLE_VERSION=$(jq -r '.linux.stable' versions.json)
+          PREVIEW_VERSION=$(jq -r '.linux.preview' versions.json)
 
-               # Extract version info from versions.json
-               STABLE_VERSION=$(jq -r '.linux.stable' versions.json)
-               PREVIEW_VERSION=$(jq -r '.linux.preview' versions.json)
+          IFS='.' read -r major minor patch _ <<< "$STABLE_VERSION"
+          rounded_patch=$(( (patch / 10) * 10 ))
+          STABLE_BASE="${major}.${minor}.${rounded_patch}"
 
-               # Round patch for stable
-               IFS='.' read -r major minor patch _ <<< "$STABLE_VERSION"
-               rounded_patch=$(( (patch / 10) * 10 ))
-               STABLE_BASE="${major}.${minor}.${rounded_patch}"
+          EXISTS_STABLE_VERSION=$(jq -r '.version' exist_stable.json)
+          EXISTS_PREVIEW_BUILD=$(jq -r '.version' exist_preview.json)
 
-               # Extract deployed versions
-               EXISTS_STABLE_VERSION=$(jq -r '.version' exist_stable.json)
-               EXISTS_PREVIEW_BUILD=$(jq -r '.version' exist_preview.json)
+          SHOULD_UPDATE=""
 
-               # Default: no update needed
-               SHOULD_UPDATE=""
+          if [[ "$EXISTS_STABLE_VERSION" != "$STABLE_BASE" ]]; then
+            SHOULD_UPDATE="stable"
+          elif [[ "$EXISTS_PREVIEW_BUILD" != "$PREVIEW_VERSION" ]]; then
+            SHOULD_UPDATE="preview"
+          fi
 
-               # Check which branch needs update
-               if [[ "$EXISTS_STABLE_VERSION" != "$STABLE_BASE" ]]; then
-                  SHOULD_UPDATE="stable"
-               elif [[ "$EXISTS_PREVIEW_BUILD" != "$PREVIEW_VERSION" ]]; then
-                  SHOULD_UPDATE="preview"
-               fi
+          echo "BRANCH_TO_UPDATE=$SHOULD_UPDATE" >> $GITHUB_ENV
+          echo "BRANCH_TO_UPDATE=$SHOULD_UPDATE" >> $GITHUB_OUTPUT
+          echo "Branch to update: $SHOULD_UPDATE"
 
-               # Save the branch needing update to GitHub Actions env
-               echo "BRANCH_TO_UPDATE=$SHOULD_UPDATE" >> $GITHUB_ENV
+  runner:
+    needs: generator
+    if: needs.generator.outputs.branch != ''
+    runs-on: windows-latest
+    env:
+      BRANCH: ${{ needs.generator.outputs.branch }}
+    steps:
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: ">=2.4"
 
-               # Optional: print debug info
-               echo "Branch to update: $SHOULD_UPDATE"
-               echo "BRANCH_TO_UPDATE=$SHOULD_UPDATE" >> $GITHUB_OUTPUT
-               # Fail step if nothing to update (optional)
-               if [[ -z "$SHOULD_UPDATE" ]]; then
-                  echo "No update required. Exiting."
-               else
-                  echo "Update required for $SHOULD_UPDATE"
-               fi
-
-       - uses: denoland/setup-deno@v1
-         if: steps.version.outputs.BRANCH_TO_UPDATE != ''
-         with:
-            deno-version: ">=2.4"
-
-       - name: Run Deno
-         if: steps.version.outputs.BRANCH_TO_UPDATE != ''
-         run: deno run --allow-all "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/main/dist/main.js"
+      - name: Run Deno script
+        run: deno run --allow-all "https://raw.githubusercontent.com/${{ github.repository }}/main/dist/main.js"
