@@ -20,8 +20,6 @@ jobs:
           PREVIEW_EXISTS_URL="https://raw.githubusercontent.com/${REPO}/preview/exist.json"
 
           curl -sSL "$VERSION_URL" -o versions.json
-          curl -sSL "$STABLE_EXISTS_URL" -o exist_stable.json
-          curl -sSL "$PREVIEW_EXISTS_URL" -o exist_preview.json
 
           STABLE_VERSION=$(jq -r '.linux.stable' versions.json)
           PREVIEW_VERSION=$(jq -r '.linux.preview' versions.json)
@@ -30,20 +28,32 @@ jobs:
           rounded_patch=$(( (patch / 10) * 10 ))
           STABLE_BASE="${major}.${minor}.${rounded_patch}"
 
-          EXISTS_STABLE_VERSION=$(jq -r '.version' exist_stable.json)
-          EXISTS_PREVIEW_BUILD=$(jq -r '.version' exist_preview.json)
-
           SHOULD_UPDATE=""
 
-          if [[ "$EXISTS_STABLE_VERSION" != "$STABLE_BASE" ]]; then
+          if curl -sSL "$STABLE_EXISTS_URL" -o exist_stable.json && [ -s exist_stable.json ]; then
+            EXISTS_STABLE_VERSION=$(jq -r '.version' exist_stable.json)
+            if [[ "$EXISTS_STABLE_VERSION" != "$STABLE_BASE" ]]; then
+              SHOULD_UPDATE="stable"
+            fi
+          else
             SHOULD_UPDATE="stable"
-          elif [[ "$EXISTS_PREVIEW_BUILD" != "$PREVIEW_VERSION" ]]; then
-            SHOULD_UPDATE="preview"
+          fi
+
+          if [[ -z "$SHOULD_UPDATE" ]]; then
+            if curl -sSL "$PREVIEW_EXISTS_URL" -o exist_preview.json && [ -s exist_preview.json ]; then
+              EXISTS_PREVIEW_BUILD=$(jq -r '.version' exist_preview.json)
+              if [[ "$EXISTS_PREVIEW_BUILD" != "$PREVIEW_VERSION" ]]; then
+                SHOULD_UPDATE="preview"
+              fi
+            else
+              SHOULD_UPDATE="preview"
+            fi
           fi
 
           echo "BRANCH_TO_UPDATE=$SHOULD_UPDATE" >> $GITHUB_ENV
           echo "BRANCH_TO_UPDATE=$SHOULD_UPDATE" >> $GITHUB_OUTPUT
           echo "Branch to update: $SHOULD_UPDATE"
+
 
   runner:
     needs: generator
