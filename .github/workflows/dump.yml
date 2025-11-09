@@ -50,6 +50,7 @@ jobs:
     if: needs.generator.outputs.branch != ''
     runs-on: windows-latest
     env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       BRANCH: ${{ needs.generator.outputs.branch }}
     steps:
       - uses: denoland/setup-deno@v1
