@@ -827,6 +827,7 @@ var GithubUtils = class {
 		if (!IS_LOGGED_IN) {
 			if (failed = await this.login()) return failed;
 		}
+		console.log(GIT_REPO, GIT_TOKEN, Object.keys(Deno.env.toObject()));
 		if (!GIT_REPO || !GIT_TOKEN) {
 			console.error("Missing GITHUB_REPOSITORY or GITHUB_TOKEN.");
 			return 1;
