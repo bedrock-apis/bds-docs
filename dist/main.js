@@ -4,11 +4,14 @@ import { createWriteStream, existsSync } from "node:fs";
 import { chmod, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { Writable } from "node:stream";
+import { spawn as spawn$1 } from "child_process";
 
 //#region modules/constants.ts
+const GIT_IS_GITHUB_ACTION = Deno.env.get("GITHUB_ACTIONS")?.toLocaleLowerCase() === "true";
+const GIT_LOGIN_AS_NAME = "BAPI The Dog";
+const GIT_LOGIN_AS_EMAIL = "thedog@bedrockapis.com";
 const INSTALLATION_FOLDER = "__installation__";
 const BRANCH_TO_UPDATE = Deno.env.get("BRANCH_TO_UPDATE") ?? null;
-const IS_GITHUB_ACTION = Deno.env.get("GITHUB_ACTIONS")?.toLocaleLowerCase() === "true";
 const UNKNOWN_ERROR_CODE = -1;
 var DumperError = class extends Error {
 	CODE;
@@ -789,6 +792,110 @@ function getLatestDownloadLink(options) {
 }
 
 //#endregion
+//#region modules/utils/io.ts
+async function* getFilesRecursiveIterator(base, src) {
+	for await (const { name, isFile, isDirectory } of Deno.readDir(join(base, src ?? ""))) {
+		let path = join(src ?? "", name);
+		if (isFile) yield path;
+		if (isDirectory) yield* getFilesRecursiveIterator(base, path);
+	}
+}
+
+//#endregion
+//#region modules/utils/general.ts
+function getEngineVersion(fullVersion) {
+	return fullVersion.split(".").slice(0, 3).join(".");
+}
+
+//#endregion
+//#region modules/utils/github.ts
+let IS_LOGGED_IN = false;
+var GithubUtils = class {
+	static async cmd(command, args = []) {
+		const awaiter = Promise.withResolvers();
+		spawn$1(command, args, {
+			stdio: "inherit",
+			shell: true
+		}).on("close", (code) => awaiter.resolve(code ?? 1));
+		return awaiter.promise;
+	}
+	static async login(name, email) {
+		if (!GIT_IS_GITHUB_ACTION || IS_LOGGED_IN) return 0;
+		let failed = await this.cmd("git", [
+			"config",
+			"--global",
+			"user.name",
+			`"${name ?? GIT_LOGIN_AS_NAME}"`
+		]);
+		if (failed) return failed;
+		failed = await this.cmd("git", [
+			"config",
+			"--global",
+			"user.email",
+			`"${email ?? GIT_LOGIN_AS_EMAIL}"`
+		]);
+		if (failed) return failed;
+		IS_LOGGED_IN = true;
+		return 0;
+	}
+	static async postNewBranch(branch) {
+		if (!GIT_IS_GITHUB_ACTION) return 0;
+		let failed = 0;
+		if (!IS_LOGGED_IN) {
+			if (failed = await this.login()) return failed;
+		}
+		failed = await this.cmd("git", [
+			"checkout",
+			"-b",
+			branch
+		]);
+		if (failed) return failed;
+		return failed = await this.cmd("git", [
+			"push",
+			"-u",
+			"origin",
+			branch
+		]);
+	}
+	static async checkoutBranch(branch, force = false) {
+		if (!GIT_IS_GITHUB_ACTION) return 0;
+		let failed = 0;
+		if (!IS_LOGGED_IN) {
+			if (failed = await this.login()) return failed;
+		}
+		failed = await this.cmd("git", ["fetch"]);
+		if (failed) return failed;
+		return failed = await this.cmd("git", [
+			"checkout",
+			branch,
+			...force ? ["-f"] : []
+		]);
+	}
+	static async commitAndPush(branch, version, isPreview) {
+		if (!GIT_IS_GITHUB_ACTION) return 0;
+		let failed = 0;
+		if (!IS_LOGGED_IN) {
+			if (failed = await this.login()) return failed;
+		}
+		failed = await this.cmd("git", ["add", "."]);
+		if (failed) return failed;
+		const message = `New ${branch} v${isPreview ? version : getEngineVersion(version)}`;
+		failed = await this.cmd("git", [
+			"commit",
+			"-m",
+			`"${message}"`
+		]);
+		if (failed) return failed;
+		return failed = await this.cmd("git", [
+			"push",
+			"--force",
+			"origin",
+			branch
+		]);
+	}
+};
+
+//#endregion
 //#region modules/dump-metadata/index.ts
 const BDS_PROCESS_MAX_LIFE_TIME = 15e3;
 const BDS_DOCS_FOLDER_NAME = "docs";
@@ -796,38 +903,49 @@ const OUTPUT_FOLDER = "metadata";
 var Metadata = class {
 	static DESCRIPTION = `METADATA DESCRIPTION`;
 	static async Init(installation) {
-		console.info("Initializing Metadata");
 		await Deno.remove(installation.worlds.directory, { recursive: true }).catch((_) => null);
-		const process = await installation.runWithTestConfig({ generate_all: true }, null);
+		const process = await installation.runWithTestConfig({
+			generate_api_metadata: true,
+			generate_documentation: true
+		}, null);
 		process.enabledOutputRedirection();
 		process.stop(true, BDS_PROCESS_MAX_LIFE_TIME);
 		const result = await process.wait().catch((_) => (console.error(_), null));
 		if (result === null) return -1;
-		console.info("Metadata initialized");
 		return result;
 	}
 	static *GetTasks(installation) {
 		yield this.CopyDocsTask(join(installation.directory, BDS_DOCS_FOLDER_NAME), OUTPUT_FOLDER);
 	}
 	static async CopyDocsTask(source, destination) {
-		let i = 0;
-		for await (const file of readDirRecursive(source)) console.info(++i, file);
+		const contents = [];
+		const action = async (fileName) => {
+			contents.push(fileName);
+			let data = await Deno.readFile(join(source, fileName));
+			if (fileName.endsWith(".json")) try {
+				let object = JSON.parse(new TextDecoder().decode(data));
+				delete object["minecraft_version"];
+				delete object["x-minecraft-version"];
+				data = new TextEncoder().encode(JSON.stringify(object, null, 3));
+			} finally {}
+			let dest = join(destination, fileName);
+			await Deno.mkdir(dirname(dest), { recursive: true }).catch((_) => null);
+			await Deno.writeFile(dest, data);
+		};
+		const tasks = [];
+		for await (const file of getFilesRecursiveIterator(source)) tasks.push(action(file));
+		await Promise.all(tasks);
+		await Deno.writeTextFile(join(destination, "contents.json"), JSON.stringify(contents, null, 3));
 		return 0;
 	}
 };
-async function* readDirRecursive(base, src) {
-	for await (const { name, isFile, isDirectory } of Deno.readDir(join(base, src ?? ""))) {
-		let path = join(src ?? "", name);
-		if (isFile) yield path;
-		if (isDirectory) yield* readDirRecursive(base, path);
-	}
-}
 
 //#endregion
 //#region modules/main.ts
 async function main() {
-	console.log("Is github action:", IS_GITHUB_ACTION);
 	if (platform !== "win32" && platform !== "linux") throw new DumperError(ErrorCodes.UnsupportedPlatform, `Unknown OS platform: ${platform}`);
+	await GithubUtils.login();
+	await GithubUtils.checkoutBranch("stable");
 	const link = await getLatestDownloadLink({
 		is_preview: BRANCH_TO_UPDATE === "preview",
 		platform
@@ -835,12 +953,14 @@ async function main() {
 	if (!link) throw new DumperError(ErrorCodes.UnavailableInstallationLink, `Link not available branch:${BRANCH_TO_UPDATE} platform:${platform}`);
 	console.info("Link found: " + link);
 	const installation = new Installation(INSTALLATION_FOLDER);
-	console.info("Installation started");
-	await installation.installFromURL(link);
-	console.info("Installed");
+	if (!installation.getExecutableFile()) {
+		console.info("No executable installing");
+		await installation.installFromURL(link);
+	} else await installation.load();
 	let failed = await Metadata.Init(installation);
 	if (failed) throw new DumperError(ErrorCodes.SubModuleFailed, "Submodule failed with error code: " + failed);
 	for (const promise of Metadata.GetTasks(installation)) await promise;
+	await Deno.writeFile(".gitignore", new TextEncoder().encode(`__*__`));
 	return 0;
 }
 main().catch((e) => (console.error(e), e.CODE ?? UNKNOWN_ERROR_CODE)).then(Deno.exit);
