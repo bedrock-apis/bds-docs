@@ -16,7 +16,7 @@ export class GithubUtils {
         proc.on("close", (code) => awaiter.resolve(code ?? 1));
         return awaiter.promise;
     }
-    public static async initRepo(): Promise<number> {
+    public static async initRepo(branch: string): Promise<number> {
         if (!GIT_IS_GITHUB_ACTION) return 0;
 
         let failed = 0;
@@ -35,7 +35,7 @@ export class GithubUtils {
         failed = await this.cmd("git", ["remote", "add", "origin", remoteUrl]);
         if (failed) return failed;
 
-        return await this.cmd("git", ["fetch", "origin"]);
+        return await this.cmd("git", ["fetch", "origin", branch]);
     }
 
     public static async login(name?: string, email?: string): Promise<number> {

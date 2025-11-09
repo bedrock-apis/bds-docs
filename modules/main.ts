@@ -12,7 +12,7 @@ async function main(): Promise<number> {
 
     let failed: number = 0;
     if((failed = await GithubUtils.login())) return failed;
-    if((failed = await GithubUtils.initRepo())) return failed;
+    if((failed = await GithubUtils.initRepo("stable"))) return failed;
     if((failed = await GithubUtils.checkoutBranch("stable", true, true))) return failed;
     
     const link = await getLatestDownloadLink({

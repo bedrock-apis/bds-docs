@@ -821,7 +821,7 @@ var GithubUtils = class {
 		}).on("close", (code) => awaiter.resolve(code ?? 1));
 		return awaiter.promise;
 	}
-	static async initRepo() {
+	static async initRepo(branch) {
 		if (!GIT_IS_GITHUB_ACTION) return 0;
 		let failed = 0;
 		if (!IS_LOGGED_IN) {
@@ -841,7 +841,11 @@ var GithubUtils = class {
 			remoteUrl
 		]);
 		if (failed) return failed;
-		return await this.cmd("git", ["fetch", "origin"]);
+		return await this.cmd("git", [
+			"fetch",
+			"origin",
+			branch
+		]);
 	}
 	static async login(name, email) {
 		if (!GIT_IS_GITHUB_ACTION || IS_LOGGED_IN) return 0;
@@ -972,7 +976,7 @@ async function main() {
 	if (platform !== "win32" && platform !== "linux") throw new DumperError(ErrorCodes.UnsupportedPlatform, `Unknown OS platform: ${platform}`);
 	let failed = 0;
 	if (failed = await GithubUtils.login()) return failed;
-	if (failed = await GithubUtils.initRepo()) return failed;
+	if (failed = await GithubUtils.initRepo("stable")) return failed;
 	if (failed = await GithubUtils.checkoutBranch("stable", true, true)) return failed;
 	const link = await getLatestDownloadLink({
 		is_preview: BRANCH_TO_UPDATE === "preview",
