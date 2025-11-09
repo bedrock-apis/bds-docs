@@ -6,9 +6,12 @@ import { dirname, join, resolve } from "node:path";
 import { Writable } from "node:stream";
 
 //#region modules/constants.ts
-const GIT_IS_GITHUB_ACTION = Deno.env.get("GITHUB_ACTIONS")?.toLocaleLowerCase() === "true";
+const ENV = Deno.env;
+const GIT_IS_GITHUB_ACTION = ENV.get("GITHUB_ACTIONS")?.toLocaleLowerCase() === "true";
 const GIT_LOGIN_AS_NAME = "BAPI The Dog";
 const GIT_LOGIN_AS_EMAIL = "thedog@bedrockapis.com";
+const GIT_REPO = ENV.get("GITHUB_REPOSITORY");
+const GIT_TOKEN = ENV.get("GITHUB_TOKEN") ?? ENV.get("GH_TOKEN");
 const INSTALLATION_FOLDER = "__installation__";
 const BRANCH_TO_UPDATE = Deno.env.get("BRANCH_TO_UPDATE") ?? null;
 const UNKNOWN_ERROR_CODE = -1;
@@ -818,6 +821,32 @@ var GithubUtils = class {
 		}).on("close", (code) => awaiter.resolve(code ?? 1));
 		return awaiter.promise;
 	}
+	static async initRepo() {
+		if (!GIT_IS_GITHUB_ACTION) return 0;
+		let failed = 0;
+		if (!IS_LOGGED_IN) {
+			if (failed = await this.login()) return failed;
+		}
+		if (!GIT_REPO || !GIT_TOKEN) {
+			console.error("Missing GITHUB_REPOSITORY or GITHUB_TOKEN.");
+			return 1;
+		}
+		const remoteUrl = `https://x-access-token:${GIT_TOKEN}@github.com/${GIT_REPO}.git`;
+		failed = await this.cmd("git", ["init"]);
+		if (failed) return failed;
+		failed = await this.cmd("git", [
+			"remote",
+			"add",
+			"origin",
+			remoteUrl
+		]);
+		if (failed) return failed;
+		return await this.cmd("git", [
+			"fetch",
+			"--depth=0",
+			"origin"
+		]);
+	}
 	static async login(name, email) {
 		if (!GIT_IS_GITHUB_ACTION || IS_LOGGED_IN) return 0;
 		let failed = await this.cmd("git", [
@@ -835,6 +864,7 @@ var GithubUtils = class {
 		]);
 		if (failed) return failed;
 		IS_LOGGED_IN = true;
+		console.log("LOGGED IN");
 		return 0;
 	}
 	static async postNewBranch(branch) {

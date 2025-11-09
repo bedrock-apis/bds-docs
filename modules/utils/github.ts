@@ -1,7 +1,7 @@
 
 // github-utils.ts
 import { spawn } from "node:child_process";
-import { GIT_IS_GITHUB_ACTION, GIT_LOGIN_AS_EMAIL, GIT_LOGIN_AS_NAME } from "../constants";
+import { GIT_IS_GITHUB_ACTION, GIT_LOGIN_AS_EMAIL, GIT_LOGIN_AS_NAME, GIT_REPO, GIT_TOKEN } from "../constants";
 import { getEngineVersion } from "./general";
 
 type BranchKind = string;
@@ -16,6 +16,28 @@ export class GithubUtils {
         proc.on("close", (code) => awaiter.resolve(code ?? 1));
         return awaiter.promise;
     }
+    public static async initRepo(): Promise<number> {
+        if (!GIT_IS_GITHUB_ACTION) return 0;
+
+        let failed = 0;
+        if (!IS_LOGGED_IN) if ((failed = await this.login())) return failed;
+        
+
+        if (!GIT_REPO || !GIT_TOKEN) {
+            console.error("Missing GITHUB_REPOSITORY or GITHUB_TOKEN.");
+            return 1;
+        }
+
+        const remoteUrl = `https://x-access-token:${GIT_TOKEN}@github.com/${GIT_REPO}.git`;
+
+        failed = await this.cmd("git", ["init"]);
+        if (failed) return failed;
+
+        failed = await this.cmd("git", ["remote", "add", "origin", remoteUrl]);
+        if (failed) return failed;
+
+        return await this.cmd("git", ["fetch", "--depth=0", "origin"]);
+    }
 
     public static async login(name?: string, email?: string): Promise<number> {
         if (!GIT_IS_GITHUB_ACTION || IS_LOGGED_IN)
@@ -28,7 +50,7 @@ export class GithubUtils {
         if (failed) return failed;
 
         IS_LOGGED_IN = true;
-
+        console.log("LOGGED IN");
         return 0;
     }
 
