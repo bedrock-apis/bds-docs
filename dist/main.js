@@ -973,8 +973,10 @@ var Metadata = class {
 //#region modules/main.ts
 async function main() {
 	if (platform !== "win32" && platform !== "linux") throw new DumperError(ErrorCodes.UnsupportedPlatform, `Unknown OS platform: ${platform}`);
-	await GithubUtils.login();
-	await GithubUtils.checkoutBranch("stable");
+	let failed = 0;
+	if (failed = await GithubUtils.login()) return failed;
+	if (failed = await GithubUtils.initRepo()) return failed;
+	if (failed = await GithubUtils.checkoutBranch("stable")) return failed;
 	const link = await getLatestDownloadLink({
 		is_preview: BRANCH_TO_UPDATE === "preview",
 		platform
@@ -986,7 +988,7 @@ async function main() {
 		console.info("No executable installing");
 		await installation.installFromURL(link);
 	} else await installation.load();
-	let failed = await Metadata.Init(installation);
+	failed = await Metadata.Init(installation);
 	if (failed) throw new DumperError(ErrorCodes.SubModuleFailed, "Submodule failed with error code: " + failed);
 	for (const promise of Metadata.GetTasks(installation)) await promise;
 	await Deno.writeFile(".gitignore", new TextEncoder().encode(`__*__`));

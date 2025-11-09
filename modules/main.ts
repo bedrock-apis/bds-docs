@@ -10,8 +10,11 @@ async function main(): Promise<number> {
     if (platform !== "win32" && platform !== "linux")
         throw new DumperError(ErrorCodes.UnsupportedPlatform, `Unknown OS platform: ${platform}`);
 
-    await GithubUtils.login();
-    await GithubUtils.checkoutBranch("stable");
+    let failed: number = 0;
+    if((failed = await GithubUtils.login())) return failed;
+    if((failed = await GithubUtils.initRepo())) return failed;
+    if((failed = await GithubUtils.checkoutBranch("stable"))) return failed;
+    
     const link = await getLatestDownloadLink({
         is_preview: BRANCH_TO_UPDATE === "preview",
         platform: platform
@@ -26,7 +29,7 @@ async function main(): Promise<number> {
         await installation.installFromURL(link);
     } else await installation.load();
 
-    let failed = await Metadata.Init(installation);
+    failed = await Metadata.Init(installation);
     if (failed)
         throw new DumperError(ErrorCodes.SubModuleFailed, "Submodule failed with error code: " + failed);
 
