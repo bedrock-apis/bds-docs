@@ -72,7 +72,7 @@ jobs:
     runs-on: windows-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      BRANCH: ${{ needs.generator.outputs.branch }}
+      BRANCH_TO_UPDATE: ${{ needs.generator.outputs.branch }}
     steps:
       - uses: denoland/setup-deno@v1
         with:
