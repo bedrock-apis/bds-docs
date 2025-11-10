@@ -13,7 +13,7 @@ const GIT_LOGIN_AS_EMAIL = "thedog@bedrockapis.com";
 const GIT_REPO = ENV.get("GITHUB_REPOSITORY");
 const GIT_TOKEN = ENV.get("GITHUB_TOKEN") ?? ENV.get("GH_TOKEN");
 const GIT_IGNORE_DATA = `__*__`;
-const GIT_ATTRIBUTES_DATA = `text=*`;
+const GIT_ATTRIBUTES_DATA = `* text=auto eol=lf`;
 const GIT_IGNORE_FILE_NAME = ".gitignore";
 const GIT_ATTRIBUTES_FILE_NAME = ".gitattributes";
 const INSTALLATION_FOLDER = "__installation__";

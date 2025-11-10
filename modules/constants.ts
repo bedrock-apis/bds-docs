@@ -5,7 +5,7 @@ export const GIT_LOGIN_AS_EMAIL = "thedog@bedrockapis.com"
 export const GIT_REPO = ENV.get("GITHUB_REPOSITORY");
 export const GIT_TOKEN = ENV.get("GITHUB_TOKEN") ?? ENV.get("GH_TOKEN");
 export const GIT_IGNORE_DATA = `__*__`;
-export const GIT_ATTRIBUTES_DATA = `text=*`;
+export const GIT_ATTRIBUTES_DATA = `* text=auto eol=lf`;
 export const GIT_IGNORE_FILE_NAME = ".gitignore";
 export const GIT_ATTRIBUTES_FILE_NAME = ".gitattributes";
 
