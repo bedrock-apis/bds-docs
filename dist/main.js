@@ -1173,13 +1173,13 @@ async function main() {
 	for (const dumper of DUMPERS) if (failed = await dumper.run?.(installation) ?? 0) return failed;
 	await Deno.writeFile(".gitignore", new TextEncoder().encode(`__*__`));
 	await repoExists(version);
-	await Deno.writeTextFile("contents.json", JSON.stringify(Deno.readDirSync(".").filter((e) => !e.name.startsWith(".") && !e.name.startsWith("__")), null, 3));
+	await Deno.writeTextFile("contents.json", JSON.stringify(Array.from(Deno.readDirSync(".").filter((e) => !e.name.startsWith(".") && !e.name.startsWith("__"))), null, 3));
 	if (failed = await GithubUtils.commitAndPush("stable", "New message")) return failed;
 	return 0;
 }
 async function repoExists(version) {
 	const data = {
-		"version": BRANCH_TO_UPDATE === "preview" ? getEngineVersion(version) : version,
+		"version": BRANCH_TO_UPDATE === "preview" ? version : getEngineVersion(version),
 		"build-version": version
 	};
 	return await Deno.writeTextFile(EXISTS_FILE, JSON.stringify(data, null, 3)).then((_) => 0, (_) => -1);
