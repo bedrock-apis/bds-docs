@@ -1159,7 +1159,7 @@ async function main() {
 	let failed = 0;
 	if (failed = await GithubUtils.login()) return failed;
 	if (failed = await GithubUtils.initRepo()) return failed;
-	if (failed = await GithubUtils.checkoutBranch("stable", true)) return failed;
+	if (failed = await GithubUtils.checkoutBranch(BRANCH_TO_UPDATE ?? "stable", true)) return failed;
 	GithubUtils.clear();
 	const version = await getLatestBuildVersionFromOSS({
 		preview: BRANCH_TO_UPDATE === "preview",
