@@ -2,7 +2,7 @@ import type { Installation } from "@bedrock-apis/bds-utils/install";
 import { dirname, join } from "node:path";
 import { getFilesRecursiveIterator } from "../utils";
 import { TheDumper } from "../dumper";
-import { ErrorCodes } from "../constants";
+import { TO_JSON_FORMAT } from "../constants";
 
 const BDS_PROCESS_MAX_LIFE_TIME = 15_000; //15s
 const BDS_DOCS_FOLDER_NAME = "docs";
@@ -29,15 +29,16 @@ export class MetadataDumper {
     public static async CopyDocsTask(source: string, destination: string): Promise<number> {
         const contents: string[] = [];
         const action = async (fileName: string) => {
-            contents.push(fileName.replaceAll("\\", "/"));
             let data: Uint8Array = await Deno.readFile(join(source, fileName));
             if (fileName.endsWith(".json")) try {
                 let object = JSON.parse(new TextDecoder().decode(data as Uint8Array)) as Record<string, any>;
                 // Extract any related properties that might change every version
                 delete object["minecraft_version"];
                 delete object["x-minecraft-version"];
-                data = new TextEncoder().encode(JSON.stringify(object, null, 3));
+                data = new TextEncoder().encode(TO_JSON_FORMAT(object));
             } finally { }
+            fileName = fileName.replaceAll(" ", "_");
+            contents.push(fileName);
             let dest = join(destination, fileName);
             await Deno.mkdir(dirname(dest), {recursive: true}).catch(_=>null);
             await Deno.writeFile(dest, data as Uint8Array);
@@ -45,7 +46,7 @@ export class MetadataDumper {
         const tasks = [];
         for await (const file of getFilesRecursiveIterator(source)) tasks.push(action(file));
         await Promise.all(tasks);
-        await Deno.writeTextFile(join(destination, "contents.json"), JSON.stringify(contents, null, 3))
+        await Deno.writeTextFile(join(destination, "contents.json"), TO_JSON_FORMAT(contents));
         return 0;
     }
 }

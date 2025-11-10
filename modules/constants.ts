@@ -4,11 +4,17 @@ export const GIT_LOGIN_AS_NAME = "BAPI The Dog";
 export const GIT_LOGIN_AS_EMAIL = "thedog@bedrockapis.com"
 export const GIT_REPO = ENV.get("GITHUB_REPOSITORY");
 export const GIT_TOKEN = ENV.get("GITHUB_TOKEN") ?? ENV.get("GH_TOKEN");
+export const GIT_IGNORE_DATA = `__*__`;
+export const GIT_ATTRIBUTES_DATA = `text=*`;
+export const GIT_IGNORE_FILE_NAME = ".gitignore";
+export const GIT_ATTRIBUTES_FILE_NAME = ".gitattributes";
 
 export const INSTALLATION_FOLDER = "__installation__";
 export const PORT_NUMBER = 29132;
 export const BRANCH_TO_UPDATE: "stable" | "preview" | `${string}` | null = Deno.env.get("BRANCH_TO_UPDATE") ?? null;
-export const EXISTS_FILE = "exists.json";
+export const EXISTS_FILE = "exist.json";
+export const CONTENTS_FILE_NAME = "contents.json";
+export const TO_JSON_FORMAT = (t: unknown) => JSON.stringify(t, null, 3);
 // Error Codes
 export const SUCCESS_CODE = 0;
 export const UNKNOWN_ERROR_CODE = -1;

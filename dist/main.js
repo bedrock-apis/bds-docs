@@ -12,9 +12,15 @@ const GIT_LOGIN_AS_NAME = "BAPI The Dog";
 const GIT_LOGIN_AS_EMAIL = "thedog@bedrockapis.com";
 const GIT_REPO = ENV.get("GITHUB_REPOSITORY");
 const GIT_TOKEN = ENV.get("GITHUB_TOKEN") ?? ENV.get("GH_TOKEN");
+const GIT_IGNORE_DATA = `__*__`;
+const GIT_ATTRIBUTES_DATA = `text=*`;
+const GIT_IGNORE_FILE_NAME = ".gitignore";
+const GIT_ATTRIBUTES_FILE_NAME = ".gitattributes";
 const INSTALLATION_FOLDER = "__installation__";
 const BRANCH_TO_UPDATE = Deno.env.get("BRANCH_TO_UPDATE") ?? null;
-const EXISTS_FILE = "exists.json";
+const EXISTS_FILE = "exist.json";
+const CONTENTS_FILE_NAME = "contents.json";
+const TO_JSON_FORMAT = (t) => JSON.stringify(t, null, 3);
 const UNKNOWN_ERROR_CODE = -1;
 var DumperError = class extends Error {
 	CODE;
@@ -776,7 +782,7 @@ async function getSpecificDownloadLinkOSS(options) {
 //#region modules/utils/io.ts
 async function* getFilesRecursiveIterator(base, src) {
 	for await (const { name, isFile, isDirectory } of Deno.readDir(join(base, src ?? ""))) {
-		let path = join(src ?? "", name);
+		let path = src ? src + "/" + name : name;
 		if (isFile) yield path;
 		if (isDirectory) yield* getFilesRecursiveIterator(base, path);
 	}
@@ -933,14 +939,15 @@ var MetadataDumper = class {
 	static async CopyDocsTask(source, destination) {
 		const contents = [];
 		const action = async (fileName) => {
-			contents.push(fileName.replaceAll("\\", "/"));
 			let data = await Deno.readFile(join(source, fileName));
 			if (fileName.endsWith(".json")) try {
 				let object = JSON.parse(new TextDecoder().decode(data));
 				delete object["minecraft_version"];
 				delete object["x-minecraft-version"];
-				data = new TextEncoder().encode(JSON.stringify(object, null, 3));
+				data = new TextEncoder().encode(TO_JSON_FORMAT(object));
 			} finally {}
+			fileName = fileName.replaceAll(" ", "_");
+			contents.push(fileName);
 			let dest = join(destination, fileName);
 			await Deno.mkdir(dirname(dest), { recursive: true }).catch((_) => null);
 			await Deno.writeFile(dest, data);
@@ -948,7 +955,7 @@ var MetadataDumper = class {
 		const tasks = [];
 		for await (const file of getFilesRecursiveIterator(source)) tasks.push(action(file));
 		await Promise.all(tasks);
-		await Deno.writeTextFile(join(destination, "contents.json"), JSON.stringify(contents, null, 3));
+		await Deno.writeTextFile(join(destination, "contents.json"), TO_JSON_FORMAT(contents));
 		return 0;
 	}
 };
@@ -1135,7 +1142,7 @@ var TypePrinterDumper = class TypePrinterDumper {
 			await Deno.writeTextFile(filename, Printer.printModule(data).toArray().join("\r\n"));
 			contents.push(poorFileName);
 		}
-		await Deno.writeTextFile(join(baseDestination, "contents.json"), JSON.stringify(contents, null, 3));
+		await Deno.writeTextFile(join(baseDestination, "contents.json"), TO_JSON_FORMAT(contents));
 		return 0;
 	}
 };
@@ -1171,18 +1178,21 @@ async function main() {
 	const DUMPERS = [dump_metadata_default, dump_types_default];
 	for (const dumper of DUMPERS) if (failed = await dumper.init?.(installation) ?? 0) return failed;
 	for (const dumper of DUMPERS) if (failed = await dumper.run?.(installation) ?? 0) return failed;
-	await Deno.writeFile(".gitignore", new TextEncoder().encode(`__*__`));
-	await repoExists(version);
-	await Deno.writeTextFile("contents.json", JSON.stringify(Array.from(Deno.readDirSync(".").filter((e) => !e.name.startsWith(".") && !e.name.startsWith("__"))), null, 3));
-	if (failed = await GithubUtils.commitAndPush("stable", "New message")) return failed;
-	return 0;
+	return await finialize(version);
 }
-async function repoExists(version) {
-	const data = {
-		"version": BRANCH_TO_UPDATE === "preview" ? version : getEngineVersion(version),
+async function finialize(version) {
+	const BASED_VERSION = BRANCH_TO_UPDATE === "preview" ? version : getEngineVersion(version);
+	let failed = 0;
+	if (failed = await Deno.writeTextFile(EXISTS_FILE, TO_JSON_FORMAT({
+		"version": BASED_VERSION,
 		"build-version": version
-	};
-	return await Deno.writeTextFile(EXISTS_FILE, JSON.stringify(data, null, 3)).then((_) => 0, (_) => -1);
+	})).then((_) => 0, (_) => -1)) return failed;
+	const list = Deno.readDirSync(".").filter(({ name, isSymlink }) => !(name.startsWith(".") || name.startsWith("__") || isSymlink)).map((_) => _.isDirectory ? _.name + "/" : _.name).toArray();
+	await Deno.writeTextFile(CONTENTS_FILE_NAME, TO_JSON_FORMAT(list));
+	await Deno.writeTextFile(GIT_IGNORE_FILE_NAME, GIT_IGNORE_DATA);
+	await Deno.writeTextFile(GIT_ATTRIBUTES_FILE_NAME, GIT_ATTRIBUTES_DATA);
+	if (failed = await GithubUtils.commitAndPush(BRANCH_TO_UPDATE ?? "stable", "New Update - " + BASED_VERSION)) return failed;
+	return failed;
 }
 
 //#endregion

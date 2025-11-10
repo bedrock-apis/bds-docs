@@ -1,4 +1,4 @@
-import { BRANCH_TO_UPDATE, DumperError, ErrorCodes, EXISTS_FILE, INSTALLATION_FOLDER, UNKNOWN_ERROR_CODE } from "./constants";
+import { BRANCH_TO_UPDATE, CONTENTS_FILE_NAME, DumperError, ErrorCodes, EXISTS_FILE, GIT_ATTRIBUTES_DATA, GIT_ATTRIBUTES_FILE_NAME, GIT_IGNORE_DATA, GIT_IGNORE_FILE_NAME, INSTALLATION_FOLDER, TO_JSON_FORMAT, UNKNOWN_ERROR_CODE } from "./constants";
 import { Installation } from "@bedrock-apis/bds-utils/install";
 import { getLatestBuildVersionFromOSS, getSpecificDownloadLinkOSS } from "@bedrock-apis/bds-utils/links";
 import { platform } from "node:process";
@@ -30,8 +30,8 @@ async function main(): Promise<number> {
         platform: platform
     });
 
-    if(!version)
-        throw new DumperError(-1,"Failed to get latest build version for BDS via OSS versions");
+    if (!version)
+        throw new DumperError(-1, "Failed to get latest build version for BDS via OSS versions");
     // BDS Setup
     const link = await getSpecificDownloadLinkOSS({
         preview: BRANCH_TO_UPDATE === "preview",
@@ -56,17 +56,24 @@ async function main(): Promise<number> {
     for (const dumper of DUMPERS)
         if ((failed = await dumper.run?.(installation) ?? 0)) return failed;
 
-    await Deno.writeFile(".gitignore", new TextEncoder().encode(`__*__`));
-    await repoExists(version);
-    await Deno.writeTextFile("contents.json", JSON.stringify(Array.from(Deno.readDirSync(".").filter(e => (!e.name.startsWith(".") && !e.name.startsWith("__")))), null, 3))
-    if ((failed = await GithubUtils.commitAndPush("stable", "New message"))) return failed;
-    return 0;
+    return await finialize(version);
 }
 
-async function repoExists(version: string): Promise<number> {
-    const data = {
-        "version": BRANCH_TO_UPDATE === "preview"?version:getEngineVersion(version),
+async function finialize(version: string): Promise<number> {
+    const BASED_VERSION = BRANCH_TO_UPDATE === "preview" ? version : getEngineVersion(version);
+    let failed = 0;
+    if((failed = await Deno.writeTextFile(EXISTS_FILE, TO_JSON_FORMAT({
+        "version": BASED_VERSION,
         "build-version": version,
-    };
-    return await Deno.writeTextFile(EXISTS_FILE, JSON.stringify(data, null, 3)).then(_=>0, _=>-1);
+    })).then(_ => 0, _ => -1))) return failed;
+
+    const list = Deno.readDirSync(".")
+        .filter(({name, isSymlink})=>!(name.startsWith(".") || name.startsWith("__") || isSymlink))
+        .map(_=>_.isDirectory?_.name + "/":_.name)
+        .toArray();
+    await Deno.writeTextFile(CONTENTS_FILE_NAME, TO_JSON_FORMAT(list));
+    await Deno.writeTextFile(GIT_IGNORE_FILE_NAME, GIT_IGNORE_DATA);
+    await Deno.writeTextFile(GIT_ATTRIBUTES_FILE_NAME, GIT_ATTRIBUTES_DATA);
+    if ((failed = await GithubUtils.commitAndPush(BRANCH_TO_UPDATE??"stable", "New Update - " + BASED_VERSION))) return failed;
+    return failed;
 }
