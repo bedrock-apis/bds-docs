@@ -6,7 +6,7 @@ import { dirname, join } from "node:path";
 import { MetadataDumper } from "../dump-metadata";
 import { MetadataModuleDefinition } from "../script-module-metadata";
 import { Printer } from "./printer";
-import { TO_JSON_FORMAT } from "../constants";
+import { CONTENTS_FILE_NAME, TO_JSON_FORMAT } from "../constants";
 
 const OUTPUT_FOLDER = "types";
 
@@ -33,10 +33,10 @@ export class TypePrinterDumper {
             const filename = join(baseDestination, poorFileName);
             console.log(filename);
             await Deno.mkdir(dirname(filename), {recursive: true}).catch(_=>null);
-            await Deno.writeTextFile(filename, Printer.printModule(data).toArray().join("\r\n"));
+            await Deno.writeTextFile(filename, Printer.printModule(data).toArray().join("\n"));
             contents.push(poorFileName);
         }
-        await Deno.writeTextFile(join(baseDestination, "contents.json"), TO_JSON_FORMAT(contents));
+        await Deno.writeTextFile(join(baseDestination, CONTENTS_FILE_NAME), TO_JSON_FORMAT(contents));
         return 0;
     }
 };

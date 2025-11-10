@@ -955,7 +955,7 @@ var MetadataDumper = class {
 		const tasks = [];
 		for await (const file of getFilesRecursiveIterator(source)) tasks.push(action(file));
 		await Promise.all(tasks);
-		await Deno.writeTextFile(join(destination, "contents.json"), TO_JSON_FORMAT(contents));
+		await Deno.writeTextFile(join(destination, CONTENTS_FILE_NAME), TO_JSON_FORMAT(contents));
 		return 0;
 	}
 };
@@ -1139,10 +1139,10 @@ var TypePrinterDumper = class TypePrinterDumper {
 			const filename = join(baseDestination, poorFileName);
 			console.log(filename);
 			await Deno.mkdir(dirname(filename), { recursive: true }).catch((_$1) => null);
-			await Deno.writeTextFile(filename, Printer.printModule(data).toArray().join("\r\n"));
+			await Deno.writeTextFile(filename, Printer.printModule(data).toArray().join("\n"));
 			contents.push(poorFileName);
 		}
-		await Deno.writeTextFile(join(baseDestination, "contents.json"), TO_JSON_FORMAT(contents));
+		await Deno.writeTextFile(join(baseDestination, CONTENTS_FILE_NAME), TO_JSON_FORMAT(contents));
 		return 0;
 	}
 };

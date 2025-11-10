@@ -21,20 +21,24 @@ jobs:
           STABLE_EXISTS_URL="https://raw.githubusercontent.com/${REPO}/stable/exist.json"
           PREVIEW_EXISTS_URL="https://raw.githubusercontent.com/${REPO}/preview/exist.json"
 
+          echo "$REPO"
+
           curl -sSL "$VERSION_URL" -o versions.json
 
-          STABLE_VERSION=$(jq -r '.linux.stable' versions.json)
-          PREVIEW_VERSION=$(jq -r '.linux.preview' versions.json)
+          STABLE_VERSION=$(jq -r '.windows.stable' versions.json)
+          PREVIEW_VERSION=$(jq -r '.windows.preview' versions.json)
 
           IFS='.' read -r major minor patch _ <<< "$STABLE_VERSION"
           rounded_patch=$(( (patch / 10) * 10 ))
           STABLE_BASE="${major}.${minor}.${rounded_patch}"
-
+          
+          echo "Stable base: $STABLE_BASE"
           SHOULD_UPDATE=""
 
           # Check stable branch
           if curl -sSfL "$STABLE_EXISTS_URL" -o exist_stable.json; then
             EXISTS_STABLE_VERSION=$(jq -r '.version' exist_stable.json)
+            echo "Version: $EXISTS_STABLE_VERSION"
             if [[ "$EXISTS_STABLE_VERSION" != "$STABLE_BASE" ]]; then
               SHOULD_UPDATE="stable"
             fi

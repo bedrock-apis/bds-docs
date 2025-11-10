@@ -2,7 +2,7 @@ import type { Installation } from "@bedrock-apis/bds-utils/install";
 import { dirname, join } from "node:path";
 import { getFilesRecursiveIterator } from "../utils";
 import { TheDumper } from "../dumper";
-import { TO_JSON_FORMAT } from "../constants";
+import { CONTENTS_FILE_NAME, TO_JSON_FORMAT } from "../constants";
 
 const BDS_PROCESS_MAX_LIFE_TIME = 15_000; //15s
 const BDS_DOCS_FOLDER_NAME = "docs";
@@ -46,7 +46,7 @@ export class MetadataDumper {
         const tasks = [];
         for await (const file of getFilesRecursiveIterator(source)) tasks.push(action(file));
         await Promise.all(tasks);
-        await Deno.writeTextFile(join(destination, "contents.json"), TO_JSON_FORMAT(contents));
+        await Deno.writeTextFile(join(destination, CONTENTS_FILE_NAME), TO_JSON_FORMAT(contents));
         return 0;
     }
 }
