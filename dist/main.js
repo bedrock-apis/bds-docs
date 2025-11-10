@@ -14,6 +14,7 @@ const GIT_REPO = ENV.get("GITHUB_REPOSITORY");
 const GIT_TOKEN = ENV.get("GITHUB_TOKEN") ?? ENV.get("GH_TOKEN");
 const INSTALLATION_FOLDER = "__installation__";
 const BRANCH_TO_UPDATE = Deno.env.get("BRANCH_TO_UPDATE") ?? null;
+const EXISTS_FILE = "exists.json";
 const UNKNOWN_ERROR_CODE = -1;
 var DumperError = class extends Error {
 	CODE;
@@ -32,7 +33,7 @@ let ErrorCodes = /* @__PURE__ */ function(ErrorCodes$1) {
 }({});
 
 //#endregion
-//#region node_modules/.pnpm/@bedrock-apis+bds-utils@1.0.0-alpha.4/node_modules/@bedrock-apis/bds-utils/dist/process-Dld4Rerl.js
+//#region node_modules/.pnpm/@bedrock-apis+bds-utils@1.0.0-alpha.6/node_modules/@bedrock-apis/bds-utils/dist/process-to4IYwFd.js
 var BedrockDedicatedServerProcess = class BedrockDedicatedServerProcess$1 {
 	stopTimeout = 3e3;
 	process;
@@ -43,7 +44,7 @@ var BedrockDedicatedServerProcess = class BedrockDedicatedServerProcess$1 {
 		this.process = prc;
 		const { promise, resolve: resolve$1 } = Promise.withResolvers();
 		this.promise = promise;
-		this.process.on("exit", (e) => {
+		this.process.on("close", (e) => {
 			if (this._timeout_ref !== null) clearTimeout(this._timeout_ref);
 			this._timeout_ref = null;
 			resolve$1(e);
@@ -582,7 +583,7 @@ var UnzipStreamConsumer = class extends WritableStream {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@bedrock-apis+bds-utils@1.0.0-alpha.4/node_modules/@bedrock-apis/bds-utils/dist/install-BlU8hABz.js
+//#region node_modules/.pnpm/@bedrock-apis+bds-utils@1.0.0-alpha.6/node_modules/@bedrock-apis/bds-utils/dist/install-DmdL2K2i.js
 var ServerProperties = class extends Map {
 	constructor(path) {
 		super();
@@ -693,7 +694,7 @@ var Installation = class {
 		this.configPermissions = new ConfigPermissions(resolve(this.directory, DEFAULT_CONFIG_DIR_PATH, CONFIG_PERMISSIONS_FILE_NAME));
 		this.worlds = new WorldsFolderOptions(resolve(this.directory, WORLDS_DIR_NAME));
 	}
-	async include(dataPacks) {}
+	async include(_) {}
 	async install(stream) {
 		const tasks = /* @__PURE__ */ new Set();
 		await stream.pipeTo(new UnzipStreamConsumer({ onFile: async (report, readable) => {
@@ -749,31 +750,10 @@ var Installation = class {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@bedrock-apis+bds-utils@1.0.0-alpha.4/node_modules/@bedrock-apis/bds-utils/dist/links-BdkFQIGc.js
-const SERVICES_LATEST_DOWNLOAD_LINK = "https://net-secondary.web.minecraft-services.net/api/v1.0/download/links";
+//#region node_modules/.pnpm/@bedrock-apis+bds-utils@1.0.0-alpha.6/node_modules/@bedrock-apis/bds-utils/dist/links-D5McOPnZ.js
 const OSS_GIT_VERSIONS_ROOT = "https://raw.githubusercontent.com/Bedrock-OSS/BDS-Versions/main";
 const OSS_GIT_VERSIONS_FILE = `${OSS_GIT_VERSIONS_ROOT}/versions.json`;
-async function getLatestDownloadLinkFromServices(options) {
-	let DOWNLOAD_TYPE = "serverBedrock";
-	if (options.is_preview) DOWNLOAD_TYPE += "Preview";
-	switch (options.platform) {
-		case "win32":
-			DOWNLOAD_TYPE += "Windows";
-			break;
-		case "linux":
-			DOWNLOAD_TYPE += "Linux";
-			break;
-		default: return null;
-	}
-	const response = await fetch(SERVICES_LATEST_DOWNLOAD_LINK).catch((_) => null);
-	if (!response || !response.ok) return null;
-	const DATA = await response.json().catch((_) => null);
-	if (!DATA) return null;
-	if (!DATA.result) return null;
-	if (!Array.isArray(DATA.result.links)) return null;
-	return DATA.result.links.find((e) => e?.downloadType === DOWNLOAD_TYPE)?.downloadUrl ?? null;
-}
-async function getLatestDownloadLinkFromOSSGit(options) {
+async function getLatestBuildVersionFromOSS(options) {
 	let platform$1 = options.platform === "win32" ? "windows" : options.platform;
 	let response = await fetch(OSS_GIT_VERSIONS_FILE).catch((_) => null);
 	if (!response || !response.ok) return null;
@@ -781,16 +761,15 @@ async function getLatestDownloadLinkFromOSSGit(options) {
 	if (!data) return null;
 	const version_set = data[platform$1];
 	if (!version_set) return null;
-	const version = version_set[options.is_preview ? "preview" : "stable"];
-	if (!version) return null;
-	response = await fetch(`${OSS_GIT_VERSIONS_ROOT}/${platform$1}${options.is_preview ? "_preview" : ""}/${version}.json`);
+	return version_set[options.preview ? "preview" : "stable"] ?? null;
+}
+async function getSpecificDownloadLinkOSS(options) {
+	const platform$1 = options.platform === "win32" ? "windows" : options.platform;
+	const response = await fetch(`${OSS_GIT_VERSIONS_ROOT}/${platform$1}${options.preview ? "_preview" : ""}/${options.version}.json`).catch((_) => null);
 	if (!response || !response.ok) return null;
-	data = await response.json().catch((_) => null);
+	const data = await response.json().catch((_) => null);
 	if (!data) return null;
 	return data.download_url ?? null;
-}
-function getLatestDownloadLink(options) {
-	return getLatestDownloadLinkFromOSSGit(options).then((_) => _ ?? getLatestDownloadLinkFromServices(options));
 }
 
 //#endregion
@@ -921,6 +900,12 @@ var GithubUtils = class {
 		await Promise.all(tasks);
 	}
 };
+
+//#endregion
+//#region modules/utils/general.ts
+function getEngineVersion(fullVersion) {
+	return fullVersion.split(".").slice(0, 3).join(".");
+}
 
 //#endregion
 //#region modules/dump-metadata/index.ts
@@ -1158,6 +1143,7 @@ var dump_types_default = TypePrinterDumper;
 
 //#endregion
 //#region modules/main.ts
+main().catch((e) => (console.error(e), e.CODE ?? UNKNOWN_ERROR_CODE)).then(Deno.exit);
 async function main() {
 	if (platform !== "win32" && platform !== "linux") throw new DumperError(ErrorCodes.UnsupportedPlatform, `Unknown OS platform: ${platform}`);
 	let failed = 0;
@@ -1165,9 +1151,15 @@ async function main() {
 	if (failed = await GithubUtils.initRepo()) return failed;
 	if (failed = await GithubUtils.checkoutBranch("stable", true)) return failed;
 	GithubUtils.clear();
-	const link = await getLatestDownloadLink({
-		is_preview: BRANCH_TO_UPDATE === "preview",
+	const version = await getLatestBuildVersionFromOSS({
+		preview: BRANCH_TO_UPDATE === "preview",
 		platform
+	});
+	if (!version) throw new DumperError(-1, "Failed to get latest build version for BDS via OSS versions");
+	const link = await getSpecificDownloadLinkOSS({
+		preview: BRANCH_TO_UPDATE === "preview",
+		platform,
+		version
 	});
 	if (!link) throw new DumperError(ErrorCodes.UnavailableInstallationLink, `Link not available branch:${BRANCH_TO_UPDATE} platform:${platform}`);
 	console.info("Link found: " + link);
@@ -1180,10 +1172,17 @@ async function main() {
 	for (const dumper of DUMPERS) if (failed = await dumper.init?.(installation) ?? 0) return failed;
 	for (const dumper of DUMPERS) if (failed = await dumper.run?.(installation) ?? 0) return failed;
 	await Deno.writeFile(".gitignore", new TextEncoder().encode(`__*__`));
-	await Deno.writeTextFile("contents.json", JSON.stringify(Deno.readDirSync(".").filter((e) => e.isDirectory && !e.name.startsWith(".") && !e.name.startsWith("__")), null, 3));
+	await repoExists(version);
+	await Deno.writeTextFile("contents.json", JSON.stringify(Deno.readDirSync(".").filter((e) => !e.name.startsWith(".") && !e.name.startsWith("__")), null, 3));
 	if (failed = await GithubUtils.commitAndPush("stable", "New message")) return failed;
 	return 0;
 }
-main().catch((e) => (console.error(e), e.CODE ?? UNKNOWN_ERROR_CODE)).then(Deno.exit);
+async function repoExists(version) {
+	const data = {
+		"version": BRANCH_TO_UPDATE === "preview" ? getEngineVersion(version) : version,
+		"build-version": version
+	};
+	return await Deno.writeTextFile(EXISTS_FILE, JSON.stringify(data, null, 3)).then((_) => 0, (_) => -1);
+}
 
 //#endregion

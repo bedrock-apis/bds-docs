@@ -8,6 +8,7 @@ export const GIT_TOKEN = ENV.get("GITHUB_TOKEN") ?? ENV.get("GH_TOKEN");
 export const INSTALLATION_FOLDER = "__installation__";
 export const PORT_NUMBER = 29132;
 export const BRANCH_TO_UPDATE: "stable" | "preview" | `${string}` | null = Deno.env.get("BRANCH_TO_UPDATE") ?? null;
+export const EXISTS_FILE = "exists.json";
 // Error Codes
 export const SUCCESS_CODE = 0;
 export const UNKNOWN_ERROR_CODE = -1;
