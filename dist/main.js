@@ -8,8 +8,8 @@ import { Writable } from "node:stream";
 //#region modules/constants.ts
 const ENV = Deno.env;
 const GIT_IS_GITHUB_ACTION = ENV.get("GITHUB_ACTIONS")?.toLocaleLowerCase() === "true";
-const GIT_LOGIN_AS_NAME = "BAPI The Dog";
-const GIT_LOGIN_AS_EMAIL = "thedog@bedrockapis.com";
+const GIT_LOGIN_AS_NAME = "Bedrock APIs Bot - Gen";
+const GIT_LOGIN_AS_EMAIL = "genbot@bedrockapis.com";
 const GIT_REPO = ENV.get("GITHUB_REPOSITORY");
 const GIT_TOKEN = ENV.get("GITHUB_TOKEN") ?? ENV.get("GH_TOKEN");
 const GIT_IGNORE_DATA = `__*__`;
