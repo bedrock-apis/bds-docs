@@ -1,0 +1,39 @@
+name: Check Build Sync
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify-build-sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # needed for git diff to work properly
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'latest'
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build the project
+        run: pnpm run check
+
+      - name: Build the project
+        run: pnpm run build
+
+      - name: Check for uncommitted changes
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "::error::Build output is not up to date. Please run the build and commit the result."
+            git status --short
+            exit 1
+          fi

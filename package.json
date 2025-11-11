@@ -1,29 +1,48 @@
 {
-  "name": "bds-docs",
-  "version": "1.0.0",
-  "description": "Releasing BDS Docs",
-  "main": "src/main.js",
-  "type": "module",
-  "scripts": {
-    "check-for-update": "node .",
-    "gen-docs": "node ./DOCUMENTATION/gen.mjs"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Bedrock-APIs/bds-docs.git"
-  },
-  "author": "conmaster2112",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Bedrock-APIs/bds-docs/issues"
-  },
-  "homepage": "https://github.com/Bedrock-APIs/bds-docs#readme",
-  "dependencies": {
-    "minimatch": "^10.0.1",
-    "unzip-stream": "^0.3.4"
-  },
-  "devDependencies": {
-    "@types/node": "^22.7.4",
-    "typescript": "^5.7.0-dev.20241004"
-  }
+   "name": "bds-docs",
+   "version": "1.0.0",
+   "description": "Releasing BDS Docs",
+   "main": "dist/main.js",
+   "type": "module",
+   "scripts": {
+      "build": "rolldown -c",
+      "check": "tsgo --noEmit"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Bedrock-APIs/bds-docs.git"
+   },
+   "author": "conmaster2112",
+   "license": "MIT",
+   "bugs": {
+      "url": "https://github.com/Bedrock-APIs/bds-docs/issues"
+   },
+   "homepage": "https://github.com/Bedrock-APIs/bds-docs#readme",
+   "dependencies": {
+      "@bedrock-apis/bds-utils": "1.0.0-alpha.6",
+      "@minecraft/server": "2.1.0-beta.1.21.90-preview.23",
+      "@minecraft/server-net": "1.0.0-beta.1.21.90-preview.23",
+      "@minecraft/server-ui": "2.1.0-beta.1.21.90-preview.23",
+      "minimatch": "^10.0.1",
+      "unzip-web-stream": "0.0.0-alpha.1"
+   },
+   "devDependencies": {
+      "@types/deno": "^2.3.0",
+      "@types/node": "^24.1.0",
+      "@typescript/native-preview": "7.0.0-dev.20250803.1",
+      "prettier": "^3.5.3",
+      "rolldown": "1.0.0-beta.47"
+   },
+   "prettier": {
+      "arrowParens": "avoid",
+      "endOfLine": "crlf",
+      "plugins": [
+         "prettier-plugin-jsdoc"
+      ],
+      "printWidth": 120,
+      "quoteProps": "consistent",
+      "singleQuote": true,
+      "tabWidth": 3,
+      "semi": false
+   }
 }

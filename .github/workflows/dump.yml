@@ -1,0 +1,87 @@
+name: Base Version Dumper
+on:
+   workflow_dispatch:
+   schedule: 
+    # Check for updates every half hour between 15:00 UTC and 19:00 UTC on Tuesday through Thursday
+    - cron: '0,30 15-19 * * 2-4'
+    # Check for updates every hour between 17:00 UTC and 19:00 UTC on Monday and Friday
+    - cron: '0 17-19 * * 1,5'
+    # Check for updates at 19:00 UTC once every Saturday and Sunday
+    - cron: '0 19 * * 0,6'
+
+permissions:
+   contents: write
+jobs:
+  generator:
+    runs-on: ubuntu-latest
+    outputs:
+      branch: ${{ steps.version.outputs.BRANCH_TO_UPDATE }}
+    steps:
+      - name: Check versions
+        id: version
+        run: |
+          set -e
+          REPO="$GITHUB_REPOSITORY"
+          VERSION_URL="https://raw.githubusercontent.com/Bedrock-OSS/BDS-Versions/main/versions.json"
+          STABLE_EXISTS_URL="https://raw.githubusercontent.com/${REPO}/stable/exist.json"
+          PREVIEW_EXISTS_URL="https://raw.githubusercontent.com/${REPO}/preview/exist.json"
+
+          echo "$REPO"
+
+          curl -sSL "$VERSION_URL" -o versions.json
+
+          STABLE_VERSION=$(jq -r '.windows.stable' versions.json)
+          PREVIEW_VERSION=$(jq -r '.windows.preview' versions.json)
+
+          IFS='.' read -r major minor patch _ <<< "$STABLE_VERSION"
+          rounded_patch=$(( (patch / 10) * 10 ))
+          STABLE_BASE="${major}.${minor}.${rounded_patch}"
+          
+          echo "Stable base: $STABLE_BASE"
+          SHOULD_UPDATE=""
+
+          # Check stable branch
+          if curl -sSfL "$STABLE_EXISTS_URL" -o exist_stable.json; then
+            EXISTS_STABLE_VERSION=$(jq -r '.version' exist_stable.json)
+            echo "Version: $EXISTS_STABLE_VERSION"
+            if [[ "$EXISTS_STABLE_VERSION" != "$STABLE_BASE" ]]; then
+              SHOULD_UPDATE="stable"
+            fi
+          else
+            echo "Stable exist.json not found (404), assuming update needed"
+            SHOULD_UPDATE="stable"
+          fi
+
+          # Check preview branch only if stable didn't need update
+          if [[ -z "$SHOULD_UPDATE" ]]; then
+            if curl -sSfL "$PREVIEW_EXISTS_URL" -o exist_preview.json; then
+              EXISTS_PREVIEW_BUILD=$(jq -r '.version' exist_preview.json)
+              if [[ "$EXISTS_PREVIEW_BUILD" != "$PREVIEW_VERSION" ]]; then
+                SHOULD_UPDATE="preview"
+              fi
+            else
+              echo "Preview exist.json not found (404), assuming update needed"
+              SHOULD_UPDATE="preview"
+            fi
+          fi
+
+          echo "BRANCH_TO_UPDATE=$SHOULD_UPDATE" >> $GITHUB_ENV
+          echo "BRANCH_TO_UPDATE=$SHOULD_UPDATE" >> $GITHUB_OUTPUT
+          echo "Branch to update: $SHOULD_UPDATE"
+
+
+
+  runner:
+    needs: generator
+    if: needs.generator.outputs.branch != ''
+    runs-on: windows-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      BRANCH_TO_UPDATE: ${{ needs.generator.outputs.branch }}
+    steps:
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: ">=2.4"
+
+      - name: Run Deno script
+        run: deno run --allow-all "https://raw.githubusercontent.com/${{ github.repository }}/main/dist/main.js"
