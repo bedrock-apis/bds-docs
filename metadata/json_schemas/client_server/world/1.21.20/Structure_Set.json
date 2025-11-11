@@ -1,0 +1,109 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "760104054",
+   "x-format-version": "1.21.20",
+   "definitions": {
+      "741112715": {
+         "title": "RandomSpreadPlacement",
+         "type": "object",
+         "properties": {
+            "salt": {
+               "type": "integer",
+               "minimum": -2147483648,
+               "maximum": 2147483647
+            },
+            "separation": {
+               "type": "integer",
+               "minimum": 0,
+               "maximum": 65535
+            },
+            "spacing": {
+               "type": "integer",
+               "minimum": 1,
+               "maximum": 65535
+            },
+            "spread_type": {
+               "title": "SpreadType",
+               "type": "string",
+               "default": "linear",
+               "enum": [
+                  "linear",
+                  "triangular"
+               ]
+            },
+            "type": {
+               "title": "PlacementType",
+               "type": "string",
+               "enum": [
+                  "minecraft:random_spread"
+               ]
+            }
+         },
+         "required": [
+            "salt",
+            "separation",
+            "spacing",
+            "type"
+         ]
+      },
+      "1357039345": {
+         "title": "Reference",
+         "type": "string"
+      },
+      "1509348670": {
+         "title": "Description",
+         "type": "object",
+         "properties": {
+            "identifier": {
+               "$ref": "#/definitions/1533541232"
+            }
+         },
+         "required": [
+            "identifier"
+         ]
+      },
+      "1533541232": {
+         "title": "Identifier",
+         "type": "string"
+      },
+      "3295675449": {
+         "title": "Structure",
+         "type": "object",
+         "properties": {
+            "structure": {
+               "$ref": "#/definitions/1357039345"
+            },
+            "weight": {
+               "type": "integer",
+               "minimum": 1,
+               "maximum": 200
+            }
+         },
+         "required": [
+            "structure",
+            "weight"
+         ]
+      }
+   },
+   "title": "A Jigsaw Structure Set is a collection of Jigsaw Structures that are placed according to a set of rules.",
+   "type": "object",
+   "properties": {
+      "description": {
+         "$ref": "#/definitions/1509348670"
+      },
+      "placement": {
+         "$ref": "#/definitions/741112715"
+      },
+      "structures": {
+         "type": "array",
+         "items": {
+            "$ref": "#/definitions/3295675449"
+         }
+      }
+   },
+   "required": [
+      "description",
+      "placement",
+      "structures"
+   ]
+}

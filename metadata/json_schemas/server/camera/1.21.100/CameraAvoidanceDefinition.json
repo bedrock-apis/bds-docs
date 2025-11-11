@@ -1,58 +1,57 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "263889029",
-    "x-format-version": "1.21.100",
-    "x-minecraft-version": "1.21.130-beta.27",
-    "definitions": {
-        "2566215512": {
-            "title": "ray",
-            "type": "object",
-            "properties": {
-                "angle": {
-                    "type": "number",
-                    "default": 0,
-                    "minimum": 1.1754943508222875e-38,
-                    "maximum": 3.4028234663852886e+38
-                },
-                "weight": {
-                    "type": "number",
-                    "default": 0,
-                    "minimum": 1.1754943508222875e-38,
-                    "maximum": 3.4028234663852886e+38
-                }
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "263889029",
+   "x-format-version": "1.21.100",
+   "definitions": {
+      "2566215512": {
+         "title": "ray",
+         "type": "object",
+         "properties": {
+            "angle": {
+               "type": "number",
+               "default": 0,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
+            },
+            "weight": {
+               "type": "number",
+               "default": 0,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
-        }
-    },
-    "title": "minecraft:camera_avoidance",
-    "type": "object",
-    "properties": {
-        "avoidance_rays_horizontal": {
-            "type": "array",
-            "default": [],
-            "items": {
-                "$ref": "#/definitions/2566215512"
-            },
-            "minItems": 1
-        },
-        "avoidance_rays_vertical": {
-            "type": "array",
-            "default": [],
-            "items": {
-                "$ref": "#/definitions/2566215512"
-            },
-            "minItems": 1
-        },
-        "distance_constraint_min": {
-            "type": "number",
-            "default": 0,
-            "minimum": 0,
-            "maximum": 3.4028234663852886e+38
-        },
-        "relax_distance_smoothing_spring": {
-            "type": "number",
-            "default": 4,
-            "minimum": 0,
-            "maximum": 3.4028234663852886e+38
-        }
-    }
+         }
+      }
+   },
+   "title": "minecraft:camera_avoidance",
+   "type": "object",
+   "properties": {
+      "avoidance_rays_horizontal": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "#/definitions/2566215512"
+         },
+         "minItems": 1
+      },
+      "avoidance_rays_vertical": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "#/definitions/2566215512"
+         },
+         "minItems": 1
+      },
+      "distance_constraint_min": {
+         "type": "number",
+         "default": 0,
+         "minimum": 0,
+         "maximum": 3.4028234663852886e+38
+      },
+      "relax_distance_smoothing_spring": {
+         "type": "number",
+         "default": 4,
+         "minimum": 0,
+         "maximum": 3.4028234663852886e+38
+      }
+   }
 }

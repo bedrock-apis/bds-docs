@@ -1,50 +1,49 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "3044673183",
-    "x-format-version": "1.21.100",
-    "x-minecraft-version": "1.21.130-beta.27",
-    "title": "minecraft:target",
-    "type": "object",
-    "properties": {
-        "continue_targeting": {
-            "type": "boolean",
-            "default": false
-        },
-        "horizontal_rotation_limit": {
-            "type": "array",
-            "items": {
-                "type": "number",
-                "exclusiveMinimum": 0,
-                "exclusiveMaximum": 360
-            },
-            "minItems": 2,
-            "maxItems": 2
-        },
-        "rotation_speed": {
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "3044673183",
+   "x-format-version": "1.21.100",
+   "title": "minecraft:target",
+   "type": "object",
+   "properties": {
+      "continue_targeting": {
+         "type": "boolean",
+         "default": false
+      },
+      "horizontal_rotation_limit": {
+         "type": "array",
+         "items": {
             "type": "number",
-            "default": 0,
+            "exclusiveMinimum": 0,
+            "exclusiveMaximum": 360
+         },
+         "minItems": 2,
+         "maxItems": 2
+      },
+      "rotation_speed": {
+         "type": "number",
+         "default": 0,
+         "minimum": 0,
+         "maximum": 360
+      },
+      "snap_to_target": {
+         "type": "boolean",
+         "default": false
+      },
+      "tracking_radius": {
+         "type": "number",
+         "default": 50,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
+      },
+      "vertical_rotation_limit": {
+         "type": "array",
+         "items": {
+            "type": "number",
             "minimum": 0,
-            "maximum": 360
-        },
-        "snap_to_target": {
-            "type": "boolean",
-            "default": false
-        },
-        "tracking_radius": {
-            "type": "number",
-            "default": 50,
-            "minimum": 1.1754943508222875e-38,
-            "maximum": 3.4028234663852886e+38
-        },
-        "vertical_rotation_limit": {
-            "type": "array",
-            "items": {
-                "type": "number",
-                "minimum": 0,
-                "maximum": 180
-            },
-            "minItems": 2,
-            "maxItems": 2
-        }
-    }
+            "maximum": 180
+         },
+         "minItems": 2,
+         "maxItems": 2
+      }
+   }
 }

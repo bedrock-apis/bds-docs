@@ -1,87 +1,86 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "541278563",
-    "x-format-version": "1.21.120",
-    "x-minecraft-version": "1.21.130-beta.27",
-    "definitions": {
-        "1057349585": {
-            "title": "FloatRange",
-            "type": "object",
-            "properties": {
-                "max": {
-                    "type": "number",
-                    "default": 0,
-                    "minimum": 1.1754943508222875e-38,
-                    "maximum": 3.4028234663852886e+38
-                },
-                "min": {
-                    "type": "number",
-                    "default": 0,
-                    "minimum": 1.1754943508222875e-38,
-                    "maximum": 3.4028234663852886e+38
-                }
-            }
-        }
-    },
-    "title": "minecraft:behavior.aquatic_charge_attack",
-    "type": "object",
-    "properties": {
-        "attack_reach": {
-            "type": "number",
-            "default": 0.05000000074505806,
-            "minimum": 0,
-            "maximum": 3.4028234663852886e+38
-        },
-        "charge_cooldown_time": {
-            "default": {
-                "min": 2,
-                "max": 6
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "541278563",
+   "x-format-version": "1.21.120",
+   "definitions": {
+      "1057349585": {
+         "title": "FloatRange",
+         "type": "object",
+         "properties": {
+            "max": {
+               "type": "number",
+               "default": 0,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
-            "$ref": "#/definitions/1057349585",
-            "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
-        },
-        "charge_overshoot_distance": {
-            "type": "number",
-            "default": 1.5,
-            "minimum": 0,
-            "maximum": 3.4028234663852886e+38
-        },
-        "charge_speed_multiplier": {
-            "type": "number",
-            "default": 10,
-            "minimum": 0,
-            "maximum": 3.4028234663852886e+38
-        },
-        "control_flags": {
-            "type": "array",
-            "default": [],
-            "items": {
-                "title": "Goal's control flags",
-                "type": "string",
-                "enum": [
-                    "move",
-                    "look",
-                    "jump"
-                ]
+            "min": {
+               "type": "number",
+               "default": 0,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
-        },
-        "knockback_force": {
-            "type": "number",
-            "default": 2,
-            "minimum": 0,
-            "maximum": 3.4028234663852886e+38
-        },
-        "max_charge_distance": {
-            "type": "number",
-            "default": 16,
-            "minimum": 0,
-            "maximum": 3.4028234663852886e+38
-        },
-        "priority": {
-            "type": "integer",
-            "default": 0,
-            "minimum": 0,
-            "maximum": 2147483647
-        }
-    }
+         }
+      }
+   },
+   "title": "minecraft:behavior.aquatic_charge_attack",
+   "type": "object",
+   "properties": {
+      "attack_reach": {
+         "type": "number",
+         "default": 0.05000000074505806,
+         "minimum": 0,
+         "maximum": 3.4028234663852886e+38
+      },
+      "charge_cooldown_time": {
+         "default": {
+            "min": 2,
+            "max": 6
+         },
+         "$ref": "#/definitions/1057349585",
+         "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
+      },
+      "charge_overshoot_distance": {
+         "type": "number",
+         "default": 1.5,
+         "minimum": 0,
+         "maximum": 3.4028234663852886e+38
+      },
+      "charge_speed_multiplier": {
+         "type": "number",
+         "default": 10,
+         "minimum": 0,
+         "maximum": 3.4028234663852886e+38
+      },
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "title": "Goal's control flags",
+            "type": "string",
+            "enum": [
+               "move",
+               "look",
+               "jump"
+            ]
+         }
+      },
+      "knockback_force": {
+         "type": "number",
+         "default": 2,
+         "minimum": 0,
+         "maximum": 3.4028234663852886e+38
+      },
+      "max_charge_distance": {
+         "type": "number",
+         "default": 16,
+         "minimum": 0,
+         "maximum": 3.4028234663852886e+38
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "minimum": 0,
+         "maximum": 2147483647
+      }
+   }
 }

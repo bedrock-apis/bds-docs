@@ -1,50 +1,49 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "1873913113",
-    "x-format-version": "1.21.60",
-    "x-minecraft-version": "1.21.130-beta.27",
-    "definitions": {
-        "1531870811": {
-            "title": "Item Descriptor",
-            "oneOf": [
-                {
-                    "type": "string"
-                },
-                {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    }
-                }
-            ]
-        }
-    },
-    "title": "minecraft:storage_item",
-    "type": "object",
-    "properties": {
-        "allow_nested_storage_items": {
-            "type": "boolean",
-            "default": true
-        },
-        "allowed_items": {
-            "type": "array",
-            "default": [],
-            "items": {
-                "$ref": "#/definitions/1531870811"
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "1873913113",
+   "x-format-version": "1.21.60",
+   "definitions": {
+      "1531870811": {
+         "title": "Item Descriptor",
+         "oneOf": [
+            {
+               "type": "string"
+            },
+            {
+               "type": "object",
+               "additionalProperties": {
+                  "type": "string"
+               }
             }
-        },
-        "banned_items": {
-            "type": "array",
-            "default": [],
-            "items": {
-                "$ref": "#/definitions/1531870811"
-            }
-        },
-        "max_slots": {
-            "type": "integer",
-            "default": 64,
-            "minimum": -2147483648,
-            "maximum": 64
-        }
-    }
+         ]
+      }
+   },
+   "title": "minecraft:storage_item",
+   "type": "object",
+   "properties": {
+      "allow_nested_storage_items": {
+         "type": "boolean",
+         "default": true
+      },
+      "allowed_items": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "#/definitions/1531870811"
+         }
+      },
+      "banned_items": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "#/definitions/1531870811"
+         }
+      },
+      "max_slots": {
+         "type": "integer",
+         "default": 64,
+         "minimum": -2147483648,
+         "maximum": 64
+      }
+   }
 }

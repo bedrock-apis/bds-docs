@@ -1,185 +1,184 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "2379072710",
-    "x-format-version": "1.21.120",
-    "x-minecraft-version": "1.21.130-beta.27",
-    "definitions": {
-        "1088251937": {
-            "title": "Filter Group",
-            "oneOf": [
-                {
-                    "$ref": "#/definitions/4150989894"
-                },
-                {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/1088251937"
-                    }
-                },
-                {
-                    "type": "object",
-                    "properties": {
-                        "AND": {
-                            "$ref": "#/definitions/1088251937"
-                        },
-                        "NOT": {
-                            "$ref": "#/definitions/1088251937"
-                        },
-                        "OR": {
-                            "$ref": "#/definitions/1088251937"
-                        },
-                        "all": {
-                            "$ref": "#/definitions/1088251937"
-                        },
-                        "all_of": {
-                            "$ref": "#/definitions/1088251937"
-                        },
-                        "any": {
-                            "$ref": "#/definitions/1088251937"
-                        },
-                        "any_of": {
-                            "$ref": "#/definitions/1088251937"
-                        },
-                        "none_of": {
-                            "$ref": "#/definitions/1088251937"
-                        }
-                    }
-                }
-            ]
-        },
-        "4150989894": {
-            "title": "Filter Test",
-            "type": "object",
-            "properties": {
-                "domain": {
-                    "oneOf": [
-                        {
-                            "type": "boolean"
-                        },
-                        {
-                            "type": "integer",
-                            "minimum": -2147483648,
-                            "maximum": 2147483647
-                        },
-                        {
-                            "type": "number",
-                            "minimum": 1.1754943508222875e-38,
-                            "maximum": 3.4028234663852886e+38
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "operator": {
-                    "oneOf": [
-                        {
-                            "type": "boolean"
-                        },
-                        {
-                            "type": "integer",
-                            "minimum": -2147483648,
-                            "maximum": 2147483647
-                        },
-                        {
-                            "type": "number",
-                            "minimum": 1.1754943508222875e-38,
-                            "maximum": 3.4028234663852886e+38
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "subject": {
-                    "oneOf": [
-                        {
-                            "type": "boolean"
-                        },
-                        {
-                            "type": "integer",
-                            "minimum": -2147483648,
-                            "maximum": 2147483647
-                        },
-                        {
-                            "type": "number",
-                            "minimum": 1.1754943508222875e-38,
-                            "maximum": 3.4028234663852886e+38
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "test": {
-                    "type": "string"
-                },
-                "value": {
-                    "oneOf": [
-                        {
-                            "type": "boolean"
-                        },
-                        {
-                            "type": "integer",
-                            "minimum": -2147483648,
-                            "maximum": 2147483647
-                        },
-                        {
-                            "type": "number",
-                            "minimum": 1.1754943508222875e-38,
-                            "maximum": 3.4028234663852886e+38
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                }
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "2379072710",
+   "x-format-version": "1.21.120",
+   "definitions": {
+      "1088251937": {
+         "title": "Filter Group",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/4150989894"
             },
-            "required": [
-                "test"
-            ]
-        }
-    },
-    "title": "minecraft:behavior.drink_milk",
-    "type": "object",
-    "properties": {
-        "control_flags": {
-            "type": "array",
-            "default": [],
-            "items": {
-                "title": "Goal's control flags",
-                "type": "string",
-                "enum": [
-                    "move",
-                    "look",
-                    "jump"
-                ]
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/1088251937"
+               }
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "AND": {
+                     "$ref": "#/definitions/1088251937"
+                  },
+                  "NOT": {
+                     "$ref": "#/definitions/1088251937"
+                  },
+                  "OR": {
+                     "$ref": "#/definitions/1088251937"
+                  },
+                  "all": {
+                     "$ref": "#/definitions/1088251937"
+                  },
+                  "all_of": {
+                     "$ref": "#/definitions/1088251937"
+                  },
+                  "any": {
+                     "$ref": "#/definitions/1088251937"
+                  },
+                  "any_of": {
+                     "$ref": "#/definitions/1088251937"
+                  },
+                  "none_of": {
+                     "$ref": "#/definitions/1088251937"
+                  }
+               }
             }
-        },
-        "cooldown_seconds": {
-            "type": "number",
-            "default": 5,
-            "minimum": 1.1754943508222875e-38,
-            "maximum": 3.4028234663852886e+38
-        },
-        "filters": {
-            "default": {
-                "all_of": null,
-                "all": null,
-                "OR": null,
-                "AND": null,
-                "any_of": null,
-                "any": null,
-                "none_of": null,
-                "NOT": null
+         ]
+      },
+      "4150989894": {
+         "title": "Filter Test",
+         "type": "object",
+         "properties": {
+            "domain": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
+                  },
+                  {
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
             },
-            "$ref": "#/definitions/1088251937"
-        },
-        "priority": {
-            "type": "integer",
-            "default": 0,
-            "minimum": 0,
-            "maximum": 2147483647
-        }
-    }
+            "operator": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
+                  },
+                  {
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "subject": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
+                  },
+                  {
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "test": {
+               "type": "string"
+            },
+            "value": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
+                  },
+                  {
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            }
+         },
+         "required": [
+            "test"
+         ]
+      }
+   },
+   "title": "minecraft:behavior.drink_milk",
+   "type": "object",
+   "properties": {
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "title": "Goal's control flags",
+            "type": "string",
+            "enum": [
+               "move",
+               "look",
+               "jump"
+            ]
+         }
+      },
+      "cooldown_seconds": {
+         "type": "number",
+         "default": 5,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
+      },
+      "filters": {
+         "default": {
+            "all_of": null,
+            "all": null,
+            "OR": null,
+            "AND": null,
+            "any_of": null,
+            "any": null,
+            "none_of": null,
+            "NOT": null
+         },
+         "$ref": "#/definitions/1088251937"
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "minimum": 0,
+         "maximum": 2147483647
+      }
+   }
 }

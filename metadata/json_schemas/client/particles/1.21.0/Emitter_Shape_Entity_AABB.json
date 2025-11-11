@@ -1,0 +1,77 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "3723416124",
+   "x-format-version": "1.21.0",
+   "definitions": {
+      "1399264962": {
+         "title": "particle_emitter_direction",
+         "oneOf": [
+            {
+               "title": "direction_type",
+               "type": "string",
+               "enum": [
+                  "inwards",
+                  "outwards"
+               ]
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/3178719147"
+               },
+               "minItems": 3,
+               "maxItems": 3
+            }
+         ]
+      },
+      "2267778531": {
+         "title": "Molang string",
+         "oneOf": [
+            {
+               "type": "string"
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "expression": {
+                     "type": "string"
+                  },
+                  "version": {
+                     "type": "integer",
+                     "minimum": -32768,
+                     "maximum": 32767
+                  }
+               },
+               "required": [
+                  "expression",
+                  "version"
+               ]
+            }
+         ]
+      },
+      "3178719147": {
+         "title": "Molang expression",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2267778531"
+            },
+            {
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
+            }
+         ]
+      }
+   },
+   "title": "emitter_shape_entity_aabb",
+   "type": "object",
+   "properties": {
+      "direction": {
+         "$ref": "#/definitions/1399264962"
+      },
+      "surface_only": {
+         "type": "boolean",
+         "default": false
+      }
+   }
+}

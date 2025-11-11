@@ -1,0 +1,212 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "1499078169",
+   "x-format-version": "1.21.0",
+   "definitions": {
+      "705997071": {
+         "title": "DirectionSettings Proxy",
+         "type": "object",
+         "properties": {
+            "custom_direction": {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/3178719147"
+               },
+               "minItems": 3,
+               "maxItems": 3
+            },
+            "min_speed_threshold": {
+               "type": "number",
+               "default": 0,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
+            },
+            "mode": {
+               "title": "particle_appearance_billboard direction_settings_mode",
+               "type": "string",
+               "enum": [
+                  "derive_from_velocity",
+                  "custom"
+               ]
+            }
+         },
+         "required": [
+            "mode"
+         ]
+      },
+      "772645837": {
+         "title": "particle_appearance_billboard flipbook_data",
+         "type": "object",
+         "properties": {
+            "base_UV": {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/3178719147"
+               },
+               "minItems": 2,
+               "maxItems": 2
+            },
+            "frames_per_second": {
+               "type": "number",
+               "default": 0,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
+            },
+            "loop": {
+               "type": "boolean",
+               "default": false
+            },
+            "max_frame": {
+               "$ref": "#/definitions/3178719147"
+            },
+            "size_UV": {
+               "type": "array",
+               "default": [
+                  1,
+                  1
+               ],
+               "items": {
+                  "type": "number",
+                  "minimum": 1.1754943508222875e-38,
+                  "maximum": 3.4028234663852886e+38
+               },
+               "minItems": 2,
+               "maxItems": 2
+            },
+            "step_UV": {
+               "type": "array",
+               "default": [
+                  0,
+                  0
+               ],
+               "items": {
+                  "type": "number",
+                  "minimum": 1.1754943508222875e-38,
+                  "maximum": 3.4028234663852886e+38
+               },
+               "minItems": 2,
+               "maxItems": 2
+            },
+            "stretch_to_lifetime": {
+               "type": "boolean",
+               "default": false
+            }
+         },
+         "required": [
+            "base_UV",
+            "max_frame"
+         ]
+      },
+      "1135863433": {
+         "title": "particle_appearance_billboard direction_settings",
+         "$ref": "#/definitions/705997071"
+      },
+      "2267778531": {
+         "title": "Molang string",
+         "oneOf": [
+            {
+               "type": "string"
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "expression": {
+                     "type": "string"
+                  },
+                  "version": {
+                     "type": "integer",
+                     "minimum": -32768,
+                     "maximum": 32767
+                  }
+               },
+               "required": [
+                  "expression",
+                  "version"
+               ]
+            }
+         ]
+      },
+      "2715320761": {
+         "title": "hashed_string",
+         "type": "string"
+      },
+      "2979283012": {
+         "title": "particle_appearance_billboard uv_data",
+         "$ref": "#/definitions/3427485672"
+      },
+      "3178719147": {
+         "title": "Molang expression",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2267778531"
+            },
+            {
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
+            }
+         ]
+      },
+      "3427485672": {
+         "title": "UV Proxy",
+         "type": "object",
+         "properties": {
+            "flipbook": {
+               "$ref": "#/definitions/772645837"
+            },
+            "texture_height": {
+               "type": "integer",
+               "default": 1,
+               "minimum": -2147483648,
+               "maximum": 2147483647
+            },
+            "texture_width": {
+               "type": "integer",
+               "default": 1,
+               "minimum": -2147483648,
+               "maximum": 2147483647
+            },
+            "uv": {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/3178719147"
+               },
+               "minItems": 2,
+               "maxItems": 2
+            },
+            "uv_size": {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/3178719147"
+               },
+               "minItems": 2,
+               "maxItems": 2
+            }
+         }
+      }
+   },
+   "title": "particle_appearance_billboard",
+   "type": "object",
+   "properties": {
+      "direction": {
+         "$ref": "#/definitions/1135863433"
+      },
+      "facing_camera_mode": {
+         "$ref": "#/definitions/2715320761"
+      },
+      "size": {
+         "type": "array",
+         "items": {
+            "$ref": "#/definitions/3178719147"
+         },
+         "minItems": 2,
+         "maxItems": 2
+      },
+      "uv": {
+         "$ref": "#/definitions/2979283012"
+      }
+   },
+   "required": [
+      "size"
+   ]
+}

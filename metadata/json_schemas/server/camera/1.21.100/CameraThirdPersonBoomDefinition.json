@@ -1,66 +1,65 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "3360816904",
-    "x-format-version": "1.21.100",
-    "x-minecraft-version": "1.21.130-beta.27",
-    "definitions": {
-        "1347636330": {
-            "title": "vec2",
-            "oneOf": [
-                {
-                    "type": "array",
-                    "items": {
-                        "type": "number",
-                        "minimum": 1.1754943508222875e-38,
-                        "maximum": 3.4028234663852886e+38
-                    },
-                    "minItems": 2,
-                    "maxItems": 2
-                },
-                {
-                    "type": "object",
-                    "properties": {
-                        "x": {
-                            "type": "number",
-                            "default": 0,
-                            "minimum": 1.1754943508222875e-38,
-                            "maximum": 3.4028234663852886e+38
-                        },
-                        "y": {
-                            "type": "number",
-                            "default": 0,
-                            "minimum": 1.1754943508222875e-38,
-                            "maximum": 3.4028234663852886e+38
-                        }
-                    }
-                }
-            ]
-        }
-    },
-    "title": "minecraft:camera_third_person_boom",
-    "type": "object",
-    "properties": {
-        "rotation_space": {
-            "title": "rotation_space",
-            "type": "string",
-            "default": "local",
-            "enum": [
-                "local",
-                "world"
-            ]
-        },
-        "starting_radius": {
-            "type": "number",
-            "default": 0,
-            "minimum": 1.1754943508222875e-38,
-            "maximum": 3.4028234663852886e+38
-        },
-        "starting_rot": {
-            "default": [
-                0,
-                0
-            ],
-            "$ref": "#/definitions/1347636330"
-        }
-    }
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "3360816904",
+   "x-format-version": "1.21.100",
+   "definitions": {
+      "1347636330": {
+         "title": "vec2",
+         "oneOf": [
+            {
+               "type": "array",
+               "items": {
+                  "type": "number",
+                  "minimum": 1.1754943508222875e-38,
+                  "maximum": 3.4028234663852886e+38
+               },
+               "minItems": 2,
+               "maxItems": 2
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "x": {
+                     "type": "number",
+                     "default": 0,
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
+                  },
+                  "y": {
+                     "type": "number",
+                     "default": 0,
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
+                  }
+               }
+            }
+         ]
+      }
+   },
+   "title": "minecraft:camera_third_person_boom",
+   "type": "object",
+   "properties": {
+      "rotation_space": {
+         "title": "rotation_space",
+         "type": "string",
+         "default": "local",
+         "enum": [
+            "local",
+            "world"
+         ]
+      },
+      "starting_radius": {
+         "type": "number",
+         "default": 0,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
+      },
+      "starting_rot": {
+         "default": [
+            0,
+            0
+         ],
+         "$ref": "#/definitions/1347636330"
+      }
+   }
 }

@@ -1,0 +1,244 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "4009772340",
+   "x-format-version": "1.21.40",
+   "definitions": {
+      "180702932": {
+         "title": "Client Biome Definition",
+         "type": "object",
+         "properties": {
+            "components": {
+               "$ref": "#/definitions/2660458847"
+            },
+            "description": {
+               "$ref": "#/definitions/3072409085"
+            }
+         },
+         "required": [
+            "components",
+            "description"
+         ]
+      },
+      "379658027": {
+         "title": "Reference",
+         "type": "string"
+      },
+      "569860384": {
+         "title": "minecraft:grass_appearance",
+         "type": "object",
+         "properties": {
+            "color": {
+               "oneOf": [
+                  {
+                     "$ref": "#/definitions/3915697282"
+                  },
+                  {
+                     "$ref": "#/definitions/1894305624"
+                  }
+               ]
+            }
+         }
+      },
+      "658145120": {
+         "title": "minecraft:sky_color",
+         "type": "object",
+         "properties": {
+            "sky_color": {
+               "$ref": "#/definitions/3915697282"
+            }
+         },
+         "required": [
+            "sky_color"
+         ]
+      },
+      "783532490": {
+         "title": "minecraft:fog_appearance",
+         "type": "object",
+         "properties": {
+            "fog_identifier": {
+               "$ref": "#/definitions/3639487318"
+            }
+         },
+         "required": [
+            "fog_identifier"
+         ]
+      },
+      "1894305624": {
+         "title": "Grass Color Map",
+         "type": "object",
+         "properties": {
+            "color_map": {
+               "title": "Grass Colormap",
+               "type": "string",
+               "enum": [
+                  "grass",
+                  "swamp_grass"
+               ]
+            }
+         },
+         "required": [
+            "color_map"
+         ]
+      },
+      "2544684648": {
+         "title": "minecraft:ambient_sounds",
+         "type": "object",
+         "properties": {
+            "addition": {
+               "default": "",
+               "$ref": "#/definitions/379658027"
+            },
+            "loop": {
+               "default": "",
+               "$ref": "#/definitions/379658027"
+            },
+            "mood": {
+               "default": "",
+               "$ref": "#/definitions/379658027"
+            }
+         }
+      },
+      "2660458847": {
+         "title": "Client Biome Components",
+         "type": "object",
+         "properties": {
+            "minecraft:ambient_sounds": {
+               "$ref": "#/definitions/2544684648"
+            },
+            "minecraft:biome_music": {
+               "$ref": "#/definitions/3250030827"
+            },
+            "minecraft:fog_appearance": {
+               "$ref": "#/definitions/783532490"
+            },
+            "minecraft:foliage_appearance": {
+               "$ref": "#/definitions/4147961405"
+            },
+            "minecraft:grass_appearance": {
+               "$ref": "#/definitions/569860384"
+            },
+            "minecraft:sky_color": {
+               "$ref": "#/definitions/658145120"
+            },
+            "minecraft:water_appearance": {
+               "$ref": "#/definitions/4061100221",
+               "x-runtime-constraint-description": "Make sure that at least either the surface color or the opacity is specified"
+            }
+         }
+      },
+      "2791086866": {
+         "title": "Foliage Color Map",
+         "type": "object",
+         "properties": {
+            "color_map": {
+               "title": "Foliage Colormap",
+               "type": "string",
+               "enum": [
+                  "foliage",
+                  "birch",
+                  "evergreen",
+                  "mangrove_swamp_foliage",
+                  "swamp_foliage"
+               ]
+            }
+         },
+         "required": [
+            "color_map"
+         ]
+      },
+      "3072409085": {
+         "title": "Client Biome Description",
+         "type": "object",
+         "properties": {
+            "identifier": {
+               "type": "string",
+               "pattern": "^[a-z0-9._%+-:]+$"
+            }
+         },
+         "required": [
+            "identifier"
+         ]
+      },
+      "3250030827": {
+         "title": "minecraft:biome_music",
+         "type": "object",
+         "properties": {
+            "volume_multiplier": {
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
+            }
+         }
+      },
+      "3639487318": {
+         "title": "Reference",
+         "type": "string"
+      },
+      "3915697282": {
+         "title": "Color255RGB",
+         "oneOf": [
+            {
+               "type": "string",
+               "pattern": "^#[a-fA-F0-9]{6}$"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "type": "integer",
+                  "minimum": -2147483648,
+                  "maximum": 2147483647
+               },
+               "minItems": 3,
+               "maxItems": 3
+            }
+         ],
+         "$metaProperties": {
+            "CEREAL_EDITOR_SCHEMA_TAG": "type:color"
+         }
+      },
+      "4061100221": {
+         "title": "minecraft:water_appearance",
+         "type": "object",
+         "properties": {
+            "surface_color": {
+               "$ref": "#/definitions/3915697282"
+            },
+            "surface_opacity": {
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
+            }
+         }
+      },
+      "4147961405": {
+         "title": "minecraft:foliage_appearance",
+         "type": "object",
+         "properties": {
+            "color": {
+               "oneOf": [
+                  {
+                     "$ref": "#/definitions/3915697282"
+                  },
+                  {
+                     "$ref": "#/definitions/2791086866"
+                  }
+               ]
+            }
+         }
+      }
+   },
+   "title": "Client Biome JSON File",
+   "type": "object",
+   "properties": {
+      "format_version": {
+         "type": "string"
+      },
+      "minecraft:client_biome": {
+         "$ref": "#/definitions/180702932"
+      }
+   },
+   "required": [
+      "format_version",
+      "minecraft:client_biome"
+   ]
+}

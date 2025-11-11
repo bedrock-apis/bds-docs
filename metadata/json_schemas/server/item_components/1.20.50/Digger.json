@@ -1,95 +1,94 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "2499855414",
-    "x-format-version": "1.20.50",
-    "x-minecraft-version": "1.21.130-beta.27",
-    "definitions": {
-        "517105782": {
-            "title": "compound_proxy",
-            "oneOf": [
-                {
-                    "type": "integer",
-                    "minimum": -2147483648,
-                    "maximum": 2147483647
-                },
-                {
-                    "type": "string"
-                },
-                {
-                    "type": "boolean"
-                }
-            ]
-        },
-        "1899103179": {
-            "title": "BlockInfo",
-            "type": "object",
-            "properties": {
-                "block": {
-                    "$ref": "#/definitions/2794205495"
-                },
-                "speed": {
-                    "type": "integer",
-                    "minimum": -2147483648,
-                    "maximum": 2147483647
-                }
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "2499855414",
+   "x-format-version": "1.20.50",
+   "definitions": {
+      "517105782": {
+         "title": "compound_proxy",
+         "oneOf": [
+            {
+               "type": "integer",
+               "minimum": -2147483648,
+               "maximum": 2147483647
             },
-            "required": [
-                "block",
-                "speed"
-            ]
-        },
-        "2770948419": {
-            "title": "BlockDescriptorProxy",
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "default": ""
-                },
-                "states": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "$ref": "#/definitions/517105782"
-                    },
-                    "default": {}
-                },
-                "tags": {
-                    "type": "string",
-                    "default": ""
-                }
+            {
+               "type": "string"
+            },
+            {
+               "type": "boolean"
             }
-        },
-        "2794205495": {
-            "title": "Block Descriptor",
-            "oneOf": [
-                {
-                    "$ref": "#/definitions/2770948419",
-                    "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
-                },
-                {
-                    "type": "string",
-                    "minLength": 1
-                },
-                {
-                    "$ref": "#/definitions/2770948419",
-                    "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
-                }
-            ]
-        }
-    },
-    "title": "minecraft:digger",
-    "type": "object",
-    "properties": {
-        "destroy_speeds": {
-            "type": "array",
-            "default": [],
-            "items": {
-                "$ref": "#/definitions/1899103179"
+         ]
+      },
+      "1899103179": {
+         "title": "BlockInfo",
+         "type": "object",
+         "properties": {
+            "block": {
+               "$ref": "#/definitions/2794205495"
+            },
+            "speed": {
+               "type": "integer",
+               "minimum": -2147483648,
+               "maximum": 2147483647
             }
-        },
-        "use_efficiency": {
-            "type": "boolean",
-            "default": false
-        }
-    }
+         },
+         "required": [
+            "block",
+            "speed"
+         ]
+      },
+      "2770948419": {
+         "title": "BlockDescriptorProxy",
+         "type": "object",
+         "properties": {
+            "name": {
+               "type": "string",
+               "default": ""
+            },
+            "states": {
+               "type": "object",
+               "additionalProperties": {
+                  "$ref": "#/definitions/517105782"
+               },
+               "default": {}
+            },
+            "tags": {
+               "type": "string",
+               "default": ""
+            }
+         }
+      },
+      "2794205495": {
+         "title": "Block Descriptor",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2770948419",
+               "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
+            },
+            {
+               "type": "string",
+               "minLength": 1
+            },
+            {
+               "$ref": "#/definitions/2770948419",
+               "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
+            }
+         ]
+      }
+   },
+   "title": "minecraft:digger",
+   "type": "object",
+   "properties": {
+      "destroy_speeds": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "#/definitions/1899103179"
+         }
+      },
+      "use_efficiency": {
+         "type": "boolean",
+         "default": false
+      }
+   }
 }

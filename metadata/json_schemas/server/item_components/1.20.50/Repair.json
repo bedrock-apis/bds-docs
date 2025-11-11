@@ -1,90 +1,89 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "3256164975",
-    "x-format-version": "1.20.50",
-    "x-minecraft-version": "1.21.130-beta.27",
-    "definitions": {
-        "1531870811": {
-            "title": "Item Descriptor",
-            "oneOf": [
-                {
-                    "type": "string"
-                },
-                {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    }
-                }
-            ]
-        },
-        "2267778531": {
-            "title": "Molang string",
-            "oneOf": [
-                {
-                    "type": "string"
-                },
-                {
-                    "type": "object",
-                    "properties": {
-                        "expression": {
-                            "type": "string"
-                        },
-                        "version": {
-                            "type": "integer",
-                            "minimum": -32768,
-                            "maximum": 32767
-                        }
-                    },
-                    "required": [
-                        "expression",
-                        "version"
-                    ]
-                }
-            ]
-        },
-        "3178719147": {
-            "title": "Molang expression",
-            "oneOf": [
-                {
-                    "$ref": "#/definitions/2267778531"
-                },
-                {
-                    "type": "number",
-                    "minimum": 1.1754943508222875e-38,
-                    "maximum": 3.4028234663852886e+38
-                }
-            ]
-        }
-    },
-    "title": "Repair",
-    "oneOf": [
-        {
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/1531870811"
-            }
-        },
-        {
-            "type": "object",
-            "properties": {
-                "items": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/1531870811"
-                    }
-                },
-                "repair_amount": {
-                    "default": {
-                        "expression": "",
-                        "version": -1
-                    },
-                    "$ref": "#/definitions/3178719147"
-                }
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "3256164975",
+   "x-format-version": "1.20.50",
+   "definitions": {
+      "1531870811": {
+         "title": "Item Descriptor",
+         "oneOf": [
+            {
+               "type": "string"
             },
-            "required": [
-                "items"
-            ]
-        }
-    ]
+            {
+               "type": "object",
+               "additionalProperties": {
+                  "type": "string"
+               }
+            }
+         ]
+      },
+      "2267778531": {
+         "title": "Molang string",
+         "oneOf": [
+            {
+               "type": "string"
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "expression": {
+                     "type": "string"
+                  },
+                  "version": {
+                     "type": "integer",
+                     "minimum": -32768,
+                     "maximum": 32767
+                  }
+               },
+               "required": [
+                  "expression",
+                  "version"
+               ]
+            }
+         ]
+      },
+      "3178719147": {
+         "title": "Molang expression",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2267778531"
+            },
+            {
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
+            }
+         ]
+      }
+   },
+   "title": "Repair",
+   "oneOf": [
+      {
+         "type": "array",
+         "items": {
+            "$ref": "#/definitions/1531870811"
+         }
+      },
+      {
+         "type": "object",
+         "properties": {
+            "items": {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/1531870811"
+               }
+            },
+            "repair_amount": {
+               "default": {
+                  "expression": "",
+                  "version": -1
+               },
+               "$ref": "#/definitions/3178719147"
+            }
+         },
+         "required": [
+            "items"
+         ]
+      }
+   ]
 }

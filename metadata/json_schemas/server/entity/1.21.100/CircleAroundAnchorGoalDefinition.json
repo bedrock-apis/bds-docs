@@ -1,108 +1,107 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "4231633335",
-    "x-format-version": "1.21.100",
-    "x-minecraft-version": "1.21.130-beta.27",
-    "definitions": {
-        "1057349585": {
-            "title": "FloatRange",
-            "type": "object",
-            "properties": {
-                "max": {
-                    "type": "number",
-                    "default": 0,
-                    "minimum": 1.1754943508222875e-38,
-                    "maximum": 3.4028234663852886e+38
-                },
-                "min": {
-                    "type": "number",
-                    "default": 0,
-                    "minimum": 1.1754943508222875e-38,
-                    "maximum": 3.4028234663852886e+38
-                }
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "4231633335",
+   "x-format-version": "1.21.100",
+   "definitions": {
+      "1057349585": {
+         "title": "FloatRange",
+         "type": "object",
+         "properties": {
+            "max": {
+               "type": "number",
+               "default": 0,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
+            },
+            "min": {
+               "type": "number",
+               "default": 0,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
-        }
-    },
-    "title": "minecraft:behavior.circle_around_anchor",
-    "type": "object",
-    "properties": {
-        "angle_change": {
-            "type": "number",
-            "default": 15,
-            "minimum": 1.1754943508222875e-38,
-            "maximum": 3.4028234663852886e+38
-        },
-        "control_flags": {
-            "type": "array",
-            "default": [],
-            "items": {
-                "title": "Goal's control flags",
-                "type": "string",
-                "enum": [
-                    "move",
-                    "look",
-                    "jump"
-                ]
-            }
-        },
-        "goal_radius": {
-            "type": "number",
-            "default": 0.5,
-            "minimum": 1.1754943508222875e-38,
-            "maximum": 3.4028234663852886e+38
-        },
-        "height_above_target_range": {
-            "default": {
-                "min": 0,
-                "max": 0
-            },
-            "$ref": "#/definitions/1057349585",
-            "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
-        },
-        "height_adjustment_chance": {
-            "type": "number",
-            "default": 0.0028570001013576984,
-            "minimum": 1.1754943508222875e-38,
-            "maximum": 3.4028234663852886e+38
-        },
-        "height_offset_range": {
-            "default": {
-                "min": 0,
-                "max": 0
-            },
-            "$ref": "#/definitions/1057349585"
-        },
-        "priority": {
-            "type": "integer",
-            "default": 0,
-            "minimum": 0,
-            "maximum": 2147483647
-        },
-        "radius_adjustment_chance": {
-            "type": "number",
-            "default": 0.004000000189989805,
-            "minimum": 1.1754943508222875e-38,
-            "maximum": 3.4028234663852886e+38
-        },
-        "radius_change": {
-            "type": "number",
-            "default": 1,
-            "minimum": 1.1754943508222875e-38,
-            "maximum": 3.4028234663852886e+38
-        },
-        "radius_range": {
-            "default": {
-                "min": 5,
-                "max": 15
-            },
-            "$ref": "#/definitions/1057349585",
-            "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
-        },
-        "speed_multiplier": {
-            "type": "number",
-            "default": 1,
-            "minimum": 1.1754943508222875e-38,
-            "maximum": 3.4028234663852886e+38
-        }
-    }
+         }
+      }
+   },
+   "title": "minecraft:behavior.circle_around_anchor",
+   "type": "object",
+   "properties": {
+      "angle_change": {
+         "type": "number",
+         "default": 15,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
+      },
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "title": "Goal's control flags",
+            "type": "string",
+            "enum": [
+               "move",
+               "look",
+               "jump"
+            ]
+         }
+      },
+      "goal_radius": {
+         "type": "number",
+         "default": 0.5,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
+      },
+      "height_above_target_range": {
+         "default": {
+            "min": 0,
+            "max": 0
+         },
+         "$ref": "#/definitions/1057349585",
+         "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
+      },
+      "height_adjustment_chance": {
+         "type": "number",
+         "default": 0.0028570001013576984,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
+      },
+      "height_offset_range": {
+         "default": {
+            "min": 0,
+            "max": 0
+         },
+         "$ref": "#/definitions/1057349585"
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "minimum": 0,
+         "maximum": 2147483647
+      },
+      "radius_adjustment_chance": {
+         "type": "number",
+         "default": 0.004000000189989805,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
+      },
+      "radius_change": {
+         "type": "number",
+         "default": 1,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
+      },
+      "radius_range": {
+         "default": {
+            "min": 5,
+            "max": 15
+         },
+         "$ref": "#/definitions/1057349585",
+         "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
+      },
+      "speed_multiplier": {
+         "type": "number",
+         "default": 1,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
+      }
+   }
 }

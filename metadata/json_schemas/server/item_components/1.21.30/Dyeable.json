@@ -1,42 +1,41 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "3602397325",
-    "x-format-version": "1.21.30",
-    "x-minecraft-version": "1.21.130-beta.27",
-    "definitions": {
-        "3915697282": {
-            "title": "Color255RGB",
-            "oneOf": [
-                {
-                    "type": "string",
-                    "pattern": "^#[a-fA-F0-9]{6}$"
-                },
-                {
-                    "type": "array",
-                    "items": {
-                        "type": "integer",
-                        "minimum": -2147483648,
-                        "maximum": 2147483647
-                    },
-                    "minItems": 3,
-                    "maxItems": 3
-                }
-            ],
-            "$metaProperties": {
-                "CEREAL_EDITOR_SCHEMA_TAG": "type:color"
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "3602397325",
+   "x-format-version": "1.21.30",
+   "definitions": {
+      "3915697282": {
+         "title": "Color255RGB",
+         "oneOf": [
+            {
+               "type": "string",
+               "pattern": "^#[a-fA-F0-9]{6}$"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "type": "integer",
+                  "minimum": -2147483648,
+                  "maximum": 2147483647
+               },
+               "minItems": 3,
+               "maxItems": 3
             }
-        }
-    },
-    "title": "minecraft:dyeable",
-    "type": "object",
-    "properties": {
-        "default_color": {
-            "default": [
-                255,
-                255,
-                255
-            ],
-            "$ref": "#/definitions/3915697282"
-        }
-    }
+         ],
+         "$metaProperties": {
+            "CEREAL_EDITOR_SCHEMA_TAG": "type:color"
+         }
+      }
+   },
+   "title": "minecraft:dyeable",
+   "type": "object",
+   "properties": {
+      "default_color": {
+         "default": [
+            255,
+            255,
+            255
+         ],
+         "$ref": "#/definitions/3915697282"
+      }
+   }
 }

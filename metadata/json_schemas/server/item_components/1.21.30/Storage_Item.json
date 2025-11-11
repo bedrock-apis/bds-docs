@@ -1,0 +1,61 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "120997796",
+   "x-format-version": "1.21.30",
+   "definitions": {
+      "1531870811": {
+         "title": "Item Descriptor",
+         "oneOf": [
+            {
+               "type": "string"
+            },
+            {
+               "type": "object",
+               "additionalProperties": {
+                  "type": "string"
+               }
+            }
+         ]
+      }
+   },
+   "title": "minecraft:storage_item",
+   "type": "object",
+   "properties": {
+      "allow_nested_storage_items": {
+         "type": "boolean",
+         "default": true
+      },
+      "allowed_items": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "#/definitions/1531870811"
+         }
+      },
+      "banned_items": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "#/definitions/1531870811"
+         }
+      },
+      "max_slots": {
+         "type": "integer",
+         "default": 64,
+         "minimum": -2147483648,
+         "maximum": 64
+      },
+      "max_weight_limit": {
+         "type": "integer",
+         "default": 64,
+         "minimum": -2147483648,
+         "maximum": 64
+      },
+      "weight_in_storage_item": {
+         "type": "integer",
+         "default": 4,
+         "minimum": 0,
+         "maximum": 2147483647
+      }
+   }
+}

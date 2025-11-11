@@ -1,97 +1,96 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "1096025372",
-    "x-format-version": "1.21.90",
-    "x-minecraft-version": "1.21.130-beta.27",
-    "definitions": {
-        "1057349585": {
-            "title": "FloatRange",
-            "type": "object",
-            "properties": {
-                "max": {
-                    "type": "number",
-                    "default": 0,
-                    "minimum": 1.1754943508222875e-38,
-                    "maximum": 3.4028234663852886e+38
-                },
-                "min": {
-                    "type": "number",
-                    "default": 0,
-                    "minimum": 1.1754943508222875e-38,
-                    "maximum": 3.4028234663852886e+38
-                }
-            }
-        },
-        "2960610777": {
-            "title": "minecraft:kinetic_weapon kinetic_effect_conditions",
-            "type": "object",
-            "properties": {
-                "max_duration": {
-                    "type": "integer",
-                    "default": -1,
-                    "minimum": -32768,
-                    "maximum": 32767
-                },
-                "min_relative_speed": {
-                    "type": "number",
-                    "default": 0,
-                    "minimum": 0,
-                    "maximum": 3.4028234663852886e+38
-                },
-                "min_speed": {
-                    "type": "number",
-                    "default": 0,
-                    "minimum": 0,
-                    "maximum": 3.4028234663852886e+38
-                }
-            }
-        }
-    },
-    "title": "minecraft:kinetic_weapon",
-    "type": "object",
-    "properties": {
-        "creative_reach": {
-            "$ref": "#/definitions/1057349585"
-        },
-        "damage_conditions": {
-            "$ref": "#/definitions/2960610777"
-        },
-        "damage_modifier": {
-            "type": "number",
-            "default": 0,
-            "minimum": 1.1754943508222875e-38,
-            "maximum": 3.4028234663852886e+38
-        },
-        "damage_multiplier": {
-            "type": "number",
-            "default": 1,
-            "minimum": 1.1754943508222875e-38,
-            "maximum": 3.4028234663852886e+38
-        },
-        "delay": {
-            "type": "integer",
-            "default": 0,
-            "minimum": -32768,
-            "maximum": 32767
-        },
-        "dismount_conditions": {
-            "$ref": "#/definitions/2960610777"
-        },
-        "hitbox_margin": {
-            "type": "number",
-            "default": 0,
-            "minimum": 1.1754943508222875e-38,
-            "maximum": 3.4028234663852886e+38
-        },
-        "knockback_conditions": {
-            "$ref": "#/definitions/2960610777"
-        },
-        "reach": {
-            "default": {
-                "min": 0,
-                "max": 3
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "1096025372",
+   "x-format-version": "1.21.90",
+   "definitions": {
+      "1057349585": {
+         "title": "FloatRange",
+         "type": "object",
+         "properties": {
+            "max": {
+               "type": "number",
+               "default": 0,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
-            "$ref": "#/definitions/1057349585"
-        }
-    }
+            "min": {
+               "type": "number",
+               "default": 0,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
+            }
+         }
+      },
+      "2960610777": {
+         "title": "minecraft:kinetic_weapon kinetic_effect_conditions",
+         "type": "object",
+         "properties": {
+            "max_duration": {
+               "type": "integer",
+               "default": -1,
+               "minimum": -32768,
+               "maximum": 32767
+            },
+            "min_relative_speed": {
+               "type": "number",
+               "default": 0,
+               "minimum": 0,
+               "maximum": 3.4028234663852886e+38
+            },
+            "min_speed": {
+               "type": "number",
+               "default": 0,
+               "minimum": 0,
+               "maximum": 3.4028234663852886e+38
+            }
+         }
+      }
+   },
+   "title": "minecraft:kinetic_weapon",
+   "type": "object",
+   "properties": {
+      "creative_reach": {
+         "$ref": "#/definitions/1057349585"
+      },
+      "damage_conditions": {
+         "$ref": "#/definitions/2960610777"
+      },
+      "damage_modifier": {
+         "type": "number",
+         "default": 0,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
+      },
+      "damage_multiplier": {
+         "type": "number",
+         "default": 1,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
+      },
+      "delay": {
+         "type": "integer",
+         "default": 0,
+         "minimum": -32768,
+         "maximum": 32767
+      },
+      "dismount_conditions": {
+         "$ref": "#/definitions/2960610777"
+      },
+      "hitbox_margin": {
+         "type": "number",
+         "default": 0,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
+      },
+      "knockback_conditions": {
+         "$ref": "#/definitions/2960610777"
+      },
+      "reach": {
+         "default": {
+            "min": 0,
+            "max": 3
+         },
+         "$ref": "#/definitions/1057349585"
+      }
+   }
 }

@@ -1,0 +1,56 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "2418450159",
+   "x-format-version": "1.21.110",
+   "definitions": {
+      "3681664844": {
+         "title": "Identifier",
+         "type": "string"
+      },
+      "4121537914": {
+         "title": "menu_category",
+         "type": "object",
+         "properties": {
+            "category": {
+               "title": "CreativeItemCategory",
+               "type": "string",
+               "default": "none",
+               "enum": [
+                  "construction",
+                  "nature",
+                  "equipment",
+                  "items",
+                  "none"
+               ]
+            },
+            "group": {
+               "type": "string",
+               "maxLength": 256,
+               "pattern": "^(?:.)+:(?:.)+$",
+               "x-regex-flags": "ECMAScript,icase"
+            },
+            "is_hidden_in_commands": {
+               "type": "boolean"
+            }
+         }
+      }
+   },
+   "title": "description",
+   "type": "object",
+   "properties": {
+      "identifier": {
+         "$ref": "#/definitions/3681664844"
+      },
+      "menu_category": {
+         "default": {
+            "category": "none",
+            "group": null,
+            "is_hidden_in_commands": null
+         },
+         "$ref": "#/definitions/4121537914"
+      }
+   },
+   "required": [
+      "identifier"
+   ]
+}
