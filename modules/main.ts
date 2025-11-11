@@ -75,6 +75,6 @@ async function finialize(version: string): Promise<number> {
     await Deno.writeTextFile(GIT_IGNORE_FILE_NAME, GIT_IGNORE_DATA);
     await Deno.writeTextFile(GIT_ATTRIBUTES_FILE_NAME, GIT_ATTRIBUTES_DATA);
     if ((failed = await GithubUtils.commitAndPush(BRANCH_TO_UPDATE ?? "stable", "New Update - " + BASED_VERSION))) return failed;
-    if (BRANCH_TO_UPDATE !== "preview") GithubUtils.postNewBranch("stable-" + BASED_VERSION);
+    if (BRANCH_TO_UPDATE !== "preview") await GithubUtils.postNewBranch("stable-" + BASED_VERSION);
     return failed;
 }
