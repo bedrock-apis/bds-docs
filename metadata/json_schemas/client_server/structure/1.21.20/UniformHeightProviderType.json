@@ -1,106 +1,105 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "2427056231",
-    "x-format-version": "1.21.20",
-    "x-minecraft-version": "1.21.120",
-    "definitions": {
-        "4201740570": {
-            "title": "AnchorAbsolute",
-            "type": "object",
-            "properties": {
-                "absolute": {
-                    "type": "integer"
-                }
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "2427056231",
+   "x-format-version": "1.21.20",
+   "definitions": {
+      "4201740570": {
+         "title": "AnchorAbsolute",
+         "type": "object",
+         "properties": {
+            "absolute": {
+               "type": "integer"
+            }
+         },
+         "required": [
+            "absolute"
+         ]
+      },
+      "4202034760": {
+         "title": "AnchorBelowTop",
+         "type": "object",
+         "properties": {
+            "below_top": {
+               "type": "integer"
+            }
+         },
+         "required": [
+            "below_top"
+         ]
+      },
+      "4235442903": {
+         "title": "AnchorAboveBottom",
+         "type": "object",
+         "properties": {
+            "above_bottom": {
+               "type": "integer"
+            }
+         },
+         "required": [
+            "above_bottom"
+         ]
+      },
+      "4235737093": {
+         "title": "AnchorFromSea",
+         "type": "object",
+         "properties": {
+            "from_sea": {
+               "type": "integer"
+            }
+         },
+         "required": [
+            "from_sea"
+         ]
+      }
+   },
+   "title": "UniformHeightProviderType",
+   "type": "object",
+   "properties": {
+      "max": {
+         "oneOf": [
+            {
+               "$ref": "#/definitions/4201740570"
             },
-            "required": [
-                "absolute"
-            ]
-        },
-        "4202034760": {
-            "title": "AnchorBelowTop",
-            "type": "object",
-            "properties": {
-                "below_top": {
-                    "type": "integer"
-                }
+            {
+               "$ref": "#/definitions/4235442903"
             },
-            "required": [
-                "below_top"
-            ]
-        },
-        "4235442903": {
-            "title": "AnchorAboveBottom",
-            "type": "object",
-            "properties": {
-                "above_bottom": {
-                    "type": "integer"
-                }
+            {
+               "$ref": "#/definitions/4202034760"
             },
-            "required": [
-                "above_bottom"
-            ]
-        },
-        "4235737093": {
-            "title": "AnchorFromSea",
-            "type": "object",
-            "properties": {
-                "from_sea": {
-                    "type": "integer"
-                }
+            {
+               "$ref": "#/definitions/4235737093"
+            }
+         ]
+      },
+      "min": {
+         "oneOf": [
+            {
+               "$ref": "#/definitions/4201740570"
             },
-            "required": [
-                "from_sea"
-            ]
-        }
-    },
-    "title": "UniformHeightProviderType",
-    "type": "object",
-    "properties": {
-        "max": {
-            "oneOf": [
-                {
-                    "$ref": "#/definitions/4201740570"
-                },
-                {
-                    "$ref": "#/definitions/4235442903"
-                },
-                {
-                    "$ref": "#/definitions/4202034760"
-                },
-                {
-                    "$ref": "#/definitions/4235737093"
-                }
-            ]
-        },
-        "min": {
-            "oneOf": [
-                {
-                    "$ref": "#/definitions/4201740570"
-                },
-                {
-                    "$ref": "#/definitions/4235442903"
-                },
-                {
-                    "$ref": "#/definitions/4202034760"
-                },
-                {
-                    "$ref": "#/definitions/4235737093"
-                }
-            ]
-        },
-        "type": {
-            "title": "HeightProviderType",
-            "type": "string",
-            "const": "uniform",
-            "enum": [
-                "uniform",
-                "constant"
-            ]
-        }
-    },
-    "required": [
-        "max",
-        "min",
-        "type"
-    ]
+            {
+               "$ref": "#/definitions/4235442903"
+            },
+            {
+               "$ref": "#/definitions/4202034760"
+            },
+            {
+               "$ref": "#/definitions/4235737093"
+            }
+         ]
+      },
+      "type": {
+         "title": "HeightProviderType",
+         "type": "string",
+         "const": "uniform",
+         "enum": [
+            "uniform",
+            "constant"
+         ]
+      }
+   },
+   "required": [
+      "max",
+      "min",
+      "type"
+   ]
 }

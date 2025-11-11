@@ -1,196 +1,195 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "911233651",
-    "x-format-version": "1.21.120",
-    "x-minecraft-version": "1.21.120",
-    "definitions": {
-        "121353999": {
-            "title": "ActorDefinitionTrigger",
-            "type": "object",
-            "properties": {
-                "event": {
-                    "type": "string"
-                },
-                "filters": {
-                    "$ref": "#/definitions/1088251937"
-                },
-                "target": {
-                    "title": "FilterSubject",
-                    "type": "string",
-                    "enum": [
-                        "self",
-                        "other",
-                        "player",
-                        "target",
-                        "parent",
-                        "baby",
-                        "block",
-                        "damager",
-                        "holder",
-                        "item"
-                    ]
-                }
-            }
-        },
-        "1088251937": {
-            "title": "Filter Group",
-            "oneOf": [
-                {
-                    "$ref": "#/definitions/4150989894"
-                },
-                {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/1088251937"
-                    }
-                },
-                {
-                    "type": "object",
-                    "properties": {
-                        "AND": {
-                            "$ref": "#/definitions/1088251937"
-                        },
-                        "NOT": {
-                            "$ref": "#/definitions/1088251937"
-                        },
-                        "OR": {
-                            "$ref": "#/definitions/1088251937"
-                        },
-                        "all": {
-                            "$ref": "#/definitions/1088251937"
-                        },
-                        "all_of": {
-                            "$ref": "#/definitions/1088251937"
-                        },
-                        "any": {
-                            "$ref": "#/definitions/1088251937"
-                        },
-                        "any_of": {
-                            "$ref": "#/definitions/1088251937"
-                        },
-                        "none_of": {
-                            "$ref": "#/definitions/1088251937"
-                        }
-                    }
-                }
-            ]
-        },
-        "4150989894": {
-            "title": "Filter Test",
-            "type": "object",
-            "properties": {
-                "domain": {
-                    "oneOf": [
-                        {
-                            "type": "boolean"
-                        },
-                        {
-                            "type": "integer"
-                        },
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "operator": {
-                    "oneOf": [
-                        {
-                            "type": "boolean"
-                        },
-                        {
-                            "type": "integer"
-                        },
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "subject": {
-                    "oneOf": [
-                        {
-                            "type": "boolean"
-                        },
-                        {
-                            "type": "integer"
-                        },
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "test": {
-                    "type": "string"
-                },
-                "value": {
-                    "oneOf": [
-                        {
-                            "type": "boolean"
-                        },
-                        {
-                            "type": "integer"
-                        },
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                }
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "911233651",
+   "x-format-version": "1.21.120",
+   "definitions": {
+      "121353999": {
+         "title": "ActorDefinitionTrigger",
+         "type": "object",
+         "properties": {
+            "event": {
+               "type": "string"
             },
-            "required": [
-                "test"
-            ]
-        }
-    },
-    "title": "minecraft:behavior.dig",
-    "type": "object",
-    "properties": {
-        "allow_dig_when_named": {
-            "type": "boolean"
-        },
-        "control_flags": {
-            "type": "array",
-            "items": {
-                "title": "Goal's control flags",
-                "type": "string",
-                "enum": [
-                    "move",
-                    "look",
-                    "jump"
-                ]
+            "filters": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "target": {
+               "title": "FilterSubject",
+               "type": "string",
+               "enum": [
+                  "self",
+                  "other",
+                  "player",
+                  "target",
+                  "parent",
+                  "baby",
+                  "block",
+                  "damager",
+                  "holder",
+                  "item"
+               ]
             }
-        },
-        "digs_in_daylight": {
-            "type": "boolean"
-        },
-        "duration": {
-            "type": "number"
-        },
-        "idle_time": {
-            "type": "number"
-        },
-        "on_start": {
-            "$ref": "#/definitions/121353999"
-        },
-        "priority": {
-            "type": "integer",
-            "minimum": 0
-        },
-        "suspicion_is_disturbance": {
-            "type": "boolean"
-        },
-        "vibration_is_disturbance": {
-            "type": "boolean"
-        }
-    }
+         }
+      },
+      "1088251937": {
+         "title": "Filter Group",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/4150989894"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/1088251937"
+               }
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "AND": {
+                     "$ref": "#/definitions/1088251937"
+                  },
+                  "NOT": {
+                     "$ref": "#/definitions/1088251937"
+                  },
+                  "OR": {
+                     "$ref": "#/definitions/1088251937"
+                  },
+                  "all": {
+                     "$ref": "#/definitions/1088251937"
+                  },
+                  "all_of": {
+                     "$ref": "#/definitions/1088251937"
+                  },
+                  "any": {
+                     "$ref": "#/definitions/1088251937"
+                  },
+                  "any_of": {
+                     "$ref": "#/definitions/1088251937"
+                  },
+                  "none_of": {
+                     "$ref": "#/definitions/1088251937"
+                  }
+               }
+            }
+         ]
+      },
+      "4150989894": {
+         "title": "Filter Test",
+         "type": "object",
+         "properties": {
+            "domain": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "operator": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "subject": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "test": {
+               "type": "string"
+            },
+            "value": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            }
+         },
+         "required": [
+            "test"
+         ]
+      }
+   },
+   "title": "minecraft:behavior.dig",
+   "type": "object",
+   "properties": {
+      "allow_dig_when_named": {
+         "type": "boolean"
+      },
+      "control_flags": {
+         "type": "array",
+         "items": {
+            "title": "Goal's control flags",
+            "type": "string",
+            "enum": [
+               "move",
+               "look",
+               "jump"
+            ]
+         }
+      },
+      "digs_in_daylight": {
+         "type": "boolean"
+      },
+      "duration": {
+         "type": "number"
+      },
+      "idle_time": {
+         "type": "number"
+      },
+      "on_start": {
+         "$ref": "#/definitions/121353999"
+      },
+      "priority": {
+         "type": "integer",
+         "minimum": 0
+      },
+      "suspicion_is_disturbance": {
+         "type": "boolean"
+      },
+      "vibration_is_disturbance": {
+         "type": "boolean"
+      }
+   }
 }
