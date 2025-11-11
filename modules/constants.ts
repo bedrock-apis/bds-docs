@@ -1,7 +1,7 @@
 const ENV = Deno.env;
 export const GIT_IS_GITHUB_ACTION = ENV.get("GITHUB_ACTIONS")?.toLocaleLowerCase() === "true";;
-export const GIT_LOGIN_AS_NAME = "BAPI The Dog";
-export const GIT_LOGIN_AS_EMAIL = "thedog@bedrockapis.com"
+export const GIT_LOGIN_AS_NAME = "Bedrock APIs Bot - Gen";
+export const GIT_LOGIN_AS_EMAIL = "genbot@bedrockapis.com"
 export const GIT_REPO = ENV.get("GITHUB_REPOSITORY");
 export const GIT_TOKEN = ENV.get("GITHUB_TOKEN") ?? ENV.get("GH_TOKEN");
 export const GIT_IGNORE_DATA = `__*__`;
