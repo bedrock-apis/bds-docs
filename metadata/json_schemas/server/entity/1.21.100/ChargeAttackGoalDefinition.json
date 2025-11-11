@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1143284943",
     "x-format-version": "1.21.100",
-    "x-minecraft-version": "1.21.130-beta.26",
+    "x-minecraft-version": "1.21.130-beta.27",
     "title": "minecraft:behavior.charge_attack",
     "type": "object",
     "properties": {
@@ -21,16 +21,21 @@
         },
         "max_distance": {
             "type": "number",
-            "default": 3
+            "default": 3,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         },
         "min_distance": {
             "type": "number",
-            "default": 2
+            "default": 2,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         },
         "priority": {
             "type": "integer",
             "default": 0,
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 2147483647
         },
         "sound_event": {
             "title": "LevelSoundEvent",
@@ -567,16 +572,22 @@
                 "item.wooden_spear.attack_miss",
                 "imitate.parched",
                 "imitate.camel_husk",
+                "item.spear.use",
+                "item.wooden_spear.use",
                 "undefined"
             ]
         },
         "speed_multiplier": {
             "type": "number",
-            "default": 1
+            "default": 1,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         },
         "success_rate": {
             "type": "number",
-            "default": 0.1428000032901764
+            "default": 0.1428000032901764,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         }
     }
 }

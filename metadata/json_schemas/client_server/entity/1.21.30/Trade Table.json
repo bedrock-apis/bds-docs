@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3714031231",
     "x-format-version": "1.21.30",
-    "x-minecraft-version": "1.21.130-beta.26",
+    "x-minecraft-version": "1.21.130-beta.27",
     "definitions": {
         "56017534": {
             "title": "TradeItem",
@@ -42,7 +42,9 @@
                 },
                 "price_multiplier": {
                     "type": "number",
-                    "default": 0
+                    "default": 0,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "quantity": {
                     "default": {
@@ -71,7 +73,9 @@
                     }
                 },
                 "total_exp_required": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 4294967295
                 }
             },
             "required": [
@@ -149,7 +153,8 @@
             "oneOf": [
                 {
                     "type": "integer",
-                    "minimum": 1
+                    "minimum": 1,
+                    "maximum": 4294967295
                 },
                 {
                     "type": "object",
@@ -157,12 +162,14 @@
                         "max": {
                             "type": "integer",
                             "default": 1,
-                            "minimum": 1
+                            "minimum": 1,
+                            "maximum": 4294967295
                         },
                         "min": {
                             "type": "integer",
                             "default": 1,
-                            "minimum": 1
+                            "minimum": 1,
+                            "maximum": 4294967295
                         }
                     }
                 }
@@ -175,7 +182,8 @@
                 "num_to_select": {
                     "type": "integer",
                     "default": 0,
-                    "minimum": 0
+                    "minimum": 0,
+                    "maximum": 2147483647
                 },
                 "trades": {
                     "type": "array",
@@ -206,7 +214,9 @@
                 },
                 "max_uses": {
                     "type": "integer",
-                    "default": 7
+                    "default": 7,
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 },
                 "reward_exp": {
                     "type": "boolean",
@@ -214,7 +224,9 @@
                 },
                 "trader_exp": {
                     "type": "integer",
-                    "default": 1
+                    "default": 1,
+                    "minimum": 0,
+                    "maximum": 4294967295
                 },
                 "wants": {
                     "type": "array",
@@ -226,7 +238,8 @@
                 "weight": {
                     "type": "integer",
                     "default": 1,
-                    "minimum": 1
+                    "minimum": 1,
+                    "maximum": 2147483647
                 }
             },
             "required": [
@@ -244,10 +257,14 @@
                             "type": "boolean"
                         },
                         {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
                         },
                         {
-                            "type": "number"
+                            "type": "number",
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         },
                         {
                             "type": "string"
@@ -260,10 +277,14 @@
                             "type": "boolean"
                         },
                         {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
                         },
                         {
-                            "type": "number"
+                            "type": "number",
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         },
                         {
                             "type": "string"
@@ -276,10 +297,14 @@
                             "type": "boolean"
                         },
                         {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
                         },
                         {
-                            "type": "number"
+                            "type": "number",
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         },
                         {
                             "type": "string"
@@ -295,10 +320,14 @@
                             "type": "boolean"
                         },
                         {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
                         },
                         {
-                            "type": "number"
+                            "type": "number",
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         },
                         {
                             "type": "string"

@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "120997796",
     "x-format-version": "1.21.30",
-    "x-minecraft-version": "1.21.130-beta.26",
+    "x-minecraft-version": "1.21.130-beta.27",
     "definitions": {
         "1531870811": {
             "title": "Item Descriptor",
@@ -43,17 +43,20 @@
         "max_slots": {
             "type": "integer",
             "default": 64,
+            "minimum": -2147483648,
             "maximum": 64
         },
         "max_weight_limit": {
             "type": "integer",
             "default": 64,
+            "minimum": -2147483648,
             "maximum": 64
         },
         "weight_in_storage_item": {
             "type": "integer",
             "default": 4,
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 2147483647
         }
     }
 }

@@ -2,22 +2,26 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "760104054",
     "x-format-version": "1.21.20",
-    "x-minecraft-version": "1.21.130-beta.26",
+    "x-minecraft-version": "1.21.130-beta.27",
     "definitions": {
         "741112715": {
             "title": "RandomSpreadPlacement",
             "type": "object",
             "properties": {
                 "salt": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 },
                 "separation": {
                     "type": "integer",
-                    "minimum": 0
+                    "minimum": 0,
+                    "maximum": 65535
                 },
                 "spacing": {
                     "type": "integer",
-                    "minimum": 1
+                    "minimum": 1,
+                    "maximum": 65535
                 },
                 "spread_type": {
                     "title": "SpreadType",

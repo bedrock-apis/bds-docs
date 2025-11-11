@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3326653763",
     "x-format-version": "1.21.120",
-    "x-minecraft-version": "1.21.130-beta.26",
+    "x-minecraft-version": "1.21.130-beta.27",
     "definitions": {
         "121353999": {
             "title": "ActorDefinitionTrigger",
@@ -50,11 +50,15 @@
             "properties": {
                 "max": {
                     "type": "number",
-                    "default": 0
+                    "default": 0,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "min": {
                     "type": "number",
-                    "default": 0
+                    "default": 0,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 }
             }
         },
@@ -125,10 +129,14 @@
                             "type": "boolean"
                         },
                         {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
                         },
                         {
-                            "type": "number"
+                            "type": "number",
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         },
                         {
                             "type": "string"
@@ -141,10 +149,14 @@
                             "type": "boolean"
                         },
                         {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
                         },
                         {
-                            "type": "number"
+                            "type": "number",
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         },
                         {
                             "type": "string"
@@ -157,10 +169,14 @@
                             "type": "boolean"
                         },
                         {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
                         },
                         {
-                            "type": "number"
+                            "type": "number",
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         },
                         {
                             "type": "string"
@@ -176,10 +192,14 @@
                             "type": "boolean"
                         },
                         {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
                         },
                         {
-                            "type": "number"
+                            "type": "number",
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         },
                         {
                             "type": "string"
@@ -730,6 +750,8 @@
                 "item.wooden_spear.attack_miss",
                 "imitate.parched",
                 "imitate.camel_husk",
+                "item.spear.use",
+                "item.wooden_spear.use",
                 "undefined"
             ]
         },
@@ -756,15 +778,20 @@
         "priority": {
             "type": "integer",
             "default": 0,
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 2147483647
         },
         "search_height": {
             "type": "integer",
-            "default": 0
+            "default": 0,
+            "minimum": -2147483648,
+            "maximum": 2147483647
         },
         "search_range": {
             "type": "integer",
-            "default": 0
+            "default": 0,
+            "minimum": -2147483648,
+            "maximum": 2147483647
         },
         "sound_interval": {
             "default": {
@@ -775,7 +802,9 @@
         },
         "sprint_speed_modifier": {
             "type": "number",
-            "default": 1
+            "default": 1,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         },
         "target_blocks": {
             "type": "array",
@@ -790,11 +819,15 @@
         },
         "tick_interval": {
             "type": "integer",
-            "default": 1
+            "default": 1,
+            "minimum": -2147483648,
+            "maximum": 2147483647
         },
         "walk_speed_modifier": {
             "type": "number",
-            "default": 1
+            "default": 1,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         }
     }
 }

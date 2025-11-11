@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "263889029",
     "x-format-version": "1.21.100",
-    "x-minecraft-version": "1.21.130-beta.26",
+    "x-minecraft-version": "1.21.130-beta.27",
     "definitions": {
         "2566215512": {
             "title": "ray",
@@ -10,11 +10,15 @@
             "properties": {
                 "angle": {
                     "type": "number",
-                    "default": 0
+                    "default": 0,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "weight": {
                     "type": "number",
-                    "default": 0
+                    "default": 0,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 }
             }
         }
@@ -41,12 +45,14 @@
         "distance_constraint_min": {
             "type": "number",
             "default": 0,
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 3.4028234663852886e+38
         },
         "relax_distance_smoothing_spring": {
             "type": "number",
             "default": 4,
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 3.4028234663852886e+38
         }
     }
 }

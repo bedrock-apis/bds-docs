@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "2195141389",
     "x-format-version": "1.21.10",
-    "x-minecraft-version": "1.21.130-beta.26",
+    "x-minecraft-version": "1.21.130-beta.27",
     "definitions": {
         "2176758423": {
             "title": "Scatter Chance",
@@ -15,11 +15,13 @@
                     "properties": {
                         "denominator": {
                             "type": "integer",
-                            "minimum": 1
+                            "minimum": 1,
+                            "maximum": 2147483647
                         },
                         "numerator": {
                             "type": "integer",
-                            "minimum": 1
+                            "minimum": 1,
+                            "maximum": 2147483647
                         }
                     },
                     "required": [
@@ -42,7 +44,9 @@
                             "type": "string"
                         },
                         "version": {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -32768,
+                            "maximum": 32767
                         }
                     },
                     "required": [
@@ -59,7 +63,9 @@
                     "$ref": "#/definitions/2267778531"
                 },
                 {
-                    "type": "number"
+                    "type": "number",
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 }
             ]
         },
@@ -94,11 +100,13 @@
                         },
                         "grid_offset": {
                             "type": "integer",
-                            "minimum": 0
+                            "minimum": 0,
+                            "maximum": 2147483647
                         },
                         "step_size": {
                             "type": "integer",
-                            "minimum": 1
+                            "minimum": 1,
+                            "maximum": 2147483647
                         }
                     },
                     "required": [

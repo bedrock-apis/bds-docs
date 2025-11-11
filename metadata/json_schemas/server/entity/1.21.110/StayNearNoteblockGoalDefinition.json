@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "298010374",
     "x-format-version": "1.21.110",
-    "x-minecraft-version": "1.21.130-beta.26",
+    "x-minecraft-version": "1.21.130-beta.27",
     "title": "minecraft:behavior.stay_near_noteblock",
     "type": "object",
     "properties": {
@@ -21,24 +21,33 @@
         },
         "listen_time": {
             "type": "integer",
-            "default": 30
+            "default": 30,
+            "minimum": -2147483648,
+            "maximum": 2147483647
         },
         "priority": {
             "type": "integer",
             "default": 0,
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 2147483647
         },
         "speed": {
             "type": "number",
-            "default": 1
+            "default": 1,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         },
         "start_distance": {
             "type": "number",
-            "default": 10
+            "default": 10,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         },
         "stop_distance": {
             "type": "number",
-            "default": 2
+            "default": 2,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         }
     }
 }

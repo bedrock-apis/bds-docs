@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1949055570",
     "x-format-version": "1.21.110",
-    "x-minecraft-version": "1.21.130-beta.26",
+    "x-minecraft-version": "1.21.130-beta.27",
     "definitions": {
         "1057349585": {
             "title": "FloatRange",
@@ -10,11 +10,15 @@
             "properties": {
                 "max": {
                     "type": "number",
-                    "default": 0
+                    "default": 0,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "min": {
                     "type": "number",
-                    "default": 0
+                    "default": 0,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 }
             }
         }
@@ -44,25 +48,33 @@
         },
         "duration": {
             "type": "number",
-            "default": 1
+            "default": 1,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         },
         "priority": {
             "type": "integer",
             "default": 0,
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 2147483647
         },
         "sniffing_radius": {
             "type": "number",
-            "default": 5
+            "default": 5,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         },
         "suspicion_radius_horizontal": {
             "type": "number",
-            "default": 3
+            "default": 3,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         },
         "suspicion_radius_vertical": {
             "type": "number",
             "default": 3,
-            "minimum": 1
+            "minimum": 1,
+            "maximum": 3.4028234663852886e+38
         }
     }
 }

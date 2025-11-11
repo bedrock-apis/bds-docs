@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3494639353",
     "x-format-version": "1.20.50",
-    "x-minecraft-version": "1.21.130-beta.26",
+    "x-minecraft-version": "1.21.130-beta.27",
     "definitions": {
         "1398826300": {
             "title": "IntRange",
@@ -10,11 +10,15 @@
             "properties": {
                 "max": {
                     "type": "integer",
-                    "default": 0
+                    "default": 0,
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 },
                 "min": {
                     "type": "integer",
-                    "default": 0
+                    "default": 0,
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 }
             }
         }
@@ -32,7 +36,8 @@
         },
         "max_durability": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 2147483647
         }
     },
     "required": [

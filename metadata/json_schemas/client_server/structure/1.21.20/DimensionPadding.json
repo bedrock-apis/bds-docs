@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1613409896",
     "x-format-version": "1.21.20",
-    "x-minecraft-version": "1.21.130-beta.26",
+    "x-minecraft-version": "1.21.130-beta.27",
     "definitions": {
         "781829906": {
             "title": "DimensionPaddingRange",
@@ -10,11 +10,15 @@
             "properties": {
                 "bottom": {
                     "type": "integer",
-                    "default": 0
+                    "default": 0,
+                    "minimum": 0,
+                    "maximum": 4294967295
                 },
                 "top": {
                     "type": "integer",
-                    "default": 0
+                    "default": 0,
+                    "minimum": 0,
+                    "maximum": 4294967295
                 }
             }
         }
@@ -22,7 +26,9 @@
     "title": "DimensionPadding",
     "oneOf": [
         {
-            "type": "integer"
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 4294967295
         },
         {
             "$ref": "#/definitions/781829906"

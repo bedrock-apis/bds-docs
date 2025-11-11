@@ -2,13 +2,15 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1785036358",
     "x-format-version": "1.21.50",
-    "x-minecraft-version": "1.21.130-beta.26",
+    "x-minecraft-version": "1.21.130-beta.27",
     "definitions": {
         "517105782": {
             "title": "compound_proxy",
             "oneOf": [
                 {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 },
                 {
                     "type": "string"
@@ -24,12 +26,14 @@
             "properties": {
                 "default": {
                     "type": "integer",
-                    "minimum": 0
+                    "minimum": 0,
+                    "maximum": 2147483647
                 },
                 "rarity": {
                     "type": "integer",
                     "default": 0,
-                    "minimum": 0
+                    "minimum": 0,
+                    "maximum": 2147483647
                 }
             },
             "required": [
@@ -42,11 +46,15 @@
             "properties": {
                 "max": {
                     "type": "integer",
-                    "default": 128
+                    "default": 128,
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 },
                 "min": {
                     "type": "integer",
-                    "default": 24
+                    "default": 24,
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 }
             }
         },
@@ -60,15 +68,21 @@
                 },
                 "max": {
                     "type": "integer",
-                    "default": 0
+                    "default": 0,
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 },
                 "min": {
                     "type": "integer",
-                    "default": 0
+                    "default": 0,
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 },
                 "spawn_chance": {
                     "type": "integer",
-                    "default": 100
+                    "default": 100,
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 }
             }
         },
@@ -217,11 +231,15 @@
             "properties": {
                 "max": {
                     "type": "integer",
-                    "default": -1
+                    "default": -1,
+                    "minimum": 0,
+                    "maximum": 18446744073709552000
                 },
                 "min": {
                     "type": "integer",
-                    "default": 0
+                    "default": 0,
+                    "minimum": 0,
+                    "maximum": 18446744073709552000
                 }
             }
         },
@@ -305,11 +323,15 @@
             "type": "object",
             "properties": {
                 "distance": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 4294967295
                 },
                 "village_border_tolerance": {
                     "type": "integer",
-                    "default": 10
+                    "default": 10,
+                    "minimum": 0,
+                    "maximum": 4294967295
                 }
             },
             "required": [
@@ -333,7 +355,9 @@
                 },
                 "event_skip_count": {
                     "type": "integer",
-                    "default": 0
+                    "default": 0,
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 },
                 "initial_event": {
                     "type": "string",
@@ -341,17 +365,21 @@
                 },
                 "initial_event_count": {
                     "type": "integer",
-                    "default": 0
+                    "default": 0,
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 },
                 "max_size": {
                     "type": "integer",
                     "default": 1,
-                    "minimum": 0
+                    "minimum": 0,
+                    "maximum": 2147483647
                 },
                 "min_size": {
                     "type": "integer",
                     "default": 1,
-                    "minimum": 0
+                    "minimum": 0,
+                    "maximum": 2147483647
                 }
             }
         },
@@ -398,11 +426,15 @@
             "properties": {
                 "max": {
                     "type": "integer",
-                    "default": 128
+                    "default": 128,
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 },
                 "min": {
                     "type": "integer",
-                    "default": 24
+                    "default": 24,
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 }
             }
         },
@@ -417,11 +449,13 @@
                 "min_guaranteed": {
                     "type": "integer",
                     "default": 0,
-                    "minimum": 0
+                    "minimum": 0,
+                    "maximum": 2147483647
                 },
                 "weight": {
                     "type": "integer",
-                    "minimum": 0
+                    "minimum": 0,
+                    "maximum": 2147483647
                 }
             },
             "required": [
@@ -451,7 +485,9 @@
                 },
                 "distance": {
                     "type": "integer",
-                    "default": 1
+                    "default": 1,
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 }
             }
         },
@@ -522,12 +558,14 @@
                 "surface": {
                     "type": "integer",
                     "default": -1,
-                    "minimum": -1
+                    "minimum": -1,
+                    "maximum": 2147483647
                 },
                 "underground": {
                     "type": "integer",
                     "default": -1,
-                    "minimum": -1
+                    "minimum": -1,
+                    "maximum": 2147483647
                 }
             }
         },
@@ -541,10 +579,14 @@
                             "type": "boolean"
                         },
                         {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
                         },
                         {
-                            "type": "number"
+                            "type": "number",
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         },
                         {
                             "type": "string"
@@ -557,10 +599,14 @@
                             "type": "boolean"
                         },
                         {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
                         },
                         {
-                            "type": "number"
+                            "type": "number",
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         },
                         {
                             "type": "string"
@@ -573,10 +619,14 @@
                             "type": "boolean"
                         },
                         {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
                         },
                         {
-                            "type": "number"
+                            "type": "number",
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         },
                         {
                             "type": "string"
@@ -592,10 +642,14 @@
                             "type": "boolean"
                         },
                         {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
                         },
                         {
-                            "type": "number"
+                            "type": "number",
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         },
                         {
                             "type": "string"

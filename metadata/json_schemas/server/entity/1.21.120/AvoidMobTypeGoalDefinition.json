@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3425495100",
     "x-format-version": "1.21.120",
-    "x-minecraft-version": "1.21.130-beta.26",
+    "x-minecraft-version": "1.21.130-beta.27",
     "definitions": {
         "121353999": {
             "title": "ActorDefinitionTrigger",
@@ -54,7 +54,9 @@
                 },
                 "cooldown": {
                     "type": "integer",
-                    "default": 0
+                    "default": 0,
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 },
                 "filters": {
                     "default": {
@@ -71,26 +73,36 @@
                 },
                 "max_dist": {
                     "type": "number",
-                    "default": 16
+                    "default": 16,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "max_flee": {
                     "type": "number",
-                    "default": 10
+                    "default": 10,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "max_height": {
                     "type": "number",
-                    "default": -1
+                    "default": -1,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "must_see": {
                     "type": "boolean"
                 },
                 "must_see_forget_duration": {
                     "type": "integer",
-                    "default": 3
+                    "default": 3,
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 },
                 "priority": {
                     "type": "integer",
-                    "default": 0
+                    "default": 0,
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 },
                 "reevaluate_description": {
                     "type": "boolean",
@@ -98,11 +110,15 @@
                 },
                 "sprint_speed_multiplier": {
                     "type": "number",
-                    "default": 1
+                    "default": 1,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "walk_speed_multiplier": {
                     "type": "number",
-                    "default": 1
+                    "default": 1,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 }
             }
         },
@@ -112,11 +128,15 @@
             "properties": {
                 "max": {
                     "type": "number",
-                    "default": 0
+                    "default": 0,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "min": {
                     "type": "number",
-                    "default": 0
+                    "default": 0,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 }
             }
         },
@@ -173,10 +193,14 @@
                             "type": "boolean"
                         },
                         {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
                         },
                         {
-                            "type": "number"
+                            "type": "number",
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         },
                         {
                             "type": "string"
@@ -189,10 +213,14 @@
                             "type": "boolean"
                         },
                         {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
                         },
                         {
-                            "type": "number"
+                            "type": "number",
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         },
                         {
                             "type": "string"
@@ -205,10 +233,14 @@
                             "type": "boolean"
                         },
                         {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
                         },
                         {
-                            "type": "number"
+                            "type": "number",
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         },
                         {
                             "type": "string"
@@ -224,10 +256,14 @@
                             "type": "boolean"
                         },
                         {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
                         },
                         {
-                            "type": "number"
+                            "type": "number",
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         },
                         {
                             "type": "string"
@@ -792,16 +828,22 @@
                 "item.wooden_spear.attack_miss",
                 "imitate.parched",
                 "imitate.camel_husk",
+                "item.spear.use",
+                "item.wooden_spear.use",
                 "undefined"
             ]
         },
         "avoid_target_xz": {
             "type": "integer",
-            "default": 16
+            "default": 16,
+            "minimum": -2147483648,
+            "maximum": 2147483647
         },
         "avoid_target_y": {
             "type": "integer",
-            "default": 7
+            "default": 7,
+            "minimum": -2147483648,
+            "maximum": 2147483647
         },
         "control_flags": {
             "type": "array",
@@ -826,11 +868,15 @@
         },
         "max_dist": {
             "type": "number",
-            "default": 3
+            "default": 3,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         },
         "max_flee": {
             "type": "number",
-            "default": 10
+            "default": 10,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         },
         "on_escape_event": {
             "default": {
@@ -852,11 +898,13 @@
         "priority": {
             "type": "integer",
             "default": 0,
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 2147483647
         },
         "probability_per_strength": {
             "type": "number",
             "default": 1,
+            "minimum": 1.1754943508222875e-38,
             "maximum": 1
         },
         "remove_target": {
@@ -865,7 +913,9 @@
         },
         "river_speed_multiplier": {
             "type": "number",
-            "default": 0.75
+            "default": 0.75,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         },
         "sound_interval": {
             "default": {
@@ -876,15 +926,21 @@
         },
         "sprint_distance": {
             "type": "number",
-            "default": 7
+            "default": 7,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         },
         "sprint_speed_multiplier": {
             "type": "number",
-            "default": 1
+            "default": 1,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         },
         "walk_speed_multiplier": {
             "type": "number",
-            "default": 1
+            "default": 1,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         }
     }
 }

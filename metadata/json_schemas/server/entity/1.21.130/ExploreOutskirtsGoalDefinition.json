@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1557623393",
     "x-format-version": "1.21.130",
-    "x-minecraft-version": "1.21.130-beta.26",
+    "x-minecraft-version": "1.21.130-beta.27",
     "definitions": {
         "4004946602": {
             "title": "vec3",
@@ -10,7 +10,9 @@
                 {
                     "type": "array",
                     "items": {
-                        "type": "number"
+                        "type": "number",
+                        "minimum": 1.1754943508222875e-38,
+                        "maximum": 3.4028234663852886e+38
                     },
                     "minItems": 3,
                     "maxItems": 3
@@ -20,15 +22,21 @@
                     "properties": {
                         "x": {
                             "type": "number",
-                            "default": 0
+                            "default": 0,
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         },
                         "y": {
                             "type": "number",
-                            "default": 0
+                            "default": 0,
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         },
                         "z": {
                             "type": "number",
-                            "default": 0
+                            "default": 0,
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         }
                     }
                 }
@@ -61,48 +69,69 @@
         },
         "explore_dist": {
             "type": "number",
-            "default": 5
+            "default": 5,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         },
         "max_travel_time": {
             "type": "number",
-            "default": 60
+            "default": 60,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         },
         "max_wait_time": {
             "type": "number",
-            "default": 0
+            "default": 0,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         },
         "min_dist_from_target": {
             "type": "number",
-            "default": 2.25
+            "default": 2.25,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         },
         "min_perimeter": {
             "type": "number",
-            "default": 1
+            "default": 1,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         },
         "min_wait_time": {
             "type": "number",
-            "default": 3
+            "default": 3,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         },
         "next_xz": {
             "type": "integer",
-            "default": 5
+            "default": 5,
+            "minimum": -2147483648,
+            "maximum": 2147483647
         },
         "next_y": {
             "type": "integer",
-            "default": 3
+            "default": 3,
+            "minimum": -2147483648,
+            "maximum": 2147483647
         },
         "priority": {
             "type": "integer",
             "default": 0,
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 2147483647
         },
         "speed_multiplier": {
             "type": "number",
-            "default": 1
+            "default": 1,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         },
         "timer_ratio": {
             "type": "number",
-            "default": 2
+            "default": 2,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         }
     }
 }

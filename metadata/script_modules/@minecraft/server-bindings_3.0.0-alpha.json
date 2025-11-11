@@ -3592,60 +3592,6 @@
             ],
             "constants": [],
             "functions": [],
-            "name": "BlockComponentPlayerBreakEvent",
-            "properties": [
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
-                    "name": "brokenBlockPermutation",
-                    "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "BlockPermutation"
-                    }
-                },
-                {
-                    "get_privilege": [
-                        {
-                            "name": "read_only"
-                        }
-                    ],
-                    "is_baked": false,
-                    "is_read_only": true,
-                    "name": "player",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                            "is_bind_type": true,
-                            "is_errorable": false,
-                            "name": "Player"
-                        }
-                    }
-                }
-            ],
-            "type": {
-                "is_bind_type": true,
-                "is_errorable": false,
-                "name": "BlockComponentPlayerBreakEvent"
-            }
-        },
-        {
-            "base_types": [
-                {
-                    "is_bind_type": true,
-                    "is_errorable": false,
-                    "name": "BlockEvent"
-                }
-            ],
-            "constants": [],
-            "functions": [],
             "name": "BlockComponentPlayerInteractEvent",
             "properties": [
                 {
@@ -3820,6 +3766,44 @@
                 "is_bind_type": true,
                 "is_errorable": false,
                 "name": "BlockComponentRandomTickEvent"
+            }
+        },
+        {
+            "base_types": [
+                {
+                    "is_bind_type": true,
+                    "is_errorable": false,
+                    "name": "BlockEvent"
+                }
+            ],
+            "constants": [],
+            "functions": [],
+            "name": "BlockComponentRedstoneUpdateEvent",
+            "properties": [
+                {
+                    "get_privilege": [
+                        {
+                            "name": "read_only"
+                        }
+                    ],
+                    "is_baked": false,
+                    "is_read_only": true,
+                    "name": "powerLevel",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "int32",
+                        "valid_range": {
+                            "max": 2147483647,
+                            "min": -2147483648
+                        }
+                    }
+                }
+            ],
+            "type": {
+                "is_bind_type": true,
+                "is_errorable": false,
+                "name": "BlockComponentRedstoneUpdateEvent"
             }
         },
         {
@@ -51672,40 +51656,6 @@
                 {
                     "is_baked": false,
                     "is_read_only": false,
-                    "name": "onPlayerBreak",
-                    "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                            "closure_type": {
-                                "argument_types": [
-                                    {
-                                        "is_bind_type": true,
-                                        "is_errorable": false,
-                                        "name": "BlockComponentPlayerBreakEvent"
-                                    },
-                                    {
-                                        "is_bind_type": true,
-                                        "is_errorable": false,
-                                        "name": "CustomComponentParameters"
-                                    }
-                                ],
-                                "return_type": {
-                                    "is_bind_type": false,
-                                    "is_errorable": true,
-                                    "name": "undefined"
-                                }
-                            },
-                            "is_bind_type": false,
-                            "is_errorable": false,
-                            "name": "closure"
-                        }
-                    }
-                },
-                {
-                    "is_baked": false,
-                    "is_read_only": false,
                     "name": "onPlayerInteract",
                     "type": {
                         "is_bind_type": false,
@@ -51752,6 +51702,40 @@
                                         "is_bind_type": true,
                                         "is_errorable": false,
                                         "name": "BlockComponentRandomTickEvent"
+                                    },
+                                    {
+                                        "is_bind_type": true,
+                                        "is_errorable": false,
+                                        "name": "CustomComponentParameters"
+                                    }
+                                ],
+                                "return_type": {
+                                    "is_bind_type": false,
+                                    "is_errorable": true,
+                                    "name": "undefined"
+                                }
+                            },
+                            "is_bind_type": false,
+                            "is_errorable": false,
+                            "name": "closure"
+                        }
+                    }
+                },
+                {
+                    "is_baked": false,
+                    "is_read_only": false,
+                    "name": "onRedstoneUpdate",
+                    "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                            "closure_type": {
+                                "argument_types": [
+                                    {
+                                        "is_bind_type": true,
+                                        "is_errorable": false,
+                                        "name": "BlockComponentRedstoneUpdateEvent"
                                     },
                                     {
                                         "is_bind_type": true,

@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1062484207",
     "x-format-version": "1.21.100",
-    "x-minecraft-version": "1.21.130-beta.26",
+    "x-minecraft-version": "1.21.130-beta.27",
     "definitions": {
         "379658027": {
             "title": "Reference",
@@ -274,7 +274,9 @@
                 {
                     "type": "array",
                     "items": {
-                        "type": "integer"
+                        "type": "integer",
+                        "minimum": -2147483648,
+                        "maximum": 2147483647
                     },
                     "minItems": 3,
                     "maxItems": 3
@@ -292,7 +294,9 @@
                     "$ref": "#/definitions/3915697282"
                 },
                 "surface_opacity": {
-                    "type": "number"
+                    "type": "number",
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 }
             }
         },
@@ -304,7 +308,9 @@
                     "$ref": "#/definitions/3471754814"
                 },
                 "volume_multiplier": {
-                    "type": "number"
+                    "type": "number",
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 }
             }
         }

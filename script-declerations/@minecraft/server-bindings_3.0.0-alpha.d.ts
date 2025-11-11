@@ -69,7 +69,7 @@ export interface AABB { center: Vector3; extent: Vector3};
 export interface AnimationOptions { animation: SplineAnimation; totalTimeSeconds: number};
 export interface BiomeSearchOptions { boundingSize?: Vector3};
 export interface BlockBoundingBox { max: Vector3; min: Vector3};
-export interface BlockCustomComponent { beforeOnPlayerPlace?: (arg0: BlockComponentPlayerPlaceBeforeEvent, arg1: CustomComponentParameters)=>void; onBreak?: (arg0: BlockComponentBlockBreakEvent, arg1: CustomComponentParameters)=>void; onEntityFallOn?: (arg0: BlockComponentEntityFallOnEvent, arg1: CustomComponentParameters)=>void; onPlace?: (arg0: BlockComponentOnPlaceEvent, arg1: CustomComponentParameters)=>void; onPlayerBreak?: (arg0: BlockComponentPlayerBreakEvent, arg1: CustomComponentParameters)=>void; onPlayerInteract?: (arg0: BlockComponentPlayerInteractEvent, arg1: CustomComponentParameters)=>void; onRandomTick?: (arg0: BlockComponentRandomTickEvent, arg1: CustomComponentParameters)=>void; onStepOff?: (arg0: BlockComponentStepOffEvent, arg1: CustomComponentParameters)=>void; onStepOn?: (arg0: BlockComponentStepOnEvent, arg1: CustomComponentParameters)=>void; onTick?: (arg0: BlockComponentTickEvent, arg1: CustomComponentParameters)=>void};
+export interface BlockCustomComponent { beforeOnPlayerPlace?: (arg0: BlockComponentPlayerPlaceBeforeEvent, arg1: CustomComponentParameters)=>void; onBreak?: (arg0: BlockComponentBlockBreakEvent, arg1: CustomComponentParameters)=>void; onEntityFallOn?: (arg0: BlockComponentEntityFallOnEvent, arg1: CustomComponentParameters)=>void; onPlace?: (arg0: BlockComponentOnPlaceEvent, arg1: CustomComponentParameters)=>void; onPlayerInteract?: (arg0: BlockComponentPlayerInteractEvent, arg1: CustomComponentParameters)=>void; onRandomTick?: (arg0: BlockComponentRandomTickEvent, arg1: CustomComponentParameters)=>void; onRedstoneUpdate?: (arg0: BlockComponentRedstoneUpdateEvent, arg1: CustomComponentParameters)=>void; onStepOff?: (arg0: BlockComponentStepOffEvent, arg1: CustomComponentParameters)=>void; onStepOn?: (arg0: BlockComponentStepOnEvent, arg1: CustomComponentParameters)=>void; onTick?: (arg0: BlockComponentTickEvent, arg1: CustomComponentParameters)=>void};
 export interface BlockEventOptions { blockTypes?: string[]; permutations?: BlockPermutation[]};
 export interface BlockFillOptions { blockFilter?: BlockFilter; ignoreChunkBoundErrors?: boolean};
 export interface BlockFilter { excludePermutations?: BlockPermutation[]; excludeTags?: string[]; excludeTypes?: string[]; includePermutations?: BlockPermutation[]; includeTags?: string[]; includeTypes?: string[]};
@@ -169,13 +169,13 @@ export class BlockComponentEntityFallOnEvent extends BlockEvent{ public readonly
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BlockComponentOnPlaceEvent extends BlockEvent{ public readonly previousBlock: BlockPermutation; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
-export class BlockComponentPlayerBreakEvent extends BlockEvent{ public readonly brokenBlockPermutation: BlockPermutation; public readonly player?: Player; private constructor();};
-//@ts-ignore extending for classes with private constructor is possible with native API
 export class BlockComponentPlayerInteractEvent extends BlockEvent{ public readonly face: Direction; public readonly faceLocation?: Vector3; public readonly player?: Player; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BlockComponentPlayerPlaceBeforeEvent extends BlockEvent{ public cancel: boolean; public readonly face: Direction; public permutationToPlace: BlockPermutation; public readonly player?: Player; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BlockComponentRandomTickEvent extends BlockEvent{ private constructor();};
+//@ts-ignore extending for classes with private constructor is possible with native API
+export class BlockComponentRedstoneUpdateEvent extends BlockEvent{ public readonly powerLevel: number; private constructor();};
 export class BlockComponentRegistry { public registerCustomComponent(name: string, customComponent: BlockCustomComponent): void; private constructor();};
 //@ts-ignore extending for classes with private constructor is possible with native API
 export class BlockComponentStepOffEvent extends BlockEvent{ public readonly entity?: Entity; private constructor();};

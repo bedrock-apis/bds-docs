@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1391327946",
     "x-format-version": "1.21.20",
-    "x-minecraft-version": "1.21.130-beta.26",
+    "x-minecraft-version": "1.21.130-beta.27",
     "definitions": {
         "45584192": {
             "title": "Passthrough",
@@ -75,7 +75,9 @@
                     ]
                 },
                 "value": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 }
             },
             "required": [
@@ -110,10 +112,14 @@
             "type": "object",
             "properties": {
                 "max_inclusive": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 },
                 "min_inclusive": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 },
                 "type": {
                     "title": "IntProviderType",
@@ -227,7 +233,9 @@
                 "limit": {
                     "oneOf": [
                         {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
                         },
                         {
                             "$ref": "#/definitions/1354340864"
@@ -407,7 +415,9 @@
                             "additionalProperties": {
                                 "oneOf": [
                                     {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "minimum": -2147483648,
+                                        "maximum": 2147483647
                                     },
                                     {
                                         "type": "boolean"
@@ -539,23 +549,27 @@
                     "type": "number",
                     "default": 0,
                     "minimum": 0,
+                    "maximum": 3.4028234663852886e+38,
                     "exclusiveMaximum": 1
                 },
                 "max_dist": {
                     "type": "integer",
                     "default": 0,
-                    "minimum": 0
+                    "minimum": 0,
+                    "maximum": 2147483647
                 },
                 "min_chance": {
                     "type": "number",
                     "default": 0,
                     "minimum": 0,
+                    "maximum": 3.4028234663852886e+38,
                     "exclusiveMaximum": 1
                 },
                 "min_dist": {
                     "type": "integer",
                     "default": 0,
-                    "minimum": 0
+                    "minimum": 0,
+                    "maximum": 2147483647
                 },
                 "predicate_type": {
                     "title": "PosType",

@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "911233651",
     "x-format-version": "1.21.120",
-    "x-minecraft-version": "1.21.130-beta.26",
+    "x-minecraft-version": "1.21.130-beta.27",
     "definitions": {
         "121353999": {
             "title": "ActorDefinitionTrigger",
@@ -97,10 +97,14 @@
                             "type": "boolean"
                         },
                         {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
                         },
                         {
-                            "type": "number"
+                            "type": "number",
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         },
                         {
                             "type": "string"
@@ -113,10 +117,14 @@
                             "type": "boolean"
                         },
                         {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
                         },
                         {
-                            "type": "number"
+                            "type": "number",
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         },
                         {
                             "type": "string"
@@ -129,10 +137,14 @@
                             "type": "boolean"
                         },
                         {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
                         },
                         {
-                            "type": "number"
+                            "type": "number",
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         },
                         {
                             "type": "string"
@@ -148,10 +160,14 @@
                             "type": "boolean"
                         },
                         {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
                         },
                         {
-                            "type": "number"
+                            "type": "number",
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         },
                         {
                             "type": "string"
@@ -190,11 +206,15 @@
         },
         "duration": {
             "type": "number",
-            "default": 0
+            "default": 0,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         },
         "idle_time": {
             "type": "number",
-            "default": 0
+            "default": 0,
+            "minimum": 1.1754943508222875e-38,
+            "maximum": 3.4028234663852886e+38
         },
         "on_start": {
             "default": {
@@ -216,7 +236,8 @@
         "priority": {
             "type": "integer",
             "default": 0,
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 2147483647
         },
         "suspicion_is_disturbance": {
             "type": "boolean",

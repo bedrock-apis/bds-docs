@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3704131722",
     "x-format-version": "1.20.60",
-    "x-minecraft-version": "1.21.130-beta.26",
+    "x-minecraft-version": "1.21.130-beta.27",
     "definitions": {
         "1287813091": {
             "title": "minecraft:surface_material_adjustments - surface adjustment materials settings",
@@ -29,7 +29,9 @@
             "title": "Molang Expression",
             "oneOf": [
                 {
-                    "type": "number"
+                    "type": "number",
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 {
                     "type": "boolean"
@@ -60,7 +62,9 @@
                             "additionalProperties": {
                                 "oneOf": [
                                     {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "minimum": -2147483648,
+                                        "maximum": 2147483647
                                     },
                                     {
                                         "type": "boolean"
@@ -95,12 +99,16 @@
                     "$ref": "#/definitions/1287813091"
                 },
                 "noise_frequency_scale": {
-                    "type": "number"
+                    "type": "number",
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "noise_range": {
                     "type": "array",
                     "items": {
-                        "type": "number"
+                        "type": "number",
+                        "minimum": 1.1754943508222875e-38,
+                        "maximum": 3.4028234663852886e+38
                     },
                     "minItems": 2,
                     "maxItems": 2

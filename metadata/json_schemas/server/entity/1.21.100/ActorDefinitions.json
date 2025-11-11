@@ -2,13 +2,15 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "3836051660",
     "x-format-version": "1.21.100",
-    "x-minecraft-version": "1.21.130-beta.26",
+    "x-minecraft-version": "1.21.130-beta.27",
     "definitions": {
         "517105782": {
             "title": "compound_proxy",
             "oneOf": [
                 {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 },
                 {
                     "type": "string"
@@ -25,7 +27,8 @@
                 "distance_to_players": {
                     "type": "number",
                     "default": 128,
-                    "minimum": 128
+                    "minimum": 128,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "never_despawn": {
                     "type": "boolean",
@@ -45,11 +48,15 @@
             "properties": {
                 "max": {
                     "type": "number",
-                    "default": 0
+                    "default": 0,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "min": {
                     "type": "number",
-                    "default": 0
+                    "default": 0,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 }
             }
         },
@@ -72,16 +79,21 @@
                 },
                 "max_distance": {
                     "type": "number",
-                    "default": 3
+                    "default": 3,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "min_distance": {
                     "type": "number",
-                    "default": 2
+                    "default": 2,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "priority": {
                     "type": "integer",
                     "default": 0,
-                    "minimum": 0
+                    "minimum": 0,
+                    "maximum": 2147483647
                 },
                 "sound_event": {
                     "title": "LevelSoundEvent",
@@ -618,16 +630,22 @@
                         "item.wooden_spear.attack_miss",
                         "imitate.parched",
                         "imitate.camel_husk",
+                        "item.spear.use",
+                        "item.wooden_spear.use",
                         "undefined"
                     ]
                 },
                 "speed_multiplier": {
                     "type": "number",
-                    "default": 1
+                    "default": 1,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "success_rate": {
                     "type": "number",
-                    "default": 0.1428000032901764
+                    "default": 0.1428000032901764,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 }
             }
         },
@@ -650,24 +668,33 @@
                 },
                 "cooldown_time": {
                     "type": "number",
-                    "default": 10
+                    "default": 10,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "flame_time": {
                     "type": "number",
-                    "default": 0.5
+                    "default": 0.5,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "ground_flame_count": {
                     "type": "integer",
-                    "default": 4
+                    "default": 4,
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 },
                 "priority": {
                     "type": "integer",
                     "default": 0,
-                    "minimum": 0
+                    "minimum": 0,
+                    "maximum": 2147483647
                 },
                 "roar_time": {
                     "type": "number",
-                    "default": 2
+                    "default": 2,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "smoke_color": {
                     "type": "string",
@@ -675,11 +702,15 @@
                 },
                 "smoke_radius": {
                     "type": "number",
-                    "default": 5
+                    "default": 5,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "smoke_time": {
                     "type": "number",
-                    "default": 10
+                    "default": 10,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 }
             }
         },
@@ -741,16 +772,21 @@
                 },
                 "idle_cooldown": {
                     "type": "integer",
-                    "default": 20
+                    "default": 20,
+                    "minimum": 0,
+                    "maximum": 4294967295
                 },
                 "initial_cooldown": {
                     "type": "integer",
-                    "default": 0
+                    "default": 0,
+                    "minimum": 0,
+                    "maximum": 4294967295
                 },
                 "interaction_time": {
                     "type": "number",
                     "default": 3,
-                    "minimum": 0
+                    "minimum": 0,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "max_stack_size": {
                     "type": "integer",
@@ -760,7 +796,9 @@
                 },
                 "max_visited_containers": {
                     "type": "integer",
-                    "default": 16
+                    "default": 16,
+                    "minimum": 0,
+                    "maximum": 4294967295
                 },
                 "place_strategy": {
                     "title": "place_strategy",
@@ -775,7 +813,8 @@
                 "priority": {
                     "type": "integer",
                     "default": 0,
-                    "minimum": 0
+                    "minimum": 0,
+                    "maximum": 2147483647
                 },
                 "search_distance": {
                     "default": [
@@ -827,16 +866,21 @@
                 },
                 "fractional_rotation_limit": {
                     "type": "number",
-                    "default": 5
+                    "default": 5,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "mount_speed_multiplier": {
                     "type": "number",
-                    "default": 1
+                    "default": 1,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "priority": {
                     "type": "integer",
                     "default": 0,
-                    "minimum": 0
+                    "minimum": 0,
+                    "maximum": 2147483647
                 }
             }
         },
@@ -859,7 +903,9 @@
                 },
                 "eat_animation_time": {
                     "type": "number",
-                    "default": 1
+                    "default": 1,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "eat_mob_sound": {
                     "type": "string",
@@ -872,19 +918,26 @@
                 "priority": {
                     "type": "integer",
                     "default": 0,
-                    "minimum": 0
+                    "minimum": 0,
+                    "maximum": 2147483647
                 },
                 "pull_in_force": {
                     "type": "number",
-                    "default": 1
+                    "default": 1,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "reach_mob_distance": {
                     "type": "number",
-                    "default": 1
+                    "default": 1,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "run_speed": {
                     "type": "number",
-                    "default": 1
+                    "default": 1,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 }
             }
         },
@@ -946,11 +999,14 @@
                 "priority": {
                     "type": "integer",
                     "default": 0,
-                    "minimum": 0
+                    "minimum": 0,
+                    "maximum": 2147483647
                 },
                 "speed_multiplier": {
                     "type": "number",
-                    "default": 1
+                    "default": 1,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 }
             }
         },
@@ -960,7 +1016,9 @@
                 {
                     "type": "array",
                     "items": {
-                        "type": "number"
+                        "type": "number",
+                        "minimum": 1.1754943508222875e-38,
+                        "maximum": 3.4028234663852886e+38
                     },
                     "minItems": 2,
                     "maxItems": 2
@@ -970,11 +1028,15 @@
                     "properties": {
                         "x": {
                             "type": "number",
-                            "default": 0
+                            "default": 0,
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         },
                         "y": {
                             "type": "number",
-                            "default": 0
+                            "default": 0,
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         }
                     }
                 }
@@ -986,7 +1048,9 @@
             "properties": {
                 "angle_change": {
                     "type": "number",
-                    "default": 15
+                    "default": 15,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "control_flags": {
                     "type": "array",
@@ -1003,7 +1067,9 @@
                 },
                 "goal_radius": {
                     "type": "number",
-                    "default": 0.5
+                    "default": 0.5,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "height_above_target_range": {
                     "default": {
@@ -1015,7 +1081,9 @@
                 },
                 "height_adjustment_chance": {
                     "type": "number",
-                    "default": 0.0028570001013576984
+                    "default": 0.0028570001013576984,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "height_offset_range": {
                     "default": {
@@ -1027,15 +1095,20 @@
                 "priority": {
                     "type": "integer",
                     "default": 0,
-                    "minimum": 0
+                    "minimum": 0,
+                    "maximum": 2147483647
                 },
                 "radius_adjustment_chance": {
                     "type": "number",
-                    "default": 0.004000000189989805
+                    "default": 0.004000000189989805,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "radius_change": {
                     "type": "number",
-                    "default": 1
+                    "default": 1,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "radius_range": {
                     "default": {
@@ -1047,7 +1120,9 @@
                 },
                 "speed_multiplier": {
                     "type": "number",
-                    "default": 1
+                    "default": 1,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 }
             }
         }

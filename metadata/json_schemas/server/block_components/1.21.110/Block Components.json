@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "471923105",
     "x-format-version": "1.21.110",
-    "x-minecraft-version": "1.21.130-beta.26",
+    "x-minecraft-version": "1.21.130-beta.27",
     "definitions": {
         "691321428": {
             "title": "Detailed Resistance",
@@ -10,7 +10,8 @@
             "properties": {
                 "explosion_resistance": {
                     "type": "number",
-                    "minimum": 0
+                    "minimum": 0,
+                    "maximum": 3.4028234663852886e+38
                 }
             },
             "required": [
@@ -49,10 +50,6 @@
                     "default": 1,
                     "minimum": 0,
                     "maximum": 10
-                },
-                "emissive": {
-                    "type": "boolean",
-                    "default": true
                 },
                 "face_dimming": {
                     "type": "boolean",
@@ -145,6 +142,21 @@
                 "identifier"
             ]
         },
+        "1135547207": {
+            "title": "File Reference",
+            "type": "string",
+            "maxLength": 256
+        },
+        "1140545173": {
+            "title": "Friction",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 0.8999999761581421
+        },
+        "1273803565": {
+            "title": "Loot",
+            "$ref": "#/definitions/1135547207"
+        },
         "1483802163": {
             "title": "Geometry",
             "oneOf": [
@@ -164,11 +176,15 @@
             "properties": {
                 "catch_chance_modifier": {
                     "type": "integer",
-                    "default": 5
+                    "default": 5,
+                    "minimum": 0,
+                    "maximum": 65535
                 },
                 "destroy_chance_modifier": {
                     "type": "integer",
-                    "default": 20
+                    "default": 20,
+                    "minimum": 0,
+                    "maximum": 65535
                 }
             }
         },
@@ -264,7 +280,9 @@
                             "type": "string"
                         },
                         "version": {
-                            "type": "integer"
+                            "type": "integer",
+                            "minimum": -32768,
+                            "maximum": 32767
                         }
                     },
                     "required": [
@@ -291,6 +309,37 @@
                 "shape"
             ]
         },
+        "2344109265": {
+            "title": "Movable",
+            "type": "object",
+            "properties": {
+                "movement_type": {
+                    "title": "Movement Type",
+                    "type": "string",
+                    "enum": [
+                        "push_pull",
+                        "push",
+                        "popped",
+                        "immovable"
+                    ]
+                },
+                "sticky": {
+                    "title": "Sticky Type",
+                    "type": "string",
+                    "default": "none",
+                    "enum": [
+                        "none",
+                        "same"
+                    ]
+                }
+            },
+            "required": [
+                "movement_type"
+            ]
+        },
+        "2511745037": {
+            "title": "Flower Pottable"
+        },
         "2735968029": {
             "title": "Tags",
             "type": "array",
@@ -312,8 +361,32 @@
                     "$ref": "#/definitions/2267778531"
                 },
                 {
-                    "type": "number"
+                    "type": "number",
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 }
+            ]
+        },
+        "3210633909": {
+            "title": "Crafting Table",
+            "type": "object",
+            "properties": {
+                "crafting_tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "maxLength": 64
+                    },
+                    "maxItems": 64
+                },
+                "table_name": {
+                    "type": "string",
+                    "default": "",
+                    "maxLength": 256
+                }
+            },
+            "required": [
+                "crafting_tags"
             ]
         },
         "3212487924": {
@@ -373,7 +446,8 @@
                 },
                 "seconds_to_destroy": {
                     "type": "number",
-                    "minimum": 0
+                    "minimum": 0,
+                    "maximum": 3.4028234663852886e+38
                 }
             },
             "required": [
@@ -400,7 +474,9 @@
                 {
                     "type": "array",
                     "items": {
-                        "type": "integer"
+                        "type": "integer",
+                        "minimum": -2147483648,
+                        "maximum": 2147483647
                     },
                     "minItems": 3,
                     "maxItems": 3
@@ -415,7 +491,9 @@
             "type": "object",
             "properties": {
                 "destroy_speed": {
-                    "type": "number"
+                    "type": "number",
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
                 },
                 "item": {
                     "$ref": "#/definitions/1531870811"
@@ -455,6 +533,7 @@
                 },
                 "power": {
                     "type": "integer",
+                    "minimum": 0,
                     "maximum": 15
                 },
                 "strongly_powered_face": {
@@ -477,11 +556,26 @@
             "required": [
                 "power"
             ]
+        },
+        "4291018146": {
+            "title": "Entity Fall On",
+            "type": "object",
+            "properties": {
+                "min_fall_distance": {
+                    "type": "number",
+                    "default": 0,
+                    "minimum": 1.1754943508222875e-38,
+                    "maximum": 3.4028234663852886e+38
+                }
+            }
         }
     },
     "title": "Components",
     "type": "object",
     "properties": {
+        "minecraft:crafting_table": {
+            "$ref": "#/definitions/3210633909"
+        },
         "minecraft:destructible_by_explosion": {
             "$ref": "#/definitions/1778015353"
         },
@@ -494,8 +588,17 @@
         "minecraft:display_name": {
             "$ref": "#/definitions/2879220220"
         },
+        "minecraft:entity_fall_on": {
+            "$ref": "#/definitions/4291018146"
+        },
         "minecraft:flammable": {
             "$ref": "#/definitions/2123787678"
+        },
+        "minecraft:flower_pottable": {
+            "$ref": "#/definitions/2511745037"
+        },
+        "minecraft:friction": {
+            "$ref": "#/definitions/1140545173"
         },
         "minecraft:geometry": {
             "$ref": "#/definitions/1483802163"
@@ -506,11 +609,17 @@
         "minecraft:light_emission": {
             "$ref": "#/definitions/3655705218"
         },
+        "minecraft:loot": {
+            "$ref": "#/definitions/1273803565"
+        },
         "minecraft:map_color": {
             "$ref": "#/definitions/1567399336"
         },
         "minecraft:material_instances": {
             "$ref": "#/definitions/800260518"
+        },
+        "minecraft:movable": {
+            "$ref": "#/definitions/2344109265"
         },
         "minecraft:redstone_conductivity": {
             "$ref": "#/definitions/3212487924"

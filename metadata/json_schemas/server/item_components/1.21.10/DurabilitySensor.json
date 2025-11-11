@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1956551060",
     "x-format-version": "1.21.10",
-    "x-minecraft-version": "1.21.130-beta.26",
+    "x-minecraft-version": "1.21.130-beta.27",
     "definitions": {
         "764203503": {
             "title": "minecraft:durability_sensor durability_threshold",
@@ -10,7 +10,9 @@
             "properties": {
                 "durability": {
                     "type": "integer",
-                    "default": 0
+                    "default": 0,
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 },
                 "particle_type": {
                     "title": "ParticleType",
@@ -645,6 +647,8 @@
                         "item.wooden_spear.attack_miss",
                         "imitate.parched",
                         "imitate.camel_husk",
+                        "item.spear.use",
+                        "item.wooden_spear.use",
                         "undefined"
                     ]
                 }

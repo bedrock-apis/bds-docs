@@ -2,13 +2,15 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "1861715976",
     "x-format-version": "1.21.100",
-    "x-minecraft-version": "1.21.130-beta.26",
+    "x-minecraft-version": "1.21.130-beta.27",
     "definitions": {
         "517105782": {
             "title": "compound_proxy",
             "oneOf": [
                 {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": -2147483648,
+                    "maximum": 2147483647
                 },
                 {
                     "type": "string"
@@ -76,7 +78,9 @@
                 {
                     "type": "array",
                     "items": {
-                        "type": "number"
+                        "type": "number",
+                        "minimum": 1.1754943508222875e-38,
+                        "maximum": 3.4028234663852886e+38
                     },
                     "minItems": 2,
                     "maxItems": 2
@@ -86,11 +90,15 @@
                     "properties": {
                         "x": {
                             "type": "number",
-                            "default": 0
+                            "default": 0,
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         },
                         "y": {
                             "type": "number",
-                            "default": 0
+                            "default": 0,
+                            "minimum": 1.1754943508222875e-38,
+                            "maximum": 3.4028234663852886e+38
                         }
                     }
                 }
@@ -140,16 +148,21 @@
         },
         "idle_cooldown": {
             "type": "integer",
-            "default": 20
+            "default": 20,
+            "minimum": 0,
+            "maximum": 4294967295
         },
         "initial_cooldown": {
             "type": "integer",
-            "default": 0
+            "default": 0,
+            "minimum": 0,
+            "maximum": 4294967295
         },
         "interaction_time": {
             "type": "number",
             "default": 3,
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 3.4028234663852886e+38
         },
         "max_stack_size": {
             "type": "integer",
@@ -159,7 +172,9 @@
         },
         "max_visited_containers": {
             "type": "integer",
-            "default": 16
+            "default": 16,
+            "minimum": 0,
+            "maximum": 4294967295
         },
         "place_strategy": {
             "title": "place_strategy",
@@ -174,7 +189,8 @@
         "priority": {
             "type": "integer",
             "default": 0,
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 2147483647
         },
         "search_distance": {
             "default": [
