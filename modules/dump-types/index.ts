@@ -36,7 +36,7 @@ export class TypePrinterDumper {
             await Deno.writeTextFile(filename, Printer.printModule(data).toArray().join("\n"));
             contents.push(poorFileName);
         }
-        await Deno.writeTextFile(join(baseDestination, CONTENTS_FILE_NAME), TO_JSON_FORMAT(contents));
+        await Deno.writeTextFile(join(baseDestination, CONTENTS_FILE_NAME), TO_JSON_FORMAT(contents.sort()));
         return 0;
     }
 };

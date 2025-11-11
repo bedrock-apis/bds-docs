@@ -46,7 +46,7 @@ export class MetadataDumper {
         const tasks = [];
         for await (const file of getFilesRecursiveIterator(source)) tasks.push(action(file));
         await Promise.all(tasks);
-        await Deno.writeTextFile(join(destination, CONTENTS_FILE_NAME), TO_JSON_FORMAT(contents));
+        await Deno.writeTextFile(join(destination, CONTENTS_FILE_NAME), TO_JSON_FORMAT(contents.sort()));
         return 0;
     }
 }

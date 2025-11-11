@@ -71,7 +71,7 @@ async function finialize(version: string): Promise<number> {
         .filter(({ name, isSymlink }) => !(name.startsWith(".") || name.startsWith("__") || isSymlink))
         .map(_ => _.isDirectory ? _.name + "/" : _.name)
         .toArray();
-    await Deno.writeTextFile(CONTENTS_FILE_NAME, TO_JSON_FORMAT(list));
+    await Deno.writeTextFile(CONTENTS_FILE_NAME, TO_JSON_FORMAT(list.sort()));
     await Deno.writeTextFile(GIT_IGNORE_FILE_NAME, GIT_IGNORE_DATA);
     await Deno.writeTextFile(GIT_ATTRIBUTES_FILE_NAME, GIT_ATTRIBUTES_DATA);
     if ((failed = await GithubUtils.commitAndPush(BRANCH_TO_UPDATE ?? "stable", "New Update - " + BASED_VERSION))) return failed;
