@@ -8,8 +8,8 @@ import { Writable } from "node:stream";
 //#region modules/constants.ts
 const ENV = Deno.env;
 const GIT_IS_GITHUB_ACTION = ENV.get("GITHUB_ACTIONS")?.toLocaleLowerCase() === "true";
-const GIT_LOGIN_AS_NAME = "BAPI The Dog";
-const GIT_LOGIN_AS_EMAIL = "thedog@bedrockapis.com";
+const GIT_LOGIN_AS_NAME = "Bedrock APIs Bot - Gen";
+const GIT_LOGIN_AS_EMAIL = "genbot@bedrockapis.com";
 const GIT_REPO = ENV.get("GITHUB_REPOSITORY");
 const GIT_TOKEN = ENV.get("GITHUB_TOKEN") ?? ENV.get("GH_TOKEN");
 const GIT_IGNORE_DATA = `__*__`;
@@ -958,7 +958,7 @@ var MetadataDumper = class {
 		const tasks = [];
 		for await (const file of getFilesRecursiveIterator(source)) tasks.push(action(file));
 		await Promise.all(tasks);
-		await Deno.writeTextFile(join(destination, CONTENTS_FILE_NAME), TO_JSON_FORMAT(contents));
+		await Deno.writeTextFile(join(destination, CONTENTS_FILE_NAME), TO_JSON_FORMAT(contents.sort()));
 		return 0;
 	}
 };
@@ -1145,7 +1145,7 @@ var TypePrinterDumper = class TypePrinterDumper {
 			await Deno.writeTextFile(filename, Printer.printModule(data).toArray().join("\n"));
 			contents.push(poorFileName);
 		}
-		await Deno.writeTextFile(join(baseDestination, CONTENTS_FILE_NAME), TO_JSON_FORMAT(contents));
+		await Deno.writeTextFile(join(baseDestination, CONTENTS_FILE_NAME), TO_JSON_FORMAT(contents.sort()));
 		return 0;
 	}
 };
@@ -1191,10 +1191,11 @@ async function finialize(version) {
 		"build-version": version
 	})).then((_) => 0, (_) => -1)) return failed;
 	const list = Deno.readDirSync(".").filter(({ name, isSymlink }) => !(name.startsWith(".") || name.startsWith("__") || isSymlink)).map((_) => _.isDirectory ? _.name + "/" : _.name).toArray();
-	await Deno.writeTextFile(CONTENTS_FILE_NAME, TO_JSON_FORMAT(list));
+	await Deno.writeTextFile(CONTENTS_FILE_NAME, TO_JSON_FORMAT(list.sort()));
 	await Deno.writeTextFile(GIT_IGNORE_FILE_NAME, GIT_IGNORE_DATA);
 	await Deno.writeTextFile(GIT_ATTRIBUTES_FILE_NAME, GIT_ATTRIBUTES_DATA);
 	if (failed = await GithubUtils.commitAndPush(BRANCH_TO_UPDATE ?? "stable", "New Update - " + BASED_VERSION)) return failed;
+	if (BRANCH_TO_UPDATE !== "preview") await GithubUtils.postNewBranch("stable-" + BASED_VERSION);
 	return failed;
 }
 

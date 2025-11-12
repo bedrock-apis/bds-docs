@@ -22,7 +22,7 @@ async function main(): Promise<number> {
     let failed: number = 0;
     if ((failed = await GithubUtils.login())) return failed;
     if ((failed = await GithubUtils.initRepo())) return failed;
-    if ((failed = await GithubUtils.checkoutBranch(BRANCH_TO_UPDATE??"stable", true))) return failed;
+    if ((failed = await GithubUtils.checkoutBranch(BRANCH_TO_UPDATE ?? "stable", true))) return failed;
     GithubUtils.clear();
 
     const version = await getLatestBuildVersionFromOSS({
@@ -62,18 +62,19 @@ async function main(): Promise<number> {
 async function finialize(version: string): Promise<number> {
     const BASED_VERSION = BRANCH_TO_UPDATE === "preview" ? version : getEngineVersion(version);
     let failed = 0;
-    if((failed = await Deno.writeTextFile(EXISTS_FILE, TO_JSON_FORMAT({
+    if ((failed = await Deno.writeTextFile(EXISTS_FILE, TO_JSON_FORMAT({
         "version": BASED_VERSION,
         "build-version": version,
     })).then(_ => 0, _ => -1))) return failed;
 
     const list = Deno.readDirSync(".")
-        .filter(({name, isSymlink})=>!(name.startsWith(".") || name.startsWith("__") || isSymlink))
-        .map(_=>_.isDirectory?_.name + "/":_.name)
+        .filter(({ name, isSymlink }) => !(name.startsWith(".") || name.startsWith("__") || isSymlink))
+        .map(_ => _.isDirectory ? _.name + "/" : _.name)
         .toArray();
-    await Deno.writeTextFile(CONTENTS_FILE_NAME, TO_JSON_FORMAT(list));
+    await Deno.writeTextFile(CONTENTS_FILE_NAME, TO_JSON_FORMAT(list.sort()));
     await Deno.writeTextFile(GIT_IGNORE_FILE_NAME, GIT_IGNORE_DATA);
     await Deno.writeTextFile(GIT_ATTRIBUTES_FILE_NAME, GIT_ATTRIBUTES_DATA);
-    if ((failed = await GithubUtils.commitAndPush(BRANCH_TO_UPDATE??"stable", "New Update - " + BASED_VERSION))) return failed;
+    if ((failed = await GithubUtils.commitAndPush(BRANCH_TO_UPDATE ?? "stable", "New Update - " + BASED_VERSION))) return failed;
+    if (BRANCH_TO_UPDATE !== "preview") await GithubUtils.postNewBranch("stable-" + BASED_VERSION);
     return failed;
 }
