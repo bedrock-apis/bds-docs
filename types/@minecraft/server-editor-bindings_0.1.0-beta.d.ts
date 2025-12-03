@@ -119,6 +119,12 @@ export enum LogChannel {
    Message = 1,
    Toast = 2,
 }
+export enum MinimapMarkerType {
+   Multiplayer = 0,
+}
+export enum MinimapViewType {
+   BlockView = 0,
+}
 export enum MouseActionCategory {
    Button = 1,
    Drag = 3,
@@ -767,6 +773,7 @@ export class ExtensionContext {
    public readonly cursor: Cursor;
    public readonly exportManager: ExportManager;
    public readonly extensionInfo: Extension;
+   public readonly minimapManager: MinimapManager;
    public readonly player: server.Player;
    public readonly playtest: PlaytestManager;
    public readonly selectionManager: SelectionManager;
@@ -813,6 +820,24 @@ export class MinecraftEditor {
    public readonly log: Logger;
    public readonly simulation: SimulationState;
    public readonly worldGeneratorType?: WorldGeneratorType;
+   private constructor();
+}
+export class MinimapItem {
+   public readonly id: string;
+   public readonly isActive: boolean;
+   public addMarker(markerType: MinimapMarkerType): void;
+   public getPlayerColor(playerId: string): server.RGBA;
+   public removeMarker(markerType: MinimapMarkerType): void;
+   public setActive(active: boolean): void;
+   public setSize(mapWidth: number, mapHeight: number): void;
+   public setViewType(viewType: MinimapViewType): void;
+   private constructor();
+}
+export class MinimapManager {
+   public createMinimap(viewType: MinimapViewType, mapWidth: number, mapHeight: number): MinimapItem;
+   public destroyMinimap(minimapId: string): void;
+   public getAllMinimapIds(): Array<string>;
+   public getMinimap(minimapId: string): MinimapItem;
    private constructor();
 }
 export class ModeChangeAfterEvent {

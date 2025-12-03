@@ -539,6 +539,7 @@ export interface BlockCustomComponent {
    onPlayerBreak?: (arg0: BlockComponentPlayerBreakEvent, arg1: CustomComponentParameters)=>void;
    onPlayerInteract?: (arg0: BlockComponentPlayerInteractEvent, arg1: CustomComponentParameters)=>void;
    onRandomTick?: (arg0: BlockComponentRandomTickEvent, arg1: CustomComponentParameters)=>void;
+   onRedstoneUpdate?: (arg0: BlockComponentRedstoneUpdateEvent, arg1: CustomComponentParameters)=>void;
    onStepOff?: (arg0: BlockComponentStepOffEvent, arg1: CustomComponentParameters)=>void;
    onStepOn?: (arg0: BlockComponentStepOnEvent, arg1: CustomComponentParameters)=>void;
    onTick?: (arg0: BlockComponentTickEvent, arg1: CustomComponentParameters)=>void;
@@ -969,6 +970,11 @@ export class BlockComponentPlayerPlaceBeforeEvent extends BlockEvent {
 }
 //@ts-ignore
 export class BlockComponentRandomTickEvent extends BlockEvent {
+   private constructor();
+}
+//@ts-ignore
+export class BlockComponentRedstoneUpdateEvent extends BlockEvent {
+   public readonly powerLevel: number;
    private constructor();
 }
 export class BlockComponentRegistry {

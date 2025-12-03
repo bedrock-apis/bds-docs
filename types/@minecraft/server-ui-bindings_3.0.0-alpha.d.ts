@@ -44,6 +44,10 @@ export class ActionFormResponse extends FormResponse {
    public readonly selection?: number;
    private constructor();
 }
+export class DataDrivenScreen {
+   public constructor();
+   public showScreen(player: server.Player, screenId: string): void;
+}
 export class DataStore {
    public getProperty(player: server.Player, dataStoreName: string, property: string): (string | undefined);
    public getPropertyPath(player: server.Player, dataStoreName: string, property: string, path: string): (string | undefined);
@@ -92,6 +96,7 @@ export class ModalFormResponse extends FormResponse {
    private constructor();
 }
 export class UIManager {
+   public closeAllDataDrivenScreens(player: server.Player): void;
    public closeAllForms(player: server.Player): void;
    private constructor();
 }

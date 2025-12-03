@@ -3,10 +3,33 @@
    "$id": "1677381825",
    "x-format-version": "1.21.110",
    "definitions": {
+      "338268096": {
+         "title": "Collision Box",
+         "oneOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "$ref": "#/definitions/3903423213",
+               "x-runtime-constraint-description": "\"origin\" + \"size\", must be inside the following limit: Vec3(-8,0,-8) and Vec3(8,24,8)"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/3903423213"
+               },
+               "maxItems": 16,
+               "x-runtime-constraint-description": "\"origin\" + \"size\", must be inside the following limit: Vec3(-8,0,-8) and Vec3(8,24,8)"
+            }
+         ]
+      },
       "471923105": {
          "title": "Components",
          "type": "object",
          "properties": {
+            "minecraft:collision_box": {
+               "$ref": "#/definitions/338268096"
+            },
             "minecraft:crafting_table": {
                "$ref": "#/definitions/3210633909"
             },
@@ -37,6 +60,9 @@
             "minecraft:geometry": {
                "$ref": "#/definitions/1483802163"
             },
+            "minecraft:item_visual": {
+               "$ref": "#/definitions/2908099874"
+            },
             "minecraft:light_dampening": {
                "$ref": "#/definitions/2155690250"
             },
@@ -55,17 +81,32 @@
             "minecraft:movable": {
                "$ref": "#/definitions/2344109265"
             },
+            "minecraft:random_offset": {
+               "$ref": "#/definitions/4006409319"
+            },
             "minecraft:redstone_conductivity": {
                "$ref": "#/definitions/3212487924"
             },
             "minecraft:redstone_producer": {
                "$ref": "#/definitions/4203318441"
             },
+            "minecraft:replaceable": {
+               "$ref": "#/definitions/3623939283"
+            },
+            "minecraft:selection_box": {
+               "$ref": "#/definitions/2986395074"
+            },
             "minecraft:support": {
                "$ref": "#/definitions/2279409622"
             },
             "minecraft:tags": {
                "$ref": "#/definitions/2735968029"
+            },
+            "minecraft:tick": {
+               "$ref": "#/definitions/939187588"
+            },
+            "minecraft:transformation": {
+               "$ref": "#/definitions/861574760"
             }
          }
       },
@@ -75,8 +116,7 @@
          "properties": {
             "explosion_resistance": {
                "type": "number",
-               "minimum": 0,
-               "maximum": 3.4028234663852886e+38
+               "minimum": 0
             }
          },
          "required": [
@@ -107,14 +147,10 @@
          "type": "object",
          "properties": {
             "max": {
-               "type": "integer",
-               "minimum": -2147483648,
-               "maximum": 2147483647
+               "type": "integer"
             },
             "min": {
-               "type": "integer",
-               "minimum": -2147483648,
-               "maximum": 2147483647
+               "type": "integer"
             }
          },
          "required": [
@@ -176,6 +212,90 @@
                   "grass",
                   "water"
                ]
+            }
+         }
+      },
+      "861574760": {
+         "title": "Transformation",
+         "type": "object",
+         "properties": {
+            "rotation": {
+               "default": [
+                  0,
+                  0,
+                  0
+               ],
+               "$ref": "#/definitions/4004946602",
+               "multipleOf": 90
+            },
+            "rotation_pivot": {
+               "default": [
+                  0,
+                  0,
+                  0
+               ],
+               "$ref": "#/definitions/4004946602"
+            },
+            "scale": {
+               "default": [
+                  1,
+                  1,
+                  1
+               ],
+               "$ref": "#/definitions/4004946602"
+            },
+            "scale_pivot": {
+               "default": [
+                  0,
+                  0,
+                  0
+               ],
+               "$ref": "#/definitions/4004946602"
+            },
+            "translation": {
+               "default": [
+                  0,
+                  0,
+                  0
+               ],
+               "$ref": "#/definitions/4004946602"
+            }
+         }
+      },
+      "939187588": {
+         "title": "Tick",
+         "type": "object",
+         "properties": {
+            "interval_range": {
+               "type": "array",
+               "items": {
+                  "type": "integer",
+                  "minimum": 0
+               },
+               "minItems": 2,
+               "maxItems": 2,
+               "x-runtime-constraint-description": "The first value must be equal or lower than the second value"
+            },
+            "looping": {
+               "type": "boolean",
+               "default": true
+            }
+         },
+         "required": [
+            "interval_range"
+         ]
+      },
+      "1057349585": {
+         "title": "FloatRange",
+         "type": "object",
+         "properties": {
+            "max": {
+               "type": "number",
+               "default": 0
+            },
+            "min": {
+               "type": "number",
+               "default": 0
             }
          }
       },
@@ -262,14 +382,12 @@
             "catch_chance_modifier": {
                "type": "integer",
                "default": 5,
-               "minimum": 0,
-               "maximum": 65535
+               "minimum": 0
             },
             "destroy_chance_modifier": {
                "type": "integer",
                "default": 20,
-               "minimum": 0,
-               "maximum": 65535
+               "minimum": 0
             }
          }
       },
@@ -335,6 +453,24 @@
             }
          ]
       },
+      "2128101180": {
+         "title": "Range And Steps",
+         "type": "object",
+         "properties": {
+            "range": {
+               "$ref": "#/definitions/1057349585",
+               "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
+            },
+            "steps": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            }
+         },
+         "required": [
+            "range"
+         ]
+      },
       "2144332438": {
          "title": "Destructible By Mining",
          "oneOf": [
@@ -389,9 +525,7 @@
                      "type": "string"
                   },
                   "version": {
-                     "type": "integer",
-                     "minimum": -32768,
-                     "maximum": 32767
+                     "type": "integer"
                   }
                },
                "required": [
@@ -490,6 +624,34 @@
          "type": "string",
          "maxLength": 256
       },
+      "2908099874": {
+         "title": "Item Visual",
+         "type": "object",
+         "properties": {
+            "geometry": {
+               "$ref": "#/definitions/1483802163"
+            },
+            "material_instances": {
+               "$ref": "#/definitions/800260518"
+            }
+         },
+         "required": [
+            "geometry",
+            "material_instances"
+         ]
+      },
+      "2986395074": {
+         "title": "Selection Box",
+         "oneOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "$ref": "#/definitions/3903423213",
+               "x-runtime-constraint-description": "\"origin\" + \"size\", must be inside the following limit: Vec3(-8,0,-8) and Vec3(8,24,8)"
+            }
+         ]
+      },
       "3142471136": {
          "title": "Placement Position",
          "type": "object",
@@ -515,9 +677,7 @@
                "$ref": "#/definitions/2267778531"
             },
             {
-               "type": "number",
-               "minimum": 1.1754943508222875e-38,
-               "maximum": 3.4028234663852886e+38
+               "type": "number"
             }
          ]
       },
@@ -567,18 +727,10 @@
                   "pattern": "^(?!(minecraft:support|minecraft:flower_pottable)$)"
                },
                "$ref": "#/definitions/471923105",
-               "x-runtime-constraint-description": "Block needs both a geometry and material instances component."
+               "x-runtime-constraint-description": "Block with \"geometry\" set at \"minecraft:geometry.full_block\" cannot have a \"random_offset\""
             },
             "condition": {
                "type": "string"
-            },
-            "mOrderedV1CustomComponents": {
-               "type": "array",
-               "deprecated": true,
-               "default": [],
-               "items": {
-                  "type": "string"
-               }
             }
          },
          "required": [
@@ -648,13 +800,15 @@
             },
             "seconds_to_destroy": {
                "type": "number",
-               "minimum": 0,
-               "maximum": 3.4028234663852886e+38
+               "minimum": 0
             }
          },
          "required": [
             "seconds_to_destroy"
          ]
+      },
+      "3623939283": {
+         "title": "Replaceable"
       },
       "3655705218": {
          "title": "Light Emission",
@@ -666,6 +820,30 @@
          "title": "Reference",
          "type": "string"
       },
+      "3903423213": {
+         "title": "Bounding Box Data",
+         "type": "object",
+         "properties": {
+            "origin": {
+               "default": [
+                  -8,
+                  0,
+                  -8
+               ],
+               "$ref": "#/definitions/4004946602",
+               "x-runtime-constraint-description": "There are different constraints for different indexes, please refer to member help for more details"
+            },
+            "size": {
+               "default": [
+                  16,
+                  16,
+                  16
+               ],
+               "$ref": "#/definitions/4004946602",
+               "x-runtime-constraint-description": "There are different constraints for different indexes, please refer to member help for more details"
+            }
+         }
+      },
       "3915697282": {
          "title": "Color255RGB",
          "oneOf": [
@@ -676,9 +854,7 @@
             {
                "type": "array",
                "items": {
-                  "type": "integer",
-                  "minimum": -2147483648,
-                  "maximum": 2147483647
+                  "type": "integer"
                },
                "minItems": 3,
                "maxItems": 3
@@ -741,14 +917,42 @@
             "identifier"
          ]
       },
+      "4004946602": {
+         "title": "vec3",
+         "oneOf": [
+            {
+               "type": "array",
+               "items": {
+                  "type": "number"
+               },
+               "minItems": 3,
+               "maxItems": 3
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "x": {
+                     "type": "number",
+                     "default": 0
+                  },
+                  "y": {
+                     "type": "number",
+                     "default": 0
+                  },
+                  "z": {
+                     "type": "number",
+                     "default": 0
+                  }
+               }
+            }
+         ]
+      },
       "4005170816": {
          "title": "Item Specific Speed",
          "type": "object",
          "properties": {
             "destroy_speed": {
-               "type": "number",
-               "minimum": 1.1754943508222875e-38,
-               "maximum": 3.4028234663852886e+38
+               "type": "number"
             },
             "item": {
                "$ref": "#/definitions/1531870811"
@@ -758,6 +962,42 @@
             "destroy_speed",
             "item"
          ]
+      },
+      "4006409319": {
+         "title": "Random Offset",
+         "type": "object",
+         "properties": {
+            "x": {
+               "default": {
+                  "range": {
+                     "min": 0,
+                     "max": 0
+                  },
+                  "steps": 0
+               },
+               "$ref": "#/definitions/2128101180"
+            },
+            "y": {
+               "default": {
+                  "range": {
+                     "min": 0,
+                     "max": 0
+                  },
+                  "steps": 0
+               },
+               "$ref": "#/definitions/2128101180"
+            },
+            "z": {
+               "default": {
+                  "range": {
+                     "min": 0,
+                     "max": 0
+                  },
+                  "steps": 0
+               },
+               "$ref": "#/definitions/2128101180"
+            }
+         }
       },
       "4203318441": {
          "title": "Redstone Producer",
@@ -844,9 +1084,7 @@
          "properties": {
             "min_fall_distance": {
                "type": "number",
-               "default": 0,
-               "minimum": 1.1754943508222875e-38,
-               "maximum": 3.4028234663852886e+38
+               "default": 0
             }
          }
       }
@@ -856,18 +1094,10 @@
    "properties": {
       "components": {
          "$ref": "#/definitions/471923105",
-         "x-runtime-constraint-description": "Block needs both a geometry and material instances component."
+         "x-runtime-constraint-description": "Block with \"geometry\" set at \"minecraft:geometry.full_block\" cannot have a \"random_offset\""
       },
       "description": {
          "$ref": "#/definitions/3993091038"
-      },
-      "mOrderedV1CustomComponents": {
-         "type": "array",
-         "deprecated": true,
-         "default": [],
-         "items": {
-            "type": "string"
-         }
       },
       "permutations": {
          "type": "array",

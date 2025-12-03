@@ -7,8 +7,12 @@ export enum AimAssistTargetMode {
 export enum BlockComponentTypes {
    FluidContainer = "minecraft:fluid_container",
    Inventory = "minecraft:inventory",
+   MapColor = "minecraft:map_color",
+   Movable = "minecraft:movable",
    Piston = "minecraft:piston",
+   PrecipitationInteractions = "minecraft:precipitation_interactions",
    RecordPlayer = "minecraft:record_player",
+   RedstoneProducer = "minecraft:redstone_producer",
    Sign = "minecraft:sign",
 }
 export enum BlockPistonState {
@@ -189,6 +193,17 @@ export enum EnchantmentSlot {
    Spear = "Spear",
    Sword = "Sword",
 }
+export enum EntityAttachPoint {
+   Body = "Body",
+   BreathingPoint = "BreathingPoint",
+   DropAttachPoint = "DropAttachPoint",
+   ExplosionPoint = "ExplosionPoint",
+   Eyes = "Eyes",
+   Feet = "Feet",
+   Head = "Head",
+   Mouth = "Mouth",
+   WeaponAttachPoint = "WeaponAttachPoint",
+}
 export enum EntityComponentTypes {
    AddRider = "minecraft:addrider",
    Ageable = "minecraft:ageable",
@@ -298,12 +313,48 @@ export enum EntityDamageCause {
    void = "void",
    wither = "wither",
 }
+export enum EntityHealCause {
+   Heal = "Heal",
+   Regeneration = "Regeneration",
+   SelfHeal = "SelfHeal",
+}
 export enum EntityInitializationCause {
    Born = "Born",
    Event = "Event",
    Loaded = "Loaded",
    Spawned = "Spawned",
    Transformed = "Transformed",
+}
+export enum EntitySpawnCategory {
+   Ambient = "Ambient",
+   Axolotls = "Axolotls",
+   Creature = "Creature",
+   Misc = "Misc",
+   Monster = "Monster",
+   UndergroundWaterCreature = "UndergroundWaterCreature",
+   WaterAmbient = "WaterAmbient",
+   WaterCreature = "WaterCreature",
+}
+export enum EntitySpawnReason {
+   Breeding = "Breeding",
+   Bucket = "Bucket",
+   ChunkGeneration = "ChunkGeneration",
+   Command = "Command",
+   Conversion = "Conversion",
+   DimensionTravel = "DimensionTravel",
+   Dispenser = "Dispenser",
+   Event = "Event",
+   Jockey = "Jockey",
+   Load = "Load",
+   MobSummoned = "MobSummoned",
+   Natural = "Natural",
+   Patrol = "Patrol",
+   Reinforcement = "Reinforcement",
+   SpawnEgg = "SpawnEgg",
+   Spawner = "Spawner",
+   Structure = "Structure",
+   TrialSpawner = "TrialSpawner",
+   Triggered = "Triggered",
 }
 export enum EntitySwingSource {
    Attack = "Attack",
@@ -597,6 +648,13 @@ export interface AnimationOptions {
    animation: SplineAnimation;
    totalTimeSeconds: number;
 }
+export interface BiomeFilter {
+   excludeBiomes?: Array<string>;
+   excludeTags?: Array<string>;
+   includeBiomes?: Array<string>;
+   includeTags?: Array<string>;
+   superset: boolean;
+}
 export interface BiomeSearchOptions {
    boundingSize?: Vector3;
 }
@@ -607,6 +665,7 @@ export interface BlockBoundingBox {
 export interface BlockCustomComponent {
    beforeOnPlayerPlace?: (arg0: BlockComponentPlayerPlaceBeforeEvent, arg1: CustomComponentParameters)=>void;
    onBreak?: (arg0: BlockComponentBlockBreakEvent, arg1: CustomComponentParameters)=>void;
+   onEntity?: (arg0: BlockComponentEntityEvent, arg1: CustomComponentParameters)=>void;
    onEntityFallOn?: (arg0: BlockComponentEntityFallOnEvent, arg1: CustomComponentParameters)=>void;
    onPlace?: (arg0: BlockComponentOnPlaceEvent, arg1: CustomComponentParameters)=>void;
    onPlayerBreak?: (arg0: BlockComponentPlayerBreakEvent, arg1: CustomComponentParameters)=>void;
@@ -648,6 +707,10 @@ export interface BlockRaycastOptions extends BlockFilter {
    includeLiquidBlocks?: boolean;
    includePassableBlocks?: boolean;
    maxDistance?: number;
+}
+export interface CameraAttachOptions {
+   entity: Entity;
+   locator: EntityAttachPoint;
 }
 export interface CameraFadeOptions {
    fadeColor?: RGB;
@@ -782,8 +845,22 @@ export interface EntityFilter {
    tags?: Array<string>;
    type?: string;
 }
+export interface EntityHealEventOptions {
+   allowedHealCauses?: Array<EntityHealCause>;
+   entityFilter?: EntityFilter;
+}
 export interface EntityHitInformation {
    entity?: Entity;
+}
+export interface EntityHurtAfterEventOptions {
+   allowedDamageCauses?: Array<EntityDamageCause>;
+   entities?: Array<Entity>;
+   entityFilter?: EntityFilter;
+   entityTypes?: Array<string>;
+}
+export interface EntityHurtBeforeEventOptions {
+   allowedDamageCauses?: Array<EntityDamageCause>;
+   entityFilter?: EntityFilter;
 }
 //@ts-ignore
 export interface EntityQueryOptions extends EntityFilter {
@@ -909,6 +986,7 @@ export interface PlayerSwingEventOptions {
 }
 export interface ProgressKeyFrame {
    alpha: number;
+   easingFunc?: EasingType;
    timeSeconds: number;
 }
 export interface ProjectileShootOptions {
@@ -942,6 +1020,7 @@ export interface RGBA extends RGB {
    alpha: number;
 }
 export interface RotationKeyFrame {
+   easingFunc?: EasingType;
    rotation: Vector3;
    timeSeconds: number;
 }
@@ -1081,6 +1160,8 @@ export class AimAssistRegistry {
 }
 export class BiomeType {
    public readonly id: string;
+   public getTags(): Array<string>;
+   public hasTags(tags: Array<string>): boolean;
    private constructor();
 }
 export class BiomeTypes {
@@ -1157,6 +1238,13 @@ export class BlockComponentBlockBreakEvent extends BlockEvent {
    public readonly blockDestructionSource?: Block;
    public readonly brokenBlockPermutation: BlockPermutation;
    public readonly entitySource?: Entity;
+   private constructor();
+}
+//@ts-ignore
+export class BlockComponentEntityEvent extends BlockEvent {
+   public readonly blockPermutation: BlockPermutation;
+   public readonly entitySource?: Entity;
+   public readonly name: string;
    private constructor();
 }
 //@ts-ignore
@@ -1277,6 +1365,7 @@ export class BlockMovableComponent extends BlockComponent {
    private constructor();
 }
 export class BlockPermutation {
+   public readonly localizationKey: string;
    public readonly type: BlockType;
    public canBeDestroyedByLiquidSpread(liquidType: LiquidType): boolean;
    public canContainLiquid(liquidType: LiquidType): boolean;
@@ -1351,6 +1440,7 @@ export class BlockStateType {
 }
 export class BlockType {
    public readonly id: string;
+   public readonly localizationKey: string;
    private constructor();
 }
 export class BlockTypes {
@@ -1390,6 +1480,7 @@ export class ButtonPushAfterEventSignal {
 }
 export class Camera {
    public readonly isValid: boolean;
+   public attachToEntity(attachCameraOptions?: CameraAttachOptions): void;
    public clear(): void;
    public fade(fadeCameraOptions?: CameraFadeOptions): void;
    public playAnimation(splineType: CatmullRomSpline | LinearSpline, cameraAnimationOptions: AnimationOptions): void;
@@ -1550,6 +1641,7 @@ export class Dimension {
    public readonly heightRange: common.NumberRange;
    public readonly id: string;
    public readonly localizationKey: string;
+   public containsBiomes(volume: BlockVolumeBase, biomeFilter: BiomeFilter): boolean;
    public containsBlock(volume: BlockVolumeBase, filter: BlockFilter, allowUnloadedChunks?: boolean): boolean;
    public createExplosion(location: Vector3, radius: number, explosionOptions?: ExplosionOptions): boolean;
    public fillBlocks(volume: BlockVolumeBase, block: BlockPermutation | BlockType | string, options?: BlockFillOptions): ListBlockVolume;
@@ -1885,6 +1977,33 @@ export class EntityHealableComponent extends EntityComponent {
    public getFeedItems(): Array<FeedItem>;
    private constructor();
 }
+export class EntityHealAfterEvent {
+   public readonly healedEntity: Entity;
+   public readonly healing: number;
+   public readonly healSource: EntityHealSource;
+   private constructor();
+}
+export class EntityHealAfterEventSignal {
+   public subscribe(callback: (arg0: EntityHealAfterEvent)=>void, options?: EntityHealEventOptions): (arg0: EntityHealAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityHealAfterEvent)=>void): void;
+   private constructor();
+}
+export class EntityHealBeforeEvent {
+   public cancel: boolean;
+   public readonly healedEntity: Entity;
+   public healing: number;
+   public readonly healSource: EntityHealSource;
+   private constructor();
+}
+export class EntityHealBeforeEventSignal {
+   public subscribe(callback: (arg0: EntityHealBeforeEvent)=>void, options?: EntityHealEventOptions): (arg0: EntityHealBeforeEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityHealBeforeEvent)=>void): void;
+   private constructor();
+}
+export class EntityHealSource {
+   public readonly cause: EntityHealCause;
+   private constructor();
+}
 export class EntityHealthChangedAfterEvent {
    public readonly entity: Entity;
    public readonly newValue: number;
@@ -1935,8 +2054,20 @@ export class EntityHurtAfterEvent {
    private constructor();
 }
 export class EntityHurtAfterEventSignal {
-   public subscribe(callback: (arg0: EntityHurtAfterEvent)=>void, options?: EntityEventOptions): (arg0: EntityHurtAfterEvent)=>void;
+   public subscribe(callback: (arg0: EntityHurtAfterEvent)=>void, options?: EntityHurtAfterEventOptions): (arg0: EntityHurtAfterEvent)=>void;
    public unsubscribe(callback: (arg0: EntityHurtAfterEvent)=>void): void;
+   private constructor();
+}
+export class EntityHurtBeforeEvent {
+   public cancel: boolean;
+   public damage: number;
+   public readonly damageSource: EntityDamageSource;
+   public readonly hurtEntity: Entity;
+   private constructor();
+}
+export class EntityHurtBeforeEventSignal {
+   public subscribe(callback: (arg0: EntityHurtBeforeEvent)=>void, options?: EntityHurtBeforeEventOptions): (arg0: EntityHurtBeforeEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityHurtBeforeEvent)=>void): void;
    private constructor();
 }
 //@ts-ignore
@@ -2278,6 +2409,23 @@ export class EntitySpawnAfterEventSignal {
    public unsubscribe(callback: (arg0: EntitySpawnAfterEvent)=>void): void;
    private constructor();
 }
+export class EntitySpawnCallbackArgs {
+   public readonly dimensionLocation: DimensionLocation;
+   public readonly spawnReason: EntitySpawnReason;
+   public readonly spawnType: EntitySpawnType;
+   private constructor();
+}
+export class EntitySpawnType {
+   public readonly entityId: string;
+   public readonly height: number;
+   public readonly isImmuneFire: boolean;
+   public readonly isSummonable: boolean;
+   public readonly spawnCategory: EntitySpawnCategory;
+   public readonly width: number;
+   public getSpawnAABB(position: Vector3): AABB;
+   public isBlockDangerous(block: Block): boolean;
+   private constructor();
+}
 //@ts-ignore
 export class EntityStrengthComponent extends EntityComponent {
    public static readonly componentId = "minecraft:strength";
@@ -2309,6 +2457,7 @@ export class EntityTameMountComponent extends EntityComponent {
 }
 export class EntityType {
    public readonly id: string;
+   public readonly localizationKey: string;
    private constructor();
 }
 //@ts-ignore
@@ -2705,6 +2854,7 @@ export class ItemStopUseOnAfterEventSignal {
 }
 export class ItemType {
    public readonly id: string;
+   public readonly localizationKey: string;
    private constructor();
 }
 export class ItemTypes {
@@ -2860,6 +3010,12 @@ export class MolangVariableMap {
    public setFloat(variableName: string, number: number): void;
    public setSpeedAndDirection(variableName: string, speed: number, direction: Vector3): void;
    public setVector3(variableName: string, vector: Vector3): void;
+}
+export class ObstructionCallbackArgs {
+   public readonly dimension: Dimension;
+   public readonly entity: Entity;
+   public readonly spawnType: EntitySpawnType;
+   private constructor();
 }
 export class PackSettingChangeAfterEvent {
    public readonly settingName: string;
@@ -3479,6 +3635,11 @@ export class ShutdownEvent {
 export class SmeltItemFunction extends LootItemFunction {
    private constructor();
 }
+export class SpawnRulesRegistry {
+   public registerEntitySpawnCallback(id: string, callback: (arg0: EntitySpawnCallbackArgs)=>boolean): void;
+   public registerObstructionCallback(id: string, callback: (arg0: ObstructionCallbackArgs)=>boolean): void;
+   private constructor();
+}
 //@ts-ignore
 export class SpecificEnchantFunction extends LootItemFunction {
    public readonly enchantments: Array<EnchantInfo>;
@@ -3493,6 +3654,7 @@ export class StartupEvent {
    public readonly blockComponentRegistry: BlockComponentRegistry;
    public readonly customCommandRegistry: CustomCommandRegistry;
    public readonly itemComponentRegistry: ItemComponentRegistry;
+   public getSpawnRulesRegistry(): SpawnRulesRegistry;
    private constructor();
 }
 export class Structure {
@@ -3665,6 +3827,7 @@ export class WorldAfterEvents {
    public readonly dataDrivenEntityTrigger: DataDrivenEntityTriggerAfterEventSignal;
    public readonly effectAdd: EffectAddAfterEventSignal;
    public readonly entityDie: EntityDieAfterEventSignal;
+   public readonly entityHeal: EntityHealAfterEventSignal;
    public readonly entityHealthChanged: EntityHealthChangedAfterEventSignal;
    public readonly entityHitBlock: EntityHitBlockAfterEventSignal;
    public readonly entityHitEntity: EntityHitEntityAfterEventSignal;
@@ -3715,6 +3878,8 @@ export class WorldAfterEvents {
 export class WorldBeforeEvents {
    public readonly chatSend: ChatSendBeforeEventSignal;
    public readonly effectAdd: EffectAddBeforeEventSignal;
+   public readonly entityHeal: EntityHealBeforeEventSignal;
+   public readonly entityHurt: EntityHurtBeforeEventSignal;
    public readonly entityRemove: EntityRemoveBeforeEventSignal;
    public readonly explosion: ExplosionBeforeEventSignal;
    public readonly itemUse: ItemUseBeforeEventSignal;
@@ -3738,6 +3903,7 @@ export class WorldLoadAfterEventSignal {
 
 export const HudElementsCount = 13;
 export const HudVisibilityCount = 2;
+export const isInternal = true;
 export const MoonPhaseCount = 8;
 export const TicksPerDay = 24000;
 export const TicksPerSecond = 20;
@@ -3886,6 +4052,10 @@ export class PlaceJigsawError extends Error {
 }
 //@ts-ignore
 export class RawMessageError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class SpawnRulesInvalidRegistryError extends Error {
    private constructor();
 }
 //@ts-ignore

@@ -26,8 +26,14 @@ export class Atmospherics {
    public setSunMieStrength(sunMieStrength: number | Record<number,number>, biomeIdentifier: server.BiomeType): void;
    private constructor();
 }
+export class Water {
+   public resetChlorophyll(biomeIdentifier: server.BiomeType): void;
+   public setChlorophyll(chlorophyll: number, biomeIdentifier: server.BiomeType): void;
+   private constructor();
+}
 
 export const InternalConstant = 1;
 
 export const atmosphere: Atmospherics;
+export const water: Water;
 

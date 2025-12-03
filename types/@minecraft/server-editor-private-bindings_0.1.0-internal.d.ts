@@ -64,6 +64,14 @@ export interface DataTransferCollectionNameData {
    nameStringId: string;
    uniqueId: string;
 }
+export interface DataTransferRequestDataOptions {
+   identifier?: string;
+   useSnapshot?: boolean;
+}
+export interface DataTransferSendDataOptions {
+   identifier?: string;
+   lockToBiome?: boolean;
+}
 export interface EditorJigsawSection {
    bounds: server.BlockBoundingBox;
    offset: server.Vector3;
@@ -143,6 +151,14 @@ export interface PrefabTemplateMetadata {
    structureReferenceCount: number;
    tags: Array<string>;
    templateId: string;
+}
+export interface ProjectRegionExtents {
+   x: common.NumberRange;
+   z: common.NumberRange;
+}
+export interface ProjectRegionManagerChunkProcessingState {
+   chunksProcessed: number;
+   isCompleted: boolean;
 }
 export interface ProjectRegionOptions {
    availabilityMode?: ProjectRegionAvailabilityMode;
@@ -229,13 +245,24 @@ export class DataStorePayloadAfterEventSignal {
    public unsubscribe(callback: (arg0: DataStorePayloadAfterEvent)=>void): void;
    private constructor();
 }
+export class DataTransferCreateSettingResponse {
+   public readonly success: boolean;
+   private constructor();
+}
 export class DataTransferManager {
    public closeSession(collectionUniqueId: string): void;
+   public createSetting(collectionUniqueId: string, identifier: string, jsonData: string, lockToBiome: boolean): Promise<DataTransferCreateSettingResponse>;
    public getRegisteredAccessors(): Array<DataTransferCollectionNameData>;
    public openSession(collectionUniqueId: string): void;
-   public requestData(collectionUniqueId: string, useSnapshot?: boolean): Promise<DataTransferRequestResponse>;
-   public sendData(collectionUniqueId: string, jsonData: string): void;
+   public requestData(collectionUniqueId: string, options?: DataTransferRequestDataOptions): Promise<DataTransferRequestResponse>;
+   public requestIdentifiers(collectionUniqueId: string): Promise<DataTransferRequestIdentifiersResponse>;
+   public sendData(collectionUniqueId: string, jsonData: string, options?: DataTransferSendDataOptions): void;
    public sendDataToClipboard(jsonData: string): void;
+   private constructor();
+}
+export class DataTransferRequestIdentifiersResponse {
+   public readonly identifiers: Array<string>;
+   public readonly lockedToBiome: boolean;
    private constructor();
 }
 export class DataTransferRequestResponse {
@@ -272,7 +299,7 @@ export class InternalPlayerServiceContext {
    public readonly jigsawService: JigsawService;
    public readonly prefabManager: PrefabManager;
    public readonly realmsService: RealmsService;
-   public readonly regionManager: ProjectRegionManager;
+   public readonly regionManager: PlayerProjectRegionManager;
    private constructor();
 }
 export class JigsawService {
@@ -288,6 +315,7 @@ export class JigsawService {
 }
 export class MinecraftEditorInternal {
    public readonly isNewLevel: boolean;
+   public readonly regionManager: ProjectRegionManager;
    public fireTelemetryEvent(player: server.Player, source: string, eventName: string, metadata: string): void;
    public getPlayerServices(player: server.Player): InternalPlayerServiceContext;
    public registerExtension(extensionName: string, activationFunction: (arg0: server_editor.ExtensionContext)=>void, shutdownFunction: (arg0: server_editor.ExtensionContext)=>void, options?: server_editor.ExtensionOptionalParameters): server_editor.Extension;
@@ -310,6 +338,14 @@ export class PersistenceGroupItem {
    public getKey(): string;
    public getValue(): string;
    public setValue(value: string): void;
+   private constructor();
+}
+export class PlayerProjectRegionManager {
+   public disposeAllRegions(): void;
+   public disposeRegion(id: string): boolean;
+   public getCursorRegion(): ProjectRegion;
+   public getSelectionRegion(): ProjectRegion;
+   public leaseRegion(options: ProjectRegionOptions): ProjectRegion;
    private constructor();
 }
 export class PrefabInstanceInteractionEvent {
@@ -411,11 +447,10 @@ export class ProjectRegion {
    private constructor();
 }
 export class ProjectRegionManager {
-   public disposeAllRegions(): void;
-   public disposeRegion(id: string): boolean;
-   public getCursorRegion(): ProjectRegion;
-   public getSelectionRegion(): ProjectRegion;
-   public leaseRegion(options: ProjectRegionOptions): ProjectRegion;
+   public readonly isProcessingChunks: boolean;
+   public getChunkProcessingState(): (ProjectRegionManagerChunkProcessingState | undefined);
+   public pruneRegion(dimensionId: string, boundsList: Array<ProjectRegionExtents>): Promise<ProjectRegionManagerChunkProcessingState>;
+   public regenerateRegion(dimensionId: string, boundsList: Array<ProjectRegionExtents>, areBoundsExcluded: boolean): Promise<ProjectRegionManagerChunkProcessingState>;
    private constructor();
 }
 export class RealmsService {

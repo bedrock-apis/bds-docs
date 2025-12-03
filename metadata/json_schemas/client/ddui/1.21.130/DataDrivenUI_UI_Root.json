@@ -3,6 +3,86 @@
    "$id": "495569988",
    "x-format-version": "1.21.130",
    "definitions": {
+      "657427936": {
+         "title": "Form.ScrollView",
+         "type": "object",
+         "properties": {
+            "attribs": {
+               "description": "Dynamic value"
+            },
+            "children": {
+               "type": "array",
+               "items": {
+                  "oneOf": [
+                     {
+                        "$ref": "#/definitions/2831017291"
+                     },
+                     {
+                        "$ref": "#/definitions/2659582352"
+                     },
+                     {
+                        "$ref": "#/definitions/1263268781"
+                     },
+                     {
+                        "$ref": "#/definitions/3106737233"
+                     },
+                     {
+                        "$ref": "#/definitions/657427936"
+                     },
+                     {
+                        "$ref": "#/definitions/2858690001"
+                     },
+                     {
+                        "$ref": "#/definitions/2796934272"
+                     },
+                     {
+                        "$ref": "#/definitions/3905813917"
+                     },
+                     {
+                        "$ref": "#/definitions/2407906912"
+                     },
+                     {
+                        "$ref": "#/definitions/793474382"
+                     },
+                     {
+                        "$ref": "#/definitions/828768353"
+                     },
+                     {
+                        "$ref": "#/definitions/906352983"
+                     }
+                  ]
+               }
+            },
+            "tag": {
+               "title": "TagType",
+               "type": "string",
+               "const": "form.scrollview",
+               "enum": [
+                  "Container.Layout",
+                  "Panel",
+                  "Panel.Text",
+                  "Panel.Decoration",
+                  "Panel.Spacing",
+                  "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
+                  "Context",
+                  "Context.List",
+                  "Container.FixedGridLayout",
+                  "Container.Item"
+               ]
+            }
+         },
+         "required": [
+            "children",
+            "tag"
+         ]
+      },
       "793474382": {
          "title": "Panel.Decoration",
          "type": "object",
@@ -12,12 +92,19 @@
                "type": "string",
                "const": "panel.decoration",
                "enum": [
-                  "Container",
+                  "Container.Layout",
                   "Panel",
                   "Panel.Text",
                   "Panel.Decoration",
                   "Panel.Spacing",
                   "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
                   "Context",
                   "Context.List",
                   "Container.FixedGridLayout",
@@ -38,12 +125,19 @@
                "type": "string",
                "const": "panel.spacing",
                "enum": [
-                  "Container",
+                  "Container.Layout",
                   "Panel",
                   "Panel.Text",
                   "Panel.Decoration",
                   "Panel.Spacing",
                   "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
                   "Context",
                   "Context.List",
                   "Container.FixedGridLayout",
@@ -67,12 +161,19 @@
                "type": "string",
                "const": "panel.text",
                "enum": [
-                  "Container",
+                  "Container.Layout",
                   "Panel",
                   "Panel.Text",
                   "Panel.Decoration",
                   "Panel.Spacing",
                   "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
                   "Context",
                   "Context.List",
                   "Container.FixedGridLayout",
@@ -82,6 +183,89 @@
          },
          "required": [
             "attribs",
+            "tag"
+         ]
+      },
+      "1263268781": {
+         "title": "Form.Divider",
+         "type": "object",
+         "properties": {
+            "tag": {
+               "title": "TagType",
+               "type": "string",
+               "const": "form.divider",
+               "enum": [
+                  "Container.Layout",
+                  "Panel",
+                  "Panel.Text",
+                  "Panel.Decoration",
+                  "Panel.Spacing",
+                  "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
+                  "Context",
+                  "Context.List",
+                  "Container.FixedGridLayout",
+                  "Container.Item"
+               ]
+            }
+         },
+         "required": [
+            "tag"
+         ]
+      },
+      "1307159387": {
+         "title": "Container.Layout",
+         "type": "object",
+         "properties": {
+            "children": {
+               "type": "array",
+               "items": {
+                  "oneOf": [
+                     {
+                        "$ref": "#/definitions/1307159387"
+                     },
+                     {
+                        "$ref": "#/definitions/2952736141"
+                     },
+                     {
+                        "$ref": "#/definitions/2487332864"
+                     }
+                  ]
+               }
+            },
+            "tag": {
+               "title": "TagType",
+               "type": "string",
+               "const": "container.layout",
+               "enum": [
+                  "Container.Layout",
+                  "Panel",
+                  "Panel.Text",
+                  "Panel.Decoration",
+                  "Panel.Spacing",
+                  "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
+                  "Context",
+                  "Context.List",
+                  "Container.FixedGridLayout",
+                  "Container.Item"
+               ]
+            }
+         },
+         "required": [
+            "children",
             "tag"
          ]
       },
@@ -117,12 +301,19 @@
                "type": "string",
                "const": "context.list",
                "enum": [
-                  "Container",
+                  "Container.Layout",
                   "Panel",
                   "Panel.Text",
                   "Panel.Decoration",
                   "Panel.Spacing",
                   "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
                   "Context",
                   "Context.List",
                   "Container.FixedGridLayout",
@@ -147,12 +338,19 @@
                "type": "string",
                "const": "container.item",
                "enum": [
-                  "Container",
+                  "Container.Layout",
                   "Panel",
                   "Panel.Text",
                   "Panel.Decoration",
                   "Panel.Spacing",
                   "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
                   "Context",
                   "Context.List",
                   "Container.FixedGridLayout",
@@ -176,12 +374,19 @@
                "type": "string",
                "const": "panel.closebutton",
                "enum": [
-                  "Container",
+                  "Container.Layout",
                   "Panel",
                   "Panel.Text",
                   "Panel.Decoration",
                   "Panel.Spacing",
                   "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
                   "Context",
                   "Context.List",
                   "Container.FixedGridLayout",
@@ -208,6 +413,27 @@
                         "$ref": "#/definitions/2831017291"
                      },
                      {
+                        "$ref": "#/definitions/2659582352"
+                     },
+                     {
+                        "$ref": "#/definitions/1263268781"
+                     },
+                     {
+                        "$ref": "#/definitions/3106737233"
+                     },
+                     {
+                        "$ref": "#/definitions/657427936"
+                     },
+                     {
+                        "$ref": "#/definitions/2858690001"
+                     },
+                     {
+                        "$ref": "#/definitions/2796934272"
+                     },
+                     {
+                        "$ref": "#/definitions/3905813917"
+                     },
+                     {
                         "$ref": "#/definitions/2407906912"
                      },
                      {
@@ -227,12 +453,19 @@
                "type": "string",
                "const": "panel",
                "enum": [
-                  "Container",
+                  "Container.Layout",
                   "Panel",
                   "Panel.Text",
                   "Panel.Decoration",
                   "Panel.Spacing",
                   "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
                   "Context",
                   "Context.List",
                   "Container.FixedGridLayout",
@@ -242,6 +475,78 @@
          },
          "required": [
             "children",
+            "tag"
+         ]
+      },
+      "2659582352": {
+         "title": "Form.Button",
+         "type": "object",
+         "properties": {
+            "attribs": {
+               "description": "Dynamic value"
+            },
+            "tag": {
+               "title": "TagType",
+               "type": "string",
+               "const": "form.button",
+               "enum": [
+                  "Container.Layout",
+                  "Panel",
+                  "Panel.Text",
+                  "Panel.Decoration",
+                  "Panel.Spacing",
+                  "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
+                  "Context",
+                  "Context.List",
+                  "Container.FixedGridLayout",
+                  "Container.Item"
+               ]
+            }
+         },
+         "required": [
+            "tag"
+         ]
+      },
+      "2796934272": {
+         "title": "Form.Switch",
+         "type": "object",
+         "properties": {
+            "attribs": {
+               "description": "Dynamic value"
+            },
+            "tag": {
+               "title": "TagType",
+               "type": "string",
+               "const": "form.switch",
+               "enum": [
+                  "Container.Layout",
+                  "Panel",
+                  "Panel.Text",
+                  "Panel.Decoration",
+                  "Panel.Spacing",
+                  "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
+                  "Context",
+                  "Context.List",
+                  "Container.FixedGridLayout",
+                  "Container.Item"
+               ]
+            }
+         },
+         "required": [
             "tag"
          ]
       },
@@ -270,12 +575,19 @@
                "type": "string",
                "const": "container.fixedgridlayout",
                "enum": [
-                  "Container",
+                  "Container.Layout",
                   "Panel",
                   "Panel.Text",
                   "Panel.Decoration",
                   "Panel.Spacing",
                   "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
                   "Context",
                   "Context.List",
                   "Container.FixedGridLayout",
@@ -285,6 +597,42 @@
          },
          "required": [
             "children",
+            "tag"
+         ]
+      },
+      "2858690001": {
+         "title": "Form.Slider",
+         "type": "object",
+         "properties": {
+            "attribs": {
+               "description": "Dynamic value"
+            },
+            "tag": {
+               "title": "TagType",
+               "type": "string",
+               "const": "form.slider",
+               "enum": [
+                  "Container.Layout",
+                  "Panel",
+                  "Panel.Text",
+                  "Panel.Decoration",
+                  "Panel.Spacing",
+                  "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
+                  "Context",
+                  "Context.List",
+                  "Container.FixedGridLayout",
+                  "Container.Item"
+               ]
+            }
+         },
+         "required": [
             "tag"
          ]
       },
@@ -300,7 +648,7 @@
                "items": {
                   "oneOf": [
                      {
-                        "$ref": "#/definitions/3605492257"
+                        "$ref": "#/definitions/1307159387"
                      },
                      {
                         "$ref": "#/definitions/2952736141"
@@ -316,12 +664,19 @@
                "type": "string",
                "const": "context",
                "enum": [
-                  "Container",
+                  "Container.Layout",
                   "Panel",
                   "Panel.Text",
                   "Panel.Decoration",
                   "Panel.Spacing",
                   "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
                   "Context",
                   "Context.List",
                   "Container.FixedGridLayout",
@@ -334,37 +689,31 @@
             "tag"
          ]
       },
-      "3605492257": {
-         "title": "Container",
+      "3106737233": {
+         "title": "Form.Dropdown",
          "type": "object",
          "properties": {
-            "children": {
-               "type": "array",
-               "items": {
-                  "oneOf": [
-                     {
-                        "$ref": "#/definitions/3605492257"
-                     },
-                     {
-                        "$ref": "#/definitions/2952736141"
-                     },
-                     {
-                        "$ref": "#/definitions/2487332864"
-                     }
-                  ]
-               }
+            "attribs": {
+               "description": "Dynamic value"
             },
             "tag": {
                "title": "TagType",
                "type": "string",
-               "const": "container",
+               "const": "form.dropdown",
                "enum": [
-                  "Container",
+                  "Container.Layout",
                   "Panel",
                   "Panel.Text",
                   "Panel.Decoration",
                   "Panel.Spacing",
                   "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
                   "Context",
                   "Context.List",
                   "Container.FixedGridLayout",
@@ -373,7 +722,6 @@
             }
          },
          "required": [
-            "children",
             "tag"
          ]
       },
@@ -390,6 +738,42 @@
             "root_point"
          ]
       },
+      "3905813917": {
+         "title": "Form.TextField",
+         "type": "object",
+         "properties": {
+            "attribs": {
+               "description": "Dynamic value"
+            },
+            "tag": {
+               "title": "TagType",
+               "type": "string",
+               "const": "form.textfield",
+               "enum": [
+                  "Container.Layout",
+                  "Panel",
+                  "Panel.Text",
+                  "Panel.Decoration",
+                  "Panel.Spacing",
+                  "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
+                  "Context",
+                  "Context.List",
+                  "Container.FixedGridLayout",
+                  "Container.Item"
+               ]
+            }
+         },
+         "required": [
+            "tag"
+         ]
+      },
       "3983142748": {
          "title": "layout",
          "type": "object",
@@ -399,7 +783,7 @@
                "items": {
                   "oneOf": [
                      {
-                        "$ref": "#/definitions/3605492257"
+                        "$ref": "#/definitions/1307159387"
                      },
                      {
                         "$ref": "#/definitions/2952736141"
