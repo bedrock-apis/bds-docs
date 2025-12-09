@@ -3,6 +3,31 @@
    "$id": "217838805",
    "x-format-version": "1.21.90",
    "definitions": {
+      "950654229": {
+         "title": "CameraAimAssistCommandPresetDefinition",
+         "type": "object",
+         "properties": {
+            "angle": {
+               "$ref": "#/definitions/4021724221"
+            },
+            "distance": {
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
+            },
+            "preset": {
+               "$ref": "#/definitions/1492643634"
+            },
+            "target_mode": {
+               "title": "Aim-Assist Target Mode",
+               "type": "string",
+               "enum": [
+                  "angle",
+                  "distance"
+               ]
+            }
+         }
+      },
       "1492643634": {
          "title": "Reference",
          "type": "string"
@@ -12,7 +37,7 @@
          "type": "object",
          "properties": {
             "aim_assist": {
-               "$ref": "#/definitions/3530470262"
+               "$ref": "#/definitions/950654229"
             },
             "continue_targeting": {
                "type": "boolean"
@@ -41,13 +66,15 @@
             "horizontal_rotation_limit": {
                "$ref": "#/definitions/4021724221",
                "minimum": 0,
-               "maximum": 360
+               "maximum": 360,
+               "x-runtime-constraint-description": "Verify that vector elements added together are not greater than a given total"
             },
             "identifier": {
                "$ref": "#/definitions/3573822430",
                "pattern": "^(\\w+:\\w+)?$"
             },
             "inherit_from": {
+               "default": "",
                "$ref": "#/definitions/3640473056",
                "pattern": "^(\\w+:\\w+)?$"
             },
@@ -63,13 +90,19 @@
                "type": "boolean"
             },
             "pos_x": {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "pos_y": {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "pos_z": {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "radius": {
                "type": "number",
@@ -82,7 +115,9 @@
                "maximum": 90
             },
             "rot_y": {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "rotation_speed": {
                "type": "number",
@@ -93,12 +128,15 @@
                "type": "boolean"
             },
             "tracking_radius": {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "vertical_rotation_limit": {
                "$ref": "#/definitions/4021724221",
                "minimum": 0,
-               "maximum": 180
+               "maximum": 180,
+               "x-runtime-constraint-description": "Check that x is less than y"
             },
             "view_offset": {
                "$ref": "#/definitions/4021724221",
@@ -120,29 +158,6 @@
             "identifier"
          ]
       },
-      "3530470262": {
-         "title": "CameraPresetAimAssistDefinition",
-         "type": "object",
-         "properties": {
-            "angle": {
-               "$ref": "#/definitions/4021724221"
-            },
-            "distance": {
-               "type": "number"
-            },
-            "preset": {
-               "$ref": "#/definitions/1492643634"
-            },
-            "target_mode": {
-               "title": "Aim-Assist Target Mode",
-               "type": "string",
-               "enum": [
-                  "angle",
-                  "distance"
-               ]
-            }
-         }
-      },
       "3573822430": {
          "title": "Identifier",
          "type": "string"
@@ -157,7 +172,9 @@
             {
                "type": "array",
                "items": {
-                  "type": "number"
+                  "type": "number",
+                  "minimum": 1.1754943508222875e-38,
+                  "maximum": 3.4028234663852886e+38
                },
                "minItems": 2,
                "maxItems": 2
@@ -166,10 +183,16 @@
                "type": "object",
                "properties": {
                   "x": {
-                     "type": "number"
+                     "type": "number",
+                     "default": 0,
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   "y": {
-                     "type": "number"
+                     "type": "number",
+                     "default": 0,
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   }
                }
             }

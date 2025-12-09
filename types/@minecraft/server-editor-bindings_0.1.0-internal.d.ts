@@ -37,6 +37,10 @@ export enum BrushDirectionalPlacementMode {
    Random2Axes = 13,
    Random3Axes = 14,
 }
+export enum BrushElevationMode {
+   Lower = 1,
+   Raise = 0,
+}
 export enum ContiguousSelectionType {
    AllBlocks = 3,
    Custom = 4,
@@ -127,6 +131,7 @@ export enum PaintCompletionState {
 }
 export enum PaintMode {
    BlockPaint = 0,
+   Elevation = 5,
    Flatten = 4,
    FreehandSelect = 1,
    Roughen = 3,
@@ -404,10 +409,14 @@ export interface GameOptions {
    weather?: number;
    worldName?: string;
 }
+export interface LocalizationEntry {
+   id: string;
+   props?: Array<string>;
+}
 export interface LogProperties {
    channelMask?: LogChannel;
    player?: server.Player;
-   subMessage?: string;
+   subMessage?: LocalizationEntry | string;
    tags?: Array<string>;
 }
 export interface ProjectExportOptions {
@@ -428,6 +437,18 @@ export interface QuickExtrudeProperties {
    selectionDirection?: number;
    size?: number;
    startingLocation?: server.Vector3;
+}
+export interface SelectionManifestData {
+   entries: Array<SelectionManifestEntry>;
+   generationId: number;
+   inProgress: boolean;
+   processedBlocks: number;
+   progress: number;
+   totalBlocks: number;
+}
+export interface SelectionManifestEntry {
+   blockIdentifier: string;
+   count: number;
 }
 export interface WeightedBlock {
    block: server.BlockType;
@@ -604,6 +625,10 @@ export class BrushShapeManager {
    public setBrushShapeOffset(offset: server.Vector3): void;
    public setBrushShapeVisible(visible: boolean): void;
    public setDirectionalPlacementMode(directionalPlacementMode: BrushDirectionalPlacementMode): void;
+   public setElevationBrushRadius(elevationBrushRadius: number): void;
+   public setElevationFalloff(elevationFalloff: number): void;
+   public setElevationMode(elevationMode: BrushElevationMode): void;
+   public setElevationSampleLayers(elevationSampleLayers: number): void;
    public setFlattenMode(flattenMode: FlattenMode): void;
    public setFlattenSmoothing(flattenSmoothing: number): void;
    public setFloorBlockOverride(floorBlockOverride: boolean): void;
@@ -663,6 +688,7 @@ export class CurrentThemeColorChangeAfterEventSignal {
 export class Cursor {
    public readonly faceDirection: number;
    public readonly isVisible: boolean;
+   public readonly maxViewBlockDistance: number;
    public getPosition(): server.Vector3;
    public getProperties(): CursorProperties;
    public getRay(): CursorRay;
@@ -775,10 +801,10 @@ export class IBlockPaletteItem {
    private constructor();
 }
 export class Logger {
-   public debug(message: string, properties?: LogProperties): void;
-   public error(message: string, properties?: LogProperties): void;
-   public info(message: string, properties?: LogProperties): void;
-   public warning(message: string, properties?: LogProperties): void;
+   public debug(message: LocalizationEntry | string, properties?: LogProperties): void;
+   public error(message: LocalizationEntry | string, properties?: LogProperties): void;
+   public info(message: LocalizationEntry | string, properties?: LogProperties): void;
+   public warning(message: LocalizationEntry | string, properties?: LogProperties): void;
    private constructor();
 }
 export class MinecraftEditor {
@@ -866,6 +892,10 @@ export class SelectionEventAfterEvent {
 export class SelectionManager {
    public readonly entity: SelectionContainerEntity;
    public readonly volume: SelectionContainerVolume;
+   public deselectBlocks(blockIdentifier: string): Promise<number>;
+   public generateManifest(): Promise<SelectionManifestData>;
+   public getCurrentManifest(): (SelectionManifestData | undefined);
+   public replaceBlocks(fromBlockIdentifier: string, toBlockIdentifier: string): Promise<number>;
    private constructor();
 }
 export class SettingsManager {
@@ -952,7 +982,7 @@ export class Widget {
    public visible: boolean;
    public readonly widgetName: string;
    public addBoundingBox(componentName: string, size: server.Vector3, options?: WidgetComponentBoundingBoxOptions): WidgetComponentBoundingBox;
-   public addClipboardComponent(componentName: string, clipboardItem?: ClipboardItem, options?: WidgetComponentClipboardOptions): WidgetComponentClipboard;
+   public addClipboardComponent(componentName: string, clipboardItem?: ClipboardItem | EditorStructure, options?: WidgetComponentClipboardOptions): WidgetComponentClipboard;
    public addEntityComponent(componentName: string, actorNameId: string, options?: WidgetComponentEntityOptions): WidgetComponentEntity;
    public addGizmoComponent(componentName: string, options?: WidgetComponentGizmoOptions): WidgetComponentGizmo;
    public addGridComponent(componentName: string, options?: WidgetComponentGridOptions): WidgetComponentGrid;

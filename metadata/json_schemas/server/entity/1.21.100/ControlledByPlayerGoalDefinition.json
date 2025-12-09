@@ -7,6 +7,7 @@
    "properties": {
       "control_flags": {
          "type": "array",
+         "default": [],
          "items": {
             "title": "Goal's control flags",
             "type": "string",
@@ -19,18 +20,27 @@
       },
       "fractional_rotation": {
          "type": "number",
+         "default": 0.5,
          "minimum": 0.5,
          "maximum": 1
       },
       "fractional_rotation_limit": {
-         "type": "number"
+         "type": "number",
+         "default": 5,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       },
       "mount_speed_multiplier": {
-         "type": "number"
+         "type": "number",
+         "default": 1,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       },
       "priority": {
          "type": "integer",
-         "minimum": 0
+         "default": 0,
+         "minimum": 0,
+         "maximum": 2147483647
       }
    }
 }

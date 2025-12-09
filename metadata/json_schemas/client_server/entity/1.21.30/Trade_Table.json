@@ -9,13 +9,25 @@
          "properties": {
             "__DEP_fltrs": {
                "deprecated": true,
+               "default": {},
                "$ref": "#/definitions/315535208"
             },
             "__DEP_fnctns": {
                "deprecated": true,
+               "default": {},
                "$ref": "#/definitions/315535208"
             },
             "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
                "$ref": "#/definitions/1088251937"
             },
             "functions": {
@@ -28,10 +40,18 @@
                "$ref": "#/definitions/3470474886"
             },
             "price_multiplier": {
-               "type": "number"
+               "type": "number",
+               "default": 0,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "quantity": {
-               "$ref": "#/definitions/2298823339"
+               "default": {
+                  "min": 1,
+                  "max": 1
+               },
+               "$ref": "#/definitions/2298823339",
+               "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
             }
          },
          "required": [
@@ -52,7 +72,9 @@
                }
             },
             "total_exp_required": {
-               "type": "integer"
+               "type": "integer",
+               "minimum": 0,
+               "maximum": 4294967295
             }
          },
          "required": [
@@ -130,18 +152,23 @@
          "oneOf": [
             {
                "type": "integer",
-               "minimum": 1
+               "minimum": 1,
+               "maximum": 4294967295
             },
             {
                "type": "object",
                "properties": {
                   "max": {
                      "type": "integer",
-                     "minimum": 1
+                     "default": 1,
+                     "minimum": 1,
+                     "maximum": 4294967295
                   },
                   "min": {
                      "type": "integer",
-                     "minimum": 1
+                     "default": 1,
+                     "minimum": 1,
+                     "maximum": 4294967295
                   }
                }
             }
@@ -153,7 +180,9 @@
          "properties": {
             "num_to_select": {
                "type": "integer",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 2147483647
             },
             "trades": {
                "type": "array",
@@ -183,13 +212,20 @@
                "minItems": 1
             },
             "max_uses": {
-               "type": "integer"
+               "type": "integer",
+               "default": 7,
+               "minimum": -2147483648,
+               "maximum": 2147483647
             },
             "reward_exp": {
-               "type": "boolean"
+               "type": "boolean",
+               "default": true
             },
             "trader_exp": {
-               "type": "integer"
+               "type": "integer",
+               "default": 1,
+               "minimum": 0,
+               "maximum": 4294967295
             },
             "wants": {
                "type": "array",
@@ -200,7 +236,9 @@
             },
             "weight": {
                "type": "integer",
-               "minimum": 1
+               "default": 1,
+               "minimum": 1,
+               "maximum": 2147483647
             }
          },
          "required": [
@@ -218,10 +256,14 @@
                      "type": "boolean"
                   },
                   {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
                   },
                   {
-                     "type": "number"
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   {
                      "type": "string"
@@ -234,10 +276,14 @@
                      "type": "boolean"
                   },
                   {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
                   },
                   {
-                     "type": "number"
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   {
                      "type": "string"
@@ -250,10 +296,14 @@
                      "type": "boolean"
                   },
                   {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
                   },
                   {
-                     "type": "number"
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   {
                      "type": "string"
@@ -269,10 +319,14 @@
                      "type": "boolean"
                   },
                   {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
                   },
                   {
-                     "type": "number"
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   {
                      "type": "string"

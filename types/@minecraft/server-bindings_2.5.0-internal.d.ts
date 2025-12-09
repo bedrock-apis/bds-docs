@@ -181,6 +181,7 @@ export enum EnchantmentSlot {
    FishingRod = "FishingRod",
    Flintsteel = "Flintsteel",
    Hoe = "Hoe",
+   MeleeSpear = "MeleeSpear",
    Pickaxe = "Pickaxe",
    Shears = "Shears",
    Shield = "Shield",
@@ -264,6 +265,7 @@ export enum EntityDamageCause {
    campfire = "campfire",
    charging = "charging",
    contact = "contact",
+   dehydration = "dehydration",
    drowning = "drowning",
    entityAttack = "entityAttack",
    entityExplosion = "entityExplosion",
@@ -333,6 +335,17 @@ export enum EntitySpawnReason {
    Structure = "Structure",
    TrialSpawner = "TrialSpawner",
    Triggered = "Triggered",
+}
+export enum EntitySwingSource {
+   Attack = "Attack",
+   Build = "Build",
+   DropItem = "DropItem",
+   Event = "Event",
+   Interact = "Interact",
+   Mine = "Mine",
+   None = "None",
+   ThrowItem = "ThrowItem",
+   UseItem = "UseItem",
 }
 export enum EquipmentSlot {
    Body = "Body",
@@ -574,6 +587,12 @@ export enum StructureSaveMode {
    Memory = "Memory",
    World = "World",
 }
+export enum TickingAreaErrorReason {
+   IdentifierAlreadyExists = "IdentifierAlreadyExists",
+   OverChunkLimit = "OverChunkLimit",
+   SideLengthExceeded = "SideLengthExceeded",
+   UnknownIdentifier = "UnknownIdentifier",
+}
 export enum TimeOfDay {
    Day = 1000,
    Midnight = 18000,
@@ -624,6 +643,7 @@ export interface BlockCustomComponent {
    onPlayerBreak?: (arg0: BlockComponentPlayerBreakEvent, arg1: CustomComponentParameters)=>void;
    onPlayerInteract?: (arg0: BlockComponentPlayerInteractEvent, arg1: CustomComponentParameters)=>void;
    onRandomTick?: (arg0: BlockComponentRandomTickEvent, arg1: CustomComponentParameters)=>void;
+   onRedstoneUpdate?: (arg0: BlockComponentRedstoneUpdateEvent, arg1: CustomComponentParameters)=>void;
    onStepOff?: (arg0: BlockComponentStepOffEvent, arg1: CustomComponentParameters)=>void;
    onStepOn?: (arg0: BlockComponentStepOnEvent, arg1: CustomComponentParameters)=>void;
    onTick?: (arg0: BlockComponentTickEvent, arg1: CustomComponentParameters)=>void;
@@ -916,6 +936,7 @@ export interface PlayerSoundOptions {
 }
 export interface PlayerSwingEventOptions {
    heldItemOption?: HeldItemOption;
+   swingSource?: EntitySwingSource;
 }
 export interface ProgressKeyFrame {
    alpha: number;
@@ -994,6 +1015,18 @@ export interface TeleportOptions {
    keepVelocity?: boolean;
    rotation?: Vector2;
 }
+export interface TickingArea {
+   boundingBox: BlockBoundingBox;
+   chunkCount: number;
+   dimension: Dimension;
+   identifier: string;
+   isFullyLoaded: boolean;
+}
+export interface TickingAreaOptions {
+   dimension: Dimension;
+   from: Vector3;
+   to: Vector3;
+}
 export interface TitleDisplayOptions {
    fadeInDuration: number;
    fadeOutDuration: number;
@@ -1023,6 +1056,7 @@ export class AimAssistCategory {
    public readonly defaultEntityPriority: number;
    public readonly identifier: string;
    public getBlockPriorities(): Record<string,number>;
+   public getBlockTagPriorities(): Record<string,number>;
    public getEntityPriorities(): Record<string,number>;
    private constructor();
 }
@@ -1032,15 +1066,19 @@ export class AimAssistCategorySettings {
    public readonly identifier: string;
    public constructor(identifier: string);
    public getBlockPriorities(): Record<string,number>;
+   public getBlockTagPriorities(): Record<string,number>;
    public getEntityPriorities(): Record<string,number>;
    public setBlockPriorities(blockPriorities: Record<string,number>): void;
+   public setBlockTagPriorities(blockTagPriorities: Record<string,number>): void;
    public setEntityPriorities(entityPriorities: Record<string,number>): void;
 }
 export class AimAssistPreset {
    public readonly defaultItemSettings?: string;
    public readonly handSettings?: string;
    public readonly identifier: string;
-   public getExcludedTargets(): Array<string>;
+   public getExcludedBlockTagTargets(): Array<string>;
+   public getExcludedBlockTargets(): Array<string>;
+   public getExcludedEntityTargets(): Array<string>;
    public getItemSettings(): Record<string,string>;
    public getLiquidTargetingItems(): Array<string>;
    private constructor();
@@ -1050,10 +1088,14 @@ export class AimAssistPresetSettings {
    public handSettings?: string;
    public readonly identifier: string;
    public constructor(identifier: string);
-   public getExcludedTargets(): (Array<string> | undefined);
+   public getExcludedBlockTagTargets(): (Array<string> | undefined);
+   public getExcludedBlockTargets(): (Array<string> | undefined);
+   public getExcludedEntityTargets(): (Array<string> | undefined);
    public getItemSettings(): Record<string,string>;
    public getLiquidTargetingItems(): (Array<string> | undefined);
-   public setExcludedTargets(targets?: Array<string>): void;
+   public setExcludedBlockTagTargets(blockTagTargets?: Array<string>): void;
+   public setExcludedBlockTargets(blockTargets?: Array<string>): void;
+   public setExcludedEntityTargets(entityTargets?: Array<string>): void;
    public setItemSettings(itemSettings: Record<string,string>): void;
    public setLiquidTargetingItems(items?: Array<string>): void;
 }
@@ -1182,6 +1224,11 @@ export class BlockComponentPlayerPlaceBeforeEvent extends BlockEvent {
 }
 //@ts-ignore
 export class BlockComponentRandomTickEvent extends BlockEvent {
+   private constructor();
+}
+//@ts-ignore
+export class BlockComponentRedstoneUpdateEvent extends BlockEvent {
+   public readonly powerLevel: number;
    private constructor();
 }
 export class BlockComponentRegistry {
@@ -1802,6 +1849,7 @@ export class EntityComponent extends Component {
 export class EntityDefinitionFeedItem {
    public readonly growth: number;
    public readonly item: string;
+   public readonly resultItem: string;
    private constructor();
 }
 export class EntityDieAfterEvent {
@@ -2373,6 +2421,7 @@ export class ExplosionDecayFunction extends LootItemFunction {
 export class FeedItem {
    public readonly healAmount: number;
    public readonly item: string;
+   public readonly resultItem: string;
    public getEffects(): Array<FeedItemEffect>;
    private constructor();
 }
@@ -3205,6 +3254,7 @@ export class PlayerSpawnAfterEventSignal {
 export class PlayerSwingStartAfterEvent {
    public readonly heldItemStack?: ItemStack;
    public readonly player: Player;
+   public readonly swingSource: EntitySwingSource;
    private constructor();
 }
 export class PlayerSwingStartAfterEventSignal {
@@ -3570,6 +3620,18 @@ export class TargetBlockHitAfterEventSignal {
    public unsubscribe(callback: (arg0: TargetBlockHitAfterEvent)=>void): void;
    private constructor();
 }
+export class TickingAreaManager {
+   public readonly chunkCount: number;
+   public readonly maxChunkCount: number;
+   public createTickingArea(identifier: string, options: TickingAreaOptions): Promise<TickingArea>;
+   public getAllTickingAreas(): Array<TickingArea>;
+   public getTickingArea(identifier: string | TickingArea): (TickingArea | undefined);
+   public hasCapacity(options: TickingAreaOptions): boolean;
+   public hasTickingArea(identifier: string): boolean;
+   public removeAllTickingAreas(): void;
+   public removeTickingArea(identifier: string | TickingArea): void;
+   private constructor();
+}
 export class Trigger {
    public eventName: string;
    public constructor(eventName: string);
@@ -3625,6 +3687,7 @@ export class World {
    public readonly isHardcore: boolean;
    public readonly scoreboard: Scoreboard;
    public readonly structureManager: StructureManager;
+   public readonly tickingAreaManager: TickingAreaManager;
    public broadcastClientMessage(id: string, value: string): void;
    public clearDynamicProperties(): void;
    public getAbsoluteTime(): number;
@@ -3888,6 +3951,11 @@ export class RawMessageError extends Error {
 }
 //@ts-ignore
 export class SpawnRulesInvalidRegistryError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class TickingAreaError extends Error {
+   public readonly reason: TickingAreaErrorReason;
    private constructor();
 }
 //@ts-ignore

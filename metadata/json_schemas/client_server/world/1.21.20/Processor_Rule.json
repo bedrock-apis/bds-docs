@@ -45,7 +45,8 @@
       },
       "1135547207": {
          "title": "File Reference",
-         "type": "string"
+         "type": "string",
+         "maxLength": 256
       },
       "1527037515": {
          "title": "Reference",
@@ -164,7 +165,9 @@
                      "additionalProperties": {
                         "oneOf": [
                            {
-                              "type": "integer"
+                              "type": "integer",
+                              "minimum": -2147483648,
+                              "maximum": 2147483647
                            },
                            {
                               "type": "boolean"
@@ -173,7 +176,8 @@
                               "type": "string"
                            }
                         ]
-                     }
+                     },
+                     "default": {}
                   }
                },
                "required": [
@@ -253,6 +257,7 @@
             "axis": {
                "title": "PositionalBlockRuleAxis",
                "type": "string",
+               "default": "y",
                "enum": [
                   "x",
                   "y",
@@ -261,21 +266,29 @@
             },
             "max_chance": {
                "type": "number",
+               "default": 0,
                "minimum": 0,
+               "maximum": 3.4028234663852886e+38,
                "exclusiveMaximum": 1
             },
             "max_dist": {
                "type": "integer",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 2147483647
             },
             "min_chance": {
                "type": "number",
+               "default": 0,
                "minimum": 0,
+               "maximum": 3.4028234663852886e+38,
                "exclusiveMaximum": 1
             },
             "min_dist": {
                "type": "integer",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 2147483647
             },
             "predicate_type": {
                "title": "PosType",
@@ -328,6 +341,9 @@
          ]
       },
       "input_predicate": {
+         "default": {
+            "predicate_type": "minecraft:always_true"
+         },
          "oneOf": [
             {
                "$ref": "#/definitions/4275912652"
@@ -350,6 +366,9 @@
          ]
       },
       "location_predicate": {
+         "default": {
+            "predicate_type": "minecraft:always_true"
+         },
          "oneOf": [
             {
                "$ref": "#/definitions/4275912652"

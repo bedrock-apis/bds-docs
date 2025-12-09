@@ -8,14 +8,26 @@
          "type": "object",
          "properties": {
             "event": {
-               "type": "string"
+               "type": "string",
+               "default": ""
             },
             "filters": {
+               "default": {
+                  "all_of": null,
+                  "all": null,
+                  "OR": null,
+                  "AND": null,
+                  "any_of": null,
+                  "any": null,
+                  "none_of": null,
+                  "NOT": null
+               },
                "$ref": "#/definitions/1088251937"
             },
             "target": {
                "title": "FilterSubject",
                "type": "string",
+               "default": "self",
                "enum": [
                   "self",
                   "other",
@@ -36,40 +48,76 @@
          "type": "object",
          "properties": {
             "check_if_outnumbered": {
-               "type": "boolean"
+               "type": "boolean",
+               "default": false
             },
             "cooldown": {
-               "type": "integer"
+               "type": "integer",
+               "default": 0,
+               "minimum": -2147483648,
+               "maximum": 2147483647
             },
             "filters": {
+               "default": {
+                  "all_of": null,
+                  "all": null,
+                  "OR": null,
+                  "AND": null,
+                  "any_of": null,
+                  "any": null,
+                  "none_of": null,
+                  "NOT": null
+               },
                "$ref": "#/definitions/1088251937"
             },
             "max_dist": {
-               "type": "number"
+               "type": "number",
+               "default": 16,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "max_flee": {
-               "type": "number"
+               "type": "number",
+               "default": 10,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "max_height": {
-               "type": "number"
+               "type": "number",
+               "default": -1,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "must_see": {
                "type": "boolean"
             },
             "must_see_forget_duration": {
-               "type": "integer"
+               "type": "integer",
+               "default": 3,
+               "minimum": -2147483648,
+               "maximum": 2147483647
             },
             "priority": {
-               "type": "integer"
+               "type": "integer",
+               "default": 0,
+               "minimum": -2147483648,
+               "maximum": 2147483647
             },
             "reevaluate_description": {
-               "type": "boolean"
+               "type": "boolean",
+               "default": false
             },
             "sprint_speed_multiplier": {
-               "type": "number"
+               "type": "number",
+               "default": 1,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "walk_speed_multiplier": {
-               "type": "number"
+               "type": "number",
+               "default": 1,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       },
@@ -78,10 +126,16 @@
          "type": "object",
          "properties": {
             "max": {
-               "type": "number"
+               "type": "number",
+               "default": 0,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "min": {
-               "type": "number"
+               "type": "number",
+               "default": 0,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       },
@@ -138,10 +192,14 @@
                      "type": "boolean"
                   },
                   {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
                   },
                   {
-                     "type": "number"
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   {
                      "type": "string"
@@ -154,10 +212,14 @@
                      "type": "boolean"
                   },
                   {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
                   },
                   {
-                     "type": "number"
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   {
                      "type": "string"
@@ -170,10 +232,14 @@
                      "type": "boolean"
                   },
                   {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
                   },
                   {
-                     "type": "number"
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   {
                      "type": "string"
@@ -189,10 +255,14 @@
                      "type": "boolean"
                   },
                   {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
                   },
                   {
-                     "type": "number"
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   {
                      "type": "string"
@@ -225,6 +295,7 @@
       "avoid_mob_sound": {
          "title": "LevelSoundEvent",
          "type": "string",
+         "default": "undefined",
          "enum": [
             "item.use.on",
             "hit",
@@ -746,17 +817,36 @@
             "place_item",
             "single_swap",
             "multi_swap",
+            "item.enchant.lunge1",
+            "item.enchant.lunge2",
+            "item.enchant.lunge3",
+            "attack.critical",
+            "item.spear.attack_hit",
+            "item.spear.attack_miss",
+            "item.wooden_spear.attack_hit",
+            "item.wooden_spear.attack_miss",
+            "imitate.parched",
+            "imitate.camel_husk",
+            "item.spear.use",
+            "item.wooden_spear.use",
             "undefined"
          ]
       },
       "avoid_target_xz": {
-         "type": "integer"
+         "type": "integer",
+         "default": 16,
+         "minimum": -2147483648,
+         "maximum": 2147483647
       },
       "avoid_target_y": {
-         "type": "integer"
+         "type": "integer",
+         "default": 7,
+         "minimum": -2147483648,
+         "maximum": 2147483647
       },
       "control_flags": {
          "type": "array",
+         "default": [],
          "items": {
             "title": "Goal's control flags",
             "type": "string",
@@ -768,45 +858,88 @@
          }
       },
       "entity_types": {
+         "default": [],
          "$ref": "#/definitions/4227886613"
       },
       "ignore_visibility": {
-         "type": "boolean"
+         "type": "boolean",
+         "default": false
       },
       "max_dist": {
-         "type": "number"
+         "type": "number",
+         "default": 3,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       },
       "max_flee": {
-         "type": "number"
+         "type": "number",
+         "default": 10,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       },
       "on_escape_event": {
+         "default": {
+            "event": "",
+            "target": "self",
+            "filters": {
+               "all_of": null,
+               "all": null,
+               "OR": null,
+               "AND": null,
+               "any_of": null,
+               "any": null,
+               "none_of": null,
+               "NOT": null
+            }
+         },
          "$ref": "#/definitions/121353999"
       },
       "priority": {
          "type": "integer",
-         "minimum": 0
+         "default": 0,
+         "minimum": 0,
+         "maximum": 2147483647
       },
       "probability_per_strength": {
          "type": "number",
+         "default": 1,
+         "minimum": 1.1754943508222875e-38,
          "maximum": 1
       },
       "remove_target": {
-         "type": "boolean"
+         "type": "boolean",
+         "default": false
       },
       "river_speed_multiplier": {
-         "type": "number"
+         "type": "number",
+         "default": 0.75,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       },
       "sound_interval": {
+         "default": {
+            "min": 3,
+            "max": 8
+         },
          "$ref": "#/definitions/1057349585"
       },
       "sprint_distance": {
-         "type": "number"
+         "type": "number",
+         "default": 7,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       },
       "sprint_speed_multiplier": {
-         "type": "number"
+         "type": "number",
+         "default": 1,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       },
       "walk_speed_multiplier": {
-         "type": "number"
+         "type": "number",
+         "default": 1,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       }
    }
 }

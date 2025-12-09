@@ -16,7 +16,9 @@
                      "type": "string"
                   },
                   "version": {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -32768,
+                     "maximum": 32767
                   }
                },
                "required": [
@@ -37,7 +39,9 @@
                "$ref": "#/definitions/2267778531"
             },
             {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          ]
       }
@@ -46,6 +50,7 @@
    "type": "object",
    "properties": {
       "horizontal_range": {
+         "default": 1,
          "$ref": "#/definitions/3178719147"
       },
       "input": {

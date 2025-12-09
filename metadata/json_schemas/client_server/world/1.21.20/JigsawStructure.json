@@ -27,10 +27,16 @@
          "type": "object",
          "properties": {
             "bottom": {
-               "type": "integer"
+               "type": "integer",
+               "default": 0,
+               "minimum": 0,
+               "maximum": 4294967295
             },
             "top": {
-               "type": "integer"
+               "type": "integer",
+               "default": 0,
+               "minimum": 0,
+               "maximum": 4294967295
             }
          }
       },
@@ -101,7 +107,9 @@
                "$ref": "#/definitions/1356053607"
             },
             "weight": {
-               "type": "integer"
+               "type": "integer",
+               "minimum": 0,
+               "maximum": 4294967295
             }
          },
          "required": [
@@ -127,7 +135,9 @@
                }
             },
             "weight": {
-               "type": "integer"
+               "type": "integer",
+               "minimum": 0,
+               "maximum": 4294967295
             }
          },
          "required": [
@@ -220,6 +230,7 @@
                   },
                   "vertical": {
                      "type": "integer",
+                     "default": 2147483647,
                      "minimum": 1,
                      "maximum": 2147483647
                   }
@@ -295,10 +306,14 @@
                      "type": "boolean"
                   },
                   {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
                   },
                   {
-                     "type": "number"
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   {
                      "type": "string"
@@ -311,10 +326,14 @@
                      "type": "boolean"
                   },
                   {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
                   },
                   {
-                     "type": "number"
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   {
                      "type": "string"
@@ -327,10 +346,14 @@
                      "type": "boolean"
                   },
                   {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
                   },
                   {
-                     "type": "number"
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   {
                      "type": "string"
@@ -346,10 +369,14 @@
                      "type": "boolean"
                   },
                   {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
                   },
                   {
-                     "type": "number"
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   {
                      "type": "string"
@@ -366,7 +393,9 @@
          "type": "object",
          "properties": {
             "absolute": {
-               "type": "integer"
+               "type": "integer",
+               "minimum": -32768,
+               "maximum": 32767
             }
          },
          "required": [
@@ -378,7 +407,9 @@
          "type": "object",
          "properties": {
             "below_top": {
-               "type": "integer"
+               "type": "integer",
+               "minimum": -32768,
+               "maximum": 32767
             }
          },
          "required": [
@@ -390,7 +421,9 @@
          "type": "object",
          "properties": {
             "above_bottom": {
-               "type": "integer"
+               "type": "integer",
+               "minimum": -32768,
+               "maximum": 32767
             }
          },
          "required": [
@@ -402,7 +435,9 @@
          "type": "object",
          "properties": {
             "from_sea": {
-               "type": "integer"
+               "type": "integer",
+               "minimum": -32768,
+               "maximum": 32767
             }
          },
          "required": [
@@ -414,6 +449,16 @@
    "type": "object",
    "properties": {
       "biome_filters": {
+         "default": {
+            "all_of": null,
+            "all": null,
+            "OR": null,
+            "AND": null,
+            "any_of": null,
+            "any": null,
+            "none_of": null,
+            "NOT": null
+         },
          "$ref": "#/definitions/1088251937"
       },
       "description": {
@@ -422,7 +467,9 @@
       "dimension_padding": {
          "oneOf": [
             {
-               "type": "integer"
+               "type": "integer",
+               "minimum": 0,
+               "maximum": 4294967295
             },
             {
                "$ref": "#/definitions/781829906"
@@ -432,6 +479,7 @@
       "heightmap_projection": {
          "title": "HeightmapProjection",
          "type": "string",
+         "default": "none",
          "enum": [
             "world_surface",
             "ocean_floor",
@@ -441,6 +489,7 @@
       "liquid_settings": {
          "title": "LiquidSettings",
          "type": "string",
+         "default": "apply_waterlogging",
          "enum": [
             "apply_waterlogging",
             "ignore_waterlogging"
@@ -452,10 +501,15 @@
          "maximum": 20
       },
       "max_distance_from_center": {
+         "default": {
+            "horizontal": 80,
+            "vertical": 2147483647
+         },
          "$ref": "#/definitions/2580189731"
       },
       "pool_aliases": {
          "type": "array",
+         "default": [],
          "items": {
             "oneOf": [
                {
@@ -481,7 +535,8 @@
          ]
       },
       "start_jigsaw_name": {
-         "type": "string"
+         "type": "string",
+         "default": ""
       },
       "start_pool": {
          "$ref": "#/definitions/1356053607"
@@ -506,6 +561,7 @@
       "terrain_adaptation": {
          "title": "TerrainAdaptation",
          "type": "string",
+         "default": "none",
          "enum": [
             "none",
             "bury",

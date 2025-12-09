@@ -35,6 +35,15 @@
                "minimum": 0,
                "maximum": 100
             },
+            "block_tags": {
+               "type": "object",
+               "additionalProperties": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100
+               },
+               "default": {}
+            },
             "blocks": {
                "type": "object",
                "additionalProperties": {
@@ -44,12 +53,15 @@
                         "$ref": "#/definitions/1527037515"
                      },
                      "value": {
-                        "type": "integer"
+                        "type": "integer",
+                        "minimum": -2147483648,
+                        "maximum": 2147483647
                      }
                   },
                   "minimum": 0,
                   "maximum": 100
-               }
+               },
+               "default": []
             },
             "entities": {
                "type": "object",
@@ -60,12 +72,15 @@
                         "$ref": "#/definitions/1493335182"
                      },
                      "value": {
-                        "type": "integer"
+                        "type": "integer",
+                        "minimum": -2147483648,
+                        "maximum": 2147483647
                      }
                   },
                   "minimum": 0,
                   "maximum": 100
-               }
+               },
+               "default": []
             },
             "entity_default": {
                "type": "integer",

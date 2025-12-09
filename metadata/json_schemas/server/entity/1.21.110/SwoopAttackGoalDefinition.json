@@ -8,10 +8,16 @@
          "type": "object",
          "properties": {
             "max": {
-               "type": "number"
+               "type": "number",
+               "default": 0,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "min": {
-               "type": "number"
+               "type": "number",
+               "default": 0,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       }
@@ -21,6 +27,7 @@
    "properties": {
       "control_flags": {
          "type": "array",
+         "default": [],
          "items": {
             "title": "Goal's control flags",
             "type": "string",
@@ -32,17 +39,29 @@
          }
       },
       "damage_reach": {
-         "type": "number"
+         "type": "number",
+         "default": 0.20000000298023224,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       },
       "delay_range": {
+         "default": {
+            "min": 10,
+            "max": 20
+         },
          "$ref": "#/definitions/1057349585"
       },
       "priority": {
          "type": "integer",
-         "minimum": 0
+         "default": 0,
+         "minimum": 0,
+         "maximum": 2147483647
       },
       "speed_multiplier": {
-         "type": "number"
+         "type": "number",
+         "default": 1,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       }
    }
 }

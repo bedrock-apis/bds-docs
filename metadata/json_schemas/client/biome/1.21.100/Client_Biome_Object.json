@@ -91,7 +91,8 @@
                "$ref": "#/definitions/658145120"
             },
             "minecraft:water_appearance": {
-               "$ref": "#/definitions/4061100221"
+               "$ref": "#/definitions/4061100221",
+               "x-runtime-constraint-description": "Make sure that at least either the surface color or the opacity is specified"
             },
             "minecraft:water_identifier": {
                "$ref": "#/definitions/2503601769"
@@ -142,7 +143,8 @@
                ]
             },
             "grass_is_shaded": {
-               "type": "boolean"
+               "type": "boolean",
+               "default": false
             }
          }
       },
@@ -163,33 +165,36 @@
             "color_map"
          ]
       },
+      "2493785116": {
+         "title": "Reference",
+         "type": "string"
+      },
       "2503601769": {
          "title": "minecraft:water_identifier",
          "type": "object",
          "properties": {
             "water_identifier": {
-               "$ref": "#/definitions/2527487449"
+               "$ref": "#/definitions/2493785116"
             }
          },
          "required": [
             "water_identifier"
          ]
       },
-      "2527487449": {
-         "title": "Reference",
-         "type": "string"
-      },
       "2544684648": {
          "title": "minecraft:ambient_sounds",
          "type": "object",
          "properties": {
             "addition": {
+               "default": "",
                "$ref": "#/definitions/379658027"
             },
             "loop": {
+               "default": "",
                "$ref": "#/definitions/379658027"
             },
             "mood": {
+               "default": "",
                "$ref": "#/definitions/379658027"
             }
          }
@@ -268,7 +273,9 @@
             {
                "type": "array",
                "items": {
-                  "type": "integer"
+                  "type": "integer",
+                  "minimum": -2147483648,
+                  "maximum": 2147483647
                },
                "minItems": 3,
                "maxItems": 3
@@ -286,7 +293,9 @@
                "$ref": "#/definitions/3915697282"
             },
             "surface_opacity": {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       },
@@ -298,7 +307,9 @@
                "$ref": "#/definitions/3471754814"
             },
             "volume_multiplier": {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       }

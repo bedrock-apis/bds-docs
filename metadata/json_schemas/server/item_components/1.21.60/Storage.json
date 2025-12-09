@@ -22,22 +22,27 @@
    "type": "object",
    "properties": {
       "allow_nested_storage_items": {
-         "type": "boolean"
+         "type": "boolean",
+         "default": true
       },
       "allowed_items": {
          "type": "array",
+         "default": [],
          "items": {
             "$ref": "#/definitions/1531870811"
          }
       },
       "banned_items": {
          "type": "array",
+         "default": [],
          "items": {
             "$ref": "#/definitions/1531870811"
          }
       },
       "max_slots": {
          "type": "integer",
+         "default": 64,
+         "minimum": -2147483648,
          "maximum": 64
       }
    }

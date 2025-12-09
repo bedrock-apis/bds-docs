@@ -11,10 +11,6 @@
          "title": "Reference",
          "type": "string"
       },
-      "1428261416": {
-         "title": "File Reference",
-         "type": "string"
-      },
       "1755372388": {
          "title": "TemplatePoolElement",
          "type": "object",
@@ -31,6 +27,7 @@
             },
             "weight": {
                "type": "integer",
+               "default": 1,
                "minimum": 1,
                "maximum": 200
             }
@@ -83,14 +80,16 @@
                ]
             },
             "location": {
-               "$ref": "#/definitions/1428261416"
+               "$ref": "#/definitions/3609101623"
             },
             "processors": {
+               "default": "",
                "$ref": "#/definitions/1323337012"
             },
             "projection": {
                "title": "Projection",
                "type": "string",
+               "default": "rigid",
                "enum": [
                   "rigid",
                   "terrain_matching"
@@ -101,6 +100,11 @@
             "element_type",
             "location"
          ]
+      },
+      "3609101623": {
+         "title": "File Reference",
+         "type": "string",
+         "maxLength": 256
       },
       "3714778797": {
          "title": "Identifier",
@@ -120,6 +124,7 @@
          }
       },
       "fallback": {
+         "default": "minecraft:empty",
          "$ref": "#/definitions/1356053607"
       }
    },

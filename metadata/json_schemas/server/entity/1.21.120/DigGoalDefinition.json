@@ -8,14 +8,26 @@
          "type": "object",
          "properties": {
             "event": {
-               "type": "string"
+               "type": "string",
+               "default": ""
             },
             "filters": {
+               "default": {
+                  "all_of": null,
+                  "all": null,
+                  "OR": null,
+                  "AND": null,
+                  "any_of": null,
+                  "any": null,
+                  "none_of": null,
+                  "NOT": null
+               },
                "$ref": "#/definitions/1088251937"
             },
             "target": {
                "title": "FilterSubject",
                "type": "string",
+               "default": "self",
                "enum": [
                   "self",
                   "other",
@@ -84,10 +96,14 @@
                      "type": "boolean"
                   },
                   {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
                   },
                   {
-                     "type": "number"
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   {
                      "type": "string"
@@ -100,10 +116,14 @@
                      "type": "boolean"
                   },
                   {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
                   },
                   {
-                     "type": "number"
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   {
                      "type": "string"
@@ -116,10 +136,14 @@
                      "type": "boolean"
                   },
                   {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
                   },
                   {
-                     "type": "number"
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   {
                      "type": "string"
@@ -135,10 +159,14 @@
                      "type": "boolean"
                   },
                   {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
                   },
                   {
-                     "type": "number"
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   {
                      "type": "string"
@@ -155,10 +183,12 @@
    "type": "object",
    "properties": {
       "allow_dig_when_named": {
-         "type": "boolean"
+         "type": "boolean",
+         "default": false
       },
       "control_flags": {
          "type": "array",
+         "default": [],
          "items": {
             "title": "Goal's control flags",
             "type": "string",
@@ -170,26 +200,51 @@
          }
       },
       "digs_in_daylight": {
-         "type": "boolean"
+         "type": "boolean",
+         "default": false
       },
       "duration": {
-         "type": "number"
+         "type": "number",
+         "default": 0,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       },
       "idle_time": {
-         "type": "number"
+         "type": "number",
+         "default": 0,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       },
       "on_start": {
+         "default": {
+            "event": "",
+            "target": "self",
+            "filters": {
+               "all_of": null,
+               "all": null,
+               "OR": null,
+               "AND": null,
+               "any_of": null,
+               "any": null,
+               "none_of": null,
+               "NOT": null
+            }
+         },
          "$ref": "#/definitions/121353999"
       },
       "priority": {
          "type": "integer",
-         "minimum": 0
+         "default": 0,
+         "minimum": 0,
+         "maximum": 2147483647
       },
       "suspicion_is_disturbance": {
-         "type": "boolean"
+         "type": "boolean",
+         "default": false
       },
       "vibration_is_disturbance": {
-         "type": "boolean"
+         "type": "boolean",
+         "default": false
       }
    }
 }

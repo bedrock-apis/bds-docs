@@ -7,6 +7,7 @@
    "properties": {
       "control_flags": {
          "type": "array",
+         "default": [],
          "items": {
             "title": "Goal's control flags",
             "type": "string",
@@ -18,18 +19,27 @@
          }
       },
       "max_distance": {
-         "type": "number"
+         "type": "number",
+         "default": 3,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       },
       "min_distance": {
-         "type": "number"
+         "type": "number",
+         "default": 2,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       },
       "priority": {
          "type": "integer",
-         "minimum": 0
+         "default": 0,
+         "minimum": 0,
+         "maximum": 2147483647
       },
       "sound_event": {
          "title": "LevelSoundEvent",
          "type": "string",
+         "default": "charge",
          "enum": [
             "item.use.on",
             "hit",
@@ -551,14 +561,32 @@
             "place_item",
             "single_swap",
             "multi_swap",
+            "item.enchant.lunge1",
+            "item.enchant.lunge2",
+            "item.enchant.lunge3",
+            "attack.critical",
+            "item.spear.attack_hit",
+            "item.spear.attack_miss",
+            "item.wooden_spear.attack_hit",
+            "item.wooden_spear.attack_miss",
+            "imitate.parched",
+            "imitate.camel_husk",
+            "item.spear.use",
+            "item.wooden_spear.use",
             "undefined"
          ]
       },
       "speed_multiplier": {
-         "type": "number"
+         "type": "number",
+         "default": 1,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       },
       "success_rate": {
-         "type": "number"
+         "type": "number",
+         "default": 0.1428000032901764,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       }
    }
 }

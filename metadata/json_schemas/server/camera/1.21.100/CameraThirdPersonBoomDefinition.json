@@ -9,7 +9,9 @@
             {
                "type": "array",
                "items": {
-                  "type": "number"
+                  "type": "number",
+                  "minimum": 1.1754943508222875e-38,
+                  "maximum": 3.4028234663852886e+38
                },
                "minItems": 2,
                "maxItems": 2
@@ -18,10 +20,16 @@
                "type": "object",
                "properties": {
                   "x": {
-                     "type": "number"
+                     "type": "number",
+                     "default": 0,
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   "y": {
-                     "type": "number"
+                     "type": "number",
+                     "default": 0,
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   }
                }
             }
@@ -34,15 +42,23 @@
       "rotation_space": {
          "title": "rotation_space",
          "type": "string",
+         "default": "local",
          "enum": [
             "local",
             "world"
          ]
       },
       "starting_radius": {
-         "type": "number"
+         "type": "number",
+         "default": 0,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       },
       "starting_rot": {
+         "default": [
+            0,
+            0
+         ],
          "$ref": "#/definitions/1347636330"
       }
    }

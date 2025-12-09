@@ -7,7 +7,9 @@
          "title": "compound_proxy",
          "oneOf": [
             {
-               "type": "integer"
+               "type": "integer",
+               "minimum": -2147483648,
+               "maximum": 2147483647
             },
             {
                "type": "string"
@@ -36,16 +38,19 @@
          "type": "object",
          "properties": {
             "name": {
-               "type": "string"
+               "type": "string",
+               "default": ""
             },
             "states": {
                "type": "object",
                "additionalProperties": {
                   "$ref": "#/definitions/517105782"
-               }
+               },
+               "default": {}
             },
             "tags": {
-               "type": "string"
+               "type": "string",
+               "default": ""
             }
          }
       },
@@ -53,14 +58,16 @@
          "title": "Block Descriptor",
          "oneOf": [
             {
-               "$ref": "#/definitions/2770948419"
+               "$ref": "#/definitions/2770948419",
+               "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
             },
             {
                "type": "string",
                "minLength": 1
             },
             {
-               "$ref": "#/definitions/2770948419"
+               "$ref": "#/definitions/2770948419",
+               "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
             }
          ]
       },
@@ -70,7 +77,9 @@
             {
                "type": "array",
                "items": {
-                  "type": "number"
+                  "type": "number",
+                  "minimum": 1.1754943508222875e-38,
+                  "maximum": 3.4028234663852886e+38
                },
                "minItems": 2,
                "maxItems": 2
@@ -79,10 +88,16 @@
                "type": "object",
                "properties": {
                   "x": {
-                     "type": "number"
+                     "type": "number",
+                     "default": 0,
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   "y": {
-                     "type": "number"
+                     "type": "number",
+                     "default": 0,
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   }
                }
             }
@@ -93,16 +108,19 @@
    "type": "object",
    "properties": {
       "allow_simultaneous_interaction": {
-         "type": "boolean"
+         "type": "boolean",
+         "default": false
       },
       "allowed_items": {
          "type": "array",
+         "default": [],
          "items": {
             "$ref": "#/definitions/1531870811"
          }
       },
       "control_flags": {
          "type": "array",
+         "default": [],
          "items": {
             "title": "Goal's control flags",
             "type": "string",
@@ -115,37 +133,52 @@
       },
       "destination_container_types": {
          "type": "array",
+         "default": [],
          "items": {
             "$ref": "#/definitions/2794205495"
          }
       },
       "disallowed_items": {
          "type": "array",
+         "default": [],
          "items": {
             "$ref": "#/definitions/1531870811"
          }
       },
       "idle_cooldown": {
-         "type": "integer"
+         "type": "integer",
+         "default": 20,
+         "minimum": 0,
+         "maximum": 4294967295
       },
       "initial_cooldown": {
-         "type": "integer"
+         "type": "integer",
+         "default": 0,
+         "minimum": 0,
+         "maximum": 4294967295
       },
       "interaction_time": {
          "type": "number",
-         "minimum": 0
+         "default": 3,
+         "minimum": 0,
+         "maximum": 3.4028234663852886e+38
       },
       "max_stack_size": {
          "type": "integer",
+         "default": 64,
          "minimum": 1,
          "maximum": 64
       },
       "max_visited_containers": {
-         "type": "integer"
+         "type": "integer",
+         "default": 16,
+         "minimum": 0,
+         "maximum": 4294967295
       },
       "place_strategy": {
          "title": "place_strategy",
          "type": "string",
+         "default": "any",
          "enum": [
             "any",
             "with_matching",
@@ -154,14 +187,21 @@
       },
       "priority": {
          "type": "integer",
-         "minimum": 0
+         "default": 0,
+         "minimum": 0,
+         "maximum": 2147483647
       },
       "search_distance": {
+         "default": [
+            64,
+            32
+         ],
          "$ref": "#/definitions/4021724221"
       },
       "search_strategy": {
          "title": "search_strategy",
          "type": "string",
+         "default": "random",
          "enum": [
             "nearest",
             "random"
@@ -169,6 +209,7 @@
       },
       "source_container_types": {
          "type": "array",
+         "default": [],
          "items": {
             "$ref": "#/definitions/2794205495"
          }

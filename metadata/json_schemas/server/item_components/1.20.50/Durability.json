@@ -8,10 +8,16 @@
          "type": "object",
          "properties": {
             "max": {
-               "type": "integer"
+               "type": "integer",
+               "default": 0,
+               "minimum": -2147483648,
+               "maximum": 2147483647
             },
             "min": {
-               "type": "integer"
+               "type": "integer",
+               "default": 0,
+               "minimum": -2147483648,
+               "maximum": 2147483647
             }
          }
       }
@@ -20,11 +26,17 @@
    "type": "object",
    "properties": {
       "damage_chance": {
-         "$ref": "#/definitions/1398826300"
+         "default": {
+            "min": 100,
+            "max": 100
+         },
+         "$ref": "#/definitions/1398826300",
+         "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
       },
       "max_durability": {
          "type": "integer",
-         "minimum": 0
+         "minimum": 0,
+         "maximum": 2147483647
       }
    },
    "required": [

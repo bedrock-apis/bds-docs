@@ -69,12 +69,15 @@
          "type": "object",
          "properties": {
             "addition": {
+               "default": "",
                "$ref": "#/definitions/379658027"
             },
             "loop": {
+               "default": "",
                "$ref": "#/definitions/379658027"
             },
             "mood": {
+               "default": "",
                "$ref": "#/definitions/379658027"
             }
          }
@@ -104,7 +107,9 @@
          "type": "object",
          "properties": {
             "volume_multiplier": {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       },
@@ -122,7 +127,9 @@
             {
                "type": "array",
                "items": {
-                  "type": "integer"
+                  "type": "integer",
+                  "minimum": -2147483648,
+                  "maximum": 2147483647
                },
                "minItems": 3,
                "maxItems": 3
@@ -140,7 +147,9 @@
                "$ref": "#/definitions/3915697282"
             },
             "surface_opacity": {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       },
@@ -183,7 +192,8 @@
          "$ref": "#/definitions/658145120"
       },
       "minecraft:water_appearance": {
-         "$ref": "#/definitions/4061100221"
+         "$ref": "#/definitions/4061100221",
+         "x-runtime-constraint-description": "Make sure that at least either the surface color or the opacity is specified"
       }
    }
 }

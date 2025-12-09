@@ -56,10 +56,14 @@
                      "type": "boolean"
                   },
                   {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
                   },
                   {
-                     "type": "number"
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   {
                      "type": "string"
@@ -72,10 +76,14 @@
                      "type": "boolean"
                   },
                   {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
                   },
                   {
-                     "type": "number"
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   {
                      "type": "string"
@@ -88,10 +96,14 @@
                      "type": "boolean"
                   },
                   {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
                   },
                   {
-                     "type": "number"
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   {
                      "type": "string"
@@ -107,10 +119,14 @@
                      "type": "boolean"
                   },
                   {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
                   },
                   {
-                     "type": "number"
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   {
                      "type": "string"
@@ -128,6 +144,7 @@
    "properties": {
       "control_flags": {
          "type": "array",
+         "default": [],
          "items": {
             "title": "Goal's control flags",
             "type": "string",
@@ -139,14 +156,29 @@
          }
       },
       "cooldown_seconds": {
-         "type": "number"
+         "type": "number",
+         "default": 5,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       },
       "filters": {
+         "default": {
+            "all_of": null,
+            "all": null,
+            "OR": null,
+            "AND": null,
+            "any_of": null,
+            "any": null,
+            "none_of": null,
+            "NOT": null
+         },
          "$ref": "#/definitions/1088251937"
       },
       "priority": {
          "type": "integer",
-         "minimum": 0
+         "default": 0,
+         "minimum": 0,
+         "maximum": 2147483647
       }
    }
 }

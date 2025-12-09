@@ -7,7 +7,9 @@
          "title": "compound_proxy",
          "oneOf": [
             {
-               "type": "integer"
+               "type": "integer",
+               "minimum": -2147483648,
+               "maximum": 2147483647
             },
             {
                "type": "string"
@@ -23,11 +25,14 @@
          "properties": {
             "default": {
                "type": "integer",
-               "minimum": 0
+               "minimum": 0,
+               "maximum": 2147483647
             },
             "rarity": {
                "type": "integer",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 2147483647
             }
          },
          "required": [
@@ -39,10 +44,16 @@
          "type": "object",
          "properties": {
             "max": {
-               "type": "integer"
+               "type": "integer",
+               "default": 128,
+               "minimum": -2147483648,
+               "maximum": 2147483647
             },
             "min": {
-               "type": "integer"
+               "type": "integer",
+               "default": 24,
+               "minimum": -2147483648,
+               "maximum": 2147483647
             }
          }
       },
@@ -51,16 +62,26 @@
          "type": "object",
          "properties": {
             "identifier": {
-               "type": "string"
+               "type": "string",
+               "default": ""
             },
             "max": {
-               "type": "integer"
+               "type": "integer",
+               "default": 0,
+               "minimum": -2147483648,
+               "maximum": 2147483647
             },
             "min": {
-               "type": "integer"
+               "type": "integer",
+               "default": 0,
+               "minimum": -2147483648,
+               "maximum": 2147483647
             },
             "spawn_chance": {
-               "type": "integer"
+               "type": "integer",
+               "default": 100,
+               "minimum": -2147483648,
+               "maximum": 2147483647
             }
          }
       },
@@ -69,6 +90,16 @@
          "type": "object",
          "properties": {
             "minecraft:biome_filter": {
+               "default": {
+                  "all_of": null,
+                  "all": null,
+                  "OR": null,
+                  "AND": null,
+                  "any_of": null,
+                  "any": null,
+                  "none_of": null,
+                  "NOT": null
+               },
                "$ref": "#/definitions/1088251937"
             },
             "minecraft:brightness_filter": {
@@ -93,6 +124,7 @@
                "$ref": "#/definitions/581732209"
             },
             "minecraft:herd": {
+               "default": [],
                "oneOf": [
                   {
                      "type": "array",
@@ -115,6 +147,7 @@
                "$ref": "#/definitions/1159543840"
             },
             "minecraft:permute_type": {
+               "default": [],
                "oneOf": [
                   {
                      "type": "array",
@@ -131,15 +164,23 @@
                "$ref": "#/definitions/1491617288"
             },
             "minecraft:spawn_event": {
+               "default": {
+                  "event": ""
+               },
                "$ref": "#/definitions/1159543840"
             },
             "minecraft:spawns_above_block_filter": {
+               "default": {
+                  "blocks": [],
+                  "distance": 1
+               },
                "$ref": "#/definitions/2617991491"
             },
             "minecraft:spawns_lava": {
                "$ref": "#/definitions/1945762166"
             },
             "minecraft:spawns_on_block_filter": {
+               "default": [],
                "oneOf": [
                   {
                      "type": "array",
@@ -153,6 +194,7 @@
                ]
             },
             "minecraft:spawns_on_block_prevented_filter": {
+               "default": [],
                "oneOf": [
                   {
                      "type": "array",
@@ -187,10 +229,16 @@
          "type": "object",
          "properties": {
             "max": {
-               "type": "integer"
+               "type": "integer",
+               "default": -1,
+               "minimum": 0,
+               "maximum": 18446744073709552000
             },
             "min": {
-               "type": "integer"
+               "type": "integer",
+               "default": 0,
+               "minimum": 0,
+               "maximum": 18446744073709552000
             }
          }
       },
@@ -245,7 +293,8 @@
          "type": "object",
          "properties": {
             "event": {
-               "type": "string"
+               "type": "string",
+               "default": ""
             }
          }
       },
@@ -260,7 +309,8 @@
                "type": "string"
             },
             "population_control": {
-               "type": "string"
+               "type": "string",
+               "default": ""
             }
          },
          "required": [
@@ -272,10 +322,15 @@
          "type": "object",
          "properties": {
             "distance": {
-               "type": "integer"
+               "type": "integer",
+               "minimum": 0,
+               "maximum": 4294967295
             },
             "village_border_tolerance": {
-               "type": "integer"
+               "type": "integer",
+               "default": 10,
+               "minimum": 0,
+               "maximum": 4294967295
             }
          },
          "required": [
@@ -294,24 +349,36 @@
          "type": "object",
          "properties": {
             "event": {
-               "type": "string"
+               "type": "string",
+               "default": ""
             },
             "event_skip_count": {
-               "type": "integer"
+               "type": "integer",
+               "default": 0,
+               "minimum": -2147483648,
+               "maximum": 2147483647
             },
             "initial_event": {
-               "type": "string"
+               "type": "string",
+               "default": ""
             },
             "initial_event_count": {
-               "type": "integer"
+               "type": "integer",
+               "default": 0,
+               "minimum": -2147483648,
+               "maximum": 2147483647
             },
             "max_size": {
                "type": "integer",
-               "minimum": 0
+               "default": 1,
+               "minimum": 0,
+               "maximum": 2147483647
             },
             "min_size": {
                "type": "integer",
-               "minimum": 0
+               "default": 1,
+               "minimum": 0,
+               "maximum": 2147483647
             }
          }
       },
@@ -331,6 +398,7 @@
             "max": {
                "title": "SpawnDifficulty Legacy",
                "type": "string",
+               "default": "hard",
                "enum": [
                   "peaceful",
                   "easy",
@@ -341,6 +409,7 @@
             "min": {
                "title": "SpawnDifficulty Legacy",
                "type": "string",
+               "default": "peaceful",
                "enum": [
                   "peaceful",
                   "easy",
@@ -355,10 +424,16 @@
          "type": "object",
          "properties": {
             "max": {
-               "type": "integer"
+               "type": "integer",
+               "default": 128,
+               "minimum": -2147483648,
+               "maximum": 2147483647
             },
             "min": {
-               "type": "integer"
+               "type": "integer",
+               "default": 24,
+               "minimum": -2147483648,
+               "maximum": 2147483647
             }
          }
       },
@@ -367,15 +442,19 @@
          "type": "object",
          "properties": {
             "entity_type": {
+               "default": "",
                "$ref": "#/definitions/1493335182"
             },
             "min_guaranteed": {
                "type": "integer",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 2147483647
             },
             "weight": {
                "type": "integer",
-               "minimum": 0
+               "minimum": 0,
+               "maximum": 2147483647
             }
          },
          "required": [
@@ -390,6 +469,7 @@
          "type": "object",
          "properties": {
             "blocks": {
+               "default": [],
                "oneOf": [
                   {
                      "type": "array",
@@ -403,7 +483,10 @@
                ]
             },
             "distance": {
-               "type": "integer"
+               "type": "integer",
+               "default": 1,
+               "minimum": -2147483648,
+               "maximum": 2147483647
             }
          }
       },
@@ -412,16 +495,19 @@
          "type": "object",
          "properties": {
             "name": {
-               "type": "string"
+               "type": "string",
+               "default": ""
             },
             "states": {
                "type": "object",
                "additionalProperties": {
                   "$ref": "#/definitions/517105782"
-               }
+               },
+               "default": {}
             },
             "tags": {
-               "type": "string"
+               "type": "string",
+               "default": ""
             }
          }
       },
@@ -429,14 +515,16 @@
          "title": "Block Descriptor",
          "oneOf": [
             {
-               "$ref": "#/definitions/2770948419"
+               "$ref": "#/definitions/2770948419",
+               "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
             },
             {
                "type": "string",
                "minLength": 1
             },
             {
-               "$ref": "#/definitions/2770948419"
+               "$ref": "#/definitions/2770948419",
+               "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
             }
          ]
       },
@@ -445,15 +533,18 @@
          "type": "object",
          "properties": {
             "adjust_for_weather": {
-               "type": "boolean"
+               "type": "boolean",
+               "default": false
             },
             "max": {
                "type": "integer",
+               "default": 15,
                "minimum": 0,
                "maximum": 15
             },
             "min": {
                "type": "integer",
+               "default": 0,
                "minimum": 0,
                "maximum": 15
             }
@@ -465,11 +556,15 @@
          "properties": {
             "surface": {
                "type": "integer",
-               "minimum": -1
+               "default": -1,
+               "minimum": -1,
+               "maximum": 2147483647
             },
             "underground": {
                "type": "integer",
-               "minimum": -1
+               "default": -1,
+               "minimum": -1,
+               "maximum": 2147483647
             }
          }
       },
@@ -483,10 +578,14 @@
                      "type": "boolean"
                   },
                   {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
                   },
                   {
-                     "type": "number"
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   {
                      "type": "string"
@@ -499,10 +598,14 @@
                      "type": "boolean"
                   },
                   {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
                   },
                   {
-                     "type": "number"
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   {
                      "type": "string"
@@ -515,10 +618,14 @@
                      "type": "boolean"
                   },
                   {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
                   },
                   {
-                     "type": "number"
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   {
                      "type": "string"
@@ -534,10 +641,14 @@
                      "type": "boolean"
                   },
                   {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -2147483648,
+                     "maximum": 2147483647
                   },
                   {
-                     "type": "number"
+                     "type": "number",
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   {
                      "type": "string"
@@ -555,6 +666,7 @@
    "properties": {
       "conditions": {
          "type": "array",
+         "default": [],
          "items": {
             "$ref": "#/definitions/904344786"
          }

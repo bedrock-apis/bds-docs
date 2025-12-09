@@ -161,6 +161,7 @@ export enum EnchantmentSlot {
    FishingRod = "FishingRod",
    Flintsteel = "Flintsteel",
    Hoe = "Hoe",
+   MeleeSpear = "MeleeSpear",
    Pickaxe = "Pickaxe",
    Shears = "Shears",
    Shield = "Shield",
@@ -243,6 +244,7 @@ export enum EntityDamageCause {
    campfire = "campfire",
    charging = "charging",
    contact = "contact",
+   dehydration = "dehydration",
    drowning = "drowning",
    entityAttack = "entityAttack",
    entityExplosion = "entityExplosion",
@@ -2435,7 +2437,7 @@ export class Player extends Entity {
    public readonly xpEarnedAtCurrentLevel: number;
    public addExperience(amount: number): number;
    public addLevels(amount: number): number;
-   public clearPropertyOverridesForEntity(targetEntity: Entity): void;
+   public clearPropertyOverridesForEntity(targetEntity: Entity | string): void;
    public getGameMode(): GameMode;
    public getItemCooldown(cooldownCategory: string): number;
    public getSpawnPoint(): (DimensionLocation | undefined);

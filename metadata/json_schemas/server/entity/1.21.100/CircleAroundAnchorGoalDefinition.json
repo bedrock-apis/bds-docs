@@ -8,10 +8,16 @@
          "type": "object",
          "properties": {
             "max": {
-               "type": "number"
+               "type": "number",
+               "default": 0,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "min": {
-               "type": "number"
+               "type": "number",
+               "default": 0,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       }
@@ -20,10 +26,14 @@
    "type": "object",
    "properties": {
       "angle_change": {
-         "type": "number"
+         "type": "number",
+         "default": 15,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       },
       "control_flags": {
          "type": "array",
+         "default": [],
          "items": {
             "title": "Goal's control flags",
             "type": "string",
@@ -35,32 +45,63 @@
          }
       },
       "goal_radius": {
-         "type": "number"
+         "type": "number",
+         "default": 0.5,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       },
       "height_above_target_range": {
-         "$ref": "#/definitions/1057349585"
+         "default": {
+            "min": 0,
+            "max": 0
+         },
+         "$ref": "#/definitions/1057349585",
+         "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
       },
       "height_adjustment_chance": {
-         "type": "number"
+         "type": "number",
+         "default": 0.0028570001013576984,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       },
       "height_offset_range": {
+         "default": {
+            "min": 0,
+            "max": 0
+         },
          "$ref": "#/definitions/1057349585"
       },
       "priority": {
          "type": "integer",
-         "minimum": 0
+         "default": 0,
+         "minimum": 0,
+         "maximum": 2147483647
       },
       "radius_adjustment_chance": {
-         "type": "number"
+         "type": "number",
+         "default": 0.004000000189989805,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       },
       "radius_change": {
-         "type": "number"
+         "type": "number",
+         "default": 1,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       },
       "radius_range": {
-         "$ref": "#/definitions/1057349585"
+         "default": {
+            "min": 5,
+            "max": 15
+         },
+         "$ref": "#/definitions/1057349585",
+         "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
       },
       "speed_multiplier": {
-         "type": "number"
+         "type": "number",
+         "default": 1,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       }
    }
 }

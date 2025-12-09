@@ -6,11 +6,15 @@
    "type": "object",
    "properties": {
       "durability": {
-         "type": "integer"
+         "type": "integer",
+         "default": 0,
+         "minimum": -2147483648,
+         "maximum": 2147483647
       },
       "particle_type": {
          "title": "ParticleType",
          "type": "string",
+         "default": "none",
          "enum": [
             "none",
             "bubble",
@@ -108,6 +112,7 @@
       "sound_event": {
          "title": "LevelSoundEvent",
          "type": "string",
+         "default": "undefined",
          "enum": [
             "item.use.on",
             "hit",
@@ -629,6 +634,18 @@
             "place_item",
             "single_swap",
             "multi_swap",
+            "item.enchant.lunge1",
+            "item.enchant.lunge2",
+            "item.enchant.lunge3",
+            "attack.critical",
+            "item.spear.attack_hit",
+            "item.spear.attack_miss",
+            "item.wooden_spear.attack_hit",
+            "item.wooden_spear.attack_miss",
+            "imitate.parched",
+            "imitate.camel_husk",
+            "item.spear.use",
+            "item.wooden_spear.use",
             "undefined"
          ]
       }

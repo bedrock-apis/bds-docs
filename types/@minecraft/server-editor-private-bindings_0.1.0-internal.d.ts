@@ -10,6 +10,10 @@ export enum EditorRealmsServiceAvailability {
    Success = 4,
    Unknown = 5,
 }
+export enum JigsawJointType {
+   Aligned = 1,
+   Rollable = 0,
+}
 export enum JigsawJsonType {
    Processor = 0,
    Structure = 1,
@@ -18,6 +22,7 @@ export enum JigsawJsonType {
 }
 export enum PersistenceGroupType {
    Local = 0,
+   Replication = 1,
    Shared = 2,
 }
 export enum PersistenceScope {
@@ -25,6 +30,15 @@ export enum PersistenceScope {
    ClientProject = 0,
    ServerGlobal = 3,
    ServerProject = 2,
+}
+export enum PrefabInstanceInteractionEventType {
+   Clicked = "Clicked",
+   Moved = "Moved",
+}
+export enum PrefabSource {
+   Global = "Global",
+   Project = "Project",
+   Unknown = "Unknown",
 }
 export enum ProjectRegionAvailabilityMode {
    Loaded = 0,
@@ -74,6 +88,16 @@ export interface InputBindingInfo {
    label?: string;
    tooltip?: string;
 }
+export interface JigsawBlockData {
+   finalBlock: string;
+   jointType: JigsawJointType;
+   jointTypeVisible: boolean;
+   name: string;
+   placementPriority: number;
+   selectionPriority: number;
+   target: string;
+   targetPool: string;
+}
 export interface PersistenceGroupCreationOptions {
    groupType?: PersistenceGroupType;
    scope: PersistenceScope;
@@ -84,6 +108,41 @@ export interface PersistenceQueryGroupOptions {
    namespacedName?: string;
    scope?: PersistenceScope;
    version?: number;
+}
+export interface PrefabInstanceInteractionEventClicked {
+   altPressed: boolean;
+   ctrlPressed: boolean;
+   shiftPressed: boolean;
+}
+export interface PrefabInstanceInteractionEventMoved {
+   location: server.Vector3;
+}
+export interface PrefabServiceCreateTemplateOptions {
+   description?: string;
+   displayName?: string;
+   notes?: string;
+   tags?: Array<string>;
+}
+export interface PrefabTemplateAddStructureOptions {
+   mirror?: server.StructureMirrorAxis;
+   offset?: server.Vector3;
+   rotation?: server.StructureRotation;
+}
+export interface PrefabTemplateCreateInstanceOptions {
+   mirror?: server.StructureMirrorAxis;
+   rotation?: server.StructureRotation;
+}
+export interface PrefabTemplateMetadata {
+   description: string;
+   displayName: string;
+   instanceReferenceCount: number;
+   name: string;
+   notes: string;
+   readOnly: boolean;
+   source: PrefabSource;
+   structureReferenceCount: number;
+   tags: Array<string>;
+   templateId: string;
 }
 export interface ProjectRegionOptions {
    availabilityMode?: ProjectRegionAvailabilityMode;
@@ -98,6 +157,7 @@ export class DataStore {
    public readonly menuContainer: DataStoreMenuContainer;
    public readonly modalToolContainer: DataStoreModalToolContainer;
    public readonly paneContainer: DataStorePaneContainer;
+   public sendNotificationEvent(dataTag: string, payload: string): void;
    private constructor();
 }
 export class DataStoreActionBarContainer {
@@ -201,6 +261,7 @@ export class InternalPersistenceManager {
    public fetchGroups(options: PersistenceQueryGroupOptions): Array<PersistenceGroup>;
    public getGroup(namespacedName: string, options: PersistenceGroupCreationOptions): (PersistenceGroup | undefined);
    public getOrCreateGroup(namespacedName: string, options: PersistenceGroupCreationOptions): PersistenceGroup;
+   public requestClientGroup(namespacedName: string, options: PersistenceGroupCreationOptions, callback: (arg0?: PersistenceGroup)=>void): void;
    private constructor();
 }
 export class InternalPlayerServiceContext {
@@ -209,6 +270,7 @@ export class InternalPlayerServiceContext {
    public readonly input: InputService;
    public readonly internalPersistenceManager: InternalPersistenceManager;
    public readonly jigsawService: JigsawService;
+   public readonly prefabManager: PrefabManager;
    public readonly realmsService: RealmsService;
    public readonly regionManager: ProjectRegionManager;
    private constructor();
@@ -217,8 +279,10 @@ export class JigsawService {
    public generateJigsaw(registryName: string, startingPool: string, startTarget: string, seed: server.Vector3, depth: number, maxHorizontalDistanceFromCenter: number, validateRegistry: boolean, clipboardItem: server_editor.ClipboardItem): Promise<Array<EditorJigsawSection>>;
    public getEmptyRegistryFiles(): Record<string,string>;
    public getExportLocation(): string;
+   public getJigsawBlockData(pos: server.Vector3): JigsawBlockData;
    public getRegistryData(registryName: string): Record<string,Array<EditorRegistryFile>>;
    public getRegistryList(): Array<string>;
+   public setJigsawBlockData(pos: server.Vector3, jigsawData: JigsawBlockData): void;
    public setRegistryData(registryName: string, processorData: Array<EditorRegistryFile>, structureData: Array<EditorRegistryFile>, structureSetData: Array<EditorRegistryFile>, templatePoolData: Array<EditorRegistryFile>): Promise<Array<string>>;
    private constructor();
 }
@@ -235,7 +299,7 @@ export class PersistenceGroup {
    public dispose(): boolean;
    public disposeAllGroupItems(): void;
    public disposeGroupItem(key: string): boolean;
-   public fetchItem(itemName: string): PersistenceGroupItem;
+   public fetchItem(itemName: string): (PersistenceGroupItem | undefined);
    public getOrCreateItem(itemName: string, defaultJsonValue?: string): PersistenceGroupItem;
    public listItems(): Array<string>;
    private constructor();
@@ -246,6 +310,75 @@ export class PersistenceGroupItem {
    public getKey(): string;
    public getValue(): string;
    public setValue(value: string): void;
+   private constructor();
+}
+export class PrefabInstanceInteractionEvent {
+   public readonly eventData: PrefabInstanceInteractionEventClicked | PrefabInstanceInteractionEventMoved;
+   public readonly eventType: PrefabInstanceInteractionEventType;
+   public readonly instance: PrefabTemplateInstance;
+   private constructor();
+}
+export class PrefabManager {
+   public readonly instanceInteractionEvents: PrefabServiceInstanceInteractionEvent;
+   public beginCapturingMouseClicks(): void;
+   public clearSelectedInstances(): void;
+   public cloneTemplate(templateOrMetadataToClone: PrefabTemplate | PrefabTemplateMetadata, newName: string, optionalNewDisplayName?: string): PrefabTemplate;
+   public createTemplate(name: string, options?: PrefabServiceCreateTemplateOptions): PrefabTemplate;
+   public deleteInstance(instance: PrefabTemplateInstance): void;
+   public deleteTemplate(templateOrMetadata: PrefabTemplate | PrefabTemplateMetadata): void;
+   public deselectInstance(instance: PrefabTemplateInstance): void;
+   public endCapturingMouseClicks(): void;
+   public getTemplate(searchMetadata_or_fullyQualifiedName: PrefabTemplateMetadata | string): PrefabTemplate;
+   public getTemplateList(): Array<PrefabTemplateMetadata>;
+   public selectInstance(instance: PrefabTemplateInstance, append: boolean): void;
+   private constructor();
+}
+export class PrefabServiceInstanceInteractionEvent {
+   public subscribe(callback: (arg0: PrefabInstanceInteractionEvent)=>void): (arg0: PrefabInstanceInteractionEvent)=>void;
+   public unsubscribe(callback: (arg0: PrefabInstanceInteractionEvent)=>void): void;
+   private constructor();
+}
+export class PrefabTemplate {
+   public description: string;
+   public displayName: string;
+   public readonly instanceCount: number;
+   public readonly name: string;
+   public notes: string;
+   public readonly source: PrefabSource;
+   public addStructure(structure: server_editor.EditorStructure, options?: PrefabTemplateAddStructureOptions): PrefabTemplateStructure;
+   public createInstance(location: server.Vector3, options?: PrefabTemplateCreateInstanceOptions): PrefabTemplateInstance;
+   public getMetadata(): PrefabTemplateMetadata;
+   public getTags(): Array<string>;
+   public getTemplateStructures(): Array<PrefabTemplateStructure>;
+   public removeStructure(templateStructure: PrefabTemplateStructure): void;
+   public setName(newName: string): void;
+   public setTags(newTags: Array<string>): void;
+   private constructor();
+}
+export class PrefabTemplateInstance {
+   public instanceMirror: server.StructureMirrorAxis;
+   public instanceRotation: server.StructureRotation;
+   public location: server.Vector3;
+   public bakeInstance(): void;
+   public getStructureRefs(): Array<PrefabTemplateInstanceStructure>;
+   public getTemplate(): PrefabTemplate;
+   private constructor();
+}
+export class PrefabTemplateInstanceStructure {
+   public instanceMirror: server.StructureMirrorAxis;
+   public instanceRotation: server.StructureRotation;
+   public getTemplateStructure(): PrefabTemplateStructure;
+   private constructor();
+}
+export class PrefabTemplateStructure {
+   public readonly id: string;
+   public instanceMirror: server.StructureMirrorAxis;
+   public instanceOffset: server.Vector3;
+   public instanceRotation: server.StructureRotation;
+   public readonly structureNormalizedOrigin: server.Vector3;
+   public readonly structureOffset: server.Vector3;
+   public readonly structureSize: server.Vector3;
+   public getStructure(): server_editor.EditorStructure;
    private constructor();
 }
 export class ProjectRegion {
@@ -299,3 +432,47 @@ export class RealmsService {
 
 export const editorInternal: MinecraftEditorInternal;
 
+
+//@ts-ignore
+export class PrefabErrorInvalidInstance extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class PrefabErrorInvalidName extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class PrefabErrorInvalidStructure extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class PrefabErrorInvalidTemplate extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class PrefabErrorInvalidTemplateStructure extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class PrefabErrorStringInvalidLength extends Error {
+   public readonly length: number;
+   public readonly maxLength: number;
+   public readonly string: string;
+   private constructor();
+}
+//@ts-ignore
+export class PrefabErrorValueOutOfBounds extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class PrefabServiceError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class PrefabTemplateExists extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class PrefabTemplateNotFound extends Error {
+   private constructor();
+}

@@ -8,10 +8,16 @@
          "type": "object",
          "properties": {
             "bottom": {
-               "type": "integer"
+               "type": "integer",
+               "default": 0,
+               "minimum": 0,
+               "maximum": 4294967295
             },
             "top": {
-               "type": "integer"
+               "type": "integer",
+               "default": 0,
+               "minimum": 0,
+               "maximum": 4294967295
             }
          }
       }
@@ -19,7 +25,9 @@
    "title": "DimensionPadding",
    "oneOf": [
       {
-         "type": "integer"
+         "type": "integer",
+         "minimum": 0,
+         "maximum": 4294967295
       },
       {
          "$ref": "#/definitions/781829906"

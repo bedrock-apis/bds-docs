@@ -9,6 +9,7 @@
          "properties": {
             "control_flags": {
                "type": "array",
+               "default": [],
                "items": {
                   "title": "Goal's control flags",
                   "type": "string",
@@ -20,20 +21,34 @@
                }
             },
             "interval": {
-               "type": "number"
+               "type": "number",
+               "default": 0.008329999633133411,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "look_ahead": {
-               "type": "number"
+               "type": "number",
+               "default": 5,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "priority": {
                "type": "integer",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 2147483647
             },
             "speed_multiplier": {
-               "type": "number"
+               "type": "number",
+               "default": 1,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "wander_time": {
-               "type": "number"
+               "type": "number",
+               "default": 5,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       },
@@ -43,6 +58,7 @@
          "properties": {
             "control_flags": {
                "type": "array",
+               "default": [],
                "items": {
                   "title": "Goal's control flags",
                   "type": "string",
@@ -54,20 +70,34 @@
                }
             },
             "listen_time": {
-               "type": "integer"
+               "type": "integer",
+               "default": 30,
+               "minimum": -2147483648,
+               "maximum": 2147483647
             },
             "priority": {
                "type": "integer",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 2147483647
             },
             "speed": {
-               "type": "number"
+               "type": "number",
+               "default": 1,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "start_distance": {
-               "type": "number"
+               "type": "number",
+               "default": 10,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "stop_distance": {
-               "type": "number"
+               "type": "number",
+               "default": 2,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       },
@@ -75,7 +105,9 @@
          "title": "compound_proxy",
          "oneOf": [
             {
-               "type": "integer"
+               "type": "integer",
+               "minimum": -2147483648,
+               "maximum": 2147483647
             },
             {
                "type": "string"
@@ -91,6 +123,7 @@
          "properties": {
             "control_flags": {
                "type": "array",
+               "default": [],
                "items": {
                   "title": "Goal's control flags",
                   "type": "string",
@@ -102,23 +135,38 @@
                }
             },
             "grow_tired_cooldown_time": {
-               "type": "number"
+               "type": "number",
+               "default": 15,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "priority": {
                "type": "integer",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 2147483647
             },
             "set_persistent": {
-               "type": "boolean"
+               "type": "boolean",
+               "default": false
             },
             "speed_multiplier": {
-               "type": "number"
+               "type": "number",
+               "default": 1,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "x_max_rotation": {
-               "type": "number"
+               "type": "number",
+               "default": 10,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "y_max_rotation": {
-               "type": "number"
+               "type": "number",
+               "default": 10,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       },
@@ -127,21 +175,31 @@
          "type": "object",
          "properties": {
             "on_bred": {
+               "default": {
+                  "expression": "",
+                  "version": -1
+               },
                "$ref": "#/definitions/3178719147"
             },
             "on_bred_array": {
                "type": "array",
                "deprecated": true,
+               "default": [],
                "items": {
                   "$ref": "#/definitions/3178719147"
                }
             },
             "on_death": {
+               "default": {
+                  "expression": "",
+                  "version": -1
+               },
                "$ref": "#/definitions/3178719147"
             },
             "on_death_array": {
                "type": "array",
                "deprecated": true,
+               "default": [],
                "items": {
                   "$ref": "#/definitions/3178719147"
                }
@@ -154,13 +212,17 @@
          "properties": {
             "distance_to_players": {
                "type": "number",
-               "minimum": 128
+               "default": 128,
+               "minimum": 128,
+               "maximum": 3.4028234663852886e+38
             },
             "never_despawn": {
-               "type": "boolean"
+               "type": "boolean",
+               "default": true
             },
             "radius": {
                "type": "integer",
+               "default": 2,
                "minimum": 2,
                "maximum": 6
             }
@@ -171,10 +233,16 @@
          "type": "object",
          "properties": {
             "max": {
-               "type": "number"
+               "type": "number",
+               "default": 0,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "min": {
-               "type": "number"
+               "type": "number",
+               "default": 0,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       },
@@ -184,6 +252,7 @@
          "properties": {
             "control_flags": {
                "type": "array",
+               "default": [],
                "items": {
                   "title": "Goal's control flags",
                   "type": "string",
@@ -195,18 +264,27 @@
                }
             },
             "max_distance": {
-               "type": "number"
+               "type": "number",
+               "default": 3,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "min_distance": {
-               "type": "number"
+               "type": "number",
+               "default": 2,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "priority": {
                "type": "integer",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 2147483647
             },
             "sound_event": {
                "title": "LevelSoundEvent",
                "type": "string",
+               "default": "charge",
                "enum": [
                   "item.use.on",
                   "hit",
@@ -728,14 +806,32 @@
                   "place_item",
                   "single_swap",
                   "multi_swap",
+                  "item.enchant.lunge1",
+                  "item.enchant.lunge2",
+                  "item.enchant.lunge3",
+                  "attack.critical",
+                  "item.spear.attack_hit",
+                  "item.spear.attack_miss",
+                  "item.wooden_spear.attack_hit",
+                  "item.wooden_spear.attack_miss",
+                  "imitate.parched",
+                  "imitate.camel_husk",
+                  "item.spear.use",
+                  "item.wooden_spear.use",
                   "undefined"
                ]
             },
             "speed_multiplier": {
-               "type": "number"
+               "type": "number",
+               "default": 1,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "success_rate": {
-               "type": "number"
+               "type": "number",
+               "default": 0.1428000032901764,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       },
@@ -745,6 +841,7 @@
          "properties": {
             "control_flags": {
                "type": "array",
+               "default": [],
                "items": {
                   "title": "Goal's control flags",
                   "type": "string",
@@ -756,29 +853,50 @@
                }
             },
             "cooldown_time": {
-               "type": "number"
+               "type": "number",
+               "default": 10,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "flame_time": {
-               "type": "number"
+               "type": "number",
+               "default": 0.5,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "ground_flame_count": {
-               "type": "integer"
+               "type": "integer",
+               "default": 4,
+               "minimum": -2147483648,
+               "maximum": 2147483647
             },
             "priority": {
                "type": "integer",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 2147483647
             },
             "roar_time": {
-               "type": "number"
+               "type": "number",
+               "default": 2,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "smoke_color": {
-               "type": "string"
+               "type": "string",
+               "default": "#DC00EF"
             },
             "smoke_radius": {
-               "type": "number"
+               "type": "number",
+               "default": 5,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "smoke_time": {
-               "type": "number"
+               "type": "number",
+               "default": 10,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       },
@@ -801,16 +919,19 @@
          "type": "object",
          "properties": {
             "allow_simultaneous_interaction": {
-               "type": "boolean"
+               "type": "boolean",
+               "default": false
             },
             "allowed_items": {
                "type": "array",
+               "default": [],
                "items": {
                   "$ref": "#/definitions/1531870811"
                }
             },
             "control_flags": {
                "type": "array",
+               "default": [],
                "items": {
                   "title": "Goal's control flags",
                   "type": "string",
@@ -823,37 +944,52 @@
             },
             "destination_container_types": {
                "type": "array",
+               "default": [],
                "items": {
                   "$ref": "#/definitions/2794205495"
                }
             },
             "disallowed_items": {
                "type": "array",
+               "default": [],
                "items": {
                   "$ref": "#/definitions/1531870811"
                }
             },
             "idle_cooldown": {
-               "type": "integer"
+               "type": "integer",
+               "default": 20,
+               "minimum": 0,
+               "maximum": 4294967295
             },
             "initial_cooldown": {
-               "type": "integer"
+               "type": "integer",
+               "default": 0,
+               "minimum": 0,
+               "maximum": 4294967295
             },
             "interaction_time": {
                "type": "number",
-               "minimum": 0
+               "default": 3,
+               "minimum": 0,
+               "maximum": 3.4028234663852886e+38
             },
             "max_stack_size": {
                "type": "integer",
+               "default": 64,
                "minimum": 1,
                "maximum": 64
             },
             "max_visited_containers": {
-               "type": "integer"
+               "type": "integer",
+               "default": 16,
+               "minimum": 0,
+               "maximum": 4294967295
             },
             "place_strategy": {
                "title": "place_strategy",
                "type": "string",
+               "default": "any",
                "enum": [
                   "any",
                   "with_matching",
@@ -862,14 +998,21 @@
             },
             "priority": {
                "type": "integer",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 2147483647
             },
             "search_distance": {
+               "default": [
+                  64,
+                  32
+               ],
                "$ref": "#/definitions/4021724221"
             },
             "search_strategy": {
                "title": "search_strategy",
                "type": "string",
+               "default": "random",
                "enum": [
                   "nearest",
                   "random"
@@ -877,6 +1020,7 @@
             },
             "source_container_types": {
                "type": "array",
+               "default": [],
                "items": {
                   "$ref": "#/definitions/2794205495"
                }
@@ -889,6 +1033,7 @@
          "properties": {
             "control_flags": {
                "type": "array",
+               "default": [],
                "items": {
                   "title": "Goal's control flags",
                   "type": "string",
@@ -901,18 +1046,27 @@
             },
             "fractional_rotation": {
                "type": "number",
+               "default": 0.5,
                "minimum": 0.5,
                "maximum": 1
             },
             "fractional_rotation_limit": {
-               "type": "number"
+               "type": "number",
+               "default": 5,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "mount_speed_multiplier": {
-               "type": "number"
+               "type": "number",
+               "default": 1,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "priority": {
                "type": "integer",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 2147483647
             }
          }
       },
@@ -922,6 +1076,7 @@
          "properties": {
             "control_flags": {
                "type": "array",
+               "default": [],
                "items": {
                   "title": "Goal's control flags",
                   "type": "string",
@@ -933,24 +1088,41 @@
                }
             },
             "cooldown_range": {
+               "default": {
+                  "min": 3,
+                  "max": 10
+               },
                "$ref": "#/definitions/1057349585"
             },
             "duration": {
-               "type": "number"
+               "type": "number",
+               "default": 1,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "priority": {
                "type": "integer",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 2147483647
             },
             "sniffing_radius": {
-               "type": "number"
+               "type": "number",
+               "default": 5,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "suspicion_radius_horizontal": {
-               "type": "number"
+               "type": "number",
+               "default": 3,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "suspicion_radius_vertical": {
                "type": "number",
-               "minimum": 1
+               "default": 3,
+               "minimum": 1,
+               "maximum": 3.4028234663852886e+38
             }
          }
       },
@@ -960,6 +1132,7 @@
          "properties": {
             "control_flags": {
                "type": "array",
+               "default": [],
                "items": {
                   "title": "Goal's control flags",
                   "type": "string",
@@ -971,17 +1144,29 @@
                }
             },
             "damage_reach": {
-               "type": "number"
+               "type": "number",
+               "default": 0.20000000298023224,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "delay_range": {
+               "default": {
+                  "min": 10,
+                  "max": 20
+               },
                "$ref": "#/definitions/1057349585"
             },
             "priority": {
                "type": "integer",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 2147483647
             },
             "speed_multiplier": {
-               "type": "number"
+               "type": "number",
+               "default": 1,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       },
@@ -991,6 +1176,7 @@
          "properties": {
             "control_flags": {
                "type": "array",
+               "default": [],
                "items": {
                   "title": "Goal's control flags",
                   "type": "string",
@@ -1002,26 +1188,42 @@
                }
             },
             "eat_animation_time": {
-               "type": "number"
+               "type": "number",
+               "default": 1,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "eat_mob_sound": {
-               "type": "string"
+               "type": "string",
+               "default": ""
             },
             "loot_table": {
-               "type": "string"
+               "type": "string",
+               "default": ""
             },
             "priority": {
                "type": "integer",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 2147483647
             },
             "pull_in_force": {
-               "type": "number"
+               "type": "number",
+               "default": 1,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "reach_mob_distance": {
-               "type": "number"
+               "type": "number",
+               "default": 1,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "run_speed": {
-               "type": "number"
+               "type": "number",
+               "default": 1,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       },
@@ -1038,7 +1240,9 @@
                      "type": "string"
                   },
                   "version": {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -32768,
+                     "maximum": 32767
                   }
                },
                "required": [
@@ -1054,6 +1258,7 @@
          "properties": {
             "control_flags": {
                "type": "array",
+               "default": [],
                "items": {
                   "title": "Goal's control flags",
                   "type": "string",
@@ -1065,20 +1270,32 @@
                }
             },
             "material_type": {
-               "type": "string"
+               "type": "string",
+               "default": "water"
             },
             "priority": {
                "type": "integer",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 2147483647
             },
             "search_height": {
-               "type": "integer"
+               "type": "integer",
+               "default": 16,
+               "minimum": -2147483648,
+               "maximum": 2147483647
             },
             "search_radius": {
-               "type": "integer"
+               "type": "integer",
+               "default": 4,
+               "minimum": -2147483648,
+               "maximum": 2147483647
             },
             "speed_mod": {
-               "type": "number"
+               "type": "number",
+               "default": 1.399999976158142,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       },
@@ -1087,25 +1304,40 @@
          "type": "object",
          "properties": {
             "attack_cooldown": {
-               "type": "number"
+               "type": "number",
+               "default": 5,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "attack_damage": {
-               "type": "number"
+               "type": "number",
+               "default": 30,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "attack_range_horizontal": {
-               "type": "number"
+               "type": "number",
+               "default": 15,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "attack_range_vertical": {
-               "type": "number"
+               "type": "number",
+               "default": 20,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "attack_sound": {
-               "type": "string"
+               "type": "string",
+               "default": ""
             },
             "charge_sound": {
-               "type": "string"
+               "type": "string",
+               "default": ""
             },
             "control_flags": {
                "type": "array",
+               "default": [],
                "items": {
                   "title": "Goal's control flags",
                   "type": "string",
@@ -1118,26 +1350,45 @@
             },
             "duration": {
                "type": "number",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 3.4028234663852886e+38
             },
             "duration_until_attack_sound": {
-               "type": "number"
+               "type": "number",
+               "default": 1.7000000476837158,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "knockback_height_cap": {
-               "type": "number"
+               "type": "number",
+               "default": 0,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "knockback_horizontal_strength": {
-               "type": "number"
+               "type": "number",
+               "default": 0,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "knockback_vertical_strength": {
-               "type": "number"
+               "type": "number",
+               "default": 0,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "priority": {
                "type": "integer",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 2147483647
             },
             "speed_multiplier": {
-               "type": "number"
+               "type": "number",
+               "default": 1,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       },
@@ -1147,6 +1398,7 @@
          "properties": {
             "control_flags": {
                "type": "array",
+               "default": [],
                "items": {
                   "title": "Goal's control flags",
                   "type": "string",
@@ -1158,14 +1410,22 @@
                }
             },
             "jump_chance_percentage": {
-               "type": "number"
+               "type": "number",
+               "default": 0.800000011920929,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "priority": {
                "type": "integer",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 2147483647
             },
             "speed_multiplier": {
-               "type": "number"
+               "type": "number",
+               "default": 1.2000000476837158,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       },
@@ -1175,6 +1435,7 @@
          "properties": {
             "control_flags": {
                "type": "array",
+               "default": [],
                "items": {
                   "title": "Goal's control flags",
                   "type": "string",
@@ -1187,10 +1448,15 @@
             },
             "priority": {
                "type": "integer",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 2147483647
             },
             "speed_multiplier": {
-               "type": "number"
+               "type": "number",
+               "default": 1,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       },
@@ -1199,16 +1465,19 @@
          "type": "object",
          "properties": {
             "name": {
-               "type": "string"
+               "type": "string",
+               "default": ""
             },
             "states": {
                "type": "object",
                "additionalProperties": {
                   "$ref": "#/definitions/517105782"
-               }
+               },
+               "default": {}
             },
             "tags": {
-               "type": "string"
+               "type": "string",
+               "default": ""
             }
          }
       },
@@ -1216,14 +1485,16 @@
          "title": "Block Descriptor",
          "oneOf": [
             {
-               "$ref": "#/definitions/2770948419"
+               "$ref": "#/definitions/2770948419",
+               "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
             },
             {
                "type": "string",
                "minLength": 1
             },
             {
-               "$ref": "#/definitions/2770948419"
+               "$ref": "#/definitions/2770948419",
+               "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
             }
          ]
       },
@@ -1234,7 +1505,9 @@
                "$ref": "#/definitions/2267778531"
             },
             {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          ]
       },
@@ -1243,10 +1516,14 @@
          "type": "object",
          "properties": {
             "add_random_time_range": {
-               "type": "integer"
+               "type": "integer",
+               "default": 3,
+               "minimum": -2147483648,
+               "maximum": 2147483647
             },
             "control_flags": {
                "type": "array",
+               "default": [],
                "items": {
                   "title": "Goal's control flags",
                   "type": "string",
@@ -1258,14 +1535,22 @@
                }
             },
             "min_change_direction_time": {
-               "type": "number"
+               "type": "number",
+               "default": 2,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "priority": {
                "type": "integer",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 2147483647
             },
             "turn_range": {
-               "type": "integer"
+               "type": "integer",
+               "default": 360,
+               "minimum": -2147483648,
+               "maximum": 2147483647
             }
          }
       },
@@ -1275,6 +1560,7 @@
          "properties": {
             "control_flags": {
                "type": "array",
+               "default": [],
                "items": {
                   "title": "Goal's control flags",
                   "type": "string",
@@ -1287,10 +1573,15 @@
             },
             "priority": {
                "type": "integer",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 2147483647
             },
             "speed_multiplier": {
-               "type": "number"
+               "type": "number",
+               "default": 1,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       },
@@ -1300,6 +1591,7 @@
          "properties": {
             "control_flags": {
                "type": "array",
+               "default": [],
                "items": {
                   "title": "Goal's control flags",
                   "type": "string",
@@ -1311,14 +1603,22 @@
                }
             },
             "idle_time": {
-               "type": "number"
+               "type": "number",
+               "default": 5,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "priority": {
                "type": "integer",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 2147483647
             },
             "success_rate": {
-               "type": "number"
+               "type": "number",
+               "default": 0.10000000149011612,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       },
@@ -1328,6 +1628,7 @@
          "properties": {
             "control_flags": {
                "type": "array",
+               "default": [],
                "items": {
                   "title": "Goal's control flags",
                   "type": "string",
@@ -1340,11 +1641,15 @@
             },
             "duration": {
                "type": "number",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 3.4028234663852886e+38
             },
             "priority": {
                "type": "integer",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 2147483647
             }
          }
       },
@@ -1354,7 +1659,9 @@
             {
                "type": "array",
                "items": {
-                  "type": "number"
+                  "type": "number",
+                  "minimum": 1.1754943508222875e-38,
+                  "maximum": 3.4028234663852886e+38
                },
                "minItems": 2,
                "maxItems": 2
@@ -1363,10 +1670,16 @@
                "type": "object",
                "properties": {
                   "x": {
-                     "type": "number"
+                     "type": "number",
+                     "default": 0,
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   },
                   "y": {
-                     "type": "number"
+                     "type": "number",
+                     "default": 0,
+                     "minimum": 1.1754943508222875e-38,
+                     "maximum": 3.4028234663852886e+38
                   }
                }
             }
@@ -1377,10 +1690,14 @@
          "type": "object",
          "properties": {
             "angle_change": {
-               "type": "number"
+               "type": "number",
+               "default": 15,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "control_flags": {
                "type": "array",
+               "default": [],
                "items": {
                   "title": "Goal's control flags",
                   "type": "string",
@@ -1392,32 +1709,63 @@
                }
             },
             "goal_radius": {
-               "type": "number"
+               "type": "number",
+               "default": 0.5,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "height_above_target_range": {
-               "$ref": "#/definitions/1057349585"
+               "default": {
+                  "min": 0,
+                  "max": 0
+               },
+               "$ref": "#/definitions/1057349585",
+               "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
             },
             "height_adjustment_chance": {
-               "type": "number"
+               "type": "number",
+               "default": 0.0028570001013576984,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "height_offset_range": {
+               "default": {
+                  "min": 0,
+                  "max": 0
+               },
                "$ref": "#/definitions/1057349585"
             },
             "priority": {
                "type": "integer",
-               "minimum": 0
+               "default": 0,
+               "minimum": 0,
+               "maximum": 2147483647
             },
             "radius_adjustment_chance": {
-               "type": "number"
+               "type": "number",
+               "default": 0.004000000189989805,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "radius_change": {
-               "type": "number"
+               "type": "number",
+               "default": 1,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "radius_range": {
-               "$ref": "#/definitions/1057349585"
+               "default": {
+                  "min": 5,
+                  "max": 15
+               },
+               "$ref": "#/definitions/1057349585",
+               "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
             },
             "speed_multiplier": {
-               "type": "number"
+               "type": "number",
+               "default": 1,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       }
@@ -2463,6 +2811,9 @@
       "minecraft:rotation_axis_aligned": {
          "description": "Dynamic value"
       },
+      "minecraft:rotation_locked_to_vehicle": {
+         "description": "Dynamic value"
+      },
       "minecraft:scale": {
          "description": "Dynamic value"
       },
@@ -2539,6 +2890,9 @@
          "description": "Dynamic value"
       },
       "minecraft:type_family": {
+         "description": "Dynamic value"
+      },
+      "minecraft:underwater_mount_breathing": {
          "description": "Dynamic value"
       },
       "minecraft:underwater_movement": {

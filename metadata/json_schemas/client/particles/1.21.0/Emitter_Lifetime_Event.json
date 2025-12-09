@@ -27,7 +27,8 @@
          "properties": {
             "distance": {
                "type": "number",
-               "minimum": 0
+               "minimum": 0,
+               "maximum": 3.4028234663852886e+38
             },
             "effects": {
                "$ref": "#/definitions/771176265"
@@ -43,13 +44,16 @@
    "type": "object",
    "properties": {
       "creation_event": {
+         "default": [],
          "$ref": "#/definitions/771176265"
       },
       "expiration_event": {
+         "default": [],
          "$ref": "#/definitions/771176265"
       },
       "looping_travel_distance_events": {
          "type": "array",
+         "default": [],
          "items": {
             "$ref": "#/definitions/3907782844"
          }
@@ -58,13 +62,15 @@
          "type": "object",
          "additionalProperties": {
             "$ref": "#/definitions/771176265"
-         }
+         },
+         "default": {}
       },
       "travel_distance_events": {
          "type": "object",
          "additionalProperties": {
             "$ref": "#/definitions/771176265"
-         }
+         },
+         "default": {}
       }
    }
 }

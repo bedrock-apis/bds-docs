@@ -43,6 +43,36 @@
                ],
                "is_constructor": false,
                "is_static": false,
+               "name": "getBlockTagPriorities",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "key_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  },
+                  "name": "map",
+                  "value_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "int32",
+                     "valid_range": {
+                        "max": 2147483647,
+                        "min": -2147483648
+                     }
+                  }
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "read_only"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
                "name": "getEntityPriorities",
                "return_type": {
                   "is_bind_type": false,
@@ -195,6 +225,36 @@
                ],
                "is_constructor": false,
                "is_static": false,
+               "name": "getBlockTagPriorities",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "key_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  },
+                  "name": "map",
+                  "value_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "int32",
+                     "valid_range": {
+                        "max": 2147483647,
+                        "min": -2147483648
+                     }
+                  }
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "read_only"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
                "name": "getEntityPriorities",
                "return_type": {
                   "is_bind_type": false,
@@ -250,6 +310,46 @@
                "is_constructor": false,
                "is_static": false,
                "name": "setBlockPriorities",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "blockTagPriorities",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "key_type": {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        },
+                        "name": "map",
+                        "value_type": {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "int32",
+                           "valid_range": {
+                              "max": 2147483647,
+                              "min": -2147483648
+                           }
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "none"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "setBlockTagPriorities",
                "return_type": {
                   "is_bind_type": false,
                   "is_errorable": false,
@@ -382,7 +482,49 @@
                ],
                "is_constructor": false,
                "is_static": false,
-               "name": "getExcludedTargets",
+               "name": "getExcludedBlockTagTargets",
+               "return_type": {
+                  "element_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "array"
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "read_only"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getExcludedBlockTargets",
+               "return_type": {
+                  "element_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "array"
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "read_only"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getExcludedEntityTargets",
                "return_type": {
                   "element_type": {
                      "is_bind_type": false,
@@ -544,7 +686,59 @@
                ],
                "is_constructor": false,
                "is_static": false,
-               "name": "getExcludedTargets",
+               "name": "getExcludedBlockTagTargets",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "element_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     },
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "array"
+                  }
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "read_only"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getExcludedBlockTargets",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "element_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     },
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "array"
+                  }
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "read_only"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getExcludedEntityTargets",
                "return_type": {
                   "is_bind_type": false,
                   "is_errorable": false,
@@ -619,7 +813,7 @@
                      "details": {
                         "default_value": "null"
                      },
-                     "name": "targets",
+                     "name": "blockTagTargets",
                      "type": {
                         "is_bind_type": false,
                         "is_errorable": false,
@@ -644,7 +838,83 @@
                ],
                "is_constructor": false,
                "is_static": false,
-               "name": "setExcludedTargets",
+               "name": "setExcludedBlockTagTargets",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "blockTargets",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "element_type": {
+                              "is_bind_type": false,
+                              "is_errorable": false,
+                              "name": "string"
+                           },
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "array"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "none"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "setExcludedBlockTargets",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "entityTargets",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "element_type": {
+                              "is_bind_type": false,
+                              "is_errorable": false,
+                              "name": "string"
+                           },
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "array"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "none"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "setExcludedEntityTargets",
                "return_type": {
                   "is_bind_type": false,
                   "is_errorable": false,
@@ -3550,6 +3820,44 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "BlockComponentRandomTickEvent"
+         }
+      },
+      {
+         "base_types": [
+            {
+               "is_bind_type": true,
+               "is_errorable": false,
+               "name": "BlockEvent"
+            }
+         ],
+         "constants": [],
+         "functions": [],
+         "name": "BlockComponentRedstoneUpdateEvent",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "read_only"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "powerLevel",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "BlockComponentRedstoneUpdateEvent"
          }
       },
       {
@@ -16031,6 +16339,21 @@
                   "is_errorable": false,
                   "name": "string"
                }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "read_only"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "resultItem",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
             }
          ],
          "type": {
@@ -20925,234 +21248,6 @@
          }
       },
       {
-         "base_types": [],
-         "constants": [],
-         "functions": [],
-         "name": "EntitySpawnCallbackArgs",
-         "properties": [
-            {
-               "get_privilege": [
-                  {
-                     "name": "read_only"
-                  }
-               ],
-               "is_baked": false,
-               "is_read_only": true,
-               "name": "dimensionLocation",
-               "type": {
-                  "is_bind_type": true,
-                  "is_errorable": false,
-                  "name": "DimensionLocation"
-               }
-            },
-            {
-               "get_privilege": [
-                  {
-                     "name": "read_only"
-                  }
-               ],
-               "is_baked": false,
-               "is_read_only": true,
-               "name": "spawnReason",
-               "type": {
-                  "is_bind_type": true,
-                  "is_errorable": false,
-                  "name": "EntitySpawnReason"
-               }
-            },
-            {
-               "get_privilege": [
-                  {
-                     "name": "read_only"
-                  }
-               ],
-               "is_baked": false,
-               "is_read_only": true,
-               "name": "spawnType",
-               "type": {
-                  "is_bind_type": true,
-                  "is_errorable": false,
-                  "name": "EntitySpawnType"
-               }
-            }
-         ],
-         "runtime_conditions": [
-            "Simplified Spawn Rules"
-         ],
-         "type": {
-            "is_bind_type": true,
-            "is_errorable": false,
-            "name": "EntitySpawnCallbackArgs"
-         }
-      },
-      {
-         "base_types": [],
-         "constants": [],
-         "functions": [
-            {
-               "arguments": [
-                  {
-                     "details": null,
-                     "name": "position",
-                     "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "Vector3"
-                     }
-                  }
-               ],
-               "call_privilege": [
-                  {
-                     "name": "read_only"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "getSpawnAABB",
-               "return_type": {
-                  "is_bind_type": true,
-                  "is_errorable": false,
-                  "name": "AABB"
-               }
-            },
-            {
-               "arguments": [
-                  {
-                     "details": null,
-                     "name": "block",
-                     "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "Block"
-                     }
-                  }
-               ],
-               "call_privilege": [
-                  {
-                     "name": "read_only"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "isBlockDangerous",
-               "return_type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "boolean"
-               }
-            }
-         ],
-         "name": "EntitySpawnType",
-         "properties": [
-            {
-               "get_privilege": [
-                  {
-                     "name": "read_only"
-                  }
-               ],
-               "is_baked": false,
-               "is_read_only": true,
-               "name": "entityId",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "string"
-               }
-            },
-            {
-               "get_privilege": [
-                  {
-                     "name": "read_only"
-                  }
-               ],
-               "is_baked": false,
-               "is_read_only": true,
-               "name": "height",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "float",
-                  "valid_range": {
-                     "max": 2147483647,
-                     "min": -2147483648
-                  }
-               }
-            },
-            {
-               "get_privilege": [
-                  {
-                     "name": "read_only"
-                  }
-               ],
-               "is_baked": false,
-               "is_read_only": true,
-               "name": "isImmuneFire",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "boolean"
-               }
-            },
-            {
-               "get_privilege": [
-                  {
-                     "name": "read_only"
-                  }
-               ],
-               "is_baked": false,
-               "is_read_only": true,
-               "name": "isSummonable",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "boolean"
-               }
-            },
-            {
-               "get_privilege": [
-                  {
-                     "name": "read_only"
-                  }
-               ],
-               "is_baked": false,
-               "is_read_only": true,
-               "name": "spawnCategory",
-               "type": {
-                  "is_bind_type": true,
-                  "is_errorable": false,
-                  "name": "EntitySpawnCategory"
-               }
-            },
-            {
-               "get_privilege": [
-                  {
-                     "name": "read_only"
-                  }
-               ],
-               "is_baked": false,
-               "is_read_only": true,
-               "name": "width",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "float",
-                  "valid_range": {
-                     "max": 2147483647,
-                     "min": -2147483648
-                  }
-               }
-            }
-         ],
-         "runtime_conditions": [
-            "Simplified Spawn Rules"
-         ],
-         "type": {
-            "is_bind_type": true,
-            "is_errorable": false,
-            "name": "EntitySpawnType"
-         }
-      },
-      {
          "base_types": [
             {
                "is_bind_type": true,
@@ -22280,6 +22375,21 @@
                "is_baked": false,
                "is_read_only": true,
                "name": "item",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "read_only"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "resultItem",
                "type": {
                   "is_bind_type": false,
                   "is_errorable": false,
@@ -30144,67 +30254,6 @@
          "base_types": [],
          "constants": [],
          "functions": [],
-         "name": "ObstructionCallbackArgs",
-         "properties": [
-            {
-               "get_privilege": [
-                  {
-                     "name": "read_only"
-                  }
-               ],
-               "is_baked": false,
-               "is_read_only": true,
-               "name": "dimension",
-               "type": {
-                  "is_bind_type": true,
-                  "is_errorable": false,
-                  "name": "Dimension"
-               }
-            },
-            {
-               "get_privilege": [
-                  {
-                     "name": "read_only"
-                  }
-               ],
-               "is_baked": false,
-               "is_read_only": true,
-               "name": "entity",
-               "type": {
-                  "is_bind_type": true,
-                  "is_errorable": false,
-                  "name": "Entity"
-               }
-            },
-            {
-               "get_privilege": [
-                  {
-                     "name": "read_only"
-                  }
-               ],
-               "is_baked": false,
-               "is_read_only": true,
-               "name": "spawnType",
-               "type": {
-                  "is_bind_type": true,
-                  "is_errorable": false,
-                  "name": "EntitySpawnType"
-               }
-            }
-         ],
-         "runtime_conditions": [
-            "Simplified Spawn Rules"
-         ],
-         "type": {
-            "is_bind_type": true,
-            "is_errorable": false,
-            "name": "ObstructionCallbackArgs"
-         }
-      },
-      {
-         "base_types": [],
-         "constants": [],
-         "functions": [],
          "name": "PackSettingChangeAfterEvent",
          "properties": [
             {
@@ -35989,6 +36038,21 @@
                   "is_errorable": false,
                   "name": "Player"
                }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "read_only"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "swingSource",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "EntitySwingSource"
+               }
             }
          ],
          "type": {
@@ -40012,164 +40076,6 @@
          }
       },
       {
-         "base_types": [],
-         "constants": [],
-         "functions": [
-            {
-               "arguments": [
-                  {
-                     "details": null,
-                     "name": "id",
-                     "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                     }
-                  },
-                  {
-                     "details": null,
-                     "name": "callback",
-                     "type": {
-                        "closure_type": {
-                           "argument_types": [
-                              {
-                                 "is_bind_type": true,
-                                 "is_errorable": false,
-                                 "name": "EntitySpawnCallbackArgs"
-                              }
-                           ],
-                           "return_type": {
-                              "is_bind_type": false,
-                              "is_errorable": true,
-                              "name": "boolean"
-                           }
-                        },
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "closure"
-                     }
-                  }
-               ],
-               "call_privilege": [
-                  {
-                     "name": "early_execution"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "registerEntitySpawnCallback",
-               "return_type": {
-                  "error_types": [
-                     {
-                        "from_module": {
-                           "name": "@minecraft/common",
-                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
-                           "version": "1.2.0"
-                        },
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "InvalidArgumentError"
-                     },
-                     {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "NamespaceNameError"
-                     },
-                     {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "SpawnRulesInvalidRegistryError"
-                     }
-                  ],
-                  "is_bind_type": false,
-                  "is_errorable": true,
-                  "name": "undefined"
-               }
-            },
-            {
-               "arguments": [
-                  {
-                     "details": null,
-                     "name": "id",
-                     "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                     }
-                  },
-                  {
-                     "details": null,
-                     "name": "callback",
-                     "type": {
-                        "closure_type": {
-                           "argument_types": [
-                              {
-                                 "is_bind_type": true,
-                                 "is_errorable": false,
-                                 "name": "ObstructionCallbackArgs"
-                              }
-                           ],
-                           "return_type": {
-                              "is_bind_type": false,
-                              "is_errorable": true,
-                              "name": "boolean"
-                           }
-                        },
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "closure"
-                     }
-                  }
-               ],
-               "call_privilege": [
-                  {
-                     "name": "early_execution"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "registerObstructionCallback",
-               "return_type": {
-                  "error_types": [
-                     {
-                        "from_module": {
-                           "name": "@minecraft/common",
-                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
-                           "version": "1.2.0"
-                        },
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "InvalidArgumentError"
-                     },
-                     {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "NamespaceNameError"
-                     },
-                     {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "SpawnRulesInvalidRegistryError"
-                     }
-                  ],
-                  "is_bind_type": false,
-                  "is_errorable": true,
-                  "name": "undefined"
-               }
-            }
-         ],
-         "name": "SpawnRulesRegistry",
-         "properties": [],
-         "runtime_conditions": [
-            "Simplified Spawn Rules"
-         ],
-         "type": {
-            "is_bind_type": true,
-            "is_errorable": false,
-            "name": "SpawnRulesRegistry"
-         }
-      },
-      {
          "base_types": [
             {
                "is_bind_type": true,
@@ -40318,27 +40224,7 @@
       {
          "base_types": [],
          "constants": [],
-         "functions": [
-            {
-               "arguments": [],
-               "call_privilege": [
-                  {
-                     "name": "early_execution"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "getSpawnRulesRegistry",
-               "return_type": {
-                  "is_bind_type": true,
-                  "is_errorable": false,
-                  "name": "SpawnRulesRegistry"
-               },
-               "runtime_conditions": [
-                  "Simplified Spawn Rules"
-               ]
-            }
-         ],
+         "functions": [],
          "name": "StartupEvent",
          "properties": [
             {
@@ -42064,6 +41950,338 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "TargetBlockHitAfterEventSignal"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "identifier",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "TickingAreaOptions"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "none"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "createTickingArea",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "EngineError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "TickingAreaError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "TickingArea"
+                  }
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "none"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getAllTickingAreas",
+               "return_type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "TickingArea"
+                  },
+                  "error_types": [
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "EngineError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "array"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "identifier",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "variant",
+                        "variant_types": [
+                           {
+                              "is_bind_type": false,
+                              "is_errorable": false,
+                              "name": "string"
+                           },
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "TickingArea"
+                           }
+                        ]
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "none"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getTickingArea",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "EngineError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "TickingArea"
+                  }
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "TickingAreaOptions"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "none"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "hasCapacity",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "identifier",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "none"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "hasTickingArea",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "none"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "removeAllTickingAreas",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "EngineError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "identifier",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "variant",
+                        "variant_types": [
+                           {
+                              "is_bind_type": false,
+                              "is_errorable": false,
+                              "name": "string"
+                           },
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "TickingArea"
+                           }
+                        ]
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "none"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "removeTickingArea",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "EngineError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "TickingAreaError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "TickingAreaManager",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "read_only"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "chunkCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "read_only"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "maxChunkCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "TickingAreaManager"
          }
       },
       {
@@ -43905,6 +44123,21 @@
                   "is_errorable": false,
                   "name": "StructureManager"
                }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "read_only"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "tickingAreaManager",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "TickingAreaManager"
+               }
             }
          ],
          "type": {
@@ -45223,17 +45456,6 @@
             }
          },
          "value": 2
-      },
-      {
-         "is_read_only": true,
-         "is_static": true,
-         "name": "isInternal",
-         "type": {
-            "is_bind_type": false,
-            "is_errorable": false,
-            "name": "boolean"
-         },
-         "value": true
       },
       {
          "is_read_only": true,
@@ -46911,6 +47133,17 @@
             {
                "is_read_only": true,
                "is_static": true,
+               "name": "MeleeSpear",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "MeleeSpear"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
                "name": "Pickaxe",
                "type": {
                   "is_bind_type": false,
@@ -47790,6 +48023,17 @@
             {
                "is_read_only": true,
                "is_static": true,
+               "name": "dehydration",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "dehydration"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
                "name": "drowning",
                "type": {
                   "is_bind_type": false,
@@ -48196,172 +48440,35 @@
             {
                "is_read_only": true,
                "is_static": true,
-               "name": "Ambient",
+               "name": "Attack",
                "type": {
                   "is_bind_type": false,
                   "is_errorable": false,
                   "name": "string"
                },
-               "value": "Ambient"
+               "value": "Attack"
             },
             {
                "is_read_only": true,
                "is_static": true,
-               "name": "Axolotls",
+               "name": "Build",
                "type": {
                   "is_bind_type": false,
                   "is_errorable": false,
                   "name": "string"
                },
-               "value": "Axolotls"
+               "value": "Build"
             },
             {
                "is_read_only": true,
                "is_static": true,
-               "name": "Creature",
+               "name": "DropItem",
                "type": {
                   "is_bind_type": false,
                   "is_errorable": false,
                   "name": "string"
                },
-               "value": "Creature"
-            },
-            {
-               "is_read_only": true,
-               "is_static": true,
-               "name": "Misc",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "string"
-               },
-               "value": "Misc"
-            },
-            {
-               "is_read_only": true,
-               "is_static": true,
-               "name": "Monster",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "string"
-               },
-               "value": "Monster"
-            },
-            {
-               "is_read_only": true,
-               "is_static": true,
-               "name": "UndergroundWaterCreature",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "string"
-               },
-               "value": "UndergroundWaterCreature"
-            },
-            {
-               "is_read_only": true,
-               "is_static": true,
-               "name": "WaterAmbient",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "string"
-               },
-               "value": "WaterAmbient"
-            },
-            {
-               "is_read_only": true,
-               "is_static": true,
-               "name": "WaterCreature",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "string"
-               },
-               "value": "WaterCreature"
-            }
-         ],
-         "name": "EntitySpawnCategory"
-      },
-      {
-         "constants": [
-            {
-               "is_read_only": true,
-               "is_static": true,
-               "name": "Breeding",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "string"
-               },
-               "value": "Breeding"
-            },
-            {
-               "is_read_only": true,
-               "is_static": true,
-               "name": "Bucket",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "string"
-               },
-               "value": "Bucket"
-            },
-            {
-               "is_read_only": true,
-               "is_static": true,
-               "name": "ChunkGeneration",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "string"
-               },
-               "value": "ChunkGeneration"
-            },
-            {
-               "is_read_only": true,
-               "is_static": true,
-               "name": "Command",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "string"
-               },
-               "value": "Command"
-            },
-            {
-               "is_read_only": true,
-               "is_static": true,
-               "name": "Conversion",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "string"
-               },
-               "value": "Conversion"
-            },
-            {
-               "is_read_only": true,
-               "is_static": true,
-               "name": "DimensionTravel",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "string"
-               },
-               "value": "DimensionTravel"
-            },
-            {
-               "is_read_only": true,
-               "is_static": true,
-               "name": "Dispenser",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "string"
-               },
-               "value": "Dispenser"
+               "value": "DropItem"
             },
             {
                "is_read_only": true,
@@ -48377,126 +48484,60 @@
             {
                "is_read_only": true,
                "is_static": true,
-               "name": "Jockey",
+               "name": "Interact",
                "type": {
                   "is_bind_type": false,
                   "is_errorable": false,
                   "name": "string"
                },
-               "value": "Jockey"
+               "value": "Interact"
             },
             {
                "is_read_only": true,
                "is_static": true,
-               "name": "Load",
+               "name": "Mine",
                "type": {
                   "is_bind_type": false,
                   "is_errorable": false,
                   "name": "string"
                },
-               "value": "Load"
+               "value": "Mine"
             },
             {
                "is_read_only": true,
                "is_static": true,
-               "name": "MobSummoned",
+               "name": "None",
                "type": {
                   "is_bind_type": false,
                   "is_errorable": false,
                   "name": "string"
                },
-               "value": "MobSummoned"
+               "value": "None"
             },
             {
                "is_read_only": true,
                "is_static": true,
-               "name": "Natural",
+               "name": "ThrowItem",
                "type": {
                   "is_bind_type": false,
                   "is_errorable": false,
                   "name": "string"
                },
-               "value": "Natural"
+               "value": "ThrowItem"
             },
             {
                "is_read_only": true,
                "is_static": true,
-               "name": "Patrol",
+               "name": "UseItem",
                "type": {
                   "is_bind_type": false,
                   "is_errorable": false,
                   "name": "string"
                },
-               "value": "Patrol"
-            },
-            {
-               "is_read_only": true,
-               "is_static": true,
-               "name": "Reinforcement",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "string"
-               },
-               "value": "Reinforcement"
-            },
-            {
-               "is_read_only": true,
-               "is_static": true,
-               "name": "SpawnEgg",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "string"
-               },
-               "value": "SpawnEgg"
-            },
-            {
-               "is_read_only": true,
-               "is_static": true,
-               "name": "Spawner",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "string"
-               },
-               "value": "Spawner"
-            },
-            {
-               "is_read_only": true,
-               "is_static": true,
-               "name": "Structure",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "string"
-               },
-               "value": "Structure"
-            },
-            {
-               "is_read_only": true,
-               "is_static": true,
-               "name": "TrialSpawner",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "string"
-               },
-               "value": "TrialSpawner"
-            },
-            {
-               "is_read_only": true,
-               "is_static": true,
-               "name": "Triggered",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "string"
-               },
-               "value": "Triggered"
+               "value": "UseItem"
             }
          ],
-         "name": "EntitySpawnReason"
+         "name": "EntitySwingSource"
       },
       {
          "constants": [
@@ -50599,6 +50640,55 @@
             {
                "is_read_only": true,
                "is_static": true,
+               "name": "IdentifierAlreadyExists",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "IdentifierAlreadyExists"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "OverChunkLimit",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "OverChunkLimit"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "SideLengthExceeded",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "SideLengthExceeded"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "UnknownIdentifier",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "UnknownIdentifier"
+            }
+         ],
+         "name": "TickingAreaErrorReason"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
                "name": "Day",
                "type": {
                   "is_bind_type": true,
@@ -51304,12 +51394,31 @@
          }
       },
       {
-         "name": "SpawnRulesInvalidRegistryError",
-         "properties": [],
+         "name": "TickingAreaError",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "read_only"
+                  },
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "reason",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "TickingAreaErrorReason"
+               }
+            }
+         ],
          "type": {
             "is_bind_type": true,
             "is_errorable": false,
-            "name": "SpawnRulesInvalidRegistryError"
+            "name": "TickingAreaError"
          }
       },
       {
@@ -51670,6 +51779,40 @@
                               "is_bind_type": true,
                               "is_errorable": false,
                               "name": "BlockComponentRandomTickEvent"
+                           },
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "CustomComponentParameters"
+                           }
+                        ],
+                        "return_type": {
+                           "is_bind_type": false,
+                           "is_errorable": true,
+                           "name": "undefined"
+                        }
+                     },
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "closure"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "onRedstoneUpdate",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "closure_type": {
+                        "argument_types": [
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "BlockComponentRedstoneUpdateEvent"
                            },
                            {
                               "is_bind_type": true,
@@ -55370,6 +55513,21 @@
                      "name": "HeldItemOption"
                   }
                }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "swingSource",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "EntitySwingSource"
+                  }
+               }
             }
          ],
          "type": {
@@ -56246,6 +56404,112 @@
       },
       {
          "base_types": [],
+         "name": "TickingArea",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "boundingBox",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "BlockBoundingBox"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "chunkCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "dimension",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Dimension"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "identifier",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "isFullyLoaded",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "TickingArea"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "TickingAreaOptions",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "dimension",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Dimension"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "from",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Vector3"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "to",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Vector3"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "TickingAreaOptions"
+         }
+      },
+      {
+         "base_types": [],
          "name": "TitleDisplayOptions",
          "properties": [
             {
@@ -56942,5 +57206,5 @@
       }
    ],
    "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-   "version": "2.4.0-internal"
+   "version": "2.5.0-beta"
 }

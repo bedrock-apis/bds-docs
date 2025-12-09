@@ -7,6 +7,7 @@
    "properties": {
       "control_flags": {
          "type": "array",
+         "default": [],
          "items": {
             "title": "Goal's control flags",
             "type": "string",
@@ -18,14 +19,22 @@
          }
       },
       "idle_time": {
-         "type": "number"
+         "type": "number",
+         "default": 5,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       },
       "priority": {
          "type": "integer",
-         "minimum": 0
+         "default": 0,
+         "minimum": 0,
+         "maximum": 2147483647
       },
       "success_rate": {
-         "type": "number"
+         "type": "number",
+         "default": 0.10000000149011612,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       }
    }
 }

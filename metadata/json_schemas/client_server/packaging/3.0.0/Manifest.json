@@ -3,6 +3,38 @@
    "$id": "2110239417",
    "x-format-version": "3.0.0",
    "definitions": {
+      "201255518": {
+         "title": "SemVersionProxy",
+         "type": "object",
+         "properties": {
+            "buildMeta": {
+               "type": "string",
+               "default": ""
+            },
+            "major": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0,
+               "maximum": 65535
+            },
+            "minor": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0,
+               "maximum": 65535
+            },
+            "patch": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0,
+               "maximum": 65535
+            },
+            "preRelease": {
+               "type": "string",
+               "default": ""
+            }
+         }
+      },
       "292634909": {
          "title": "Header",
          "type": "object",
@@ -86,13 +118,19 @@
          "type": "object",
          "properties": {
             "default": {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "max": {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "min": {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "name": {
                "type": "string",
@@ -101,7 +139,9 @@
             },
             "step": {
                "type": "number",
-               "exclusiveMinimum": 0
+               "minimum": 1.1754943508222875e-38,
+               "exclusiveMinimum": 0,
+               "maximum": 3.4028234663852886e+38
             },
             "text": {
                "type": "string"
@@ -156,6 +196,10 @@
             "module_name": {
                "type": "string"
             },
+            "optional": {
+               "type": "boolean",
+               "default": false
+            },
             "version": {
                "oneOf": [
                   {
@@ -163,7 +207,8 @@
                      "type": "string",
                      "enum": [
                         "alpha",
-                        "beta"
+                        "beta",
+                        "internal"
                      ]
                   },
                   {
@@ -266,7 +311,8 @@
                "items": {
                   "$ref": "#/definitions/1415538356"
                },
-               "minItems": 2
+               "minItems": 2,
+               "maxItems": 20
             },
             "text": {
                "type": "string"
@@ -323,27 +369,6 @@
             "type"
          ]
       },
-      "4147404371": {
-         "title": "SemVersionProxy",
-         "type": "object",
-         "properties": {
-            "buildMeta": {
-               "type": "string"
-            },
-            "major": {
-               "type": "integer"
-            },
-            "minor": {
-               "type": "integer"
-            },
-            "patch": {
-               "type": "integer"
-            },
-            "preRelease": {
-               "type": "string"
-            }
-         }
-      },
       "4241525955": {
          "title": "Subpack",
          "type": "object",
@@ -370,7 +395,7 @@
          "title": "SemVersion",
          "oneOf": [
             {
-               "$ref": "#/definitions/4147404371"
+               "$ref": "#/definitions/201255518"
             },
             {
                "type": "string"
@@ -401,7 +426,9 @@
          }
       },
       "format_version": {
-         "type": "integer"
+         "type": "integer",
+         "minimum": 0,
+         "maximum": 255
       },
       "has_education_metadata": {
          "type": "boolean"
@@ -437,7 +464,8 @@
                }
             ]
          },
-         "minItems": 1
+         "minItems": 1,
+         "maxItems": 50
       },
       "subpacks": {
          "type": "array",

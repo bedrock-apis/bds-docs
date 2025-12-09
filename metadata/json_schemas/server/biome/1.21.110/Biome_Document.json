@@ -94,7 +94,8 @@
                "type": "array",
                "items": {
                   "$ref": "#/definitions/716969038"
-               }
+               },
+               "x-runtime-constraint-description": "Check that there is at least one value in the array, that there are no duplicates, and that dimension is for all \"minecraft:overworld\""
             }
          },
          "required": [
@@ -246,19 +247,29 @@
          "type": "object",
          "properties": {
             "target_altitude": {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "target_humidity": {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "target_temperature": {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "target_weirdness": {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "weight": {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       },
@@ -273,7 +284,9 @@
                         "$ref": "#/definitions/1493629372"
                      },
                      {
-                        "type": "integer"
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 4294967295
                      }
                   ]
                },
@@ -291,6 +304,7 @@
          "properties": {
             "amount": {
                "type": "number",
+               "minimum": 1.1754943508222875e-38,
                "exclusiveMinimum": 0,
                "maximum": 1
             },
@@ -299,6 +313,7 @@
             },
             "noise_frequency_scale": {
                "type": "number",
+               "minimum": 1.1754943508222875e-38,
                "exclusiveMinimum": 0,
                "maximum": 100
             },
@@ -322,18 +337,24 @@
          "type": "object",
          "properties": {
             "downfall": {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "snow_accumulation": {
                "type": "array",
                "items": {
-                  "type": "number"
+                  "type": "number",
+                  "minimum": 1.1754943508222875e-38,
+                  "maximum": 3.4028234663852886e+38
                },
                "minItems": 2,
                "maxItems": 2
             },
             "temperature": {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          }
       },
@@ -354,7 +375,9 @@
                   ]
                },
                {
-                  "type": "integer"
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 4294967295
                }
             ]
          },
@@ -368,7 +391,9 @@
             "noise_params": {
                "type": "array",
                "items": {
-                  "type": "number"
+                  "type": "number",
+                  "minimum": 1.1754943508222875e-38,
+                  "maximum": 3.4028234663852886e+38
                },
                "minItems": 2,
                "maxItems": 2
@@ -425,7 +450,9 @@
          "title": "Molang Expression",
          "oneOf": [
             {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             {
                "type": "boolean"
@@ -668,7 +695,9 @@
                      "additionalProperties": {
                         "oneOf": [
                            {
-                              "type": "integer"
+                              "type": "integer",
+                              "minimum": -2147483648,
+                              "maximum": 2147483647
                            },
                            {
                               "type": "boolean"
@@ -677,7 +706,8 @@
                               "type": "string"
                            }
                         ]
-                     }
+                     },
+                     "default": {}
                   }
                },
                "required": [
@@ -702,12 +732,16 @@
                "$ref": "#/definitions/1287813091"
             },
             "noise_frequency_scale": {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             },
             "noise_range": {
                "type": "array",
                "items": {
-                  "type": "number"
+                  "type": "number",
+                  "minimum": 1.1754943508222875e-38,
+                  "maximum": 3.4028234663852886e+38
                },
                "minItems": 2,
                "maxItems": 2
@@ -812,7 +846,9 @@
             {
                "type": "array",
                "items": {
-                  "type": "integer"
+                  "type": "integer",
+                  "minimum": -2147483648,
+                  "maximum": 2147483647
                },
                "minItems": 3,
                "maxItems": 3

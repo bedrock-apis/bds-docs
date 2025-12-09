@@ -11,6 +11,7 @@
                "$ref": "#/definitions/2715320761"
             },
             "pre_effect_expression": {
+               "default": 0,
                "$ref": "#/definitions/3178719147"
             },
             "type": {
@@ -42,7 +43,9 @@
                      "type": "string"
                   },
                   "version": {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -32768,
+                     "maximum": 32767
                   }
                },
                "required": [
@@ -57,12 +60,19 @@
          "type": "object",
          "properties": {
             "expression": {
+               "default": 0,
                "$ref": "#/definitions/3178719147"
             },
             "log": {
-               "type": "string"
+               "type": "string",
+               "default": ""
             },
             "particle_effect": {
+               "default": {
+                  "effect": "",
+                  "type": null,
+                  "pre_effect_expression": 0
+               },
                "$ref": "#/definitions/2245986520"
             },
             "randomize": {
@@ -81,7 +91,9 @@
                "$ref": "#/definitions/3998097047"
             },
             "weight": {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          },
          "required": [
@@ -99,7 +111,9 @@
                "$ref": "#/definitions/2267778531"
             },
             {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          ]
       },
@@ -120,12 +134,19 @@
    "type": "object",
    "properties": {
       "expression": {
+         "default": 0,
          "$ref": "#/definitions/3178719147"
       },
       "log": {
-         "type": "string"
+         "type": "string",
+         "default": ""
       },
       "particle_effect": {
+         "default": {
+            "effect": "",
+            "type": null,
+            "pre_effect_expression": 0
+         },
          "$ref": "#/definitions/2245986520"
       },
       "randomize": {

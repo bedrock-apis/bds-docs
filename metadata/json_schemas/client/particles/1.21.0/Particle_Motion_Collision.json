@@ -16,7 +16,9 @@
                      "type": "string"
                   },
                   "version": {
-                     "type": "integer"
+                     "type": "integer",
+                     "minimum": -32768,
+                     "maximum": 32767
                   }
                },
                "required": [
@@ -34,7 +36,10 @@
                "$ref": "#/definitions/2715320761"
             },
             "min_speed": {
-               "type": "number"
+               "type": "number",
+               "default": 2,
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          },
          "required": [
@@ -66,7 +71,9 @@
                "$ref": "#/definitions/2267778531"
             },
             {
-               "type": "number"
+               "type": "number",
+               "minimum": 1.1754943508222875e-38,
+               "maximum": 3.4028234663852886e+38
             }
          ]
       }
@@ -75,10 +82,16 @@
    "type": "object",
    "properties": {
       "coefficient_of_restitution": {
-         "type": "number"
+         "type": "number",
+         "default": 0,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       },
       "collision_drag": {
-         "type": "number"
+         "type": "number",
+         "default": 0,
+         "minimum": 1.1754943508222875e-38,
+         "maximum": 3.4028234663852886e+38
       },
       "collision_radius": {
          "type": "number",
@@ -86,13 +99,15 @@
          "maximum": 0.5
       },
       "enabled": {
+         "default": 1,
          "$ref": "#/definitions/3178719147"
       },
       "events": {
          "$ref": "#/definitions/2751853296"
       },
       "expire_on_contact": {
-         "type": "boolean"
+         "type": "boolean",
+         "default": false
       }
    },
    "required": [
