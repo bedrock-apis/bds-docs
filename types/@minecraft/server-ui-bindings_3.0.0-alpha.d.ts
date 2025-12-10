@@ -54,8 +54,7 @@ export class DataStore {
    public setClientWritable(player: server.Player, dataStoreName: string, property: string, path: string, isWritable?: boolean): void;
    public setProperty(player: server.Player, dataStoreName: string, property: string, data: string): void;
    public setPropertyPath(player: server.Player, dataStoreName: string, property: string, path: string, data: boolean | number | string): void;
-   public subscribe(player: server.Player, dataStoreName: string, property: string, onChange: (arg0?: string)=>void): (arg0?: string)=>void;
-   public subscribePath(player: server.Player, dataStoreName: string, property: string, path: string, onChange: (arg0?: string)=>void): (arg0?: string)=>void;
+   public subscribe(player: server.Player, dataStoreName: string, property: string, path: string, onChange: (arg0?: string)=>void): (arg0?: string)=>void;
    public unsubscribe(onChange: (arg0?: string)=>void): boolean;
    private constructor();
 }

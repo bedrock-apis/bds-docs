@@ -1,0 +1,107 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "1557623393",
+   "x-format-version": "1.21.130",
+   "definitions": {
+      "4004946602": {
+         "title": "vec3",
+         "oneOf": [
+            {
+               "type": "array",
+               "items": {
+                  "type": "number"
+               },
+               "minItems": 3,
+               "maxItems": 3
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "x": {
+                     "type": "number",
+                     "default": 0
+                  },
+                  "y": {
+                     "type": "number",
+                     "default": 0
+                  },
+                  "z": {
+                     "type": "number",
+                     "default": 0
+                  }
+               }
+            }
+         ]
+      }
+   },
+   "title": "minecraft:behavior.explore_outskirts",
+   "type": "object",
+   "properties": {
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "title": "Goal's control flags",
+            "type": "string",
+            "enum": [
+               "move",
+               "look",
+               "jump"
+            ]
+         }
+      },
+      "dist_from_boundary": {
+         "default": [
+            5,
+            0,
+            5
+         ],
+         "$ref": "#/definitions/4004946602"
+      },
+      "explore_dist": {
+         "type": "number",
+         "default": 5
+      },
+      "max_travel_time": {
+         "type": "number",
+         "default": 60
+      },
+      "max_wait_time": {
+         "type": "number",
+         "default": 0
+      },
+      "min_dist_from_target": {
+         "type": "number",
+         "default": 2.25
+      },
+      "min_perimeter": {
+         "type": "number",
+         "default": 1
+      },
+      "min_wait_time": {
+         "type": "number",
+         "default": 3
+      },
+      "next_xz": {
+         "type": "integer",
+         "default": 5
+      },
+      "next_y": {
+         "type": "integer",
+         "default": 3
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "minimum": 0
+      },
+      "speed_multiplier": {
+         "type": "number",
+         "default": 1
+      },
+      "timer_ratio": {
+         "type": "number",
+         "default": 2
+      }
+   }
+}

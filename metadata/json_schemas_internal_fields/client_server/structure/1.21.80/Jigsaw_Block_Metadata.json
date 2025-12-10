@@ -1,0 +1,63 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "480089458",
+   "x-format-version": "1.21.80",
+   "definitions": {
+      "820712576": {
+         "title": "block_pos",
+         "type": "array",
+         "items": {
+            "type": "integer"
+         },
+         "minItems": 3,
+         "maxItems": 3
+      }
+   },
+   "title": "Jigsaw Block Metadata",
+   "type": "object",
+   "properties": {
+      "block": {
+         "type": "string"
+      },
+      "final_block": {
+         "type": "string"
+      },
+      "joint_type": {
+         "title": "Jigsaw Joint Type",
+         "type": "string",
+         "enum": [
+            "rollable",
+            "aligned"
+         ]
+      },
+      "name": {
+         "type": "string"
+      },
+      "placement_priority": {
+         "type": "integer"
+      },
+      "pool": {
+         "type": "string"
+      },
+      "pos": {
+         "$ref": "#/definitions/820712576"
+      },
+      "selection_priority": {
+         "type": "integer"
+      },
+      "target": {
+         "type": "string"
+      }
+   },
+   "required": [
+      "block",
+      "final_block",
+      "joint_type",
+      "name",
+      "placement_priority",
+      "pool",
+      "pos",
+      "selection_priority",
+      "target"
+   ]
+}

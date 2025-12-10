@@ -280,7 +280,6 @@ export enum EntityDamageCause {
    campfire = "campfire",
    charging = "charging",
    contact = "contact",
-   dehydration = "dehydration",
    drowning = "drowning",
    entityAttack = "entityAttack",
    entityExplosion = "entityExplosion",
@@ -831,6 +830,10 @@ export interface EntityHurtBeforeEventOptions {
    allowedDamageCauses?: Array<EntityDamageCause>;
    entityFilter?: EntityFilter;
 }
+export interface EntityItemPickupEventOptions {
+   entityFilter?: EntityFilter;
+   itemFilter?: ItemFilter;
+}
 //@ts-ignore
 export interface EntityQueryOptions extends EntityFilter {
    closest?: number;
@@ -905,6 +908,9 @@ export interface ItemCustomComponent {
    onMineBlock?: (arg0: ItemComponentMineBlockEvent, arg1: CustomComponentParameters)=>void;
    onUse?: (arg0: ItemComponentUseEvent, arg1: CustomComponentParameters)=>void;
    onUseOn?: (arg0: ItemComponentUseOnEvent, arg1: CustomComponentParameters)=>void;
+}
+export interface ItemFilter {
+   includeTypes?: Array<ItemType | string>;
 }
 export interface JigsawPlaceOptions {
    includeEntities?: boolean;
@@ -1162,12 +1168,14 @@ export class Block {
    public center(): Vector3;
    public east(steps?: number): (Block | undefined);
    public getComponent(componentId: string): (BlockComponent | undefined);
+   public getComponents(): Array<BlockComponent>;
    public getItemStack(amount?: number, withData?: boolean): (ItemStack | undefined);
    public getLightLevel(): number;
    public getMapColor(): RGBA;
    public getRedstonePower(): (number | undefined);
    public getSkyLightLevel(): number;
    public getTags(): Array<string>;
+   public hasComponent(componentId: string): boolean;
    public hasTag(tag: string): boolean;
    public isLiquidBlocking(liquidType: LiquidType): boolean;
    public liquidCanFlowFromDirection(liquidType: LiquidType, flowDirection: Direction): boolean;
@@ -2120,6 +2128,27 @@ export class EntityIsTamedComponent extends EntityComponent {
 export class EntityItemComponent extends EntityComponent {
    public static readonly componentId = "minecraft:item";
    public readonly itemStack: ItemStack;
+   private constructor();
+}
+export class EntityItemPickupAfterEvent {
+   public readonly entity: Entity;
+   public readonly items: Array<ItemStack>;
+   private constructor();
+}
+export class EntityItemPickupAfterEventSignal {
+   public subscribe(callback: (arg0: EntityItemPickupAfterEvent)=>void, options?: EntityItemPickupEventOptions): (arg0: EntityItemPickupAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityItemPickupAfterEvent)=>void): void;
+   private constructor();
+}
+export class EntityItemPickupBeforeEvent {
+   public cancel: boolean;
+   public readonly entity: Entity;
+   public readonly item: Entity;
+   private constructor();
+}
+export class EntityItemPickupBeforeEventSignal {
+   public subscribe(callback: (arg0: EntityItemPickupBeforeEvent)=>void, options?: EntityItemPickupEventOptions): (arg0: EntityItemPickupBeforeEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityItemPickupBeforeEvent)=>void): void;
    private constructor();
 }
 //@ts-ignore
@@ -3728,6 +3757,7 @@ export class World {
    public readonly gameRules: GameRules;
    public readonly isHardcore: boolean;
    public readonly scoreboard: Scoreboard;
+   public readonly seed: string;
    public readonly structureManager: StructureManager;
    public readonly tickingAreaManager: TickingAreaManager;
    public broadcastClientMessage(id: string, value: string): void;
@@ -3772,6 +3802,7 @@ export class WorldAfterEvents {
    public readonly entityHitBlock: EntityHitBlockAfterEventSignal;
    public readonly entityHitEntity: EntityHitEntityAfterEventSignal;
    public readonly entityHurt: EntityHurtAfterEventSignal;
+   public readonly entityItemPickup: EntityItemPickupAfterEventSignal;
    public readonly entityLoad: EntityLoadAfterEventSignal;
    public readonly entityRemove: EntityRemoveAfterEventSignal;
    public readonly entitySpawn: EntitySpawnAfterEventSignal;
@@ -3820,6 +3851,7 @@ export class WorldBeforeEvents {
    public readonly effectAdd: EffectAddBeforeEventSignal;
    public readonly entityHeal: EntityHealBeforeEventSignal;
    public readonly entityHurt: EntityHurtBeforeEventSignal;
+   public readonly entityItemPickup: EntityItemPickupBeforeEventSignal;
    public readonly entityRemove: EntityRemoveBeforeEventSignal;
    public readonly explosion: ExplosionBeforeEventSignal;
    public readonly itemUse: ItemUseBeforeEventSignal;

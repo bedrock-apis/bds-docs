@@ -1,0 +1,84 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "3639918135",
+   "x-format-version": "1.21.50",
+   "definitions": {
+      "69792695": {
+         "title": "Reference",
+         "type": "string"
+      },
+      "484447252": {
+         "title": "CameraAimAssistPresetDefinition",
+         "type": "object",
+         "properties": {
+            "default_item_settings": {
+               "$ref": "#/definitions/3674175389"
+            },
+            "exclusion_list": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/69792695"
+               }
+            },
+            "hand_settings": {
+               "$ref": "#/definitions/3674175389"
+            },
+            "identifier": {
+               "$ref": "#/definitions/3574116620"
+            },
+            "item_settings": {
+               "type": "object",
+               "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                     "key": {
+                        "$ref": "#/definitions/3470474886"
+                     },
+                     "value": {
+                        "$ref": "#/definitions/3674175389"
+                     }
+                  }
+               },
+               "default": []
+            },
+            "liquid_targeting_list": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/3470474886"
+               }
+            }
+         },
+         "required": [
+            "identifier"
+         ]
+      },
+      "3470474886": {
+         "title": "Reference",
+         "type": "string"
+      },
+      "3574116620": {
+         "title": "Identifier",
+         "type": "string"
+      },
+      "3674175389": {
+         "title": "Reference",
+         "type": "string"
+      }
+   },
+   "title": "minecraft:aim_assist_preset",
+   "type": "object",
+   "properties": {
+      "format_version": {
+         "type": "string"
+      },
+      "minecraft:aim_assist_preset": {
+         "$ref": "#/definitions/484447252"
+      }
+   },
+   "required": [
+      "format_version",
+      "minecraft:aim_assist_preset"
+   ]
+}

@@ -1,0 +1,908 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "3404364787",
+   "x-format-version": "1.21.110",
+   "definitions": {
+      "338268096": {
+         "title": "Collision Box",
+         "oneOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "$ref": "#/definitions/3903423213",
+               "x-runtime-constraint-description": "\"origin\" + \"size\", must be inside the following limit: Vec3(-8,0,-8) and Vec3(8,24,8)"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/3903423213"
+               },
+               "maxItems": 16,
+               "x-runtime-constraint-description": "\"origin\" + \"size\", must be inside the following limit: Vec3(-8,0,-8) and Vec3(8,24,8)"
+            }
+         ]
+      },
+      "471923105": {
+         "title": "Components",
+         "type": "object",
+         "properties": {
+            "minecraft:collision_box": {
+               "$ref": "#/definitions/338268096"
+            },
+            "minecraft:crafting_table": {
+               "$ref": "#/definitions/3210633909"
+            },
+            "minecraft:destructible_by_explosion": {
+               "$ref": "#/definitions/1778015353"
+            },
+            "minecraft:destructible_by_mining": {
+               "$ref": "#/definitions/2144332438"
+            },
+            "minecraft:destruction_particles": {
+               "$ref": "#/definitions/3527967830"
+            },
+            "minecraft:display_name": {
+               "$ref": "#/definitions/2879220220"
+            },
+            "minecraft:entity_fall_on": {
+               "$ref": "#/definitions/4291018146"
+            },
+            "minecraft:flammable": {
+               "$ref": "#/definitions/2123787678"
+            },
+            "minecraft:flower_pottable": {
+               "$ref": "#/definitions/2511745037"
+            },
+            "minecraft:friction": {
+               "$ref": "#/definitions/1140545173"
+            },
+            "minecraft:geometry": {
+               "$ref": "#/definitions/1483802163"
+            },
+            "minecraft:item_visual": {
+               "$ref": "#/definitions/2908099874"
+            },
+            "minecraft:light_dampening": {
+               "$ref": "#/definitions/2155690250"
+            },
+            "minecraft:light_emission": {
+               "$ref": "#/definitions/3655705218"
+            },
+            "minecraft:loot": {
+               "$ref": "#/definitions/1273803565"
+            },
+            "minecraft:map_color": {
+               "$ref": "#/definitions/1567399336"
+            },
+            "minecraft:material_instances": {
+               "$ref": "#/definitions/800260518"
+            },
+            "minecraft:movable": {
+               "$ref": "#/definitions/2344109265"
+            },
+            "minecraft:random_offset": {
+               "$ref": "#/definitions/4006409319"
+            },
+            "minecraft:redstone_conductivity": {
+               "$ref": "#/definitions/3212487924"
+            },
+            "minecraft:redstone_producer": {
+               "$ref": "#/definitions/4203318441"
+            },
+            "minecraft:replaceable": {
+               "$ref": "#/definitions/3623939283"
+            },
+            "minecraft:selection_box": {
+               "$ref": "#/definitions/2986395074"
+            },
+            "minecraft:support": {
+               "$ref": "#/definitions/2279409622"
+            },
+            "minecraft:tags": {
+               "$ref": "#/definitions/2735968029"
+            },
+            "minecraft:tick": {
+               "$ref": "#/definitions/939187588"
+            },
+            "minecraft:transformation": {
+               "$ref": "#/definitions/861574760"
+            }
+         }
+      },
+      "691321428": {
+         "title": "Detailed Resistance",
+         "type": "object",
+         "properties": {
+            "explosion_resistance": {
+               "type": "number",
+               "minimum": 0
+            }
+         },
+         "required": [
+            "explosion_resistance"
+         ]
+      },
+      "800260518": {
+         "title": "Material Instances Component",
+         "type": "object",
+         "propertyNames": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_.:*]+$"
+         },
+         "additionalProperties": {
+            "oneOf": [
+               {
+                  "type": "string"
+               },
+               {
+                  "$ref": "#/definitions/840481292"
+               }
+            ]
+         },
+         "maxProperties": 64
+      },
+      "840481292": {
+         "title": "Material Instance",
+         "type": "object",
+         "properties": {
+            "alpha_masked_tint": {
+               "type": "boolean",
+               "default": false
+            },
+            "ambient_occlusion": {
+               "type": "number",
+               "default": 1,
+               "minimum": 0,
+               "maximum": 10
+            },
+            "face_dimming": {
+               "type": "boolean",
+               "default": true
+            },
+            "isotropic": {
+               "type": "boolean",
+               "default": false
+            },
+            "render_method": {
+               "title": "Block Render Layer",
+               "type": "string",
+               "default": "opaque",
+               "enum": [
+                  "double_sided",
+                  "blend",
+                  "blend_to_opaque",
+                  "opaque",
+                  "alpha_test_to_opaque",
+                  "alpha_test",
+                  "alpha_test_single_side",
+                  "alpha_test_single_side_to_opaque"
+               ]
+            },
+            "texture": {
+               "default": "",
+               "$ref": "#/definitions/3673881199"
+            },
+            "tint_method": {
+               "title": "Tint Method",
+               "type": "string",
+               "default": "none",
+               "enum": [
+                  "none",
+                  "default_foliage",
+                  "birch_foliage",
+                  "evergreen_foliage",
+                  "dry_foliage",
+                  "grass",
+                  "water"
+               ]
+            }
+         }
+      },
+      "861574760": {
+         "title": "Transformation",
+         "type": "object",
+         "properties": {
+            "rotation": {
+               "default": [
+                  0,
+                  0,
+                  0
+               ],
+               "$ref": "#/definitions/4004946602",
+               "multipleOf": 90
+            },
+            "rotation_pivot": {
+               "default": [
+                  0,
+                  0,
+                  0
+               ],
+               "$ref": "#/definitions/4004946602"
+            },
+            "scale": {
+               "default": [
+                  1,
+                  1,
+                  1
+               ],
+               "$ref": "#/definitions/4004946602"
+            },
+            "scale_pivot": {
+               "default": [
+                  0,
+                  0,
+                  0
+               ],
+               "$ref": "#/definitions/4004946602"
+            },
+            "translation": {
+               "default": [
+                  0,
+                  0,
+                  0
+               ],
+               "$ref": "#/definitions/4004946602"
+            }
+         }
+      },
+      "939187588": {
+         "title": "Tick",
+         "type": "object",
+         "properties": {
+            "interval_range": {
+               "type": "array",
+               "items": {
+                  "type": "integer",
+                  "minimum": 0
+               },
+               "minItems": 2,
+               "maxItems": 2,
+               "x-runtime-constraint-description": "The first value must be equal or lower than the second value"
+            },
+            "looping": {
+               "type": "boolean",
+               "default": true
+            }
+         },
+         "required": [
+            "interval_range"
+         ]
+      },
+      "1057349585": {
+         "title": "FloatRange",
+         "type": "object",
+         "properties": {
+            "max": {
+               "type": "number",
+               "default": 0
+            },
+            "min": {
+               "type": "number",
+               "default": 0
+            }
+         }
+      },
+      "1088021931": {
+         "title": "Detailed Geometry",
+         "type": "object",
+         "properties": {
+            "bone_visibility": {
+               "type": "object",
+               "additionalProperties": {
+                  "$ref": "#/definitions/3178719147"
+               },
+               "default": {},
+               "maxProperties": 64
+            },
+            "culling": {
+               "type": "string",
+               "default": "",
+               "maxLength": 256
+            },
+            "culling_layer": {
+               "type": "string",
+               "minLength": 1,
+               "maxLength": 256,
+               "pattern": "^(?:minecraft:culling_layer.undefined|minecraft:culling_layer.leaves|(?!minecraft:)[a-z0-9].*[a-z0-9])$",
+               "x-regex-flags": "ECMAScript,icase"
+            },
+            "identifier": {
+               "type": "string",
+               "maxLength": 256
+            },
+            "uv_lock": {
+               "default": false,
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "array",
+                     "items": {
+                        "type": "string"
+                     },
+                     "maxItems": 64
+                  }
+               ]
+            }
+         },
+         "required": [
+            "identifier"
+         ]
+      },
+      "1135547207": {
+         "title": "File Reference",
+         "type": "string",
+         "maxLength": 256
+      },
+      "1140545173": {
+         "title": "Friction",
+         "type": "number",
+         "minimum": 0,
+         "maximum": 0.8999999761581421
+      },
+      "1273803565": {
+         "title": "Loot",
+         "$ref": "#/definitions/1135547207"
+      },
+      "1483802163": {
+         "title": "Geometry",
+         "oneOf": [
+            {
+               "type": "string",
+               "maxLength": 256
+            },
+            {
+               "$ref": "#/definitions/1088021931",
+               "x-runtime-constraint-description": "Cannot use bone visibility feature with Vanilla geometries"
+            }
+         ]
+      },
+      "1522107605": {
+         "title": "Detailed Flammable",
+         "type": "object",
+         "properties": {
+            "catch_chance_modifier": {
+               "type": "integer",
+               "default": 5,
+               "minimum": 0
+            },
+            "destroy_chance_modifier": {
+               "type": "integer",
+               "default": 20,
+               "minimum": 0
+            }
+         }
+      },
+      "1531870811": {
+         "title": "Item Descriptor",
+         "oneOf": [
+            {
+               "type": "string"
+            },
+            {
+               "type": "object",
+               "additionalProperties": {
+                  "type": "string"
+               }
+            }
+         ]
+      },
+      "1567399336": {
+         "title": "Map Color",
+         "type": "object",
+         "properties": {
+            "color": {
+               "$ref": "#/definitions/3915697282"
+            },
+            "tint_method": {
+               "title": "Tint Method",
+               "type": "string",
+               "default": "none",
+               "enum": [
+                  "none",
+                  "default_foliage",
+                  "birch_foliage",
+                  "evergreen_foliage",
+                  "dry_foliage",
+                  "grass",
+                  "water"
+               ]
+            }
+         },
+         "required": [
+            "color"
+         ]
+      },
+      "1778015353": {
+         "title": "Destructible By Explosion",
+         "oneOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "$ref": "#/definitions/691321428"
+            }
+         ]
+      },
+      "2123787678": {
+         "title": "Detailed Flammable",
+         "oneOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "$ref": "#/definitions/1522107605"
+            }
+         ]
+      },
+      "2128101180": {
+         "title": "Range And Steps",
+         "type": "object",
+         "properties": {
+            "range": {
+               "$ref": "#/definitions/1057349585",
+               "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
+            },
+            "steps": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            }
+         },
+         "required": [
+            "range"
+         ]
+      },
+      "2144332438": {
+         "title": "Destructible By Mining",
+         "oneOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "$ref": "#/definitions/3591050949"
+            }
+         ]
+      },
+      "2155690250": {
+         "title": "Light Dampening",
+         "type": "integer",
+         "minimum": 0,
+         "maximum": 15
+      },
+      "2267778531": {
+         "title": "Molang string",
+         "oneOf": [
+            {
+               "type": "string"
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "expression": {
+                     "type": "string"
+                  },
+                  "version": {
+                     "type": "integer"
+                  }
+               },
+               "required": [
+                  "expression",
+                  "version"
+               ]
+            }
+         ]
+      },
+      "2279409622": {
+         "title": "Support",
+         "type": "object",
+         "properties": {
+            "shape": {
+               "title": "Support Shape",
+               "type": "string",
+               "enum": [
+                  "fence",
+                  "stair"
+               ]
+            }
+         },
+         "required": [
+            "shape"
+         ]
+      },
+      "2344109265": {
+         "title": "Movable",
+         "type": "object",
+         "properties": {
+            "movement_type": {
+               "title": "Movement Type",
+               "type": "string",
+               "enum": [
+                  "push_pull",
+                  "push",
+                  "popped",
+                  "immovable"
+               ]
+            },
+            "sticky": {
+               "title": "Sticky Type",
+               "type": "string",
+               "default": "none",
+               "enum": [
+                  "none",
+                  "same"
+               ]
+            }
+         },
+         "required": [
+            "movement_type"
+         ]
+      },
+      "2511745037": {
+         "title": "Flower Pottable"
+      },
+      "2735968029": {
+         "title": "Tags",
+         "type": "array",
+         "items": {
+            "type": "string",
+            "pattern": "^(?:.)+:(?:.)+$",
+            "x-regex-flags": "ECMAScript,icase"
+         }
+      },
+      "2879220220": {
+         "title": "Display Name",
+         "type": "string",
+         "maxLength": 256
+      },
+      "2908099874": {
+         "title": "Item Visual",
+         "type": "object",
+         "properties": {
+            "geometry": {
+               "$ref": "#/definitions/1483802163"
+            },
+            "material_instances": {
+               "$ref": "#/definitions/800260518"
+            }
+         },
+         "required": [
+            "geometry",
+            "material_instances"
+         ]
+      },
+      "2986395074": {
+         "title": "Selection Box",
+         "oneOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "$ref": "#/definitions/3903423213",
+               "x-runtime-constraint-description": "\"origin\" + \"size\", must be inside the following limit: Vec3(-8,0,-8) and Vec3(8,24,8)"
+            }
+         ]
+      },
+      "3178719147": {
+         "title": "Molang expression",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2267778531"
+            },
+            {
+               "type": "number"
+            }
+         ]
+      },
+      "3210633909": {
+         "title": "Crafting Table",
+         "type": "object",
+         "properties": {
+            "crafting_tags": {
+               "type": "array",
+               "items": {
+                  "type": "string",
+                  "maxLength": 64
+               },
+               "maxItems": 64
+            },
+            "table_name": {
+               "type": "string",
+               "default": "",
+               "maxLength": 256
+            }
+         },
+         "required": [
+            "crafting_tags"
+         ]
+      },
+      "3212487924": {
+         "title": "Redstone Conductivity",
+         "type": "object",
+         "properties": {
+            "allows_wire_to_step_down": {
+               "type": "boolean",
+               "default": true
+            },
+            "redstone_conductor": {
+               "type": "boolean",
+               "default": false
+            }
+         }
+      },
+      "3527967830": {
+         "title": "Destruction Particles",
+         "type": "object",
+         "properties": {
+            "particle_count": {
+               "type": "integer",
+               "default": 100,
+               "minimum": 0,
+               "maximum": 255
+            },
+            "texture": {
+               "type": "string",
+               "default": ""
+            },
+            "tint_method": {
+               "title": "Tint Method",
+               "type": "string",
+               "default": "none",
+               "enum": [
+                  "none",
+                  "default_foliage",
+                  "birch_foliage",
+                  "evergreen_foliage",
+                  "dry_foliage",
+                  "grass",
+                  "water"
+               ]
+            }
+         }
+      },
+      "3591050949": {
+         "title": "Detailed Mining Speed",
+         "type": "object",
+         "properties": {
+            "item_specific_speeds": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/4005170816"
+               }
+            },
+            "seconds_to_destroy": {
+               "type": "number",
+               "minimum": 0
+            }
+         },
+         "required": [
+            "seconds_to_destroy"
+         ]
+      },
+      "3623939283": {
+         "title": "Replaceable"
+      },
+      "3655705218": {
+         "title": "Light Emission",
+         "type": "integer",
+         "minimum": 0,
+         "maximum": 15
+      },
+      "3673881199": {
+         "title": "Reference",
+         "type": "string"
+      },
+      "3903423213": {
+         "title": "Bounding Box Data",
+         "type": "object",
+         "properties": {
+            "origin": {
+               "default": [
+                  -8,
+                  0,
+                  -8
+               ],
+               "$ref": "#/definitions/4004946602",
+               "x-runtime-constraint-description": "There are different constraints for different indexes, please refer to member help for more details"
+            },
+            "size": {
+               "default": [
+                  16,
+                  16,
+                  16
+               ],
+               "$ref": "#/definitions/4004946602",
+               "x-runtime-constraint-description": "There are different constraints for different indexes, please refer to member help for more details"
+            }
+         }
+      },
+      "3915697282": {
+         "title": "Color255RGB",
+         "oneOf": [
+            {
+               "type": "string",
+               "pattern": "^#[a-fA-F0-9]{6}$"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "type": "integer"
+               },
+               "minItems": 3,
+               "maxItems": 3
+            }
+         ],
+         "$metaProperties": {
+            "CEREAL_EDITOR_SCHEMA_TAG": "type:color"
+         }
+      },
+      "4004946602": {
+         "title": "vec3",
+         "oneOf": [
+            {
+               "type": "array",
+               "items": {
+                  "type": "number"
+               },
+               "minItems": 3,
+               "maxItems": 3
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "x": {
+                     "type": "number",
+                     "default": 0
+                  },
+                  "y": {
+                     "type": "number",
+                     "default": 0
+                  },
+                  "z": {
+                     "type": "number",
+                     "default": 0
+                  }
+               }
+            }
+         ]
+      },
+      "4005170816": {
+         "title": "Item Specific Speed",
+         "type": "object",
+         "properties": {
+            "destroy_speed": {
+               "type": "number"
+            },
+            "item": {
+               "$ref": "#/definitions/1531870811"
+            }
+         },
+         "required": [
+            "destroy_speed",
+            "item"
+         ]
+      },
+      "4006409319": {
+         "title": "Random Offset",
+         "type": "object",
+         "properties": {
+            "x": {
+               "default": {
+                  "range": {
+                     "min": 0,
+                     "max": 0
+                  },
+                  "steps": 0
+               },
+               "$ref": "#/definitions/2128101180"
+            },
+            "y": {
+               "default": {
+                  "range": {
+                     "min": 0,
+                     "max": 0
+                  },
+                  "steps": 0
+               },
+               "$ref": "#/definitions/2128101180"
+            },
+            "z": {
+               "default": {
+                  "range": {
+                     "min": 0,
+                     "max": 0
+                  },
+                  "steps": 0
+               },
+               "$ref": "#/definitions/2128101180"
+            }
+         }
+      },
+      "4203318441": {
+         "title": "Redstone Producer",
+         "type": "object",
+         "properties": {
+            "connected_faces": {
+               "type": "array",
+               "default": [
+                  "down",
+                  "up",
+                  "north",
+                  "south",
+                  "west",
+                  "east"
+               ],
+               "items": {
+                  "title": "Facing",
+                  "type": "string",
+                  "enum": [
+                     "down",
+                     "up",
+                     "north",
+                     "south",
+                     "west",
+                     "east"
+                  ]
+               }
+            },
+            "power": {
+               "type": "integer",
+               "minimum": 0,
+               "maximum": 15
+            },
+            "strongly_powered_face": {
+               "title": "Facing",
+               "type": "string",
+               "enum": [
+                  "down",
+                  "up",
+                  "north",
+                  "south",
+                  "west",
+                  "east"
+               ]
+            },
+            "transform_relative": {
+               "type": "boolean",
+               "default": true
+            }
+         },
+         "required": [
+            "power"
+         ]
+      },
+      "4291018146": {
+         "title": "Entity Fall On",
+         "type": "object",
+         "properties": {
+            "min_fall_distance": {
+               "type": "number",
+               "default": 0
+            }
+         }
+      }
+   },
+   "title": "Permutation",
+   "type": "object",
+   "properties": {
+      "components": {
+         "propertyNames": {
+            "type": "string",
+            "pattern": "^(?!(minecraft:support|minecraft:flower_pottable)$)"
+         },
+         "$ref": "#/definitions/471923105",
+         "x-runtime-constraint-description": "Block with \"geometry\" set at \"minecraft:geometry.full_block\" cannot have a \"random_offset\"",
+         "x-constraint-context-area": "unknown"
+      },
+      "condition": {
+         "type": "string"
+      }
+   },
+   "required": [
+      "components",
+      "condition"
+   ]
+}
