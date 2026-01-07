@@ -3059,6 +3059,22 @@
                ],
                "is_constructor": false,
                "is_static": false,
+               "name": "getDefaultProperties",
+               "return_type": {
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "CursorProperties"
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
                "name": "getPosition",
                "return_type": {
                   "from_module": {
@@ -3156,6 +3172,67 @@
                }
             },
             {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "identifier",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "popPropertiesById",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "properties",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "CursorProperties"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "identifier",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "pushPropertiesById",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
                "arguments": [],
                "call_privilege": [
                   {
@@ -3207,6 +3284,48 @@
                "is_constructor": false,
                "is_static": false,
                "name": "show",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "properties",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "CursorProperties"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "identifier",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "updatePropertiesById",
                "return_type": {
                   "is_bind_type": false,
                   "is_errorable": true,
@@ -3282,6 +3401,26 @@
          "functions": [],
          "name": "CursorPropertiesChangeAfterEvent",
          "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "identifier",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  }
+               }
+            },
             {
                "get_privilege": [
                   {
@@ -9835,6 +9974,31 @@
                   }
                ],
                "is_baked": false,
+               "is_read_only": false,
+               "name": "dimensionId",
+               "set_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
                "is_read_only": true,
                "name": "group",
                "type": {
@@ -9848,6 +10012,26 @@
                   "is_bind_type": true,
                   "is_errorable": true,
                   "name": "WidgetGroup"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "ignoreEditorModeVisibilityOverride",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
                }
             },
             {
@@ -19365,6 +19549,36 @@
                      "is_bind_type": true,
                      "is_errorable": false,
                      "name": "WidgetCollisionType"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "dimensionId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "ignoreEditorModeVisibilityOverride",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "boolean"
                   }
                }
             },

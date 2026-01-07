@@ -476,10 +476,6 @@ export class EntityIsChestedComponent extends IEntityComponent {
    private constructor();
 }
 //@ts-ignore
-export class EntityIsDyableComponent extends IEntityComponent {
-   private constructor();
-}
-//@ts-ignore
 export class EntityIsHiddenWhenInvisibleComponent extends IEntityComponent {
    private constructor();
 }

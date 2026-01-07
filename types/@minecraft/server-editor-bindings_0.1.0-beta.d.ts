@@ -545,6 +545,8 @@ export interface WidgetCreateOptions {
    collisionOffset?: server.Vector3;
    collisionRadius?: number;
    collisionType?: WidgetCollisionType;
+   dimensionId?: string;
+   ignoreEditorModeVisibilityOverride?: boolean;
    lockToSurface?: boolean;
    selectable?: boolean;
    snapToBlockLocation?: boolean;
@@ -695,17 +697,22 @@ export class Cursor {
    public readonly faceDirection: number;
    public readonly isVisible: boolean;
    public readonly maxViewBlockDistance: number;
+   public getDefaultProperties(): CursorProperties;
    public getPosition(): server.Vector3;
    public getProperties(): CursorProperties;
    public getRay(): CursorRay;
    public hide(): void;
    public moveBy(offset: server.Vector3): server.Vector3;
+   public popPropertiesById(identifier: string): void;
+   public pushPropertiesById(properties: CursorProperties, identifier: string): void;
    public resetToDefaultState(): void;
    public setProperties(properties: CursorProperties): void;
    public show(): void;
+   public updatePropertiesById(properties: CursorProperties, identifier?: string): void;
    private constructor();
 }
 export class CursorPropertiesChangeAfterEvent {
+   public readonly identifier?: string;
    public readonly position?: CursorPosition;
    public readonly properties: CursorProperties;
    private constructor();
@@ -996,7 +1003,9 @@ export class Widget {
    public collisionOffset: server.Vector3;
    public collisionRadius: number;
    public collisionType: WidgetCollisionType;
+   public dimensionId?: string;
    public readonly group: WidgetGroup;
+   public ignoreEditorModeVisibilityOverride: boolean;
    public location: server.Vector3;
    public lockPositionToSurface: boolean;
    public readonly selectable: boolean;

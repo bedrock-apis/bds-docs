@@ -1048,6 +1048,25 @@
                   "imitate.camel_husk",
                   "item.spear.use",
                   "item.wooden_spear.use",
+                  "saddle_in_water",
+                  "item.stone_spear.attack_hit",
+                  "item.iron_spear.attack_hit",
+                  "item.copper_spear.attack_hit",
+                  "item.golden_spear.attack_hit",
+                  "item.diamond_spear.attack_hit",
+                  "item.netherite_spear.attack_hit",
+                  "item.stone_spear.attack_miss",
+                  "item.iron_spear.attack_miss",
+                  "item.copper_spear.attack_miss",
+                  "item.golden_spear.attack_miss",
+                  "item.diamond_spear.attack_miss",
+                  "item.netherite_spear.attack_miss",
+                  "item.stone_spear.use",
+                  "item.iron_spear.use",
+                  "item.copper_spear.use",
+                  "item.golden_spear.use",
+                  "item.diamond_spear.use",
+                  "item.netherite_spear.use",
                   "undefined"
                ]
             },
@@ -1263,6 +1282,10 @@
                "type": "boolean",
                "default": false
             },
+            "attack_types": {
+               "type": "string",
+               "default": ""
+            },
             "can_spread_on_fire": {
                "type": "boolean",
                "default": false
@@ -1320,6 +1343,40 @@
                "type": "number",
                "default": 0.20000000298023224,
                "minimum": 0
+            },
+            "on_attack": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "OR": null,
+                     "all": null,
+                     "all_of": null,
+                     "AND": null,
+                     "any_of": null,
+                     "none_of": null,
+                     "any": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/121353999"
+            },
+            "on_kill": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "OR": null,
+                     "all": null,
+                     "all_of": null,
+                     "AND": null,
+                     "any_of": null,
+                     "none_of": null,
+                     "any": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/121353999"
             },
             "outer_boundary_time_increase": {
                "type": "number",
@@ -2458,6 +2515,25 @@
                   "imitate.camel_husk",
                   "item.spear.use",
                   "item.wooden_spear.use",
+                  "saddle_in_water",
+                  "item.stone_spear.attack_hit",
+                  "item.iron_spear.attack_hit",
+                  "item.copper_spear.attack_hit",
+                  "item.golden_spear.attack_hit",
+                  "item.diamond_spear.attack_hit",
+                  "item.netherite_spear.attack_hit",
+                  "item.stone_spear.attack_miss",
+                  "item.iron_spear.attack_miss",
+                  "item.copper_spear.attack_miss",
+                  "item.golden_spear.attack_miss",
+                  "item.diamond_spear.attack_miss",
+                  "item.netherite_spear.attack_miss",
+                  "item.stone_spear.use",
+                  "item.iron_spear.use",
+                  "item.copper_spear.use",
+                  "item.golden_spear.use",
+                  "item.diamond_spear.use",
+                  "item.netherite_spear.use",
                   "undefined"
                ]
             },
@@ -3070,6 +3146,25 @@
                   "imitate.camel_husk",
                   "item.spear.use",
                   "item.wooden_spear.use",
+                  "saddle_in_water",
+                  "item.stone_spear.attack_hit",
+                  "item.iron_spear.attack_hit",
+                  "item.copper_spear.attack_hit",
+                  "item.golden_spear.attack_hit",
+                  "item.diamond_spear.attack_hit",
+                  "item.netherite_spear.attack_hit",
+                  "item.stone_spear.attack_miss",
+                  "item.iron_spear.attack_miss",
+                  "item.copper_spear.attack_miss",
+                  "item.golden_spear.attack_miss",
+                  "item.diamond_spear.attack_miss",
+                  "item.netherite_spear.attack_miss",
+                  "item.stone_spear.use",
+                  "item.iron_spear.use",
+                  "item.copper_spear.use",
+                  "item.golden_spear.use",
+                  "item.diamond_spear.use",
+                  "item.netherite_spear.use",
                   "undefined"
                ]
             },
@@ -4337,6 +4432,15 @@
       "minecraft:mark_variant": {
          "description": "Dynamic value"
       },
+      "minecraft:memory_behavior.collect_nectar": {
+         "description": "Dynamic value"
+      },
+      "minecraft:memory_behavior.flee_threat": {
+         "description": "Dynamic value"
+      },
+      "minecraft:memory_behavior.follow_target": {
+         "description": "Dynamic value"
+      },
       "minecraft:mob_effect": {
          "description": "Dynamic value"
       },
@@ -4404,6 +4508,9 @@
          "description": "Dynamic value"
       },
       "minecraft:npc": {
+         "description": "Dynamic value"
+      },
+      "minecraft:offspring": {
          "description": "Dynamic value"
       },
       "minecraft:on_death": {
@@ -4511,6 +4618,24 @@
       "minecraft:scheduler": {
          "description": "Dynamic value"
       },
+      "minecraft:sensor.find_nearest_block": {
+         "description": "Dynamic value"
+      },
+      "minecraft:sensor.find_nearest_block_from": {
+         "description": "Dynamic value"
+      },
+      "minecraft:sensor.find_nearest_entity": {
+         "description": "Dynamic value"
+      },
+      "minecraft:sensor.find_nearest_entity_from": {
+         "description": "Dynamic value"
+      },
+      "minecraft:sensor.in_range_of_block": {
+         "description": "Dynamic value"
+      },
+      "minecraft:sensor.in_range_of_entity": {
+         "description": "Dynamic value"
+      },
       "minecraft:shareables": {
          "description": "Dynamic value"
       },
@@ -4524,6 +4649,9 @@
          "description": "Dynamic value"
       },
       "minecraft:sound_volume": {
+         "description": "Dynamic value"
+      },
+      "minecraft:spawn_egg_interaction": {
          "description": "Dynamic value"
       },
       "minecraft:spawn_entity": {

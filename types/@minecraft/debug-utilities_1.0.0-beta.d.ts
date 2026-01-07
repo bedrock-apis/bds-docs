@@ -62,6 +62,7 @@ export class DebugLine extends DebugShape {
    public constructor(location: server.DimensionLocation | server.Vector3, endLocation: server.Vector3);
 }
 export class DebugShape {
+   public attachedTo?: server.Entity;
    public color: server.RGB;
    public readonly dimension: server.Dimension;
    public readonly hasDuration: boolean;
@@ -70,6 +71,7 @@ export class DebugShape {
    public scale: number;
    public timeLeft?: number;
    public readonly totalTimeLeft?: number;
+   public visibleTo: Array<server.Player>;
    public remove(): void;
    public setLocation(location: server.DimensionLocation | server.Vector3): void;
    private constructor();

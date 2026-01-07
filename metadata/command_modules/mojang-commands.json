@@ -242,6 +242,14 @@
          ]
       },
       {
+         "name": "play_spline",
+         "values": [
+            {
+               "value": "play_spline"
+            }
+         ]
+      },
+      {
          "name": "target_entity",
          "values": [
             {
@@ -17679,6 +17687,9 @@
                "value": "minecraft:as_ranged_baby"
             },
             {
+               "value": "minecraft:as_ranged_baby_jockey"
+            },
+            {
                "value": "minecraft:as_rider"
             },
             {
@@ -18150,6 +18161,9 @@
                "value": "minecraft:on_anger"
             },
             {
+               "value": "minecraft:on_armor_equip"
+            },
+            {
                "value": "minecraft:on_calm"
             },
             {
@@ -18438,6 +18452,9 @@
                "value": "minecraft:spawn_skilled_adult"
             },
             {
+               "value": "minecraft:spawn_tame"
+            },
+            {
                "value": "minecraft:spawn_tame_adult"
             },
             {
@@ -18448,6 +18465,9 @@
             },
             {
                "value": "minecraft:spawn_warm"
+            },
+            {
+               "value": "minecraft:spawn_wild"
             },
             {
                "value": "minecraft:spawn_wild_adult"
@@ -18507,9 +18527,6 @@
                "value": "minecraft:start_celebrating"
             },
             {
-               "value": "minecraft:start_charge"
-            },
-            {
                "value": "minecraft:start_death"
             },
             {
@@ -18565,9 +18582,6 @@
             },
             {
                "value": "minecraft:stop_celebrating"
-            },
-            {
-               "value": "minecraft:stop_charge"
             },
             {
                "value": "minecraft:stop_exploding"
@@ -27329,6 +27343,9 @@
          "values": [
             {
                "value": "*"
+            },
+            {
+               "value": "minecraft:name_tag"
             },
             {
                "value": "minecraft:copper_spear"
@@ -36367,13 +36384,13 @@
                "value": "editor:location_pointer_idle"
             },
             {
-               "value": "editor:location_pointer_selected"
-            },
-            {
                "value": "editor:ruler_idle"
             },
             {
                "value": "editor:map_marker"
+            },
+            {
+               "value": "editor:location_pointer_selected"
             }
          ]
       },
@@ -37951,6 +37968,32 @@
                   },
                   {
                      "is_optional": false,
+                     "name": "play_spline",
+                     "type": {
+                        "name": "PLAY_SPLINE"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "name",
+                     "type": {
+                        "name": "ID"
+                     }
+                  }
+               ]
+            },
+            {
+               "name": "15",
+               "params": [
+                  {
+                     "is_optional": false,
+                     "name": "players",
+                     "type": {
+                        "name": "SELECTION"
+                     }
+                  },
+                  {
+                     "is_optional": false,
                      "name": "targetEntity",
                      "type": {
                         "name": "TARGET_ENTITY"
@@ -37966,7 +38009,7 @@
                ]
             },
             {
-               "name": "15",
+               "name": "16",
                "params": [
                   {
                      "is_optional": false,
@@ -38020,7 +38063,7 @@
                ]
             },
             {
-               "name": "16",
+               "name": "17",
                "params": [
                   {
                      "is_optional": false,
@@ -38039,7 +38082,7 @@
                ]
             },
             {
-               "name": "17",
+               "name": "18",
                "params": [
                   {
                      "is_optional": false,
@@ -38086,7 +38129,7 @@
                ]
             },
             {
-               "name": "18",
+               "name": "19",
                "params": [
                   {
                      "is_optional": false,
@@ -38133,74 +38176,6 @@
                   {
                      "is_optional": false,
                      "name": "zEntityOffset",
-                     "type": {
-                        "name": "VAL"
-                     }
-                  }
-               ]
-            },
-            {
-               "name": "19",
-               "params": [
-                  {
-                     "is_optional": false,
-                     "name": "players",
-                     "type": {
-                        "name": "SELECTION"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "set",
-                     "type": {
-                        "name": "SET"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "preset",
-                     "type": {
-                        "name": "CAMERAPRESETS"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "rot",
-                     "type": {
-                        "name": "ROT"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "xRot",
-                     "type": {
-                        "name": "RVAL"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "yRot",
-                     "type": {
-                        "name": "RVAL"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "view_offset",
-                     "type": {
-                        "name": "VIEW_OFFSET"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "xViewOffset",
-                     "type": {
-                        "name": "VAL"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "yViewOffset",
                      "type": {
                         "name": "VAL"
                      }
@@ -38254,28 +38229,21 @@
                   },
                   {
                      "is_optional": false,
-                     "name": "entity_offset",
+                     "name": "view_offset",
                      "type": {
-                        "name": "ENTITY_OFFSET"
+                        "name": "VIEW_OFFSET"
                      }
                   },
                   {
                      "is_optional": false,
-                     "name": "xEntityOffset",
-                     "type": {
-                        "name": "VAL"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "yEntityOffset",
+                     "name": "xViewOffset",
                      "type": {
                         "name": "VAL"
                      }
                   },
                   {
                      "is_optional": false,
-                     "name": "zEntityOffset",
+                     "name": "yViewOffset",
                      "type": {
                         "name": "VAL"
                      }
@@ -38308,23 +38276,23 @@
                   },
                   {
                      "is_optional": false,
-                     "name": "view_offset",
+                     "name": "rot",
                      "type": {
-                        "name": "VIEW_OFFSET"
+                        "name": "ROT"
                      }
                   },
                   {
                      "is_optional": false,
-                     "name": "xViewOffset",
+                     "name": "xRot",
                      "type": {
-                        "name": "VAL"
+                        "name": "RVAL"
                      }
                   },
                   {
                      "is_optional": false,
-                     "name": "yViewOffset",
+                     "name": "yRot",
                      "type": {
-                        "name": "VAL"
+                        "name": "RVAL"
                      }
                   },
                   {
@@ -38379,27 +38347,6 @@
                      "name": "preset",
                      "type": {
                         "name": "CAMERAPRESETS"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "rot",
-                     "type": {
-                        "name": "ROT"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "xRot",
-                     "type": {
-                        "name": "RVAL"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "yRot",
-                     "type": {
-                        "name": "RVAL"
                      }
                   },
                   {
@@ -38479,6 +38426,102 @@
                   },
                   {
                      "is_optional": false,
+                     "name": "rot",
+                     "type": {
+                        "name": "ROT"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "xRot",
+                     "type": {
+                        "name": "RVAL"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "yRot",
+                     "type": {
+                        "name": "RVAL"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "view_offset",
+                     "type": {
+                        "name": "VIEW_OFFSET"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "xViewOffset",
+                     "type": {
+                        "name": "VAL"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "yViewOffset",
+                     "type": {
+                        "name": "VAL"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "entity_offset",
+                     "type": {
+                        "name": "ENTITY_OFFSET"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "xEntityOffset",
+                     "type": {
+                        "name": "VAL"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "yEntityOffset",
+                     "type": {
+                        "name": "VAL"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "zEntityOffset",
+                     "type": {
+                        "name": "VAL"
+                     }
+                  }
+               ]
+            },
+            {
+               "name": "24",
+               "params": [
+                  {
+                     "is_optional": false,
+                     "name": "players",
+                     "type": {
+                        "name": "SELECTION"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "set",
+                     "type": {
+                        "name": "SET"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "preset",
+                     "type": {
+                        "name": "CAMERAPRESETS"
+                     }
+                  },
+                  {
+                     "is_optional": false,
                      "name": "ease",
                      "type": {
                         "name": "EASE"
@@ -38522,7 +38565,7 @@
                ]
             },
             {
-               "name": "24",
+               "name": "25",
                "params": [
                   {
                      "is_optional": false,
@@ -38590,95 +38633,6 @@
                   {
                      "is_optional": false,
                      "name": "zEntityOffset",
-                     "type": {
-                        "name": "VAL"
-                     }
-                  }
-               ]
-            },
-            {
-               "name": "25",
-               "params": [
-                  {
-                     "is_optional": false,
-                     "name": "players",
-                     "type": {
-                        "name": "SELECTION"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "set",
-                     "type": {
-                        "name": "SET"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "preset",
-                     "type": {
-                        "name": "CAMERAPRESETS"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "ease",
-                     "type": {
-                        "name": "EASE"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "easeTime",
-                     "type": {
-                        "name": "VAL"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "easeType",
-                     "type": {
-                        "name": "EASING"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "rot",
-                     "type": {
-                        "name": "ROT"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "xRot",
-                     "type": {
-                        "name": "RVAL"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "yRot",
-                     "type": {
-                        "name": "RVAL"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "view_offset",
-                     "type": {
-                        "name": "VIEW_OFFSET"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "xViewOffset",
-                     "type": {
-                        "name": "VAL"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "yViewOffset",
                      "type": {
                         "name": "VAL"
                      }
@@ -38753,28 +38707,21 @@
                   },
                   {
                      "is_optional": false,
-                     "name": "entity_offset",
+                     "name": "view_offset",
                      "type": {
-                        "name": "ENTITY_OFFSET"
+                        "name": "VIEW_OFFSET"
                      }
                   },
                   {
                      "is_optional": false,
-                     "name": "xEntityOffset",
-                     "type": {
-                        "name": "VAL"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "yEntityOffset",
+                     "name": "xViewOffset",
                      "type": {
                         "name": "VAL"
                      }
                   },
                   {
                      "is_optional": false,
-                     "name": "zEntityOffset",
+                     "name": "yViewOffset",
                      "type": {
                         "name": "VAL"
                      }
@@ -38828,23 +38775,23 @@
                   },
                   {
                      "is_optional": false,
-                     "name": "view_offset",
+                     "name": "rot",
                      "type": {
-                        "name": "VIEW_OFFSET"
+                        "name": "ROT"
                      }
                   },
                   {
                      "is_optional": false,
-                     "name": "xViewOffset",
+                     "name": "xRot",
                      "type": {
-                        "name": "VAL"
+                        "name": "RVAL"
                      }
                   },
                   {
                      "is_optional": false,
-                     "name": "yViewOffset",
+                     "name": "yRot",
                      "type": {
-                        "name": "VAL"
+                        "name": "RVAL"
                      }
                   },
                   {
@@ -38924,27 +38871,6 @@
                   },
                   {
                      "is_optional": false,
-                     "name": "rot",
-                     "type": {
-                        "name": "ROT"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "xRot",
-                     "type": {
-                        "name": "RVAL"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "yRot",
-                     "type": {
-                        "name": "RVAL"
-                     }
-                  },
-                  {
-                     "is_optional": false,
                      "name": "view_offset",
                      "type": {
                         "name": "VIEW_OFFSET"
@@ -39020,6 +38946,123 @@
                   },
                   {
                      "is_optional": false,
+                     "name": "ease",
+                     "type": {
+                        "name": "EASE"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "easeTime",
+                     "type": {
+                        "name": "VAL"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "easeType",
+                     "type": {
+                        "name": "EASING"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "rot",
+                     "type": {
+                        "name": "ROT"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "xRot",
+                     "type": {
+                        "name": "RVAL"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "yRot",
+                     "type": {
+                        "name": "RVAL"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "view_offset",
+                     "type": {
+                        "name": "VIEW_OFFSET"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "xViewOffset",
+                     "type": {
+                        "name": "VAL"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "yViewOffset",
+                     "type": {
+                        "name": "VAL"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "entity_offset",
+                     "type": {
+                        "name": "ENTITY_OFFSET"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "xEntityOffset",
+                     "type": {
+                        "name": "VAL"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "yEntityOffset",
+                     "type": {
+                        "name": "VAL"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "zEntityOffset",
+                     "type": {
+                        "name": "VAL"
+                     }
+                  }
+               ]
+            },
+            {
+               "name": "30",
+               "params": [
+                  {
+                     "is_optional": false,
+                     "name": "players",
+                     "type": {
+                        "name": "SELECTION"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "set",
+                     "type": {
+                        "name": "SET"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "preset",
+                     "type": {
+                        "name": "CAMERAPRESETS"
+                     }
+                  },
+                  {
+                     "is_optional": false,
                      "name": "pos",
                      "type": {
                         "name": "POS"
@@ -39035,7 +39078,7 @@
                ]
             },
             {
-               "name": "30",
+               "name": "31",
                "params": [
                   {
                      "is_optional": false,
@@ -39082,7 +39125,7 @@
                ]
             },
             {
-               "name": "31",
+               "name": "32",
                "params": [
                   {
                      "is_optional": false,
@@ -39122,7 +39165,7 @@
                ]
             },
             {
-               "name": "32",
+               "name": "33",
                "params": [
                   {
                      "is_optional": false,
@@ -39162,7 +39205,7 @@
                ]
             },
             {
-               "name": "33",
+               "name": "34",
                "params": [
                   {
                      "is_optional": false,
@@ -39195,7 +39238,7 @@
                ]
             },
             {
-               "name": "34",
+               "name": "35",
                "params": [
                   {
                      "is_optional": false,
@@ -39209,81 +39252,6 @@
                      "name": "clear",
                      "type": {
                         "name": "CLEAR"
-                     }
-                  }
-               ]
-            },
-            {
-               "name": "35",
-               "params": [
-                  {
-                     "is_optional": false,
-                     "name": "players",
-                     "type": {
-                        "name": "SELECTION"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "fade",
-                     "type": {
-                        "name": "FADE"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "time",
-                     "type": {
-                        "name": "TIME"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "fadeInSeconds",
-                     "type": {
-                        "name": "VAL"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "holdSeconds",
-                     "type": {
-                        "name": "VAL"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "fadeOutSeconds",
-                     "type": {
-                        "name": "VAL"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "color",
-                     "type": {
-                        "name": "COLOR"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "red",
-                     "type": {
-                        "name": "INT"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "green",
-                     "type": {
-                        "name": "INT"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "blue",
-                     "type": {
-                        "name": "INT"
                      }
                   }
                ]
@@ -39332,11 +39300,86 @@
                      "type": {
                         "name": "VAL"
                      }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "color",
+                     "type": {
+                        "name": "COLOR"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "red",
+                     "type": {
+                        "name": "INT"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "green",
+                     "type": {
+                        "name": "INT"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "blue",
+                     "type": {
+                        "name": "INT"
+                     }
                   }
                ]
             },
             {
                "name": "37",
+               "params": [
+                  {
+                     "is_optional": false,
+                     "name": "players",
+                     "type": {
+                        "name": "SELECTION"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "fade",
+                     "type": {
+                        "name": "FADE"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "time",
+                     "type": {
+                        "name": "TIME"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "fadeInSeconds",
+                     "type": {
+                        "name": "VAL"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "holdSeconds",
+                     "type": {
+                        "name": "VAL"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "fadeOutSeconds",
+                     "type": {
+                        "name": "VAL"
+                     }
+                  }
+               ]
+            },
+            {
+               "name": "38",
                "params": [
                   {
                      "is_optional": false,
@@ -39383,7 +39426,7 @@
                ]
             },
             {
-               "name": "38",
+               "name": "39",
                "params": [
                   {
                      "is_optional": false,
@@ -39402,7 +39445,7 @@
                ]
             },
             {
-               "name": "39",
+               "name": "40",
                "params": [
                   {
                      "is_optional": false,
@@ -39442,7 +39485,7 @@
                ]
             },
             {
-               "name": "40",
+               "name": "41",
                "params": [
                   {
                      "is_optional": false,

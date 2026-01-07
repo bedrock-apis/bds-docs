@@ -3,6 +3,46 @@
    "$id": "1900210559",
    "x-format-version": "1.21.120",
    "definitions": {
+      "121353999": {
+         "title": "ActorDefinitionTrigger",
+         "type": "object",
+         "properties": {
+            "event": {
+               "type": "string",
+               "default": ""
+            },
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/1088251937"
+            },
+            "target": {
+               "title": "FilterSubject",
+               "type": "string",
+               "default": "self",
+               "enum": [
+                  "self",
+                  "other",
+                  "player",
+                  "target",
+                  "parent",
+                  "baby",
+                  "block",
+                  "damager",
+                  "holder",
+                  "item"
+               ]
+            }
+         }
+      },
       "1057349585": {
          "title": "FloatRange",
          "type": "object",
@@ -16,6 +56,125 @@
                "default": 0
             }
          }
+      },
+      "1088251937": {
+         "title": "Filter Group",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/4150989894"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/1088251937"
+               }
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "AND": {
+                     "$ref": "#/definitions/1088251937"
+                  },
+                  "NOT": {
+                     "$ref": "#/definitions/1088251937"
+                  },
+                  "OR": {
+                     "$ref": "#/definitions/1088251937"
+                  },
+                  "all": {
+                     "$ref": "#/definitions/1088251937"
+                  },
+                  "all_of": {
+                     "$ref": "#/definitions/1088251937"
+                  },
+                  "any": {
+                     "$ref": "#/definitions/1088251937"
+                  },
+                  "any_of": {
+                     "$ref": "#/definitions/1088251937"
+                  },
+                  "none_of": {
+                     "$ref": "#/definitions/1088251937"
+                  }
+               }
+            }
+         ]
+      },
+      "4150989894": {
+         "title": "Filter Test",
+         "type": "object",
+         "properties": {
+            "domain": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "operator": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "subject": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "test": {
+               "type": "string"
+            },
+            "value": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            }
+         },
+         "required": [
+            "test"
+         ]
       }
    },
    "title": "minecraft:behavior.use_kinetic_weapon",
@@ -29,6 +188,10 @@
       "attack_once": {
          "type": "boolean",
          "default": false
+      },
+      "attack_types": {
+         "type": "string",
+         "default": ""
       },
       "can_spread_on_fire": {
          "type": "boolean",
@@ -87,6 +250,40 @@
          "type": "number",
          "default": 0.20000000298023224,
          "minimum": 0
+      },
+      "on_attack": {
+         "default": {
+            "event": "",
+            "target": "self",
+            "filters": {
+               "OR": null,
+               "all": null,
+               "all_of": null,
+               "AND": null,
+               "any_of": null,
+               "none_of": null,
+               "any": null,
+               "NOT": null
+            }
+         },
+         "$ref": "#/definitions/121353999"
+      },
+      "on_kill": {
+         "default": {
+            "event": "",
+            "target": "self",
+            "filters": {
+               "OR": null,
+               "all": null,
+               "all_of": null,
+               "AND": null,
+               "any_of": null,
+               "none_of": null,
+               "any": null,
+               "NOT": null
+            }
+         },
+         "$ref": "#/definitions/121353999"
       },
       "outer_boundary_time_increase": {
          "type": "number",

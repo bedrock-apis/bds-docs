@@ -828,6 +828,10 @@ export interface EntityHurtBeforeEventOptions {
    allowedDamageCauses?: Array<EntityDamageCause>;
    entityFilter?: EntityFilter;
 }
+export interface EntityItemDropEventOptions {
+   entityFilter?: EntityFilter;
+   itemFilter?: ItemFilter;
+}
 export interface EntityItemPickupEventOptions {
    entityFilter?: EntityFilter;
    itemFilter?: ItemFilter;
@@ -1079,6 +1083,7 @@ export class AimAssistCategory {
    public getBlockPriorities(): Record<string,number>;
    public getBlockTagPriorities(): Record<string,number>;
    public getEntityPriorities(): Record<string,number>;
+   public getEntityTypeFamilyPriorities(): Record<string,number>;
    private constructor();
 }
 export class AimAssistCategorySettings {
@@ -1089,9 +1094,11 @@ export class AimAssistCategorySettings {
    public getBlockPriorities(): Record<string,number>;
    public getBlockTagPriorities(): Record<string,number>;
    public getEntityPriorities(): Record<string,number>;
+   public getEntityTypeFamilyPriorities(): Record<string,number>;
    public setBlockPriorities(blockPriorities: Record<string,number>): void;
    public setBlockTagPriorities(blockTagPriorities: Record<string,number>): void;
    public setEntityPriorities(entityPriorities: Record<string,number>): void;
+   public setEntityTypeFamilyPriorities(entityTypeFamilyPriorities: Record<string,number>): void;
 }
 export class AimAssistPreset {
    public readonly defaultItemSettings?: string;
@@ -1100,6 +1107,7 @@ export class AimAssistPreset {
    public getExcludedBlockTagTargets(): Array<string>;
    public getExcludedBlockTargets(): Array<string>;
    public getExcludedEntityTargets(): Array<string>;
+   public getExcludedEntityTypeFamilyTargets(): Array<string>;
    public getItemSettings(): Record<string,string>;
    public getLiquidTargetingItems(): Array<string>;
    private constructor();
@@ -1112,11 +1120,13 @@ export class AimAssistPresetSettings {
    public getExcludedBlockTagTargets(): (Array<string> | undefined);
    public getExcludedBlockTargets(): (Array<string> | undefined);
    public getExcludedEntityTargets(): (Array<string> | undefined);
+   public getExcludedEntityTypeFamilyTargets(): (Array<string> | undefined);
    public getItemSettings(): Record<string,string>;
    public getLiquidTargetingItems(): (Array<string> | undefined);
    public setExcludedBlockTagTargets(blockTagTargets?: Array<string>): void;
    public setExcludedBlockTargets(blockTargets?: Array<string>): void;
    public setExcludedEntityTargets(entityTargets?: Array<string>): void;
+   public setExcludedEntityTypeFamilyTargets(entityTypeFamilyTargets?: Array<string>): void;
    public setItemSettings(itemSettings: Record<string,string>): void;
    public setLiquidTargetingItems(items?: Array<string>): void;
 }
@@ -1255,6 +1265,7 @@ export class BlockComponentRandomTickEvent extends BlockEvent {
 //@ts-ignore
 export class BlockComponentRedstoneUpdateEvent extends BlockEvent {
    public readonly powerLevel: number;
+   public readonly previousPowerLevel: number;
    private constructor();
 }
 export class BlockComponentRegistry {
@@ -2120,6 +2131,16 @@ export class EntityIsTamedComponent extends EntityComponent {
 export class EntityItemComponent extends EntityComponent {
    public static readonly componentId = "minecraft:item";
    public readonly itemStack: ItemStack;
+   private constructor();
+}
+export class EntityItemDropAfterEvent {
+   public readonly entity: Entity;
+   public readonly items: Array<Entity>;
+   private constructor();
+}
+export class EntityItemDropAfterEventSignal {
+   public subscribe(callback: (arg0: EntityItemDropAfterEvent)=>void, options?: EntityItemDropEventOptions): (arg0: EntityItemDropAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityItemDropAfterEvent)=>void): void;
    private constructor();
 }
 export class EntityItemPickupAfterEvent {
@@ -3794,6 +3815,7 @@ export class WorldAfterEvents {
    public readonly entityHitBlock: EntityHitBlockAfterEventSignal;
    public readonly entityHitEntity: EntityHitEntityAfterEventSignal;
    public readonly entityHurt: EntityHurtAfterEventSignal;
+   public readonly entityItemDrop: EntityItemDropAfterEventSignal;
    public readonly entityItemPickup: EntityItemPickupAfterEventSignal;
    public readonly entityLoad: EntityLoadAfterEventSignal;
    public readonly entityRemove: EntityRemoveAfterEventSignal;
