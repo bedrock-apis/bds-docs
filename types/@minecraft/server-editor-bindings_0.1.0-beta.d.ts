@@ -465,13 +465,17 @@ export interface WidgetComponentBaseOptions {
    offset?: server.Vector3;
    visible?: boolean;
 }
+export interface WidgetComponentBoundingBoxLimit {
+   max: server.Vector3;
+   maxBlockVolume?: number;
+   min: server.Vector3;
+}
 //@ts-ignore
 export interface WidgetComponentBoundingBoxOptions extends WidgetComponentBaseOptions {
    boundsOffset?: server.Vector3;
    enableResizeHandles?: Axis;
    hullColor?: server.RGBA;
-   maxSize?: server.Vector3;
-   minSize?: server.Vector3;
+   limit?: WidgetComponentBoundingBoxLimit;
    mirror?: server.StructureMirrorAxis;
    normalizedOrigin?: server.Vector3;
    outlineColor?: server.RGBA;
@@ -723,6 +727,8 @@ export class CursorPropertyChangeAfterEventSignal {
    private constructor();
 }
 export class EditorConstants {
+   public readonly maxBlockVolume: number;
+   public readonly maxDynamicSelectionSize: server.Vector3;
    public readonly maxSelectionSize: server.Vector3;
    public readonly maxStructureOffset: server.Vector3;
    public readonly minStructureOffset: server.Vector3;

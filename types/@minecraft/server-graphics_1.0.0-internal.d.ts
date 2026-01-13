@@ -26,6 +26,15 @@ export class Atmospherics {
    public setSunMieStrength(sunMieStrength: number | Record<number,number>, biomeIdentifier: server.BiomeType): void;
    private constructor();
 }
+export class ColorGrading {
+   public resetHighlightsContrast(biomeIdentifier: server.BiomeType): void;
+   public resetMidtonesContrast(biomeIdentifier: server.BiomeType): void;
+   public resetShadowsContrast(biomeIdentifier: server.BiomeType): void;
+   public setHighlightsContrast(highlightsContrast: server.Vector3, biomeIdentifier: server.BiomeType): void;
+   public setMidtonesContrast(midtonesContrast: server.Vector3, biomeIdentifier: server.BiomeType): void;
+   public setShadowsContrast(shadowsContrast: server.Vector3, biomeIdentifier: server.BiomeType): void;
+   private constructor();
+}
 export class Water {
    public resetCDOM(biomeIdentifier: server.BiomeType): void;
    public resetChlorophyll(biomeIdentifier: server.BiomeType): void;
@@ -59,5 +68,6 @@ export class Water {
 export const InternalConstant = 1;
 
 export const atmosphere: Atmospherics;
+export const colorGrading: ColorGrading;
 export const water: Water;
 

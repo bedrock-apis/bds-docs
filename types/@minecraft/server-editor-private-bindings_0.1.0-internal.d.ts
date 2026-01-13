@@ -245,15 +245,27 @@ export class DataStorePayloadAfterEventSignal {
    public unsubscribe(callback: (arg0: DataStorePayloadAfterEvent)=>void): void;
    private constructor();
 }
+export class DataTransferBiomeConfigData {
+   public readonly atmospheric: string;
+   public readonly colorGrading: string;
+   public readonly cubemap: string;
+   public readonly identifier: string;
+   public readonly lightingGroup: string;
+   public readonly water: string;
+   private constructor();
+}
 export class DataTransferCreateSettingResponse {
+   public readonly message: string;
    public readonly success: boolean;
    private constructor();
 }
 export class DataTransferManager {
+   public changeBiomeMapping(biomeIdentifier: string, collectionUniqueId: string, identifier: string): void;
    public closeSession(collectionUniqueId: string): void;
    public createSetting(collectionUniqueId: string, identifier: string, jsonData: string, lockToBiome: boolean): Promise<DataTransferCreateSettingResponse>;
    public getRegisteredAccessors(): Array<DataTransferCollectionNameData>;
    public openSession(collectionUniqueId: string): void;
+   public requestBiomeConfig(biomeIdentifier: string): Promise<DataTransferBiomeConfigData>;
    public requestData(collectionUniqueId: string, options?: DataTransferRequestDataOptions): Promise<DataTransferRequestResponse>;
    public requestIdentifiers(collectionUniqueId: string): Promise<DataTransferRequestIdentifiersResponse>;
    public sendData(collectionUniqueId: string, jsonData: string, options?: DataTransferSendDataOptions): void;

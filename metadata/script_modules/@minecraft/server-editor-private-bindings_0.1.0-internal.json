@@ -1581,8 +1581,126 @@
          "base_types": [],
          "constants": [],
          "functions": [],
+         "name": "DataTransferBiomeConfigData",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "atmospheric",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "colorGrading",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "cubemap",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "identifier",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "lightingGroup",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "water",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "DataTransferBiomeConfigData"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [],
          "name": "DataTransferCreateSettingResponse",
          "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "message",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
             {
                "get_privilege": [
                   {
@@ -1609,6 +1727,50 @@
          "base_types": [],
          "constants": [],
          "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "biomeIdentifier",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "collectionUniqueId",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "identifier",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "changeBiomeMapping",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
             {
                "arguments": [
                   {
@@ -1738,6 +1900,37 @@
                   "is_bind_type": false,
                   "is_errorable": true,
                   "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "biomeIdentifier",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "requestBiomeConfig",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "DataTransferBiomeConfigData"
+                  }
                }
             },
             {
