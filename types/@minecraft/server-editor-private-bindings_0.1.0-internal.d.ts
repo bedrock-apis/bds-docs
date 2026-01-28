@@ -60,6 +60,19 @@ export enum RealmsWorldUploadResult {
    WorldUploadBusy = 5,
 }
 
+export interface CustomBiomeConfig {
+   name: string;
+   replacements: Array<CustomBiomeReplacementConfig>;
+}
+export interface CustomBiomeReplacementConfig {
+   amount: number;
+   biomeType?: server.BiomeType;
+   frequency: number;
+}
+export interface CustomBiomeSourceConfig {
+   seed?: number;
+   userDefinedBiomes: Array<CustomBiomeConfig>;
+}
 export interface DataTransferCollectionNameData {
    nameStringId: string;
    uniqueId: string;
@@ -166,6 +179,11 @@ export interface ProjectRegionOptions {
    extentZ: common.NumberRange;
 }
 
+export class CustomBiomeSource {
+   public destroy(): void;
+   public getBiomeAt(pos: server.Vector3): server.BiomeType;
+   private constructor();
+}
 export class DataStore {
    public readonly actionBarContainer: DataStoreActionBarContainer;
    public readonly actionContainer: DataStoreActionContainer;
@@ -315,6 +333,7 @@ export class InternalPlayerServiceContext {
    private constructor();
 }
 export class JigsawService {
+   public deleteRegistryData(registryName: string): void;
    public generateJigsaw(registryName: string, startingPool: string, startTarget: string, seed: server.Vector3, depth: number, maxHorizontalDistanceFromCenter: number, validateRegistry: boolean, clipboardItem: server_editor.ClipboardItem): Promise<Array<EditorJigsawSection>>;
    public getEmptyRegistryFiles(): Record<string,string>;
    public getExportLocation(): string;
@@ -328,6 +347,7 @@ export class JigsawService {
 export class MinecraftEditorInternal {
    public readonly isNewLevel: boolean;
    public readonly regionManager: ProjectRegionManager;
+   public createCustomBiomeSource(config: CustomBiomeSourceConfig): CustomBiomeSource;
    public fireTelemetryEvent(player: server.Player, source: string, eventName: string, metadata: string): void;
    public getPlayerServices(player: server.Player): InternalPlayerServiceContext;
    public registerExtension(extensionName: string, activationFunction: (arg0: server_editor.ExtensionContext)=>void, shutdownFunction: (arg0: server_editor.ExtensionContext)=>void, options?: server_editor.ExtensionOptionalParameters): server_editor.Extension;

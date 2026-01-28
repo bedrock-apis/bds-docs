@@ -44,20 +44,6 @@ export class ActionFormResponse extends FormResponse {
    public readonly selection?: number;
    private constructor();
 }
-export class DataDrivenScreen {
-   public constructor();
-   public showScreen(player: server.Player, screenId: string): void;
-}
-export class DataStore {
-   public getProperty(player: server.Player, dataStoreName: string, property: string): (string | undefined);
-   public getPropertyPath(player: server.Player, dataStoreName: string, property: string, path: string): (string | undefined);
-   public setClientWritable(player: server.Player, dataStoreName: string, property: string, path: string, isWritable?: boolean): void;
-   public setProperty(player: server.Player, dataStoreName: string, property: string, data: string): void;
-   public setPropertyPath(player: server.Player, dataStoreName: string, property: string, path: string, data: boolean | number | string): void;
-   public subscribe(player: server.Player, dataStoreName: string, property: string, path: string, onChange: (arg0?: string)=>void): (arg0?: string)=>void;
-   public unsubscribe(onChange: (arg0?: string)=>void): boolean;
-   private constructor();
-}
 export class FormResponse {
    public readonly cancelationReason?: FormCancelationReason;
    public readonly canceled: boolean;
@@ -95,24 +81,17 @@ export class ModalFormResponse extends FormResponse {
    private constructor();
 }
 export class UIManager {
-   public closeAllDataDrivenScreens(player: server.Player): void;
    public closeAllForms(player: server.Player): void;
    private constructor();
 }
 
 export const isAlpha = true;
 
-export const ddui: DataStore;
 export const uiManager: UIManager;
 
 
 //@ts-ignore
 export class FormRejectError extends Error {
    public readonly reason: FormRejectReason;
-   private constructor();
-}
-//@ts-ignore
-export class InvalidPathError extends Error {
-   public readonly path: string;
    private constructor();
 }

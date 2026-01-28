@@ -384,6 +384,7 @@ export interface GameOptions {
    immediateRespawn?: boolean;
    insomnia?: boolean;
    keepInventory?: boolean;
+   keepPlayerData?: boolean;
    lanVisibility?: boolean;
    limitedCrafting?: boolean;
    locatorBar?: boolean;

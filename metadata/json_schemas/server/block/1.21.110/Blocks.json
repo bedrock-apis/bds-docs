@@ -3,6 +3,9 @@
    "$id": "1677381825",
    "x-format-version": "1.21.110",
    "definitions": {
+      "299513819": {
+         "title": "Player Placing Component"
+      },
       "338268096": {
          "title": "Collision Box",
          "oneOf": [
@@ -87,6 +90,34 @@
             "minecraft:movable": {
                "$ref": "#/definitions/2344109265"
             },
+            "minecraft:on_fall_on": {
+               "deprecated": true,
+               "$ref": "#/definitions/3728917292"
+            },
+            "minecraft:on_interact": {
+               "deprecated": true,
+               "$ref": "#/definitions/4261479954"
+            },
+            "minecraft:on_placed": {
+               "deprecated": true,
+               "$ref": "#/definitions/2632019567"
+            },
+            "minecraft:on_player_destroyed": {
+               "deprecated": true,
+               "$ref": "#/definitions/646686174"
+            },
+            "minecraft:on_player_placing": {
+               "deprecated": true,
+               "$ref": "#/definitions/299513819"
+            },
+            "minecraft:on_step_off": {
+               "deprecated": true,
+               "$ref": "#/definitions/2689073763"
+            },
+            "minecraft:on_step_on": {
+               "deprecated": true,
+               "$ref": "#/definitions/3852203185"
+            },
             "minecraft:placement_filter": {
                "$ref": "#/definitions/4254798072"
             },
@@ -169,6 +200,9 @@
                "default": false
             }
          }
+      },
+      "646686174": {
+         "title": "Player Destroyed Component"
       },
       "691321428": {
          "title": "Detailed Resistance",
@@ -381,6 +415,13 @@
                "minLength": 1,
                "maxLength": 256,
                "pattern": "^(?:minecraft:culling_layer.undefined|minecraft:culling_layer.leaves|(?!minecraft:)[a-z0-9].*[a-z0-9])$",
+               "x-regex-flags": "ECMAScript,icase"
+            },
+            "culling_shape": {
+               "type": "string",
+               "default": "",
+               "maxLength": 256,
+               "pattern": "^(?:minecraft:empty|minecraft:unit_cube|(?!minecraft:)[a-z0-9].*[a-z0-9])$",
                "x-regex-flags": "ECMAScript,icase"
             },
             "identifier": {
@@ -731,6 +772,9 @@
       "2511745037": {
          "title": "Flower Pottable"
       },
+      "2632019567": {
+         "title": "Placed Component"
+      },
       "2683144891": {
          "title": "Blocked Directions",
          "type": "array",
@@ -746,6 +790,9 @@
                "east"
             ]
          }
+      },
+      "2689073763": {
+         "title": "Step Off Component"
       },
       "2735968029": {
          "title": "Tags",
@@ -1009,6 +1056,12 @@
       "3673881199": {
          "title": "Reference",
          "type": "string"
+      },
+      "3728917292": {
+         "title": "Fall On Component"
+      },
+      "3852203185": {
+         "title": "Step On Component"
       },
       "3903423213": {
          "title": "Bounding Box Data",
@@ -1281,6 +1334,9 @@
                "maxItems": 64
             }
          }
+      },
+      "4261479954": {
+         "title": "Interact Component"
       },
       "4291018146": {
          "title": "Entity Fall On",

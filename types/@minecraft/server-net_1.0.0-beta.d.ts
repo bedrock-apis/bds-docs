@@ -160,6 +160,7 @@ export enum PacketId {
    ResourcePackClientResponsePacket = "ResourcePackClientResponsePacket",
    ResourcePackDataInfoPacket = "ResourcePackDataInfoPacket",
    ResourcePacksInfoPacket = "ResourcePacksInfoPacket",
+   ResourcePacksReadyForValidationPacket = "ResourcePacksReadyForValidationPacket",
    ResourcePackStackPacket = "ResourcePackStackPacket",
    RespawnPacket = "RespawnPacket",
    ScriptMessagePacket = "ScriptMessagePacket",
@@ -299,6 +300,28 @@ export const beforeEvents: NetworkBeforeEvents;
 export const http: HttpClient;
 
 
+//@ts-ignore
+export class HttpRequestBodyTooLargeError extends Error {
+   public readonly maxBytes: number;
+   public readonly providedBytes: number;
+   private constructor();
+}
+//@ts-ignore
+export class HttpRequestLimitExceededError extends Error {
+   public readonly inFlightRequests: number;
+   public readonly maxConcurrentRequests: number;
+   private constructor();
+}
+//@ts-ignore
+export class HttpRequestNotAllowedError extends Error {
+   public readonly uri: string;
+   private constructor();
+}
+//@ts-ignore
+export class HttpsOnlyError extends Error {
+   public readonly uri: string;
+   private constructor();
+}
 //@ts-ignore
 export class InternalHttpRequestError extends Error {
    public readonly code: number;

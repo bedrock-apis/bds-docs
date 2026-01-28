@@ -5,6 +5,71 @@
          "constants": [],
          "functions": [
             {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "destroy",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "pos",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-bindings",
+                           "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                           "version": "2.7.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getBiomeAt",
+               "return_type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.7.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "BiomeType"
+               }
+            }
+         ],
+         "name": "CustomBiomeSource",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "CustomBiomeSource"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
                "arguments": [
                   {
                      "details": null,
@@ -2288,10 +2353,7 @@
                      }
                   },
                   {
-                     "details": {
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
-                     },
+                     "details": null,
                      "name": "key",
                      "type": {
                         "is_bind_type": false,
@@ -2942,6 +3004,32 @@
                         "is_errorable": false,
                         "name": "string"
                      }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "deleteRegistryData",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "registryName",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
                   },
                   {
                      "details": null,
@@ -2968,7 +3056,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -2976,10 +3064,7 @@
                      }
                   },
                   {
-                     "details": {
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
-                     },
+                     "details": null,
                      "name": "depth",
                      "type": {
                         "is_bind_type": false,
@@ -2992,10 +3077,7 @@
                      }
                   },
                   {
-                     "details": {
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
-                     },
+                     "details": null,
                      "name": "maxHorizontalDistanceFromCenter",
                      "type": {
                         "is_bind_type": false,
@@ -3106,7 +3188,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -3199,7 +3281,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -3339,12 +3421,38 @@
                "arguments": [
                   {
                      "details": null,
+                     "name": "config",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "CustomBiomeSourceConfig"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "createCustomBiomeSource",
+               "return_type": {
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "CustomBiomeSource"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
                      "name": "player",
                      "type": {
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -3402,7 +3510,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -4823,7 +4931,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -5365,7 +5473,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.6.0-internal"
+                     "version": "2.7.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -5390,7 +5498,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.6.0-internal"
+                     "version": "2.7.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -5415,7 +5523,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.6.0-internal"
+                     "version": "2.7.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -5492,7 +5600,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.6.0-internal"
+                     "version": "2.7.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -5517,7 +5625,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.6.0-internal"
+                     "version": "2.7.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -5616,7 +5724,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.6.0-internal"
+                     "version": "2.7.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -5641,7 +5749,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.6.0-internal"
+                     "version": "2.7.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -5666,7 +5774,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.6.0-internal"
+                     "version": "2.7.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -5693,7 +5801,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.6.0-internal"
+                     "version": "2.7.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": true,
@@ -5720,7 +5828,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.6.0-internal"
+                     "version": "2.7.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": true,
@@ -5747,7 +5855,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.6.0-internal"
+                     "version": "2.7.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": true,
@@ -5790,7 +5898,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -5804,7 +5912,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -5824,7 +5932,7 @@
                            "from_module": {
                               "name": "@minecraft/server-bindings",
                               "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                              "version": "2.6.0-internal"
+                              "version": "2.7.0-internal"
                            },
                            "is_bind_type": true,
                            "is_errorable": false,
@@ -5849,7 +5957,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.6.0-internal"
+                        "version": "2.7.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -5866,7 +5974,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -5890,7 +5998,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.6.0-internal"
+                        "version": "2.7.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -5907,7 +6015,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -5927,7 +6035,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.6.0-internal"
+                     "version": "2.7.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": true,
@@ -5943,7 +6051,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -5963,7 +6071,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.6.0-internal"
+                     "version": "2.7.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": true,
@@ -5979,7 +6087,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -6015,7 +6123,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.6.0-internal"
+                     "version": "2.7.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": true,
@@ -6031,7 +6139,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -6062,7 +6170,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -6109,7 +6217,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -6140,7 +6248,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -6171,7 +6279,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -6202,7 +6310,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -6250,7 +6358,7 @@
                                  "from_module": {
                                     "name": "@minecraft/server-bindings",
                                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                                    "version": "2.6.0-internal"
+                                    "version": "2.7.0-internal"
                                  },
                                  "is_bind_type": true,
                                  "is_errorable": false,
@@ -6400,7 +6508,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -6436,7 +6544,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -6455,7 +6563,7 @@
                               "from_module": {
                                  "name": "@minecraft/server-bindings",
                                  "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                                 "version": "2.6.0-internal"
+                                 "version": "2.7.0-internal"
                               },
                               "is_bind_type": true,
                               "is_errorable": false,
@@ -6493,7 +6601,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -6538,7 +6646,7 @@
                               "from_module": {
                                  "name": "@minecraft/server-bindings",
                                  "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                                 "version": "2.6.0-internal"
+                                 "version": "2.7.0-internal"
                               },
                               "is_bind_type": true,
                               "is_errorable": false,
@@ -6559,7 +6667,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -6601,7 +6709,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -6626,7 +6734,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -6636,7 +6744,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.6.0-internal"
+                     "version": "2.7.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": true,
@@ -6673,7 +6781,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.6.0-internal"
+                           "version": "2.7.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -6920,10 +7028,7 @@
                      }
                   },
                   {
-                     "details": {
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
-                     },
+                     "details": null,
                      "name": "slotId",
                      "type": {
                         "is_bind_type": false,
@@ -6967,10 +7072,7 @@
                      }
                   },
                   {
-                     "details": {
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
-                     },
+                     "details": null,
                      "name": "slotId",
                      "type": {
                         "is_bind_type": false,
@@ -7769,6 +7871,146 @@
    "interfaces": [
       {
          "base_types": [],
+         "name": "CustomBiomeConfig",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "name",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "replacements",
+               "type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "CustomBiomeReplacementConfig"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "array"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "CustomBiomeConfig"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "CustomBiomeReplacementConfig",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "amount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "float",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "biomeType",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "from_module": {
+                        "name": "@minecraft/server-bindings",
+                        "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                        "version": "2.7.0-internal"
+                     },
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "BiomeType"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "frequency",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "float",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "CustomBiomeReplacementConfig"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "CustomBiomeSourceConfig",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "seed",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "uint64",
+                     "valid_range": {
+                        "max": 2147483647,
+                        "min": -2147483648
+                     }
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "userDefinedBiomes",
+               "type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "CustomBiomeConfig"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "array"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "CustomBiomeSourceConfig"
+         }
+      },
+      {
+         "base_types": [],
          "name": "DataTransferCollectionNameData",
          "properties": [
             {
@@ -7892,7 +8134,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.6.0-internal"
+                     "version": "2.7.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -7907,7 +8149,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.6.0-internal"
+                     "version": "2.7.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -7922,7 +8164,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.6.0-internal"
+                     "version": "2.7.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -8391,7 +8633,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.6.0-internal"
+                     "version": "2.7.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -8497,7 +8739,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.6.0-internal"
+                        "version": "2.7.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -8517,7 +8759,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.6.0-internal"
+                        "version": "2.7.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -8537,7 +8779,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.6.0-internal"
+                        "version": "2.7.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -8568,7 +8810,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.6.0-internal"
+                        "version": "2.7.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -8588,7 +8830,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.6.0-internal"
+                        "version": "2.7.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -8889,10 +9131,10 @@
          "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
          "versions": [
             {
-               "version": "2.6.0-beta"
+               "version": "2.7.0-beta"
             },
             {
-               "version": "2.6.0-internal"
+               "version": "2.7.0-internal"
             }
          ]
       }

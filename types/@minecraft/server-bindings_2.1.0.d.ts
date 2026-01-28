@@ -1571,11 +1571,6 @@ export class EntityHurtAfterEvent {
    public readonly hurtEntity: Entity;
    private constructor();
 }
-export class EntityHurtAfterEventSignal {
-   public subscribe(callback: (arg0: EntityHurtAfterEvent)=>void, options?: EntityEventOptions): (arg0: EntityHurtAfterEvent)=>void;
-   public unsubscribe(callback: (arg0: EntityHurtAfterEvent)=>void): void;
-   private constructor();
-}
 //@ts-ignore
 export class EntityInventoryComponent extends EntityComponent {
    public static readonly componentId = "minecraft:inventory";
@@ -2912,7 +2907,6 @@ export class WorldAfterEvents {
    public readonly entityHealthChanged: EntityHealthChangedAfterEventSignal;
    public readonly entityHitBlock: EntityHitBlockAfterEventSignal;
    public readonly entityHitEntity: EntityHitEntityAfterEventSignal;
-   public readonly entityHurt: EntityHurtAfterEventSignal;
    public readonly entityLoad: EntityLoadAfterEventSignal;
    public readonly entityRemove: EntityRemoveAfterEventSignal;
    public readonly entitySpawn: EntitySpawnAfterEventSignal;
