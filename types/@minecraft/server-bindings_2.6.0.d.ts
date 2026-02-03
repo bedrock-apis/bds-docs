@@ -575,6 +575,12 @@ export interface AABB {
    center: Vector3;
    extent: Vector3;
 }
+export interface BiomeFilter {
+   excludeBiomes?: Array<string>;
+   excludeTags?: Array<string>;
+   includeBiomes?: Array<string>;
+   includeTags?: Array<string>;
+}
 export interface BlockBoundingBox {
    max: Vector3;
    min: Vector3;
@@ -1077,6 +1083,7 @@ export class BlockComponentRandomTickEvent extends BlockEvent {
 //@ts-ignore
 export class BlockComponentRedstoneUpdateEvent extends BlockEvent {
    public readonly powerLevel: number;
+   public readonly previousPowerLevel: number;
    private constructor();
 }
 export class BlockComponentRegistry {
@@ -1379,6 +1386,7 @@ export class Dimension {
    public readonly heightRange: common.NumberRange;
    public readonly id: string;
    public readonly localizationKey: string;
+   public containsBiomes(volume: BlockVolumeBase, biomeFilter: BiomeFilter, isSuperset: boolean): boolean;
    public containsBlock(volume: BlockVolumeBase, filter: BlockFilter, allowUnloadedChunks?: boolean): boolean;
    public createExplosion(location: Vector3, radius: number, explosionOptions?: ExplosionOptions): boolean;
    public fillBlocks(volume: BlockVolumeBase, block: BlockPermutation | BlockType | string, options?: BlockFillOptions): ListBlockVolume;
@@ -2436,6 +2444,7 @@ export class ItemDurabilityComponent extends ItemComponent {
    public static readonly componentId = "minecraft:durability";
    public damage: number;
    public readonly maxDurability: number;
+   public unbreakable: boolean;
    public getDamageChance(unbreakingEnchantmentLevel?: number): number;
    public getDamageChanceRange(): common.NumberRange;
    private constructor();

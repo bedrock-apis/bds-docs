@@ -30,6 +30,10 @@
          "title": "Components",
          "type": "object",
          "properties": {
+            "minecraft:breathability": {
+               "deprecated": true,
+               "$ref": "#/definitions/2100389470"
+            },
             "minecraft:collision_box": {
                "$ref": "#/definitions/338268096"
             },
@@ -121,8 +125,16 @@
             "minecraft:placement_filter": {
                "$ref": "#/definitions/4254798072"
             },
+            "minecraft:queued_ticking": {
+               "deprecated": true,
+               "$ref": "#/definitions/2684661834"
+            },
             "minecraft:random_offset": {
                "$ref": "#/definitions/4006409319"
+            },
+            "minecraft:random_ticking": {
+               "deprecated": true,
+               "$ref": "#/definitions/3466557684"
             },
             "minecraft:redstone_conductivity": {
                "$ref": "#/definitions/3212487924"
@@ -147,6 +159,10 @@
             },
             "minecraft:transformation": {
                "$ref": "#/definitions/861574760"
+            },
+            "minecraft:unit_cube": {
+               "deprecated": true,
+               "$ref": "#/definitions/598049025"
             }
          }
       },
@@ -200,6 +216,9 @@
                "default": false
             }
          }
+      },
+      "598049025": {
+         "title": "Block Unit Cube Component"
       },
       "646686174": {
          "title": "Player Destroyed Component"
@@ -604,6 +623,9 @@
             }
          ]
       },
+      "2100389470": {
+         "title": "Block Breathability Component"
+      },
       "2123787678": {
          "title": "Detailed Flammable",
          "oneOf": [
@@ -791,6 +813,9 @@
             ]
          }
       },
+      "2684661834": {
+         "title": "Queued Ticking Component"
+      },
       "2689073763": {
          "title": "Step Off Component"
       },
@@ -961,13 +986,13 @@
             "components": {
                "propertyNames": {
                   "type": "string",
-                  "pattern": "^(?!(minecraft:support|minecraft:on_placed|minecraft:flower_pottable|minecraft:on_fall_on|minecraft:on_interact|minecraft:on_player_destroyed|minecraft:on_player_placing|minecraft:on_step_off|minecraft:on_step_on)$)"
+                  "pattern": "^(?!(minecraft:support|minecraft:on_placed|minecraft:flower_pottable|minecraft:on_fall_on|minecraft:on_interact|minecraft:breathability|minecraft:on_player_destroyed|minecraft:on_player_placing|minecraft:on_step_off|minecraft:on_step_on|minecraft:queued_ticking|minecraft:random_ticking|minecraft:unit_cube)$)"
                },
                "$ref": "#/definitions/471923105",
                "x-runtime-constraint-description": "Block with \"geometry\" set at \"minecraft:geometry.full_block\" cannot have a \"random_offset\""
             },
             "condition": {
-               "type": "string"
+               "$ref": "#/definitions/3178719147"
             }
          },
          "required": [
@@ -993,6 +1018,9 @@
                "$ref": "#/definitions/3142471136"
             }
          }
+      },
+      "3466557684": {
+         "title": "Random Ticking Component"
       },
       "3527967830": {
          "title": "Destruction Particles",
@@ -1355,7 +1383,7 @@
       "components": {
          "propertyNames": {
             "type": "string",
-            "pattern": "^(?!(minecraft:on_fall_on|minecraft:on_interact|minecraft:on_placed|minecraft:on_player_destroyed|minecraft:on_step_on|minecraft:on_player_placing|minecraft:on_step_off)$)"
+            "pattern": "^(?!(minecraft:on_interact|minecraft:breathability|minecraft:unit_cube|minecraft:on_fall_on|minecraft:on_placed|minecraft:on_player_destroyed|minecraft:on_player_placing|minecraft:on_step_off|minecraft:on_step_on|minecraft:queued_ticking|minecraft:random_ticking)$)"
          },
          "$ref": "#/definitions/471923105",
          "x-runtime-constraint-description": "Block with \"geometry\" set at \"minecraft:geometry.full_block\" cannot have a \"random_offset\""

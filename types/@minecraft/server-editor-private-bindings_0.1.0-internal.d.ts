@@ -278,6 +278,7 @@ export class DataTransferCreateSettingResponse {
    private constructor();
 }
 export class DataTransferManager {
+   public readonly isDeferredExperimentEnabled: boolean;
    public changeBiomeMapping(biomeIdentifier: string, collectionUniqueId: string, identifier: string): void;
    public closeSession(collectionUniqueId: string): void;
    public createSetting(collectionUniqueId: string, identifier: string, jsonData: string, lockToBiome: boolean): Promise<DataTransferCreateSettingResponse>;

@@ -620,7 +620,6 @@ export interface BiomeFilter {
    excludeTags?: Array<string>;
    includeBiomes?: Array<string>;
    includeTags?: Array<string>;
-   superset: boolean;
 }
 export interface BiomeSearchOptions {
    boundingSize?: Vector3;
@@ -1141,6 +1140,11 @@ export class AimAssistRegistry {
    public getPresets(): Array<AimAssistPreset>;
    private constructor();
 }
+export class BannerPattern {
+   public readonly color: string;
+   public readonly pattern: string;
+   private constructor();
+}
 export class BiomeType {
    public readonly id: string;
    public getTags(): Array<string>;
@@ -1621,7 +1625,7 @@ export class Dimension {
    public readonly heightRange: common.NumberRange;
    public readonly id: string;
    public readonly localizationKey: string;
-   public containsBiomes(volume: BlockVolumeBase, biomeFilter: BiomeFilter): boolean;
+   public containsBiomes(volume: BlockVolumeBase, biomeFilter: BiomeFilter, isSuperset: boolean): boolean;
    public containsBlock(volume: BlockVolumeBase, filter: BlockFilter, allowUnloadedChunks?: boolean): boolean;
    public createExplosion(location: Vector3, radius: number, explosionOptions?: ExplosionOptions): boolean;
    public fillBlocks(volume: BlockVolumeBase, block: BlockPermutation | BlockType | string, options?: BlockFillOptions): ListBlockVolume;
@@ -3046,6 +3050,7 @@ export class Player extends Entity {
    public readonly level: number;
    public readonly name: string;
    public readonly onScreenDisplay: ScreenDisplay;
+   public readonly partyId?: string;
    public readonly playerPermissionLevel: PlayerPermissionLevel;
    public selectedSlotIndex: number;
    public readonly totalXpNeededForNextLevel: number;
@@ -3552,6 +3557,8 @@ export class SetArmorTrimFunction extends LootItemFunction {
 }
 //@ts-ignore
 export class SetBannerDetailsFunction extends LootItemFunction {
+   public readonly baseColor: string;
+   public readonly patterns: Array<BannerPattern>;
    public readonly type: number;
    private constructor();
 }

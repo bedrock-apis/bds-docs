@@ -166,8 +166,13 @@ export enum PlaytestSessionResult {
 export enum PrimitiveType {
    AxialSphere = 5,
    Box = 1,
+   Cone = 11,
+   Cuboid = 10,
+   Cylinder = 7,
    Disc = 4,
+   Ellipsoid = 9,
    Line = 2,
+   Pyramid = 8,
    Text = 0,
 }
 export enum ProjectExportType {
@@ -1028,7 +1033,7 @@ export class Widget {
    public addGizmoComponent(componentName: string, options?: WidgetComponentGizmoOptions): WidgetComponentGizmo;
    public addGridComponent(componentName: string, options?: WidgetComponentGridOptions): WidgetComponentGrid;
    public addGuideComponent(componentName: string, options?: WidgetComponentGuideOptions): WidgetComponentGuide;
-   public addRenderPrimitiveComponent(componentName: string, primitiveType: WidgetComponentRenderPrimitiveTypeAxialSphere | WidgetComponentRenderPrimitiveTypeBox | WidgetComponentRenderPrimitiveTypeDisc | WidgetComponentRenderPrimitiveTypeLine, options?: WidgetComponentRenderPrimitiveOptions): WidgetComponentRenderPrimitive;
+   public addRenderPrimitiveComponent(componentName: string, primitiveType: WidgetComponentRenderPrimitiveTypeAxialSphere | WidgetComponentRenderPrimitiveTypeBox | WidgetComponentRenderPrimitiveTypeCone | WidgetComponentRenderPrimitiveTypeCuboid | WidgetComponentRenderPrimitiveTypeCylinder | WidgetComponentRenderPrimitiveTypeDisc | WidgetComponentRenderPrimitiveTypeEllipsoid | WidgetComponentRenderPrimitiveTypeLine | WidgetComponentRenderPrimitiveTypePyramid, options?: WidgetComponentRenderPrimitiveOptions): WidgetComponentRenderPrimitive;
    public addSplineComponent(componentName: string, options?: WidgetComponentSplineOptions): WidgetComponentSpline;
    public addTextComponent(componentName: string, label: string, options?: WidgetComponentTextOptions): WidgetComponentText;
    public addVolumeOutline(componentName: string, volume?: server.BlockVolumeBase | RelativeVolumeListBlockVolume, options?: WidgetComponentVolumeOutlineOptions): WidgetComponentVolumeOutline;
@@ -1124,7 +1129,7 @@ export class WidgetComponentGuide extends WidgetComponentBase {
 //@ts-ignore
 export class WidgetComponentRenderPrimitive extends WidgetComponentBase {
    public readonly primitiveType: PrimitiveType;
-   public setPrimitive(primitive: WidgetComponentRenderPrimitiveTypeAxialSphere | WidgetComponentRenderPrimitiveTypeBox | WidgetComponentRenderPrimitiveTypeDisc | WidgetComponentRenderPrimitiveTypeLine): void;
+   public setPrimitive(primitive: WidgetComponentRenderPrimitiveTypeAxialSphere | WidgetComponentRenderPrimitiveTypeBox | WidgetComponentRenderPrimitiveTypeCone | WidgetComponentRenderPrimitiveTypeCuboid | WidgetComponentRenderPrimitiveTypeCylinder | WidgetComponentRenderPrimitiveTypeDisc | WidgetComponentRenderPrimitiveTypeEllipsoid | WidgetComponentRenderPrimitiveTypeLine | WidgetComponentRenderPrimitiveTypePyramid): void;
    private constructor();
 }
 //@ts-ignore
@@ -1147,6 +1152,40 @@ export class WidgetComponentRenderPrimitiveTypeBox extends WidgetComponentRender
    public constructor(center: server.Vector3, color: server.RGBA, size?: server.Vector3);
 }
 //@ts-ignore
+export class WidgetComponentRenderPrimitiveTypeCone extends WidgetComponentRenderPrimitiveTypeBase {
+   public alpha?: number;
+   public center: server.Vector3;
+   public color: server.RGBA;
+   public height: number;
+   public numSegments?: number;
+   public radiusX: number;
+   public radiusZ: number;
+   public rotation?: server.Vector3;
+   public constructor(center: server.Vector3, radiusX: number, radiusZ: number, height: number, color: server.RGBA, numSegments?: number, rotation?: server.Vector3, alpha?: number);
+}
+//@ts-ignore
+export class WidgetComponentRenderPrimitiveTypeCuboid extends WidgetComponentRenderPrimitiveTypeBase {
+   public alpha?: number;
+   public center: server.Vector3;
+   public color: server.RGBA;
+   public lengthX: number;
+   public lengthY: number;
+   public lengthZ: number;
+   public rotation?: server.Vector3;
+   public constructor(center: server.Vector3, lengthX: number, lengthY: number, lengthZ: number, color: server.RGBA, rotation?: server.Vector3, alpha?: number);
+}
+//@ts-ignore
+export class WidgetComponentRenderPrimitiveTypeCylinder extends WidgetComponentRenderPrimitiveTypeBase {
+   public alpha?: number;
+   public center: server.Vector3;
+   public color: server.RGBA;
+   public height: number;
+   public radiusX: number;
+   public radiusZ: number;
+   public rotation?: server.Vector3;
+   public constructor(center: server.Vector3, radiusX: number, radiusZ: number, height: number, color: server.RGBA, rotation?: server.Vector3, alpha?: number);
+}
+//@ts-ignore
 export class WidgetComponentRenderPrimitiveTypeDisc extends WidgetComponentRenderPrimitiveTypeBase {
    public center: server.Vector3;
    public color: server.RGBA;
@@ -1154,11 +1193,31 @@ export class WidgetComponentRenderPrimitiveTypeDisc extends WidgetComponentRende
    public constructor(center: server.Vector3, radius: number, color: server.RGBA);
 }
 //@ts-ignore
+export class WidgetComponentRenderPrimitiveTypeEllipsoid extends WidgetComponentRenderPrimitiveTypeBase {
+   public alpha?: number;
+   public center: server.Vector3;
+   public color: server.RGBA;
+   public radii: server.Vector3;
+   public rotation?: server.Vector3;
+   public constructor(center: server.Vector3, radii: server.Vector3, color: server.RGBA, rotation?: server.Vector3, alpha?: number);
+}
+//@ts-ignore
 export class WidgetComponentRenderPrimitiveTypeLine extends WidgetComponentRenderPrimitiveTypeBase {
    public color: server.RGBA;
    public end: server.Vector3;
    public start: server.Vector3;
    public constructor(start: server.Vector3, end: server.Vector3, color: server.RGBA);
+}
+//@ts-ignore
+export class WidgetComponentRenderPrimitiveTypePyramid extends WidgetComponentRenderPrimitiveTypeBase {
+   public alpha?: number;
+   public center: server.Vector3;
+   public color: server.RGBA;
+   public height: number;
+   public rotation?: server.Vector3;
+   public widthX: number;
+   public widthZ?: number;
+   public constructor(center: server.Vector3, widthX: number, height: number, color: server.RGBA, widthZ?: number, rotation?: server.Vector3, alpha?: number);
 }
 //@ts-ignore
 export class WidgetComponentSpline extends WidgetComponentBase {
