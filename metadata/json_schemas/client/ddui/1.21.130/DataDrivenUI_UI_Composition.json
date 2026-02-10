@@ -4,7 +4,105 @@
    "x-format-version": "1.21.130",
    "definitions": {
       "41284495": {
-         "title": "Composition.Attribs"
+         "title": "Composition.Attribs",
+         "type": "object",
+         "properties": {
+            "extension_point": {
+               "type": "string",
+               "minLength": 1
+            }
+         }
+      },
+      "657427936": {
+         "title": "Form.ScrollView",
+         "type": "object",
+         "properties": {
+            "attribs": {
+               "description": "Dynamic value"
+            },
+            "children": {
+               "type": "array",
+               "items": {
+                  "oneOf": [
+                     {
+                        "$ref": "#/definitions/2831017291"
+                     },
+                     {
+                        "$ref": "#/definitions/3518862843"
+                     },
+                     {
+                        "$ref": "#/definitions/2659582352"
+                     },
+                     {
+                        "$ref": "#/definitions/1263268781"
+                     },
+                     {
+                        "$ref": "#/definitions/3106737233"
+                     },
+                     {
+                        "$ref": "#/definitions/657427936"
+                     },
+                     {
+                        "$ref": "#/definitions/2858690001"
+                     },
+                     {
+                        "$ref": "#/definitions/2796934272"
+                     },
+                     {
+                        "$ref": "#/definitions/3905813917"
+                     },
+                     {
+                        "$ref": "#/definitions/2407906912"
+                     },
+                     {
+                        "$ref": "#/definitions/793474382"
+                     },
+                     {
+                        "$ref": "#/definitions/828768353"
+                     },
+                     {
+                        "$ref": "#/definitions/1789890441"
+                     },
+                     {
+                        "$ref": "#/definitions/906352983"
+                     },
+                     {
+                        "$ref": "#/definitions/977242602"
+                     }
+                  ]
+               }
+            },
+            "tag": {
+               "title": "TagType",
+               "type": "string",
+               "const": "form.scrollview",
+               "enum": [
+                  "Container.Layout",
+                  "Panel",
+                  "Panel.Text",
+                  "Panel.Decoration",
+                  "Panel.Spacing",
+                  "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
+                  "Context",
+                  "Context.List",
+                  "Container.FixedGridLayout",
+                  "Container.Item",
+                  "ExtensionPoint",
+                  "Visibility"
+               ]
+            }
+         },
+         "required": [
+            "children",
+            "tag"
+         ]
       },
       "793474382": {
          "title": "Panel.Decoration",
@@ -15,16 +113,25 @@
                "type": "string",
                "const": "panel.decoration",
                "enum": [
-                  "Container",
+                  "Container.Layout",
                   "Panel",
                   "Panel.Text",
                   "Panel.Decoration",
                   "Panel.Spacing",
                   "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
                   "Context",
                   "Context.List",
                   "Container.FixedGridLayout",
-                  "Container.Item"
+                  "Container.Item",
+                  "ExtensionPoint",
+                  "Visibility"
                ]
             }
          },
@@ -41,16 +148,25 @@
                "type": "string",
                "const": "panel.spacing",
                "enum": [
-                  "Container",
+                  "Container.Layout",
                   "Panel",
                   "Panel.Text",
                   "Panel.Decoration",
                   "Panel.Spacing",
                   "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
                   "Context",
                   "Context.List",
                   "Container.FixedGridLayout",
-                  "Container.Item"
+                  "Container.Item",
+                  "ExtensionPoint",
+                  "Visibility"
                ]
             }
          },
@@ -70,21 +186,156 @@
                "type": "string",
                "const": "panel.text",
                "enum": [
-                  "Container",
+                  "Container.Layout",
                   "Panel",
                   "Panel.Text",
                   "Panel.Decoration",
                   "Panel.Spacing",
                   "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
                   "Context",
                   "Context.List",
                   "Container.FixedGridLayout",
-                  "Container.Item"
+                  "Container.Item",
+                  "ExtensionPoint",
+                  "Visibility"
                ]
             }
          },
          "required": [
             "attribs",
+            "tag"
+         ]
+      },
+      "977242602": {
+         "title": "Visibility",
+         "type": "object",
+         "properties": {
+            "attribs": {
+               "description": "Dynamic value"
+            },
+            "children": {
+               "type": "array",
+               "items": {
+                  "oneOf": [
+                     {
+                        "$ref": "#/definitions/2831017291"
+                     },
+                     {
+                        "$ref": "#/definitions/3518862843"
+                     },
+                     {
+                        "$ref": "#/definitions/2659582352"
+                     },
+                     {
+                        "$ref": "#/definitions/1263268781"
+                     },
+                     {
+                        "$ref": "#/definitions/3106737233"
+                     },
+                     {
+                        "$ref": "#/definitions/657427936"
+                     },
+                     {
+                        "$ref": "#/definitions/2858690001"
+                     },
+                     {
+                        "$ref": "#/definitions/2796934272"
+                     },
+                     {
+                        "$ref": "#/definitions/3905813917"
+                     },
+                     {
+                        "$ref": "#/definitions/2407906912"
+                     },
+                     {
+                        "$ref": "#/definitions/793474382"
+                     },
+                     {
+                        "$ref": "#/definitions/828768353"
+                     },
+                     {
+                        "$ref": "#/definitions/1789890441"
+                     },
+                     {
+                        "$ref": "#/definitions/906352983"
+                     },
+                     {
+                        "$ref": "#/definitions/977242602"
+                     }
+                  ]
+               }
+            },
+            "tag": {
+               "title": "TagType",
+               "type": "string",
+               "const": "visibility",
+               "enum": [
+                  "Container.Layout",
+                  "Panel",
+                  "Panel.Text",
+                  "Panel.Decoration",
+                  "Panel.Spacing",
+                  "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
+                  "Context",
+                  "Context.List",
+                  "Container.FixedGridLayout",
+                  "Container.Item",
+                  "ExtensionPoint",
+                  "Visibility"
+               ]
+            }
+         },
+         "required": [
+            "children",
+            "tag"
+         ]
+      },
+      "1263268781": {
+         "title": "Form.Divider",
+         "type": "object",
+         "properties": {
+            "tag": {
+               "title": "TagType",
+               "type": "string",
+               "const": "form.divider",
+               "enum": [
+                  "Container.Layout",
+                  "Panel",
+                  "Panel.Text",
+                  "Panel.Decoration",
+                  "Panel.Spacing",
+                  "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
+                  "Context",
+                  "Context.List",
+                  "Container.FixedGridLayout",
+                  "Container.Item",
+                  "ExtensionPoint",
+                  "Visibility"
+               ]
+            }
+         },
+         "required": [
             "tag"
          ]
       },
@@ -112,7 +363,50 @@
             "children": {
                "type": "array",
                "items": {
-                  "$ref": "#/definitions/2276716442"
+                  "oneOf": [
+                     {
+                        "$ref": "#/definitions/2276716442"
+                     },
+                     {
+                        "$ref": "#/definitions/2831017291"
+                     },
+                     {
+                        "$ref": "#/definitions/2659582352"
+                     },
+                     {
+                        "$ref": "#/definitions/1263268781"
+                     },
+                     {
+                        "$ref": "#/definitions/3106737233"
+                     },
+                     {
+                        "$ref": "#/definitions/657427936"
+                     },
+                     {
+                        "$ref": "#/definitions/2858690001"
+                     },
+                     {
+                        "$ref": "#/definitions/2796934272"
+                     },
+                     {
+                        "$ref": "#/definitions/3905813917"
+                     },
+                     {
+                        "$ref": "#/definitions/793474382"
+                     },
+                     {
+                        "$ref": "#/definitions/828768353"
+                     },
+                     {
+                        "$ref": "#/definitions/1789890441"
+                     },
+                     {
+                        "$ref": "#/definitions/906352983"
+                     },
+                     {
+                        "$ref": "#/definitions/977242602"
+                     }
+                  ]
                }
             },
             "tag": {
@@ -120,16 +414,25 @@
                "type": "string",
                "const": "context.list",
                "enum": [
-                  "Container",
+                  "Container.Layout",
                   "Panel",
                   "Panel.Text",
                   "Panel.Decoration",
                   "Panel.Spacing",
                   "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
                   "Context",
                   "Context.List",
                   "Container.FixedGridLayout",
-                  "Container.Item"
+                  "Container.Item",
+                  "ExtensionPoint",
+                  "Visibility"
                ]
             }
          },
@@ -150,16 +453,25 @@
                "type": "string",
                "const": "container.item",
                "enum": [
-                  "Container",
+                  "Container.Layout",
                   "Panel",
                   "Panel.Text",
                   "Panel.Decoration",
                   "Panel.Spacing",
                   "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
                   "Context",
                   "Context.List",
                   "Container.FixedGridLayout",
-                  "Container.Item"
+                  "Container.Item",
+                  "ExtensionPoint",
+                  "Visibility"
                ]
             }
          },
@@ -179,16 +491,25 @@
                "type": "string",
                "const": "panel.closebutton",
                "enum": [
-                  "Container",
+                  "Container.Layout",
                   "Panel",
                   "Panel.Text",
                   "Panel.Decoration",
                   "Panel.Spacing",
                   "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
                   "Context",
                   "Context.List",
                   "Container.FixedGridLayout",
-                  "Container.Item"
+                  "Container.Item",
+                  "ExtensionPoint",
+                  "Visibility"
                ]
             }
          },
@@ -196,55 +517,79 @@
             "tag"
          ]
       },
-      "2487332864": {
-         "title": "Panel",
+      "2659582352": {
+         "title": "Form.Button",
          "type": "object",
          "properties": {
             "attribs": {
                "description": "Dynamic value"
             },
-            "children": {
-               "type": "array",
-               "items": {
-                  "oneOf": [
-                     {
-                        "$ref": "#/definitions/2831017291"
-                     },
-                     {
-                        "$ref": "#/definitions/2407906912"
-                     },
-                     {
-                        "$ref": "#/definitions/793474382"
-                     },
-                     {
-                        "$ref": "#/definitions/828768353"
-                     },
-                     {
-                        "$ref": "#/definitions/906352983"
-                     }
-                  ]
-               }
-            },
             "tag": {
                "title": "TagType",
                "type": "string",
-               "const": "panel",
+               "const": "form.button",
                "enum": [
-                  "Container",
+                  "Container.Layout",
                   "Panel",
                   "Panel.Text",
                   "Panel.Decoration",
                   "Panel.Spacing",
                   "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
                   "Context",
                   "Context.List",
                   "Container.FixedGridLayout",
-                  "Container.Item"
+                  "Container.Item",
+                  "ExtensionPoint",
+                  "Visibility"
                ]
             }
          },
          "required": [
-            "children",
+            "tag"
+         ]
+      },
+      "2796934272": {
+         "title": "Form.Switch",
+         "type": "object",
+         "properties": {
+            "attribs": {
+               "description": "Dynamic value"
+            },
+            "tag": {
+               "title": "TagType",
+               "type": "string",
+               "const": "form.switch",
+               "enum": [
+                  "Container.Layout",
+                  "Panel",
+                  "Panel.Text",
+                  "Panel.Decoration",
+                  "Panel.Spacing",
+                  "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
+                  "Context",
+                  "Context.List",
+                  "Container.FixedGridLayout",
+                  "Container.Item",
+                  "ExtensionPoint",
+                  "Visibility"
+               ]
+            }
+         },
+         "required": [
             "tag"
          ]
       },
@@ -273,16 +618,25 @@
                "type": "string",
                "const": "container.fixedgridlayout",
                "enum": [
-                  "Container",
+                  "Container.Layout",
                   "Panel",
                   "Panel.Text",
                   "Panel.Decoration",
                   "Panel.Spacing",
                   "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
                   "Context",
                   "Context.List",
                   "Container.FixedGridLayout",
-                  "Container.Item"
+                  "Container.Item",
+                  "ExtensionPoint",
+                  "Visibility"
                ]
             }
          },
@@ -291,97 +645,160 @@
             "tag"
          ]
       },
-      "2952736141": {
-         "title": "Context",
+      "2858690001": {
+         "title": "Form.Slider",
          "type": "object",
          "properties": {
             "attribs": {
                "description": "Dynamic value"
             },
-            "children": {
-               "type": "array",
-               "items": {
-                  "oneOf": [
-                     {
-                        "$ref": "#/definitions/3605492257"
-                     },
-                     {
-                        "$ref": "#/definitions/2952736141"
-                     },
-                     {
-                        "$ref": "#/definitions/2487332864"
-                     }
-                  ]
-               }
-            },
             "tag": {
                "title": "TagType",
                "type": "string",
-               "const": "context",
+               "const": "form.slider",
                "enum": [
-                  "Container",
+                  "Container.Layout",
                   "Panel",
                   "Panel.Text",
                   "Panel.Decoration",
                   "Panel.Spacing",
                   "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
                   "Context",
                   "Context.List",
                   "Container.FixedGridLayout",
-                  "Container.Item"
+                  "Container.Item",
+                  "ExtensionPoint",
+                  "Visibility"
                ]
             }
          },
          "required": [
-            "children",
             "tag"
          ]
       },
-      "3605492257": {
-         "title": "Container",
+      "3106737233": {
+         "title": "Form.Dropdown",
          "type": "object",
          "properties": {
-            "children": {
-               "type": "array",
-               "items": {
-                  "oneOf": [
-                     {
-                        "$ref": "#/definitions/3605492257"
-                     },
-                     {
-                        "$ref": "#/definitions/2952736141"
-                     },
-                     {
-                        "$ref": "#/definitions/2487332864"
-                     }
-                  ]
-               }
+            "attribs": {
+               "description": "Dynamic value"
             },
             "tag": {
                "title": "TagType",
                "type": "string",
-               "const": "container",
+               "const": "form.dropdown",
                "enum": [
-                  "Container",
+                  "Container.Layout",
                   "Panel",
                   "Panel.Text",
                   "Panel.Decoration",
                   "Panel.Spacing",
                   "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
                   "Context",
                   "Context.List",
                   "Container.FixedGridLayout",
-                  "Container.Item"
+                  "Container.Item",
+                  "ExtensionPoint",
+                  "Visibility"
                ]
             }
          },
          "required": [
-            "children",
             "tag"
          ]
       },
-      "3983142748": {
-         "title": "layout",
+      "3518862843": {
+         "title": "ExtensionPoint",
+         "type": "object",
+         "properties": {
+            "attribs": {
+               "description": "Dynamic value"
+            },
+            "tag": {
+               "title": "TagType",
+               "type": "string",
+               "const": "extensionpoint",
+               "enum": [
+                  "Container.Layout",
+                  "Panel",
+                  "Panel.Text",
+                  "Panel.Decoration",
+                  "Panel.Spacing",
+                  "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
+                  "Context",
+                  "Context.List",
+                  "Container.FixedGridLayout",
+                  "Container.Item",
+                  "ExtensionPoint",
+                  "Visibility"
+               ]
+            }
+         },
+         "required": [
+            "tag"
+         ]
+      },
+      "3905813917": {
+         "title": "Form.TextField",
+         "type": "object",
+         "properties": {
+            "attribs": {
+               "description": "Dynamic value"
+            },
+            "tag": {
+               "title": "TagType",
+               "type": "string",
+               "const": "form.textfield",
+               "enum": [
+                  "Container.Layout",
+                  "Panel",
+                  "Panel.Text",
+                  "Panel.Decoration",
+                  "Panel.Spacing",
+                  "Panel.CloseButton",
+                  "Form.Button",
+                  "Form.Divider",
+                  "Form.Dropdown",
+                  "Form.ScrollView",
+                  "Form.Slider",
+                  "Form.Switch",
+                  "Form.TextField",
+                  "Context",
+                  "Context.List",
+                  "Container.FixedGridLayout",
+                  "Container.Item",
+                  "ExtensionPoint",
+                  "Visibility"
+               ]
+            }
+         },
+         "required": [
+            "tag"
+         ]
+      },
+      "3998401838": {
+         "title": "CompositionLayout",
          "type": "object",
          "properties": {
             "markup": {
@@ -389,13 +806,49 @@
                "items": {
                   "oneOf": [
                      {
-                        "$ref": "#/definitions/3605492257"
+                        "$ref": "#/definitions/2831017291"
                      },
                      {
-                        "$ref": "#/definitions/2952736141"
+                        "$ref": "#/definitions/3518862843"
                      },
                      {
-                        "$ref": "#/definitions/2487332864"
+                        "$ref": "#/definitions/2659582352"
+                     },
+                     {
+                        "$ref": "#/definitions/1263268781"
+                     },
+                     {
+                        "$ref": "#/definitions/3106737233"
+                     },
+                     {
+                        "$ref": "#/definitions/657427936"
+                     },
+                     {
+                        "$ref": "#/definitions/2858690001"
+                     },
+                     {
+                        "$ref": "#/definitions/2796934272"
+                     },
+                     {
+                        "$ref": "#/definitions/3905813917"
+                     },
+                     {
+                        "$ref": "#/definitions/2407906912"
+                     },
+                     {
+                        "$ref": "#/definitions/793474382"
+                     },
+                     {
+                        "$ref": "#/definitions/828768353"
+                     },
+                     {
+                        "$ref": "#/definitions/1789890441"
+                     },
+                     {
+                        "$ref": "#/definitions/906352983"
+                     },
+                     {
+                        "$ref": "#/definitions/977242602"
                      }
                   ]
                },
@@ -417,7 +870,7 @@
          "$ref": "#/definitions/1513401747"
       },
       "layout": {
-         "$ref": "#/definitions/3983142748"
+         "$ref": "#/definitions/3998401838"
       }
    },
    "required": [

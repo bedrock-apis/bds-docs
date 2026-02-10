@@ -14,7 +14,6 @@ export enum EntityDamageCause {
    campfire = "campfire",
    charging = "charging",
    contact = "contact",
-   dehydration = "dehydration",
    drowning = "drowning",
    entityAttack = "entity_attack",
    entityExplosion = "entity_explosion",
@@ -474,10 +473,6 @@ export class EntityIsChargedComponent extends IEntityComponent {
 }
 //@ts-ignore
 export class EntityIsChestedComponent extends IEntityComponent {
-   private constructor();
-}
-//@ts-ignore
-export class EntityIsDyableComponent extends IEntityComponent {
    private constructor();
 }
 //@ts-ignore

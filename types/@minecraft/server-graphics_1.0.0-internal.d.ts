@@ -26,8 +26,48 @@ export class Atmospherics {
    public setSunMieStrength(sunMieStrength: number | Record<number,number>, biomeIdentifier: server.BiomeType): void;
    private constructor();
 }
+export class ColorGrading {
+   public resetHighlightsContrast(biomeIdentifier: server.BiomeType): void;
+   public resetMidtonesContrast(biomeIdentifier: server.BiomeType): void;
+   public resetShadowsContrast(biomeIdentifier: server.BiomeType): void;
+   public setHighlightsContrast(highlightsContrast: server.Vector3, biomeIdentifier: server.BiomeType): void;
+   public setMidtonesContrast(midtonesContrast: server.Vector3, biomeIdentifier: server.BiomeType): void;
+   public setShadowsContrast(shadowsContrast: server.Vector3, biomeIdentifier: server.BiomeType): void;
+   private constructor();
+}
+export class Water {
+   public resetCDOM(biomeIdentifier: server.BiomeType): void;
+   public resetChlorophyll(biomeIdentifier: server.BiomeType): void;
+   public resetSuspendedSediment(biomeIdentifier: server.BiomeType): void;
+   public resetWavesDepth(biomeIdentifier: server.BiomeType): void;
+   public resetWavesDirectionIncrement(biomeIdentifier: server.BiomeType): void;
+   public resetWavesFrequency(biomeIdentifier: server.BiomeType): void;
+   public resetWavesFrequencyScaling(biomeIdentifier: server.BiomeType): void;
+   public resetWavesMix(biomeIdentifier: server.BiomeType): void;
+   public resetWavesOctaves(biomeIdentifier: server.BiomeType): void;
+   public resetWavesPull(biomeIdentifier: server.BiomeType): void;
+   public resetWavesShape(biomeIdentifier: server.BiomeType): void;
+   public resetWavesSpeed(biomeIdentifier: server.BiomeType): void;
+   public resetWavesSpeedScaling(biomeIdentifier: server.BiomeType): void;
+   public setCDOM(cdom: number, biomeIdentifier: server.BiomeType): void;
+   public setChlorophyll(chlorophyll: number, biomeIdentifier: server.BiomeType): void;
+   public setSuspendedSediment(suspendedSediment: number, biomeIdentifier: server.BiomeType): void;
+   public setWavesDepth(wavesDepth: number, biomeIdentifier: server.BiomeType): void;
+   public setWavesDirectionIncrement(wavesDirectionIncrement: number, biomeIdentifier: server.BiomeType): void;
+   public setWavesFrequency(wavesFrequency: number, biomeIdentifier: server.BiomeType): void;
+   public setWavesFrequencyScaling(wavesFrequencyScaling: number, biomeIdentifier: server.BiomeType): void;
+   public setWavesMix(wavesMix: number, biomeIdentifier: server.BiomeType): void;
+   public setWavesOctaves(wavesOctaves: number, biomeIdentifier: server.BiomeType): void;
+   public setWavesPull(wavesPull: number, biomeIdentifier: server.BiomeType): void;
+   public setWavesShape(wavesShape: number, biomeIdentifier: server.BiomeType): void;
+   public setWavesSpeed(wavesSpeed: number, biomeIdentifier: server.BiomeType): void;
+   public setWavesSpeedScaling(wavesSpeedScaling: number, biomeIdentifier: server.BiomeType): void;
+   private constructor();
+}
 
 export const InternalConstant = 1;
 
 export const atmosphere: Atmospherics;
+export const colorGrading: ColorGrading;
+export const water: Water;
 

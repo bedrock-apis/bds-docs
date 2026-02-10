@@ -7,8 +7,12 @@ export enum AimAssistTargetMode {
 export enum BlockComponentTypes {
    FluidContainer = "minecraft:fluid_container",
    Inventory = "minecraft:inventory",
+   MapColor = "minecraft:map_color",
+   Movable = "minecraft:movable",
    Piston = "minecraft:piston",
+   PrecipitationInteractions = "minecraft:precipitation_interactions",
    RecordPlayer = "minecraft:record_player",
+   RedstoneProducer = "minecraft:redstone_producer",
    Sign = "minecraft:sign",
 }
 export enum BlockPistonState {
@@ -189,6 +193,17 @@ export enum EnchantmentSlot {
    Spear = "Spear",
    Sword = "Sword",
 }
+export enum EntityAttachPoint {
+   Body = "Body",
+   BreathingPoint = "BreathingPoint",
+   DropAttachPoint = "DropAttachPoint",
+   ExplosionPoint = "ExplosionPoint",
+   Eyes = "Eyes",
+   Feet = "Feet",
+   Head = "Head",
+   Mouth = "Mouth",
+   WeaponAttachPoint = "WeaponAttachPoint",
+}
 export enum EntityComponentTypes {
    AddRider = "minecraft:addrider",
    Ageable = "minecraft:ageable",
@@ -265,7 +280,6 @@ export enum EntityDamageCause {
    campfire = "campfire",
    charging = "charging",
    contact = "contact",
-   dehydration = "dehydration",
    drowning = "drowning",
    entityAttack = "entityAttack",
    entityExplosion = "entityExplosion",
@@ -297,6 +311,11 @@ export enum EntityDamageCause {
    thorns = "thorns",
    void = "void",
    wither = "wither",
+}
+export enum EntityHealCause {
+   Heal = "Heal",
+   Regeneration = "Regeneration",
+   SelfHeal = "SelfHeal",
 }
 export enum EntityInitializationCause {
    Born = "Born",
@@ -597,6 +616,13 @@ export interface AnimationOptions {
    animation: SplineAnimation;
    totalTimeSeconds: number;
 }
+export interface BiomeFilter {
+   excludeBiomes?: Array<string>;
+   excludeTags?: Array<string>;
+   includeBiomes?: Array<string>;
+   includeTags?: Array<string>;
+   superset: boolean;
+}
 export interface BiomeSearchOptions {
    boundingSize?: Vector3;
 }
@@ -607,6 +633,7 @@ export interface BlockBoundingBox {
 export interface BlockCustomComponent {
    beforeOnPlayerPlace?: (arg0: BlockComponentPlayerPlaceBeforeEvent, arg1: CustomComponentParameters)=>void;
    onBreak?: (arg0: BlockComponentBlockBreakEvent, arg1: CustomComponentParameters)=>void;
+   onEntity?: (arg0: BlockComponentEntityEvent, arg1: CustomComponentParameters)=>void;
    onEntityFallOn?: (arg0: BlockComponentEntityFallOnEvent, arg1: CustomComponentParameters)=>void;
    onPlace?: (arg0: BlockComponentOnPlaceEvent, arg1: CustomComponentParameters)=>void;
    onPlayerBreak?: (arg0: BlockComponentPlayerBreakEvent, arg1: CustomComponentParameters)=>void;
@@ -648,6 +675,10 @@ export interface BlockRaycastOptions extends BlockFilter {
    includeLiquidBlocks?: boolean;
    includePassableBlocks?: boolean;
    maxDistance?: number;
+}
+export interface CameraAttachOptions {
+   entity: Entity;
+   locator: EntityAttachPoint;
 }
 export interface CameraFadeOptions {
    fadeColor?: RGB;
@@ -782,8 +813,30 @@ export interface EntityFilter {
    tags?: Array<string>;
    type?: string;
 }
+export interface EntityHealEventOptions {
+   allowedHealCauses?: Array<EntityHealCause>;
+   entityFilter?: EntityFilter;
+}
 export interface EntityHitInformation {
    entity?: Entity;
+}
+export interface EntityHurtAfterEventOptions {
+   allowedDamageCauses?: Array<EntityDamageCause>;
+   entities?: Array<Entity>;
+   entityFilter?: EntityFilter;
+   entityTypes?: Array<string>;
+}
+export interface EntityHurtBeforeEventOptions {
+   allowedDamageCauses?: Array<EntityDamageCause>;
+   entityFilter?: EntityFilter;
+}
+export interface EntityItemDropEventOptions {
+   entityFilter?: EntityFilter;
+   itemFilter?: ItemFilter;
+}
+export interface EntityItemPickupEventOptions {
+   entityFilter?: EntityFilter;
+   itemFilter?: ItemFilter;
 }
 //@ts-ignore
 export interface EntityQueryOptions extends EntityFilter {
@@ -860,6 +913,9 @@ export interface ItemCustomComponent {
    onUse?: (arg0: ItemComponentUseEvent, arg1: CustomComponentParameters)=>void;
    onUseOn?: (arg0: ItemComponentUseOnEvent, arg1: CustomComponentParameters)=>void;
 }
+export interface ItemFilter {
+   includeTypes?: Array<ItemType | string>;
+}
 export interface JigsawPlaceOptions {
    includeEntities?: boolean;
    keepJigsaws?: boolean;
@@ -909,6 +965,7 @@ export interface PlayerSwingEventOptions {
 }
 export interface ProgressKeyFrame {
    alpha: number;
+   easingFunc?: EasingType;
    timeSeconds: number;
 }
 export interface ProjectileShootOptions {
@@ -942,6 +999,7 @@ export interface RGBA extends RGB {
    alpha: number;
 }
 export interface RotationKeyFrame {
+   easingFunc?: EasingType;
    rotation: Vector3;
    timeSeconds: number;
 }
@@ -1027,6 +1085,7 @@ export class AimAssistCategory {
    public getBlockPriorities(): Record<string,number>;
    public getBlockTagPriorities(): Record<string,number>;
    public getEntityPriorities(): Record<string,number>;
+   public getEntityTypeFamilyPriorities(): Record<string,number>;
    private constructor();
 }
 export class AimAssistCategorySettings {
@@ -1037,9 +1096,11 @@ export class AimAssistCategorySettings {
    public getBlockPriorities(): Record<string,number>;
    public getBlockTagPriorities(): Record<string,number>;
    public getEntityPriorities(): Record<string,number>;
+   public getEntityTypeFamilyPriorities(): Record<string,number>;
    public setBlockPriorities(blockPriorities: Record<string,number>): void;
    public setBlockTagPriorities(blockTagPriorities: Record<string,number>): void;
    public setEntityPriorities(entityPriorities: Record<string,number>): void;
+   public setEntityTypeFamilyPriorities(entityTypeFamilyPriorities: Record<string,number>): void;
 }
 export class AimAssistPreset {
    public readonly defaultItemSettings?: string;
@@ -1048,6 +1109,7 @@ export class AimAssistPreset {
    public getExcludedBlockTagTargets(): Array<string>;
    public getExcludedBlockTargets(): Array<string>;
    public getExcludedEntityTargets(): Array<string>;
+   public getExcludedEntityTypeFamilyTargets(): Array<string>;
    public getItemSettings(): Record<string,string>;
    public getLiquidTargetingItems(): Array<string>;
    private constructor();
@@ -1060,11 +1122,13 @@ export class AimAssistPresetSettings {
    public getExcludedBlockTagTargets(): (Array<string> | undefined);
    public getExcludedBlockTargets(): (Array<string> | undefined);
    public getExcludedEntityTargets(): (Array<string> | undefined);
+   public getExcludedEntityTypeFamilyTargets(): (Array<string> | undefined);
    public getItemSettings(): Record<string,string>;
    public getLiquidTargetingItems(): (Array<string> | undefined);
    public setExcludedBlockTagTargets(blockTagTargets?: Array<string>): void;
    public setExcludedBlockTargets(blockTargets?: Array<string>): void;
    public setExcludedEntityTargets(entityTargets?: Array<string>): void;
+   public setExcludedEntityTypeFamilyTargets(entityTypeFamilyTargets?: Array<string>): void;
    public setItemSettings(itemSettings: Record<string,string>): void;
    public setLiquidTargetingItems(items?: Array<string>): void;
 }
@@ -1081,6 +1145,8 @@ export class AimAssistRegistry {
 }
 export class BiomeType {
    public readonly id: string;
+   public getTags(): Array<string>;
+   public hasTags(tags: Array<string>): boolean;
    private constructor();
 }
 export class BiomeTypes {
@@ -1112,12 +1178,14 @@ export class Block {
    public center(): Vector3;
    public east(steps?: number): (Block | undefined);
    public getComponent(componentId: string): (BlockComponent | undefined);
+   public getComponents(): Array<BlockComponent>;
    public getItemStack(amount?: number, withData?: boolean): (ItemStack | undefined);
    public getLightLevel(): number;
    public getMapColor(): RGBA;
    public getRedstonePower(): (number | undefined);
    public getSkyLightLevel(): number;
    public getTags(): Array<string>;
+   public hasComponent(componentId: string): boolean;
    public hasTag(tag: string): boolean;
    public isLiquidBlocking(liquidType: LiquidType): boolean;
    public liquidCanFlowFromDirection(liquidType: LiquidType, flowDirection: Direction): boolean;
@@ -1160,6 +1228,13 @@ export class BlockComponentBlockBreakEvent extends BlockEvent {
    private constructor();
 }
 //@ts-ignore
+export class BlockComponentEntityEvent extends BlockEvent {
+   public readonly blockPermutation: BlockPermutation;
+   public readonly entitySource?: Entity;
+   public readonly name: string;
+   private constructor();
+}
+//@ts-ignore
 export class BlockComponentEntityFallOnEvent extends BlockEvent {
    public readonly entity?: Entity;
    public readonly fallDistance: number;
@@ -1198,6 +1273,7 @@ export class BlockComponentRandomTickEvent extends BlockEvent {
 //@ts-ignore
 export class BlockComponentRedstoneUpdateEvent extends BlockEvent {
    public readonly powerLevel: number;
+   public readonly previousPowerLevel: number;
    private constructor();
 }
 export class BlockComponentRegistry {
@@ -1277,6 +1353,7 @@ export class BlockMovableComponent extends BlockComponent {
    private constructor();
 }
 export class BlockPermutation {
+   public readonly localizationKey: string;
    public readonly type: BlockType;
    public canBeDestroyedByLiquidSpread(liquidType: LiquidType): boolean;
    public canContainLiquid(liquidType: LiquidType): boolean;
@@ -1351,6 +1428,7 @@ export class BlockStateType {
 }
 export class BlockType {
    public readonly id: string;
+   public readonly localizationKey: string;
    private constructor();
 }
 export class BlockTypes {
@@ -1390,6 +1468,7 @@ export class ButtonPushAfterEventSignal {
 }
 export class Camera {
    public readonly isValid: boolean;
+   public attachToEntity(attachCameraOptions?: CameraAttachOptions): void;
    public clear(): void;
    public fade(fadeCameraOptions?: CameraFadeOptions): void;
    public playAnimation(splineType: CatmullRomSpline | LinearSpline, cameraAnimationOptions: AnimationOptions): void;
@@ -1550,6 +1629,7 @@ export class Dimension {
    public readonly heightRange: common.NumberRange;
    public readonly id: string;
    public readonly localizationKey: string;
+   public containsBiomes(volume: BlockVolumeBase, biomeFilter: BiomeFilter): boolean;
    public containsBlock(volume: BlockVolumeBase, filter: BlockFilter, allowUnloadedChunks?: boolean): boolean;
    public createExplosion(location: Vector3, radius: number, explosionOptions?: ExplosionOptions): boolean;
    public fillBlocks(volume: BlockVolumeBase, block: BlockPermutation | BlockType | string, options?: BlockFillOptions): ListBlockVolume;
@@ -1885,6 +1965,33 @@ export class EntityHealableComponent extends EntityComponent {
    public getFeedItems(): Array<FeedItem>;
    private constructor();
 }
+export class EntityHealAfterEvent {
+   public readonly healedEntity: Entity;
+   public readonly healing: number;
+   public readonly healSource: EntityHealSource;
+   private constructor();
+}
+export class EntityHealAfterEventSignal {
+   public subscribe(callback: (arg0: EntityHealAfterEvent)=>void, options?: EntityHealEventOptions): (arg0: EntityHealAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityHealAfterEvent)=>void): void;
+   private constructor();
+}
+export class EntityHealBeforeEvent {
+   public cancel: boolean;
+   public readonly healedEntity: Entity;
+   public healing: number;
+   public readonly healSource: EntityHealSource;
+   private constructor();
+}
+export class EntityHealBeforeEventSignal {
+   public subscribe(callback: (arg0: EntityHealBeforeEvent)=>void, options?: EntityHealEventOptions): (arg0: EntityHealBeforeEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityHealBeforeEvent)=>void): void;
+   private constructor();
+}
+export class EntityHealSource {
+   public readonly cause: EntityHealCause;
+   private constructor();
+}
 export class EntityHealthChangedAfterEvent {
    public readonly entity: Entity;
    public readonly newValue: number;
@@ -1935,8 +2042,20 @@ export class EntityHurtAfterEvent {
    private constructor();
 }
 export class EntityHurtAfterEventSignal {
-   public subscribe(callback: (arg0: EntityHurtAfterEvent)=>void, options?: EntityEventOptions): (arg0: EntityHurtAfterEvent)=>void;
+   public subscribe(callback: (arg0: EntityHurtAfterEvent)=>void, options?: EntityHurtAfterEventOptions): (arg0: EntityHurtAfterEvent)=>void;
    public unsubscribe(callback: (arg0: EntityHurtAfterEvent)=>void): void;
+   private constructor();
+}
+export class EntityHurtBeforeEvent {
+   public cancel: boolean;
+   public damage: number;
+   public readonly damageSource: EntityDamageSource;
+   public readonly hurtEntity: Entity;
+   private constructor();
+}
+export class EntityHurtBeforeEventSignal {
+   public subscribe(callback: (arg0: EntityHurtBeforeEvent)=>void, options?: EntityHurtBeforeEventOptions): (arg0: EntityHurtBeforeEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityHurtBeforeEvent)=>void): void;
    private constructor();
 }
 //@ts-ignore
@@ -2020,6 +2139,37 @@ export class EntityIsTamedComponent extends EntityComponent {
 export class EntityItemComponent extends EntityComponent {
    public static readonly componentId = "minecraft:item";
    public readonly itemStack: ItemStack;
+   private constructor();
+}
+export class EntityItemDropAfterEvent {
+   public readonly entity: Entity;
+   public readonly items: Array<Entity>;
+   private constructor();
+}
+export class EntityItemDropAfterEventSignal {
+   public subscribe(callback: (arg0: EntityItemDropAfterEvent)=>void, options?: EntityItemDropEventOptions): (arg0: EntityItemDropAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityItemDropAfterEvent)=>void): void;
+   private constructor();
+}
+export class EntityItemPickupAfterEvent {
+   public readonly entity: Entity;
+   public readonly items: Array<ItemStack>;
+   private constructor();
+}
+export class EntityItemPickupAfterEventSignal {
+   public subscribe(callback: (arg0: EntityItemPickupAfterEvent)=>void, options?: EntityItemPickupEventOptions): (arg0: EntityItemPickupAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityItemPickupAfterEvent)=>void): void;
+   private constructor();
+}
+export class EntityItemPickupBeforeEvent {
+   public cancel: boolean;
+   public readonly entity: Entity;
+   public readonly item: Entity;
+   private constructor();
+}
+export class EntityItemPickupBeforeEventSignal {
+   public subscribe(callback: (arg0: EntityItemPickupBeforeEvent)=>void, options?: EntityItemPickupEventOptions): (arg0: EntityItemPickupBeforeEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityItemPickupBeforeEvent)=>void): void;
    private constructor();
 }
 //@ts-ignore
@@ -2309,6 +2459,7 @@ export class EntityTameMountComponent extends EntityComponent {
 }
 export class EntityType {
    public readonly id: string;
+   public readonly localizationKey: string;
    private constructor();
 }
 //@ts-ignore
@@ -2705,6 +2856,7 @@ export class ItemStopUseOnAfterEventSignal {
 }
 export class ItemType {
    public readonly id: string;
+   public readonly localizationKey: string;
    private constructor();
 }
 export class ItemTypes {
@@ -3626,6 +3778,7 @@ export class World {
    public readonly gameRules: GameRules;
    public readonly isHardcore: boolean;
    public readonly scoreboard: Scoreboard;
+   public readonly seed: string;
    public readonly structureManager: StructureManager;
    public readonly tickingAreaManager: TickingAreaManager;
    public broadcastClientMessage(id: string, value: string): void;
@@ -3665,10 +3818,13 @@ export class WorldAfterEvents {
    public readonly dataDrivenEntityTrigger: DataDrivenEntityTriggerAfterEventSignal;
    public readonly effectAdd: EffectAddAfterEventSignal;
    public readonly entityDie: EntityDieAfterEventSignal;
+   public readonly entityHeal: EntityHealAfterEventSignal;
    public readonly entityHealthChanged: EntityHealthChangedAfterEventSignal;
    public readonly entityHitBlock: EntityHitBlockAfterEventSignal;
    public readonly entityHitEntity: EntityHitEntityAfterEventSignal;
    public readonly entityHurt: EntityHurtAfterEventSignal;
+   public readonly entityItemDrop: EntityItemDropAfterEventSignal;
+   public readonly entityItemPickup: EntityItemPickupAfterEventSignal;
    public readonly entityLoad: EntityLoadAfterEventSignal;
    public readonly entityRemove: EntityRemoveAfterEventSignal;
    public readonly entitySpawn: EntitySpawnAfterEventSignal;
@@ -3715,6 +3871,9 @@ export class WorldAfterEvents {
 export class WorldBeforeEvents {
    public readonly chatSend: ChatSendBeforeEventSignal;
    public readonly effectAdd: EffectAddBeforeEventSignal;
+   public readonly entityHeal: EntityHealBeforeEventSignal;
+   public readonly entityHurt: EntityHurtBeforeEventSignal;
+   public readonly entityItemPickup: EntityItemPickupBeforeEventSignal;
    public readonly entityRemove: EntityRemoveBeforeEventSignal;
    public readonly explosion: ExplosionBeforeEventSignal;
    public readonly itemUse: ItemUseBeforeEventSignal;

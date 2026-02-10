@@ -119,6 +119,12 @@ export enum LogChannel {
    Message = 1,
    Toast = 2,
 }
+export enum MinimapMarkerType {
+   Multiplayer = 0,
+}
+export enum MinimapViewType {
+   BlockView = 0,
+}
 export enum MouseActionCategory {
    Button = 1,
    Drag = 3,
@@ -459,13 +465,17 @@ export interface WidgetComponentBaseOptions {
    offset?: server.Vector3;
    visible?: boolean;
 }
+export interface WidgetComponentBoundingBoxLimit {
+   max: server.Vector3;
+   maxBlockVolume?: number;
+   min: server.Vector3;
+}
 //@ts-ignore
 export interface WidgetComponentBoundingBoxOptions extends WidgetComponentBaseOptions {
    boundsOffset?: server.Vector3;
    enableResizeHandles?: Axis;
    hullColor?: server.RGBA;
-   maxSize?: server.Vector3;
-   minSize?: server.Vector3;
+   limit?: WidgetComponentBoundingBoxLimit;
    mirror?: server.StructureMirrorAxis;
    normalizedOrigin?: server.Vector3;
    outlineColor?: server.RGBA;
@@ -539,6 +549,8 @@ export interface WidgetCreateOptions {
    collisionOffset?: server.Vector3;
    collisionRadius?: number;
    collisionType?: WidgetCollisionType;
+   dimensionId?: string;
+   ignoreEditorModeVisibilityOverride?: boolean;
    lockToSurface?: boolean;
    selectable?: boolean;
    snapToBlockLocation?: boolean;
@@ -689,17 +701,22 @@ export class Cursor {
    public readonly faceDirection: number;
    public readonly isVisible: boolean;
    public readonly maxViewBlockDistance: number;
+   public getDefaultProperties(): CursorProperties;
    public getPosition(): server.Vector3;
    public getProperties(): CursorProperties;
    public getRay(): CursorRay;
    public hide(): void;
    public moveBy(offset: server.Vector3): server.Vector3;
+   public popPropertiesById(identifier: string): void;
+   public pushPropertiesById(properties: CursorProperties, identifier: string): void;
    public resetToDefaultState(): void;
    public setProperties(properties: CursorProperties): void;
    public show(): void;
+   public updatePropertiesById(properties: CursorProperties, identifier?: string): void;
    private constructor();
 }
 export class CursorPropertiesChangeAfterEvent {
+   public readonly identifier?: string;
    public readonly position?: CursorPosition;
    public readonly properties: CursorProperties;
    private constructor();
@@ -710,6 +727,8 @@ export class CursorPropertyChangeAfterEventSignal {
    private constructor();
 }
 export class EditorConstants {
+   public readonly maxBlockVolume: number;
+   public readonly maxDynamicSelectionSize: server.Vector3;
    public readonly maxSelectionSize: server.Vector3;
    public readonly maxStructureOffset: server.Vector3;
    public readonly minStructureOffset: server.Vector3;
@@ -767,6 +786,7 @@ export class ExtensionContext {
    public readonly cursor: Cursor;
    public readonly exportManager: ExportManager;
    public readonly extensionInfo: Extension;
+   public readonly minimapManager: MinimapManager;
    public readonly player: server.Player;
    public readonly playtest: PlaytestManager;
    public readonly selectionManager: SelectionManager;
@@ -813,6 +833,24 @@ export class MinecraftEditor {
    public readonly log: Logger;
    public readonly simulation: SimulationState;
    public readonly worldGeneratorType?: WorldGeneratorType;
+   private constructor();
+}
+export class MinimapItem {
+   public readonly id: string;
+   public readonly isActive: boolean;
+   public addMarker(markerType: MinimapMarkerType): void;
+   public getPlayerColor(playerId: string): server.RGBA;
+   public removeMarker(markerType: MinimapMarkerType): void;
+   public setActive(active: boolean): void;
+   public setSize(mapWidth: number, mapHeight: number): void;
+   public setViewType(viewType: MinimapViewType): void;
+   private constructor();
+}
+export class MinimapManager {
+   public createMinimap(viewType: MinimapViewType, mapWidth: number, mapHeight: number): MinimapItem;
+   public destroyMinimap(minimapId: string): void;
+   public getAllMinimapIds(): Array<string>;
+   public getMinimap(minimapId: string): MinimapItem;
    private constructor();
 }
 export class ModeChangeAfterEvent {
@@ -971,7 +1009,9 @@ export class Widget {
    public collisionOffset: server.Vector3;
    public collisionRadius: number;
    public collisionType: WidgetCollisionType;
+   public dimensionId?: string;
    public readonly group: WidgetGroup;
+   public ignoreEditorModeVisibilityOverride: boolean;
    public location: server.Vector3;
    public lockPositionToSurface: boolean;
    public readonly selectable: boolean;

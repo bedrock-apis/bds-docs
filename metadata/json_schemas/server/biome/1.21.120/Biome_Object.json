@@ -247,29 +247,19 @@
          "type": "object",
          "properties": {
             "target_altitude": {
-               "type": "number",
-               "minimum": 1.1754943508222875e-38,
-               "maximum": 3.4028234663852886e+38
+               "type": "number"
             },
             "target_humidity": {
-               "type": "number",
-               "minimum": 1.1754943508222875e-38,
-               "maximum": 3.4028234663852886e+38
+               "type": "number"
             },
             "target_temperature": {
-               "type": "number",
-               "minimum": 1.1754943508222875e-38,
-               "maximum": 3.4028234663852886e+38
+               "type": "number"
             },
             "target_weirdness": {
-               "type": "number",
-               "minimum": 1.1754943508222875e-38,
-               "maximum": 3.4028234663852886e+38
+               "type": "number"
             },
             "weight": {
-               "type": "number",
-               "minimum": 1.1754943508222875e-38,
-               "maximum": 3.4028234663852886e+38
+               "type": "number"
             }
          }
       },
@@ -285,8 +275,7 @@
                      },
                      {
                         "type": "integer",
-                        "minimum": 0,
-                        "maximum": 4294967295
+                        "minimum": 0
                      }
                   ]
                },
@@ -304,7 +293,6 @@
          "properties": {
             "amount": {
                "type": "number",
-               "minimum": 1.1754943508222875e-38,
                "exclusiveMinimum": 0,
                "maximum": 1
             },
@@ -313,7 +301,6 @@
             },
             "noise_frequency_scale": {
                "type": "number",
-               "minimum": 1.1754943508222875e-38,
                "exclusiveMinimum": 0,
                "maximum": 100
             },
@@ -337,24 +324,18 @@
          "type": "object",
          "properties": {
             "downfall": {
-               "type": "number",
-               "minimum": 1.1754943508222875e-38,
-               "maximum": 3.4028234663852886e+38
+               "type": "number"
             },
             "snow_accumulation": {
                "type": "array",
                "items": {
-                  "type": "number",
-                  "minimum": 1.1754943508222875e-38,
-                  "maximum": 3.4028234663852886e+38
+                  "type": "number"
                },
                "minItems": 2,
                "maxItems": 2
             },
             "temperature": {
-               "type": "number",
-               "minimum": 1.1754943508222875e-38,
-               "maximum": 3.4028234663852886e+38
+               "type": "number"
             }
          }
       },
@@ -376,8 +357,7 @@
                },
                {
                   "type": "integer",
-                  "minimum": 0,
-                  "maximum": 4294967295
+                  "minimum": 0
                }
             ]
          },
@@ -391,9 +371,7 @@
             "noise_params": {
                "type": "array",
                "items": {
-                  "type": "number",
-                  "minimum": 1.1754943508222875e-38,
-                  "maximum": 3.4028234663852886e+38
+                  "type": "number"
                },
                "minItems": 2,
                "maxItems": 2
@@ -450,9 +428,7 @@
          "title": "Molang Expression",
          "oneOf": [
             {
-               "type": "number",
-               "minimum": 1.1754943508222875e-38,
-               "maximum": 3.4028234663852886e+38
+               "type": "number"
             },
             {
                "type": "boolean"
@@ -558,19 +534,6 @@
             "type"
          ]
       },
-      "2402600985": {
-         "title": "Biome Description",
-         "type": "object",
-         "properties": {
-            "identifier": {
-               "$ref": "#/definitions/1425698818",
-               "pattern": "^[a-z0-9._%+-]+:[a-z0-9._%+-]+$"
-            }
-         },
-         "required": [
-            "identifier"
-         ]
-      },
       "2586207614": {
          "title": "minecraft:overworld_generation_rules - Weighted biome names settings",
          "oneOf": [
@@ -631,6 +594,19 @@
             "sea_material",
             "top_material",
             "type"
+         ]
+      },
+      "2649259398": {
+         "title": "Biome Description",
+         "type": "object",
+         "properties": {
+            "identifier": {
+               "$ref": "#/definitions/1425698818",
+               "pattern": "^[a-z0-9._%+-]+:[a-z0-9._%+-]+$"
+            }
+         },
+         "required": [
+            "identifier"
          ]
       },
       "2947378624": {
@@ -695,9 +671,7 @@
                      "additionalProperties": {
                         "oneOf": [
                            {
-                              "type": "integer",
-                              "minimum": -2147483648,
-                              "maximum": 2147483647
+                              "type": "integer"
                            },
                            {
                               "type": "boolean"
@@ -732,16 +706,12 @@
                "$ref": "#/definitions/1287813091"
             },
             "noise_frequency_scale": {
-               "type": "number",
-               "minimum": 1.1754943508222875e-38,
-               "maximum": 3.4028234663852886e+38
+               "type": "number"
             },
             "noise_range": {
                "type": "array",
                "items": {
-                  "type": "number",
-                  "minimum": 1.1754943508222875e-38,
-                  "maximum": 3.4028234663852886e+38
+                  "type": "number"
                },
                "minItems": 2,
                "maxItems": 2
@@ -846,9 +816,7 @@
             {
                "type": "array",
                "items": {
-                  "type": "integer",
-                  "minimum": -2147483648,
-                  "maximum": 2147483647
+                  "type": "integer"
                },
                "minItems": 3,
                "maxItems": 3
@@ -922,7 +890,7 @@
          "$ref": "#/definitions/2947378624"
       },
       "description": {
-         "$ref": "#/definitions/2402600985"
+         "$ref": "#/definitions/2649259398"
       }
    },
    "required": [

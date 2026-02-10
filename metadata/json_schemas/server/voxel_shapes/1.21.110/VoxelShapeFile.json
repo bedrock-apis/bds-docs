@@ -12,7 +12,8 @@
                "items": {
                   "$ref": "#/definitions/2305154765"
                },
-               "minItems": 1
+               "minItems": 1,
+               "maxItems": 32
             }
          },
          "required": [
@@ -24,10 +25,14 @@
          "type": "object",
          "properties": {
             "max": {
-               "$ref": "#/definitions/4004946602"
+               "$ref": "#/definitions/4004946602",
+               "minimum": -30,
+               "maximum": 30
             },
             "min": {
-               "$ref": "#/definitions/4004946602"
+               "$ref": "#/definitions/4004946602",
+               "minimum": -30,
+               "maximum": 30
             }
          },
          "required": [
@@ -35,15 +40,17 @@
             "min"
          ]
       },
+      "2715320761": {
+         "title": "hashed_string",
+         "type": "string"
+      },
       "4004946602": {
          "title": "vec3",
          "oneOf": [
             {
                "type": "array",
                "items": {
-                  "type": "number",
-                  "minimum": 1.1754943508222875e-38,
-                  "maximum": 3.4028234663852886e+38
+                  "type": "number"
                },
                "minItems": 3,
                "maxItems": 3
@@ -53,21 +60,15 @@
                "properties": {
                   "x": {
                      "type": "number",
-                     "default": 0,
-                     "minimum": 1.1754943508222875e-38,
-                     "maximum": 3.4028234663852886e+38
+                     "default": 0
                   },
                   "y": {
                      "type": "number",
-                     "default": 0,
-                     "minimum": 1.1754943508222875e-38,
-                     "maximum": 3.4028234663852886e+38
+                     "default": 0
                   },
                   "z": {
                      "type": "number",
-                     "default": 0,
-                     "minimum": 1.1754943508222875e-38,
-                     "maximum": 3.4028234663852886e+38
+                     "default": 0
                   }
                }
             }
@@ -78,8 +79,8 @@
          "type": "object",
          "properties": {
             "identifier": {
-               "type": "string",
-               "pattern": "^\\w+:\\w+$"
+               "$ref": "#/definitions/2715320761",
+               "maxLength": 256
             }
          },
          "required": [
