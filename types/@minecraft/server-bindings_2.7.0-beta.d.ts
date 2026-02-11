@@ -1902,7 +1902,7 @@ export class EntityComponent extends Component {
 export class EntityDefinitionFeedItem {
    public readonly growth: number;
    public readonly item: string;
-   public readonly resultItem: string;
+   public readonly resultItem?: string;
    private constructor();
 }
 export class EntityDieAfterEvent {
@@ -2528,7 +2528,7 @@ export class ExplosionDecayFunction extends LootItemFunction {
 export class FeedItem {
    public readonly healAmount: number;
    public readonly item: string;
-   public readonly resultItem: string;
+   public readonly resultItem?: string;
    public getEffects(): Array<FeedItemEffect>;
    private constructor();
 }

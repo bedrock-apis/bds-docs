@@ -83,6 +83,26 @@
             }
          }
       },
+      "287215707": {
+         "title": "minecraft:experience_reward",
+         "type": "object",
+         "properties": {
+            "on_bred": {
+               "default": {
+                  "expression": "",
+                  "version": -1
+               },
+               "$ref": "#/definitions/3178719147"
+            },
+            "on_death": {
+               "default": {
+                  "expression": "",
+                  "version": -1
+               },
+               "$ref": "#/definitions/3178719147"
+            }
+         }
+      },
       "298010374": {
          "title": "minecraft:behavior.stay_near_noteblock",
          "type": "object",
@@ -123,43 +143,11 @@
             }
          }
       },
-      "299523202": {
-         "title": "minecraft:addrider",
-         "type": "object",
-         "properties": {
-            "riders": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "$ref": "#/definitions/2695390314"
-               }
-            }
-         }
-      },
       "319286572": {
          "title": "IsStackableDefinition"
       },
       "374016963": {
          "title": "FireImmuneDefinition"
-      },
-      "378259084": {
-         "title": "minecraft:burns_in_daylight",
-         "type": "object",
-         "properties": {
-            "protection_slot": {
-               "title": "EquipmentSlot",
-               "type": "string",
-               "default": "slot.armor.head",
-               "enum": [
-                  "slot.weapon.offhand",
-                  "slot.armor.head",
-                  "slot.armor.chest",
-                  "slot.armor.legs",
-                  "slot.armor.feet",
-                  "slot.armor.body"
-               ]
-            }
-         }
       },
       "387887038": {
          "title": "BodyRotationBlockedDefinition"
@@ -281,6 +269,19 @@
       },
       "708168268": {
          "title": "IsChargedDefinition"
+      },
+      "772659931": {
+         "title": "minecraft:addrider",
+         "type": "object",
+         "properties": {
+            "riders": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/2047937041"
+               }
+            }
+         }
       },
       "792012262": {
          "title": "MobDescriptor",
@@ -409,26 +410,6 @@
             "vibration_is_disturbance": {
                "type": "boolean",
                "default": false
-            }
-         }
-      },
-      "957886722": {
-         "title": "minecraft:experience_reward",
-         "type": "object",
-         "properties": {
-            "on_bred": {
-               "default": {
-                  "expression": "",
-                  "version": -1
-               },
-               "$ref": "#/definitions/3178719147"
-            },
-            "on_death": {
-               "default": {
-                  "expression": "",
-                  "version": -1
-               },
-               "$ref": "#/definitions/3178719147"
             }
          }
       },
@@ -1699,6 +1680,22 @@
       "2041076969": {
          "title": "IsSaddledDefinition"
       },
+      "2047937041": {
+         "title": "Rider Data",
+         "type": "object",
+         "properties": {
+            "entity_type": {
+               "type": "string"
+            },
+            "spawn_event": {
+               "type": "string",
+               "default": ""
+            }
+         },
+         "required": [
+            "entity_type"
+         ]
+      },
       "2159667979": {
          "title": "minecraft:behavior.eat_mob",
          "type": "object",
@@ -1987,21 +1984,24 @@
             }
          }
       },
-      "2695390314": {
-         "title": "Rider Data",
+      "2655738381": {
+         "title": "minecraft:burns_in_daylight",
          "type": "object",
          "properties": {
-            "entity_type": {
-               "type": "string"
-            },
-            "spawn_event": {
+            "protection_slot": {
+               "title": "EquipmentSlot",
                "type": "string",
-               "default": ""
+               "default": "slot.armor.head",
+               "enum": [
+                  "slot.weapon.offhand",
+                  "slot.armor.head",
+                  "slot.armor.chest",
+                  "slot.armor.legs",
+                  "slot.armor.feet",
+                  "slot.armor.body"
+               ]
             }
-         },
-         "required": [
-            "entity_type"
-         ]
+         }
       },
       "2704775729": {
          "title": "BodyRotationAlwaysFollowsHeadDefinition"
@@ -3740,7 +3740,7 @@
          "description": "Dynamic value"
       },
       "minecraft:addrider": {
-         "$ref": "#/definitions/299523202"
+         "$ref": "#/definitions/772659931"
       },
       "minecraft:admire_item": {
          "description": "Dynamic value"
@@ -4361,7 +4361,7 @@
          "description": "Dynamic value"
       },
       "minecraft:burns_in_daylight": {
-         "$ref": "#/definitions/378259084"
+         "$ref": "#/definitions/2655738381"
       },
       "minecraft:can_climb": {
          "$ref": "#/definitions/1682332161"
@@ -4448,7 +4448,7 @@
          "description": "Dynamic value"
       },
       "minecraft:experience_reward": {
-         "$ref": "#/definitions/957886722"
+         "$ref": "#/definitions/287215707"
       },
       "minecraft:explode": {
          "description": "Dynamic value"

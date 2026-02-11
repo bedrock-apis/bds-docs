@@ -83,6 +83,109 @@
             }
          }
       },
+      "147346783": {
+         "title": "minecraft:behavior.teleport_to_owner",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "cooldown": {
+               "type": "number",
+               "default": 1,
+               "minimum": 0
+            },
+            "filters": {
+               "default": {
+                  "all_of": null,
+                  "all": null,
+                  "OR": null,
+                  "AND": null,
+                  "any_of": null,
+                  "any": null,
+                  "none_of": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/1088251937"
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            }
+         }
+      },
+      "170334530": {
+         "title": "minecraft:behavior.defend_village_target",
+         "type": "object",
+         "properties": {
+            "attack_chance": {
+               "type": "number",
+               "default": 0.05000000074505806,
+               "minimum": 0,
+               "maximum": 1
+            },
+            "attack_owner": {
+               "type": "boolean",
+               "default": false
+            },
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "entity_types": {
+               "default": [],
+               "$ref": "#/definitions/4227886613"
+            },
+            "must_reach": {
+               "type": "boolean",
+               "default": false
+            },
+            "must_see": {
+               "type": "boolean",
+               "default": false
+            },
+            "must_see_forget_duration": {
+               "type": "number",
+               "default": 3,
+               "minimum": 0
+            },
+            "persist_time": {
+               "type": "number",
+               "default": 0,
+               "minimum": 0
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "within_radius": {
+               "type": "number",
+               "default": 0,
+               "minimum": 0
+            }
+         }
+      },
       "298010374": {
          "title": "minecraft:behavior.stay_near_noteblock",
          "type": "object",
@@ -123,49 +226,85 @@
             }
          }
       },
-      "299523202": {
-         "title": "minecraft:addrider",
+      "319286572": {
+         "title": "IsStackableDefinition"
+      },
+      "328685933": {
+         "title": "minecraft:behavior.look_at_trading_player",
          "type": "object",
          "properties": {
-            "riders": {
+            "angle_of_view_horizontal": {
+               "type": "integer",
+               "default": 360,
+               "minimum": 0,
+               "maximum": 360
+            },
+            "angle_of_view_vertical": {
+               "type": "integer",
+               "default": 360,
+               "minimum": 0,
+               "maximum": 360
+            },
+            "control_flags": {
                "type": "array",
                "default": [],
                "items": {
-                  "$ref": "#/definitions/2695390314"
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
                }
+            },
+            "look_distance": {
+               "type": "number",
+               "default": 8,
+               "minimum": 0
+            },
+            "look_time": {
+               "default": {
+                  "min": 2,
+                  "max": 4
+               },
+               "$ref": "#/definitions/1057349585"
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "probability": {
+               "type": "number",
+               "default": 0.019999999552965164,
+               "minimum": 0,
+               "maximum": 1
             }
          }
-      },
-      "319286572": {
-         "title": "IsStackableDefinition"
       },
       "374016963": {
          "title": "FireImmuneDefinition"
       },
-      "378259084": {
-         "title": "minecraft:burns_in_daylight",
-         "type": "object",
-         "properties": {
-            "protection_slot": {
-               "title": "EquipmentSlot",
-               "type": "string",
-               "default": "slot.armor.head",
-               "enum": [
-                  "slot.weapon.offhand",
-                  "slot.armor.head",
-                  "slot.armor.chest",
-                  "slot.armor.legs",
-                  "slot.armor.feet",
-                  "slot.armor.body"
-               ]
-            }
-         }
-      },
       "387887038": {
          "title": "BodyRotationBlockedDefinition"
       },
-      "465352073": {
-         "title": "minecraft:behavior.timer_flag_3",
+      "517105782": {
+         "title": "compound_proxy",
+         "oneOf": [
+            {
+               "type": "integer"
+            },
+            {
+               "type": "string"
+            },
+            {
+               "type": "boolean"
+            }
+         ]
+      },
+      "532349475": {
+         "title": "minecraft:behavior.fertilize_farm_block",
          "type": "object",
          "properties": {
             "control_flags": {
@@ -181,74 +320,101 @@
                   ]
                }
             },
-            "cooldown_range": {
-               "default": {
-                  "min": 0,
-                  "max": 0
-               },
-               "$ref": "#/definitions/1057349585"
+            "goal_radius": {
+               "type": "number",
+               "default": 1.5,
+               "exclusiveMinimum": 0
             },
-            "duration_range": {
-               "default": {
-                  "min": 0,
-                  "max": 0
-               },
-               "$ref": "#/definitions/1057349585"
-            },
-            "on_end": {
-               "default": {
-                  "event": "",
-                  "target": "self",
-                  "filters": {
-                     "OR": null,
-                     "all": null,
-                     "all_of": null,
-                     "AND": null,
-                     "any_of": null,
-                     "none_of": null,
-                     "any": null,
-                     "NOT": null
-                  }
-               },
-               "$ref": "#/definitions/121353999"
-            },
-            "on_start": {
-               "default": {
-                  "event": "",
-                  "target": "self",
-                  "filters": {
-                     "OR": null,
-                     "all": null,
-                     "all_of": null,
-                     "AND": null,
-                     "any_of": null,
-                     "none_of": null,
-                     "any": null,
-                     "NOT": null
-                  }
-               },
-               "$ref": "#/definitions/121353999"
+            "max_fertilizer_usage": {
+               "type": "integer",
+               "default": 1,
+               "exclusiveMinimum": 0
             },
             "priority": {
                "type": "integer",
                "default": 0,
                "minimum": 0
+            },
+            "search_cooldown_max_seconds": {
+               "type": "number",
+               "default": 8,
+               "exclusiveMinimum": 0
+            },
+            "search_count": {
+               "type": "integer",
+               "default": 9,
+               "minimum": 0
+            },
+            "search_height": {
+               "type": "integer",
+               "default": 1,
+               "exclusiveMinimum": 0
+            },
+            "search_range": {
+               "type": "integer",
+               "default": 1,
+               "exclusiveMinimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 0.5,
+               "minimum": 0
             }
          }
       },
-      "517105782": {
-         "title": "compound_proxy",
-         "oneOf": [
-            {
-               "type": "integer"
+      "578870742": {
+         "title": "minecraft:behavior.look_at_player",
+         "type": "object",
+         "properties": {
+            "angle_of_view_horizontal": {
+               "type": "integer",
+               "default": 360,
+               "minimum": 0,
+               "maximum": 360
             },
-            {
-               "type": "string"
+            "angle_of_view_vertical": {
+               "type": "integer",
+               "default": 360,
+               "minimum": 0,
+               "maximum": 360
             },
-            {
-               "type": "boolean"
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "look_distance": {
+               "type": "number",
+               "default": 8,
+               "minimum": 0
+            },
+            "look_time": {
+               "default": {
+                  "min": 2,
+                  "max": 4
+               },
+               "$ref": "#/definitions/1057349585"
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "probability": {
+               "type": "number",
+               "default": 0.019999999552965164,
+               "minimum": 0,
+               "maximum": 1
             }
-         ]
+         }
       },
       "580536374": {
          "title": "minecraft:behavior.ram_attack",
@@ -1479,21 +1645,32 @@
             }
          }
       },
-      "628605987": {
-         "title": "minecraft:behavior.look_at_entity",
+      "686816491": {
+         "title": "minecraft:behavior.aquatic_charge_attack",
          "type": "object",
          "properties": {
-            "angle_of_view_horizontal": {
-               "type": "integer",
-               "default": 360,
-               "minimum": 0,
-               "maximum": 360
+            "attack_reach": {
+               "type": "number",
+               "default": 0.05000000074505806,
+               "minimum": 0
             },
-            "angle_of_view_vertical": {
-               "type": "integer",
-               "default": 360,
-               "minimum": 0,
-               "maximum": 360
+            "charge_cooldown_time": {
+               "default": {
+                  "min": 2,
+                  "max": 6
+               },
+               "$ref": "#/definitions/1057349585",
+               "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
+            },
+            "charge_overshoot_distance": {
+               "type": "number",
+               "default": 1.5,
+               "minimum": 0
+            },
+            "charge_speed": {
+               "type": "number",
+               "default": 0.05999999865889549,
+               "minimum": 0.05000000074505806
             },
             "control_flags": {
                "type": "array",
@@ -1508,6 +1685,51 @@
                   ]
                }
             },
+            "knockback_force": {
+               "type": "number",
+               "default": 2,
+               "minimum": 0
+            },
+            "max_charge_distance": {
+               "type": "number",
+               "default": 16,
+               "minimum": 0
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            }
+         }
+      },
+      "708168268": {
+         "title": "IsChargedDefinition"
+      },
+      "772659931": {
+         "title": "minecraft:addrider",
+         "type": "object",
+         "properties": {
+            "riders": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/2047937041"
+               }
+            }
+         }
+      },
+      "792012262": {
+         "title": "MobDescriptor",
+         "type": "object",
+         "properties": {
+            "check_if_outnumbered": {
+               "type": "boolean",
+               "default": false
+            },
+            "cooldown": {
+               "type": "integer",
+               "default": 0
+            },
             "filters": {
                "default": {
                   "OR": null,
@@ -1521,32 +1743,75 @@
                },
                "$ref": "#/definitions/1088251937"
             },
-            "look_distance": {
+            "max_dist": {
                "type": "number",
-               "default": 8,
-               "minimum": 0
+               "default": 16
             },
-            "look_time": {
-               "default": {
-                  "min": 2,
-                  "max": 4
-               },
-               "$ref": "#/definitions/1057349585"
+            "max_flee": {
+               "type": "number",
+               "default": 10
+            },
+            "max_height": {
+               "type": "number",
+               "default": -1
+            },
+            "must_see": {
+               "type": "boolean"
+            },
+            "must_see_forget_duration": {
+               "type": "integer",
+               "default": 3
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0
+            },
+            "reevaluate_description": {
+               "type": "boolean",
+               "default": false
+            },
+            "sprint_speed_multiplier": {
+               "type": "number",
+               "default": 1
+            },
+            "walk_speed_multiplier": {
+               "type": "number",
+               "default": 1
+            }
+         }
+      },
+      "800417298": {
+         "title": "minecraft:behavior.move_towards_dwelling_restriction",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
             },
             "priority": {
                "type": "integer",
                "default": 0,
                "minimum": 0
             },
-            "probability": {
+            "speed_multiplier": {
                "type": "number",
-               "default": 0.019999999552965164,
-               "minimum": 0,
-               "maximum": 1
+               "default": 1
             }
          }
       },
-      "631184463": {
+      "801311387": {
+         "title": "IsPregnantDefinition"
+      },
+      "816772204": {
          "title": "minecraft:behavior.melee_box_attack",
          "type": "object",
          "properties": {
@@ -1693,203 +1958,6 @@
                "minimum": 0
             }
          }
-      },
-      "686816491": {
-         "title": "minecraft:behavior.aquatic_charge_attack",
-         "type": "object",
-         "properties": {
-            "attack_reach": {
-               "type": "number",
-               "default": 0.05000000074505806,
-               "minimum": 0
-            },
-            "charge_cooldown_time": {
-               "default": {
-                  "min": 2,
-                  "max": 6
-               },
-               "$ref": "#/definitions/1057349585",
-               "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
-            },
-            "charge_overshoot_distance": {
-               "type": "number",
-               "default": 1.5,
-               "minimum": 0
-            },
-            "charge_speed": {
-               "type": "number",
-               "default": 0.05999999865889549,
-               "minimum": 0.05000000074505806
-            },
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "knockback_force": {
-               "type": "number",
-               "default": 2,
-               "minimum": 0
-            },
-            "max_charge_distance": {
-               "type": "number",
-               "default": 16,
-               "minimum": 0
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            }
-         }
-      },
-      "708168268": {
-         "title": "IsChargedDefinition"
-      },
-      "736770567": {
-         "title": "minecraft:behavior.timer_flag_1",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "cooldown_range": {
-               "default": {
-                  "min": 0,
-                  "max": 0
-               },
-               "$ref": "#/definitions/1057349585"
-            },
-            "duration_range": {
-               "default": {
-                  "min": 0,
-                  "max": 0
-               },
-               "$ref": "#/definitions/1057349585"
-            },
-            "on_end": {
-               "default": {
-                  "event": "",
-                  "target": "self",
-                  "filters": {
-                     "OR": null,
-                     "all": null,
-                     "all_of": null,
-                     "AND": null,
-                     "any_of": null,
-                     "none_of": null,
-                     "any": null,
-                     "NOT": null
-                  }
-               },
-               "$ref": "#/definitions/121353999"
-            },
-            "on_start": {
-               "default": {
-                  "event": "",
-                  "target": "self",
-                  "filters": {
-                     "OR": null,
-                     "all": null,
-                     "all_of": null,
-                     "AND": null,
-                     "any_of": null,
-                     "none_of": null,
-                     "any": null,
-                     "NOT": null
-                  }
-               },
-               "$ref": "#/definitions/121353999"
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            }
-         }
-      },
-      "792012262": {
-         "title": "MobDescriptor",
-         "type": "object",
-         "properties": {
-            "check_if_outnumbered": {
-               "type": "boolean",
-               "default": false
-            },
-            "cooldown": {
-               "type": "integer",
-               "default": 0
-            },
-            "filters": {
-               "default": {
-                  "OR": null,
-                  "all": null,
-                  "all_of": null,
-                  "AND": null,
-                  "any_of": null,
-                  "none_of": null,
-                  "any": null,
-                  "NOT": null
-               },
-               "$ref": "#/definitions/1088251937"
-            },
-            "max_dist": {
-               "type": "number",
-               "default": 16
-            },
-            "max_flee": {
-               "type": "number",
-               "default": 10
-            },
-            "max_height": {
-               "type": "number",
-               "default": -1
-            },
-            "must_see": {
-               "type": "boolean"
-            },
-            "must_see_forget_duration": {
-               "type": "integer",
-               "default": 3
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0
-            },
-            "reevaluate_description": {
-               "type": "boolean",
-               "default": false
-            },
-            "sprint_speed_multiplier": {
-               "type": "number",
-               "default": 1
-            },
-            "walk_speed_multiplier": {
-               "type": "number",
-               "default": 1
-            }
-         }
-      },
-      "801311387": {
-         "title": "IsPregnantDefinition"
       },
       "891613151": {
          "title": "minecraft:behavior.celebrate",
@@ -2512,6 +2580,78 @@
             }
          }
       },
+      "898888918": {
+         "title": "minecraft:behavior.timer_flag_3",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "cooldown_range": {
+               "default": {
+                  "min": 0,
+                  "max": 0
+               },
+               "$ref": "#/definitions/1057349585"
+            },
+            "duration_range": {
+               "default": {
+                  "min": 0,
+                  "max": 0
+               },
+               "$ref": "#/definitions/1057349585"
+            },
+            "on_end": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "OR": null,
+                     "all": null,
+                     "all_of": null,
+                     "AND": null,
+                     "any_of": null,
+                     "none_of": null,
+                     "any": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/121353999"
+            },
+            "on_start": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "OR": null,
+                     "all": null,
+                     "all_of": null,
+                     "AND": null,
+                     "any_of": null,
+                     "none_of": null,
+                     "any": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/121353999"
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            }
+         }
+      },
       "911233651": {
          "title": "minecraft:behavior.dig",
          "type": "object",
@@ -2577,15 +2717,10 @@
             }
          }
       },
-      "958675335": {
-         "title": "minecraft:behavior.dragonstrafeplayer",
+      "998576969": {
+         "title": "minecraft:behavior.trade_with_player",
          "type": "object",
          "properties": {
-            "active_speed": {
-               "type": "number",
-               "default": 0.6000000238418579,
-               "minimum": 0
-            },
             "control_flags": {
                "type": "array",
                "default": [],
@@ -2599,48 +2734,28 @@
                   ]
                }
             },
-            "fireball_range": {
-               "type": "number",
-               "default": 64,
-               "exclusiveMinimum": 0
+            "filters": {
+               "default": {
+                  "all_of": null,
+                  "all": null,
+                  "OR": null,
+                  "AND": null,
+                  "any_of": null,
+                  "any": null,
+                  "none_of": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/1088251937"
             },
-            "flight_speed": {
+            "max_distance_from_player": {
                "type": "number",
-               "default": 0.6000000238418579,
-               "minimum": 0
+               "default": 8,
+               "exclusiveMinimum": 0
             },
             "priority": {
                "type": "integer",
                "default": 0,
                "minimum": 0
-            },
-            "switch_direction_probability": {
-               "type": "number",
-               "default": 0.125,
-               "minimum": 0,
-               "maximum": 1
-            },
-            "target_in_range_and_in_view_time": {
-               "type": "number",
-               "default": 0.25,
-               "exclusiveMinimum": 0
-            },
-            "target_zone": {
-               "default": {
-                  "min": 10,
-                  "max": 150
-               },
-               "$ref": "#/definitions/1057349585"
-            },
-            "turn_speed": {
-               "type": "number",
-               "default": 0.699999988079071,
-               "minimum": 0
-            },
-            "view_angle": {
-               "type": "number",
-               "default": 10,
-               "exclusiveMinimum": 0
             }
          }
       },
@@ -3298,72 +3413,17 @@
             }
          }
       },
-      "1284601148": {
-         "title": "minecraft:behavior.fertilize_farm_block",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "goal_radius": {
-               "type": "number",
-               "default": 1.5,
-               "exclusiveMinimum": 0
-            },
-            "max_fertilizer_usage": {
-               "type": "integer",
-               "default": 1,
-               "exclusiveMinimum": 0
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "search_cooldown_max_seconds": {
-               "type": "number",
-               "default": 8,
-               "exclusiveMinimum": 0
-            },
-            "search_count": {
-               "type": "integer",
-               "default": 9,
-               "minimum": 0
-            },
-            "search_height": {
-               "type": "integer",
-               "default": 1,
-               "exclusiveMinimum": 0
-            },
-            "search_range": {
-               "type": "integer",
-               "default": 1,
-               "exclusiveMinimum": 0
-            },
-            "speed_multiplier": {
-               "type": "number",
-               "default": 0.5,
-               "minimum": 0
-            }
-         }
-      },
       "1306911011": {
          "title": "WASDControlledDefinition"
       },
-      "1322533373": {
-         "title": "minecraft:behavior.move_towards_dwelling_restriction",
+      "1325032697": {
+         "title": "minecraft:behavior.lay_egg",
          "type": "object",
          "properties": {
+            "allow_laying_from_below": {
+               "type": "boolean",
+               "default": false
+            },
             "control_flags": {
                "type": "array",
                "default": [],
@@ -3377,1534 +3437,19 @@
                   ]
                }
             },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "speed_multiplier": {
-               "type": "number",
-               "default": 1
-            }
-         }
-      },
-      "1342441813": {
-         "title": "minecraft:experience_reward",
-         "type": "object",
-         "properties": {
-            "on_bred": {
-               "default": {
-                  "expression": "",
-                  "version": -1
-               },
-               "$ref": "#/definitions/3178719147"
-            },
-            "on_death": {
-               "default": {
-                  "expression": "",
-                  "version": -1
-               },
-               "$ref": "#/definitions/3178719147"
-            }
-         }
-      },
-      "1374016683": {
-         "title": "minecraft:behavior.investigate_suspicious_location",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "goal_radius": {
-               "type": "number",
-               "default": 1.5
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "speed_multiplier": {
-               "type": "number",
-               "default": 1
-            }
-         }
-      },
-      "1492465940": {
-         "title": "minecraft:behavior.dragonflaming",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "cooldown_time": {
-               "type": "number",
-               "default": 10
-            },
-            "flame_time": {
-               "type": "number",
-               "default": 0.5
-            },
-            "ground_flame_count": {
-               "type": "integer",
-               "default": 4
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "roar_time": {
-               "type": "number",
-               "default": 2
-            },
-            "smoke_color": {
+            "egg_type": {
                "type": "string",
-               "default": "#DC00EF"
-            },
-            "smoke_radius": {
-               "type": "number",
-               "default": 5
-            },
-            "smoke_time": {
-               "type": "number",
-               "default": 10
-            }
-         }
-      },
-      "1531870811": {
-         "title": "Item Descriptor",
-         "oneOf": [
-            {
-               "type": "string"
-            },
-            {
-               "type": "object",
-               "additionalProperties": {
-                  "type": "string"
-               }
-            }
-         ]
-      },
-      "1557623393": {
-         "title": "minecraft:behavior.explore_outskirts",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "dist_from_boundary": {
-               "default": [
-                  5,
-                  0,
-                  5
-               ],
-               "$ref": "#/definitions/4004946602"
-            },
-            "explore_dist": {
-               "type": "number",
-               "default": 5
-            },
-            "max_travel_time": {
-               "type": "number",
-               "default": 60
-            },
-            "max_wait_time": {
-               "type": "number",
-               "default": 0
-            },
-            "min_dist_from_target": {
-               "type": "number",
-               "default": 2.25
-            },
-            "min_perimeter": {
-               "type": "number",
-               "default": 1
-            },
-            "min_wait_time": {
-               "type": "number",
-               "default": 3
-            },
-            "next_xz": {
-               "type": "integer",
-               "default": 5
-            },
-            "next_y": {
-               "type": "integer",
-               "default": 3
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "speed_multiplier": {
-               "type": "number",
-               "default": 1
-            },
-            "timer_ratio": {
-               "type": "number",
-               "default": 2
-            }
-         }
-      },
-      "1596410806": {
-         "title": "minecraft:behavior.inspect_bookshelf",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
+               "default": "minecraft:turtle_egg"
             },
             "goal_radius": {
                "type": "number",
                "default": 0.5,
                "exclusiveMinimum": 0
             },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "search_count": {
-               "type": "integer",
-               "default": 10,
-               "minimum": 0
-            },
-            "search_height": {
-               "type": "integer",
-               "default": 1,
-               "exclusiveMinimum": 0
-            },
-            "search_range": {
-               "type": "integer",
-               "default": 0,
-               "exclusiveMinimum": 0
-            },
-            "speed_multiplier": {
-               "type": "number",
-               "default": 1,
-               "minimum": 0
-            }
-         }
-      },
-      "1682332161": {
-         "title": "CanClimbDefinition"
-      },
-      "1703168766": {
-         "title": "IsBabyDefinition"
-      },
-      "1729146119": {
-         "title": "IsTamedDefinition"
-      },
-      "1820403110": {
-         "title": "IsIllagerCaptainDefinition"
-      },
-      "1861715976": {
-         "title": "minecraft:behavior.transport_items",
-         "type": "object",
-         "properties": {
-            "allow_simultaneous_interaction": {
-               "type": "boolean",
-               "default": false
-            },
-            "allowed_items": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "$ref": "#/definitions/1531870811"
-               }
-            },
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "destination_container_types": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "$ref": "#/definitions/2794205495"
-               }
-            },
-            "disallowed_items": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "$ref": "#/definitions/1531870811"
-               }
-            },
-            "idle_cooldown": {
-               "type": "integer",
-               "default": 20,
-               "minimum": 0
-            },
-            "initial_cooldown": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "interaction_time": {
-               "type": "number",
-               "default": 3,
-               "minimum": 0
-            },
-            "max_stack_size": {
-               "type": "integer",
-               "default": 64,
-               "minimum": 1,
-               "maximum": 64
-            },
-            "max_visited_containers": {
-               "type": "integer",
-               "default": 16,
-               "minimum": 0
-            },
-            "place_strategy": {
-               "title": "place_strategy",
-               "type": "string",
-               "default": "any",
-               "enum": [
-                  "any",
-                  "with_matching",
-                  "with_matching_or_empty"
-               ]
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "search_distance": {
-               "default": [
-                  64,
-                  32
-               ],
-               "$ref": "#/definitions/4021724221"
-            },
-            "search_strategy": {
-               "title": "search_strategy",
-               "type": "string",
-               "default": "random",
-               "enum": [
-                  "nearest",
-                  "random"
-               ]
-            },
-            "source_container_types": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "$ref": "#/definitions/2794205495"
-               }
-            }
-         }
-      },
-      "1874267628": {
-         "title": "minecraft:behavior.drop_item_for",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "cooldown": {
-               "type": "number",
-               "default": 0.25,
-               "minimum": 0
-            },
-            "drop_item_chance": {
-               "type": "number",
-               "default": 1,
-               "minimum": 0,
-               "maximum": 1
-            },
-            "entity_types": {
-               "default": [],
-               "$ref": "#/definitions/4227886613"
-            },
-            "goal_radius": {
-               "type": "number",
-               "default": 0.5,
-               "exclusiveMinimum": 0
-            },
-            "loot_table": {
-               "type": "string",
-               "default": ""
-            },
-            "max_head_look_at_height": {
-               "type": "number",
-               "default": 10,
-               "minimum": 0
-            },
-            "minimum_teleport_distance": {
-               "type": "number",
-               "default": 2,
-               "minimum": 0
-            },
-            "offering_distance": {
-               "type": "number",
-               "default": 1,
-               "minimum": 0
-            },
-            "on_drop_attempt": {
-               "default": {
-                  "event": "",
-                  "target": "self",
-                  "filters": {
-                     "all_of": null,
-                     "all": null,
-                     "OR": null,
-                     "AND": null,
-                     "any_of": null,
-                     "any": null,
-                     "none_of": null,
-                     "NOT": null
-                  }
-               },
-               "$ref": "#/definitions/121353999"
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "search_count": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "search_height": {
-               "type": "integer",
-               "default": 1,
-               "exclusiveMinimum": 0
-            },
-            "search_range": {
-               "type": "integer",
-               "default": 0,
-               "exclusiveMinimum": 0
-            },
-            "seconds_before_pickup": {
-               "type": "number",
-               "default": 0,
-               "minimum": 0
-            },
-            "speed_multiplier": {
-               "type": "number",
-               "default": 1,
-               "minimum": 0
-            },
-            "target_range": {
-               "default": [
-                  1,
-                  1,
-                  1
-               ],
-               "$ref": "#/definitions/4004946602"
-            },
-            "teleport_offset": {
-               "default": [
-                  0,
-                  1,
-                  0
-               ],
-               "$ref": "#/definitions/4004946602"
-            },
-            "time_of_day_range": {
-               "default": {
-                  "min": 0,
-                  "max": 1
-               },
-               "$ref": "#/definitions/1057349585"
-            }
-         }
-      },
-      "1900210559": {
-         "title": "minecraft:behavior.use_kinetic_weapon",
-         "type": "object",
-         "properties": {
-            "approach_distance": {
-               "type": "number",
-               "default": 8,
-               "minimum": 0
-            },
-            "attack_once": {
-               "type": "boolean",
-               "default": false
-            },
-            "attack_types": {
-               "type": "string",
-               "default": ""
-            },
-            "can_spread_on_fire": {
-               "type": "boolean",
-               "default": false
-            },
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "cooldown_distance": {
-               "default": {
-                  "min": 8,
-                  "max": 8
-               },
-               "$ref": "#/definitions/1057349585"
-            },
-            "cooldown_speed_multiplier": {
-               "type": "number",
-               "default": 1,
-               "minimum": 0
-            },
-            "cooldown_time": {
-               "type": "number",
-               "default": 1,
-               "minimum": 0
-            },
-            "hijack_mount_navigation": {
-               "type": "boolean",
-               "default": false
-            },
-            "inner_boundary_time_increase": {
-               "type": "number",
-               "default": 0.25,
-               "minimum": 0
-            },
-            "max_path_time": {
-               "type": "number",
-               "default": 0.550000011920929,
-               "minimum": 0
-            },
-            "melee_fov": {
-               "type": "number",
-               "default": 90,
-               "minimum": 0
-            },
-            "min_path_time": {
-               "type": "number",
-               "default": 0.20000000298023224,
-               "minimum": 0
-            },
-            "on_attack": {
-               "default": {
-                  "event": "",
-                  "target": "self",
-                  "filters": {
-                     "OR": null,
-                     "all": null,
-                     "all_of": null,
-                     "AND": null,
-                     "any_of": null,
-                     "none_of": null,
-                     "any": null,
-                     "NOT": null
-                  }
-               },
-               "$ref": "#/definitions/121353999"
-            },
-            "on_kill": {
-               "default": {
-                  "event": "",
-                  "target": "self",
-                  "filters": {
-                     "OR": null,
-                     "all": null,
-                     "all_of": null,
-                     "AND": null,
-                     "any_of": null,
-                     "none_of": null,
-                     "any": null,
-                     "NOT": null
-                  }
-               },
-               "$ref": "#/definitions/121353999"
-            },
-            "outer_boundary_time_increase": {
-               "type": "number",
-               "default": 0.5,
-               "minimum": 0
-            },
-            "path_fail_time_increase": {
-               "type": "number",
-               "default": 0.75,
-               "minimum": 0
-            },
-            "path_inner_boundary": {
-               "type": "number",
-               "default": 16,
-               "minimum": 0
-            },
-            "path_outer_boundary": {
-               "type": "number",
-               "default": 32,
-               "minimum": 0
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "random_stop_interval": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "reposition_distance": {
-               "default": {
-                  "min": 2,
-                  "max": 2
-               },
-               "$ref": "#/definitions/1057349585"
-            },
-            "reposition_speed_multiplier": {
-               "type": "number",
-               "default": 1,
-               "minimum": 0
-            },
-            "require_complete_path": {
-               "type": "boolean",
-               "default": false
-            },
-            "speed_multiplier": {
-               "type": "number",
-               "default": 1,
-               "minimum": 0
-            },
-            "track_target": {
-               "type": "boolean",
-               "default": false
-            },
-            "weapon_min_speed_multiplier": {
-               "type": "number",
-               "default": 1,
-               "minimum": 0
-            },
-            "weapon_reach_multiplier": {
-               "type": "number",
-               "default": 1,
-               "minimum": 0
-            },
-            "x_max_rotation": {
-               "type": "number",
-               "default": 30,
-               "minimum": 0
-            },
-            "y_max_head_rotation": {
-               "type": "number",
-               "default": 30,
-               "minimum": 0
-            }
-         }
-      },
-      "1926664697": {
-         "title": "minecraft:behavior.controlled_by_player",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "fractional_rotation": {
-               "type": "number",
-               "default": 0.5,
-               "minimum": 0.5,
-               "maximum": 1
-            },
-            "fractional_rotation_limit": {
-               "type": "number",
-               "default": 5
-            },
-            "mount_speed_multiplier": {
-               "type": "number",
-               "default": 1
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            }
-         }
-      },
-      "1949055570": {
-         "title": "minecraft:behavior.sniff",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "cooldown_range": {
-               "default": {
-                  "min": 3,
-                  "max": 10
-               },
-               "$ref": "#/definitions/1057349585"
-            },
-            "duration": {
-               "type": "number",
-               "default": 1
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "sniffing_radius": {
-               "type": "number",
-               "default": 5
-            },
-            "suspicion_radius_horizontal": {
-               "type": "number",
-               "default": 3
-            },
-            "suspicion_radius_vertical": {
-               "type": "number",
-               "default": 3,
-               "minimum": 1
-            }
-         }
-      },
-      "1979855054": {
-         "title": "minecraft:behavior.swoop_attack",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "damage_reach": {
-               "type": "number",
-               "default": 0.20000000298023224
-            },
-            "delay_range": {
-               "default": {
-                  "min": 10,
-                  "max": 20
-               },
-               "$ref": "#/definitions/1057349585"
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "speed_multiplier": {
-               "type": "number",
-               "default": 1
-            }
-         }
-      },
-      "2023027994": {
-         "title": "RendersWhenInvisibleDefinition"
-      },
-      "2023415389": {
-         "title": "IsShakingDefinition"
-      },
-      "2041076969": {
-         "title": "IsSaddledDefinition"
-      },
-      "2124526562": {
-         "title": "minecraft:behavior.guardian_attack",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "elder_extra_magic_damage": {
-               "type": "integer",
-               "default": 2,
-               "exclusiveMinimum": 0
-            },
-            "hard_mode_extra_magic_damage": {
-               "type": "integer",
-               "default": 2,
-               "exclusiveMinimum": 0
-            },
-            "magic_damage": {
-               "type": "integer",
-               "default": 1,
-               "exclusiveMinimum": 0
-            },
-            "min_distance": {
-               "type": "number",
-               "default": 3,
-               "minimum": 0
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "sound_delay_time": {
-               "type": "number",
-               "default": 0.5,
-               "exclusiveMinimum": 0
-            },
-            "x_max_rotation": {
-               "type": "number",
-               "default": 90,
-               "exclusiveMinimum": 0
-            },
-            "y_max_head_rotation": {
-               "type": "number",
-               "default": 90,
-               "exclusiveMinimum": 0
-            }
-         }
-      },
-      "2159667979": {
-         "title": "minecraft:behavior.eat_mob",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "eat_animation_time": {
-               "type": "number",
-               "default": 1
-            },
-            "eat_mob_sound": {
-               "type": "string",
-               "default": ""
-            },
-            "loot_table": {
-               "type": "string",
-               "default": ""
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "pull_in_force": {
-               "type": "number",
-               "default": 1
-            },
-            "reach_mob_distance": {
-               "type": "number",
-               "default": 1
-            },
-            "run_speed": {
-               "type": "number",
-               "default": 1
-            }
-         }
-      },
-      "2259974185": {
-         "title": "minecraft:behavior.stomp_attack",
-         "type": "object",
-         "properties": {
-            "attack_once": {
-               "type": "boolean",
-               "default": false
-            },
-            "attack_types": {
-               "type": "string",
-               "default": ""
-            },
-            "can_spread_on_fire": {
-               "type": "boolean",
-               "default": false
-            },
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "cooldown_time": {
-               "type": "number",
-               "default": 1,
-               "minimum": 0
-            },
-            "inner_boundary_time_increase": {
-               "type": "number",
-               "default": 0.25,
-               "minimum": 0
-            },
-            "max_path_time": {
-               "type": "number",
-               "default": 0.550000011920929,
-               "minimum": 0
-            },
-            "min_path_time": {
-               "type": "number",
-               "default": 0.20000000298023224,
-               "minimum": 0
-            },
-            "no_damage_range_multiplier": {
-               "type": "number",
-               "default": 2,
-               "exclusiveMinimum": 0
-            },
-            "on_attack": {
-               "default": {
-                  "event": "",
-                  "target": "self",
-                  "filters": {
-                     "OR": null,
-                     "all": null,
-                     "all_of": null,
-                     "AND": null,
-                     "any_of": null,
-                     "none_of": null,
-                     "any": null,
-                     "NOT": null
-                  }
-               },
-               "$ref": "#/definitions/121353999"
-            },
-            "on_kill": {
-               "default": {
-                  "event": "",
-                  "target": "self",
-                  "filters": {
-                     "OR": null,
-                     "all": null,
-                     "all_of": null,
-                     "AND": null,
-                     "any_of": null,
-                     "none_of": null,
-                     "any": null,
-                     "NOT": null
-                  }
-               },
-               "$ref": "#/definitions/121353999"
-            },
-            "outer_boundary_time_increase": {
-               "type": "number",
-               "default": 0.5,
-               "minimum": 0
-            },
-            "path_fail_time_increase": {
-               "type": "number",
-               "default": 0.75,
-               "minimum": 0
-            },
-            "path_inner_boundary": {
-               "type": "number",
-               "default": 16,
-               "minimum": 0
-            },
-            "path_outer_boundary": {
-               "type": "number",
-               "default": 32,
-               "minimum": 0
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "random_stop_interval": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "reach_multiplier": {
-               "type": "number",
-               "default": 2,
-               "minimum": 0
-            },
-            "require_complete_path": {
-               "type": "boolean",
-               "default": false
-            },
-            "speed_multiplier": {
-               "type": "number",
-               "default": 1,
-               "minimum": 0
-            },
-            "stomp_range_multiplier": {
-               "type": "number",
-               "default": 2,
-               "exclusiveMinimum": 0
-            },
-            "track_target": {
-               "type": "boolean",
-               "default": false
-            },
-            "x_max_rotation": {
-               "type": "number",
-               "default": 30,
-               "minimum": 0
-            },
-            "y_max_head_rotation": {
-               "type": "number",
-               "default": 30,
-               "minimum": 0
-            }
-         }
-      },
-      "2267778531": {
-         "title": "Molang string",
-         "oneOf": [
-            {
-               "type": "string"
-            },
-            {
-               "type": "object",
-               "properties": {
-                  "expression": {
-                     "type": "string"
-                  },
-                  "version": {
-                     "type": "integer"
-                  }
-               },
-               "required": [
-                  "expression",
-                  "version"
-               ]
-            }
-         ]
-      },
-      "2291122496": {
-         "title": "minecraft:behavior.swim_up_for_breath",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "material_type": {
-               "type": "string",
-               "default": "water"
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "search_height": {
-               "type": "integer",
-               "default": 16
-            },
-            "search_radius": {
-               "type": "integer",
-               "default": 4
-            },
-            "speed_mod": {
-               "type": "number",
-               "default": 1.399999976158142
-            }
-         }
-      },
-      "2309924397": {
-         "title": "minecraft:behavior.sonic_boom",
-         "type": "object",
-         "properties": {
-            "attack_cooldown": {
-               "type": "number",
-               "default": 5
-            },
-            "attack_damage": {
-               "type": "number",
-               "default": 30
-            },
-            "attack_range_horizontal": {
-               "type": "number",
-               "default": 15
-            },
-            "attack_range_vertical": {
-               "type": "number",
-               "default": 20
-            },
-            "attack_sound": {
-               "type": "string",
-               "default": ""
-            },
-            "charge_sound": {
-               "type": "string",
-               "default": ""
-            },
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "duration": {
-               "type": "number",
-               "default": 0,
-               "minimum": 0
-            },
-            "duration_until_attack_sound": {
-               "type": "number",
-               "default": 1.7000000476837158
-            },
-            "knockback_height_cap": {
-               "type": "number",
-               "default": 0
-            },
-            "knockback_horizontal_strength": {
-               "type": "number",
-               "default": 0
-            },
-            "knockback_vertical_strength": {
-               "type": "number",
-               "default": 0
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "speed_multiplier": {
-               "type": "number",
-               "default": 1
-            }
-         }
-      },
-      "2337874215": {
-         "title": "IsStunnedDefinition"
-      },
-      "2376835520": {
-         "title": "minecraft:behavior.dragonchargeplayer",
-         "type": "object",
-         "properties": {
-            "active_speed": {
-               "type": "number",
-               "default": 3,
-               "minimum": 0
-            },
-            "continue_charge_threshold_time": {
-               "type": "number",
-               "default": 0.5,
-               "exclusiveMinimum": 0
-            },
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "flight_speed": {
-               "type": "number",
-               "default": 0.6000000238418579,
-               "minimum": 0
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "target_zone": {
-               "default": {
-                  "min": 10,
-                  "max": 150
-               },
-               "$ref": "#/definitions/1057349585"
-            },
-            "turn_speed": {
-               "type": "number",
-               "default": 0.699999988079071,
-               "minimum": 0
-            }
-         }
-      },
-      "2379072710": {
-         "title": "minecraft:behavior.drink_milk",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "cooldown_seconds": {
-               "type": "number",
-               "default": 5
-            },
-            "filters": {
-               "default": {
-                  "OR": null,
-                  "all": null,
-                  "all_of": null,
-                  "AND": null,
-                  "any_of": null,
-                  "none_of": null,
-                  "any": null,
-                  "NOT": null
-               },
-               "$ref": "#/definitions/1088251937"
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            }
-         }
-      },
-      "2567691908": {
-         "title": "minecraft:behavior.slime_float",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "jump_chance_percentage": {
-               "type": "number",
-               "default": 0.800000011920929
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "speed_multiplier": {
-               "type": "number",
-               "default": 1.2000000476837158
-            }
-         }
-      },
-      "2628131938": {
-         "title": "minecraft:behavior.slime_keep_on_jumping",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "speed_multiplier": {
-               "type": "number",
-               "default": 1
-            }
-         }
-      },
-      "2695390314": {
-         "title": "Rider Data",
-         "type": "object",
-         "properties": {
-            "entity_type": {
-               "type": "string"
-            },
-            "spawn_event": {
-               "type": "string",
-               "default": ""
-            }
-         },
-         "required": [
-            "entity_type"
-         ]
-      },
-      "2704775729": {
-         "title": "BodyRotationAlwaysFollowsHeadDefinition"
-      },
-      "2736897213": {
-         "title": "CanPowerJumpDefinition"
-      },
-      "2755982734": {
-         "title": "minecraft:behavior.delayed_attack",
-         "type": "object",
-         "properties": {
-            "attack_duration": {
-               "type": "number",
-               "default": 0.75,
-               "minimum": 0
-            },
-            "attack_once": {
-               "type": "boolean",
-               "default": false
-            },
-            "attack_types": {
-               "type": "string",
-               "default": ""
-            },
-            "can_spread_on_fire": {
-               "type": "boolean",
-               "default": false
-            },
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "hit_delay_pct": {
-               "type": "number",
-               "default": 0.5,
-               "minimum": 0,
-               "maximum": 1
-            },
-            "inner_boundary_time_increase": {
-               "type": "number",
-               "default": 0.25,
-               "minimum": 0
-            },
-            "max_path_time": {
-               "type": "number",
-               "default": 0.550000011920929,
-               "minimum": 0
-            },
-            "melee_fov": {
-               "type": "number",
-               "default": 90,
-               "minimum": 0
-            },
-            "min_path_time": {
-               "type": "number",
-               "default": 0.20000000298023224,
-               "minimum": 0
-            },
-            "on_attack": {
-               "default": {
-                  "event": "",
-                  "target": "self",
-                  "filters": {
-                     "OR": null,
-                     "all": null,
-                     "all_of": null,
-                     "AND": null,
-                     "any_of": null,
-                     "none_of": null,
-                     "any": null,
-                     "NOT": null
-                  }
-               },
-               "$ref": "#/definitions/121353999"
-            },
-            "on_kill": {
-               "default": {
-                  "event": "",
-                  "target": "self",
-                  "filters": {
-                     "OR": null,
-                     "all": null,
-                     "all_of": null,
-                     "AND": null,
-                     "any_of": null,
-                     "none_of": null,
-                     "any": null,
-                     "NOT": null
-                  }
-               },
-               "$ref": "#/definitions/121353999"
-            },
-            "outer_boundary_time_increase": {
-               "type": "number",
-               "default": 0.5,
-               "minimum": 0
-            },
-            "path_fail_time_increase": {
-               "type": "number",
-               "default": 0.75,
-               "minimum": 0
-            },
-            "path_inner_boundary": {
-               "type": "number",
-               "default": 16,
-               "minimum": 0
-            },
-            "path_outer_boundary": {
-               "type": "number",
-               "default": 32,
-               "minimum": 0
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "random_stop_interval": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "reach_multiplier": {
-               "type": "number",
-               "default": 1.5,
-               "minimum": 0
-            },
-            "require_complete_path": {
-               "type": "boolean",
-               "default": false
-            },
-            "sound_event": {
+            "lay_egg_sound": {
                "title": "LevelSoundEvent",
                "type": "string",
-               "default": "attack.strong",
+               "default": "lay_egg",
                "enum": [
                   "item.use.on",
                   "hit",
@@ -5460,6 +4005,844 @@
                   "undefined"
                ]
             },
+            "lay_seconds": {
+               "type": "number",
+               "default": 10,
+               "minimum": 0
+            },
+            "on_lay": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "all_of": null,
+                     "all": null,
+                     "OR": null,
+                     "AND": null,
+                     "any_of": null,
+                     "any": null,
+                     "none_of": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/121353999"
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "search_height": {
+               "type": "integer",
+               "default": 1,
+               "exclusiveMinimum": 0
+            },
+            "search_range": {
+               "type": "integer",
+               "default": 0,
+               "exclusiveMinimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1,
+               "minimum": 0
+            },
+            "target_blocks": {
+               "type": "array",
+               "default": [
+                  "minecraft:sand"
+               ],
+               "items": {
+                  "type": "string"
+               }
+            },
+            "target_materials_above_block": {
+               "type": "array",
+               "default": [
+                  "air"
+               ],
+               "items": {
+                  "type": "string"
+               }
+            },
+            "use_default_animation": {
+               "type": "boolean",
+               "default": true
+            }
+         }
+      },
+      "1374016683": {
+         "title": "minecraft:behavior.investigate_suspicious_location",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "goal_radius": {
+               "type": "number",
+               "default": 1.5
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1
+            }
+         }
+      },
+      "1428321837": {
+         "title": "minecraft:behavior.inspect_bookshelf",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "goal_radius": {
+               "type": "number",
+               "default": 0.5,
+               "exclusiveMinimum": 0
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "search_count": {
+               "type": "integer",
+               "default": 10,
+               "minimum": 0
+            },
+            "search_height": {
+               "type": "integer",
+               "default": 1,
+               "exclusiveMinimum": 0
+            },
+            "search_range": {
+               "type": "integer",
+               "default": 0,
+               "exclusiveMinimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1,
+               "minimum": 0
+            }
+         }
+      },
+      "1492465940": {
+         "title": "minecraft:behavior.dragonflaming",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "cooldown_time": {
+               "type": "number",
+               "default": 10
+            },
+            "flame_time": {
+               "type": "number",
+               "default": 0.5
+            },
+            "ground_flame_count": {
+               "type": "integer",
+               "default": 4
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "roar_time": {
+               "type": "number",
+               "default": 2
+            },
+            "smoke_color": {
+               "type": "string",
+               "default": "#DC00EF"
+            },
+            "smoke_radius": {
+               "type": "number",
+               "default": 5
+            },
+            "smoke_time": {
+               "type": "number",
+               "default": 10
+            }
+         }
+      },
+      "1503334322": {
+         "title": "minecraft:behavior.random_search_and_dig",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "cooldown_range": {
+               "default": {
+                  "min": 0,
+                  "max": 0
+               },
+               "$ref": "#/definitions/1057349585"
+            },
+            "digging_duration_range": {
+               "default": {
+                  "min": 8,
+                  "max": 10
+               },
+               "$ref": "#/definitions/1057349585"
+            },
+            "find_valid_position_retries": {
+               "type": "integer",
+               "default": 5
+            },
+            "goal_radius": {
+               "type": "number",
+               "default": 1.5
+            },
+            "item_table": {
+               "type": "string",
+               "default": ""
+            },
+            "on_digging_start": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "all_of": null,
+                     "all": null,
+                     "OR": null,
+                     "AND": null,
+                     "any_of": null,
+                     "any": null,
+                     "none_of": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/121353999"
+            },
+            "on_fail_during_digging": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "all_of": null,
+                     "all": null,
+                     "OR": null,
+                     "AND": null,
+                     "any_of": null,
+                     "any": null,
+                     "none_of": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/121353999"
+            },
+            "on_fail_during_searching": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "all_of": null,
+                     "all": null,
+                     "OR": null,
+                     "AND": null,
+                     "any_of": null,
+                     "any": null,
+                     "none_of": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/121353999"
+            },
+            "on_item_found": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "all_of": null,
+                     "all": null,
+                     "OR": null,
+                     "AND": null,
+                     "any_of": null,
+                     "any": null,
+                     "none_of": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/121353999"
+            },
+            "on_searching_start": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "all_of": null,
+                     "all": null,
+                     "OR": null,
+                     "AND": null,
+                     "any_of": null,
+                     "any": null,
+                     "none_of": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/121353999"
+            },
+            "on_success": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "all_of": null,
+                     "all": null,
+                     "OR": null,
+                     "AND": null,
+                     "any_of": null,
+                     "any": null,
+                     "none_of": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/121353999"
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "search_range_xz": {
+               "type": "integer",
+               "default": 10
+            },
+            "search_range_y": {
+               "type": "integer",
+               "default": 7
+            },
+            "spawn_item_after_seconds": {
+               "type": "number",
+               "default": 0,
+               "minimum": 0
+            },
+            "spawn_item_pos_offset": {
+               "type": "number",
+               "default": 0,
+               "minimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1,
+               "minimum": 0
+            },
+            "target_blocks": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/2794205495"
+               }
+            },
+            "target_dig_position_offset": {
+               "type": "number",
+               "default": 2.25
+            }
+         }
+      },
+      "1531870811": {
+         "title": "Item Descriptor",
+         "oneOf": [
+            {
+               "type": "string"
+            },
+            {
+               "type": "object",
+               "additionalProperties": {
+                  "type": "string"
+               }
+            }
+         ]
+      },
+      "1557623393": {
+         "title": "minecraft:behavior.explore_outskirts",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "dist_from_boundary": {
+               "default": [
+                  5,
+                  0,
+                  5
+               ],
+               "$ref": "#/definitions/4004946602"
+            },
+            "explore_dist": {
+               "type": "number",
+               "default": 5
+            },
+            "max_travel_time": {
+               "type": "number",
+               "default": 60
+            },
+            "max_wait_time": {
+               "type": "number",
+               "default": 0
+            },
+            "min_dist_from_target": {
+               "type": "number",
+               "default": 2.25
+            },
+            "min_perimeter": {
+               "type": "number",
+               "default": 1
+            },
+            "min_wait_time": {
+               "type": "number",
+               "default": 3
+            },
+            "next_xz": {
+               "type": "integer",
+               "default": 5
+            },
+            "next_y": {
+               "type": "integer",
+               "default": 3
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1
+            },
+            "timer_ratio": {
+               "type": "number",
+               "default": 2
+            }
+         }
+      },
+      "1658730604": {
+         "title": "minecraft:behavior.nearest_attackable_target",
+         "type": "object",
+         "properties": {
+            "attack_interval": {
+               "default": {
+                  "min": 0,
+                  "max": 0
+               },
+               "$ref": "#/definitions/1057349585"
+            },
+            "attack_owner": {
+               "type": "boolean",
+               "default": false
+            },
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "entity_types": {
+               "default": [],
+               "$ref": "#/definitions/4227886613"
+            },
+            "must_reach": {
+               "type": "boolean",
+               "default": false
+            },
+            "must_see": {
+               "type": "boolean",
+               "default": false
+            },
+            "must_see_forget_duration": {
+               "type": "number",
+               "default": 3,
+               "minimum": 0
+            },
+            "persist_time": {
+               "type": "number",
+               "default": 0,
+               "minimum": 0
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "reselect_targets": {
+               "type": "boolean",
+               "default": false
+            },
+            "scan_interval": {
+               "type": "integer",
+               "default": 10,
+               "minimum": 1
+            },
+            "set_persistent": {
+               "type": "boolean",
+               "default": false
+            },
+            "target_acquisition_probability": {
+               "type": "number",
+               "default": 1
+            },
+            "target_invisible_multiplier": {
+               "type": "number",
+               "default": 0.699999988079071
+            },
+            "target_search_height": {
+               "type": "number",
+               "default": -1,
+               "minimum": -1
+            },
+            "target_sneak_visibility_multiplier": {
+               "type": "number",
+               "default": 0.800000011920929
+            },
+            "within_radius": {
+               "type": "number",
+               "default": 0,
+               "minimum": 0
+            }
+         }
+      },
+      "1682332161": {
+         "title": "CanClimbDefinition"
+      },
+      "1703168766": {
+         "title": "IsBabyDefinition"
+      },
+      "1729146119": {
+         "title": "IsTamedDefinition"
+      },
+      "1820403110": {
+         "title": "IsIllagerCaptainDefinition"
+      },
+      "1861715976": {
+         "title": "minecraft:behavior.transport_items",
+         "type": "object",
+         "properties": {
+            "allow_simultaneous_interaction": {
+               "type": "boolean",
+               "default": false
+            },
+            "allowed_items": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/1531870811"
+               }
+            },
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "destination_container_types": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/2794205495"
+               }
+            },
+            "disallowed_items": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/1531870811"
+               }
+            },
+            "idle_cooldown": {
+               "type": "integer",
+               "default": 20,
+               "minimum": 0
+            },
+            "initial_cooldown": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "interaction_time": {
+               "type": "number",
+               "default": 3,
+               "minimum": 0
+            },
+            "max_stack_size": {
+               "type": "integer",
+               "default": 64,
+               "minimum": 1,
+               "maximum": 64
+            },
+            "max_visited_containers": {
+               "type": "integer",
+               "default": 16,
+               "minimum": 0
+            },
+            "place_strategy": {
+               "title": "place_strategy",
+               "type": "string",
+               "default": "any",
+               "enum": [
+                  "any",
+                  "with_matching",
+                  "with_matching_or_empty"
+               ]
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "search_distance": {
+               "default": [
+                  64,
+                  32
+               ],
+               "$ref": "#/definitions/4021724221"
+            },
+            "search_strategy": {
+               "title": "search_strategy",
+               "type": "string",
+               "default": "random",
+               "enum": [
+                  "nearest",
+                  "random"
+               ]
+            },
+            "source_container_types": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/2794205495"
+               }
+            }
+         }
+      },
+      "1900210559": {
+         "title": "minecraft:behavior.use_kinetic_weapon",
+         "type": "object",
+         "properties": {
+            "approach_distance": {
+               "type": "number",
+               "default": 8,
+               "minimum": 0
+            },
+            "attack_once": {
+               "type": "boolean",
+               "default": false
+            },
+            "attack_types": {
+               "type": "string",
+               "default": ""
+            },
+            "can_spread_on_fire": {
+               "type": "boolean",
+               "default": false
+            },
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "cooldown_distance": {
+               "default": {
+                  "min": 8,
+                  "max": 8
+               },
+               "$ref": "#/definitions/1057349585"
+            },
+            "cooldown_speed_multiplier": {
+               "type": "number",
+               "default": 1,
+               "minimum": 0
+            },
+            "cooldown_time": {
+               "type": "number",
+               "default": 1,
+               "minimum": 0
+            },
+            "hijack_mount_navigation": {
+               "type": "boolean",
+               "default": false
+            },
+            "inner_boundary_time_increase": {
+               "type": "number",
+               "default": 0.25,
+               "minimum": 0
+            },
+            "max_path_time": {
+               "type": "number",
+               "default": 0.550000011920929,
+               "minimum": 0
+            },
+            "melee_fov": {
+               "type": "number",
+               "default": 90,
+               "minimum": 0
+            },
+            "min_path_time": {
+               "type": "number",
+               "default": 0.20000000298023224,
+               "minimum": 0
+            },
+            "on_attack": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "OR": null,
+                     "all": null,
+                     "all_of": null,
+                     "AND": null,
+                     "any_of": null,
+                     "none_of": null,
+                     "any": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/121353999"
+            },
+            "on_kill": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "OR": null,
+                     "all": null,
+                     "all_of": null,
+                     "AND": null,
+                     "any_of": null,
+                     "none_of": null,
+                     "any": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/121353999"
+            },
+            "outer_boundary_time_increase": {
+               "type": "number",
+               "default": 0.5,
+               "minimum": 0
+            },
+            "path_fail_time_increase": {
+               "type": "number",
+               "default": 0.75,
+               "minimum": 0
+            },
+            "path_inner_boundary": {
+               "type": "number",
+               "default": 16,
+               "minimum": 0
+            },
+            "path_outer_boundary": {
+               "type": "number",
+               "default": 32,
+               "minimum": 0
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "random_stop_interval": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "reposition_distance": {
+               "default": {
+                  "min": 2,
+                  "max": 2
+               },
+               "$ref": "#/definitions/1057349585"
+            },
+            "reposition_speed_multiplier": {
+               "type": "number",
+               "default": 1,
+               "minimum": 0
+            },
+            "require_complete_path": {
+               "type": "boolean",
+               "default": false
+            },
             "speed_multiplier": {
                "type": "number",
                "default": 1,
@@ -5467,7 +4850,17 @@
             },
             "track_target": {
                "type": "boolean",
-               "default": true
+               "default": false
+            },
+            "weapon_min_speed_multiplier": {
+               "type": "number",
+               "default": 1,
+               "minimum": 0
+            },
+            "weapon_reach_multiplier": {
+               "type": "number",
+               "default": 1,
+               "minimum": 0
             },
             "x_max_rotation": {
                "type": "number",
@@ -5478,6 +4871,989 @@
                "type": "number",
                "default": 30,
                "minimum": 0
+            }
+         }
+      },
+      "1921218376": {
+         "title": "minecraft:behavior.look_at_entity",
+         "type": "object",
+         "properties": {
+            "angle_of_view_horizontal": {
+               "type": "integer",
+               "default": 360,
+               "minimum": 0,
+               "maximum": 360
+            },
+            "angle_of_view_vertical": {
+               "type": "integer",
+               "default": 360,
+               "minimum": 0,
+               "maximum": 360
+            },
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/1088251937"
+            },
+            "look_distance": {
+               "type": "number",
+               "default": 8,
+               "minimum": 0
+            },
+            "look_time": {
+               "default": {
+                  "min": 2,
+                  "max": 4
+               },
+               "$ref": "#/definitions/1057349585"
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "probability": {
+               "type": "number",
+               "default": 0.019999999552965164,
+               "minimum": 0,
+               "maximum": 1
+            }
+         }
+      },
+      "1926664697": {
+         "title": "minecraft:behavior.controlled_by_player",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "fractional_rotation": {
+               "type": "number",
+               "default": 0.5,
+               "minimum": 0.5,
+               "maximum": 1
+            },
+            "fractional_rotation_limit": {
+               "type": "number",
+               "default": 5
+            },
+            "mount_speed_multiplier": {
+               "type": "number",
+               "default": 1
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            }
+         }
+      },
+      "1949055570": {
+         "title": "minecraft:behavior.sniff",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "cooldown_range": {
+               "default": {
+                  "min": 3,
+                  "max": 10
+               },
+               "$ref": "#/definitions/1057349585"
+            },
+            "duration": {
+               "type": "number",
+               "default": 1
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "sniffing_radius": {
+               "type": "number",
+               "default": 5
+            },
+            "suspicion_radius_horizontal": {
+               "type": "number",
+               "default": 3
+            },
+            "suspicion_radius_vertical": {
+               "type": "number",
+               "default": 3,
+               "minimum": 1
+            }
+         }
+      },
+      "1979855054": {
+         "title": "minecraft:behavior.swoop_attack",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "damage_reach": {
+               "type": "number",
+               "default": 0.20000000298023224
+            },
+            "delay_range": {
+               "default": {
+                  "min": 10,
+                  "max": 20
+               },
+               "$ref": "#/definitions/1057349585"
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1
+            }
+         }
+      },
+      "2023027994": {
+         "title": "RendersWhenInvisibleDefinition"
+      },
+      "2023415389": {
+         "title": "IsShakingDefinition"
+      },
+      "2041076969": {
+         "title": "IsSaddledDefinition"
+      },
+      "2047937041": {
+         "title": "Rider Data",
+         "type": "object",
+         "properties": {
+            "entity_type": {
+               "type": "string"
+            },
+            "spawn_event": {
+               "type": "string",
+               "default": ""
+            }
+         },
+         "required": [
+            "entity_type"
+         ]
+      },
+      "2089624687": {
+         "title": "minecraft:behavior.move_towards_home_restriction",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1
+            }
+         }
+      },
+      "2124526562": {
+         "title": "minecraft:behavior.guardian_attack",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "elder_extra_magic_damage": {
+               "type": "integer",
+               "default": 2,
+               "exclusiveMinimum": 0
+            },
+            "hard_mode_extra_magic_damage": {
+               "type": "integer",
+               "default": 2,
+               "exclusiveMinimum": 0
+            },
+            "magic_damage": {
+               "type": "integer",
+               "default": 1,
+               "exclusiveMinimum": 0
+            },
+            "min_distance": {
+               "type": "number",
+               "default": 3,
+               "minimum": 0
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "sound_delay_time": {
+               "type": "number",
+               "default": 0.5,
+               "exclusiveMinimum": 0
+            },
+            "x_max_rotation": {
+               "type": "number",
+               "default": 90,
+               "exclusiveMinimum": 0
+            },
+            "y_max_head_rotation": {
+               "type": "number",
+               "default": 90,
+               "exclusiveMinimum": 0
+            }
+         }
+      },
+      "2159667979": {
+         "title": "minecraft:behavior.eat_mob",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "eat_animation_time": {
+               "type": "number",
+               "default": 1
+            },
+            "eat_mob_sound": {
+               "type": "string",
+               "default": ""
+            },
+            "loot_table": {
+               "type": "string",
+               "default": ""
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "pull_in_force": {
+               "type": "number",
+               "default": 1
+            },
+            "reach_mob_distance": {
+               "type": "number",
+               "default": 1
+            },
+            "run_speed": {
+               "type": "number",
+               "default": 1
+            }
+         }
+      },
+      "2267778531": {
+         "title": "Molang string",
+         "oneOf": [
+            {
+               "type": "string"
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "expression": {
+                     "type": "string"
+                  },
+                  "version": {
+                     "type": "integer"
+                  }
+               },
+               "required": [
+                  "expression",
+                  "version"
+               ]
+            }
+         ]
+      },
+      "2291122496": {
+         "title": "minecraft:behavior.swim_up_for_breath",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "material_type": {
+               "type": "string",
+               "default": "water"
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "search_height": {
+               "type": "integer",
+               "default": 16
+            },
+            "search_radius": {
+               "type": "integer",
+               "default": 4
+            },
+            "speed_mod": {
+               "type": "number",
+               "default": 1.399999976158142
+            }
+         }
+      },
+      "2309924397": {
+         "title": "minecraft:behavior.sonic_boom",
+         "type": "object",
+         "properties": {
+            "attack_cooldown": {
+               "type": "number",
+               "default": 5
+            },
+            "attack_damage": {
+               "type": "number",
+               "default": 30
+            },
+            "attack_range_horizontal": {
+               "type": "number",
+               "default": 15
+            },
+            "attack_range_vertical": {
+               "type": "number",
+               "default": 20
+            },
+            "attack_sound": {
+               "type": "string",
+               "default": ""
+            },
+            "charge_sound": {
+               "type": "string",
+               "default": ""
+            },
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "duration": {
+               "type": "number",
+               "default": 0,
+               "minimum": 0
+            },
+            "duration_until_attack_sound": {
+               "type": "number",
+               "default": 1.7000000476837158
+            },
+            "knockback_height_cap": {
+               "type": "number",
+               "default": 0
+            },
+            "knockback_horizontal_strength": {
+               "type": "number",
+               "default": 0
+            },
+            "knockback_vertical_strength": {
+               "type": "number",
+               "default": 0
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1
+            }
+         }
+      },
+      "2337874215": {
+         "title": "IsStunnedDefinition"
+      },
+      "2379072710": {
+         "title": "minecraft:behavior.drink_milk",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "cooldown_seconds": {
+               "type": "number",
+               "default": 5
+            },
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/1088251937"
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            }
+         }
+      },
+      "2478831908": {
+         "title": "minecraft:behavior.timer_flag_1",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "cooldown_range": {
+               "default": {
+                  "min": 0,
+                  "max": 0
+               },
+               "$ref": "#/definitions/1057349585"
+            },
+            "duration_range": {
+               "default": {
+                  "min": 0,
+                  "max": 0
+               },
+               "$ref": "#/definitions/1057349585"
+            },
+            "on_end": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "OR": null,
+                     "all": null,
+                     "all_of": null,
+                     "AND": null,
+                     "any_of": null,
+                     "none_of": null,
+                     "any": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/121353999"
+            },
+            "on_start": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "OR": null,
+                     "all": null,
+                     "all_of": null,
+                     "AND": null,
+                     "any_of": null,
+                     "none_of": null,
+                     "any": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/121353999"
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            }
+         }
+      },
+      "2567691908": {
+         "title": "minecraft:behavior.slime_float",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "jump_chance_percentage": {
+               "type": "number",
+               "default": 0.800000011920929
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1.2000000476837158
+            }
+         }
+      },
+      "2590440254": {
+         "title": "minecraft:behavior.look_at_target",
+         "type": "object",
+         "properties": {
+            "angle_of_view_horizontal": {
+               "type": "integer",
+               "default": 360,
+               "minimum": 0,
+               "maximum": 360
+            },
+            "angle_of_view_vertical": {
+               "type": "integer",
+               "default": 360,
+               "minimum": 0,
+               "maximum": 360
+            },
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "look_distance": {
+               "type": "number",
+               "default": 8,
+               "minimum": 0
+            },
+            "look_time": {
+               "default": {
+                  "min": 2,
+                  "max": 4
+               },
+               "$ref": "#/definitions/1057349585"
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "probability": {
+               "type": "number",
+               "default": 0.019999999552965164,
+               "minimum": 0,
+               "maximum": 1
+            }
+         }
+      },
+      "2628131938": {
+         "title": "minecraft:behavior.slime_keep_on_jumping",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1
+            }
+         }
+      },
+      "2645365302": {
+         "title": "minecraft:behavior.stomp_attack",
+         "type": "object",
+         "properties": {
+            "attack_once": {
+               "type": "boolean",
+               "default": false
+            },
+            "attack_types": {
+               "type": "string",
+               "default": ""
+            },
+            "can_spread_on_fire": {
+               "type": "boolean",
+               "default": false
+            },
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "cooldown_time": {
+               "type": "number",
+               "default": 1,
+               "minimum": 0
+            },
+            "inner_boundary_time_increase": {
+               "type": "number",
+               "default": 0.25,
+               "minimum": 0
+            },
+            "max_path_time": {
+               "type": "number",
+               "default": 0.550000011920929,
+               "minimum": 0
+            },
+            "min_path_time": {
+               "type": "number",
+               "default": 0.20000000298023224,
+               "minimum": 0
+            },
+            "no_damage_range_multiplier": {
+               "type": "number",
+               "default": 2,
+               "exclusiveMinimum": 0
+            },
+            "on_attack": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "OR": null,
+                     "all": null,
+                     "all_of": null,
+                     "AND": null,
+                     "any_of": null,
+                     "none_of": null,
+                     "any": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/121353999"
+            },
+            "on_kill": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "OR": null,
+                     "all": null,
+                     "all_of": null,
+                     "AND": null,
+                     "any_of": null,
+                     "none_of": null,
+                     "any": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/121353999"
+            },
+            "outer_boundary_time_increase": {
+               "type": "number",
+               "default": 0.5,
+               "minimum": 0
+            },
+            "path_fail_time_increase": {
+               "type": "number",
+               "default": 0.75,
+               "minimum": 0
+            },
+            "path_inner_boundary": {
+               "type": "number",
+               "default": 16,
+               "minimum": 0
+            },
+            "path_outer_boundary": {
+               "type": "number",
+               "default": 32,
+               "minimum": 0
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "random_stop_interval": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "reach_multiplier": {
+               "type": "number",
+               "default": 2,
+               "minimum": 0
+            },
+            "require_complete_path": {
+               "type": "boolean",
+               "default": false
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1,
+               "minimum": 0
+            },
+            "stomp_range_multiplier": {
+               "type": "number",
+               "default": 2,
+               "exclusiveMinimum": 0
+            },
+            "track_target": {
+               "type": "boolean",
+               "default": false
+            },
+            "x_max_rotation": {
+               "type": "number",
+               "default": 30,
+               "minimum": 0
+            },
+            "y_max_head_rotation": {
+               "type": "number",
+               "default": 30,
+               "minimum": 0
+            }
+         }
+      },
+      "2655738381": {
+         "title": "minecraft:burns_in_daylight",
+         "type": "object",
+         "properties": {
+            "protection_slot": {
+               "title": "EquipmentSlot",
+               "type": "string",
+               "default": "slot.armor.head",
+               "enum": [
+                  "slot.weapon.offhand",
+                  "slot.armor.head",
+                  "slot.armor.chest",
+                  "slot.armor.legs",
+                  "slot.armor.feet",
+                  "slot.armor.body"
+               ]
+            }
+         }
+      },
+      "2704775729": {
+         "title": "BodyRotationAlwaysFollowsHeadDefinition"
+      },
+      "2736897213": {
+         "title": "CanPowerJumpDefinition"
+      },
+      "2744703494": {
+         "title": "minecraft:experience_reward",
+         "type": "object",
+         "properties": {
+            "on_bred": {
+               "default": {
+                  "expression": "",
+                  "version": -1
+               },
+               "$ref": "#/definitions/3178719147"
+            },
+            "on_death": {
+               "default": {
+                  "expression": "",
+                  "version": -1
+               },
+               "$ref": "#/definitions/3178719147"
+            }
+         }
+      },
+      "2759487652": {
+         "title": "minecraft:behavior.dragonstrafeplayer",
+         "type": "object",
+         "properties": {
+            "active_speed": {
+               "type": "number",
+               "default": 0.6000000238418579,
+               "minimum": 0
+            },
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "fireball_range": {
+               "type": "number",
+               "default": 64,
+               "exclusiveMinimum": 0
+            },
+            "flight_speed": {
+               "type": "number",
+               "default": 0.6000000238418579,
+               "minimum": 0
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "switch_direction_probability": {
+               "type": "number",
+               "default": 0.125,
+               "minimum": 0,
+               "maximum": 1
+            },
+            "target_in_range_and_in_view_time": {
+               "type": "number",
+               "default": 0.25,
+               "exclusiveMinimum": 0
+            },
+            "target_zone": {
+               "default": {
+                  "min": 10,
+                  "max": 150
+               },
+               "$ref": "#/definitions/1057349585"
+            },
+            "turn_speed": {
+               "type": "number",
+               "default": 0.699999988079071,
+               "minimum": 0
+            },
+            "view_angle": {
+               "type": "number",
+               "default": 10,
+               "exclusiveMinimum": 0
             }
          }
       },
@@ -5519,7 +5895,201 @@
             }
          ]
       },
-      "2807373056": {
+      "2849442308": {
+         "title": "minecraft:behavior.harvest_farm_block",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "goal_radius": {
+               "type": "number",
+               "default": 1.5,
+               "exclusiveMinimum": 0
+            },
+            "max_seconds_before_search": {
+               "type": "number",
+               "default": 1,
+               "exclusiveMinimum": 0
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "search_cooldown_max_seconds": {
+               "type": "number",
+               "default": 8,
+               "exclusiveMinimum": 0
+            },
+            "search_count": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "search_height": {
+               "type": "integer",
+               "default": 1,
+               "exclusiveMinimum": 0
+            },
+            "search_range": {
+               "type": "integer",
+               "default": 16,
+               "exclusiveMinimum": 0
+            },
+            "seconds_until_new_task": {
+               "type": "number",
+               "default": 0.5,
+               "exclusiveMinimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 0.5,
+               "minimum": 0
+            }
+         }
+      },
+      "2865523930": {
+         "title": "IsIgnitedDefinition"
+      },
+      "2927369493": {
+         "title": "minecraft:behavior.swim_with_entity",
+         "type": "object",
+         "properties": {
+            "catch_up_multiplier": {
+               "type": "number",
+               "default": 2.5,
+               "exclusiveMinimum": 0
+            },
+            "catch_up_threshold": {
+               "type": "number",
+               "default": 12,
+               "exclusiveMinimum": 0
+            },
+            "chance_to_stop": {
+               "type": "number",
+               "default": 0.0333000011742115,
+               "exclusiveMinimum": 0
+            },
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "entity_types": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/792012262"
+               }
+            },
+            "match_direction_threshold": {
+               "type": "number",
+               "default": 2,
+               "exclusiveMinimum": 0
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "search_range": {
+               "type": "number",
+               "default": 20,
+               "exclusiveMinimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1.5,
+               "exclusiveMinimum": 0
+            },
+            "state_check_interval": {
+               "type": "number",
+               "default": 0.5,
+               "minimum": 0
+            },
+            "stop_distance": {
+               "type": "number",
+               "default": 5,
+               "exclusiveMinimum": 0
+            },
+            "success_rate": {
+               "type": "number",
+               "default": 0.10000000149011612,
+               "exclusiveMinimum": 0
+            }
+         }
+      },
+      "2940714287": {
+         "title": "minecraft:behavior.dragonchargeplayer",
+         "type": "object",
+         "properties": {
+            "active_speed": {
+               "type": "number",
+               "default": 3,
+               "minimum": 0
+            },
+            "continue_charge_threshold_time": {
+               "type": "number",
+               "default": 0.5,
+               "exclusiveMinimum": 0
+            },
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "flight_speed": {
+               "type": "number",
+               "default": 0.6000000238418579,
+               "minimum": 0
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "target_zone": {
+               "default": {
+                  "min": 10,
+                  "max": 150
+               },
+               "$ref": "#/definitions/1057349585"
+            },
+            "turn_speed": {
+               "type": "number",
+               "default": 0.699999988079071,
+               "minimum": 0
+            }
+         }
+      },
+      "2986012271": {
          "title": "minecraft:behavior.melee_attack",
          "type": "object",
          "properties": {
@@ -5667,212 +6237,94 @@
             }
          }
       },
-      "2845974607": {
-         "title": "minecraft:behavior.nearest_attackable_target",
+      "3077374526": {
+         "title": "minecraft:behavior.take_flower",
          "type": "object",
          "properties": {
-            "attack_interval": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "filters": {
                "default": {
-                  "min": 0,
-                  "max": 0
+                  "all_of": null,
+                  "all": null,
+                  "OR": null,
+                  "AND": null,
+                  "any_of": null,
+                  "any": null,
+                  "none_of": null,
+                  "NOT": null
                },
-               "$ref": "#/definitions/1057349585"
+               "$ref": "#/definitions/1088251937"
             },
-            "attack_owner": {
-               "type": "boolean",
-               "default": false
-            },
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "entity_types": {
-               "default": [],
-               "$ref": "#/definitions/4227886613"
-            },
-            "must_reach": {
-               "type": "boolean",
-               "default": false
-            },
-            "must_see": {
-               "type": "boolean",
-               "default": false
-            },
-            "must_see_forget_duration": {
+            "max_head_rotation_y": {
                "type": "number",
-               "default": 3,
+               "default": 30,
+               "exclusiveMinimum": 0
+            },
+            "max_rotation_x": {
+               "type": "number",
+               "default": 30,
+               "exclusiveMinimum": 0
+            },
+            "max_wait_time": {
+               "type": "number",
+               "default": 20,
                "minimum": 0
             },
-            "persist_time": {
+            "min_distance_to_target": {
                "type": "number",
-               "default": 0,
+               "default": 2,
+               "exclusiveMinimum": 0
+            },
+            "min_wait_time": {
+               "type": "number",
+               "default": 4,
                "minimum": 0
             },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "reselect_targets": {
-               "type": "boolean",
-               "default": false
-            },
-            "scan_interval": {
-               "type": "integer",
-               "default": 10,
-               "minimum": 1
-            },
-            "set_persistent": {
-               "type": "boolean",
-               "default": false
-            },
-            "target_acquisition_probability": {
-               "type": "number",
-               "default": 1
-            },
-            "target_invisible_multiplier": {
-               "type": "number",
-               "default": 0.699999988079071
-            },
-            "target_search_height": {
-               "type": "number",
-               "default": -1,
-               "minimum": -1
-            },
-            "target_sneak_visibility_multiplier": {
-               "type": "number",
-               "default": 0.800000011920929
-            },
-            "within_radius": {
-               "type": "number",
-               "default": 0,
-               "minimum": 0
-            }
-         }
-      },
-      "2854998006": {
-         "title": "minecraft:behavior.look_at_trading_player",
-         "type": "object",
-         "properties": {
-            "angle_of_view_horizontal": {
-               "type": "integer",
-               "default": 360,
-               "minimum": 0,
-               "maximum": 360
-            },
-            "angle_of_view_vertical": {
-               "type": "integer",
-               "default": 360,
-               "minimum": 0,
-               "maximum": 360
-            },
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "look_distance": {
-               "type": "number",
-               "default": 8,
-               "minimum": 0
-            },
-            "look_time": {
+            "on_take_flower": {
                "default": {
-                  "min": 2,
-                  "max": 4
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "all_of": null,
+                     "all": null,
+                     "OR": null,
+                     "AND": null,
+                     "any_of": null,
+                     "any": null,
+                     "none_of": null,
+                     "NOT": null
+                  }
                },
-               "$ref": "#/definitions/1057349585"
+               "$ref": "#/definitions/121353999"
             },
             "priority": {
                "type": "integer",
                "default": 0,
                "minimum": 0
             },
-            "probability": {
+            "search_area": {
+               "default": [
+                  6,
+                  2,
+                  6
+               ],
+               "$ref": "#/definitions/4004946602"
+            },
+            "speed_multiplier": {
                "type": "number",
-               "default": 0.019999999552965164,
-               "minimum": 0,
-               "maximum": 1
-            }
-         }
-      },
-      "2865523930": {
-         "title": "IsIgnitedDefinition"
-      },
-      "2965279661": {
-         "title": "minecraft:behavior.defend_village_target",
-         "type": "object",
-         "properties": {
-            "attack_chance": {
-               "type": "number",
-               "default": 0.05000000074505806,
-               "minimum": 0,
-               "maximum": 1
-            },
-            "attack_owner": {
-               "type": "boolean",
-               "default": false
-            },
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "entity_types": {
-               "default": [],
-               "$ref": "#/definitions/4227886613"
-            },
-            "must_reach": {
-               "type": "boolean",
-               "default": false
-            },
-            "must_see": {
-               "type": "boolean",
-               "default": false
-            },
-            "must_see_forget_duration": {
-               "type": "number",
-               "default": 3,
-               "minimum": 0
-            },
-            "persist_time": {
-               "type": "number",
-               "default": 0,
-               "minimum": 0
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "within_radius": {
-               "type": "number",
-               "default": 0,
+               "default": 0.5,
                "minimum": 0
             }
          }
@@ -6659,6 +7111,58 @@
             }
          }
       },
+      "3384380396": {
+         "title": "minecraft:behavior.celebrate_survive",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "duration": {
+               "type": "number",
+               "default": 30
+            },
+            "fireworks_interval": {
+               "default": {
+                  "min": 10,
+                  "max": 20
+               },
+               "$ref": "#/definitions/1057349585"
+            },
+            "on_celebration_end_event": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "all_of": null,
+                     "all": null,
+                     "OR": null,
+                     "AND": null,
+                     "any_of": null,
+                     "any": null,
+                     "none_of": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/121353999"
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            }
+         }
+      },
       "3387735008": {
          "title": "IsShearedDefinition"
       },
@@ -7318,129 +7822,29 @@
             }
          }
       },
-      "3551445457": {
-         "title": "minecraft:behavior.look_at_target",
+      "3491578613": {
+         "title": "minecraft:behavior.work_composter",
          "type": "object",
          "properties": {
-            "angle_of_view_horizontal": {
-               "type": "integer",
-               "default": 360,
-               "minimum": 0,
-               "maximum": 360
-            },
-            "angle_of_view_vertical": {
-               "type": "integer",
-               "default": 360,
-               "minimum": 0,
-               "maximum": 360
-            },
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "look_distance": {
-               "type": "number",
-               "default": 8,
-               "minimum": 0
-            },
-            "look_time": {
-               "default": {
-                  "min": 2,
-                  "max": 4
-               },
-               "$ref": "#/definitions/1057349585"
-            },
-            "priority": {
+            "active_time": {
                "type": "integer",
                "default": 0,
                "minimum": 0
             },
-            "probability": {
-               "type": "number",
-               "default": 0.019999999552965164,
-               "minimum": 0,
-               "maximum": 1
-            }
-         }
-      },
-      "3599228199": {
-         "title": "minecraft:behavior.harvest_farm_block",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "goal_radius": {
-               "type": "number",
-               "default": 1.5,
-               "exclusiveMinimum": 0
-            },
-            "max_seconds_before_search": {
-               "type": "number",
-               "default": 1,
-               "exclusiveMinimum": 0
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "search_cooldown_max_seconds": {
-               "type": "number",
-               "default": 8,
-               "exclusiveMinimum": 0
-            },
-            "search_count": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "search_height": {
+            "block_interaction_max": {
                "type": "integer",
                "default": 1,
-               "exclusiveMinimum": 0
-            },
-            "search_range": {
-               "type": "integer",
-               "default": 16,
-               "exclusiveMinimum": 0
-            },
-            "seconds_until_new_task": {
-               "type": "number",
-               "default": 0.5,
-               "exclusiveMinimum": 0
-            },
-            "speed_multiplier": {
-               "type": "number",
-               "default": 0.5,
                "minimum": 0
-            }
-         }
-      },
-      "3639840042": {
-         "title": "minecraft:behavior.lay_egg",
-         "type": "object",
-         "properties": {
-            "allow_laying_from_below": {
+            },
+            "can_empty_composter": {
+               "type": "boolean",
+               "default": true
+            },
+            "can_fill_composter": {
+               "type": "boolean",
+               "default": true
+            },
+            "can_work_in_rain": {
                "type": "boolean",
                "default": false
             },
@@ -7457,19 +7861,201 @@
                   ]
                }
             },
-            "egg_type": {
-               "type": "string",
-               "default": "minecraft:turtle_egg"
+            "goal_cooldown": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
             },
-            "goal_radius": {
+            "items_per_use_max": {
+               "type": "integer",
+               "default": 20,
+               "minimum": 0
+            },
+            "min_item_count": {
+               "type": "integer",
+               "default": 10
+            },
+            "on_arrival": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "all_of": null,
+                     "all": null,
+                     "OR": null,
+                     "AND": null,
+                     "any_of": null,
+                     "any": null,
+                     "none_of": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/121353999"
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "speed_multiplier": {
                "type": "number",
                "default": 0.5,
                "exclusiveMinimum": 0
             },
-            "lay_egg_sound": {
+            "use_block_max": {
+               "type": "integer",
+               "default": 200,
+               "minimum": 0
+            },
+            "use_block_min": {
+               "type": "integer",
+               "default": 100,
+               "minimum": 0
+            },
+            "work_in_rain_tolerance": {
+               "type": "integer",
+               "default": -1,
+               "minimum": 0
+            }
+         }
+      },
+      "3528265189": {
+         "title": "minecraft:behavior.delayed_attack",
+         "type": "object",
+         "properties": {
+            "attack_duration": {
+               "type": "number",
+               "default": 0.75,
+               "minimum": 0
+            },
+            "attack_once": {
+               "type": "boolean",
+               "default": false
+            },
+            "attack_types": {
+               "type": "string",
+               "default": ""
+            },
+            "can_spread_on_fire": {
+               "type": "boolean",
+               "default": false
+            },
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "hit_delay_pct": {
+               "type": "number",
+               "default": 0.5,
+               "minimum": 0,
+               "maximum": 1
+            },
+            "inner_boundary_time_increase": {
+               "type": "number",
+               "default": 0.25,
+               "minimum": 0
+            },
+            "max_path_time": {
+               "type": "number",
+               "default": 0.550000011920929,
+               "minimum": 0
+            },
+            "melee_fov": {
+               "type": "number",
+               "default": 90,
+               "minimum": 0
+            },
+            "min_path_time": {
+               "type": "number",
+               "default": 0.20000000298023224,
+               "minimum": 0
+            },
+            "on_attack": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "OR": null,
+                     "all": null,
+                     "all_of": null,
+                     "AND": null,
+                     "any_of": null,
+                     "none_of": null,
+                     "any": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/121353999"
+            },
+            "on_kill": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "OR": null,
+                     "all": null,
+                     "all_of": null,
+                     "AND": null,
+                     "any_of": null,
+                     "none_of": null,
+                     "any": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/121353999"
+            },
+            "outer_boundary_time_increase": {
+               "type": "number",
+               "default": 0.5,
+               "minimum": 0
+            },
+            "path_fail_time_increase": {
+               "type": "number",
+               "default": 0.75,
+               "minimum": 0
+            },
+            "path_inner_boundary": {
+               "type": "number",
+               "default": 16,
+               "minimum": 0
+            },
+            "path_outer_boundary": {
+               "type": "number",
+               "default": 32,
+               "minimum": 0
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "random_stop_interval": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "reach_multiplier": {
+               "type": "number",
+               "default": 1.5,
+               "minimum": 0
+            },
+            "require_complete_path": {
+               "type": "boolean",
+               "default": false
+            },
+            "sound_event": {
                "title": "LevelSoundEvent",
                "type": "string",
-               "default": "lay_egg",
+               "default": "attack.strong",
                "enum": [
                   "item.use.on",
                   "hit",
@@ -8025,12 +8611,87 @@
                   "undefined"
                ]
             },
-            "lay_seconds": {
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1,
+               "minimum": 0
+            },
+            "track_target": {
+               "type": "boolean",
+               "default": true
+            },
+            "x_max_rotation": {
+               "type": "number",
+               "default": 30,
+               "minimum": 0
+            },
+            "y_max_head_rotation": {
+               "type": "number",
+               "default": 30,
+               "minimum": 0
+            }
+         }
+      },
+      "3703296437": {
+         "title": "CanFlyDefinition"
+      },
+      "3719690195": {
+         "title": "minecraft:behavior.drop_item_for",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "cooldown": {
+               "type": "number",
+               "default": 0.25,
+               "minimum": 0
+            },
+            "drop_item_chance": {
+               "type": "number",
+               "default": 1,
+               "minimum": 0,
+               "maximum": 1
+            },
+            "entity_types": {
+               "default": [],
+               "$ref": "#/definitions/4227886613"
+            },
+            "goal_radius": {
+               "type": "number",
+               "default": 0.5,
+               "exclusiveMinimum": 0
+            },
+            "loot_table": {
+               "type": "string",
+               "default": ""
+            },
+            "max_head_look_at_height": {
                "type": "number",
                "default": 10,
                "minimum": 0
             },
-            "on_lay": {
+            "minimum_teleport_distance": {
+               "type": "number",
+               "default": 2,
+               "minimum": 0
+            },
+            "offering_distance": {
+               "type": "number",
+               "default": 1,
+               "minimum": 0
+            },
+            "on_drop_attempt": {
                "default": {
                   "event": "",
                   "target": "self",
@@ -8052,6 +8713,11 @@
                "default": 0,
                "minimum": 0
             },
+            "search_count": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
             "search_height": {
                "type": "integer",
                "default": 1,
@@ -8062,37 +8728,40 @@
                "default": 0,
                "exclusiveMinimum": 0
             },
+            "seconds_before_pickup": {
+               "type": "number",
+               "default": 0,
+               "minimum": 0
+            },
             "speed_multiplier": {
                "type": "number",
                "default": 1,
                "minimum": 0
             },
-            "target_blocks": {
-               "type": "array",
+            "target_range": {
                "default": [
-                  "minecraft:sand"
+                  1,
+                  1,
+                  1
                ],
-               "items": {
-                  "type": "string"
-               }
+               "$ref": "#/definitions/4004946602"
             },
-            "target_materials_above_block": {
-               "type": "array",
+            "teleport_offset": {
                "default": [
-                  "air"
+                  0,
+                  1,
+                  0
                ],
-               "items": {
-                  "type": "string"
-               }
+               "$ref": "#/definitions/4004946602"
             },
-            "use_default_animation": {
-               "type": "boolean",
-               "default": true
+            "time_of_day_range": {
+               "default": {
+                  "min": 0,
+                  "max": 1
+               },
+               "$ref": "#/definitions/1057349585"
             }
          }
-      },
-      "3703296437": {
-         "title": "CanFlyDefinition"
       },
       "3731384245": {
          "title": "minecraft:behavior.breed",
@@ -8157,10 +8826,19 @@
       "3813523227": {
          "title": "RotationLockedToVehicleDefinition"
       },
-      "3869024278": {
-         "title": "minecraft:behavior.timer_flag_2",
+      "3860406379": {
+         "title": "minecraft:behavior.work",
          "type": "object",
          "properties": {
+            "active_time": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "can_work_in_rain": {
+               "type": "boolean",
+               "default": false
+            },
             "control_flags": {
                "type": "array",
                "default": [],
@@ -8174,49 +8852,23 @@
                   ]
                }
             },
-            "cooldown_range": {
-               "default": {
-                  "min": 0,
-                  "max": 0
-               },
-               "$ref": "#/definitions/1057349585"
+            "goal_cooldown": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
             },
-            "duration_range": {
-               "default": {
-                  "min": 0,
-                  "max": 0
-               },
-               "$ref": "#/definitions/1057349585"
-            },
-            "on_end": {
+            "on_arrival": {
                "default": {
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "OR": null,
-                     "all": null,
                      "all_of": null,
+                     "all": null,
+                     "OR": null,
                      "AND": null,
                      "any_of": null,
-                     "none_of": null,
                      "any": null,
-                     "NOT": null
-                  }
-               },
-               "$ref": "#/definitions/121353999"
-            },
-            "on_start": {
-               "default": {
-                  "event": "",
-                  "target": "self",
-                  "filters": {
-                     "OR": null,
-                     "all": null,
-                     "all_of": null,
-                     "AND": null,
-                     "any_of": null,
                      "none_of": null,
-                     "any": null,
                      "NOT": null
                   }
                },
@@ -8225,6 +8877,26 @@
             "priority": {
                "type": "integer",
                "default": 0,
+               "minimum": 0
+            },
+            "sound_delay_max": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "sound_delay_min": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 0.5,
+               "exclusiveMinimum": 0
+            },
+            "work_in_rain_tolerance": {
+               "type": "integer",
+               "default": -1,
                "minimum": 0
             }
          }
@@ -8255,34 +8927,6 @@
                "type": "integer",
                "default": 0,
                "minimum": 0
-            }
-         }
-      },
-      "3952079616": {
-         "title": "minecraft:behavior.move_towards_home_restriction",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "speed_multiplier": {
-               "type": "number",
-               "default": 1
             }
          }
       },
@@ -8344,60 +8988,6 @@
       },
       "4114573755": {
          "title": "IsHiddenWhenInvisibleDefinition"
-      },
-      "4139585161": {
-         "title": "minecraft:behavior.look_at_player",
-         "type": "object",
-         "properties": {
-            "angle_of_view_horizontal": {
-               "type": "integer",
-               "default": 360,
-               "minimum": 0,
-               "maximum": 360
-            },
-            "angle_of_view_vertical": {
-               "type": "integer",
-               "default": 360,
-               "minimum": 0,
-               "maximum": 360
-            },
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "look_distance": {
-               "type": "number",
-               "default": 8,
-               "minimum": 0
-            },
-            "look_time": {
-               "default": {
-                  "min": 2,
-                  "max": 4
-               },
-               "$ref": "#/definitions/1057349585"
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "probability": {
-               "type": "number",
-               "default": 0.019999999552965164,
-               "minimum": 0,
-               "maximum": 1
-            }
-         }
       },
       "4150989894": {
          "title": "Filter Test",
@@ -8474,6 +9064,78 @@
          "required": [
             "test"
          ]
+      },
+      "4182885581": {
+         "title": "minecraft:behavior.timer_flag_2",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "cooldown_range": {
+               "default": {
+                  "min": 0,
+                  "max": 0
+               },
+               "$ref": "#/definitions/1057349585"
+            },
+            "duration_range": {
+               "default": {
+                  "min": 0,
+                  "max": 0
+               },
+               "$ref": "#/definitions/1057349585"
+            },
+            "on_end": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "OR": null,
+                     "all": null,
+                     "all_of": null,
+                     "AND": null,
+                     "any_of": null,
+                     "none_of": null,
+                     "any": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/121353999"
+            },
+            "on_start": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "OR": null,
+                     "all": null,
+                     "all_of": null,
+                     "AND": null,
+                     "any_of": null,
+                     "none_of": null,
+                     "any": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/121353999"
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            }
+         }
       },
       "4227886613": {
          "title": "EntityTypes",
@@ -8568,7 +9230,7 @@
          "description": "Dynamic value"
       },
       "minecraft:addrider": {
-         "$ref": "#/definitions/299523202"
+         "$ref": "#/definitions/772659931"
       },
       "minecraft:admire_item": {
          "description": "Dynamic value"
@@ -8640,7 +9302,7 @@
          "$ref": "#/definitions/891613151"
       },
       "minecraft:behavior.celebrate_survive": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/3384380396"
       },
       "minecraft:behavior.charge_attack": {
          "$ref": "#/definitions/1143284943"
@@ -8661,10 +9323,10 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.defend_village_target": {
-         "$ref": "#/definitions/2965279661"
+         "$ref": "#/definitions/170334530"
       },
       "minecraft:behavior.delayed_attack": {
-         "$ref": "#/definitions/2755982734"
+         "$ref": "#/definitions/3528265189"
       },
       "minecraft:behavior.dig": {
          "$ref": "#/definitions/911233651"
@@ -8673,7 +9335,7 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.dragonchargeplayer": {
-         "$ref": "#/definitions/2376835520"
+         "$ref": "#/definitions/2940714287"
       },
       "minecraft:behavior.dragondeath": {
          "description": "Dynamic value"
@@ -8691,7 +9353,7 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.dragonstrafeplayer": {
-         "$ref": "#/definitions/958675335"
+         "$ref": "#/definitions/2759487652"
       },
       "minecraft:behavior.dragontakeoff": {
          "description": "Dynamic value"
@@ -8703,7 +9365,7 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.drop_item_for": {
-         "$ref": "#/definitions/1874267628"
+         "$ref": "#/definitions/3719690195"
       },
       "minecraft:behavior.eat_block": {
          "description": "Dynamic value"
@@ -8730,7 +9392,7 @@
          "$ref": "#/definitions/1557623393"
       },
       "minecraft:behavior.fertilize_farm_block": {
-         "$ref": "#/definitions/1284601148"
+         "$ref": "#/definitions/532349475"
       },
       "minecraft:behavior.find_cover": {
          "description": "Dynamic value"
@@ -8784,7 +9446,7 @@
          "$ref": "#/definitions/2124526562"
       },
       "minecraft:behavior.harvest_farm_block": {
-         "$ref": "#/definitions/3599228199"
+         "$ref": "#/definitions/2849442308"
       },
       "minecraft:behavior.hide": {
          "description": "Dynamic value"
@@ -8799,7 +9461,7 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.inspect_bookshelf": {
-         "$ref": "#/definitions/1596410806"
+         "$ref": "#/definitions/1428321837"
       },
       "minecraft:behavior.investigate_suspicious_location": {
          "$ref": "#/definitions/1374016683"
@@ -8817,31 +9479,31 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.lay_egg": {
-         "$ref": "#/definitions/3639840042"
+         "$ref": "#/definitions/1325032697"
       },
       "minecraft:behavior.leap_at_target": {
          "description": "Dynamic value"
       },
       "minecraft:behavior.look_at_entity": {
-         "$ref": "#/definitions/628605987"
+         "$ref": "#/definitions/1921218376"
       },
       "minecraft:behavior.look_at_player": {
-         "$ref": "#/definitions/4139585161"
+         "$ref": "#/definitions/578870742"
       },
       "minecraft:behavior.look_at_target": {
-         "$ref": "#/definitions/3551445457"
+         "$ref": "#/definitions/2590440254"
       },
       "minecraft:behavior.look_at_trading_player": {
-         "$ref": "#/definitions/2854998006"
+         "$ref": "#/definitions/328685933"
       },
       "minecraft:behavior.make_love": {
          "description": "Dynamic value"
       },
       "minecraft:behavior.melee_attack": {
-         "$ref": "#/definitions/2807373056"
+         "$ref": "#/definitions/2986012271"
       },
       "minecraft:behavior.melee_box_attack": {
-         "$ref": "#/definitions/631184463"
+         "$ref": "#/definitions/816772204"
       },
       "minecraft:behavior.mingle": {
          "description": "Dynamic value"
@@ -8886,10 +9548,10 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.move_towards_dwelling_restriction": {
-         "$ref": "#/definitions/1322533373"
+         "$ref": "#/definitions/800417298"
       },
       "minecraft:behavior.move_towards_home_restriction": {
-         "$ref": "#/definitions/3952079616"
+         "$ref": "#/definitions/2089624687"
       },
       "minecraft:behavior.move_towards_target": {
          "description": "Dynamic value"
@@ -8898,7 +9560,7 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.nearest_attackable_target": {
-         "$ref": "#/definitions/2845974607"
+         "$ref": "#/definitions/1658730604"
       },
       "minecraft:behavior.nearest_prioritized_attackable_target": {
          "description": "Dynamic value"
@@ -8964,7 +9626,7 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.random_search_and_dig": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/1503334322"
       },
       "minecraft:behavior.random_sitting": {
          "description": "Dynamic value"
@@ -9069,7 +9731,7 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.stomp_attack": {
-         "$ref": "#/definitions/2259974185"
+         "$ref": "#/definitions/2645365302"
       },
       "minecraft:behavior.stomp_turtle_egg": {
          "description": "Dynamic value"
@@ -9093,7 +9755,7 @@
          "$ref": "#/definitions/61802587"
       },
       "minecraft:behavior.swim_with_entity": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/2927369493"
       },
       "minecraft:behavior.swoop_attack": {
          "$ref": "#/definitions/1979855054"
@@ -9102,31 +9764,31 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.take_flower": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/3077374526"
       },
       "minecraft:behavior.target_when_pushed": {
          "description": "Dynamic value"
       },
       "minecraft:behavior.teleport_to_owner": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/147346783"
       },
       "minecraft:behavior.tempt": {
          "description": "Dynamic value"
       },
       "minecraft:behavior.timer_flag_1": {
-         "$ref": "#/definitions/736770567"
+         "$ref": "#/definitions/2478831908"
       },
       "minecraft:behavior.timer_flag_2": {
-         "$ref": "#/definitions/3869024278"
+         "$ref": "#/definitions/4182885581"
       },
       "minecraft:behavior.timer_flag_3": {
-         "$ref": "#/definitions/465352073"
+         "$ref": "#/definitions/898888918"
       },
       "minecraft:behavior.trade_interest": {
          "description": "Dynamic value"
       },
       "minecraft:behavior.trade_with_player": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/998576969"
       },
       "minecraft:behavior.transport_items": {
          "$ref": "#/definitions/1861715976"
@@ -9147,10 +9809,10 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.work": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/3860406379"
       },
       "minecraft:behavior.work_composter": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/3491578613"
       },
       "minecraft:block_climber": {
          "description": "Dynamic value"
@@ -9189,7 +9851,7 @@
          "description": "Dynamic value"
       },
       "minecraft:burns_in_daylight": {
-         "$ref": "#/definitions/378259084"
+         "$ref": "#/definitions/2655738381"
       },
       "minecraft:can_climb": {
          "$ref": "#/definitions/1682332161"
@@ -9276,7 +9938,7 @@
          "description": "Dynamic value"
       },
       "minecraft:experience_reward": {
-         "$ref": "#/definitions/1342441813"
+         "$ref": "#/definitions/2744703494"
       },
       "minecraft:explode": {
          "description": "Dynamic value"

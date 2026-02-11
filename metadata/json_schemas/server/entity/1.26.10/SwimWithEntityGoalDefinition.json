@@ -1,15 +1,19 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "1145690686",
-   "x-format-version": "1.21.120",
+   "$id": "2927369493",
+   "x-format-version": "1.26.10",
    "definitions": {
-      "121353999": {
-         "title": "ActorDefinitionTrigger",
+      "792012262": {
+         "title": "MobDescriptor",
          "type": "object",
          "properties": {
-            "event": {
-               "type": "string",
-               "default": ""
+            "check_if_outnumbered": {
+               "type": "boolean",
+               "default": false
+            },
+            "cooldown": {
+               "type": "integer",
+               "default": 0
             },
             "filters": {
                "default": {
@@ -24,22 +28,40 @@
                },
                "$ref": "#/definitions/1088251937"
             },
-            "target": {
-               "title": "FilterSubject",
-               "type": "string",
-               "default": "self",
-               "enum": [
-                  "self",
-                  "other",
-                  "player",
-                  "target",
-                  "parent",
-                  "baby",
-                  "block",
-                  "damager",
-                  "holder",
-                  "item"
-               ]
+            "max_dist": {
+               "type": "number",
+               "default": 16
+            },
+            "max_flee": {
+               "type": "number",
+               "default": 10
+            },
+            "max_height": {
+               "type": "number",
+               "default": -1
+            },
+            "must_see": {
+               "type": "boolean"
+            },
+            "must_see_forget_duration": {
+               "type": "integer",
+               "default": 3
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0
+            },
+            "reevaluate_description": {
+               "type": "boolean",
+               "default": false
+            },
+            "sprint_speed_multiplier": {
+               "type": "number",
+               "default": 1
+            },
+            "walk_speed_multiplier": {
+               "type": "number",
+               "default": 1
             }
          }
       },
@@ -167,20 +189,23 @@
          ]
       }
    },
-   "title": "MeleeAttackBaseGoalDefinition",
+   "title": "minecraft:behavior.swim_with_entity",
    "type": "object",
    "properties": {
-      "attack_once": {
-         "type": "boolean",
-         "default": false
+      "catch_up_multiplier": {
+         "type": "number",
+         "default": 2.5,
+         "exclusiveMinimum": 0
       },
-      "attack_types": {
-         "type": "string",
-         "default": ""
+      "catch_up_threshold": {
+         "type": "number",
+         "default": 12,
+         "exclusiveMinimum": 0
       },
-      "can_spread_on_fire": {
-         "type": "boolean",
-         "default": false
+      "chance_to_stop": {
+         "type": "number",
+         "default": 0.0333000011742115,
+         "exclusiveMinimum": 0
       },
       "control_flags": {
          "type": "array",
@@ -195,117 +220,47 @@
             ]
          }
       },
-      "cooldown_time": {
+      "entity_types": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "#/definitions/792012262"
+         }
+      },
+      "match_direction_threshold": {
          "type": "number",
-         "default": 1,
-         "minimum": 0
-      },
-      "inner_boundary_time_increase": {
-         "type": "number",
-         "default": 0.25,
-         "minimum": 0
-      },
-      "max_path_time": {
-         "type": "number",
-         "default": 0.550000011920929,
-         "minimum": 0
-      },
-      "melee_fov": {
-         "type": "number",
-         "default": 90,
-         "minimum": 0
-      },
-      "min_path_time": {
-         "type": "number",
-         "default": 0.20000000298023224,
-         "minimum": 0
-      },
-      "on_attack": {
-         "default": {
-            "event": "",
-            "target": "self",
-            "filters": {
-               "OR": null,
-               "all": null,
-               "all_of": null,
-               "AND": null,
-               "any_of": null,
-               "none_of": null,
-               "any": null,
-               "NOT": null
-            }
-         },
-         "$ref": "#/definitions/121353999"
-      },
-      "on_kill": {
-         "default": {
-            "event": "",
-            "target": "self",
-            "filters": {
-               "OR": null,
-               "all": null,
-               "all_of": null,
-               "AND": null,
-               "any_of": null,
-               "none_of": null,
-               "any": null,
-               "NOT": null
-            }
-         },
-         "$ref": "#/definitions/121353999"
-      },
-      "outer_boundary_time_increase": {
-         "type": "number",
-         "default": 0.5,
-         "minimum": 0
-      },
-      "path_fail_time_increase": {
-         "type": "number",
-         "default": 0.75,
-         "minimum": 0
-      },
-      "path_inner_boundary": {
-         "type": "number",
-         "default": 16,
-         "minimum": 0
-      },
-      "path_outer_boundary": {
-         "type": "number",
-         "default": 32,
-         "minimum": 0
+         "default": 2,
+         "exclusiveMinimum": 0
       },
       "priority": {
          "type": "integer",
          "default": 0,
          "minimum": 0
       },
-      "random_stop_interval": {
-         "type": "integer",
-         "default": 0,
-         "minimum": 0
-      },
-      "require_complete_path": {
-         "type": "boolean",
-         "default": false
+      "search_range": {
+         "type": "number",
+         "default": 20,
+         "exclusiveMinimum": 0
       },
       "speed_multiplier": {
          "type": "number",
-         "default": 1,
-         "minimum": 0
+         "default": 1.5,
+         "exclusiveMinimum": 0
       },
-      "track_target": {
-         "type": "boolean",
-         "default": false
-      },
-      "x_max_rotation": {
+      "state_check_interval": {
          "type": "number",
-         "default": 30,
+         "default": 0.5,
          "minimum": 0
       },
-      "y_max_head_rotation": {
+      "stop_distance": {
          "type": "number",
-         "default": 30,
-         "minimum": 0
+         "default": 5,
+         "exclusiveMinimum": 0
+      },
+      "success_rate": {
+         "type": "number",
+         "default": 0.10000000149011612,
+         "exclusiveMinimum": 0
       }
    }
 }

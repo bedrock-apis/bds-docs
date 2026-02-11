@@ -1,7 +1,7 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "1145690686",
-   "x-format-version": "1.21.120",
+   "$id": "3860406379",
+   "x-format-version": "1.26.10",
    "definitions": {
       "121353999": {
          "title": "ActorDefinitionTrigger",
@@ -167,18 +167,15 @@
          ]
       }
    },
-   "title": "MeleeAttackBaseGoalDefinition",
+   "title": "minecraft:behavior.work",
    "type": "object",
    "properties": {
-      "attack_once": {
-         "type": "boolean",
-         "default": false
+      "active_time": {
+         "type": "integer",
+         "default": 0,
+         "minimum": 0
       },
-      "attack_types": {
-         "type": "string",
-         "default": ""
-      },
-      "can_spread_on_fire": {
+      "can_work_in_rain": {
          "type": "boolean",
          "default": false
       },
@@ -195,116 +192,51 @@
             ]
          }
       },
-      "cooldown_time": {
-         "type": "number",
-         "default": 1,
+      "goal_cooldown": {
+         "type": "integer",
+         "default": 0,
          "minimum": 0
       },
-      "inner_boundary_time_increase": {
-         "type": "number",
-         "default": 0.25,
-         "minimum": 0
-      },
-      "max_path_time": {
-         "type": "number",
-         "default": 0.550000011920929,
-         "minimum": 0
-      },
-      "melee_fov": {
-         "type": "number",
-         "default": 90,
-         "minimum": 0
-      },
-      "min_path_time": {
-         "type": "number",
-         "default": 0.20000000298023224,
-         "minimum": 0
-      },
-      "on_attack": {
+      "on_arrival": {
          "default": {
             "event": "",
             "target": "self",
             "filters": {
-               "OR": null,
-               "all": null,
                "all_of": null,
+               "all": null,
+               "OR": null,
                "AND": null,
                "any_of": null,
-               "none_of": null,
                "any": null,
+               "none_of": null,
                "NOT": null
             }
          },
          "$ref": "#/definitions/121353999"
-      },
-      "on_kill": {
-         "default": {
-            "event": "",
-            "target": "self",
-            "filters": {
-               "OR": null,
-               "all": null,
-               "all_of": null,
-               "AND": null,
-               "any_of": null,
-               "none_of": null,
-               "any": null,
-               "NOT": null
-            }
-         },
-         "$ref": "#/definitions/121353999"
-      },
-      "outer_boundary_time_increase": {
-         "type": "number",
-         "default": 0.5,
-         "minimum": 0
-      },
-      "path_fail_time_increase": {
-         "type": "number",
-         "default": 0.75,
-         "minimum": 0
-      },
-      "path_inner_boundary": {
-         "type": "number",
-         "default": 16,
-         "minimum": 0
-      },
-      "path_outer_boundary": {
-         "type": "number",
-         "default": 32,
-         "minimum": 0
       },
       "priority": {
          "type": "integer",
          "default": 0,
          "minimum": 0
       },
-      "random_stop_interval": {
+      "sound_delay_max": {
          "type": "integer",
          "default": 0,
          "minimum": 0
       },
-      "require_complete_path": {
-         "type": "boolean",
-         "default": false
+      "sound_delay_min": {
+         "type": "integer",
+         "default": 0,
+         "minimum": 0
       },
       "speed_multiplier": {
          "type": "number",
-         "default": 1,
-         "minimum": 0
+         "default": 0.5,
+         "exclusiveMinimum": 0
       },
-      "track_target": {
-         "type": "boolean",
-         "default": false
-      },
-      "x_max_rotation": {
-         "type": "number",
-         "default": 30,
-         "minimum": 0
-      },
-      "y_max_head_rotation": {
-         "type": "number",
-         "default": 30,
+      "work_in_rain_tolerance": {
+         "type": "integer",
+         "default": -1,
          "minimum": 0
       }
    }

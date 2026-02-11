@@ -1,7 +1,7 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "1145690686",
-   "x-format-version": "1.21.120",
+   "$id": "3384380396",
+   "x-format-version": "1.26.10",
    "definitions": {
       "121353999": {
          "title": "ActorDefinitionTrigger",
@@ -40,6 +40,20 @@
                   "holder",
                   "item"
                ]
+            }
+         }
+      },
+      "1057349585": {
+         "title": "FloatRange",
+         "type": "object",
+         "properties": {
+            "max": {
+               "type": "number",
+               "default": 0
+            },
+            "min": {
+               "type": "number",
+               "default": 0
             }
          }
       },
@@ -167,21 +181,9 @@
          ]
       }
    },
-   "title": "MeleeAttackBaseGoalDefinition",
+   "title": "minecraft:behavior.celebrate_survive",
    "type": "object",
    "properties": {
-      "attack_once": {
-         "type": "boolean",
-         "default": false
-      },
-      "attack_types": {
-         "type": "string",
-         "default": ""
-      },
-      "can_spread_on_fire": {
-         "type": "boolean",
-         "default": false
-      },
       "control_flags": {
          "type": "array",
          "default": [],
@@ -195,116 +197,37 @@
             ]
          }
       },
-      "cooldown_time": {
+      "duration": {
          "type": "number",
-         "default": 1,
-         "minimum": 0
+         "default": 30
       },
-      "inner_boundary_time_increase": {
-         "type": "number",
-         "default": 0.25,
-         "minimum": 0
+      "fireworks_interval": {
+         "default": {
+            "min": 10,
+            "max": 20
+         },
+         "$ref": "#/definitions/1057349585"
       },
-      "max_path_time": {
-         "type": "number",
-         "default": 0.550000011920929,
-         "minimum": 0
-      },
-      "melee_fov": {
-         "type": "number",
-         "default": 90,
-         "minimum": 0
-      },
-      "min_path_time": {
-         "type": "number",
-         "default": 0.20000000298023224,
-         "minimum": 0
-      },
-      "on_attack": {
+      "on_celebration_end_event": {
          "default": {
             "event": "",
             "target": "self",
             "filters": {
-               "OR": null,
-               "all": null,
                "all_of": null,
+               "all": null,
+               "OR": null,
                "AND": null,
                "any_of": null,
-               "none_of": null,
                "any": null,
+               "none_of": null,
                "NOT": null
             }
          },
          "$ref": "#/definitions/121353999"
-      },
-      "on_kill": {
-         "default": {
-            "event": "",
-            "target": "self",
-            "filters": {
-               "OR": null,
-               "all": null,
-               "all_of": null,
-               "AND": null,
-               "any_of": null,
-               "none_of": null,
-               "any": null,
-               "NOT": null
-            }
-         },
-         "$ref": "#/definitions/121353999"
-      },
-      "outer_boundary_time_increase": {
-         "type": "number",
-         "default": 0.5,
-         "minimum": 0
-      },
-      "path_fail_time_increase": {
-         "type": "number",
-         "default": 0.75,
-         "minimum": 0
-      },
-      "path_inner_boundary": {
-         "type": "number",
-         "default": 16,
-         "minimum": 0
-      },
-      "path_outer_boundary": {
-         "type": "number",
-         "default": 32,
-         "minimum": 0
       },
       "priority": {
          "type": "integer",
          "default": 0,
-         "minimum": 0
-      },
-      "random_stop_interval": {
-         "type": "integer",
-         "default": 0,
-         "minimum": 0
-      },
-      "require_complete_path": {
-         "type": "boolean",
-         "default": false
-      },
-      "speed_multiplier": {
-         "type": "number",
-         "default": 1,
-         "minimum": 0
-      },
-      "track_target": {
-         "type": "boolean",
-         "default": false
-      },
-      "x_max_rotation": {
-         "type": "number",
-         "default": 30,
-         "minimum": 0
-      },
-      "y_max_head_rotation": {
-         "type": "number",
-         "default": 30,
          "minimum": 0
       }
    }

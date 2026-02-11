@@ -773,6 +773,10 @@ export interface EntityHurtBeforeEventOptions {
    allowedDamageCauses?: Array<EntityDamageCause>;
    entityFilter?: EntityFilter;
 }
+export interface EntityItemDropEventOptions {
+   entityFilter?: EntityFilter;
+   itemFilter?: ItemFilter;
+}
 export interface EntityItemPickupEventOptions {
    entityFilter?: EntityFilter;
    itemFilter?: ItemFilter;
@@ -1647,6 +1651,7 @@ export class EntityComponent extends Component {
 export class EntityDefinitionFeedItem {
    public readonly growth: number;
    public readonly item: string;
+   public readonly resultItem?: string;
    private constructor();
 }
 export class EntityDieAfterEvent {
@@ -1887,6 +1892,16 @@ export class EntityIsTamedComponent extends EntityComponent {
 export class EntityItemComponent extends EntityComponent {
    public static readonly componentId = "minecraft:item";
    public readonly itemStack: ItemStack;
+   private constructor();
+}
+export class EntityItemDropAfterEvent {
+   public readonly entity: Entity;
+   public readonly items: Array<Entity>;
+   private constructor();
+}
+export class EntityItemDropAfterEventSignal {
+   public subscribe(callback: (arg0: EntityItemDropAfterEvent)=>void, options?: EntityItemDropEventOptions): (arg0: EntityItemDropAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityItemDropAfterEvent)=>void): void;
    private constructor();
 }
 export class EntityItemPickupAfterEvent {
@@ -2254,6 +2269,7 @@ export class ExplosionDecayFunction extends LootItemFunction {
 export class FeedItem {
    public readonly healAmount: number;
    public readonly item: string;
+   public readonly resultItem?: string;
    public getEffects(): Array<FeedItemEffect>;
    private constructor();
 }
@@ -3462,6 +3478,7 @@ export class WorldAfterEvents {
    public readonly entityHitBlock: EntityHitBlockAfterEventSignal;
    public readonly entityHitEntity: EntityHitEntityAfterEventSignal;
    public readonly entityHurt: EntityHurtAfterEventSignal;
+   public readonly entityItemDrop: EntityItemDropAfterEventSignal;
    public readonly entityItemPickup: EntityItemPickupAfterEventSignal;
    public readonly entityLoad: EntityLoadAfterEventSignal;
    public readonly entityRemove: EntityRemoveAfterEventSignal;

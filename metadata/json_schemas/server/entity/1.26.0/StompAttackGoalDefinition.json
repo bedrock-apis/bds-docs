@@ -1,7 +1,7 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "1145690686",
-   "x-format-version": "1.21.120",
+   "$id": "2645365302",
+   "x-format-version": "1.26.0",
    "definitions": {
       "121353999": {
          "title": "ActorDefinitionTrigger",
@@ -167,7 +167,7 @@
          ]
       }
    },
-   "title": "MeleeAttackBaseGoalDefinition",
+   "title": "minecraft:behavior.stomp_attack",
    "type": "object",
    "properties": {
       "attack_once": {
@@ -210,15 +210,15 @@
          "default": 0.550000011920929,
          "minimum": 0
       },
-      "melee_fov": {
-         "type": "number",
-         "default": 90,
-         "minimum": 0
-      },
       "min_path_time": {
          "type": "number",
          "default": 0.20000000298023224,
          "minimum": 0
+      },
+      "no_damage_range_multiplier": {
+         "type": "number",
+         "default": 2,
+         "exclusiveMinimum": 0
       },
       "on_attack": {
          "default": {
@@ -284,6 +284,11 @@
          "default": 0,
          "minimum": 0
       },
+      "reach_multiplier": {
+         "type": "number",
+         "default": 2,
+         "minimum": 0
+      },
       "require_complete_path": {
          "type": "boolean",
          "default": false
@@ -292,6 +297,11 @@
          "type": "number",
          "default": 1,
          "minimum": 0
+      },
+      "stomp_range_multiplier": {
+         "type": "number",
+         "default": 2,
+         "exclusiveMinimum": 0
       },
       "track_target": {
          "type": "boolean",

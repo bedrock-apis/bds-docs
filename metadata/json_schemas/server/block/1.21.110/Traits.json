@@ -44,11 +44,37 @@
          "required": [
             "enabled_states"
          ]
+      },
+      "3581235492": {
+         "title": "Connection",
+         "type": "object",
+         "properties": {
+            "enabled_states": {
+               "type": "array",
+               "items": {
+                  "title": "Connection::EnabledState",
+                  "type": "string",
+                  "enum": [
+                     "minecraft:cardinal_connections"
+                  ]
+               },
+               "minProperties": 1
+            }
+         },
+         "required": [
+            "enabled_states"
+         ]
       }
    },
    "title": "Traits",
    "type": "object",
    "properties": {
+      "minecraft:connection": {
+         "default": {
+            "enabled_states": []
+         },
+         "$ref": "#/definitions/3581235492"
+      },
       "minecraft:placement_direction": {
          "default": {
             "enabled_states": [],

@@ -1334,6 +1334,35 @@
             }
          }
       },
+      "770029759": {
+         "title": "minecraft:block_placer",
+         "type": "object",
+         "properties": {
+            "aligned_placement": {
+               "type": "boolean",
+               "default": false
+            },
+            "block": {
+               "$ref": "#/definitions/1527037515"
+            },
+            "replace_block_item": {
+               "type": "boolean",
+               "default": false
+            },
+            "use_on": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/2794205495"
+               },
+               "maxItems": 256,
+               "x-unique-values": true
+            }
+         },
+         "required": [
+            "block"
+         ]
+      },
       "842194090": {
          "title": "minecraft:storage_weight_modifier",
          "type": "object",
@@ -1370,29 +1399,6 @@
                }
             }
          }
-      },
-      "857819254": {
-         "title": "minecraft:block_placer",
-         "type": "object",
-         "properties": {
-            "block": {
-               "$ref": "#/definitions/1527037515"
-            },
-            "replace_block_item": {
-               "type": "boolean",
-               "default": false
-            },
-            "use_on": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "$ref": "#/definitions/2794205495"
-               }
-            }
-         },
-         "required": [
-            "block"
-         ]
       },
       "886176099": {
          "title": "minecraft:cooldown",
@@ -4546,7 +4552,7 @@
          "$ref": "#/definitions/3389099981"
       },
       "minecraft:block_placer": {
-         "$ref": "#/definitions/857819254"
+         "$ref": "#/definitions/770029759"
       },
       "minecraft:bundle_interaction": {
          "$ref": "#/definitions/2333685719"

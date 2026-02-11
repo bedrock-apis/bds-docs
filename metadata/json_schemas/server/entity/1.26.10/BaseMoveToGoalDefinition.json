@@ -1,0 +1,32 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "3792863721",
+   "x-format-version": "1.26.10",
+   "title": "BaseMoveToGoalDefinition",
+   "type": "object",
+   "properties": {
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "title": "Goal's control flags",
+            "type": "string",
+            "enum": [
+               "move",
+               "look",
+               "jump"
+            ]
+         }
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "minimum": 0
+      },
+      "speed_multiplier": {
+         "type": "number",
+         "default": 1,
+         "minimum": 0
+      }
+   }
+}

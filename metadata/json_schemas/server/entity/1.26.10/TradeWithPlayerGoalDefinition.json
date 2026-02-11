@@ -1,0 +1,170 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "998576969",
+   "x-format-version": "1.26.10",
+   "definitions": {
+      "1088251937": {
+         "title": "Filter Group",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/4150989894"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/1088251937"
+               }
+            },
+            {
+               "$ref": "#/definitions/3235433757"
+            }
+         ]
+      },
+      "3235433757": {
+         "title": "Filter Group Map",
+         "type": "object",
+         "properties": {
+            "AND": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "NOT": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "OR": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "all": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "all_of": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "any": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "any_of": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "none_of": {
+               "$ref": "#/definitions/1088251937"
+            }
+         }
+      },
+      "4150989894": {
+         "title": "Filter Test",
+         "type": "object",
+         "properties": {
+            "domain": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "operator": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "subject": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "test": {
+               "type": "string"
+            },
+            "value": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            }
+         },
+         "required": [
+            "test"
+         ]
+      }
+   },
+   "title": "minecraft:behavior.trade_with_player",
+   "type": "object",
+   "properties": {
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "title": "Goal's control flags",
+            "type": "string",
+            "enum": [
+               "move",
+               "look",
+               "jump"
+            ]
+         }
+      },
+      "filters": {
+         "default": {
+            "all_of": null,
+            "all": null,
+            "OR": null,
+            "AND": null,
+            "any_of": null,
+            "any": null,
+            "none_of": null,
+            "NOT": null
+         },
+         "$ref": "#/definitions/1088251937"
+      },
+      "max_distance_from_player": {
+         "type": "number",
+         "default": 8,
+         "exclusiveMinimum": 0
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "minimum": 0
+      }
+   }
+}
