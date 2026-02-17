@@ -1186,6 +1186,7 @@ export class Block {
    public getItemStack(amount?: number, withData?: boolean): (ItemStack | undefined);
    public getLightLevel(): number;
    public getMapColor(): RGBA;
+   public getParts(): (Array<Block> | undefined);
    public getRedstonePower(): (number | undefined);
    public getSkyLightLevel(): number;
    public getTags(): Array<string>;
@@ -1234,7 +1235,7 @@ export class BlockComponentBlockBreakEvent extends BlockEvent {
 //@ts-ignore
 export class BlockComponentEntityEvent extends BlockEvent {
    public readonly blockPermutation: BlockPermutation;
-   public readonly entitySource?: Entity;
+   public readonly entitySource: Entity;
    public readonly name: string;
    private constructor();
 }
@@ -1770,6 +1771,7 @@ export class Entity {
    public readonly target?: Entity;
    public readonly typeId: string;
    public addEffect(effectType: EffectType | string, duration: number, options?: EntityEffectOptions): (Effect | undefined);
+   public addItem(itemStack: ItemStack): (ItemStack | undefined);
    public addTag(tag: string): boolean;
    public applyDamage(amount: number, options?: EntityApplyDamageByProjectileOptions | EntityApplyDamageOptions): boolean;
    public applyImpulse(vector: Vector3): void;
@@ -3988,6 +3990,10 @@ export class InvalidContainerError extends Error {
 }
 //@ts-ignore
 export class InvalidContainerSlotError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class InvalidEntityComponentError extends Error {
    private constructor();
 }
 //@ts-ignore

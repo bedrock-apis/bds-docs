@@ -30,6 +30,7 @@ export class ColorGrading {
    public resetHighlightsContrast(biomeIdentifier: server.BiomeType): void;
    public resetHighlightsGain(biomeIdentifier: server.BiomeType): void;
    public resetHighlightsGamma(biomeIdentifier: server.BiomeType): void;
+   public resetHighlightsMin(biomeIdentifier: server.BiomeType): void;
    public resetHighlightsOffset(biomeIdentifier: server.BiomeType): void;
    public resetHighlightsSaturation(biomeIdentifier: server.BiomeType): void;
    public resetMidtonesContrast(biomeIdentifier: server.BiomeType): void;
@@ -40,11 +41,14 @@ export class ColorGrading {
    public resetShadowsContrast(biomeIdentifier: server.BiomeType): void;
    public resetShadowsGain(biomeIdentifier: server.BiomeType): void;
    public resetShadowsGamma(biomeIdentifier: server.BiomeType): void;
+   public resetShadowsMax(biomeIdentifier: server.BiomeType): void;
    public resetShadowsOffset(biomeIdentifier: server.BiomeType): void;
    public resetShadowsSaturation(biomeIdentifier: server.BiomeType): void;
+   public resetTemperature(biomeIdentifier: server.BiomeType): void;
    public setHighlightsContrast(highlightsContrast: server.Vector3, biomeIdentifier: server.BiomeType): void;
    public setHighlightsGain(highlightsGain: server.Vector3, biomeIdentifier: server.BiomeType): void;
    public setHighlightsGamma(highlightsGamma: server.Vector3, biomeIdentifier: server.BiomeType): void;
+   public setHighlightsMin(highlightsMin: number, biomeIdentifier: server.BiomeType): void;
    public setHighlightsOffset(highlightsOffset: server.Vector3, biomeIdentifier: server.BiomeType): void;
    public setHighlightsSaturation(highlightsSaturation: server.Vector3, biomeIdentifier: server.BiomeType): void;
    public setMidtonesContrast(midtonesContrast: server.Vector3, biomeIdentifier: server.BiomeType): void;
@@ -55,8 +59,10 @@ export class ColorGrading {
    public setShadowsContrast(shadowsContrast: server.Vector3, biomeIdentifier: server.BiomeType): void;
    public setShadowsGain(shadowsGain: server.Vector3, biomeIdentifier: server.BiomeType): void;
    public setShadowsGamma(shadowsGamma: server.Vector3, biomeIdentifier: server.BiomeType): void;
+   public setShadowsMax(shadowsMax: number, biomeIdentifier: server.BiomeType): void;
    public setShadowsOffset(shadowsOffset: server.Vector3, biomeIdentifier: server.BiomeType): void;
    public setShadowsSaturation(shadowsSaturation: server.Vector3, biomeIdentifier: server.BiomeType): void;
+   public setTemperature(temperature: number, biomeIdentifier: server.BiomeType): void;
    private constructor();
 }
 export class Water {

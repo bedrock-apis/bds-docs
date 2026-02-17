@@ -1,0 +1,301 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "3999604596",
+   "x-format-version": "1.26.10",
+   "definitions": {
+      "792012262": {
+         "title": "MobDescriptor",
+         "type": "object",
+         "properties": {
+            "check_if_outnumbered": {
+               "type": "boolean",
+               "default": false
+            },
+            "cooldown": {
+               "type": "integer",
+               "default": 0
+            },
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/1088251937"
+            },
+            "max_dist": {
+               "type": "number",
+               "default": 16
+            },
+            "max_flee": {
+               "type": "number",
+               "default": 10
+            },
+            "max_height": {
+               "type": "number",
+               "default": -1
+            },
+            "must_see": {
+               "type": "boolean"
+            },
+            "must_see_forget_duration": {
+               "type": "integer",
+               "default": 3
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0
+            },
+            "reevaluate_description": {
+               "type": "boolean",
+               "default": false
+            },
+            "sprint_speed_multiplier": {
+               "type": "number",
+               "default": 1
+            },
+            "walk_speed_multiplier": {
+               "type": "number",
+               "default": 1
+            }
+         }
+      },
+      "1088251937": {
+         "title": "Filter Group",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/4150989894"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/1088251937"
+               }
+            },
+            {
+               "$ref": "#/definitions/3235433757"
+            }
+         ]
+      },
+      "3235433757": {
+         "title": "Filter Group Map",
+         "type": "object",
+         "properties": {
+            "AND": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "NOT": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "OR": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "all": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "all_of": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "any": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "any_of": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "none_of": {
+               "$ref": "#/definitions/1088251937"
+            }
+         }
+      },
+      "4004946602": {
+         "title": "vec3",
+         "oneOf": [
+            {
+               "type": "array",
+               "items": {
+                  "type": "number"
+               },
+               "minItems": 3,
+               "maxItems": 3
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "x": {
+                     "type": "number",
+                     "default": 0
+                  },
+                  "y": {
+                     "type": "number",
+                     "default": 0
+                  },
+                  "z": {
+                     "type": "number",
+                     "default": 0
+                  }
+               }
+            }
+         ]
+      },
+      "4150989894": {
+         "title": "Filter Test",
+         "type": "object",
+         "properties": {
+            "domain": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "operator": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "subject": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "test": {
+               "type": "string"
+            },
+            "value": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            }
+         },
+         "required": [
+            "test"
+         ]
+      },
+      "4227886613": {
+         "title": "EntityTypes",
+         "oneOf": [
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/792012262"
+               }
+            },
+            {
+               "$ref": "#/definitions/792012262"
+            }
+         ]
+      }
+   },
+   "title": "minecraft:behavior.play",
+   "type": "object",
+   "properties": {
+      "chance_to_start": {
+         "type": "number",
+         "default": 0.0024999999441206455,
+         "minimum": 0,
+         "maximum": 1
+      },
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "title": "Goal's control flags",
+            "type": "string",
+            "enum": [
+               "move",
+               "look",
+               "jump"
+            ]
+         }
+      },
+      "follow_distance": {
+         "type": "integer",
+         "default": 2,
+         "minimum": 0
+      },
+      "friend_search_area": {
+         "default": [
+            6,
+            3,
+            6
+         ],
+         "$ref": "#/definitions/4004946602"
+      },
+      "friend_types": {
+         "default": [],
+         "$ref": "#/definitions/4227886613"
+      },
+      "max_play_duration_seconds": {
+         "type": "number",
+         "default": 50,
+         "minimum": 0
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "minimum": 0
+      },
+      "random_pos_search_height": {
+         "type": "integer",
+         "default": 3,
+         "minimum": 1
+      },
+      "random_pos_search_range": {
+         "type": "integer",
+         "default": 16,
+         "minimum": 1
+      },
+      "speed_multiplier": {
+         "type": "number",
+         "default": 1,
+         "minimum": 0
+      }
+   }
+}

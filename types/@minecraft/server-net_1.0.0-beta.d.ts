@@ -212,6 +212,7 @@ export enum PacketId {
    SubChunkRequestPacket = "SubChunkRequestPacket",
    SubClientLoginPacket = "SubClientLoginPacket",
    SyncActorPropertyPacket = "SyncActorPropertyPacket",
+   SyncWorldClocksPacket = "SyncWorldClocksPacket",
    TakeItemActorPacket = "TakeItemActorPacket",
    TextPacket = "TextPacket",
    TickingAreasLoadStatusPacket = "TickingAreasLoadStatusPacket",

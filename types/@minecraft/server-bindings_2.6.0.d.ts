@@ -1,5 +1,9 @@
 import * as common from "@minecraft/common";
 
+export enum AimAssistTargetMode {
+   Angle = "Angle",
+   Distance = "Distance",
+}
 export enum BlockComponentTypes {
    FluidContainer = "minecraft:fluid_container",
    Inventory = "minecraft:inventory",
@@ -588,6 +592,7 @@ export interface BlockBoundingBox {
 export interface BlockCustomComponent {
    beforeOnPlayerPlace?: (arg0: BlockComponentPlayerPlaceBeforeEvent, arg1: CustomComponentParameters)=>void;
    onBreak?: (arg0: BlockComponentBlockBreakEvent, arg1: CustomComponentParameters)=>void;
+   onEntity?: (arg0: BlockComponentEntityEvent, arg1: CustomComponentParameters)=>void;
    onEntityFallOn?: (arg0: BlockComponentEntityFallOnEvent, arg1: CustomComponentParameters)=>void;
    onPlace?: (arg0: BlockComponentOnPlaceEvent, arg1: CustomComponentParameters)=>void;
    onPlayerBreak?: (arg0: BlockComponentPlayerBreakEvent, arg1: CustomComponentParameters)=>void;
@@ -891,6 +896,12 @@ export interface PlayAnimationOptions {
    players?: Array<Player>;
    stopExpression?: string;
 }
+export interface PlayerAimAssistSettings {
+   distance?: number;
+   presetId: string;
+   targetMode?: AimAssistTargetMode;
+   viewAngle?: Vector2;
+}
 export interface PlayerSoundOptions {
    location?: Vector3;
    pitch?: number;
@@ -989,6 +1000,71 @@ export interface WorldSoundOptions {
    volume?: number;
 }
 
+export class AimAssistCategory {
+   public readonly defaultBlockPriority: number;
+   public readonly defaultEntityPriority: number;
+   public readonly identifier: string;
+   public getBlockPriorities(): Record<string,number>;
+   public getBlockTagPriorities(): Record<string,number>;
+   public getEntityPriorities(): Record<string,number>;
+   public getEntityTypeFamilyPriorities(): Record<string,number>;
+   private constructor();
+}
+export class AimAssistCategorySettings {
+   public defaultBlockPriority: number;
+   public defaultEntityPriority: number;
+   public readonly identifier: string;
+   public constructor(identifier: string);
+   public getBlockPriorities(): Record<string,number>;
+   public getBlockTagPriorities(): Record<string,number>;
+   public getEntityPriorities(): Record<string,number>;
+   public getEntityTypeFamilyPriorities(): Record<string,number>;
+   public setBlockPriorities(blockPriorities: Record<string,number>): void;
+   public setBlockTagPriorities(blockTagPriorities: Record<string,number>): void;
+   public setEntityPriorities(entityPriorities: Record<string,number>): void;
+   public setEntityTypeFamilyPriorities(entityTypeFamilyPriorities: Record<string,number>): void;
+}
+export class AimAssistPreset {
+   public readonly defaultItemSettings?: string;
+   public readonly handSettings?: string;
+   public readonly identifier: string;
+   public getExcludedBlockTagTargets(): Array<string>;
+   public getExcludedBlockTargets(): Array<string>;
+   public getExcludedEntityTargets(): Array<string>;
+   public getExcludedEntityTypeFamilyTargets(): Array<string>;
+   public getItemSettings(): Record<string,string>;
+   public getLiquidTargetingItems(): Array<string>;
+   private constructor();
+}
+export class AimAssistPresetSettings {
+   public defaultItemSettings?: string;
+   public handSettings?: string;
+   public readonly identifier: string;
+   public constructor(identifier: string);
+   public getExcludedBlockTagTargets(): (Array<string> | undefined);
+   public getExcludedBlockTargets(): (Array<string> | undefined);
+   public getExcludedEntityTargets(): (Array<string> | undefined);
+   public getExcludedEntityTypeFamilyTargets(): (Array<string> | undefined);
+   public getItemSettings(): Record<string,string>;
+   public getLiquidTargetingItems(): (Array<string> | undefined);
+   public setExcludedBlockTagTargets(blockTagTargets?: Array<string>): void;
+   public setExcludedBlockTargets(blockTargets?: Array<string>): void;
+   public setExcludedEntityTargets(entityTargets?: Array<string>): void;
+   public setExcludedEntityTypeFamilyTargets(entityTypeFamilyTargets?: Array<string>): void;
+   public setItemSettings(itemSettings: Record<string,string>): void;
+   public setLiquidTargetingItems(items?: Array<string>): void;
+}
+export class AimAssistRegistry {
+   public static readonly DefaultCategoryId = "minecraft:default";
+   public static readonly DefaultPresetId = "minecraft:aim_assist_default";
+   public addCategory(category: AimAssistCategorySettings): AimAssistCategory;
+   public addPreset(preset: AimAssistPresetSettings): AimAssistPreset;
+   public getCategories(): Array<AimAssistCategory>;
+   public getCategory(categoryId: string): (AimAssistCategory | undefined);
+   public getPreset(presetId: string): (AimAssistPreset | undefined);
+   public getPresets(): Array<AimAssistPreset>;
+   private constructor();
+}
 export class BiomeType {
    public readonly id: string;
    private constructor();
@@ -1046,6 +1122,13 @@ export class BlockComponentBlockBreakEvent extends BlockEvent {
    public readonly blockDestructionSource?: Block;
    public readonly brokenBlockPermutation: BlockPermutation;
    public readonly entitySource?: Entity;
+   private constructor();
+}
+//@ts-ignore
+export class BlockComponentEntityEvent extends BlockEvent {
+   public readonly blockPermutation: BlockPermutation;
+   public readonly entitySource: Entity;
+   public readonly name: string;
    private constructor();
 }
 //@ts-ignore
@@ -2785,6 +2868,7 @@ export class Player extends Entity {
    public addExperience(amount: number): number;
    public addLevels(amount: number): number;
    public clearPropertyOverridesForEntity(targetEntity: Entity | string): void;
+   public getAimAssist(): PlayerAimAssist;
    public getControlScheme(): ControlScheme;
    public getGameMode(): GameMode;
    public getItemCooldown(cooldownCategory: string): number;
@@ -2803,6 +2887,11 @@ export class Player extends Entity {
    public spawnParticle(effectName: string, location: Vector3, molangVariables?: MolangVariableMap): void;
    public startItemCooldown(cooldownCategory: string, tickDuration: number): void;
    public stopMusic(): void;
+   private constructor();
+}
+export class PlayerAimAssist {
+   public readonly settings?: PlayerAimAssistSettings;
+   public set(settings?: PlayerAimAssistSettings): void;
    private constructor();
 }
 //@ts-ignore
@@ -3442,6 +3531,7 @@ export class World {
    public readonly structureManager: StructureManager;
    public clearDynamicProperties(): void;
    public getAbsoluteTime(): number;
+   public getAimAssist(): AimAssistRegistry;
    public getAllPlayers(): Array<Player>;
    public getDay(): number;
    public getDefaultSpawnLocation(): Vector3;

@@ -3,6 +3,65 @@
    "$id": "2655630337",
    "x-format-version": "1.26.10",
    "definitions": {
+      "29844430": {
+         "title": "minecraft:behavior.move_to_liquid",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "goal_radius": {
+               "type": "number",
+               "default": 0.5,
+               "exclusiveMinimum": 0
+            },
+            "material_type": {
+               "title": "liquid_material_type",
+               "type": "string",
+               "default": "any",
+               "enum": [
+                  "Any",
+                  "Water",
+                  "Lava"
+               ]
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "search_count": {
+               "type": "integer",
+               "default": 10,
+               "minimum": 0
+            },
+            "search_height": {
+               "type": "integer",
+               "default": 1,
+               "exclusiveMinimum": 0
+            },
+            "search_range": {
+               "type": "integer",
+               "default": 0,
+               "exclusiveMinimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1,
+               "minimum": 0
+            }
+         }
+      },
       "61802587": {
          "title": "minecraft:behavior.swim_wander",
          "type": "object",
@@ -107,13 +166,13 @@
             },
             "filters": {
                "default": {
-                  "all_of": null,
-                  "all": null,
                   "OR": null,
+                  "all": null,
+                  "all_of": null,
                   "AND": null,
                   "any_of": null,
-                  "any": null,
                   "none_of": null,
+                  "any": null,
                   "NOT": null
                },
                "$ref": "#/definitions/1088251937"
@@ -288,6 +347,60 @@
       },
       "387887038": {
          "title": "BodyRotationBlockedDefinition"
+      },
+      "499116408": {
+         "title": "minecraft:behavior.stomp_turtle_egg",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "goal_radius": {
+               "type": "number",
+               "default": 0.5,
+               "exclusiveMinimum": 0
+            },
+            "interval": {
+               "type": "integer",
+               "default": 120,
+               "exclusiveMinimum": 0
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "search_count": {
+               "type": "integer",
+               "default": 10,
+               "minimum": 0
+            },
+            "search_height": {
+               "type": "integer",
+               "default": 1,
+               "exclusiveMinimum": 0
+            },
+            "search_range": {
+               "type": "integer",
+               "default": 0,
+               "exclusiveMinimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1,
+               "minimum": 0
+            }
+         }
       },
       "517105782": {
          "title": "compound_proxy",
@@ -1020,6 +1133,8 @@
                   "item.golden_spear.use",
                   "item.diamond_spear.use",
                   "item.netherite_spear.use",
+                  "pause_growth",
+                  "reset_growth",
                   "undefined"
                ]
             },
@@ -1588,6 +1703,8 @@
                   "item.golden_spear.use",
                   "item.diamond_spear.use",
                   "item.netherite_spear.use",
+                  "pause_growth",
+                  "reset_growth",
                   "undefined"
                ]
             },
@@ -1642,6 +1759,35 @@
             "y_max_rotation": {
                "type": "number",
                "default": 10
+            }
+         }
+      },
+      "603701356": {
+         "title": "minecraft:behavior.ocelot_sit_on_block",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1,
+               "minimum": 0
             }
          }
       },
@@ -2519,6 +2665,8 @@
                   "item.golden_spear.use",
                   "item.diamond_spear.use",
                   "item.netherite_spear.use",
+                  "pause_growth",
+                  "reset_growth",
                   "undefined"
                ]
             },
@@ -2553,13 +2701,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "all_of": null,
-                     "all": null,
                      "OR": null,
+                     "all": null,
+                     "all_of": null,
                      "AND": null,
                      "any_of": null,
-                     "any": null,
                      "none_of": null,
+                     "any": null,
                      "NOT": null
                   }
                },
@@ -2736,13 +2884,13 @@
             },
             "filters": {
                "default": {
-                  "all_of": null,
-                  "all": null,
                   "OR": null,
+                  "all": null,
+                  "all_of": null,
                   "AND": null,
                   "any_of": null,
-                  "any": null,
                   "none_of": null,
+                  "any": null,
                   "NOT": null
                },
                "$ref": "#/definitions/1088251937"
@@ -3400,6 +3548,8 @@
                   "item.golden_spear.use",
                   "item.diamond_spear.use",
                   "item.netherite_spear.use",
+                  "pause_growth",
+                  "reset_growth",
                   "undefined"
                ]
             },
@@ -4002,6 +4152,8 @@
                   "item.golden_spear.use",
                   "item.diamond_spear.use",
                   "item.netherite_spear.use",
+                  "pause_growth",
+                  "reset_growth",
                   "undefined"
                ]
             },
@@ -4015,13 +4167,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "all_of": null,
-                     "all": null,
                      "OR": null,
+                     "all": null,
+                     "all_of": null,
                      "AND": null,
                      "any_of": null,
-                     "any": null,
                      "none_of": null,
+                     "any": null,
                      "NOT": null
                   }
                },
@@ -4100,6 +4252,20 @@
             "speed_multiplier": {
                "type": "number",
                "default": 1
+            }
+         }
+      },
+      "1398826300": {
+         "title": "IntRange",
+         "type": "object",
+         "properties": {
+            "max": {
+               "type": "integer",
+               "default": 0
+            },
+            "min": {
+               "type": "integer",
+               "default": 0
             }
          }
       },
@@ -4252,13 +4418,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "all_of": null,
-                     "all": null,
                      "OR": null,
+                     "all": null,
+                     "all_of": null,
                      "AND": null,
                      "any_of": null,
-                     "any": null,
                      "none_of": null,
+                     "any": null,
                      "NOT": null
                   }
                },
@@ -4269,13 +4435,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "all_of": null,
-                     "all": null,
                      "OR": null,
+                     "all": null,
+                     "all_of": null,
                      "AND": null,
                      "any_of": null,
-                     "any": null,
                      "none_of": null,
+                     "any": null,
                      "NOT": null
                   }
                },
@@ -4286,13 +4452,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "all_of": null,
-                     "all": null,
                      "OR": null,
+                     "all": null,
+                     "all_of": null,
                      "AND": null,
                      "any_of": null,
-                     "any": null,
                      "none_of": null,
+                     "any": null,
                      "NOT": null
                   }
                },
@@ -4303,13 +4469,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "all_of": null,
-                     "all": null,
                      "OR": null,
+                     "all": null,
+                     "all_of": null,
                      "AND": null,
                      "any_of": null,
-                     "any": null,
                      "none_of": null,
+                     "any": null,
                      "NOT": null
                   }
                },
@@ -4320,13 +4486,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "all_of": null,
-                     "all": null,
                      "OR": null,
+                     "all": null,
+                     "all_of": null,
                      "AND": null,
                      "any_of": null,
-                     "any": null,
                      "none_of": null,
+                     "any": null,
                      "NOT": null
                   }
                },
@@ -4337,13 +4503,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "all_of": null,
-                     "all": null,
                      "OR": null,
+                     "all": null,
+                     "all_of": null,
                      "AND": null,
                      "any_of": null,
-                     "any": null,
                      "none_of": null,
+                     "any": null,
                      "NOT": null
                   }
                },
@@ -4570,6 +4736,76 @@
       },
       "1682332161": {
          "title": "CanClimbDefinition"
+      },
+      "1701475263": {
+         "title": "minecraft:behavior.raid_garden",
+         "type": "object",
+         "properties": {
+            "blocks": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "type": "string"
+               }
+            },
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "eat_delay": {
+               "type": "integer",
+               "default": 2,
+               "minimum": 0
+            },
+            "full_delay": {
+               "type": "integer",
+               "default": 100,
+               "minimum": 0
+            },
+            "goal_radius": {
+               "type": "number",
+               "default": 0.5,
+               "exclusiveMinimum": 0
+            },
+            "initial_eat_delay": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "max_to_eat": {
+               "type": "integer",
+               "default": 6
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "search_height": {
+               "type": "integer",
+               "default": 1,
+               "exclusiveMinimum": 0
+            },
+            "search_range": {
+               "type": "integer",
+               "default": 0,
+               "exclusiveMinimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1,
+               "minimum": 0
+            }
+         }
       },
       "1703168766": {
          "title": "IsBabyDefinition"
@@ -5119,6 +5355,55 @@
             }
          }
       },
+      "2096427345": {
+         "title": "minecraft:behavior.move_to_water",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "goal_radius": {
+               "type": "number",
+               "default": 0.5,
+               "exclusiveMinimum": 0
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "search_count": {
+               "type": "integer",
+               "default": 10,
+               "minimum": 0
+            },
+            "search_height": {
+               "type": "integer",
+               "default": 1,
+               "exclusiveMinimum": 0
+            },
+            "search_range": {
+               "type": "integer",
+               "default": 0,
+               "exclusiveMinimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1,
+               "minimum": 0
+            }
+         }
+      },
       "2124526562": {
          "title": "minecraft:behavior.guardian_attack",
          "type": "object",
@@ -5510,6 +5795,55 @@
             }
          }
       },
+      "2582330159": {
+         "title": "minecraft:behavior.move_to_land",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "goal_radius": {
+               "type": "number",
+               "default": 0.5,
+               "exclusiveMinimum": 0
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "search_count": {
+               "type": "integer",
+               "default": 10,
+               "minimum": 0
+            },
+            "search_height": {
+               "type": "integer",
+               "default": 1,
+               "exclusiveMinimum": 0
+            },
+            "search_range": {
+               "type": "integer",
+               "default": 0,
+               "exclusiveMinimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1,
+               "minimum": 0
+            }
+         }
+      },
       "2590440254": {
          "title": "minecraft:behavior.look_at_target",
          "type": "object",
@@ -5561,6 +5895,72 @@
                "default": 0.019999999552965164,
                "minimum": 0,
                "maximum": 1
+            }
+         }
+      },
+      "2616276259": {
+         "title": "minecraft:behavior.offer_flower",
+         "type": "object",
+         "properties": {
+            "chance_to_start": {
+               "type": "number",
+               "default": 0.0001250000059371814,
+               "minimum": 0,
+               "maximum": 1
+            },
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/1088251937"
+            },
+            "max_head_rotation_y": {
+               "type": "number",
+               "default": 30,
+               "minimum": 0
+            },
+            "max_offer_flower_duration": {
+               "type": "number",
+               "default": 20,
+               "minimum": 0
+            },
+            "max_rotation_x": {
+               "type": "number",
+               "default": 30,
+               "minimum": 0
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "search_area": {
+               "default": [
+                  6,
+                  2,
+                  6
+               ],
+               "$ref": "#/definitions/4004946602"
             }
          }
       },
@@ -6256,13 +6656,13 @@
             },
             "filters": {
                "default": {
-                  "all_of": null,
-                  "all": null,
                   "OR": null,
+                  "all": null,
+                  "all_of": null,
                   "AND": null,
                   "any_of": null,
-                  "any": null,
                   "none_of": null,
+                  "any": null,
                   "NOT": null
                },
                "$ref": "#/definitions/1088251937"
@@ -6297,13 +6697,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "all_of": null,
-                     "all": null,
                      "OR": null,
+                     "all": null,
+                     "all_of": null,
                      "AND": null,
                      "any_of": null,
-                     "any": null,
                      "none_of": null,
+                     "any": null,
                      "NOT": null
                   }
                },
@@ -7043,6 +7443,8 @@
                   "item.golden_spear.use",
                   "item.diamond_spear.use",
                   "item.netherite_spear.use",
+                  "pause_growth",
+                  "reset_growth",
                   "undefined"
                ]
             },
@@ -7144,13 +7546,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "all_of": null,
-                     "all": null,
                      "OR": null,
+                     "all": null,
+                     "all_of": null,
                      "AND": null,
                      "any_of": null,
-                     "any": null,
                      "none_of": null,
+                     "any": null,
                      "NOT": null
                   }
                },
@@ -7726,6 +8128,8 @@
                   "item.golden_spear.use",
                   "item.diamond_spear.use",
                   "item.netherite_spear.use",
+                  "pause_growth",
+                  "reset_growth",
                   "undefined"
                ]
             },
@@ -7880,13 +8284,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "all_of": null,
-                     "all": null,
                      "OR": null,
+                     "all": null,
+                     "all_of": null,
                      "AND": null,
                      "any_of": null,
-                     "any": null,
                      "none_of": null,
+                     "any": null,
                      "NOT": null
                   }
                },
@@ -8608,6 +9012,8 @@
                   "item.golden_spear.use",
                   "item.diamond_spear.use",
                   "item.netherite_spear.use",
+                  "pause_growth",
+                  "reset_growth",
                   "undefined"
                ]
             },
@@ -8696,13 +9102,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "all_of": null,
-                     "all": null,
                      "OR": null,
+                     "all": null,
+                     "all_of": null,
                      "AND": null,
                      "any_of": null,
-                     "any": null,
                      "none_of": null,
+                     "any": null,
                      "NOT": null
                   }
                },
@@ -8862,13 +9268,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "all_of": null,
-                     "all": null,
                      "OR": null,
+                     "all": null,
+                     "all_of": null,
                      "AND": null,
                      "any_of": null,
-                     "any": null,
                      "none_of": null,
+                     "any": null,
                      "NOT": null
                   }
                },
@@ -8930,6 +9336,73 @@
             }
          }
       },
+      "3999604596": {
+         "title": "minecraft:behavior.play",
+         "type": "object",
+         "properties": {
+            "chance_to_start": {
+               "type": "number",
+               "default": 0.0024999999441206455,
+               "minimum": 0,
+               "maximum": 1
+            },
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "follow_distance": {
+               "type": "integer",
+               "default": 2,
+               "minimum": 0
+            },
+            "friend_search_area": {
+               "default": [
+                  6,
+                  3,
+                  6
+               ],
+               "$ref": "#/definitions/4004946602"
+            },
+            "friend_types": {
+               "default": [],
+               "$ref": "#/definitions/4227886613"
+            },
+            "max_play_duration_seconds": {
+               "type": "number",
+               "default": 50,
+               "minimum": 0
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "random_pos_search_height": {
+               "type": "integer",
+               "default": 3,
+               "minimum": 1
+            },
+            "random_pos_search_range": {
+               "type": "integer",
+               "default": 16,
+               "minimum": 1
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1,
+               "minimum": 0
+            }
+         }
+      },
       "4004946602": {
          "title": "vec3",
          "oneOf": [
@@ -8986,8 +9459,164 @@
             }
          ]
       },
+      "4084110874": {
+         "title": "minecraft:behavior.play_dead",
+         "type": "object",
+         "properties": {
+            "apply_regeneration": {
+               "type": "boolean",
+               "default": false
+            },
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "damage_sources": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "ActorDamageCause",
+                  "type": "string",
+                  "enum": [
+                     "none",
+                     "override",
+                     "contact",
+                     "entity_attack",
+                     "projectile",
+                     "suffocation",
+                     "fall",
+                     "fire",
+                     "fire_tick",
+                     "lava",
+                     "drowning",
+                     "block_explosion",
+                     "entity_explosion",
+                     "void",
+                     "self_destruct",
+                     "magic",
+                     "wither",
+                     "starve",
+                     "anvil",
+                     "thorns",
+                     "falling_block",
+                     "piston",
+                     "fly_into_wall",
+                     "magma",
+                     "fireworks",
+                     "lightning",
+                     "charging",
+                     "temperature",
+                     "freezing",
+                     "stalactite",
+                     "stalagmite",
+                     "ram_attack",
+                     "sonic_boom",
+                     "campfire",
+                     "soul_campfire",
+                     "mace_smash",
+                     "all"
+                  ]
+               }
+            },
+            "duration": {
+               "type": "number",
+               "default": 1
+            },
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/1088251937"
+            },
+            "force_below_health": {
+               "type": "integer",
+               "default": 0
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "random_damage_range": {
+               "default": {
+                  "min": 0,
+                  "max": 0
+               },
+               "$ref": "#/definitions/1398826300"
+            },
+            "random_start_chance": {
+               "type": "number",
+               "default": 1
+            }
+         }
+      },
       "4114573755": {
          "title": "IsHiddenWhenInvisibleDefinition"
+      },
+      "4125349364": {
+         "title": "minecraft:behavior.move_to_lava",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "goal_radius": {
+               "type": "number",
+               "default": 0.5,
+               "exclusiveMinimum": 0
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "search_count": {
+               "type": "integer",
+               "default": 10,
+               "minimum": 0
+            },
+            "search_height": {
+               "type": "integer",
+               "default": 1,
+               "exclusiveMinimum": 0
+            },
+            "search_range": {
+               "type": "integer",
+               "default": 0,
+               "exclusiveMinimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1,
+               "minimum": 0
+            }
+         }
       },
       "4150989894": {
          "title": "Filter Test",
@@ -9527,13 +10156,13 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.move_to_land": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/2582330159"
       },
       "minecraft:behavior.move_to_lava": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/4125349364"
       },
       "minecraft:behavior.move_to_liquid": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/29844430"
       },
       "minecraft:behavior.move_to_poi": {
          "description": "Dynamic value"
@@ -9545,7 +10174,7 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.move_to_water": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/2096427345"
       },
       "minecraft:behavior.move_towards_dwelling_restriction": {
          "$ref": "#/definitions/800417298"
@@ -9566,13 +10195,13 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.ocelot_sit_on_block": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/603701356"
       },
       "minecraft:behavior.ocelotattack": {
          "$ref": "#/definitions/3134331302"
       },
       "minecraft:behavior.offer_flower": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/2616276259"
       },
       "minecraft:behavior.open_door": {
          "description": "Dynamic value"
@@ -9596,16 +10225,16 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.play": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/3999604596"
       },
       "minecraft:behavior.play_dead": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/4084110874"
       },
       "minecraft:behavior.player_ride_tamed": {
          "description": "Dynamic value"
       },
       "minecraft:behavior.raid_garden": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/1701475263"
       },
       "minecraft:behavior.ram_attack": {
          "$ref": "#/definitions/580536374"
@@ -9734,7 +10363,7 @@
          "$ref": "#/definitions/2645365302"
       },
       "minecraft:behavior.stomp_turtle_egg": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/499116408"
       },
       "minecraft:behavior.stroll_towards_village": {
          "description": "Dynamic value"

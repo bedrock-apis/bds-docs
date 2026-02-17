@@ -2,12 +2,29 @@ import * as server_ui from "@minecraft/server-ui-bindings";
 import * as common from "@minecraft/common";
 import * as server from "@minecraft/server";
 
+export enum DataDrivenScreenClosedReason {
+   ClientCanceled = "ClientCanceled",
+   InvalidForm = "InvalidForm",
+   ProgrammaticClose = "ProgrammaticClose",
+   ProgrammaticCloseAll = "ProgrammaticCloseAll",
+   UserBusy = "UserBusy",
+}
+export enum DataDrivenScreenRejectReason {
+   PlayerLeave = "PlayerLeave",
+   ServerShutdown = "ServerShutdown",
+}
 
 
 export class DataDrivenScreen {
    public static closeAllScreens(player: server.Player): void;
-   public constructor();
-   public showScreen(player: server.Player, screenId: string): void;
+   public constructor(player: server.Player, screenId: string);
+   public hideScreen(): void;
+   public isShowing(): boolean;
+   public showScreen(): Promise<DataDrivenScreenResponse>;
+}
+export class DataDrivenScreenResponse {
+   public readonly closedReason: DataDrivenScreenClosedReason;
+   private constructor();
 }
 export class DataStore {
    public getProperty(player: server.Player, dataStoreName: string, property: string): (string | undefined);
@@ -25,6 +42,11 @@ export const testConstant = 5;
 export const ddui: DataStore;
 
 
+//@ts-ignore
+export class DataDrivenScreenRejectError extends Error {
+   public readonly reason: DataDrivenScreenRejectReason;
+   private constructor();
+}
 //@ts-ignore
 export class InvalidPathError extends Error {
    public readonly path: string;

@@ -124,6 +124,7 @@ export enum MinimapMarkerType {
 }
 export enum MinimapViewType {
    BlockView = 0,
+   CustomBiomeView = 1,
 }
 export enum MouseActionCategory {
    Button = 1,
@@ -853,7 +854,7 @@ export class MinimapItem {
    private constructor();
 }
 export class MinimapManager {
-   public createMinimap(viewType: MinimapViewType, mapWidth: number, mapHeight: number): MinimapItem;
+   public createMinimap(viewType: MinimapViewType, mapWidth: number, mapHeight: number, dataId?: string): MinimapItem;
    public destroyMinimap(minimapId: string): void;
    public getAllMinimapIds(): Array<string>;
    public getMinimap(minimapId: string): MinimapItem;

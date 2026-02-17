@@ -63,6 +63,7 @@ export enum RealmsWorldUploadResult {
 export interface CustomBiomeConfig {
    name: string;
    replacements: Array<CustomBiomeReplacementConfig>;
+   visualizationColor: server.RGB;
 }
 export interface CustomBiomeReplacementConfig {
    amount: number;
@@ -180,8 +181,11 @@ export interface ProjectRegionOptions {
 }
 
 export class CustomBiomeSource {
+   public readonly id: string;
    public destroy(): void;
    public getBiomeAt(pos: server.Vector3): server.BiomeType;
+   public recalculateBiomes(newBiomes: Array<CustomBiomeConfig>): void;
+   public updateColor(biomeName: string, color: server.RGBA): void;
    private constructor();
 }
 export class DataStore {
