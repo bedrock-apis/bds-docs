@@ -1,7 +1,7 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
    "$id": "2972862513",
-   "x-format-version": "1.26.10",
+   "x-format-version": "1.26.20",
    "definitions": {
       "4233714": {
          "title": "Light Emission",
@@ -88,6 +88,22 @@
          "title": "Display Name",
          "type": "string",
          "maxLength": 256
+      },
+      "415070108": {
+         "title": "chest_obstruction",
+         "type": "object",
+         "properties": {
+            "obstruction_rule": {
+               "title": "Chest Obstruction rule",
+               "type": "string",
+               "default": "shape",
+               "enum": [
+                  "always",
+                  "never",
+                  "shape"
+               ]
+            }
+         }
       },
       "517105782": {
          "title": "compound_proxy",
@@ -219,6 +235,32 @@
             "identifier"
          ]
       },
+      "545997413": {
+         "title": "Detailed Map Color",
+         "type": "object",
+         "properties": {
+            "color": {
+               "$ref": "#/definitions/3915697282"
+            },
+            "tint_method": {
+               "title": "Tint Method",
+               "type": "string",
+               "default": "none",
+               "enum": [
+                  "none",
+                  "default_foliage",
+                  "birch_foliage",
+                  "evergreen_foliage",
+                  "dry_foliage",
+                  "grass",
+                  "water"
+               ]
+            }
+         },
+         "required": [
+            "color"
+         ]
+      },
       "623828846": {
          "title": "Player Destroyed Component"
       },
@@ -286,28 +328,13 @@
       },
       "1212677976": {
          "title": "Map Color",
-         "type": "object",
-         "properties": {
-            "color": {
+         "oneOf": [
+            {
                "$ref": "#/definitions/3915697282"
             },
-            "tint_method": {
-               "title": "Tint Method",
-               "type": "string",
-               "default": "none",
-               "enum": [
-                  "none",
-                  "default_foliage",
-                  "birch_foliage",
-                  "evergreen_foliage",
-                  "dry_foliage",
-                  "grass",
-                  "water"
-               ]
+            {
+               "$ref": "#/definitions/545997413"
             }
-         },
-         "required": [
-            "color"
          ]
       },
       "1217970463": {
@@ -375,6 +402,22 @@
                "$ref": "#/definitions/4004946602"
             }
          }
+      },
+      "1356194009": {
+         "title": "Embedded Visual",
+         "type": "object",
+         "properties": {
+            "geometry": {
+               "$ref": "#/definitions/3224784835"
+            },
+            "material_instances": {
+               "$ref": "#/definitions/1622905174"
+            }
+         },
+         "required": [
+            "geometry",
+            "material_instances"
+         ]
       },
       "1368069469": {
          "title": "Flower Pottable"
@@ -719,6 +762,22 @@
       "2869280267": {
          "title": "Player Placing Component"
       },
+      "2908060043": {
+         "title": "Redstone Consumer",
+         "type": "object",
+         "properties": {
+            "min_power": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0,
+               "maximum": 15
+            },
+            "propagates_power": {
+               "type": "boolean",
+               "default": false
+            }
+         }
+      },
       "3065018194": {
          "title": "Selection Box",
          "oneOf": [
@@ -1058,6 +1117,9 @@
          "deprecated": true,
          "$ref": "#/definitions/3409248078"
       },
+      "minecraft:chest_obstruction": {
+         "$ref": "#/definitions/415070108"
+      },
       "minecraft:collision_box": {
          "$ref": "#/definitions/1008450416"
       },
@@ -1078,6 +1140,9 @@
       },
       "minecraft:display_name": {
          "$ref": "#/definitions/256560940"
+      },
+      "minecraft:embedded_visual": {
+         "$ref": "#/definitions/1356194009"
       },
       "minecraft:entity_fall_on": {
          "$ref": "#/definitions/2278661106"
@@ -1165,6 +1230,9 @@
       },
       "minecraft:redstone_conductivity": {
          "$ref": "#/definitions/3595738916"
+      },
+      "minecraft:redstone_consumer": {
+         "$ref": "#/definitions/2908060043"
       },
       "minecraft:redstone_producer": {
          "$ref": "#/definitions/3927443513"

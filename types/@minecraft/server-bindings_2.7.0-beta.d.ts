@@ -471,6 +471,11 @@ export enum LiquidSettings {
 export enum LiquidType {
    Water = "Water",
 }
+export enum LocatorBarErrorReason {
+   WaypointAlreadyExists = "WaypointAlreadyExists",
+   WaypointLimitExceeded = "WaypointLimitExceeded",
+   WaypointNotFound = "WaypointNotFound",
+}
 export enum MemoryTier {
    High = 3,
    Low = 1,
@@ -601,6 +606,12 @@ export enum TintMethod {
 export enum WatchdogTerminateReason {
    Hang = "Hang",
    StackOverflow = "StackOverflow",
+}
+export enum WaypointTexture {
+   Circle = "minecraft:circle",
+   SmallSquare = "minecraft:small_square",
+   SmallStar = "minecraft:small_star",
+   Square = "minecraft:square",
 }
 export enum WeatherType {
    Clear = "Clear",
@@ -868,6 +879,11 @@ export interface EntityRaycastOptions extends EntityFilter {
    includePassableBlocks?: boolean;
    maxDistance?: number;
 }
+export interface EntityVisibilityRules {
+   showDead?: boolean;
+   showInvisible?: boolean;
+   showSneaking?: boolean;
+}
 export interface EqualsComparison {
    equals: boolean | number | string;
 }
@@ -961,6 +977,12 @@ export interface PlayerSoundOptions {
 export interface PlayerSwingEventOptions {
    heldItemOption?: HeldItemOption;
    swingSource?: EntitySwingSource;
+}
+//@ts-ignore
+export interface PlayerVisibilityRules extends EntityVisibilityRules {
+   showHidden?: boolean;
+   showSpectator?: boolean;
+   showSpectatorToSpectator?: boolean;
 }
 export interface ProgressKeyFrame {
    alpha: number;
@@ -1071,6 +1093,14 @@ export interface Vector3 {
 export interface VectorXZ {
    x: number;
    z: number;
+}
+export interface WaypointTextureBounds {
+   lowerBound: number;
+   texture: WaypointTexture;
+   upperBound?: number;
+}
+export interface WaypointTextureSelector {
+   textureBoundsList: Array<WaypointTextureBounds>;
 }
 export interface WorldSoundOptions {
    pitch?: number;
@@ -2497,6 +2527,12 @@ export class EntityWantsJockeyComponent extends EntityComponent {
    private constructor();
 }
 //@ts-ignore
+export class EntityWaypoint extends Waypoint {
+   public readonly entity: Entity;
+   public readonly entityRules: EntityVisibilityRules;
+   public constructor(entity: Entity, textureSelector: WaypointTextureSelector, entityRules: EntityVisibilityRules, color?: RGB);
+}
+//@ts-ignore
 export class ExplorationMapFunction extends LootItemFunction {
    public readonly destination: string;
    private constructor();
@@ -2932,6 +2968,21 @@ export class ListBlockVolume extends BlockVolumeBase {
    public remove(locations: Array<Vector3>): void;
 }
 //@ts-ignore
+export class LocationWaypoint extends Waypoint {
+   public constructor(dimensionLocation: DimensionLocation, textureSelector: WaypointTextureSelector, color?: RGB);
+   public setDimensionLocation(dimensionLocation: DimensionLocation): void;
+}
+export class LocatorBar {
+   public readonly count: number;
+   public readonly maxCount: number;
+   public addWaypoint(waypoint: Waypoint): void;
+   public getAllWaypoints(): Array<Waypoint>;
+   public hasWaypoint(waypoint: Waypoint): boolean;
+   public removeAllWaypoints(): void;
+   public removeWaypoint(waypoint: Waypoint): void;
+   private constructor();
+}
+//@ts-ignore
 export class LootingEnchantFunction extends LootItemFunction {
    public readonly count: common.NumberRange;
    private constructor();
@@ -3058,6 +3109,7 @@ export class Player extends Entity {
    public readonly isGliding: boolean;
    public readonly isJumping: boolean;
    public readonly level: number;
+   public readonly locatorBar: LocatorBar;
    public readonly name: string;
    public readonly onScreenDisplay: ScreenDisplay;
    public readonly partyId?: string;
@@ -3378,6 +3430,11 @@ export class PlayerUseNameTagAfterEventSignal {
    public subscribe(callback: (arg0: PlayerUseNameTagAfterEvent)=>void): (arg0: PlayerUseNameTagAfterEvent)=>void;
    public unsubscribe(callback: (arg0: PlayerUseNameTagAfterEvent)=>void): void;
    private constructor();
+}
+//@ts-ignore
+export class PlayerWaypoint extends EntityWaypoint {
+   public readonly playerRules: PlayerVisibilityRules;
+   public constructor(player: Player, textureSelector: WaypointTextureSelector, playerRules: PlayerVisibilityRules, color?: RGB);
 }
 export class PotionDeliveryType {
    public readonly id: string;
@@ -3724,7 +3781,7 @@ export class TargetBlockHitAfterEventSignal {
 export class TickingAreaManager {
    public readonly chunkCount: number;
    public readonly maxChunkCount: number;
-   public createTickingArea(identifier: string, options: TickingAreaOptions): Promise<TickingArea>;
+   public createTickingArea(identifier: string, options: TickingAreaOptions): Promise<void>;
    public getAllTickingAreas(): Array<TickingArea>;
    public getTickingArea(identifier: string | TickingArea): (TickingArea | undefined);
    public hasCapacity(options: TickingAreaOptions): boolean;
@@ -3756,6 +3813,15 @@ export class WatchdogTerminateBeforeEvent {
 export class WatchdogTerminateBeforeEventSignal {
    public subscribe(callback: (arg0: WatchdogTerminateBeforeEvent)=>void): (arg0: WatchdogTerminateBeforeEvent)=>void;
    public unsubscribe(callback: (arg0: WatchdogTerminateBeforeEvent)=>void): void;
+   private constructor();
+}
+export class Waypoint {
+   public color?: RGB;
+   public isEnabled: boolean;
+   public readonly isValid: boolean;
+   public textureSelector: WaypointTextureSelector;
+   public getDimensionLocation(): DimensionLocation;
+   public remove(): void;
    private constructor();
 }
 export class WeatherChangeAfterEvent {
@@ -4024,6 +4090,14 @@ export class InvalidStructureError extends Error {
    private constructor();
 }
 //@ts-ignore
+export class InvalidWaypointError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class InvalidWaypointTextureSelectorError extends Error {
+   private constructor();
+}
+//@ts-ignore
 export class ItemCustomComponentAlreadyRegisteredError extends Error {
    private constructor();
 }
@@ -4045,6 +4119,11 @@ export class LocationInUnloadedChunkError extends Error {
 }
 //@ts-ignore
 export class LocationOutOfWorldBoundariesError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class LocatorBarError extends Error {
+   public readonly reason: LocatorBarErrorReason;
    private constructor();
 }
 //@ts-ignore

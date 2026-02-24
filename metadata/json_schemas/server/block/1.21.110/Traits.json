@@ -3,6 +3,41 @@
    "$id": "3258847033",
    "x-format-version": "1.21.110",
    "definitions": {
+      "47219750": {
+         "title": "Multi Block",
+         "type": "object",
+         "properties": {
+            "direction": {
+               "title": "Facing",
+               "type": "string",
+               "enum": [
+                  "down",
+                  "up"
+               ]
+            },
+            "enabled_states": {
+               "type": "array",
+               "items": {
+                  "title": "Multi Block Enabled State",
+                  "type": "string",
+                  "enum": [
+                     "minecraft:multi_block_part"
+                  ]
+               },
+               "minItems": 1
+            },
+            "parts": {
+               "type": "integer",
+               "default": 2,
+               "minimum": 2,
+               "maximum": 4
+            }
+         },
+         "required": [
+            "direction",
+            "enabled_states"
+         ]
+      },
       "517105782": {
          "title": "compound_proxy",
          "oneOf": [
@@ -24,13 +59,13 @@
             "enabled_states": {
                "type": "array",
                "items": {
-                  "title": "Connection::EnabledState",
+                  "title": "Connection Enabled State",
                   "type": "string",
                   "enum": [
                      "minecraft:cardinal_connections"
                   ]
                },
-               "minProperties": 1
+               "minItems": 1
             }
          },
          "required": [
@@ -44,11 +79,14 @@
             "enabled_states": {
                "type": "array",
                "items": {
+                  "title": "Placement Position Enabled State",
                   "type": "string",
-                  "pattern": "^(minecraft:block_face|minecraft:vertical_half)$"
+                  "enum": [
+                     "minecraft:block_face",
+                     "minecraft:vertical_half"
+                  ]
                },
-               "minItems": 1,
-               "maxItems": 2
+               "minItems": 1
             }
          },
          "required": [
@@ -107,11 +145,15 @@
             "enabled_states": {
                "type": "array",
                "items": {
+                  "title": "Placement Position Enabled State",
                   "type": "string",
-                  "pattern": "^(minecraft:cardinal_direction|minecraft:facing_direction|minecraft:corner_and_cardinal_direction)$"
+                  "enum": [
+                     "minecraft:cardinal_direction",
+                     "minecraft:corner_and_cardinal_direction",
+                     "minecraft:facing_direction"
+                  ]
                },
-               "minItems": 1,
-               "maxItems": 3
+               "minItems": 1
             },
             "y_rotation_offset": {
                "type": "number",
@@ -133,6 +175,14 @@
             "enabled_states": []
          },
          "$ref": "#/definitions/2036565844"
+      },
+      "minecraft:multi_block": {
+         "default": {
+            "parts": 2,
+            "enabled_states": [],
+            "direction": "up"
+         },
+         "$ref": "#/definitions/47219750"
       },
       "minecraft:placement_direction": {
          "default": {

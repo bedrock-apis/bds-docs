@@ -45,6 +45,7 @@ export enum PacketId {
    ChangeDimensionPacket = "ChangeDimensionPacket",
    ChangeMobPropertyPacket = "ChangeMobPropertyPacket",
    ChunkRadiusUpdatedPacket = "ChunkRadiusUpdatedPacket",
+   ClientboundAttributeLayerSyncPacket = "ClientboundAttributeLayerSyncPacket",
    ClientboundCloseFormPacket = "ClientboundCloseFormPacket",
    ClientboundControlSchemeSetPacket = "ClientboundControlSchemeSetPacket",
    ClientboundDataDrivenUICloseScreenPacket = "ClientboundDataDrivenUICloseScreenPacket",

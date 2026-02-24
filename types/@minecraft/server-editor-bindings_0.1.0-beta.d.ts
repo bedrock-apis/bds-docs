@@ -1300,3 +1300,7 @@ export class InvalidWidgetError extends Error {
 export class InvalidWidgetGroupError extends Error {
    private constructor();
 }
+//@ts-ignore
+export class TransactionManagerNoChangesError extends Error {
+   private constructor();
+}

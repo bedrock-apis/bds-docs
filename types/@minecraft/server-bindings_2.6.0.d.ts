@@ -1,9 +1,5 @@
 import * as common from "@minecraft/common";
 
-export enum AimAssistTargetMode {
-   Angle = "Angle",
-   Distance = "Distance",
-}
 export enum BlockComponentTypes {
    FluidContainer = "minecraft:fluid_container",
    Inventory = "minecraft:inventory",
@@ -183,6 +179,17 @@ export enum EnchantmentSlot {
    Shovel = "Shovel",
    Spear = "Spear",
    Sword = "Sword",
+}
+export enum EntityAttachPoint {
+   Body = "Body",
+   BreathingPoint = "BreathingPoint",
+   DropAttachPoint = "DropAttachPoint",
+   ExplosionPoint = "ExplosionPoint",
+   Eyes = "Eyes",
+   Feet = "Feet",
+   Head = "Head",
+   Mouth = "Mouth",
+   WeaponAttachPoint = "WeaponAttachPoint",
 }
 export enum EntityComponentTypes {
    AddRider = "minecraft:addrider",
@@ -552,6 +559,12 @@ export enum StructureSaveMode {
    Memory = "Memory",
    World = "World",
 }
+export enum TickingAreaErrorReason {
+   IdentifierAlreadyExists = "IdentifierAlreadyExists",
+   OverChunkLimit = "OverChunkLimit",
+   SideLengthExceeded = "SideLengthExceeded",
+   UnknownIdentifier = "UnknownIdentifier",
+}
 export enum TimeOfDay {
    Day = 1000,
    Midnight = 18000,
@@ -578,6 +591,10 @@ export enum WeatherType {
 export interface AABB {
    center: Vector3;
    extent: Vector3;
+}
+export interface AnimationOptions {
+   animation: SplineAnimation;
+   totalTimeSeconds: number;
 }
 export interface BiomeFilter {
    excludeBiomes?: Array<string>;
@@ -634,6 +651,10 @@ export interface BlockRaycastOptions extends BlockFilter {
    includeLiquidBlocks?: boolean;
    includePassableBlocks?: boolean;
    maxDistance?: number;
+}
+export interface CameraAttachOptions {
+   entity: Entity;
+   locator: EntityAttachPoint;
 }
 export interface CameraFadeOptions {
    fadeColor?: RGB;
@@ -896,12 +917,6 @@ export interface PlayAnimationOptions {
    players?: Array<Player>;
    stopExpression?: string;
 }
-export interface PlayerAimAssistSettings {
-   distance?: number;
-   presetId: string;
-   targetMode?: AimAssistTargetMode;
-   viewAngle?: Vector2;
-}
 export interface PlayerSoundOptions {
    location?: Vector3;
    pitch?: number;
@@ -910,6 +925,11 @@ export interface PlayerSoundOptions {
 export interface PlayerSwingEventOptions {
    heldItemOption?: HeldItemOption;
    swingSource?: EntitySwingSource;
+}
+export interface ProgressKeyFrame {
+   alpha: number;
+   easingFunc?: EasingType;
+   timeSeconds: number;
 }
 export interface ProjectileShootOptions {
    uncertainty?: number;
@@ -941,6 +961,11 @@ export interface RGB {
 export interface RGBA extends RGB {
    alpha: number;
 }
+export interface RotationKeyFrame {
+   easingFunc?: EasingType;
+   rotation: Vector3;
+   timeSeconds: number;
+}
 export interface ScoreboardObjectiveDisplayOptions {
    objective: ScoreboardObjective;
    sortOrder?: ObjectiveSortOrder;
@@ -952,6 +977,10 @@ export interface SpawnEntityOptions {
    initialPersistence?: boolean;
    initialRotation?: number;
    spawnEvent?: string;
+}
+export interface SplineAnimation {
+   progressKeyFrames: Array<ProgressKeyFrame>;
+   rotationKeyFrames: Array<RotationKeyFrame>;
 }
 export interface StructureCreateOptions {
    includeBlocks?: boolean;
@@ -975,6 +1004,18 @@ export interface TeleportOptions {
    facingLocation?: Vector3;
    keepVelocity?: boolean;
    rotation?: Vector2;
+}
+export interface TickingArea {
+   boundingBox: BlockBoundingBox;
+   chunkCount: number;
+   dimension: Dimension;
+   identifier: string;
+   isFullyLoaded: boolean;
+}
+export interface TickingAreaOptions {
+   dimension: Dimension;
+   from: Vector3;
+   to: Vector3;
 }
 export interface TitleDisplayOptions {
    fadeInDuration: number;
@@ -1000,71 +1041,6 @@ export interface WorldSoundOptions {
    volume?: number;
 }
 
-export class AimAssistCategory {
-   public readonly defaultBlockPriority: number;
-   public readonly defaultEntityPriority: number;
-   public readonly identifier: string;
-   public getBlockPriorities(): Record<string,number>;
-   public getBlockTagPriorities(): Record<string,number>;
-   public getEntityPriorities(): Record<string,number>;
-   public getEntityTypeFamilyPriorities(): Record<string,number>;
-   private constructor();
-}
-export class AimAssistCategorySettings {
-   public defaultBlockPriority: number;
-   public defaultEntityPriority: number;
-   public readonly identifier: string;
-   public constructor(identifier: string);
-   public getBlockPriorities(): Record<string,number>;
-   public getBlockTagPriorities(): Record<string,number>;
-   public getEntityPriorities(): Record<string,number>;
-   public getEntityTypeFamilyPriorities(): Record<string,number>;
-   public setBlockPriorities(blockPriorities: Record<string,number>): void;
-   public setBlockTagPriorities(blockTagPriorities: Record<string,number>): void;
-   public setEntityPriorities(entityPriorities: Record<string,number>): void;
-   public setEntityTypeFamilyPriorities(entityTypeFamilyPriorities: Record<string,number>): void;
-}
-export class AimAssistPreset {
-   public readonly defaultItemSettings?: string;
-   public readonly handSettings?: string;
-   public readonly identifier: string;
-   public getExcludedBlockTagTargets(): Array<string>;
-   public getExcludedBlockTargets(): Array<string>;
-   public getExcludedEntityTargets(): Array<string>;
-   public getExcludedEntityTypeFamilyTargets(): Array<string>;
-   public getItemSettings(): Record<string,string>;
-   public getLiquidTargetingItems(): Array<string>;
-   private constructor();
-}
-export class AimAssistPresetSettings {
-   public defaultItemSettings?: string;
-   public handSettings?: string;
-   public readonly identifier: string;
-   public constructor(identifier: string);
-   public getExcludedBlockTagTargets(): (Array<string> | undefined);
-   public getExcludedBlockTargets(): (Array<string> | undefined);
-   public getExcludedEntityTargets(): (Array<string> | undefined);
-   public getExcludedEntityTypeFamilyTargets(): (Array<string> | undefined);
-   public getItemSettings(): Record<string,string>;
-   public getLiquidTargetingItems(): (Array<string> | undefined);
-   public setExcludedBlockTagTargets(blockTagTargets?: Array<string>): void;
-   public setExcludedBlockTargets(blockTargets?: Array<string>): void;
-   public setExcludedEntityTargets(entityTargets?: Array<string>): void;
-   public setExcludedEntityTypeFamilyTargets(entityTypeFamilyTargets?: Array<string>): void;
-   public setItemSettings(itemSettings: Record<string,string>): void;
-   public setLiquidTargetingItems(items?: Array<string>): void;
-}
-export class AimAssistRegistry {
-   public static readonly DefaultCategoryId = "minecraft:default";
-   public static readonly DefaultPresetId = "minecraft:aim_assist_default";
-   public addCategory(category: AimAssistCategorySettings): AimAssistCategory;
-   public addPreset(preset: AimAssistPresetSettings): AimAssistPreset;
-   public getCategories(): Array<AimAssistCategory>;
-   public getCategory(categoryId: string): (AimAssistCategory | undefined);
-   public getPreset(presetId: string): (AimAssistPreset | undefined);
-   public getPresets(): Array<AimAssistPreset>;
-   private constructor();
-}
 export class BiomeType {
    public readonly id: string;
    private constructor();
@@ -1363,12 +1339,18 @@ export class ButtonPushAfterEventSignal {
 }
 export class Camera {
    public readonly isValid: boolean;
+   public attachToEntity(attachCameraOptions?: CameraAttachOptions): void;
    public clear(): void;
    public fade(fadeCameraOptions?: CameraFadeOptions): void;
+   public playAnimation(splineType: CatmullRomSpline | LinearSpline, cameraAnimationOptions: AnimationOptions): void;
    public setCamera(cameraPreset: string, setOptions?: CameraFixedBoomOptions | CameraSetFacingOptions | CameraSetLocationOptions | CameraSetPosOptions | CameraSetRotOptions | CameraTargetOptions): void;
    public setDefaultCamera(cameraPreset: string, easeOptions?: EaseOptions): void;
    public setFov(fovCameraOptions?: CameraFovOptions): void;
    private constructor();
+}
+export class CatmullRomSpline {
+   public controlPoints: Array<Vector3>;
+   public constructor();
 }
 //@ts-ignore
 export class ClientSystemInfo extends SystemInfo {
@@ -2742,6 +2724,10 @@ export class LeverActionAfterEventSignal {
    public unsubscribe(callback: (arg0: LeverActionAfterEvent)=>void): void;
    private constructor();
 }
+export class LinearSpline {
+   public controlPoints: Array<Vector3>;
+   public constructor();
+}
 //@ts-ignore
 export class ListBlockVolume extends BlockVolumeBase {
    public add(locations: Array<Vector3>): void;
@@ -2868,7 +2854,6 @@ export class Player extends Entity {
    public addExperience(amount: number): number;
    public addLevels(amount: number): number;
    public clearPropertyOverridesForEntity(targetEntity: Entity | string): void;
-   public getAimAssist(): PlayerAimAssist;
    public getControlScheme(): ControlScheme;
    public getGameMode(): GameMode;
    public getItemCooldown(cooldownCategory: string): number;
@@ -2887,11 +2872,6 @@ export class Player extends Entity {
    public spawnParticle(effectName: string, location: Vector3, molangVariables?: MolangVariableMap): void;
    public startItemCooldown(cooldownCategory: string, tickDuration: number): void;
    public stopMusic(): void;
-   private constructor();
-}
-export class PlayerAimAssist {
-   public readonly settings?: PlayerAimAssistSettings;
-   public set(settings?: PlayerAimAssistSettings): void;
    private constructor();
 }
 //@ts-ignore
@@ -3483,6 +3463,18 @@ export class TargetBlockHitAfterEventSignal {
    public unsubscribe(callback: (arg0: TargetBlockHitAfterEvent)=>void): void;
    private constructor();
 }
+export class TickingAreaManager {
+   public readonly chunkCount: number;
+   public readonly maxChunkCount: number;
+   public createTickingArea(identifier: string, options: TickingAreaOptions): Promise<void>;
+   public getAllTickingAreas(): Array<TickingArea>;
+   public getTickingArea(identifier: string | TickingArea): (TickingArea | undefined);
+   public hasCapacity(options: TickingAreaOptions): boolean;
+   public hasTickingArea(identifier: string): boolean;
+   public removeAllTickingAreas(): void;
+   public removeTickingArea(identifier: string | TickingArea): void;
+   private constructor();
+}
 export class Trigger {
    public eventName: string;
    public constructor(eventName: string);
@@ -3529,9 +3521,9 @@ export class World {
    public readonly scoreboard: Scoreboard;
    public readonly seed: string;
    public readonly structureManager: StructureManager;
+   public readonly tickingAreaManager: TickingAreaManager;
    public clearDynamicProperties(): void;
    public getAbsoluteTime(): number;
-   public getAimAssist(): AimAssistRegistry;
    public getAllPlayers(): Array<Player>;
    public getDay(): number;
    public getDefaultSpawnLocation(): Vector3;
@@ -3785,6 +3777,11 @@ export class PlaceJigsawError extends Error {
 }
 //@ts-ignore
 export class RawMessageError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class TickingAreaError extends Error {
+   public readonly reason: TickingAreaErrorReason;
    private constructor();
 }
 //@ts-ignore

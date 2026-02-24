@@ -65,6 +65,25 @@ export class ColorGrading {
    public setTemperature(temperature: number, biomeIdentifier: server.BiomeType): void;
    private constructor();
 }
+export class Lighting {
+   public resetAmbientColor(biomeIdentifier: server.BiomeType): void;
+   public resetAmbientIlluminance(biomeIdentifier: server.BiomeType): void;
+   public resetFlashColor(biomeIdentifier: server.BiomeType): void;
+   public resetFlashIlluminance(biomeIdentifier: server.BiomeType): void;
+   public resetMoonColor(biomeIdentifier: server.BiomeType): void;
+   public resetMoonIlluminance(biomeIdentifier: server.BiomeType): void;
+   public resetSunColor(biomeIdentifier: server.BiomeType): void;
+   public resetSunIlluminance(biomeIdentifier: server.BiomeType): void;
+   public setAmbientColor(color: Record<number,server.RGB> | server.RGB, biomeIdentifier: server.BiomeType): void;
+   public setAmbientIlluminance(illuminance: number | Record<number,number>, biomeIdentifier: server.BiomeType): void;
+   public setFlashColor(color: Record<number,server.RGB> | server.RGB, biomeIdentifier: server.BiomeType): void;
+   public setFlashIlluminance(illuminance: number | Record<number,number>, biomeIdentifier: server.BiomeType): void;
+   public setMoonColor(color: Record<number,server.RGB> | server.RGB, biomeIdentifier: server.BiomeType): void;
+   public setMoonIlluminance(illuminance: number | Record<number,number>, biomeIdentifier: server.BiomeType): void;
+   public setSunColor(color: Record<number,server.RGB> | server.RGB, biomeIdentifier: server.BiomeType): void;
+   public setSunIlluminance(illuminance: number | Record<number,number>, biomeIdentifier: server.BiomeType): void;
+   private constructor();
+}
 export class Water {
    public resetCDOM(biomeIdentifier: server.BiomeType): void;
    public resetChlorophyll(biomeIdentifier: server.BiomeType): void;
@@ -99,5 +118,6 @@ export const InternalConstant = 1;
 
 export const atmosphere: Atmospherics;
 export const colorGrading: ColorGrading;
+export const lighting: Lighting;
 export const water: Water;
 

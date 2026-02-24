@@ -9,6 +9,41 @@
          "minimum": 0,
          "maximum": 15
       },
+      "47219750": {
+         "title": "Multi Block",
+         "type": "object",
+         "properties": {
+            "direction": {
+               "title": "Facing",
+               "type": "string",
+               "enum": [
+                  "down",
+                  "up"
+               ]
+            },
+            "enabled_states": {
+               "type": "array",
+               "items": {
+                  "title": "Multi Block Enabled State",
+                  "type": "string",
+                  "enum": [
+                     "minecraft:multi_block_part"
+                  ]
+               },
+               "minItems": 1
+            },
+            "parts": {
+               "type": "integer",
+               "default": 2,
+               "minimum": 2,
+               "maximum": 4
+            }
+         },
+         "required": [
+            "direction",
+            "enabled_states"
+         ]
+      },
       "66431717": {
          "title": "Crafting Table",
          "type": "object",
@@ -88,6 +123,22 @@
          "title": "Display Name",
          "type": "string",
          "maxLength": 256
+      },
+      "415070108": {
+         "title": "chest_obstruction",
+         "type": "object",
+         "properties": {
+            "obstruction_rule": {
+               "title": "Chest Obstruction rule",
+               "type": "string",
+               "default": "shape",
+               "enum": [
+                  "always",
+                  "never",
+                  "shape"
+               ]
+            }
+         }
       },
       "517105782": {
          "title": "compound_proxy",
@@ -219,6 +270,32 @@
             "identifier"
          ]
       },
+      "545997413": {
+         "title": "Detailed Map Color",
+         "type": "object",
+         "properties": {
+            "color": {
+               "$ref": "#/definitions/3915697282"
+            },
+            "tint_method": {
+               "title": "Tint Method",
+               "type": "string",
+               "default": "none",
+               "enum": [
+                  "none",
+                  "default_foliage",
+                  "birch_foliage",
+                  "evergreen_foliage",
+                  "dry_foliage",
+                  "grass",
+                  "water"
+               ]
+            }
+         },
+         "required": [
+            "color"
+         ]
+      },
       "623828846": {
          "title": "Player Destroyed Component"
       },
@@ -314,28 +391,13 @@
       },
       "1212677976": {
          "title": "Map Color",
-         "type": "object",
-         "properties": {
-            "color": {
+         "oneOf": [
+            {
                "$ref": "#/definitions/3915697282"
             },
-            "tint_method": {
-               "title": "Tint Method",
-               "type": "string",
-               "default": "none",
-               "enum": [
-                  "none",
-                  "default_foliage",
-                  "birch_foliage",
-                  "evergreen_foliage",
-                  "dry_foliage",
-                  "grass",
-                  "water"
-               ]
+            {
+               "$ref": "#/definitions/545997413"
             }
-         },
-         "required": [
-            "color"
          ]
       },
       "1217970463": {
@@ -418,6 +480,22 @@
          "required": [
             "max",
             "min"
+         ]
+      },
+      "1356194009": {
+         "title": "Embedded Visual",
+         "type": "object",
+         "properties": {
+            "geometry": {
+               "$ref": "#/definitions/3224784835"
+            },
+            "material_instances": {
+               "$ref": "#/definitions/1622905174"
+            }
+         },
+         "required": [
+            "geometry",
+            "material_instances"
          ]
       },
       "1368069469": {
@@ -606,13 +684,13 @@
             "enabled_states": {
                "type": "array",
                "items": {
-                  "title": "Connection::EnabledState",
+                  "title": "Connection Enabled State",
                   "type": "string",
                   "enum": [
                      "minecraft:cardinal_connections"
                   ]
                },
-               "minProperties": 1
+               "minItems": 1
             }
          },
          "required": [
@@ -712,7 +790,7 @@
             "components": {
                "propertyNames": {
                   "type": "string",
-                  "pattern": "^(?!(minecraft:item_visual|minecraft:support|minecraft:on_placed|minecraft:flower_pottable|minecraft:on_fall_on|minecraft:on_interact|minecraft:breathability|minecraft:on_player_destroyed|minecraft:on_player_placing|minecraft:on_step_off|minecraft:on_step_on|minecraft:queued_ticking|minecraft:random_ticking|minecraft:unit_cube)$)"
+                  "pattern": "^(?!(minecraft:flower_pottable|minecraft:on_fall_on|minecraft:redstone_consumer|minecraft:embedded_visual|minecraft:on_placed|minecraft:support|minecraft:item_visual|minecraft:on_interact|minecraft:breathability|minecraft:on_player_destroyed|minecraft:on_player_placing|minecraft:on_step_off|minecraft:on_step_on|minecraft:queued_ticking|minecraft:random_ticking|minecraft:unit_cube)$)"
                },
                "$ref": "#/definitions/2972862513",
                "x-runtime-constraint-description": "Block with \"geometry\" set at \"minecraft:geometry.full_block\" cannot have a \"random_offset\""
@@ -733,11 +811,14 @@
             "enabled_states": {
                "type": "array",
                "items": {
+                  "title": "Placement Position Enabled State",
                   "type": "string",
-                  "pattern": "^(minecraft:block_face|minecraft:vertical_half)$"
+                  "enum": [
+                     "minecraft:block_face",
+                     "minecraft:vertical_half"
+                  ]
                },
-               "minItems": 1,
-               "maxItems": 2
+               "minItems": 1
             }
          },
          "required": [
@@ -844,6 +925,22 @@
       "2869280267": {
          "title": "Player Placing Component"
       },
+      "2908060043": {
+         "title": "Redstone Consumer",
+         "type": "object",
+         "properties": {
+            "min_power": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0,
+               "maximum": 15
+            },
+            "propagates_power": {
+               "type": "boolean",
+               "default": false
+            }
+         }
+      },
       "2972862513": {
          "title": "Components",
          "type": "object",
@@ -851,6 +948,9 @@
             "minecraft:breathability": {
                "deprecated": true,
                "$ref": "#/definitions/3409248078"
+            },
+            "minecraft:chest_obstruction": {
+               "$ref": "#/definitions/415070108"
             },
             "minecraft:collision_box": {
                "$ref": "#/definitions/1008450416"
@@ -872,6 +972,9 @@
             },
             "minecraft:display_name": {
                "$ref": "#/definitions/256560940"
+            },
+            "minecraft:embedded_visual": {
+               "$ref": "#/definitions/1356194009"
             },
             "minecraft:entity_fall_on": {
                "$ref": "#/definitions/2278661106"
@@ -959,6 +1062,9 @@
             },
             "minecraft:redstone_conductivity": {
                "$ref": "#/definitions/3595738916"
+            },
+            "minecraft:redstone_consumer": {
+               "$ref": "#/definitions/2908060043"
             },
             "minecraft:redstone_producer": {
                "$ref": "#/definitions/3927443513"
@@ -1057,6 +1163,14 @@
                   "enabled_states": []
                },
                "$ref": "#/definitions/2036565844"
+            },
+            "minecraft:multi_block": {
+               "default": {
+                  "parts": 2,
+                  "enabled_states": [],
+                  "direction": "up"
+               },
+               "$ref": "#/definitions/47219750"
             },
             "minecraft:placement_direction": {
                "default": {
@@ -1189,15 +1303,20 @@
             },
             "traits": {
                "default": {
+                  "minecraft:connection": {
+                     "enabled_states": []
+                  },
+                  "minecraft:multi_block": {
+                     "parts": 2,
+                     "enabled_states": [],
+                     "direction": "up"
+                  },
                   "minecraft:placement_direction": {
                      "enabled_states": [],
                      "y_rotation_offset": null,
                      "blocks_to_corner_with": []
                   },
                   "minecraft:placement_position": {
-                     "enabled_states": []
-                  },
-                  "minecraft:connection": {
                      "enabled_states": []
                   }
                },
@@ -1258,11 +1377,15 @@
             "enabled_states": {
                "type": "array",
                "items": {
+                  "title": "Placement Position Enabled State",
                   "type": "string",
-                  "pattern": "^(minecraft:cardinal_direction|minecraft:facing_direction|minecraft:corner_and_cardinal_direction)$"
+                  "enum": [
+                     "minecraft:cardinal_direction",
+                     "minecraft:corner_and_cardinal_direction",
+                     "minecraft:facing_direction"
+                  ]
                },
-               "minItems": 1,
-               "maxItems": 3
+               "minItems": 1
             },
             "y_rotation_offset": {
                "type": "number",
@@ -1449,7 +1572,7 @@
             "pattern": "^(?!(minecraft:on_interact|minecraft:breathability|minecraft:unit_cube|minecraft:on_fall_on|minecraft:on_placed|minecraft:on_player_destroyed|minecraft:on_player_placing|minecraft:on_step_off|minecraft:on_step_on|minecraft:queued_ticking|minecraft:random_ticking)$)"
          },
          "$ref": "#/definitions/2972862513",
-         "x-runtime-constraint-description": "Block with \"geometry\" set at \"minecraft:geometry.full_block\" cannot have a \"random_offset\""
+         "x-runtime-constraint-description": "Block cannot have both \"minecraft:redstone_producer\" and \"minecraft:redstone_consumer\" components."
       },
       "description": {
          "$ref": "#/definitions/3728821006"
