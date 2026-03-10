@@ -1,56 +1,39 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "2616276259",
+   "$id": "1275060270",
    "x-format-version": "1.26.10",
    "definitions": {
-      "1088251937": {
-         "title": "Filter Group",
-         "oneOf": [
-            {
-               "$ref": "#/definitions/4150989894"
-            },
-            {
-               "type": "array",
-               "items": {
-                  "$ref": "#/definitions/1088251937"
-               }
-            },
-            {
-               "$ref": "#/definitions/3235433757"
-            }
-         ]
-      },
-      "3235433757": {
+      "100089226": {
          "title": "Filter Group Map",
          "type": "object",
          "properties": {
             "AND": {
-               "$ref": "#/definitions/1088251937"
+               "$ref": "#/definitions/2789112004"
             },
             "NOT": {
-               "$ref": "#/definitions/1088251937"
+               "$ref": "#/definitions/2789112004"
             },
             "OR": {
-               "$ref": "#/definitions/1088251937"
+               "$ref": "#/definitions/2789112004"
             },
             "all": {
-               "$ref": "#/definitions/1088251937"
+               "$ref": "#/definitions/2789112004"
             },
             "all_of": {
-               "$ref": "#/definitions/1088251937"
+               "$ref": "#/definitions/2789112004"
             },
             "any": {
-               "$ref": "#/definitions/1088251937"
+               "$ref": "#/definitions/2789112004"
             },
             "any_of": {
-               "$ref": "#/definitions/1088251937"
+               "$ref": "#/definitions/2789112004"
             },
             "none_of": {
-               "$ref": "#/definitions/1088251937"
+               "$ref": "#/definitions/2789112004"
             }
          }
       },
-      "4004946602": {
+      "725374594": {
          "title": "vec3",
          "oneOf": [
             {
@@ -80,7 +63,7 @@
             }
          ]
       },
-      "4150989894": {
+      "2457665045": {
          "title": "Filter Test",
          "type": "object",
          "properties": {
@@ -155,6 +138,23 @@
          "required": [
             "test"
          ]
+      },
+      "2789112004": {
+         "title": "Filter Group",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2457665045"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/2789112004"
+               }
+            },
+            {
+               "$ref": "#/definitions/100089226"
+            }
+         ]
       }
    },
    "title": "minecraft:behavior.offer_flower",
@@ -190,7 +190,7 @@
             "any": null,
             "NOT": null
          },
-         "$ref": "#/definitions/1088251937"
+         "$ref": "#/definitions/2789112004"
       },
       "max_head_rotation_y": {
          "type": "number",
@@ -218,7 +218,7 @@
             2,
             6
          ],
-         "$ref": "#/definitions/4004946602"
+         "$ref": "#/definitions/725374594"
       }
    }
 }

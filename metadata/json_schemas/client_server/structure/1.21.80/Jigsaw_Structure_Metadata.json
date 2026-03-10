@@ -1,9 +1,18 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "2953490483",
+   "$id": "3041614038",
    "x-format-version": "1.21.80",
    "definitions": {
-      "480089458": {
+      "1488572312": {
+         "title": "block_pos",
+         "type": "array",
+         "items": {
+            "type": "integer"
+         },
+         "minItems": 3,
+         "maxItems": 3
+      },
+      "2081791706": {
          "title": "Jigsaw Block Metadata",
          "type": "object",
          "properties": {
@@ -31,7 +40,7 @@
                "type": "string"
             },
             "pos": {
-               "$ref": "#/definitions/820712576"
+               "$ref": "#/definitions/1488572312"
             },
             "selection_priority": {
                "type": "integer"
@@ -51,15 +60,6 @@
             "selection_priority",
             "target"
          ]
-      },
-      "820712576": {
-         "title": "block_pos",
-         "type": "array",
-         "items": {
-            "type": "integer"
-         },
-         "minItems": 3,
-         "maxItems": 3
       }
    },
    "title": "Jigsaw Structure Metadata",
@@ -68,11 +68,11 @@
       "markers": {
          "type": "array",
          "items": {
-            "$ref": "#/definitions/480089458"
+            "$ref": "#/definitions/2081791706"
          }
       },
       "size": {
-         "$ref": "#/definitions/820712576"
+         "$ref": "#/definitions/1488572312"
       }
    },
    "required": [

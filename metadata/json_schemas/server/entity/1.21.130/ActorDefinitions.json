@@ -1,10 +1,10 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "1385790139",
+   "$id": "2489670982",
    "x-format-version": "1.21.130",
    "definitions": {
-      "61802587": {
-         "title": "minecraft:behavior.swim_wander",
+      "43994869": {
+         "title": "minecraft:behavior.drink_milk",
          "type": "object",
          "properties": {
             "control_flags": {
@@ -20,36 +20,9 @@
                   ]
                }
             },
-            "interval": {
-               "type": "number",
-               "default": 0.008329999633133411
-            },
-            "look_ahead": {
+            "cooldown_seconds": {
                "type": "number",
                "default": 5
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "speed_multiplier": {
-               "type": "number",
-               "default": 1
-            },
-            "wander_time": {
-               "type": "number",
-               "default": 5
-            }
-         }
-      },
-      "121353999": {
-         "title": "ActorDefinitionTrigger",
-         "type": "object",
-         "properties": {
-            "event": {
-               "type": "string",
-               "default": ""
             },
             "filters": {
                "default": {
@@ -62,299 +35,75 @@
                   "any": null,
                   "NOT": null
                },
-               "$ref": "#/definitions/1088251937"
+               "$ref": "#/definitions/2789112004"
             },
-            "target": {
-               "title": "FilterSubject",
-               "type": "string",
-               "default": "self",
-               "enum": [
-                  "self",
-                  "other",
-                  "player",
-                  "target",
-                  "parent",
-                  "baby",
-                  "block",
-                  "damager",
-                  "holder",
-                  "item"
-               ]
-            }
-         }
-      },
-      "287215707": {
-         "title": "minecraft:experience_reward",
-         "type": "object",
-         "properties": {
-            "on_bred": {
-               "default": {
-                  "expression": "",
-                  "version": -1
-               },
-               "$ref": "#/definitions/3178719147"
-            },
-            "on_death": {
-               "default": {
-                  "expression": "",
-                  "version": -1
-               },
-               "$ref": "#/definitions/3178719147"
-            }
-         }
-      },
-      "298010374": {
-         "title": "minecraft:behavior.stay_near_noteblock",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "listen_time": {
+            "priority": {
                "type": "integer",
+               "default": 0,
+               "minimum": 0
+            }
+         }
+      },
+      "47999524": {
+         "title": "IsHiddenWhenInvisibleDefinition"
+      },
+      "100089226": {
+         "title": "Filter Group Map",
+         "type": "object",
+         "properties": {
+            "AND": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "NOT": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "OR": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "none_of": {
+               "$ref": "#/definitions/2789112004"
+            }
+         }
+      },
+      "119024202": {
+         "title": "minecraft:behavior.sonic_boom",
+         "type": "object",
+         "properties": {
+            "attack_cooldown": {
+               "type": "number",
+               "default": 5
+            },
+            "attack_damage": {
+               "type": "number",
                "default": 30
             },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "speed": {
-               "type": "number",
-               "default": 1
-            },
-            "start_distance": {
-               "type": "number",
-               "default": 10
-            },
-            "stop_distance": {
-               "type": "number",
-               "default": 2
-            }
-         }
-      },
-      "319286572": {
-         "title": "IsStackableDefinition"
-      },
-      "374016963": {
-         "title": "FireImmuneDefinition"
-      },
-      "387887038": {
-         "title": "BodyRotationBlockedDefinition"
-      },
-      "517105782": {
-         "title": "compound_proxy",
-         "oneOf": [
-            {
-               "type": "integer"
-            },
-            {
-               "type": "string"
-            },
-            {
-               "type": "boolean"
-            }
-         ]
-      },
-      "541278563": {
-         "title": "minecraft:behavior.aquatic_charge_attack",
-         "type": "object",
-         "properties": {
-            "attack_reach": {
-               "type": "number",
-               "default": 0.05000000074505806,
-               "minimum": 0
-            },
-            "charge_cooldown_time": {
-               "default": {
-                  "min": 2,
-                  "max": 6
-               },
-               "$ref": "#/definitions/1057349585",
-               "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
-            },
-            "charge_overshoot_distance": {
-               "type": "number",
-               "default": 1.5,
-               "minimum": 0
-            },
-            "charge_speed_multiplier": {
-               "type": "number",
-               "default": 10,
-               "minimum": 0
-            },
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "knockback_force": {
-               "type": "number",
-               "default": 2,
-               "minimum": 0
-            },
-            "max_charge_distance": {
-               "type": "number",
-               "default": 16,
-               "minimum": 0
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            }
-         }
-      },
-      "597030358": {
-         "title": "minecraft:behavior.slime_attack",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "grow_tired_cooldown_time": {
+            "attack_range_horizontal": {
                "type": "number",
                "default": 15
             },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "set_persistent": {
-               "type": "boolean",
-               "default": false
-            },
-            "speed_multiplier": {
+            "attack_range_vertical": {
                "type": "number",
-               "default": 1
+               "default": 20
             },
-            "x_max_rotation": {
-               "type": "number",
-               "default": 10
+            "attack_sound": {
+               "type": "string",
+               "default": ""
             },
-            "y_max_rotation": {
-               "type": "number",
-               "default": 10
-            }
-         }
-      },
-      "708168268": {
-         "title": "IsChargedDefinition"
-      },
-      "772659931": {
-         "title": "minecraft:addrider",
-         "type": "object",
-         "properties": {
-            "riders": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "$ref": "#/definitions/2047937041"
-               }
-            }
-         }
-      },
-      "792012262": {
-         "title": "MobDescriptor",
-         "type": "object",
-         "properties": {
-            "check_if_outnumbered": {
-               "type": "boolean",
-               "default": false
-            },
-            "cooldown": {
-               "type": "integer",
-               "default": 0
-            },
-            "filters": {
-               "default": {
-                  "OR": null,
-                  "all": null,
-                  "all_of": null,
-                  "AND": null,
-                  "any_of": null,
-                  "none_of": null,
-                  "any": null,
-                  "NOT": null
-               },
-               "$ref": "#/definitions/1088251937"
-            },
-            "max_dist": {
-               "type": "number",
-               "default": 16
-            },
-            "max_flee": {
-               "type": "number",
-               "default": 10
-            },
-            "max_height": {
-               "type": "number",
-               "default": -1
-            },
-            "must_see": {
-               "type": "boolean"
-            },
-            "must_see_forget_duration": {
-               "type": "integer",
-               "default": 3
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0
-            },
-            "reevaluate_description": {
-               "type": "boolean",
-               "default": false
-            },
-            "sprint_speed_multiplier": {
-               "type": "number",
-               "default": 1
-            },
-            "walk_speed_multiplier": {
-               "type": "number",
-               "default": 1
-            }
-         }
-      },
-      "801311387": {
-         "title": "IsPregnantDefinition"
-      },
-      "911233651": {
-         "title": "minecraft:behavior.dig",
-         "type": "object",
-         "properties": {
-            "allow_dig_when_named": {
-               "type": "boolean",
-               "default": false
+            "charge_sound": {
+               "type": "string",
+               "default": ""
             },
             "control_flags": {
                "type": "array",
@@ -369,106 +118,791 @@
                   ]
                }
             },
-            "digs_in_daylight": {
-               "type": "boolean",
-               "default": false
-            },
             "duration": {
                "type": "number",
-               "default": 0
+               "default": 0,
+               "minimum": 0
             },
-            "idle_time": {
+            "duration_until_attack_sound": {
+               "type": "number",
+               "default": 1.7000000476837158
+            },
+            "knockback_height_cap": {
                "type": "number",
                "default": 0
             },
-            "on_start": {
-               "default": {
-                  "event": "",
-                  "target": "self",
-                  "filters": {
-                     "OR": null,
-                     "all": null,
-                     "all_of": null,
-                     "AND": null,
-                     "any_of": null,
-                     "none_of": null,
-                     "any": null,
-                     "NOT": null
-                  }
-               },
-               "$ref": "#/definitions/121353999"
+            "knockback_horizontal_strength": {
+               "type": "number",
+               "default": 0
+            },
+            "knockback_vertical_strength": {
+               "type": "number",
+               "default": 0
             },
             "priority": {
                "type": "integer",
                "default": 0,
                "minimum": 0
             },
-            "suspicion_is_disturbance": {
-               "type": "boolean",
-               "default": false
-            },
-            "vibration_is_disturbance": {
-               "type": "boolean",
-               "default": false
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1
             }
          }
       },
-      "1057040869": {
-         "title": "minecraft:tick_world",
+      "122002744": {
+         "title": "CanPowerJumpDefinition"
+      },
+      "355630026": {
+         "title": "BodyRotationAlwaysFollowsHeadDefinition"
+      },
+      "459637015": {
+         "title": "RendersWhenInvisibleDefinition"
+      },
+      "460911246": {
+         "title": "minecraft:behavior.avoid_block",
          "type": "object",
          "properties": {
-            "distance_to_players": {
-               "type": "number",
-               "default": 128,
-               "minimum": 128
+            "avoid_block_sound": {
+               "title": "LevelSoundEvent",
+               "type": "string",
+               "default": "undefined",
+               "enum": [
+                  "item.use.on",
+                  "hit",
+                  "step",
+                  "step.baby",
+                  "fly",
+                  "jump",
+                  "jump.prevent",
+                  "break",
+                  "place",
+                  "heavy.step",
+                  "gallop",
+                  "fall",
+                  "hurt",
+                  "hurt.baby",
+                  "hurt.in.water",
+                  "death",
+                  "death.baby",
+                  "death.in.water",
+                  "death.to.zombie",
+                  "ambient",
+                  "ambient.baby",
+                  "ambient.in.water",
+                  "ambient.in.air",
+                  "ambient.tame",
+                  "ambient.pollinate",
+                  "breathe",
+                  "mad",
+                  "boost",
+                  "bow",
+                  "squish.big",
+                  "squish.small",
+                  "fall.big",
+                  "fall.small",
+                  "splash",
+                  "fizz",
+                  "flap",
+                  "swim",
+                  "drink",
+                  "drink.honey",
+                  "drink.milk",
+                  "eat",
+                  "takeoff",
+                  "shake",
+                  "plop",
+                  "land",
+                  "saddle",
+                  "armor",
+                  "mob.armor_stand.place",
+                  "add.chest",
+                  "throw",
+                  "attack",
+                  "attack.nodamage",
+                  "attack.strong",
+                  "warn",
+                  "shear",
+                  "milk",
+                  "thunder",
+                  "explode",
+                  "fire",
+                  "ignite",
+                  "fuse",
+                  "stare",
+                  "spawn",
+                  "born",
+                  "shoot",
+                  "break.block",
+                  "launch",
+                  "blast",
+                  "large.blast",
+                  "twinkle",
+                  "remedy",
+                  "unfect",
+                  "convert_to_drowned",
+                  "levelup",
+                  "bow.hit",
+                  "bullet.hit",
+                  "extinguish.fire",
+                  "item.fizz",
+                  "chest.open",
+                  "chest.closed",
+                  "shulkerbox.open",
+                  "shulkerbox.closed",
+                  "enderchest.open",
+                  "enderchest.closed",
+                  "power.on",
+                  "power.off",
+                  "attach",
+                  "detach",
+                  "deny",
+                  "tripod",
+                  "pop",
+                  "drop.slot",
+                  "note",
+                  "thorns",
+                  "piston.in",
+                  "piston.out",
+                  "portal",
+                  "water",
+                  "lava.pop",
+                  "lava",
+                  "beacon.activate",
+                  "beacon.ambient",
+                  "beacon.deactivate",
+                  "beacon.power",
+                  "conduit.activate",
+                  "conduit.ambient",
+                  "conduit.attack",
+                  "conduit.deactivate",
+                  "conduit.short",
+                  "bubble.pop",
+                  "bubble.up",
+                  "bubble.upinside",
+                  "bubble.down",
+                  "bubble.downinside",
+                  "burp",
+                  "bucket.fill.water",
+                  "bucket.empty.water",
+                  "bucket.fill.lava",
+                  "bucket.empty.lava",
+                  "bucket.fill.fish",
+                  "bucket.empty.fish",
+                  "armor.equip_chain",
+                  "armor.equip_diamond",
+                  "armor.equip_elytra",
+                  "armor.equip_generic",
+                  "armor.equip_gold",
+                  "armor.equip_iron",
+                  "armor.equip_leather",
+                  "armor.equip_netherite",
+                  "record.13",
+                  "record.cat",
+                  "record.blocks",
+                  "record.chirp",
+                  "record.creator",
+                  "record.creator_music_box",
+                  "record.far",
+                  "record.mall",
+                  "record.mellohi",
+                  "record.stal",
+                  "record.strad",
+                  "record.ward",
+                  "record.11",
+                  "record.wait",
+                  "record.pigstep",
+                  "record.precipice",
+                  "record.relic",
+                  "record.otherside",
+                  "record.5",
+                  "record.tears",
+                  "record.lava_chicken",
+                  "flop",
+                  "elderguardian.curse",
+                  "teleport",
+                  "shulker.open",
+                  "shulker.close",
+                  "mob.warning",
+                  "mob.warning.baby",
+                  "haggle",
+                  "haggle.yes",
+                  "haggle.no",
+                  "haggle.idle",
+                  "disappeared",
+                  "reappeared",
+                  "chorusgrow",
+                  "chorusdeath",
+                  "glass",
+                  "potion.brewed",
+                  "cast.spell",
+                  "prepare.attack",
+                  "prepare.summon",
+                  "prepare.wololo",
+                  "fang",
+                  "charge",
+                  "camera.take_picture",
+                  "leashknot.break",
+                  "leashknot.place",
+                  "growl",
+                  "whine",
+                  "pant",
+                  "purr",
+                  "purreow",
+                  "death.min.volume",
+                  "death.mid.volume",
+                  "imitate.blaze",
+                  "imitate.cave_spider",
+                  "imitate.creeper",
+                  "imitate.elder_guardian",
+                  "imitate.ender_dragon",
+                  "imitate.enderman",
+                  "imitate.endermite",
+                  "imitate.evocation_illager",
+                  "imitate.ghast",
+                  "imitate.husk",
+                  "imitate.magma_cube",
+                  "imitate.polar_bear",
+                  "imitate.shulker",
+                  "imitate.silverfish",
+                  "imitate.skeleton",
+                  "imitate.slime",
+                  "imitate.spider",
+                  "imitate.stray",
+                  "imitate.vex",
+                  "imitate.vindication_illager",
+                  "imitate.witch",
+                  "imitate.wither",
+                  "imitate.wither_skeleton",
+                  "imitate.wolf",
+                  "imitate.zombie",
+                  "imitate.zombie_pigman",
+                  "imitate.zombie_villager",
+                  "block.end_portal_frame.fill",
+                  "block.end_portal.spawn",
+                  "random.anvil_use",
+                  "bottle.dragonbreath",
+                  "balloonpop",
+                  "sparkler.active",
+                  "item.trident.hit",
+                  "item.trident.hit_ground",
+                  "item.trident.return",
+                  "item.trident.riptide_1",
+                  "item.trident.riptide_2",
+                  "item.trident.riptide_3",
+                  "item.trident.throw",
+                  "item.trident.thunder",
+                  "block.fletching_table.use",
+                  "elemconstruct.open",
+                  "icebomb.hit",
+                  "lt.reaction.icebomb",
+                  "lt.reaction.bleach",
+                  "lt.reaction.epaste",
+                  "lt.reaction.epaste2",
+                  "lt.reaction.fertilizer",
+                  "lt.reaction.fireball",
+                  "lt.reaction.mgsalt",
+                  "lt.reaction.miscfire",
+                  "lt.reaction.fire",
+                  "lt.reaction.miscexplosion",
+                  "lt.reaction.miscmystical",
+                  "lt.reaction.miscmystical2",
+                  "lt.reaction.product",
+                  "sparkler.use",
+                  "glowstick.use",
+                  "block.turtle_egg.break",
+                  "block.turtle_egg.crack",
+                  "block.turtle_egg.hatch",
+                  "block.turtle_egg.attack",
+                  "block.sniffer_egg.crack",
+                  "block.sniffer_egg.hatch",
+                  "block.frog_spawn.hatch",
+                  "block.frog_spawn.break",
+                  "swoop",
+                  "presneeze",
+                  "sneeze",
+                  "scared",
+                  "ambient.aggressive",
+                  "ambient.worried",
+                  "cant_breed",
+                  "block.scaffolding.climb",
+                  "block.bamboo_sapling.place",
+                  "crossbow.loading.start",
+                  "crossbow.loading.middle",
+                  "crossbow.loading.end",
+                  "crossbow.shoot",
+                  "crossbow.quick_charge.start",
+                  "crossbow.quick_charge.middle",
+                  "crossbow.quick_charge.end",
+                  "item.shield.block",
+                  "portal.travel",
+                  "item.book.put",
+                  "block.grindstone.use",
+                  "block.bell.hit",
+                  "block.campfire.crackle",
+                  "block.sweet_berry_bush.hurt",
+                  "block.sweet_berry_bush.pick",
+                  "block.stonecutter.use",
+                  "block.cartography_table.use",
+                  "block.composter.empty",
+                  "block.composter.fill",
+                  "block.composter.fill_success",
+                  "block.composter.ready",
+                  "roar",
+                  "stun",
+                  "block.barrel.open",
+                  "block.barrel.close",
+                  "raid.horn",
+                  "ui.stonecutter.take_result",
+                  "ui.cartography_table.take_result",
+                  "ui.loom.take_result",
+                  "block.smoker.smoke",
+                  "block.blastfurnace.fire_crackle",
+                  "block.smithing_table.use",
+                  "block.loom.use",
+                  "ambient.in.raid",
+                  "screech",
+                  "sleep",
+                  "block.furnace.lit",
+                  "convert_mooshroom",
+                  "milk_suspiciously",
+                  "celebrate",
+                  "block.beehive.enter",
+                  "block.beehive.exit",
+                  "block.beehive.shear",
+                  "block.beehive.work",
+                  "block.beehive.drip",
+                  "ambient.cave",
+                  "angry",
+                  "retreat",
+                  "converted_to_zombified",
+                  "step_lava",
+                  "tempt",
+                  "panic",
+                  "admire",
+                  "particle.soul_escape.quiet",
+                  "particle.soul_escape.loud",
+                  "respawn_anchor.charge",
+                  "respawn_anchor.deplete",
+                  "respawn_anchor.set_spawn",
+                  "respawn_anchor.ambient",
+                  "ambient.crimson_forest.mood",
+                  "ambient.warped_forest.mood",
+                  "ambient.soulsand_valley.mood",
+                  "ambient.nether_wastes.mood",
+                  "ambient.crimson_forest.additions",
+                  "ambient.warped_forest.additions",
+                  "ambient.soulsand_valley.additions",
+                  "ambient.nether_wastes.additions",
+                  "ambient.basalt_deltas.additions",
+                  "ambient.crimson_forest.loop",
+                  "ambient.warped_forest.loop",
+                  "ambient.soulsand_valley.loop",
+                  "ambient.nether_wastes.loop",
+                  "ambient.basalt_deltas.loop",
+                  "lodestone_compass.link_compass_to_lodestone",
+                  "ambient.basalt_deltas.mood",
+                  "power.on.sculk_sensor",
+                  "power.off.sculk_sensor",
+                  "smithing_table.use",
+                  "default",
+                  "lay_egg",
+                  "lay_spawn",
+                  "bucket.fill.powder_snow",
+                  "bucket.empty.powder_snow",
+                  "cauldron_drip.water.pointed_dripstone",
+                  "cauldron_drip.lava.pointed_dripstone",
+                  "tilt_down.big_dripleaf",
+                  "tilt_up.big_dripleaf",
+                  "drip.water.pointed_dripstone",
+                  "pick_berries.cave_vines",
+                  "drip.lava.pointed_dripstone",
+                  "copper.wax.on",
+                  "copper.wax.off",
+                  "scrape",
+                  "item.spyglass.use",
+                  "item.spyglass.stop_using",
+                  "chime.amethyst_block",
+                  "mob.player.hurt_drown",
+                  "mob.player.hurt_on_fire",
+                  "mob.player.hurt_freeze",
+                  "ambient.screamer",
+                  "hurt.screamer",
+                  "death.screamer",
+                  "milk.screamer",
+                  "jump_to_block",
+                  "pre_ram",
+                  "pre_ram.screamer",
+                  "ram_impact",
+                  "ram_impact.screamer",
+                  "squid.ink_squirt",
+                  "glow_squid.ink_squirt",
+                  "convert_to_stray",
+                  "cake.add_candle",
+                  "extinguish.candle",
+                  "ambient.candle",
+                  "block.click",
+                  "block.click.fail",
+                  "block.sculk_catalyst.bloom",
+                  "block.sculk_shrieker.shriek",
+                  "nearby_close",
+                  "nearby_closer",
+                  "nearby_closest",
+                  "agitated",
+                  "listening",
+                  "heartbeat",
+                  "tongue",
+                  "item_given",
+                  "item_taken",
+                  "item_thrown",
+                  "irongolem.crack",
+                  "irongolem.repair",
+                  "horn_break",
+                  "horn_call0",
+                  "horn_call1",
+                  "horn_call2",
+                  "horn_call3",
+                  "horn_call4",
+                  "horn_call5",
+                  "horn_call6",
+                  "horn_call7",
+                  "imitate.warden",
+                  "listening_angry",
+                  "sonic_boom",
+                  "sonic_charge",
+                  "convert_to_frog",
+                  "block.sculk.spread",
+                  "charge.sculk",
+                  "block.sculk_sensor.place",
+                  "block.sculk_shrieker.place",
+                  "block.enchanting_table.use",
+                  "bundle.drop_contents",
+                  "bundle.insert",
+                  "bundle.insert_fail",
+                  "bundle.remove_one",
+                  "step_sand",
+                  "dash_ready",
+                  "pressure_plate.click_off",
+                  "pressure_plate.click_on",
+                  "button.click_off",
+                  "button.click_on",
+                  "door.open",
+                  "door.close",
+                  "trapdoor.open",
+                  "trapdoor.close",
+                  "fence_gate.open",
+                  "fence_gate.close",
+                  "insert",
+                  "pickup",
+                  "insert_enchanted",
+                  "pickup_enchanted",
+                  "shatter_pot",
+                  "break_pot",
+                  "brush",
+                  "brush_completed",
+                  "block.sign.waxed_interact_fail",
+                  "note.bass",
+                  "pumpkin.carve",
+                  "mob.husk.convert_to_zombie",
+                  "mob.pig.death",
+                  "mob.hoglin.converted_to_zombified",
+                  "ambient.underwater.enter",
+                  "ambient.underwater.exit",
+                  "bottle.fill",
+                  "bottle.empty",
+                  "block.decorated_pot.insert",
+                  "block.decorated_pot.insert_fail",
+                  "crafter.craft",
+                  "crafter.fail",
+                  "crafter.disable_slot",
+                  "block.copper_bulb.turn_on",
+                  "block.copper_bulb.turn_off",
+                  "breeze_wind_charge.burst",
+                  "imitate.breeze",
+                  "trial_spawner.open_shutter",
+                  "trial_spawner.detect_player",
+                  "trial_spawner.close_shutter",
+                  "trial_spawner.spawn_mob",
+                  "trial_spawner.eject_item",
+                  "trial_spawner.ambient",
+                  "mob.armadillo.brush",
+                  "mob.armadillo.scute_drop",
+                  "armor.equip_wolf",
+                  "armor.unequip_wolf",
+                  "reflect",
+                  "vault.open_shutter",
+                  "vault.close_shutter",
+                  "vault.eject_item",
+                  "vault.insert_item",
+                  "vault.insert_item_fail",
+                  "vault.ambient",
+                  "vault.activate",
+                  "vault.deactivate",
+                  "hurt.reduced",
+                  "wind_charge.burst",
+                  "armor.break_wolf",
+                  "armor.crack_wolf",
+                  "armor.repair_wolf",
+                  "mace.smash_air",
+                  "mace.smash_ground",
+                  "mace.heavy_smash_ground",
+                  "trial_spawner.charge_activate",
+                  "trial_spawner.ambient_ominous",
+                  "apply_effect.bad_omen",
+                  "apply_effect.raid_omen",
+                  "apply_effect.trial_omen",
+                  "ominous_item_spawner.spawn_item",
+                  "ominous_bottle.end_use",
+                  "ominous_item_spawner.spawn_item_begin",
+                  "ominous_item_spawner.about_to_spawn_item",
+                  "imitate.bogged",
+                  "vault.reject_rewarded_player",
+                  "imitate.drowned",
+                  "sponge.absorb",
+                  "imitate.creaking",
+                  "block.creaking_heart.trail",
+                  "creaking_heart_spawn",
+                  "activate",
+                  "deactivate",
+                  "freeze",
+                  "unfreeze",
+                  "open",
+                  "open_long",
+                  "close",
+                  "close_long",
+                  "imitate.phantom",
+                  "imitate.zoglin",
+                  "imitate.guardian",
+                  "imitate.ravager",
+                  "imitate.pillager",
+                  "place_in_water",
+                  "state_change",
+                  "imitate.happy_ghast",
+                  "armor.unequip_generic",
+                  "ambient.weather.the_end_light_flash",
+                  "lead.leash",
+                  "lead.unleash",
+                  "lead.break",
+                  "unsaddle",
+                  "armor.equip_copper",
+                  "place_item",
+                  "single_swap",
+                  "multi_swap",
+                  "item.enchant.lunge1",
+                  "item.enchant.lunge2",
+                  "item.enchant.lunge3",
+                  "attack.critical",
+                  "item.spear.attack_hit",
+                  "item.spear.attack_miss",
+                  "item.wooden_spear.attack_hit",
+                  "item.wooden_spear.attack_miss",
+                  "imitate.parched",
+                  "imitate.camel_husk",
+                  "item.spear.use",
+                  "item.wooden_spear.use",
+                  "saddle_in_water",
+                  "item.stone_spear.attack_hit",
+                  "item.iron_spear.attack_hit",
+                  "item.copper_spear.attack_hit",
+                  "item.golden_spear.attack_hit",
+                  "item.diamond_spear.attack_hit",
+                  "item.netherite_spear.attack_hit",
+                  "item.stone_spear.attack_miss",
+                  "item.iron_spear.attack_miss",
+                  "item.copper_spear.attack_miss",
+                  "item.golden_spear.attack_miss",
+                  "item.diamond_spear.attack_miss",
+                  "item.netherite_spear.attack_miss",
+                  "item.stone_spear.use",
+                  "item.iron_spear.use",
+                  "item.copper_spear.use",
+                  "item.golden_spear.use",
+                  "item.diamond_spear.use",
+                  "item.netherite_spear.use",
+                  "pause_growth",
+                  "reset_growth",
+                  "undefined"
+               ]
             },
-            "never_despawn": {
-               "type": "boolean",
-               "default": true
-            },
-            "radius": {
-               "type": "integer",
-               "default": 2,
-               "minimum": 2,
-               "maximum": 6
-            }
-         }
-      },
-      "1057349585": {
-         "title": "FloatRange",
-         "type": "object",
-         "properties": {
-            "max": {
-               "type": "number",
-               "default": 0
-            },
-            "min": {
-               "type": "number",
-               "default": 0
-            }
-         }
-      },
-      "1088251937": {
-         "title": "Filter Group",
-         "oneOf": [
-            {
-               "$ref": "#/definitions/4150989894"
-            },
-            {
+            "control_flags": {
                "type": "array",
+               "default": [],
                "items": {
-                  "$ref": "#/definitions/1088251937"
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
                }
             },
-            {
-               "$ref": "#/definitions/3235433757"
+            "on_escape": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/3379368818"
+               }
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "search_height": {
+               "type": "integer",
+               "default": 0
+            },
+            "search_range": {
+               "type": "integer",
+               "default": 0
+            },
+            "sound_interval": {
+               "default": {
+                  "min": 3,
+                  "max": 8
+               },
+               "$ref": "#/definitions/2566306602"
+            },
+            "sprint_speed_modifier": {
+               "type": "number",
+               "default": 1
+            },
+            "target_blocks": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/1429287564"
+               }
+            },
+            "target_selection_method": {
+               "type": "string",
+               "default": "nearest"
+            },
+            "tick_interval": {
+               "type": "integer",
+               "default": 1
+            },
+            "walk_speed_modifier": {
+               "type": "number",
+               "default": 1
             }
-         ]
+         }
       },
-      "1106829505": {
-         "title": "RotationAxisAlignedDefinition"
+      "467080360": {
+         "title": "RotationLockedToVehicleDefinition"
       },
-      "1143284943": {
+      "544590182": {
+         "title": "minecraft:behavior.circle_around_anchor",
+         "type": "object",
+         "properties": {
+            "angle_change": {
+               "type": "number",
+               "default": 15
+            },
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "goal_radius": {
+               "type": "number",
+               "default": 0.5
+            },
+            "height_above_target_range": {
+               "default": {
+                  "min": 0,
+                  "max": 0
+               },
+               "$ref": "#/definitions/2566306602",
+               "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
+            },
+            "height_adjustment_chance": {
+               "type": "number",
+               "default": 0.0028570001013576984
+            },
+            "height_offset_range": {
+               "default": {
+                  "min": 0,
+                  "max": 0
+               },
+               "$ref": "#/definitions/2566306602"
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "radius_adjustment_chance": {
+               "type": "number",
+               "default": 0.004000000189989805
+            },
+            "radius_change": {
+               "type": "number",
+               "default": 1
+            },
+            "radius_range": {
+               "default": {
+                  "min": 5,
+                  "max": 15
+               },
+               "$ref": "#/definitions/2566306602",
+               "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1
+            }
+         }
+      },
+      "551321829": {
+         "title": "minecraft:behavior.swoop_attack",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "damage_reach": {
+               "type": "number",
+               "default": 0.20000000298023224
+            },
+            "delay_range": {
+               "default": {
+                  "min": 10,
+                  "max": 20
+               },
+               "$ref": "#/definitions/2566306602"
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1
+            }
+         }
+      },
+      "567929586": {
          "title": "minecraft:behavior.charge_attack",
          "type": "object",
          "properties": {
@@ -1069,11 +1503,141 @@
             }
          }
       },
-      "1306911011": {
-         "title": "WASDControlledDefinition"
+      "650245378": {
+         "title": "IsPregnantDefinition"
       },
-      "1374016683": {
-         "title": "minecraft:behavior.investigate_suspicious_location",
+      "665702132": {
+         "title": "minecraft:addrider",
+         "type": "object",
+         "properties": {
+            "riders": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/2554339488"
+               }
+            }
+         }
+      },
+      "725374594": {
+         "title": "vec3",
+         "oneOf": [
+            {
+               "type": "array",
+               "items": {
+                  "type": "number"
+               },
+               "minItems": 3,
+               "maxItems": 3
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "x": {
+                     "type": "number",
+                     "default": 0
+                  },
+                  "y": {
+                     "type": "number",
+                     "default": 0
+                  },
+                  "z": {
+                     "type": "number",
+                     "default": 0
+                  }
+               }
+            }
+         ]
+      },
+      "742152213": {
+         "title": "Vec2",
+         "oneOf": [
+            {
+               "type": "array",
+               "items": {
+                  "type": "number"
+               },
+               "minItems": 2,
+               "maxItems": 2
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "x": {
+                     "type": "number",
+                     "default": 0
+                  },
+                  "y": {
+                     "type": "number",
+                     "default": 0
+                  }
+               }
+            }
+         ]
+      },
+      "763299284": {
+         "title": "CanClimbDefinition"
+      },
+      "855125494": {
+         "title": "BlockDescriptorProxy",
+         "type": "object",
+         "properties": {
+            "name": {
+               "type": "string",
+               "default": ""
+            },
+            "states": {
+               "type": "object",
+               "additionalProperties": {
+                  "$ref": "#/definitions/2565245911"
+               },
+               "default": {}
+            },
+            "tags": {
+               "type": "string",
+               "default": ""
+            }
+         }
+      },
+      "1018143578": {
+         "title": "IsShakingDefinition"
+      },
+      "1429287564": {
+         "title": "Item Descriptor",
+         "oneOf": [
+            {
+               "type": "string"
+            },
+            {
+               "type": "object",
+               "additionalProperties": {
+                  "type": "string"
+               }
+            }
+         ]
+      },
+      "1500414392": {
+         "title": "minecraft:burns_in_daylight",
+         "type": "object",
+         "properties": {
+            "protection_slot": {
+               "title": "EquipmentSlot",
+               "type": "string",
+               "default": "slot.armor.head",
+               "enum": [
+                  "slot.weapon.mainhand",
+                  "slot.weapon.offhand",
+                  "slot.armor.head",
+                  "slot.armor.chest",
+                  "slot.armor.legs",
+                  "slot.armor.feet",
+                  "slot.armor.body"
+               ]
+            }
+         }
+      },
+      "1528866228": {
+         "title": "minecraft:behavior.breed",
          "type": "object",
          "properties": {
             "control_flags": {
@@ -1089,10 +1653,6 @@
                   ]
                }
             },
-            "goal_radius": {
-               "type": "number",
-               "default": 1.5
-            },
             "priority": {
                "type": "integer",
                "default": 0,
@@ -1104,7 +1664,13 @@
             }
          }
       },
-      "1492465940": {
+      "1530132602": {
+         "title": "RotationAxisAlignedDefinition"
+      },
+      "1533618432": {
+         "title": "IsTamedDefinition"
+      },
+      "1651525447": {
          "title": "minecraft:behavior.dragonflaming",
          "type": "object",
          "properties": {
@@ -1156,21 +1722,287 @@
             }
          }
       },
-      "1531870811": {
-         "title": "Item Descriptor",
+      "1676115236": {
+         "title": "minecraft:behavior.controlled_by_player",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "fractional_rotation": {
+               "type": "number",
+               "default": 0.5,
+               "minimum": 0.5,
+               "maximum": 1
+            },
+            "fractional_rotation_limit": {
+               "type": "number",
+               "default": 5
+            },
+            "mount_speed_multiplier": {
+               "type": "number",
+               "default": 1
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            }
+         }
+      },
+      "1768980895": {
+         "title": "IsShearedDefinition"
+      },
+      "1861253865": {
+         "title": "minecraft:behavior.swim_idle",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "idle_time": {
+               "type": "number",
+               "default": 5
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "success_rate": {
+               "type": "number",
+               "default": 0.10000000149011612
+            }
+         }
+      },
+      "1886756196": {
+         "title": "minecraft:behavior.aquatic_charge_attack",
+         "type": "object",
+         "properties": {
+            "attack_reach": {
+               "type": "number",
+               "default": 0.05000000074505806,
+               "minimum": 0
+            },
+            "charge_cooldown_time": {
+               "default": {
+                  "min": 2,
+                  "max": 6
+               },
+               "$ref": "#/definitions/2566306602",
+               "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
+            },
+            "charge_overshoot_distance": {
+               "type": "number",
+               "default": 1.5,
+               "minimum": 0
+            },
+            "charge_speed_multiplier": {
+               "type": "number",
+               "default": 10,
+               "minimum": 0
+            },
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "knockback_force": {
+               "type": "number",
+               "default": 2,
+               "minimum": 0
+            },
+            "max_charge_distance": {
+               "type": "number",
+               "default": 16,
+               "minimum": 0
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            }
+         }
+      },
+      "1991896377": {
+         "title": "minecraft:behavior.slime_attack",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "grow_tired_cooldown_time": {
+               "type": "number",
+               "default": 15
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "set_persistent": {
+               "type": "boolean",
+               "default": false
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1
+            },
+            "x_max_rotation": {
+               "type": "number",
+               "default": 10
+            },
+            "y_max_rotation": {
+               "type": "number",
+               "default": 10
+            }
+         }
+      },
+      "2014847524": {
+         "title": "Molang expression",
          "oneOf": [
             {
-               "type": "string"
+               "$ref": "#/definitions/2529973620"
             },
             {
-               "type": "object",
-               "additionalProperties": {
-                  "type": "string"
-               }
+               "type": "number"
             }
          ]
       },
-      "1557623393": {
+      "2087775710": {
+         "title": "minecraft:behavior.swim_wander",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "interval": {
+               "type": "number",
+               "default": 0.008329999633133411
+            },
+            "look_ahead": {
+               "type": "number",
+               "default": 5
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1
+            },
+            "wander_time": {
+               "type": "number",
+               "default": 5
+            }
+         }
+      },
+      "2091379100": {
+         "title": "minecraft:behavior.investigate_suspicious_location",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "goal_radius": {
+               "type": "number",
+               "default": 1.5
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1
+            }
+         }
+      },
+      "2121103369": {
+         "title": "IsIgnitedDefinition"
+      },
+      "2154144316": {
+         "title": "minecraft:experience_reward",
+         "type": "object",
+         "properties": {
+            "on_bred": {
+               "default": {
+                  "expression": "",
+                  "version": -1
+               },
+               "$ref": "#/definitions/2014847524"
+            },
+            "on_death": {
+               "default": {
+                  "expression": "",
+                  "version": -1
+               },
+               "$ref": "#/definitions/2014847524"
+            }
+         }
+      },
+      "2312286208": {
          "title": "minecraft:behavior.explore_outskirts",
          "type": "object",
          "properties": {
@@ -1193,7 +2025,7 @@
                   0,
                   5
                ],
-               "$ref": "#/definitions/4004946602"
+               "$ref": "#/definitions/725374594"
             },
             "explore_dist": {
                "type": "number",
@@ -1242,32 +2074,16 @@
             }
          }
       },
-      "1682332161": {
-         "title": "CanClimbDefinition"
+      "2339940135": {
+         "title": "IsStackableDefinition"
       },
-      "1703168766": {
-         "title": "IsBabyDefinition"
-      },
-      "1729146119": {
-         "title": "IsTamedDefinition"
-      },
-      "1820403110": {
-         "title": "IsIllagerCaptainDefinition"
-      },
-      "1861715976": {
-         "title": "minecraft:behavior.transport_items",
+      "2343980756": {
+         "title": "minecraft:behavior.dig",
          "type": "object",
          "properties": {
-            "allow_simultaneous_interaction": {
+            "allow_dig_when_named": {
                "type": "boolean",
                "default": false
-            },
-            "allowed_items": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "$ref": "#/definitions/1531870811"
-               }
             },
             "control_flags": {
                "type": "array",
@@ -1282,87 +2098,54 @@
                   ]
                }
             },
-            "destination_container_types": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "$ref": "#/definitions/2794205495"
-               }
+            "digs_in_daylight": {
+               "type": "boolean",
+               "default": false
             },
-            "disallowed_items": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "$ref": "#/definitions/1531870811"
-               }
-            },
-            "idle_cooldown": {
-               "type": "integer",
-               "default": 20,
-               "minimum": 0
-            },
-            "initial_cooldown": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "interaction_time": {
+            "duration": {
                "type": "number",
-               "default": 3,
-               "minimum": 0
+               "default": 0
             },
-            "max_stack_size": {
-               "type": "integer",
-               "default": 64,
-               "minimum": 1,
-               "maximum": 64
+            "idle_time": {
+               "type": "number",
+               "default": 0
             },
-            "max_visited_containers": {
-               "type": "integer",
-               "default": 16,
-               "minimum": 0
-            },
-            "place_strategy": {
-               "title": "place_strategy",
-               "type": "string",
-               "default": "any",
-               "enum": [
-                  "any",
-                  "with_matching",
-                  "with_matching_or_empty"
-               ]
+            "on_start": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "OR": null,
+                     "all": null,
+                     "all_of": null,
+                     "AND": null,
+                     "any_of": null,
+                     "none_of": null,
+                     "any": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/3379368818"
             },
             "priority": {
                "type": "integer",
                "default": 0,
                "minimum": 0
             },
-            "search_distance": {
-               "default": [
-                  64,
-                  32
-               ],
-               "$ref": "#/definitions/4021724221"
+            "suspicion_is_disturbance": {
+               "type": "boolean",
+               "default": false
             },
-            "search_strategy": {
-               "title": "search_strategy",
-               "type": "string",
-               "default": "random",
-               "enum": [
-                  "nearest",
-                  "random"
-               ]
-            },
-            "source_container_types": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "$ref": "#/definitions/2794205495"
-               }
+            "vibration_is_disturbance": {
+               "type": "boolean",
+               "default": false
             }
          }
       },
-      "1900210559": {
+      "2351047562": {
+         "title": "IsSaddledDefinition"
+      },
+      "2383484162": {
          "title": "minecraft:behavior.use_kinetic_weapon",
          "type": "object",
          "properties": {
@@ -1401,7 +2184,7 @@
                   "min": 8,
                   "max": 8
                },
-               "$ref": "#/definitions/1057349585"
+               "$ref": "#/definitions/2566306602"
             },
             "cooldown_speed_multiplier": {
                "type": "number",
@@ -1452,7 +2235,7 @@
                      "NOT": null
                   }
                },
-               "$ref": "#/definitions/121353999"
+               "$ref": "#/definitions/3379368818"
             },
             "on_kill": {
                "default": {
@@ -1469,7 +2252,7 @@
                      "NOT": null
                   }
                },
-               "$ref": "#/definitions/121353999"
+               "$ref": "#/definitions/3379368818"
             },
             "outer_boundary_time_increase": {
                "type": "number",
@@ -1506,7 +2289,7 @@
                   "min": 2,
                   "max": 2
                },
-               "$ref": "#/definitions/1057349585"
+               "$ref": "#/definitions/2566306602"
             },
             "reposition_speed_multiplier": {
                "type": "number",
@@ -1548,157 +2331,69 @@
             }
          }
       },
-      "1926664697": {
-         "title": "minecraft:behavior.controlled_by_player",
+      "2397407737": {
+         "title": "MobDescriptor",
          "type": "object",
          "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
+            "check_if_outnumbered": {
+               "type": "boolean",
+               "default": false
             },
-            "fractional_rotation": {
-               "type": "number",
-               "default": 0.5,
-               "minimum": 0.5,
-               "maximum": 1
-            },
-            "fractional_rotation_limit": {
-               "type": "number",
-               "default": 5
-            },
-            "mount_speed_multiplier": {
-               "type": "number",
-               "default": 1
-            },
-            "priority": {
+            "cooldown": {
                "type": "integer",
-               "default": 0,
-               "minimum": 0
-            }
-         }
-      },
-      "1949055570": {
-         "title": "minecraft:behavior.sniff",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
+               "default": 0
             },
-            "cooldown_range": {
+            "filters": {
                "default": {
-                  "min": 3,
-                  "max": 10
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
                },
-               "$ref": "#/definitions/1057349585"
+               "$ref": "#/definitions/2789112004"
             },
-            "duration": {
+            "max_dist": {
                "type": "number",
-               "default": 1
+               "default": 16
             },
-            "priority": {
+            "max_flee": {
+               "type": "number",
+               "default": 10
+            },
+            "max_height": {
+               "type": "number",
+               "default": -1
+            },
+            "must_see": {
+               "type": "boolean"
+            },
+            "must_see_forget_duration": {
                "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "sniffing_radius": {
-               "type": "number",
-               "default": 5
-            },
-            "suspicion_radius_horizontal": {
-               "type": "number",
                "default": 3
             },
-            "suspicion_radius_vertical": {
-               "type": "number",
-               "default": 3,
-               "minimum": 1
-            }
-         }
-      },
-      "1979855054": {
-         "title": "minecraft:behavior.swoop_attack",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "damage_reach": {
-               "type": "number",
-               "default": 0.20000000298023224
-            },
-            "delay_range": {
-               "default": {
-                  "min": 10,
-                  "max": 20
-               },
-               "$ref": "#/definitions/1057349585"
-            },
             "priority": {
                "type": "integer",
-               "default": 0,
-               "minimum": 0
+               "default": 0
             },
-            "speed_multiplier": {
+            "reevaluate_description": {
+               "type": "boolean",
+               "default": false
+            },
+            "sprint_speed_multiplier": {
+               "type": "number",
+               "default": 1
+            },
+            "walk_speed_multiplier": {
                "type": "number",
                "default": 1
             }
          }
       },
-      "2023027994": {
-         "title": "RendersWhenInvisibleDefinition"
-      },
-      "2023415389": {
-         "title": "IsShakingDefinition"
-      },
-      "2041076969": {
-         "title": "IsSaddledDefinition"
-      },
-      "2047937041": {
-         "title": "Rider Data",
-         "type": "object",
-         "properties": {
-            "entity_type": {
-               "type": "string"
-            },
-            "spawn_event": {
-               "type": "string",
-               "default": ""
-            }
-         },
-         "required": [
-            "entity_type"
-         ]
-      },
-      "2159667979": {
+      "2453003358": {
          "title": "minecraft:behavior.eat_mob",
          "type": "object",
          "properties": {
@@ -1746,7 +2441,83 @@
             }
          }
       },
-      "2267778531": {
+      "2457665045": {
+         "title": "Filter Test",
+         "type": "object",
+         "properties": {
+            "domain": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "operator": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "subject": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "test": {
+               "type": "string"
+            },
+            "value": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            }
+         },
+         "required": [
+            "test"
+         ]
+      },
+      "2529973620": {
          "title": "Molang string",
          "oneOf": [
             {
@@ -1769,7 +2540,175 @@
             }
          ]
       },
-      "2291122496": {
+      "2554339488": {
+         "title": "Rider Data",
+         "type": "object",
+         "properties": {
+            "entity_type": {
+               "type": "string"
+            },
+            "spawn_event": {
+               "type": "string",
+               "default": ""
+            }
+         },
+         "required": [
+            "entity_type"
+         ]
+      },
+      "2565245911": {
+         "title": "compound_proxy",
+         "oneOf": [
+            {
+               "type": "integer"
+            },
+            {
+               "type": "string"
+            },
+            {
+               "type": "boolean"
+            }
+         ]
+      },
+      "2566306602": {
+         "title": "FloatRange",
+         "type": "object",
+         "properties": {
+            "max": {
+               "type": "number",
+               "default": 0
+            },
+            "min": {
+               "type": "number",
+               "default": 0
+            }
+         }
+      },
+      "2691830830": {
+         "title": "FireImmuneDefinition"
+      },
+      "2747369093": {
+         "title": "minecraft:behavior.sniff",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "cooldown_range": {
+               "default": {
+                  "min": 3,
+                  "max": 10
+               },
+               "$ref": "#/definitions/2566306602"
+            },
+            "duration": {
+               "type": "number",
+               "default": 1
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "sniffing_radius": {
+               "type": "number",
+               "default": 5
+            },
+            "suspicion_radius_horizontal": {
+               "type": "number",
+               "default": 3
+            },
+            "suspicion_radius_vertical": {
+               "type": "number",
+               "default": 3,
+               "minimum": 1
+            }
+         }
+      },
+      "2789112004": {
+         "title": "Filter Group",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2457665045"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/2789112004"
+               }
+            },
+            {
+               "$ref": "#/definitions/100089226"
+            }
+         ]
+      },
+      "2885091915": {
+         "title": "IsChargedDefinition"
+      },
+      "2940120970": {
+         "title": "minecraft:tick_world",
+         "type": "object",
+         "properties": {
+            "distance_to_players": {
+               "type": "number",
+               "default": 128,
+               "minimum": 128
+            },
+            "never_despawn": {
+               "type": "boolean",
+               "default": true
+            },
+            "radius": {
+               "type": "integer",
+               "default": 2,
+               "minimum": 2,
+               "maximum": 6
+            }
+         }
+      },
+      "2946758887": {
+         "title": "IsIllagerCaptainDefinition"
+      },
+      "3021139987": {
+         "title": "minecraft:behavior.roar",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "duration": {
+               "type": "number",
+               "default": 0,
+               "minimum": 0
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            }
+         }
+      },
+      "3082692911": {
          "title": "minecraft:behavior.swim_up_for_breath",
          "type": "object",
          "properties": {
@@ -1809,234 +2748,11 @@
             }
          }
       },
-      "2309924397": {
-         "title": "minecraft:behavior.sonic_boom",
-         "type": "object",
-         "properties": {
-            "attack_cooldown": {
-               "type": "number",
-               "default": 5
-            },
-            "attack_damage": {
-               "type": "number",
-               "default": 30
-            },
-            "attack_range_horizontal": {
-               "type": "number",
-               "default": 15
-            },
-            "attack_range_vertical": {
-               "type": "number",
-               "default": 20
-            },
-            "attack_sound": {
-               "type": "string",
-               "default": ""
-            },
-            "charge_sound": {
-               "type": "string",
-               "default": ""
-            },
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "duration": {
-               "type": "number",
-               "default": 0,
-               "minimum": 0
-            },
-            "duration_until_attack_sound": {
-               "type": "number",
-               "default": 1.7000000476837158
-            },
-            "knockback_height_cap": {
-               "type": "number",
-               "default": 0
-            },
-            "knockback_horizontal_strength": {
-               "type": "number",
-               "default": 0
-            },
-            "knockback_vertical_strength": {
-               "type": "number",
-               "default": 0
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "speed_multiplier": {
-               "type": "number",
-               "default": 1
-            }
-         }
-      },
-      "2337874215": {
-         "title": "IsStunnedDefinition"
-      },
-      "2379072710": {
-         "title": "minecraft:behavior.drink_milk",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "cooldown_seconds": {
-               "type": "number",
-               "default": 5
-            },
-            "filters": {
-               "default": {
-                  "OR": null,
-                  "all": null,
-                  "all_of": null,
-                  "AND": null,
-                  "any_of": null,
-                  "none_of": null,
-                  "any": null,
-                  "NOT": null
-               },
-               "$ref": "#/definitions/1088251937"
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            }
-         }
-      },
-      "2567691908": {
-         "title": "minecraft:behavior.slime_float",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "jump_chance_percentage": {
-               "type": "number",
-               "default": 0.800000011920929
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "speed_multiplier": {
-               "type": "number",
-               "default": 1.2000000476837158
-            }
-         }
-      },
-      "2628131938": {
-         "title": "minecraft:behavior.slime_keep_on_jumping",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "speed_multiplier": {
-               "type": "number",
-               "default": 1
-            }
-         }
-      },
-      "2655738381": {
-         "title": "minecraft:burns_in_daylight",
-         "type": "object",
-         "properties": {
-            "protection_slot": {
-               "title": "EquipmentSlot",
-               "type": "string",
-               "default": "slot.armor.head",
-               "enum": [
-                  "slot.weapon.offhand",
-                  "slot.armor.head",
-                  "slot.armor.chest",
-                  "slot.armor.legs",
-                  "slot.armor.feet",
-                  "slot.armor.body"
-               ]
-            }
-         }
-      },
-      "2704775729": {
-         "title": "BodyRotationAlwaysFollowsHeadDefinition"
-      },
-      "2736897213": {
-         "title": "CanPowerJumpDefinition"
-      },
-      "2770948419": {
-         "title": "BlockDescriptorProxy",
-         "type": "object",
-         "properties": {
-            "name": {
-               "type": "string",
-               "default": ""
-            },
-            "states": {
-               "type": "object",
-               "additionalProperties": {
-                  "$ref": "#/definitions/517105782"
-               },
-               "default": {}
-            },
-            "tags": {
-               "type": "string",
-               "default": ""
-            }
-         }
-      },
-      "2794205495": {
+      "3093766462": {
          "title": "Block Descriptor",
          "oneOf": [
             {
-               "$ref": "#/definitions/2770948419",
+               "$ref": "#/definitions/855125494",
                "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
             },
             {
@@ -2044,56 +2760,15 @@
                "minLength": 1
             },
             {
-               "$ref": "#/definitions/2770948419",
+               "$ref": "#/definitions/855125494",
                "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
             }
          ]
       },
-      "2865523930": {
-         "title": "IsIgnitedDefinition"
+      "3125128504": {
+         "title": "CanFlyDefinition"
       },
-      "3178719147": {
-         "title": "Molang expression",
-         "oneOf": [
-            {
-               "$ref": "#/definitions/2267778531"
-            },
-            {
-               "type": "number"
-            }
-         ]
-      },
-      "3235433757": {
-         "title": "Filter Group Map",
-         "type": "object",
-         "properties": {
-            "AND": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "NOT": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "OR": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "all": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "all_of": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "any": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "any_of": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "none_of": {
-               "$ref": "#/definitions/1088251937"
-            }
-         }
-      },
-      "3273917994": {
+      "3162453531": {
          "title": "minecraft:behavior.slime_random_direction",
          "type": "object",
          "properties": {
@@ -2129,573 +2804,186 @@
             }
          }
       },
-      "3310298976": {
-         "title": "IsChestedDefinition"
+      "3244708751": {
+         "title": "IsBabyDefinition"
       },
-      "3326653763": {
-         "title": "minecraft:behavior.avoid_block",
+      "3379368818": {
+         "title": "ActorDefinitionTrigger",
          "type": "object",
          "properties": {
-            "avoid_block_sound": {
-               "title": "LevelSoundEvent",
+            "event": {
                "type": "string",
-               "default": "undefined",
+               "default": ""
+            },
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/2789112004"
+            },
+            "target": {
+               "title": "FilterSubject",
+               "type": "string",
+               "default": "self",
                "enum": [
-                  "item.use.on",
-                  "hit",
-                  "step",
-                  "step.baby",
-                  "fly",
-                  "jump",
-                  "jump.prevent",
-                  "break",
-                  "place",
-                  "heavy.step",
-                  "gallop",
-                  "fall",
-                  "hurt",
-                  "hurt.baby",
-                  "hurt.in.water",
-                  "death",
-                  "death.baby",
-                  "death.in.water",
-                  "death.to.zombie",
-                  "ambient",
-                  "ambient.baby",
-                  "ambient.in.water",
-                  "ambient.in.air",
-                  "ambient.tame",
-                  "ambient.pollinate",
-                  "breathe",
-                  "mad",
-                  "boost",
-                  "bow",
-                  "squish.big",
-                  "squish.small",
-                  "fall.big",
-                  "fall.small",
-                  "splash",
-                  "fizz",
-                  "flap",
-                  "swim",
-                  "drink",
-                  "drink.honey",
-                  "drink.milk",
-                  "eat",
-                  "takeoff",
-                  "shake",
-                  "plop",
-                  "land",
-                  "saddle",
-                  "armor",
-                  "mob.armor_stand.place",
-                  "add.chest",
-                  "throw",
-                  "attack",
-                  "attack.nodamage",
-                  "attack.strong",
-                  "warn",
-                  "shear",
-                  "milk",
-                  "thunder",
-                  "explode",
-                  "fire",
-                  "ignite",
-                  "fuse",
-                  "stare",
-                  "spawn",
-                  "born",
-                  "shoot",
-                  "break.block",
-                  "launch",
-                  "blast",
-                  "large.blast",
-                  "twinkle",
-                  "remedy",
-                  "unfect",
-                  "convert_to_drowned",
-                  "levelup",
-                  "bow.hit",
-                  "bullet.hit",
-                  "extinguish.fire",
-                  "item.fizz",
-                  "chest.open",
-                  "chest.closed",
-                  "shulkerbox.open",
-                  "shulkerbox.closed",
-                  "enderchest.open",
-                  "enderchest.closed",
-                  "power.on",
-                  "power.off",
-                  "attach",
-                  "detach",
-                  "deny",
-                  "tripod",
-                  "pop",
-                  "drop.slot",
-                  "note",
-                  "thorns",
-                  "piston.in",
-                  "piston.out",
-                  "portal",
-                  "water",
-                  "lava.pop",
-                  "lava",
-                  "beacon.activate",
-                  "beacon.ambient",
-                  "beacon.deactivate",
-                  "beacon.power",
-                  "conduit.activate",
-                  "conduit.ambient",
-                  "conduit.attack",
-                  "conduit.deactivate",
-                  "conduit.short",
-                  "bubble.pop",
-                  "bubble.up",
-                  "bubble.upinside",
-                  "bubble.down",
-                  "bubble.downinside",
-                  "burp",
-                  "bucket.fill.water",
-                  "bucket.empty.water",
-                  "bucket.fill.lava",
-                  "bucket.empty.lava",
-                  "bucket.fill.fish",
-                  "bucket.empty.fish",
-                  "armor.equip_chain",
-                  "armor.equip_diamond",
-                  "armor.equip_elytra",
-                  "armor.equip_generic",
-                  "armor.equip_gold",
-                  "armor.equip_iron",
-                  "armor.equip_leather",
-                  "armor.equip_netherite",
-                  "record.13",
-                  "record.cat",
-                  "record.blocks",
-                  "record.chirp",
-                  "record.creator",
-                  "record.creator_music_box",
-                  "record.far",
-                  "record.mall",
-                  "record.mellohi",
-                  "record.stal",
-                  "record.strad",
-                  "record.ward",
-                  "record.11",
-                  "record.wait",
-                  "record.pigstep",
-                  "record.precipice",
-                  "record.relic",
-                  "record.otherside",
-                  "record.5",
-                  "record.tears",
-                  "record.lava_chicken",
-                  "flop",
-                  "elderguardian.curse",
-                  "teleport",
-                  "shulker.open",
-                  "shulker.close",
-                  "mob.warning",
-                  "mob.warning.baby",
-                  "haggle",
-                  "haggle.yes",
-                  "haggle.no",
-                  "haggle.idle",
-                  "disappeared",
-                  "reappeared",
-                  "chorusgrow",
-                  "chorusdeath",
-                  "glass",
-                  "potion.brewed",
-                  "cast.spell",
-                  "prepare.attack",
-                  "prepare.summon",
-                  "prepare.wololo",
-                  "fang",
-                  "charge",
-                  "camera.take_picture",
-                  "leashknot.break",
-                  "leashknot.place",
-                  "growl",
-                  "whine",
-                  "pant",
-                  "purr",
-                  "purreow",
-                  "death.min.volume",
-                  "death.mid.volume",
-                  "imitate.blaze",
-                  "imitate.cave_spider",
-                  "imitate.creeper",
-                  "imitate.elder_guardian",
-                  "imitate.ender_dragon",
-                  "imitate.enderman",
-                  "imitate.endermite",
-                  "imitate.evocation_illager",
-                  "imitate.ghast",
-                  "imitate.husk",
-                  "imitate.magma_cube",
-                  "imitate.polar_bear",
-                  "imitate.shulker",
-                  "imitate.silverfish",
-                  "imitate.skeleton",
-                  "imitate.slime",
-                  "imitate.spider",
-                  "imitate.stray",
-                  "imitate.vex",
-                  "imitate.vindication_illager",
-                  "imitate.witch",
-                  "imitate.wither",
-                  "imitate.wither_skeleton",
-                  "imitate.wolf",
-                  "imitate.zombie",
-                  "imitate.zombie_pigman",
-                  "imitate.zombie_villager",
-                  "block.end_portal_frame.fill",
-                  "block.end_portal.spawn",
-                  "random.anvil_use",
-                  "bottle.dragonbreath",
-                  "balloonpop",
-                  "sparkler.active",
-                  "item.trident.hit",
-                  "item.trident.hit_ground",
-                  "item.trident.return",
-                  "item.trident.riptide_1",
-                  "item.trident.riptide_2",
-                  "item.trident.riptide_3",
-                  "item.trident.throw",
-                  "item.trident.thunder",
-                  "block.fletching_table.use",
-                  "elemconstruct.open",
-                  "icebomb.hit",
-                  "lt.reaction.icebomb",
-                  "lt.reaction.bleach",
-                  "lt.reaction.epaste",
-                  "lt.reaction.epaste2",
-                  "lt.reaction.fertilizer",
-                  "lt.reaction.fireball",
-                  "lt.reaction.mgsalt",
-                  "lt.reaction.miscfire",
-                  "lt.reaction.fire",
-                  "lt.reaction.miscexplosion",
-                  "lt.reaction.miscmystical",
-                  "lt.reaction.miscmystical2",
-                  "lt.reaction.product",
-                  "sparkler.use",
-                  "glowstick.use",
-                  "block.turtle_egg.break",
-                  "block.turtle_egg.crack",
-                  "block.turtle_egg.hatch",
-                  "block.turtle_egg.attack",
-                  "block.sniffer_egg.crack",
-                  "block.sniffer_egg.hatch",
-                  "block.frog_spawn.hatch",
-                  "block.frog_spawn.break",
-                  "swoop",
-                  "presneeze",
-                  "sneeze",
-                  "scared",
-                  "ambient.aggressive",
-                  "ambient.worried",
-                  "cant_breed",
-                  "block.scaffolding.climb",
-                  "block.bamboo_sapling.place",
-                  "crossbow.loading.start",
-                  "crossbow.loading.middle",
-                  "crossbow.loading.end",
-                  "crossbow.shoot",
-                  "crossbow.quick_charge.start",
-                  "crossbow.quick_charge.middle",
-                  "crossbow.quick_charge.end",
-                  "item.shield.block",
-                  "portal.travel",
-                  "item.book.put",
-                  "block.grindstone.use",
-                  "block.bell.hit",
-                  "block.campfire.crackle",
-                  "block.sweet_berry_bush.hurt",
-                  "block.sweet_berry_bush.pick",
-                  "block.stonecutter.use",
-                  "block.cartography_table.use",
-                  "block.composter.empty",
-                  "block.composter.fill",
-                  "block.composter.fill_success",
-                  "block.composter.ready",
-                  "roar",
-                  "stun",
-                  "block.barrel.open",
-                  "block.barrel.close",
-                  "raid.horn",
-                  "ui.stonecutter.take_result",
-                  "ui.cartography_table.take_result",
-                  "ui.loom.take_result",
-                  "block.smoker.smoke",
-                  "block.blastfurnace.fire_crackle",
-                  "block.smithing_table.use",
-                  "block.loom.use",
-                  "ambient.in.raid",
-                  "screech",
-                  "sleep",
-                  "block.furnace.lit",
-                  "convert_mooshroom",
-                  "milk_suspiciously",
-                  "celebrate",
-                  "block.beehive.enter",
-                  "block.beehive.exit",
-                  "block.beehive.shear",
-                  "block.beehive.work",
-                  "block.beehive.drip",
-                  "ambient.cave",
-                  "angry",
-                  "retreat",
-                  "converted_to_zombified",
-                  "step_lava",
-                  "tempt",
-                  "panic",
-                  "admire",
-                  "particle.soul_escape.quiet",
-                  "particle.soul_escape.loud",
-                  "respawn_anchor.charge",
-                  "respawn_anchor.deplete",
-                  "respawn_anchor.set_spawn",
-                  "respawn_anchor.ambient",
-                  "ambient.crimson_forest.mood",
-                  "ambient.warped_forest.mood",
-                  "ambient.soulsand_valley.mood",
-                  "ambient.nether_wastes.mood",
-                  "ambient.crimson_forest.additions",
-                  "ambient.warped_forest.additions",
-                  "ambient.soulsand_valley.additions",
-                  "ambient.nether_wastes.additions",
-                  "ambient.basalt_deltas.additions",
-                  "ambient.crimson_forest.loop",
-                  "ambient.warped_forest.loop",
-                  "ambient.soulsand_valley.loop",
-                  "ambient.nether_wastes.loop",
-                  "ambient.basalt_deltas.loop",
-                  "lodestone_compass.link_compass_to_lodestone",
-                  "ambient.basalt_deltas.mood",
-                  "power.on.sculk_sensor",
-                  "power.off.sculk_sensor",
-                  "smithing_table.use",
-                  "default",
-                  "lay_egg",
-                  "lay_spawn",
-                  "bucket.fill.powder_snow",
-                  "bucket.empty.powder_snow",
-                  "cauldron_drip.water.pointed_dripstone",
-                  "cauldron_drip.lava.pointed_dripstone",
-                  "tilt_down.big_dripleaf",
-                  "tilt_up.big_dripleaf",
-                  "drip.water.pointed_dripstone",
-                  "pick_berries.cave_vines",
-                  "drip.lava.pointed_dripstone",
-                  "copper.wax.on",
-                  "copper.wax.off",
-                  "scrape",
-                  "item.spyglass.use",
-                  "item.spyglass.stop_using",
-                  "chime.amethyst_block",
-                  "mob.player.hurt_drown",
-                  "mob.player.hurt_on_fire",
-                  "mob.player.hurt_freeze",
-                  "ambient.screamer",
-                  "hurt.screamer",
-                  "death.screamer",
-                  "milk.screamer",
-                  "jump_to_block",
-                  "pre_ram",
-                  "pre_ram.screamer",
-                  "ram_impact",
-                  "ram_impact.screamer",
-                  "squid.ink_squirt",
-                  "glow_squid.ink_squirt",
-                  "convert_to_stray",
-                  "cake.add_candle",
-                  "extinguish.candle",
-                  "ambient.candle",
-                  "block.click",
-                  "block.click.fail",
-                  "block.sculk_catalyst.bloom",
-                  "block.sculk_shrieker.shriek",
-                  "nearby_close",
-                  "nearby_closer",
-                  "nearby_closest",
-                  "agitated",
-                  "listening",
-                  "heartbeat",
-                  "tongue",
-                  "item_given",
-                  "item_taken",
-                  "item_thrown",
-                  "irongolem.crack",
-                  "irongolem.repair",
-                  "horn_break",
-                  "horn_call0",
-                  "horn_call1",
-                  "horn_call2",
-                  "horn_call3",
-                  "horn_call4",
-                  "horn_call5",
-                  "horn_call6",
-                  "horn_call7",
-                  "imitate.warden",
-                  "listening_angry",
-                  "sonic_boom",
-                  "sonic_charge",
-                  "convert_to_frog",
-                  "block.sculk.spread",
-                  "charge.sculk",
-                  "block.sculk_sensor.place",
-                  "block.sculk_shrieker.place",
-                  "block.enchanting_table.use",
-                  "bundle.drop_contents",
-                  "bundle.insert",
-                  "bundle.insert_fail",
-                  "bundle.remove_one",
-                  "step_sand",
-                  "dash_ready",
-                  "pressure_plate.click_off",
-                  "pressure_plate.click_on",
-                  "button.click_off",
-                  "button.click_on",
-                  "door.open",
-                  "door.close",
-                  "trapdoor.open",
-                  "trapdoor.close",
-                  "fence_gate.open",
-                  "fence_gate.close",
-                  "insert",
-                  "pickup",
-                  "insert_enchanted",
-                  "pickup_enchanted",
-                  "shatter_pot",
-                  "break_pot",
-                  "brush",
-                  "brush_completed",
-                  "block.sign.waxed_interact_fail",
-                  "note.bass",
-                  "pumpkin.carve",
-                  "mob.husk.convert_to_zombie",
-                  "mob.pig.death",
-                  "mob.hoglin.converted_to_zombified",
-                  "ambient.underwater.enter",
-                  "ambient.underwater.exit",
-                  "bottle.fill",
-                  "bottle.empty",
-                  "block.decorated_pot.insert",
-                  "block.decorated_pot.insert_fail",
-                  "crafter.craft",
-                  "crafter.fail",
-                  "crafter.disable_slot",
-                  "block.copper_bulb.turn_on",
-                  "block.copper_bulb.turn_off",
-                  "breeze_wind_charge.burst",
-                  "imitate.breeze",
-                  "trial_spawner.open_shutter",
-                  "trial_spawner.detect_player",
-                  "trial_spawner.close_shutter",
-                  "trial_spawner.spawn_mob",
-                  "trial_spawner.eject_item",
-                  "trial_spawner.ambient",
-                  "mob.armadillo.brush",
-                  "mob.armadillo.scute_drop",
-                  "armor.equip_wolf",
-                  "armor.unequip_wolf",
-                  "reflect",
-                  "vault.open_shutter",
-                  "vault.close_shutter",
-                  "vault.eject_item",
-                  "vault.insert_item",
-                  "vault.insert_item_fail",
-                  "vault.ambient",
-                  "vault.activate",
-                  "vault.deactivate",
-                  "hurt.reduced",
-                  "wind_charge.burst",
-                  "armor.break_wolf",
-                  "armor.crack_wolf",
-                  "armor.repair_wolf",
-                  "mace.smash_air",
-                  "mace.smash_ground",
-                  "mace.heavy_smash_ground",
-                  "trial_spawner.charge_activate",
-                  "trial_spawner.ambient_ominous",
-                  "apply_effect.bad_omen",
-                  "apply_effect.raid_omen",
-                  "apply_effect.trial_omen",
-                  "ominous_item_spawner.spawn_item",
-                  "ominous_bottle.end_use",
-                  "ominous_item_spawner.spawn_item_begin",
-                  "ominous_item_spawner.about_to_spawn_item",
-                  "imitate.bogged",
-                  "vault.reject_rewarded_player",
-                  "imitate.drowned",
-                  "sponge.absorb",
-                  "imitate.creaking",
-                  "block.creaking_heart.trail",
-                  "creaking_heart_spawn",
-                  "activate",
-                  "deactivate",
-                  "freeze",
-                  "unfreeze",
-                  "open",
-                  "open_long",
-                  "close",
-                  "close_long",
-                  "imitate.phantom",
-                  "imitate.zoglin",
-                  "imitate.guardian",
-                  "imitate.ravager",
-                  "imitate.pillager",
-                  "place_in_water",
-                  "state_change",
-                  "imitate.happy_ghast",
-                  "armor.unequip_generic",
-                  "ambient.weather.the_end_light_flash",
-                  "lead.leash",
-                  "lead.unleash",
-                  "lead.break",
-                  "unsaddle",
-                  "armor.equip_copper",
-                  "place_item",
-                  "single_swap",
-                  "multi_swap",
-                  "item.enchant.lunge1",
-                  "item.enchant.lunge2",
-                  "item.enchant.lunge3",
-                  "attack.critical",
-                  "item.spear.attack_hit",
-                  "item.spear.attack_miss",
-                  "item.wooden_spear.attack_hit",
-                  "item.wooden_spear.attack_miss",
-                  "imitate.parched",
-                  "imitate.camel_husk",
-                  "item.spear.use",
-                  "item.wooden_spear.use",
-                  "saddle_in_water",
-                  "item.stone_spear.attack_hit",
-                  "item.iron_spear.attack_hit",
-                  "item.copper_spear.attack_hit",
-                  "item.golden_spear.attack_hit",
-                  "item.diamond_spear.attack_hit",
-                  "item.netherite_spear.attack_hit",
-                  "item.stone_spear.attack_miss",
-                  "item.iron_spear.attack_miss",
-                  "item.copper_spear.attack_miss",
-                  "item.golden_spear.attack_miss",
-                  "item.diamond_spear.attack_miss",
-                  "item.netherite_spear.attack_miss",
-                  "item.stone_spear.use",
-                  "item.iron_spear.use",
-                  "item.copper_spear.use",
-                  "item.golden_spear.use",
-                  "item.diamond_spear.use",
-                  "item.netherite_spear.use",
-                  "pause_growth",
-                  "reset_growth",
-                  "undefined"
+                  "self",
+                  "other",
+                  "player",
+                  "target",
+                  "parent",
+                  "baby",
+                  "block",
+                  "damager",
+                  "holder",
+                  "item"
                ]
+            }
+         }
+      },
+      "3397928451": {
+         "title": "IsChestedDefinition"
+      },
+      "3616113920": {
+         "title": "IsStunnedDefinition"
+      },
+      "3734745469": {
+         "title": "minecraft:behavior.slime_float",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "jump_chance_percentage": {
+               "type": "number",
+               "default": 0.800000011920929
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1.2000000476837158
+            }
+         }
+      },
+      "3880996447": {
+         "title": "minecraft:behavior.slime_keep_on_jumping",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1
+            }
+         }
+      },
+      "3924190650": {
+         "title": "EntityTypes",
+         "oneOf": [
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/2397407737"
+               }
+            },
+            {
+               "$ref": "#/definitions/2397407737"
+            }
+         ]
+      },
+      "4005480542": {
+         "title": "WASDControlledDefinition"
+      },
+      "4036507873": {
+         "title": "minecraft:behavior.stay_near_noteblock",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "listen_time": {
+               "type": "integer",
+               "default": 30
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "speed": {
+               "type": "number",
+               "default": 1
+            },
+            "start_distance": {
+               "type": "number",
+               "default": 10
+            },
+            "stop_distance": {
+               "type": "number",
+               "default": 2
+            }
+         }
+      },
+      "4058047637": {
+         "title": "minecraft:behavior.transport_items",
+         "type": "object",
+         "properties": {
+            "allow_simultaneous_interaction": {
+               "type": "boolean",
+               "default": false
+            },
+            "allowed_items": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/1429287564"
+               }
             },
             "control_flags": {
                "type": "array",
@@ -2710,62 +2998,87 @@
                   ]
                }
             },
-            "on_escape": {
+            "destination_container_types": {
                "type": "array",
                "default": [],
                "items": {
-                  "$ref": "#/definitions/121353999"
+                  "$ref": "#/definitions/3093766462"
                }
+            },
+            "disallowed_items": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/1429287564"
+               }
+            },
+            "idle_cooldown": {
+               "type": "integer",
+               "default": 20,
+               "minimum": 0
+            },
+            "initial_cooldown": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "interaction_time": {
+               "type": "number",
+               "default": 3,
+               "minimum": 0
+            },
+            "max_stack_size": {
+               "type": "integer",
+               "default": 64,
+               "minimum": 1,
+               "maximum": 64
+            },
+            "max_visited_containers": {
+               "type": "integer",
+               "default": 16,
+               "minimum": 0
+            },
+            "place_strategy": {
+               "title": "place_strategy",
+               "type": "string",
+               "default": "any",
+               "enum": [
+                  "any",
+                  "with_matching",
+                  "with_matching_or_empty"
+               ]
             },
             "priority": {
                "type": "integer",
                "default": 0,
                "minimum": 0
             },
-            "search_height": {
-               "type": "integer",
-               "default": 0
+            "search_distance": {
+               "default": [
+                  64,
+                  32
+               ],
+               "$ref": "#/definitions/742152213"
             },
-            "search_range": {
-               "type": "integer",
-               "default": 0
+            "search_strategy": {
+               "title": "search_strategy",
+               "type": "string",
+               "default": "random",
+               "enum": [
+                  "nearest",
+                  "random"
+               ]
             },
-            "sound_interval": {
-               "default": {
-                  "min": 3,
-                  "max": 8
-               },
-               "$ref": "#/definitions/1057349585"
-            },
-            "sprint_speed_modifier": {
-               "type": "number",
-               "default": 1
-            },
-            "target_blocks": {
+            "source_container_types": {
                "type": "array",
                "default": [],
                "items": {
-                  "$ref": "#/definitions/1531870811"
+                  "$ref": "#/definitions/3093766462"
                }
-            },
-            "target_selection_method": {
-               "type": "string",
-               "default": "nearest"
-            },
-            "tick_interval": {
-               "type": "integer",
-               "default": 1
-            },
-            "walk_speed_modifier": {
-               "type": "number",
-               "default": 1
             }
          }
       },
-      "3387735008": {
-         "title": "IsShearedDefinition"
-      },
-      "3425495100": {
+      "4235128549": {
          "title": "minecraft:behavior.avoid_mob_type",
          "type": "object",
          "properties": {
@@ -3353,7 +3666,7 @@
             },
             "entity_types": {
                "default": [],
-               "$ref": "#/definitions/4227886613"
+               "$ref": "#/definitions/3924190650"
             },
             "ignore_visibility": {
                "type": "boolean",
@@ -3382,7 +3695,7 @@
                      "NOT": null
                   }
                },
-               "$ref": "#/definitions/121353999"
+               "$ref": "#/definitions/3379368818"
             },
             "priority": {
                "type": "integer",
@@ -3407,7 +3720,7 @@
                   "min": 3,
                   "max": 8
                },
-               "$ref": "#/definitions/1057349585"
+               "$ref": "#/definitions/2566306602"
             },
             "sprint_distance": {
                "type": "number",
@@ -3423,320 +3736,8 @@
             }
          }
       },
-      "3703296437": {
-         "title": "CanFlyDefinition"
-      },
-      "3731384245": {
-         "title": "minecraft:behavior.breed",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "speed_multiplier": {
-               "type": "number",
-               "default": 1
-            }
-         }
-      },
-      "3786002008": {
-         "title": "minecraft:behavior.swim_idle",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "idle_time": {
-               "type": "number",
-               "default": 5
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "success_rate": {
-               "type": "number",
-               "default": 0.10000000149011612
-            }
-         }
-      },
-      "3813523227": {
-         "title": "RotationLockedToVehicleDefinition"
-      },
-      "3872898814": {
-         "title": "minecraft:behavior.roar",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "duration": {
-               "type": "number",
-               "default": 0,
-               "minimum": 0
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            }
-         }
-      },
-      "4004946602": {
-         "title": "vec3",
-         "oneOf": [
-            {
-               "type": "array",
-               "items": {
-                  "type": "number"
-               },
-               "minItems": 3,
-               "maxItems": 3
-            },
-            {
-               "type": "object",
-               "properties": {
-                  "x": {
-                     "type": "number",
-                     "default": 0
-                  },
-                  "y": {
-                     "type": "number",
-                     "default": 0
-                  },
-                  "z": {
-                     "type": "number",
-                     "default": 0
-                  }
-               }
-            }
-         ]
-      },
-      "4021724221": {
-         "title": "Vec2",
-         "oneOf": [
-            {
-               "type": "array",
-               "items": {
-                  "type": "number"
-               },
-               "minItems": 2,
-               "maxItems": 2
-            },
-            {
-               "type": "object",
-               "properties": {
-                  "x": {
-                     "type": "number",
-                     "default": 0
-                  },
-                  "y": {
-                     "type": "number",
-                     "default": 0
-                  }
-               }
-            }
-         ]
-      },
-      "4114573755": {
-         "title": "IsHiddenWhenInvisibleDefinition"
-      },
-      "4150989894": {
-         "title": "Filter Test",
-         "type": "object",
-         "properties": {
-            "domain": {
-               "oneOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "integer"
-                  },
-                  {
-                     "type": "number"
-                  },
-                  {
-                     "type": "string"
-                  }
-               ]
-            },
-            "operator": {
-               "oneOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "integer"
-                  },
-                  {
-                     "type": "number"
-                  },
-                  {
-                     "type": "string"
-                  }
-               ]
-            },
-            "subject": {
-               "oneOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "integer"
-                  },
-                  {
-                     "type": "number"
-                  },
-                  {
-                     "type": "string"
-                  }
-               ]
-            },
-            "test": {
-               "type": "string"
-            },
-            "value": {
-               "oneOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "integer"
-                  },
-                  {
-                     "type": "number"
-                  },
-                  {
-                     "type": "string"
-                  }
-               ]
-            }
-         },
-         "required": [
-            "test"
-         ]
-      },
-      "4227886613": {
-         "title": "EntityTypes",
-         "oneOf": [
-            {
-               "type": "array",
-               "items": {
-                  "$ref": "#/definitions/792012262"
-               }
-            },
-            {
-               "$ref": "#/definitions/792012262"
-            }
-         ]
-      },
-      "4231633335": {
-         "title": "minecraft:behavior.circle_around_anchor",
-         "type": "object",
-         "properties": {
-            "angle_change": {
-               "type": "number",
-               "default": 15
-            },
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "goal_radius": {
-               "type": "number",
-               "default": 0.5
-            },
-            "height_above_target_range": {
-               "default": {
-                  "min": 0,
-                  "max": 0
-               },
-               "$ref": "#/definitions/1057349585",
-               "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
-            },
-            "height_adjustment_chance": {
-               "type": "number",
-               "default": 0.0028570001013576984
-            },
-            "height_offset_range": {
-               "default": {
-                  "min": 0,
-                  "max": 0
-               },
-               "$ref": "#/definitions/1057349585"
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "radius_adjustment_chance": {
-               "type": "number",
-               "default": 0.004000000189989805
-            },
-            "radius_change": {
-               "type": "number",
-               "default": 1
-            },
-            "radius_range": {
-               "default": {
-                  "min": 5,
-                  "max": 15
-               },
-               "$ref": "#/definitions/1057349585",
-               "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
-            },
-            "speed_multiplier": {
-               "type": "number",
-               "default": 1
-            }
-         }
+      "4283838209": {
+         "title": "BodyRotationBlockedDefinition"
       }
    },
    "title": "Entity component definitions",
@@ -3746,7 +3747,7 @@
          "description": "Dynamic value"
       },
       "minecraft:addrider": {
-         "$ref": "#/definitions/772659931"
+         "$ref": "#/definitions/665702132"
       },
       "minecraft:admire_item": {
          "description": "Dynamic value"
@@ -3794,13 +3795,13 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.aquatic_charge_attack": {
-         "$ref": "#/definitions/541278563"
+         "$ref": "#/definitions/1886756196"
       },
       "minecraft:behavior.avoid_block": {
-         "$ref": "#/definitions/3326653763"
+         "$ref": "#/definitions/460911246"
       },
       "minecraft:behavior.avoid_mob_type": {
-         "$ref": "#/definitions/3425495100"
+         "$ref": "#/definitions/4235128549"
       },
       "minecraft:behavior.barter": {
          "description": "Dynamic value"
@@ -3812,7 +3813,7 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.breed": {
-         "$ref": "#/definitions/3731384245"
+         "$ref": "#/definitions/1528866228"
       },
       "minecraft:behavior.celebrate": {
          "description": "Dynamic value"
@@ -3821,16 +3822,16 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.charge_attack": {
-         "$ref": "#/definitions/1143284943"
+         "$ref": "#/definitions/567929586"
       },
       "minecraft:behavior.charge_held_item": {
          "description": "Dynamic value"
       },
       "minecraft:behavior.circle_around_anchor": {
-         "$ref": "#/definitions/4231633335"
+         "$ref": "#/definitions/544590182"
       },
       "minecraft:behavior.controlled_by_player": {
-         "$ref": "#/definitions/1926664697"
+         "$ref": "#/definitions/1676115236"
       },
       "minecraft:behavior.croak": {
          "description": "Dynamic value"
@@ -3845,7 +3846,7 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.dig": {
-         "$ref": "#/definitions/911233651"
+         "$ref": "#/definitions/2343980756"
       },
       "minecraft:behavior.door_interact": {
          "description": "Dynamic value"
@@ -3857,7 +3858,7 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.dragonflaming": {
-         "$ref": "#/definitions/1492465940"
+         "$ref": "#/definitions/1651525447"
       },
       "minecraft:behavior.dragonholdingpattern": {
          "description": "Dynamic value"
@@ -3875,7 +3876,7 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.drink_milk": {
-         "$ref": "#/definitions/2379072710"
+         "$ref": "#/definitions/43994869"
       },
       "minecraft:behavior.drink_potion": {
          "description": "Dynamic value"
@@ -3890,7 +3891,7 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.eat_mob": {
-         "$ref": "#/definitions/2159667979"
+         "$ref": "#/definitions/2453003358"
       },
       "minecraft:behavior.emerge": {
          "description": "Dynamic value"
@@ -3905,7 +3906,7 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.explore_outskirts": {
-         "$ref": "#/definitions/1557623393"
+         "$ref": "#/definitions/2312286208"
       },
       "minecraft:behavior.fertilize_farm_block": {
          "description": "Dynamic value"
@@ -3980,7 +3981,7 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.investigate_suspicious_location": {
-         "$ref": "#/definitions/1374016683"
+         "$ref": "#/definitions/2091379100"
       },
       "minecraft:behavior.jump_around_target": {
          "description": "Dynamic value"
@@ -4169,7 +4170,7 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.roar": {
-         "$ref": "#/definitions/3872898814"
+         "$ref": "#/definitions/3021139987"
       },
       "minecraft:behavior.roll": {
          "description": "Dynamic value"
@@ -4199,16 +4200,16 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.slime_attack": {
-         "$ref": "#/definitions/597030358"
+         "$ref": "#/definitions/1991896377"
       },
       "minecraft:behavior.slime_float": {
-         "$ref": "#/definitions/2567691908"
+         "$ref": "#/definitions/3734745469"
       },
       "minecraft:behavior.slime_keep_on_jumping": {
-         "$ref": "#/definitions/2628131938"
+         "$ref": "#/definitions/3880996447"
       },
       "minecraft:behavior.slime_random_direction": {
-         "$ref": "#/definitions/3273917994"
+         "$ref": "#/definitions/3162453531"
       },
       "minecraft:behavior.snacking": {
          "description": "Dynamic value"
@@ -4217,10 +4218,10 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.sniff": {
-         "$ref": "#/definitions/1949055570"
+         "$ref": "#/definitions/2747369093"
       },
       "minecraft:behavior.sonic_boom": {
-         "$ref": "#/definitions/2309924397"
+         "$ref": "#/definitions/119024202"
       },
       "minecraft:behavior.squid_dive": {
          "description": "Dynamic value"
@@ -4241,7 +4242,7 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.stay_near_noteblock": {
-         "$ref": "#/definitions/298010374"
+         "$ref": "#/definitions/4036507873"
       },
       "minecraft:behavior.stay_while_sitting": {
          "description": "Dynamic value"
@@ -4262,19 +4263,19 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.swim_idle": {
-         "$ref": "#/definitions/3786002008"
+         "$ref": "#/definitions/1861253865"
       },
       "minecraft:behavior.swim_up_for_breath": {
-         "$ref": "#/definitions/2291122496"
+         "$ref": "#/definitions/3082692911"
       },
       "minecraft:behavior.swim_wander": {
-         "$ref": "#/definitions/61802587"
+         "$ref": "#/definitions/2087775710"
       },
       "minecraft:behavior.swim_with_entity": {
          "description": "Dynamic value"
       },
       "minecraft:behavior.swoop_attack": {
-         "$ref": "#/definitions/1979855054"
+         "$ref": "#/definitions/551321829"
       },
       "minecraft:behavior.take_block": {
          "description": "Dynamic value"
@@ -4307,10 +4308,10 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.transport_items": {
-         "$ref": "#/definitions/1861715976"
+         "$ref": "#/definitions/4058047637"
       },
       "minecraft:behavior.use_kinetic_weapon": {
-         "$ref": "#/definitions/1900210559"
+         "$ref": "#/definitions/2383484162"
       },
       "minecraft:behavior.vex_copy_owner_target": {
          "description": "Dynamic value"
@@ -4337,10 +4338,10 @@
          "description": "Dynamic value"
       },
       "minecraft:body_rotation_always_follows_head": {
-         "$ref": "#/definitions/2704775729"
+         "$ref": "#/definitions/355630026"
       },
       "minecraft:body_rotation_blocked": {
-         "$ref": "#/definitions/387887038"
+         "$ref": "#/definitions/4283838209"
       },
       "minecraft:boostable": {
          "description": "Dynamic value"
@@ -4367,19 +4368,19 @@
          "description": "Dynamic value"
       },
       "minecraft:burns_in_daylight": {
-         "$ref": "#/definitions/2655738381"
+         "$ref": "#/definitions/1500414392"
       },
       "minecraft:can_climb": {
-         "$ref": "#/definitions/1682332161"
+         "$ref": "#/definitions/763299284"
       },
       "minecraft:can_fly": {
-         "$ref": "#/definitions/3703296437"
+         "$ref": "#/definitions/3125128504"
       },
       "minecraft:can_join_raid": {
          "description": "Dynamic value"
       },
       "minecraft:can_power_jump": {
-         "$ref": "#/definitions/2736897213"
+         "$ref": "#/definitions/122002744"
       },
       "minecraft:cannot_be_attacked": {
          "description": "Dynamic value"
@@ -4454,13 +4455,13 @@
          "description": "Dynamic value"
       },
       "minecraft:experience_reward": {
-         "$ref": "#/definitions/287215707"
+         "$ref": "#/definitions/2154144316"
       },
       "minecraft:explode": {
          "description": "Dynamic value"
       },
       "minecraft:fire_immune": {
-         "$ref": "#/definitions/374016963"
+         "$ref": "#/definitions/2691830830"
       },
       "minecraft:floats_in_liquid": {
          "description": "Dynamic value"
@@ -4523,7 +4524,7 @@
          "description": "Dynamic value"
       },
       "minecraft:input_ground_controlled": {
-         "$ref": "#/definitions/1306911011"
+         "$ref": "#/definitions/4005480542"
       },
       "minecraft:inside_block_notifier": {
          "description": "Dynamic value"
@@ -4541,13 +4542,13 @@
          "description": "Dynamic value"
       },
       "minecraft:is_baby": {
-         "$ref": "#/definitions/1703168766"
+         "$ref": "#/definitions/3244708751"
       },
       "minecraft:is_charged": {
-         "$ref": "#/definitions/708168268"
+         "$ref": "#/definitions/2885091915"
       },
       "minecraft:is_chested": {
-         "$ref": "#/definitions/3310298976"
+         "$ref": "#/definitions/3397928451"
       },
       "minecraft:is_collidable": {
          "description": "Dynamic value"
@@ -4556,34 +4557,34 @@
          "description": "Dynamic value"
       },
       "minecraft:is_hidden_when_invisible": {
-         "$ref": "#/definitions/4114573755"
+         "$ref": "#/definitions/47999524"
       },
       "minecraft:is_ignited": {
-         "$ref": "#/definitions/2865523930"
+         "$ref": "#/definitions/2121103369"
       },
       "minecraft:is_illager_captain": {
-         "$ref": "#/definitions/1820403110"
+         "$ref": "#/definitions/2946758887"
       },
       "minecraft:is_pregnant": {
-         "$ref": "#/definitions/801311387"
+         "$ref": "#/definitions/650245378"
       },
       "minecraft:is_saddled": {
-         "$ref": "#/definitions/2041076969"
+         "$ref": "#/definitions/2351047562"
       },
       "minecraft:is_shaking": {
-         "$ref": "#/definitions/2023415389"
+         "$ref": "#/definitions/1018143578"
       },
       "minecraft:is_sheared": {
-         "$ref": "#/definitions/3387735008"
+         "$ref": "#/definitions/1768980895"
       },
       "minecraft:is_stackable": {
-         "$ref": "#/definitions/319286572"
+         "$ref": "#/definitions/2339940135"
       },
       "minecraft:is_stunned": {
-         "$ref": "#/definitions/2337874215"
+         "$ref": "#/definitions/3616113920"
       },
       "minecraft:is_tamed": {
-         "$ref": "#/definitions/1729146119"
+         "$ref": "#/definitions/1533618432"
       },
       "minecraft:item_controllable": {
          "description": "Dynamic value"
@@ -4631,6 +4632,30 @@
          "description": "Dynamic value"
       },
       "minecraft:memory_behavior.follow_target": {
+         "description": "Dynamic value"
+      },
+      "minecraft:memory_behavior.move_to_position": {
+         "description": "Dynamic value"
+      },
+      "minecraft:memory_sensor.find_nearest_block": {
+         "description": "Dynamic value"
+      },
+      "minecraft:memory_sensor.find_nearest_block_from": {
+         "description": "Dynamic value"
+      },
+      "minecraft:memory_sensor.find_nearest_entity": {
+         "description": "Dynamic value"
+      },
+      "minecraft:memory_sensor.find_nearest_entity_from": {
+         "description": "Dynamic value"
+      },
+      "minecraft:memory_sensor.find_nearest_poi": {
+         "description": "Dynamic value"
+      },
+      "minecraft:memory_sensor.in_range_of_block": {
+         "description": "Dynamic value"
+      },
+      "minecraft:memory_sensor.in_range_of_entity": {
          "description": "Dynamic value"
       },
       "minecraft:mob_effect": {
@@ -4793,16 +4818,16 @@
          "description": "Dynamic value"
       },
       "minecraft:renders_when_invisible": {
-         "$ref": "#/definitions/2023027994"
+         "$ref": "#/definitions/459637015"
       },
       "minecraft:rideable": {
          "description": "Dynamic value"
       },
       "minecraft:rotation_axis_aligned": {
-         "$ref": "#/definitions/1106829505"
+         "$ref": "#/definitions/1530132602"
       },
       "minecraft:rotation_locked_to_vehicle": {
-         "$ref": "#/definitions/3813523227"
+         "$ref": "#/definitions/467080360"
       },
       "minecraft:scale": {
          "description": "Dynamic value"
@@ -4811,27 +4836,6 @@
          "description": "Dynamic value"
       },
       "minecraft:scheduler": {
-         "description": "Dynamic value"
-      },
-      "minecraft:sensor.find_nearest_block": {
-         "description": "Dynamic value"
-      },
-      "minecraft:sensor.find_nearest_block_from": {
-         "description": "Dynamic value"
-      },
-      "minecraft:sensor.find_nearest_entity": {
-         "description": "Dynamic value"
-      },
-      "minecraft:sensor.find_nearest_entity_from": {
-         "description": "Dynamic value"
-      },
-      "minecraft:sensor.find_nearest_poi": {
-         "description": "Dynamic value"
-      },
-      "minecraft:sensor.in_range_of_block": {
-         "description": "Dynamic value"
-      },
-      "minecraft:sensor.in_range_of_entity": {
          "description": "Dynamic value"
       },
       "minecraft:shareables": {
@@ -4877,7 +4881,7 @@
          "description": "Dynamic value"
       },
       "minecraft:tick_world": {
-         "$ref": "#/definitions/1057040869"
+         "$ref": "#/definitions/2940120970"
       },
       "minecraft:timer": {
          "description": "Dynamic value"
@@ -4910,6 +4914,9 @@
          "description": "Dynamic value"
       },
       "minecraft:underwater_movement": {
+         "description": "Dynamic value"
+      },
+      "minecraft:uses_legacy_friction": {
          "description": "Dynamic value"
       },
       "minecraft:variable_max_auto_step": {

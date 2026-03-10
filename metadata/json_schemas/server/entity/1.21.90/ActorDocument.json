@@ -1,9 +1,37 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "1097455393",
+   "$id": "3652229308",
    "x-format-version": "1.21.90",
    "definitions": {
-      "1417288942": {
+      "1528866228": {
+         "title": "minecraft:behavior.breed",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1
+            }
+         }
+      },
+      "4075469329": {
          "title": "Entity component definitions",
          "type": "object",
          "properties": {
@@ -74,7 +102,7 @@
                "description": "Dynamic value"
             },
             "minecraft:behavior.breed": {
-               "$ref": "#/definitions/3731384245"
+               "$ref": "#/definitions/1528866228"
             },
             "minecraft:behavior.celebrate": {
                "description": "Dynamic value"
@@ -889,6 +917,30 @@
             "minecraft:memory_behavior.follow_target": {
                "description": "Dynamic value"
             },
+            "minecraft:memory_behavior.move_to_position": {
+               "description": "Dynamic value"
+            },
+            "minecraft:memory_sensor.find_nearest_block": {
+               "description": "Dynamic value"
+            },
+            "minecraft:memory_sensor.find_nearest_block_from": {
+               "description": "Dynamic value"
+            },
+            "minecraft:memory_sensor.find_nearest_entity": {
+               "description": "Dynamic value"
+            },
+            "minecraft:memory_sensor.find_nearest_entity_from": {
+               "description": "Dynamic value"
+            },
+            "minecraft:memory_sensor.find_nearest_poi": {
+               "description": "Dynamic value"
+            },
+            "minecraft:memory_sensor.in_range_of_block": {
+               "description": "Dynamic value"
+            },
+            "minecraft:memory_sensor.in_range_of_entity": {
+               "description": "Dynamic value"
+            },
             "minecraft:mob_effect": {
                "description": "Dynamic value"
             },
@@ -1069,27 +1121,6 @@
             "minecraft:scheduler": {
                "description": "Dynamic value"
             },
-            "minecraft:sensor.find_nearest_block": {
-               "description": "Dynamic value"
-            },
-            "minecraft:sensor.find_nearest_block_from": {
-               "description": "Dynamic value"
-            },
-            "minecraft:sensor.find_nearest_entity": {
-               "description": "Dynamic value"
-            },
-            "minecraft:sensor.find_nearest_entity_from": {
-               "description": "Dynamic value"
-            },
-            "minecraft:sensor.find_nearest_poi": {
-               "description": "Dynamic value"
-            },
-            "minecraft:sensor.in_range_of_block": {
-               "description": "Dynamic value"
-            },
-            "minecraft:sensor.in_range_of_entity": {
-               "description": "Dynamic value"
-            },
             "minecraft:shareables": {
                "description": "Dynamic value"
             },
@@ -1168,6 +1199,9 @@
             "minecraft:underwater_movement": {
                "description": "Dynamic value"
             },
+            "minecraft:uses_legacy_friction": {
+               "description": "Dynamic value"
+            },
             "minecraft:variable_max_auto_step": {
                "description": "Dynamic value"
             },
@@ -1196,34 +1230,6 @@
                "description": "Dynamic value"
             }
          }
-      },
-      "3731384245": {
-         "title": "minecraft:behavior.breed",
-         "type": "object",
-         "properties": {
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "speed_multiplier": {
-               "type": "number",
-               "default": 1
-            }
-         }
       }
    },
    "title": "Actor Document",
@@ -1232,12 +1238,12 @@
       "component_groups": {
          "type": "object",
          "additionalProperties": {
-            "$ref": "#/definitions/1417288942"
+            "$ref": "#/definitions/4075469329"
          },
          "default": {}
       },
       "components": {
-         "$ref": "#/definitions/1417288942"
+         "$ref": "#/definitions/4075469329"
       },
       "description": {
          "description": "Dynamic value"

@@ -1,28 +1,14 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "3781185164",
+   "$id": "763867935",
    "x-format-version": "1.20.50",
    "definitions": {
-      "1531870811": {
-         "title": "Item Descriptor",
-         "oneOf": [
-            {
-               "type": "string"
-            },
-            {
-               "type": "object",
-               "additionalProperties": {
-                  "type": "string"
-               }
-            }
-         ]
-      },
-      "2681068491": {
+      "556977336": {
          "title": "Ammunition",
          "type": "object",
          "properties": {
             "item": {
-               "$ref": "#/definitions/1531870811"
+               "$ref": "#/definitions/1429287564"
             },
             "search_inventory": {
                "type": "boolean",
@@ -40,6 +26,20 @@
          "required": [
             "item"
          ]
+      },
+      "1429287564": {
+         "title": "Item Descriptor",
+         "oneOf": [
+            {
+               "type": "string"
+            },
+            {
+               "type": "object",
+               "additionalProperties": {
+                  "type": "string"
+               }
+            }
+         ]
       }
    },
    "title": "minecraft:shooter",
@@ -49,7 +49,7 @@
          "type": "array",
          "default": [],
          "items": {
-            "$ref": "#/definitions/2681068491"
+            "$ref": "#/definitions/556977336"
          }
       },
       "charge_on_draw": {

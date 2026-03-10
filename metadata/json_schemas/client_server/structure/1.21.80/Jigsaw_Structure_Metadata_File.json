@@ -1,9 +1,18 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "174397773",
+   "$id": "1684196368",
    "x-format-version": "1.21.80",
    "definitions": {
-      "480089458": {
+      "1488572312": {
+         "title": "block_pos",
+         "type": "array",
+         "items": {
+            "type": "integer"
+         },
+         "minItems": 3,
+         "maxItems": 3
+      },
+      "2081791706": {
          "title": "Jigsaw Block Metadata",
          "type": "object",
          "properties": {
@@ -31,7 +40,7 @@
                "type": "string"
             },
             "pos": {
-               "$ref": "#/definitions/820712576"
+               "$ref": "#/definitions/1488572312"
             },
             "selection_priority": {
                "type": "integer"
@@ -52,16 +61,7 @@
             "target"
          ]
       },
-      "820712576": {
-         "title": "block_pos",
-         "type": "array",
-         "items": {
-            "type": "integer"
-         },
-         "minItems": 3,
-         "maxItems": 3
-      },
-      "2686093684": {
+      "2425381013": {
          "title": "Jigsaw Structure Metadata Registry",
          "type": "object",
          "properties": {
@@ -75,7 +75,7 @@
                         "minimum": 0
                      },
                      "value": {
-                        "$ref": "#/definitions/2953490483"
+                        "$ref": "#/definitions/3041614038"
                      }
                   }
                }
@@ -85,18 +85,18 @@
             "metadata"
          ]
       },
-      "2953490483": {
+      "3041614038": {
          "title": "Jigsaw Structure Metadata",
          "type": "object",
          "properties": {
             "markers": {
                "type": "array",
                "items": {
-                  "$ref": "#/definitions/480089458"
+                  "$ref": "#/definitions/2081791706"
                }
             },
             "size": {
-               "$ref": "#/definitions/820712576"
+               "$ref": "#/definitions/1488572312"
             }
          },
          "required": [
@@ -112,7 +112,7 @@
          "type": "string"
       },
       "minecraft:jigsaw_structure_metadata": {
-         "$ref": "#/definitions/2686093684"
+         "$ref": "#/definitions/2425381013"
       }
    },
    "required": [

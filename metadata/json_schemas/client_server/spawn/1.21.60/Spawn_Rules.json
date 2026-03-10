@@ -1,62 +1,73 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "662705489",
+   "$id": "2301553748",
    "x-format-version": "1.21.60",
    "definitions": {
-      "98158070": {
-         "title": "Herd",
+      "100089226": {
+         "title": "Filter Group Map",
          "type": "object",
          "properties": {
-            "event": {
-               "type": "string",
-               "default": ""
+            "AND": {
+               "$ref": "#/definitions/2789112004"
             },
-            "event_skip_count": {
-               "type": "integer",
-               "default": 0
+            "NOT": {
+               "$ref": "#/definitions/2789112004"
             },
-            "initial_event": {
-               "type": "string",
-               "default": ""
+            "OR": {
+               "$ref": "#/definitions/2789112004"
             },
-            "initial_event_count": {
-               "type": "integer",
-               "default": 0
+            "all": {
+               "$ref": "#/definitions/2789112004"
             },
-            "max": {
-               "type": "integer",
-               "default": 1,
-               "minimum": 0
+            "all_of": {
+               "$ref": "#/definitions/2789112004"
             },
-            "min": {
-               "type": "integer",
-               "default": 1,
-               "minimum": 0
+            "any": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "none_of": {
+               "$ref": "#/definitions/2789112004"
             }
          }
       },
-      "1088251937": {
-         "title": "Filter Group",
-         "oneOf": [
-            {
-               "$ref": "#/definitions/4150989894"
-            },
-            {
-               "type": "array",
-               "items": {
-                  "$ref": "#/definitions/1088251937"
-               }
-            },
-            {
-               "$ref": "#/definitions/3235433757"
+      "255630000": {
+         "title": "Description",
+         "type": "object",
+         "properties": {
+            "identifier": {
+               "type": "string"
             }
+         },
+         "required": [
+            "identifier"
          ]
       },
-      "1493335182": {
-         "title": "Reference",
-         "type": "string"
+      "288716644": {
+         "title": "PermuteType",
+         "type": "object",
+         "properties": {
+            "entity_type": {
+               "default": "",
+               "$ref": "#/definitions/2033610203"
+            },
+            "min_guaranteed": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "weight": {
+               "type": "integer",
+               "minimum": 0
+            }
+         },
+         "required": [
+            "weight"
+         ]
       },
-      "1564953790": {
+      "1098216249": {
          "title": "Placement",
          "type": "object",
          "properties": {
@@ -78,115 +89,11 @@
             }
          }
       },
-      "1743975235": {
-         "title": "Description",
-         "type": "object",
-         "properties": {
-            "identifier": {
-               "type": "string"
-            }
-         },
-         "required": [
-            "identifier"
-         ]
+      "2033610203": {
+         "title": "Reference",
+         "type": "string"
       },
-      "3235433757": {
-         "title": "Filter Group Map",
-         "type": "object",
-         "properties": {
-            "AND": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "NOT": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "OR": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "all": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "all_of": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "any": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "any_of": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "none_of": {
-               "$ref": "#/definitions/1088251937"
-            }
-         }
-      },
-      "3424466759": {
-         "title": "PermuteType",
-         "type": "object",
-         "properties": {
-            "entity_type": {
-               "default": "",
-               "$ref": "#/definitions/1493335182"
-            },
-            "min_guaranteed": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "weight": {
-               "type": "integer",
-               "minimum": 0
-            }
-         },
-         "required": [
-            "weight"
-         ]
-      },
-      "3629386827": {
-         "title": "BiomeConditions",
-         "type": "object",
-         "properties": {
-            "biome_filter": {
-               "default": {
-                  "all_of": null,
-                  "all": null,
-                  "OR": null,
-                  "AND": null,
-                  "any_of": null,
-                  "any": null,
-                  "none_of": null,
-                  "NOT": null
-               },
-               "$ref": "#/definitions/1088251937"
-            },
-            "herds": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "$ref": "#/definitions/98158070"
-               }
-            },
-            "mob_event_filter": {
-               "type": "string",
-               "default": ""
-            },
-            "permute_types": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "$ref": "#/definitions/3424466759"
-               }
-            },
-            "weight": {
-               "type": "integer",
-               "minimum": 0
-            }
-         },
-         "required": [
-            "weight"
-         ]
-      },
-      "4150989894": {
+      "2457665045": {
          "title": "Filter Test",
          "type": "object",
          "properties": {
@@ -261,6 +168,99 @@
          "required": [
             "test"
          ]
+      },
+      "2789112004": {
+         "title": "Filter Group",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2457665045"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/2789112004"
+               }
+            },
+            {
+               "$ref": "#/definitions/100089226"
+            }
+         ]
+      },
+      "3285963352": {
+         "title": "BiomeConditions",
+         "type": "object",
+         "properties": {
+            "biome_filter": {
+               "default": {
+                  "all_of": null,
+                  "all": null,
+                  "OR": null,
+                  "AND": null,
+                  "any_of": null,
+                  "any": null,
+                  "none_of": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/2789112004"
+            },
+            "herds": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/3686878547"
+               }
+            },
+            "mob_event_filter": {
+               "type": "string",
+               "default": ""
+            },
+            "permute_types": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/288716644"
+               }
+            },
+            "weight": {
+               "type": "integer",
+               "minimum": 0
+            }
+         },
+         "required": [
+            "weight"
+         ]
+      },
+      "3686878547": {
+         "title": "Herd",
+         "type": "object",
+         "properties": {
+            "event": {
+               "type": "string",
+               "default": ""
+            },
+            "event_skip_count": {
+               "type": "integer",
+               "default": 0
+            },
+            "initial_event": {
+               "type": "string",
+               "default": ""
+            },
+            "initial_event_count": {
+               "type": "integer",
+               "default": 0
+            },
+            "max": {
+               "type": "integer",
+               "default": 1,
+               "minimum": 0
+            },
+            "min": {
+               "type": "integer",
+               "default": 1,
+               "minimum": 0
+            }
+         }
       }
    },
    "title": "Spawn Rules",
@@ -270,14 +270,14 @@
          "type": "array",
          "default": [],
          "items": {
-            "$ref": "#/definitions/3629386827"
+            "$ref": "#/definitions/3285963352"
          }
       },
       "description": {
-         "$ref": "#/definitions/1743975235"
+         "$ref": "#/definitions/255630000"
       },
       "placement": {
-         "$ref": "#/definitions/1564953790"
+         "$ref": "#/definitions/1098216249"
       }
    },
    "required": [

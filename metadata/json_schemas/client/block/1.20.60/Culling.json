@@ -1,34 +1,9 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "3211621278",
+   "$id": "1991438733",
    "x-format-version": "1.20.60",
    "definitions": {
-      "2265541796": {
-         "title": "Rule",
-         "type": "object",
-         "properties": {
-            "direction": {
-               "title": "Facing",
-               "type": "string",
-               "enum": [
-                  "down",
-                  "up",
-                  "north",
-                  "south",
-                  "west",
-                  "east"
-               ]
-            },
-            "geometry_part": {
-               "$ref": "#/definitions/3626427109"
-            }
-         },
-         "required": [
-            "direction",
-            "geometry_part"
-         ]
-      },
-      "3626427109": {
+      "1967686590": {
          "title": "Rule Geometry Part",
          "type": "object",
          "properties": {
@@ -56,7 +31,7 @@
             "bone"
          ]
       },
-      "4018363348": {
+      "2179040625": {
          "title": "Description",
          "type": "object",
          "properties": {
@@ -67,18 +42,43 @@
          "required": [
             "identifier"
          ]
+      },
+      "2264817019": {
+         "title": "Rule",
+         "type": "object",
+         "properties": {
+            "direction": {
+               "title": "Facing",
+               "type": "string",
+               "enum": [
+                  "down",
+                  "up",
+                  "north",
+                  "south",
+                  "west",
+                  "east"
+               ]
+            },
+            "geometry_part": {
+               "$ref": "#/definitions/1967686590"
+            }
+         },
+         "required": [
+            "direction",
+            "geometry_part"
+         ]
       }
    },
    "title": "Block Culling",
    "type": "object",
    "properties": {
       "description": {
-         "$ref": "#/definitions/4018363348"
+         "$ref": "#/definitions/2179040625"
       },
       "rules": {
          "type": "array",
          "items": {
-            "$ref": "#/definitions/2265541796"
+            "$ref": "#/definitions/2264817019"
          }
       }
    },

@@ -1,16 +1,46 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "3054077651",
+   "$id": "3802446278",
    "x-format-version": "1.26.0",
    "definitions": {
-      "546677968": {
+      "725374594": {
+         "title": "vec3",
+         "oneOf": [
+            {
+               "type": "array",
+               "items": {
+                  "type": "number"
+               },
+               "minItems": 3,
+               "maxItems": 3
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "x": {
+                     "type": "number",
+                     "default": 0
+                  },
+                  "y": {
+                     "type": "number",
+                     "default": 0
+                  },
+                  "z": {
+                     "type": "number",
+                     "default": 0
+                  }
+               }
+            }
+         ]
+      },
+      "1921580785": {
          "title": "CameraSplineDefinition",
          "type": "object",
          "properties": {
             "control_points": {
                "type": "array",
                "items": {
-                  "$ref": "#/definitions/1274567168"
+                  "$ref": "#/definitions/2934684289"
                }
             },
             "name": {
@@ -20,13 +50,13 @@
             "progress_key_frames": {
                "type": "array",
                "items": {
-                  "$ref": "#/definitions/3914468974"
+                  "$ref": "#/definitions/2645622011"
                }
             },
             "rotation_key_frames": {
                "type": "array",
                "items": {
-                  "$ref": "#/definitions/790401607"
+                  "$ref": "#/definitions/2845098638"
                }
             },
             "spline_type": {
@@ -47,74 +77,7 @@
             "total_time"
          ]
       },
-      "790401607": {
-         "title": "CameraSplineRotationKeyFrame",
-         "type": "object",
-         "properties": {
-            "easing": {
-               "title": "easing_function",
-               "type": "string",
-               "enum": [
-                  "linear",
-                  "spring",
-                  "in_quad",
-                  "out_quad",
-                  "in_out_quad",
-                  "in_cubic",
-                  "out_cubic",
-                  "in_out_cubic",
-                  "in_quart",
-                  "out_quart",
-                  "in_out_quart",
-                  "in_quint",
-                  "out_quint",
-                  "in_out_quint",
-                  "in_sine",
-                  "out_sine",
-                  "in_out_sine",
-                  "in_expo",
-                  "out_expo",
-                  "in_out_expo",
-                  "in_circ",
-                  "out_circ",
-                  "in_out_circ",
-                  "in_bounce",
-                  "out_bounce",
-                  "in_out_bounce",
-                  "in_back",
-                  "out_back",
-                  "in_out_back",
-                  "in_elastic",
-                  "out_elastic",
-                  "in_out_elastic"
-               ]
-            },
-            "rotation": {
-               "$ref": "#/definitions/4004946602"
-            },
-            "time": {
-               "type": "number",
-               "minimum": 0
-            }
-         },
-         "required": [
-            "rotation",
-            "time"
-         ]
-      },
-      "1274567168": {
-         "title": "CameraSplineControlPoint",
-         "type": "object",
-         "properties": {
-            "position": {
-               "$ref": "#/definitions/4004946602"
-            }
-         },
-         "required": [
-            "position"
-         ]
-      },
-      "3914468974": {
+      "2645622011": {
          "title": "CameraSplineProgressKeyFrame",
          "type": "object",
          "properties": {
@@ -171,34 +134,71 @@
             "time"
          ]
       },
-      "4004946602": {
-         "title": "vec3",
-         "oneOf": [
-            {
-               "type": "array",
-               "items": {
-                  "type": "number"
-               },
-               "minItems": 3,
-               "maxItems": 3
+      "2845098638": {
+         "title": "CameraSplineRotationKeyFrame",
+         "type": "object",
+         "properties": {
+            "easing": {
+               "title": "easing_function",
+               "type": "string",
+               "enum": [
+                  "linear",
+                  "spring",
+                  "in_quad",
+                  "out_quad",
+                  "in_out_quad",
+                  "in_cubic",
+                  "out_cubic",
+                  "in_out_cubic",
+                  "in_quart",
+                  "out_quart",
+                  "in_out_quart",
+                  "in_quint",
+                  "out_quint",
+                  "in_out_quint",
+                  "in_sine",
+                  "out_sine",
+                  "in_out_sine",
+                  "in_expo",
+                  "out_expo",
+                  "in_out_expo",
+                  "in_circ",
+                  "out_circ",
+                  "in_out_circ",
+                  "in_bounce",
+                  "out_bounce",
+                  "in_out_bounce",
+                  "in_back",
+                  "out_back",
+                  "in_out_back",
+                  "in_elastic",
+                  "out_elastic",
+                  "in_out_elastic"
+               ]
             },
-            {
-               "type": "object",
-               "properties": {
-                  "x": {
-                     "type": "number",
-                     "default": 0
-                  },
-                  "y": {
-                     "type": "number",
-                     "default": 0
-                  },
-                  "z": {
-                     "type": "number",
-                     "default": 0
-                  }
-               }
+            "rotation": {
+               "$ref": "#/definitions/725374594"
+            },
+            "time": {
+               "type": "number",
+               "minimum": 0
             }
+         },
+         "required": [
+            "rotation",
+            "time"
+         ]
+      },
+      "2934684289": {
+         "title": "CameraSplineControlPoint",
+         "type": "object",
+         "properties": {
+            "position": {
+               "$ref": "#/definitions/725374594"
+            }
+         },
+         "required": [
+            "position"
          ]
       }
    },
@@ -208,7 +208,7 @@
       "splines": {
          "type": "array",
          "items": {
-            "$ref": "#/definitions/546677968"
+            "$ref": "#/definitions/1921580785"
          }
       }
    },

@@ -1,27 +1,9 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "1684720476",
+   "$id": "3796261919",
    "x-format-version": "1.21.0",
    "definitions": {
-      "771176265": {
-         "title": "VectorEvents",
-         "oneOf": [
-            {
-               "type": "array",
-               "items": {
-                  "$ref": "#/definitions/2715320761"
-               }
-            },
-            {
-               "$ref": "#/definitions/2715320761"
-            }
-         ]
-      },
-      "2715320761": {
-         "title": "hashed_string",
-         "type": "string"
-      },
-      "3907782844": {
+      "1184613621": {
          "title": "emitter_lifetime_events travel_distance_events",
          "type": "object",
          "properties": {
@@ -30,13 +12,31 @@
                "minimum": 0
             },
             "effects": {
-               "$ref": "#/definitions/771176265"
+               "$ref": "#/definitions/2730509006"
             }
          },
          "required": [
             "distance",
             "effects"
          ]
+      },
+      "2730509006": {
+         "title": "VectorEvents",
+         "oneOf": [
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/3381141713"
+               }
+            },
+            {
+               "$ref": "#/definitions/3381141713"
+            }
+         ]
+      },
+      "3381141713": {
+         "title": "hashed_string",
+         "type": "string"
       }
    },
    "title": "emitter_lifetime_events",
@@ -44,30 +44,30 @@
    "properties": {
       "creation_event": {
          "default": [],
-         "$ref": "#/definitions/771176265"
+         "$ref": "#/definitions/2730509006"
       },
       "expiration_event": {
          "default": [],
-         "$ref": "#/definitions/771176265"
+         "$ref": "#/definitions/2730509006"
       },
       "looping_travel_distance_events": {
          "type": "array",
          "default": [],
          "items": {
-            "$ref": "#/definitions/3907782844"
+            "$ref": "#/definitions/1184613621"
          }
       },
       "timeline": {
          "type": "object",
          "additionalProperties": {
-            "$ref": "#/definitions/771176265"
+            "$ref": "#/definitions/2730509006"
          },
          "default": {}
       },
       "travel_distance_events": {
          "type": "object",
          "additionalProperties": {
-            "$ref": "#/definitions/771176265"
+            "$ref": "#/definitions/2730509006"
          },
          "default": {}
       }

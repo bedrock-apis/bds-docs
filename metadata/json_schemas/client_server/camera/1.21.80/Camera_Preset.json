@@ -1,44 +1,9 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "996782454",
+   "$id": "558946417",
    "x-format-version": "1.21.80",
    "definitions": {
-      "950654229": {
-         "title": "CameraAimAssistCommandPresetDefinition",
-         "type": "object",
-         "properties": {
-            "angle": {
-               "$ref": "#/definitions/4021724221"
-            },
-            "distance": {
-               "type": "number"
-            },
-            "preset": {
-               "$ref": "#/definitions/1492643634"
-            },
-            "target_mode": {
-               "title": "Aim-Assist Target Mode",
-               "type": "string",
-               "enum": [
-                  "angle",
-                  "distance"
-               ]
-            }
-         }
-      },
-      "1492643634": {
-         "title": "Reference",
-         "type": "string"
-      },
-      "3573822430": {
-         "title": "Identifier",
-         "type": "string"
-      },
-      "3640473056": {
-         "title": "Reference",
-         "type": "string"
-      },
-      "4021724221": {
+      "742152213": {
          "title": "Vec2",
          "oneOf": [
             {
@@ -63,13 +28,48 @@
                }
             }
          ]
+      },
+      "1649996674": {
+         "title": "Identifier",
+         "type": "string"
+      },
+      "2305420650": {
+         "title": "CameraAimAssistCommandPresetDefinition",
+         "type": "object",
+         "properties": {
+            "angle": {
+               "$ref": "#/definitions/742152213"
+            },
+            "distance": {
+               "type": "number"
+            },
+            "preset": {
+               "$ref": "#/definitions/2897196339"
+            },
+            "target_mode": {
+               "title": "Aim-Assist Target Mode",
+               "type": "string",
+               "enum": [
+                  "angle",
+                  "distance"
+               ]
+            }
+         }
+      },
+      "2897196339": {
+         "title": "Reference",
+         "type": "string"
+      },
+      "3905427926": {
+         "title": "Reference",
+         "type": "string"
       }
    },
    "title": "Camera Preset",
    "type": "object",
    "properties": {
       "aim_assist": {
-         "$ref": "#/definitions/950654229"
+         "$ref": "#/definitions/2305420650"
       },
       "continue_targeting": {
          "type": "boolean"
@@ -106,12 +106,12 @@
          "maxItems": 2
       },
       "identifier": {
-         "$ref": "#/definitions/3573822430",
+         "$ref": "#/definitions/1649996674",
          "pattern": "^(\\w+:\\w+)?$"
       },
       "inherit_from": {
          "default": "",
-         "$ref": "#/definitions/3640473056",
+         "$ref": "#/definitions/3905427926",
          "pattern": "^(\\w+:\\w+)?$"
       },
       "listener": {

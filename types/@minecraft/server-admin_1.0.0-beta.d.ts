@@ -73,6 +73,7 @@ export const dedicatedServer?: DedicatedServerUtils;
 export const secrets: ServerSecrets;
 export const variables: ServerVariables;
 
+export function kickPlayer(player: server.Player, reason?: string): void;
 export function transferPlayer(player: server.Player, options: TransferPlayerIpPortOptions | TransferPlayerNetherNetOptions): void;
 
 //@ts-ignore
@@ -81,6 +82,10 @@ export class AllowListFileReloadError extends Error {
 }
 //@ts-ignore
 export class AllowListModificationError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class CannotKickPlayerError extends Error {
    private constructor();
 }
 //@ts-ignore

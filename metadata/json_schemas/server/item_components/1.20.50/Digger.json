@@ -1,9 +1,46 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "2499855414",
+   "$id": "2659245187",
    "x-format-version": "1.20.50",
    "definitions": {
-      "517105782": {
+      "561385360": {
+         "title": "BlockInfo",
+         "type": "object",
+         "properties": {
+            "block": {
+               "$ref": "#/definitions/3093766462"
+            },
+            "speed": {
+               "type": "integer"
+            }
+         },
+         "required": [
+            "block",
+            "speed"
+         ]
+      },
+      "855125494": {
+         "title": "BlockDescriptorProxy",
+         "type": "object",
+         "properties": {
+            "name": {
+               "type": "string",
+               "default": ""
+            },
+            "states": {
+               "type": "object",
+               "additionalProperties": {
+                  "$ref": "#/definitions/2565245911"
+               },
+               "default": {}
+            },
+            "tags": {
+               "type": "string",
+               "default": ""
+            }
+         }
+      },
+      "2565245911": {
          "title": "compound_proxy",
          "oneOf": [
             {
@@ -17,48 +54,11 @@
             }
          ]
       },
-      "1899103179": {
-         "title": "BlockInfo",
-         "type": "object",
-         "properties": {
-            "block": {
-               "$ref": "#/definitions/2794205495"
-            },
-            "speed": {
-               "type": "integer"
-            }
-         },
-         "required": [
-            "block",
-            "speed"
-         ]
-      },
-      "2770948419": {
-         "title": "BlockDescriptorProxy",
-         "type": "object",
-         "properties": {
-            "name": {
-               "type": "string",
-               "default": ""
-            },
-            "states": {
-               "type": "object",
-               "additionalProperties": {
-                  "$ref": "#/definitions/517105782"
-               },
-               "default": {}
-            },
-            "tags": {
-               "type": "string",
-               "default": ""
-            }
-         }
-      },
-      "2794205495": {
+      "3093766462": {
          "title": "Block Descriptor",
          "oneOf": [
             {
-               "$ref": "#/definitions/2770948419",
+               "$ref": "#/definitions/855125494",
                "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
             },
             {
@@ -66,7 +66,7 @@
                "minLength": 1
             },
             {
-               "$ref": "#/definitions/2770948419",
+               "$ref": "#/definitions/855125494",
                "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
             }
          ]
@@ -79,7 +79,7 @@
          "type": "array",
          "default": [],
          "items": {
-            "$ref": "#/definitions/1899103179"
+            "$ref": "#/definitions/561385360"
          }
       },
       "use_efficiency": {

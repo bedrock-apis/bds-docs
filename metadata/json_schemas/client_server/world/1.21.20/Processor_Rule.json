@@ -1,107 +1,14 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "3035388266",
+   "$id": "828807807",
    "x-format-version": "1.21.20",
    "definitions": {
-      "45584192": {
-         "title": "Passthrough",
-         "type": "object",
-         "properties": {
-            "type": {
-               "title": "BlockEntityModifierType",
-               "type": "string",
-               "const": "minecraft:passthrough",
-               "enum": [
-                  "minecraft:passthrough",
-                  "minecraft:append_loot"
-               ]
-            }
-         },
-         "required": [
-            "type"
-         ]
-      },
-      "1134690608": {
-         "title": "AppendLoot",
-         "type": "object",
-         "properties": {
-            "loot_table": {
-               "$ref": "#/definitions/1135547207"
-            },
-            "type": {
-               "title": "BlockEntityModifierType",
-               "type": "string",
-               "const": "minecraft:append_loot",
-               "enum": [
-                  "minecraft:passthrough",
-                  "minecraft:append_loot"
-               ]
-            }
-         },
-         "required": [
-            "loot_table",
-            "type"
-         ]
-      },
-      "1135547207": {
-         "title": "File Reference",
-         "type": "string",
-         "maxLength": 256
-      },
-      "1527037515": {
-         "title": "Reference",
-         "type": "string"
-      },
-      "1556792771": {
-         "title": "AlwaysTruePos",
-         "type": "object",
-         "properties": {
-            "predicate_type": {
-               "title": "PosType",
-               "type": "string",
-               "const": "minecraft:always_true",
-               "enum": [
-                  "minecraft:always_true",
-                  "minecraft:axis_aligned_linear_pos"
-               ]
-            }
-         },
-         "required": [
-            "predicate_type"
-         ]
-      },
-      "1766729433": {
-         "title": "BlockStateMatch",
-         "type": "object",
-         "properties": {
-            "block_state": {
-               "$ref": "#/definitions/3076687790"
-            },
-            "predicate_type": {
-               "title": "BlockType",
-               "type": "string",
-               "const": "minecraft:blockstate_match",
-               "enum": [
-                  "minecraft:always_true",
-                  "minecraft:block_match",
-                  "minecraft:random_block_match",
-                  "minecraft:tag_match",
-                  "minecraft:blockstate_match",
-                  "minecraft:random_blockstate_match"
-               ]
-            }
-         },
-         "required": [
-            "block_state",
-            "predicate_type"
-         ]
-      },
-      "2198589344": {
+      "29129971": {
          "title": "BlockMatch",
          "type": "object",
          "properties": {
             "block": {
-               "$ref": "#/definitions/1527037515"
+               "$ref": "#/definitions/3152646801"
             },
             "predicate_type": {
                "title": "BlockType",
@@ -122,7 +29,25 @@
             "predicate_type"
          ]
       },
-      "3034820683": {
+      "490162462": {
+         "title": "AlwaysTruePos",
+         "type": "object",
+         "properties": {
+            "predicate_type": {
+               "title": "PosType",
+               "type": "string",
+               "const": "minecraft:always_true",
+               "enum": [
+                  "minecraft:always_true",
+                  "minecraft:axis_aligned_linear_pos"
+               ]
+            }
+         },
+         "required": [
+            "predicate_type"
+         ]
+      },
+      "625050612": {
          "title": "TagMatch",
          "type": "object",
          "properties": {
@@ -148,17 +73,17 @@
             "tag"
          ]
       },
-      "3076687790": {
+      "1170899181": {
          "title": "Block Specifier",
          "oneOf": [
             {
-               "$ref": "#/definitions/1527037515"
+               "$ref": "#/definitions/3152646801"
             },
             {
                "type": "object",
                "properties": {
                   "name": {
-                     "$ref": "#/definitions/1527037515"
+                     "$ref": "#/definitions/3152646801"
                   },
                   "states": {
                      "type": "object",
@@ -184,44 +109,12 @@
             }
          ]
       },
-      "3523914459": {
-         "title": "RandomBlockMatch",
-         "type": "object",
-         "properties": {
-            "block": {
-               "$ref": "#/definitions/1527037515"
-            },
-            "predicate_type": {
-               "title": "BlockType",
-               "type": "string",
-               "const": "minecraft:random_block_match",
-               "enum": [
-                  "minecraft:always_true",
-                  "minecraft:block_match",
-                  "minecraft:random_block_match",
-                  "minecraft:tag_match",
-                  "minecraft:blockstate_match",
-                  "minecraft:random_blockstate_match"
-               ]
-            },
-            "probability": {
-               "type": "number",
-               "minimum": 0,
-               "maximum": 1
-            }
-         },
-         "required": [
-            "block",
-            "predicate_type",
-            "probability"
-         ]
-      },
-      "3589682888": {
+      "1243305609": {
          "title": "RandomBlockStateMatch",
          "type": "object",
          "properties": {
             "block_state": {
-               "$ref": "#/definitions/3076687790"
+               "$ref": "#/definitions/1170899181"
             },
             "predicate_type": {
                "title": "BlockType",
@@ -248,7 +141,127 @@
             "probability"
          ]
       },
-      "3839910888": {
+      "1496353939": {
+         "title": "AppendLoot",
+         "type": "object",
+         "properties": {
+            "loot_table": {
+               "$ref": "#/definitions/3296186770"
+            },
+            "type": {
+               "title": "BlockEntityModifierType",
+               "type": "string",
+               "const": "minecraft:append_loot",
+               "enum": [
+                  "minecraft:passthrough",
+                  "minecraft:append_loot"
+               ]
+            }
+         },
+         "required": [
+            "loot_table",
+            "type"
+         ]
+      },
+      "1655154128": {
+         "title": "RandomBlockMatch",
+         "type": "object",
+         "properties": {
+            "block": {
+               "$ref": "#/definitions/3152646801"
+            },
+            "predicate_type": {
+               "title": "BlockType",
+               "type": "string",
+               "const": "minecraft:random_block_match",
+               "enum": [
+                  "minecraft:always_true",
+                  "minecraft:block_match",
+                  "minecraft:random_block_match",
+                  "minecraft:tag_match",
+                  "minecraft:blockstate_match",
+                  "minecraft:random_blockstate_match"
+               ]
+            },
+            "probability": {
+               "type": "number",
+               "minimum": 0,
+               "maximum": 1
+            }
+         },
+         "required": [
+            "block",
+            "predicate_type",
+            "probability"
+         ]
+      },
+      "1678956529": {
+         "title": "Passthrough",
+         "type": "object",
+         "properties": {
+            "type": {
+               "title": "BlockEntityModifierType",
+               "type": "string",
+               "const": "minecraft:passthrough",
+               "enum": [
+                  "minecraft:passthrough",
+                  "minecraft:append_loot"
+               ]
+            }
+         },
+         "required": [
+            "type"
+         ]
+      },
+      "1700670701": {
+         "title": "AlwaysTrueBlock",
+         "type": "object",
+         "properties": {
+            "predicate_type": {
+               "title": "BlockType",
+               "type": "string",
+               "const": "minecraft:always_true",
+               "enum": [
+                  "minecraft:always_true",
+                  "minecraft:block_match",
+                  "minecraft:random_block_match",
+                  "minecraft:tag_match",
+                  "minecraft:blockstate_match",
+                  "minecraft:random_blockstate_match"
+               ]
+            }
+         },
+         "required": [
+            "predicate_type"
+         ]
+      },
+      "2275438672": {
+         "title": "BlockStateMatch",
+         "type": "object",
+         "properties": {
+            "block_state": {
+               "$ref": "#/definitions/1170899181"
+            },
+            "predicate_type": {
+               "title": "BlockType",
+               "type": "string",
+               "const": "minecraft:blockstate_match",
+               "enum": [
+                  "minecraft:always_true",
+                  "minecraft:block_match",
+                  "minecraft:random_block_match",
+                  "minecraft:tag_match",
+                  "minecraft:blockstate_match",
+                  "minecraft:random_blockstate_match"
+               ]
+            }
+         },
+         "required": [
+            "block_state",
+            "predicate_type"
+         ]
+      },
+      "2537535649": {
          "title": "AxisAlignedLinear",
          "type": "object",
          "properties": {
@@ -298,27 +311,14 @@
             "predicate_type"
          ]
       },
-      "4275912652": {
-         "title": "AlwaysTrueBlock",
-         "type": "object",
-         "properties": {
-            "predicate_type": {
-               "title": "BlockType",
-               "type": "string",
-               "const": "minecraft:always_true",
-               "enum": [
-                  "minecraft:always_true",
-                  "minecraft:block_match",
-                  "minecraft:random_block_match",
-                  "minecraft:tag_match",
-                  "minecraft:blockstate_match",
-                  "minecraft:random_blockstate_match"
-               ]
-            }
-         },
-         "required": [
-            "predicate_type"
-         ]
+      "3152646801": {
+         "title": "Reference",
+         "type": "string"
+      },
+      "3296186770": {
+         "title": "File Reference",
+         "type": "string",
+         "maxLength": 256
       }
    },
    "title": "Processor Rule",
@@ -327,10 +327,10 @@
       "block_entity_modifier": {
          "oneOf": [
             {
-               "$ref": "#/definitions/45584192"
+               "$ref": "#/definitions/1678956529"
             },
             {
-               "$ref": "#/definitions/1134690608"
+               "$ref": "#/definitions/1496353939"
             }
          ]
       },
@@ -340,22 +340,22 @@
          },
          "oneOf": [
             {
-               "$ref": "#/definitions/4275912652"
+               "$ref": "#/definitions/1700670701"
             },
             {
-               "$ref": "#/definitions/2198589344"
+               "$ref": "#/definitions/29129971"
             },
             {
-               "$ref": "#/definitions/3523914459"
+               "$ref": "#/definitions/1655154128"
             },
             {
-               "$ref": "#/definitions/3034820683"
+               "$ref": "#/definitions/625050612"
             },
             {
-               "$ref": "#/definitions/1766729433"
+               "$ref": "#/definitions/2275438672"
             },
             {
-               "$ref": "#/definitions/3589682888"
+               "$ref": "#/definitions/1243305609"
             }
          ]
       },
@@ -365,35 +365,35 @@
          },
          "oneOf": [
             {
-               "$ref": "#/definitions/4275912652"
+               "$ref": "#/definitions/1700670701"
             },
             {
-               "$ref": "#/definitions/2198589344"
+               "$ref": "#/definitions/29129971"
             },
             {
-               "$ref": "#/definitions/3523914459"
+               "$ref": "#/definitions/1655154128"
             },
             {
-               "$ref": "#/definitions/3034820683"
+               "$ref": "#/definitions/625050612"
             },
             {
-               "$ref": "#/definitions/1766729433"
+               "$ref": "#/definitions/2275438672"
             },
             {
-               "$ref": "#/definitions/3589682888"
+               "$ref": "#/definitions/1243305609"
             }
          ]
       },
       "output_state": {
-         "$ref": "#/definitions/3076687790"
+         "$ref": "#/definitions/1170899181"
       },
       "position_predicate": {
          "oneOf": [
             {
-               "$ref": "#/definitions/1556792771"
+               "$ref": "#/definitions/490162462"
             },
             {
-               "$ref": "#/definitions/3839910888"
+               "$ref": "#/definitions/2537535649"
             }
          ]
       }

@@ -1,9 +1,106 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "3258847033",
+   "$id": "3639862792",
    "x-format-version": "1.21.110",
    "definitions": {
-      "47219750": {
+      "595521793": {
+         "title": "Placement Direction",
+         "type": "object",
+         "properties": {
+            "blocks_to_corner_with": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/3093766462"
+               }
+            },
+            "enabled_states": {
+               "type": "array",
+               "items": {
+                  "title": "Placement Position Enabled State",
+                  "type": "string",
+                  "enum": [
+                     "minecraft:cardinal_direction",
+                     "minecraft:corner_and_cardinal_direction",
+                     "minecraft:facing_direction"
+                  ]
+               },
+               "minItems": 1
+            },
+            "y_rotation_offset": {
+               "type": "number",
+               "multipleOf": 90,
+               "minimum": 0,
+               "maximum": 360
+            }
+         },
+         "required": [
+            "enabled_states"
+         ]
+      },
+      "855125494": {
+         "title": "BlockDescriptorProxy",
+         "type": "object",
+         "properties": {
+            "name": {
+               "type": "string",
+               "default": ""
+            },
+            "states": {
+               "type": "object",
+               "additionalProperties": {
+                  "$ref": "#/definitions/2565245911"
+               },
+               "default": {}
+            },
+            "tags": {
+               "type": "string",
+               "default": ""
+            }
+         }
+      },
+      "1463434457": {
+         "title": "Connection",
+         "type": "object",
+         "properties": {
+            "enabled_states": {
+               "type": "array",
+               "items": {
+                  "title": "Connection Enabled State",
+                  "type": "string",
+                  "enum": [
+                     "minecraft:cardinal_connections"
+                  ]
+               },
+               "minItems": 1
+            }
+         },
+         "required": [
+            "enabled_states"
+         ]
+      },
+      "2125795619": {
+         "title": "Placement Position",
+         "type": "object",
+         "properties": {
+            "enabled_states": {
+               "type": "array",
+               "items": {
+                  "title": "Placement Position Enabled State",
+                  "type": "string",
+                  "enum": [
+                     "minecraft:block_face",
+                     "minecraft:vertical_half"
+                  ]
+               },
+               "minItems": 1
+            }
+         },
+         "required": [
+            "enabled_states"
+         ]
+      },
+      "2318834135": {
          "title": "Multi Block",
          "type": "object",
          "properties": {
@@ -38,7 +135,7 @@
             "enabled_states"
          ]
       },
-      "517105782": {
+      "2565245911": {
          "title": "compound_proxy",
          "oneOf": [
             {
@@ -52,73 +149,11 @@
             }
          ]
       },
-      "2036565844": {
-         "title": "Connection",
-         "type": "object",
-         "properties": {
-            "enabled_states": {
-               "type": "array",
-               "items": {
-                  "title": "Connection Enabled State",
-                  "type": "string",
-                  "enum": [
-                     "minecraft:cardinal_connections"
-                  ]
-               },
-               "minItems": 1
-            }
-         },
-         "required": [
-            "enabled_states"
-         ]
-      },
-      "2651415152": {
-         "title": "Placement Position",
-         "type": "object",
-         "properties": {
-            "enabled_states": {
-               "type": "array",
-               "items": {
-                  "title": "Placement Position Enabled State",
-                  "type": "string",
-                  "enum": [
-                     "minecraft:block_face",
-                     "minecraft:vertical_half"
-                  ]
-               },
-               "minItems": 1
-            }
-         },
-         "required": [
-            "enabled_states"
-         ]
-      },
-      "2770948419": {
-         "title": "BlockDescriptorProxy",
-         "type": "object",
-         "properties": {
-            "name": {
-               "type": "string",
-               "default": ""
-            },
-            "states": {
-               "type": "object",
-               "additionalProperties": {
-                  "$ref": "#/definitions/517105782"
-               },
-               "default": {}
-            },
-            "tags": {
-               "type": "string",
-               "default": ""
-            }
-         }
-      },
-      "2794205495": {
+      "3093766462": {
          "title": "Block Descriptor",
          "oneOf": [
             {
-               "$ref": "#/definitions/2770948419",
+               "$ref": "#/definitions/855125494",
                "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
             },
             {
@@ -126,44 +161,9 @@
                "minLength": 1
             },
             {
-               "$ref": "#/definitions/2770948419",
+               "$ref": "#/definitions/855125494",
                "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
             }
-         ]
-      },
-      "3773031244": {
-         "title": "Placement Direction",
-         "type": "object",
-         "properties": {
-            "blocks_to_corner_with": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "$ref": "#/definitions/2794205495"
-               }
-            },
-            "enabled_states": {
-               "type": "array",
-               "items": {
-                  "title": "Placement Position Enabled State",
-                  "type": "string",
-                  "enum": [
-                     "minecraft:cardinal_direction",
-                     "minecraft:corner_and_cardinal_direction",
-                     "minecraft:facing_direction"
-                  ]
-               },
-               "minItems": 1
-            },
-            "y_rotation_offset": {
-               "type": "number",
-               "multipleOf": 90,
-               "minimum": 0,
-               "maximum": 360
-            }
-         },
-         "required": [
-            "enabled_states"
          ]
       }
    },
@@ -174,7 +174,7 @@
          "default": {
             "enabled_states": []
          },
-         "$ref": "#/definitions/2036565844"
+         "$ref": "#/definitions/1463434457"
       },
       "minecraft:multi_block": {
          "default": {
@@ -182,7 +182,7 @@
             "enabled_states": [],
             "direction": "up"
          },
-         "$ref": "#/definitions/47219750"
+         "$ref": "#/definitions/2318834135"
       },
       "minecraft:placement_direction": {
          "default": {
@@ -190,14 +190,14 @@
             "y_rotation_offset": null,
             "blocks_to_corner_with": []
          },
-         "$ref": "#/definitions/3773031244",
+         "$ref": "#/definitions/595521793",
          "x-runtime-constraint-description": "\"y_rotation_offset\" can only be used when \"minecraft:cardinal_direction\" and/or \"minecraft:facing_direction\" are enabled in \"enabled_states\". and \"blocks_to_corner_with\" can only be used when \"minecraft:corner_and_cardinal_direction\" is enabled in \"enabled_states\"."
       },
       "minecraft:placement_position": {
          "default": {
             "enabled_states": []
          },
-         "$ref": "#/definitions/2651415152"
+         "$ref": "#/definitions/2125795619"
       }
    }
 }

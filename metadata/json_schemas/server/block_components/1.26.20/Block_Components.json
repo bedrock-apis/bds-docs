@@ -1,40 +1,9 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "2972862513",
+   "$id": "1431999510",
    "x-format-version": "1.26.20",
    "definitions": {
-      "4233714": {
-         "title": "Light Emission",
-         "type": "integer",
-         "minimum": 0,
-         "maximum": 15
-      },
-      "66431717": {
-         "title": "Crafting Table",
-         "type": "object",
-         "properties": {
-            "crafting_tags": {
-               "type": "array",
-               "items": {
-                  "type": "string",
-                  "maxLength": 64
-               },
-               "maxItems": 64
-            },
-            "table_name": {
-               "type": "string",
-               "default": "",
-               "maxLength": 256
-            }
-         },
-         "required": [
-            "crafting_tags"
-         ]
-      },
-      "76382833": {
-         "title": "Block Unit Cube Component"
-      },
-      "102803464": {
+      "126168913": {
          "title": "Placement Filter",
          "type": "object",
          "properties": {
@@ -42,13 +11,24 @@
                "type": "array",
                "default": [],
                "items": {
-                  "$ref": "#/definitions/3097649540"
+                  "$ref": "#/definitions/779173969"
                },
                "maxItems": 64
             }
          }
       },
-      "234756725": {
+      "131822589": {
+         "title": "Destructible By Mining",
+         "oneOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "$ref": "#/definitions/158635524"
+            }
+         ]
+      },
+      "158635524": {
          "title": "Detailed Mining Speed",
          "type": "object",
          "properties": {
@@ -56,7 +36,7 @@
                "type": "array",
                "default": [],
                "items": {
-                  "$ref": "#/definitions/1228805168"
+                  "$ref": "#/definitions/2562640505"
                }
             },
             "seconds_to_destroy": {
@@ -68,675 +48,13 @@
             "seconds_to_destroy"
          ]
       },
-      "241687525": {
-         "title": "Detailed Flammable",
-         "type": "object",
-         "properties": {
-            "catch_chance_modifier": {
-               "type": "integer",
-               "default": 5,
-               "minimum": 0
-            },
-            "destroy_chance_modifier": {
-               "type": "integer",
-               "default": 20,
-               "minimum": 0
-            }
-         }
-      },
-      "256560940": {
-         "title": "Display Name",
-         "type": "string",
-         "maxLength": 256
-      },
-      "415070108": {
-         "title": "chest_obstruction",
-         "type": "object",
-         "properties": {
-            "obstruction_rule": {
-               "title": "Chest Obstruction rule",
-               "type": "string",
-               "default": "shape",
-               "enum": [
-                  "always",
-                  "never",
-                  "shape"
-               ]
-            }
-         }
-      },
-      "517105782": {
-         "title": "compound_proxy",
-         "oneOf": [
-            {
-               "type": "integer"
-            },
-            {
-               "type": "string"
-            },
-            {
-               "type": "boolean"
-            }
-         ]
-      },
-      "526074045": {
-         "title": "Bounding Box Data",
-         "type": "object",
-         "properties": {
-            "origin": {
-               "default": [
-                  -8,
-                  0,
-                  -8
-               ],
-               "$ref": "#/definitions/4004946602",
-               "x-runtime-constraint-description": "There are different constraints for different indexes, please refer to member help for more details"
-            },
-            "size": {
-               "default": [
-                  16,
-                  16,
-                  16
-               ],
-               "$ref": "#/definitions/4004946602",
-               "x-runtime-constraint-description": "There are different constraints for different indexes, please refer to member help for more details"
-            }
-         }
-      },
-      "538564332": {
-         "title": "Detection Rule",
-         "type": "object",
-         "properties": {
-            "can_contain_liquid": {
-               "type": "boolean",
-               "default": false
-            },
-            "liquid_type": {
-               "title": "Liquid Type",
-               "type": "string",
-               "default": "water",
-               "enum": [
-                  "water"
-               ]
-            },
-            "on_liquid_touches": {
-               "title": "Liquid Reaction",
-               "type": "string",
-               "default": "blocking",
-               "enum": [
-                  "broken",
-                  "popped",
-                  "blocking",
-                  "no_reaction"
-               ]
-            },
-            "stops_liquid_flowing_from_direction": {
-               "default": [],
-               "$ref": "#/definitions/2683144891"
-            },
-            "use_liquid_clipping": {
-               "type": "boolean",
-               "default": false
-            }
-         }
-      },
-      "539578235": {
-         "title": "Detailed Geometry",
-         "type": "object",
-         "properties": {
-            "bone_visibility": {
-               "type": "object",
-               "additionalProperties": {
-                  "$ref": "#/definitions/3178719147"
-               },
-               "default": {},
-               "maxProperties": 64
-            },
-            "culling": {
-               "type": "string",
-               "default": "",
-               "maxLength": 256
-            },
-            "culling_layer": {
-               "type": "string",
-               "minLength": 1,
-               "maxLength": 256,
-               "pattern": "^(?:minecraft:culling_layer.undefined|minecraft:culling_layer.leaves|(?!minecraft:)[a-z0-9].*[a-z0-9])$",
-               "x-regex-flags": "ECMAScript,icase"
-            },
-            "culling_shape": {
-               "type": "string",
-               "default": "",
-               "maxLength": 256,
-               "pattern": "^(?:minecraft:empty|minecraft:unit_cube|(?!minecraft:)[a-z0-9].*[a-z0-9])$",
-               "x-regex-flags": "ECMAScript,icase"
-            },
-            "identifier": {
-               "type": "string",
-               "maxLength": 256
-            },
-            "uv_lock": {
-               "default": false,
-               "oneOf": [
-                  {
-                     "type": "boolean"
-                  },
-                  {
-                     "type": "array",
-                     "items": {
-                        "type": "string"
-                     },
-                     "maxItems": 64
-                  }
-               ]
-            }
-         },
-         "required": [
-            "identifier"
-         ]
-      },
-      "545997413": {
-         "title": "Detailed Map Color",
-         "type": "object",
-         "properties": {
-            "color": {
-               "$ref": "#/definitions/3915697282"
-            },
-            "tint_method": {
-               "title": "Tint Method",
-               "type": "string",
-               "default": "none",
-               "enum": [
-                  "none",
-                  "default_foliage",
-                  "birch_foliage",
-                  "evergreen_foliage",
-                  "dry_foliage",
-                  "grass",
-                  "water"
-               ]
-            }
-         },
-         "required": [
-            "color"
-         ]
-      },
-      "623828846": {
-         "title": "Player Destroyed Component"
-      },
-      "673021985": {
-         "title": "Step On Component"
-      },
-      "749472828": {
-         "title": "Fall On Component"
-      },
-      "960906594": {
-         "title": "Liquid Detection",
-         "type": "object",
-         "properties": {
-            "detection_rules": {
-               "type": "array",
-               "items": {
-                  "$ref": "#/definitions/538564332"
-               },
-               "minItems": 1,
-               "maxItems": 1
-            }
-         },
-         "required": [
-            "detection_rules"
-         ]
-      },
-      "1008450416": {
-         "title": "Collision Box",
-         "oneOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "$ref": "#/definitions/526074045",
-               "x-runtime-constraint-description": "\"origin\" + \"size\", must be inside the following limit: Vec3(-8,0,-8) and Vec3(8,24,8)"
-            },
-            {
-               "type": "array",
-               "items": {
-                  "$ref": "#/definitions/526074045"
-               },
-               "maxItems": 16,
-               "x-runtime-constraint-description": "\"origin\" + \"size\", must be inside the following limit: Vec3(-8,0,-8) and Vec3(8,24,8)"
-            }
-         ]
-      },
-      "1057349585": {
-         "title": "FloatRange",
-         "type": "object",
-         "properties": {
-            "max": {
-               "type": "number",
-               "default": 0
-            },
-            "min": {
-               "type": "number",
-               "default": 0
-            }
-         }
-      },
-      "1135547207": {
-         "title": "File Reference",
-         "type": "string",
-         "maxLength": 256
-      },
-      "1212677976": {
-         "title": "Map Color",
-         "oneOf": [
-            {
-               "$ref": "#/definitions/3915697282"
-            },
-            {
-               "$ref": "#/definitions/545997413"
-            }
-         ]
-      },
-      "1217970463": {
-         "title": "Placed Component"
-      },
-      "1228805168": {
-         "title": "Item Specific Speed",
-         "type": "object",
-         "properties": {
-            "destroy_speed": {
-               "type": "number"
-            },
-            "item": {
-               "$ref": "#/definitions/1531870811"
-            }
-         },
-         "required": [
-            "destroy_speed",
-            "item"
-         ]
-      },
-      "1240896376": {
-         "title": "Transformation",
-         "type": "object",
-         "properties": {
-            "rotation": {
-               "default": [
-                  0,
-                  0,
-                  0
-               ],
-               "$ref": "#/definitions/4004946602",
-               "multipleOf": 90
-            },
-            "rotation_pivot": {
-               "default": [
-                  0,
-                  0,
-                  0
-               ],
-               "$ref": "#/definitions/4004946602"
-            },
-            "scale": {
-               "default": [
-                  1,
-                  1,
-                  1
-               ],
-               "$ref": "#/definitions/4004946602"
-            },
-            "scale_pivot": {
-               "default": [
-                  0,
-                  0,
-                  0
-               ],
-               "$ref": "#/definitions/4004946602"
-            },
-            "translation": {
-               "default": [
-                  0,
-                  0,
-                  0
-               ],
-               "$ref": "#/definitions/4004946602"
-            }
-         }
-      },
-      "1356194009": {
-         "title": "Embedded Visual",
-         "type": "object",
-         "properties": {
-            "geometry": {
-               "$ref": "#/definitions/3224784835"
-            },
-            "material_instances": {
-               "$ref": "#/definitions/1622905174"
-            }
-         },
-         "required": [
-            "geometry",
-            "material_instances"
-         ]
-      },
-      "1368069469": {
-         "title": "Flower Pottable"
-      },
-      "1531870811": {
-         "title": "Item Descriptor",
-         "oneOf": [
-            {
-               "type": "string"
-            },
-            {
-               "type": "object",
-               "additionalProperties": {
-                  "type": "string"
-               }
-            }
-         ]
-      },
-      "1622905174": {
-         "title": "Material Instances Component",
-         "type": "object",
-         "propertyNames": {
-            "type": "string",
-            "pattern": "^[a-zA-Z0-9_.:*]+$"
-         },
-         "additionalProperties": {
-            "oneOf": [
-               {
-                  "type": "string"
-               },
-               {
-                  "$ref": "#/definitions/1863281724"
-               }
-            ]
-         },
-         "maxProperties": 64
-      },
-      "1738876925": {
-         "title": "Loot",
-         "$ref": "#/definitions/1135547207"
-      },
-      "1831323369": {
-         "title": "Connection Rule",
-         "type": "object",
-         "properties": {
-            "accepts_connections_from": {
-               "title": "Connection Type",
-               "type": "string",
-               "default": "all",
-               "enum": [
-                  "none",
-                  "only_fences",
-                  "all"
-               ]
-            },
-            "enabled_directions": {
-               "type": "array",
-               "default": [
-                  "south",
-                  "north",
-                  "east",
-                  "west"
-               ],
-               "items": {
-                  "title": "Direction",
-                  "type": "string",
-                  "enum": [
-                     "south",
-                     "west",
-                     "north",
-                     "east"
-                  ]
-               },
-               "x-unique-values": true
-            }
-         }
-      },
-      "1837502522": {
+      "159501301": {
          "title": "Light Dampening",
          "type": "integer",
          "minimum": 0,
          "maximum": 15
       },
-      "1863281724": {
-         "title": "Material Instance",
-         "type": "object",
-         "properties": {
-            "alpha_masked_tint": {
-               "type": "boolean",
-               "default": false
-            },
-            "ambient_occlusion": {
-               "type": "number",
-               "default": 1,
-               "minimum": 0,
-               "maximum": 10
-            },
-            "face_dimming": {
-               "type": "boolean",
-               "default": true
-            },
-            "isotropic": {
-               "type": "boolean",
-               "default": false
-            },
-            "render_method": {
-               "title": "Block Render Layer",
-               "type": "string",
-               "default": "opaque",
-               "enum": [
-                  "double_sided",
-                  "blend",
-                  "blend_to_opaque",
-                  "opaque",
-                  "alpha_test_to_opaque",
-                  "alpha_test",
-                  "alpha_test_single_side",
-                  "alpha_test_single_side_to_opaque"
-               ]
-            },
-            "texture": {
-               "default": "",
-               "$ref": "#/definitions/3673881199"
-            },
-            "tint_method": {
-               "title": "Tint Method",
-               "type": "string",
-               "default": "none",
-               "enum": [
-                  "none",
-                  "default_foliage",
-                  "birch_foliage",
-                  "evergreen_foliage",
-                  "dry_foliage",
-                  "grass",
-                  "water"
-               ]
-            }
-         }
-      },
-      "1900529901": {
-         "title": "Tags",
-         "type": "array",
-         "items": {
-            "type": "string"
-         }
-      },
-      "1996265198": {
-         "title": "Detailed Flammable",
-         "oneOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "$ref": "#/definitions/241687525"
-            }
-         ]
-      },
-      "2040512774": {
-         "title": "Destructible By Mining",
-         "oneOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "$ref": "#/definitions/234756725"
-            }
-         ]
-      },
-      "2177620774": {
-         "title": "Destruction Particles",
-         "type": "object",
-         "properties": {
-            "particle_count": {
-               "type": "integer",
-               "default": 100,
-               "minimum": 0,
-               "maximum": 255
-            },
-            "texture": {
-               "type": "string",
-               "default": ""
-            },
-            "tint_method": {
-               "title": "Tint Method",
-               "type": "string",
-               "default": "none",
-               "enum": [
-                  "none",
-                  "default_foliage",
-                  "birch_foliage",
-                  "evergreen_foliage",
-                  "dry_foliage",
-                  "grass",
-                  "water"
-               ]
-            }
-         }
-      },
-      "2198751170": {
-         "title": "Interact Component"
-      },
-      "2267778531": {
-         "title": "Molang string",
-         "oneOf": [
-            {
-               "type": "string"
-            },
-            {
-               "type": "object",
-               "properties": {
-                  "expression": {
-                     "type": "string"
-                  },
-                  "version": {
-                     "type": "integer"
-                  }
-               },
-               "required": [
-                  "expression",
-                  "version"
-               ]
-            }
-         ]
-      },
-      "2278661106": {
-         "title": "Entity Fall On",
-         "type": "object",
-         "properties": {
-            "min_fall_distance": {
-               "type": "number",
-               "default": 0
-            }
-         }
-      },
-      "2359878835": {
-         "title": "Step Off Component"
-      },
-      "2453243141": {
-         "title": "Friction",
-         "type": "number",
-         "minimum": 0,
-         "maximum": 0.8999999761581421
-      },
-      "2683144891": {
-         "title": "Blocked Directions",
-         "type": "array",
-         "items": {
-            "title": "Facing",
-            "type": "string",
-            "enum": [
-               "down",
-               "up",
-               "north",
-               "south",
-               "west",
-               "east"
-            ]
-         }
-      },
-      "2757152868": {
-         "title": "Random Ticking Component"
-      },
-      "2770948419": {
-         "title": "BlockDescriptorProxy",
-         "type": "object",
-         "properties": {
-            "name": {
-               "type": "string",
-               "default": ""
-            },
-            "states": {
-               "type": "object",
-               "additionalProperties": {
-                  "$ref": "#/definitions/517105782"
-               },
-               "default": {}
-            },
-            "tags": {
-               "type": "string",
-               "default": ""
-            }
-         }
-      },
-      "2793951270": {
-         "title": "Support",
-         "type": "object",
-         "properties": {
-            "shape": {
-               "title": "Support Shape",
-               "type": "string",
-               "enum": [
-                  "fence",
-                  "stair"
-               ]
-            }
-         },
-         "required": [
-            "shape"
-         ]
-      },
-      "2794205495": {
-         "title": "Block Descriptor",
-         "oneOf": [
-            {
-               "$ref": "#/definitions/2770948419",
-               "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
-            },
-            {
-               "type": "string",
-               "minLength": 1
-            },
-            {
-               "$ref": "#/definitions/2770948419",
-               "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
-            }
-         ]
-      },
-      "2795899348": {
+      "198417187": {
          "title": "Tick",
          "type": "object",
          "properties": {
@@ -759,139 +77,31 @@
             "interval_range"
          ]
       },
-      "2869280267": {
-         "title": "Player Placing Component"
-      },
-      "2908060043": {
-         "title": "Redstone Consumer",
+      "276382330": {
+         "title": "Bounding Box Data",
          "type": "object",
          "properties": {
-            "min_power": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0,
-               "maximum": 15
-            },
-            "propagates_power": {
-               "type": "boolean",
-               "default": false
-            }
-         }
-      },
-      "3065018194": {
-         "title": "Selection Box",
-         "oneOf": [
-            {
-               "type": "boolean"
-            },
-            {
-               "$ref": "#/definitions/526074045",
-               "x-runtime-constraint-description": "\"origin\" + \"size\", must be inside the following limit: Vec3(-8,0,-8) and Vec3(8,24,8)"
-            }
-         ]
-      },
-      "3097649540": {
-         "title": "Placement Condition",
-         "type": "object",
-         "properties": {
-            "allowed_faces": {
+            "origin": {
                "default": [
-                  "down",
-                  "up",
-                  "north",
-                  "south",
-                  "west",
-                  "east"
+                  -8,
+                  0,
+                  -8
                ],
-               "$ref": "#/definitions/2683144891"
+               "$ref": "#/definitions/725374594",
+               "x-runtime-constraint-description": "There are different constraints for different indexes, please refer to member help for more details"
             },
-            "block_filter": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "$ref": "#/definitions/2794205495"
-               },
-               "maxItems": 64
+            "size": {
+               "default": [
+                  16,
+                  16,
+                  16
+               ],
+               "$ref": "#/definitions/725374594",
+               "x-runtime-constraint-description": "There are different constraints for different indexes, please refer to member help for more details"
             }
          }
       },
-      "3178719147": {
-         "title": "Molang expression",
-         "oneOf": [
-            {
-               "$ref": "#/definitions/2267778531"
-            },
-            {
-               "type": "number"
-            }
-         ]
-      },
-      "3224784835": {
-         "title": "Geometry",
-         "oneOf": [
-            {
-               "type": "string",
-               "maxLength": 256
-            },
-            {
-               "$ref": "#/definitions/539578235",
-               "x-runtime-constraint-description": "Cannot use bone visibility feature with Vanilla geometries"
-            }
-         ]
-      },
-      "3388472705": {
-         "title": "Movable",
-         "type": "object",
-         "properties": {
-            "movement_type": {
-               "title": "Movement Type",
-               "type": "string",
-               "enum": [
-                  "push_pull",
-                  "push",
-                  "popped",
-                  "immovable"
-               ]
-            },
-            "sticky": {
-               "title": "Sticky Type",
-               "type": "string",
-               "default": "none",
-               "enum": [
-                  "none",
-                  "same"
-               ]
-            }
-         },
-         "required": [
-            "movement_type"
-         ]
-      },
-      "3409248078": {
-         "title": "Block Breathability Component"
-      },
-      "3477447948": {
-         "title": "Range And Steps",
-         "type": "object",
-         "properties": {
-            "range": {
-               "$ref": "#/definitions/1057349585",
-               "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
-            },
-            "steps": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            }
-         },
-         "required": [
-            "range"
-         ]
-      },
-      "3554656163": {
-         "title": "Replaceable"
-      },
-      "3595738916": {
+      "398834691": {
          "title": "Redstone Conductivity",
          "type": "object",
          "properties": {
@@ -905,80 +115,50 @@
             }
          }
       },
-      "3673881199": {
-         "title": "Reference",
-         "type": "string"
+      "450633891": {
+         "title": "Block Breathability Component"
       },
-      "3739582967": {
-         "title": "Random Offset",
-         "type": "object",
-         "properties": {
-            "x": {
-               "default": {
-                  "range": {
-                     "min": 0,
-                     "max": 0
-                  },
-                  "steps": 0
-               },
-               "$ref": "#/definitions/3477447948"
-            },
-            "y": {
-               "default": {
-                  "range": {
-                     "min": 0,
-                     "max": 0
-                  },
-                  "steps": 0
-               },
-               "$ref": "#/definitions/3477447948"
-            },
-            "z": {
-               "default": {
-                  "range": {
-                     "min": 0,
-                     "max": 0
-                  },
-                  "steps": 0
-               },
-               "$ref": "#/definitions/3477447948"
-            }
-         }
-      },
-      "3812507364": {
-         "title": "Detailed Resistance",
-         "type": "object",
-         "properties": {
-            "explosion_resistance": {
-               "type": "number",
-               "minimum": 0
-            }
-         },
-         "required": [
-            "explosion_resistance"
-         ]
-      },
-      "3915697282": {
-         "title": "Color255RGB",
+      "455305055": {
+         "title": "Collision Box",
          "oneOf": [
             {
-               "type": "string",
-               "pattern": "^#[a-fA-F0-9]{6}$"
+               "type": "boolean"
+            },
+            {
+               "$ref": "#/definitions/276382330",
+               "x-runtime-constraint-description": "\"origin\" + \"size\", must be inside the following limit: Vec3(-8,0,-8) and Vec3(8,24,8)"
             },
             {
                "type": "array",
                "items": {
-                  "type": "integer"
+                  "$ref": "#/definitions/276382330"
                },
-               "minItems": 3,
-               "maxItems": 3
+               "maxItems": 16,
+               "x-runtime-constraint-description": "\"origin\" + \"size\", must be inside the following limit: Vec3(-8,0,-8) and Vec3(8,24,8)"
             }
-         ],
-         "$metaProperties": {
-            "CEREAL_EDITOR_SCHEMA_TAG": "type:color"
-         }
+         ]
       },
-      "3927443513": {
+      "479403241": {
+         "title": "Interact Component"
+      },
+      "506906917": {
+         "title": "Display Name",
+         "type": "string",
+         "maxLength": 256
+      },
+      "536784993": {
+         "title": "Selection Box",
+         "oneOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "$ref": "#/definitions/276382330",
+               "x-runtime-constraint-description": "\"origin\" + \"size\", must be inside the following limit: Vec3(-8,0,-8) and Vec3(8,24,8)"
+            }
+         ]
+      },
+      "583993718": {
          "title": "Redstone Producer",
          "type": "object",
          "properties": {
@@ -1031,7 +211,7 @@
             "power"
          ]
       },
-      "4004946602": {
+      "725374594": {
          "title": "vec3",
          "oneOf": [
             {
@@ -1061,7 +241,431 @@
             }
          ]
       },
-      "4098815121": {
+      "770498994": {
+         "title": "Loot",
+         "$ref": "#/definitions/3296186770"
+      },
+      "779173969": {
+         "title": "Placement Condition",
+         "type": "object",
+         "properties": {
+            "allowed_faces": {
+               "default": [
+                  "down",
+                  "up",
+                  "north",
+                  "south",
+                  "west",
+                  "east"
+               ],
+               "$ref": "#/definitions/4266723720"
+            },
+            "block_filter": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/3093766462"
+               },
+               "maxItems": 64
+            }
+         }
+      },
+      "785806858": {
+         "title": "Step On Component"
+      },
+      "814425212": {
+         "title": "Placed Component"
+      },
+      "855125494": {
+         "title": "BlockDescriptorProxy",
+         "type": "object",
+         "properties": {
+            "name": {
+               "type": "string",
+               "default": ""
+            },
+            "states": {
+               "type": "object",
+               "additionalProperties": {
+                  "$ref": "#/definitions/2565245911"
+               },
+               "default": {}
+            },
+            "tags": {
+               "type": "string",
+               "default": ""
+            }
+         }
+      },
+      "1063603012": {
+         "title": "Movable",
+         "type": "object",
+         "properties": {
+            "movement_type": {
+               "title": "Movement Type",
+               "type": "string",
+               "enum": [
+                  "push_pull",
+                  "push",
+                  "popped",
+                  "immovable"
+               ]
+            },
+            "sticky": {
+               "title": "Sticky Type",
+               "type": "string",
+               "default": "none",
+               "enum": [
+                  "none",
+                  "same"
+               ]
+            }
+         },
+         "required": [
+            "movement_type"
+         ]
+      },
+      "1081290337": {
+         "title": "Range And Steps",
+         "type": "object",
+         "properties": {
+            "range": {
+               "$ref": "#/definitions/2566306602",
+               "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
+            },
+            "steps": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            }
+         },
+         "required": [
+            "range"
+         ]
+      },
+      "1110683283": {
+         "title": "Map Color",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2022750183"
+            },
+            {
+               "$ref": "#/definitions/2347379346"
+            }
+         ]
+      },
+      "1237523005": {
+         "title": "leashable",
+         "type": "object",
+         "properties": {
+            "offset": {
+               "default": [
+                  0,
+                  0.25,
+                  0
+               ],
+               "$ref": "#/definitions/725374594"
+            }
+         }
+      },
+      "1271156039": {
+         "title": "Material Instances Component",
+         "type": "object",
+         "propertyNames": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_.:*]+$"
+         },
+         "additionalProperties": {
+            "oneOf": [
+               {
+                  "type": "string"
+               },
+               {
+                  "$ref": "#/definitions/3987695593"
+               }
+            ]
+         },
+         "maxProperties": 64
+      },
+      "1329969296": {
+         "title": "Detailed Geometry",
+         "type": "object",
+         "properties": {
+            "bone_visibility": {
+               "type": "object",
+               "additionalProperties": {
+                  "$ref": "#/definitions/2014847524"
+               },
+               "default": {},
+               "maxProperties": 64
+            },
+            "culling": {
+               "type": "string",
+               "default": "",
+               "maxLength": 256
+            },
+            "culling_layer": {
+               "type": "string",
+               "minLength": 1,
+               "maxLength": 256,
+               "pattern": "^(?:minecraft:culling_layer.undefined|minecraft:culling_layer.leaves|(?!minecraft:)[a-z0-9].*[a-z0-9])$",
+               "x-regex-flags": "ECMAScript,icase"
+            },
+            "culling_shape": {
+               "type": "string",
+               "default": "",
+               "maxLength": 256,
+               "pattern": "^(?:minecraft:empty|minecraft:unit_cube|(?!minecraft:)[a-z0-9].*[a-z0-9])$",
+               "x-regex-flags": "ECMAScript,icase"
+            },
+            "identifier": {
+               "type": "string",
+               "maxLength": 256
+            },
+            "uv_lock": {
+               "default": false,
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "array",
+                     "items": {
+                        "type": "string"
+                     },
+                     "maxItems": 64
+                  }
+               ]
+            }
+         },
+         "required": [
+            "identifier"
+         ]
+      },
+      "1372514207": {
+         "title": "Light Emission",
+         "type": "integer",
+         "minimum": 0,
+         "maximum": 15
+      },
+      "1429287564": {
+         "title": "Item Descriptor",
+         "oneOf": [
+            {
+               "type": "string"
+            },
+            {
+               "type": "object",
+               "additionalProperties": {
+                  "type": "string"
+               }
+            }
+         ]
+      },
+      "1522377193": {
+         "title": "Entity Fall On",
+         "type": "object",
+         "properties": {
+            "min_fall_distance": {
+               "type": "number",
+               "default": 0
+            }
+         }
+      },
+      "1599226559": {
+         "title": "Fall On Component"
+      },
+      "1616118013": {
+         "title": "Detailed Resistance",
+         "type": "object",
+         "properties": {
+            "explosion_resistance": {
+               "type": "number",
+               "minimum": 0
+            }
+         },
+         "required": [
+            "explosion_resistance"
+         ]
+      },
+      "1678560142": {
+         "title": "Step Off Component"
+      },
+      "1700044827": {
+         "title": "Queued Ticking Component"
+      },
+      "1839167724": {
+         "title": "Crafting Table",
+         "type": "object",
+         "properties": {
+            "crafting_tags": {
+               "type": "array",
+               "items": {
+                  "type": "string",
+                  "maxLength": 64
+               },
+               "maxItems": 64
+            },
+            "table_name": {
+               "type": "string",
+               "default": "",
+               "maxLength": 256
+            }
+         },
+         "required": [
+            "crafting_tags"
+         ]
+      },
+      "1888698660": {
+         "title": "Destructible By Explosion",
+         "oneOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "$ref": "#/definitions/1616118013"
+            }
+         ]
+      },
+      "1897889998": {
+         "title": "Flower Pottable"
+      },
+      "1995545914": {
+         "title": "Replaceable"
+      },
+      "1995686939": {
+         "title": "Detection Rule",
+         "type": "object",
+         "properties": {
+            "can_contain_liquid": {
+               "type": "boolean",
+               "default": false
+            },
+            "liquid_type": {
+               "title": "Liquid Type",
+               "type": "string",
+               "default": "water",
+               "enum": [
+                  "water"
+               ]
+            },
+            "on_liquid_touches": {
+               "title": "Liquid Reaction",
+               "type": "string",
+               "default": "blocking",
+               "enum": [
+                  "broken",
+                  "popped",
+                  "blocking",
+                  "no_reaction"
+               ]
+            },
+            "stops_liquid_flowing_from_direction": {
+               "default": [],
+               "$ref": "#/definitions/4266723720"
+            },
+            "use_liquid_clipping": {
+               "type": "boolean",
+               "default": false
+            }
+         }
+      },
+      "2014847524": {
+         "title": "Molang expression",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2529973620"
+            },
+            {
+               "type": "number"
+            }
+         ]
+      },
+      "2021523939": {
+         "title": "Liquid Detection",
+         "type": "object",
+         "properties": {
+            "detection_rules": {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/1995686939"
+               },
+               "minItems": 1,
+               "maxItems": 1
+            }
+         },
+         "required": [
+            "detection_rules"
+         ]
+      },
+      "2022750183": {
+         "title": "Color255RGB",
+         "oneOf": [
+            {
+               "type": "string",
+               "pattern": "^#[a-fA-F0-9]{6}$"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "type": "integer"
+               },
+               "minItems": 3,
+               "maxItems": 3
+            }
+         ],
+         "$metaProperties": {
+            "CEREAL_EDITOR_SCHEMA_TAG": "type:color"
+         }
+      },
+      "2114566239": {
+         "title": "Detailed Flammable",
+         "oneOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "$ref": "#/definitions/2314192078"
+            }
+         ]
+      },
+      "2123760640": {
+         "title": "Random Offset",
+         "type": "object",
+         "properties": {
+            "x": {
+               "default": {
+                  "range": {
+                     "min": 0,
+                     "max": 0
+                  },
+                  "steps": 0
+               },
+               "$ref": "#/definitions/1081290337"
+            },
+            "y": {
+               "default": {
+                  "range": {
+                     "min": 0,
+                     "max": 0
+                  },
+                  "steps": 0
+               },
+               "$ref": "#/definitions/1081290337"
+            },
+            "z": {
+               "default": {
+                  "range": {
+                     "min": 0,
+                     "max": 0
+                  },
+                  "steps": 0
+               },
+               "$ref": "#/definitions/1081290337"
+            }
+         }
+      },
+      "2150737388": {
          "title": "Precipitation Interactions",
          "type": "object",
          "properties": {
@@ -1079,35 +683,445 @@
             "precipitation_behavior"
          ]
       },
-      "4148960506": {
-         "title": "Queued Ticking Component"
+      "2314192078": {
+         "title": "Detailed Flammable",
+         "type": "object",
+         "properties": {
+            "catch_chance_modifier": {
+               "type": "integer",
+               "default": 5,
+               "minimum": 0
+            },
+            "destroy_chance_modifier": {
+               "type": "integer",
+               "default": 20,
+               "minimum": 0
+            }
+         }
       },
-      "4181829993": {
-         "title": "Destructible By Explosion",
+      "2347379346": {
+         "title": "Detailed Map Color",
+         "type": "object",
+         "properties": {
+            "color": {
+               "$ref": "#/definitions/2022750183"
+            },
+            "tint_method": {
+               "title": "Tint Method",
+               "type": "string",
+               "default": "none",
+               "enum": [
+                  "none",
+                  "default_foliage",
+                  "birch_foliage",
+                  "evergreen_foliage",
+                  "dry_foliage",
+                  "grass",
+                  "water"
+               ]
+            }
+         },
+         "required": [
+            "color"
+         ]
+      },
+      "2498903546": {
+         "title": "Connection Rule",
+         "type": "object",
+         "properties": {
+            "accepts_connections_from": {
+               "title": "Connection Type",
+               "type": "string",
+               "default": "all",
+               "enum": [
+                  "none",
+                  "only_fences",
+                  "all"
+               ]
+            },
+            "enabled_directions": {
+               "type": "array",
+               "default": [
+                  "south",
+                  "north",
+                  "east",
+                  "west"
+               ],
+               "items": {
+                  "title": "Direction",
+                  "type": "string",
+                  "enum": [
+                     "south",
+                     "west",
+                     "north",
+                     "east"
+                  ]
+               },
+               "x-unique-values": true
+            }
+         }
+      },
+      "2516999789": {
+         "title": "Random Ticking Component"
+      },
+      "2529973620": {
+         "title": "Molang string",
          "oneOf": [
             {
-               "type": "boolean"
+               "type": "string"
             },
             {
-               "$ref": "#/definitions/3812507364"
+               "type": "object",
+               "properties": {
+                  "expression": {
+                     "type": "string"
+                  },
+                  "version": {
+                     "type": "integer"
+                  }
+               },
+               "required": [
+                  "expression",
+                  "version"
+               ]
             }
          ]
       },
-      "4285263634": {
+      "2549376032": {
+         "title": "Redstone Consumer",
+         "type": "object",
+         "properties": {
+            "min_power": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0,
+               "maximum": 15
+            },
+            "propagates_power": {
+               "type": "boolean",
+               "default": false
+            }
+         }
+      },
+      "2562640505": {
+         "title": "Item Specific Speed",
+         "type": "object",
+         "properties": {
+            "destroy_speed": {
+               "type": "number"
+            },
+            "item": {
+               "$ref": "#/definitions/1429287564"
+            }
+         },
+         "required": [
+            "destroy_speed",
+            "item"
+         ]
+      },
+      "2565245911": {
+         "title": "compound_proxy",
+         "oneOf": [
+            {
+               "type": "integer"
+            },
+            {
+               "type": "string"
+            },
+            {
+               "type": "boolean"
+            }
+         ]
+      },
+      "2566306602": {
+         "title": "FloatRange",
+         "type": "object",
+         "properties": {
+            "max": {
+               "type": "number",
+               "default": 0
+            },
+            "min": {
+               "type": "number",
+               "default": 0
+            }
+         }
+      },
+      "2927423721": {
+         "title": "Destruction Particles",
+         "type": "object",
+         "properties": {
+            "particle_count": {
+               "type": "integer",
+               "default": 100,
+               "minimum": 0,
+               "maximum": 255
+            },
+            "texture": {
+               "type": "string",
+               "default": ""
+            },
+            "tint_method": {
+               "title": "Tint Method",
+               "type": "string",
+               "default": "none",
+               "enum": [
+                  "none",
+                  "default_foliage",
+                  "birch_foliage",
+                  "evergreen_foliage",
+                  "dry_foliage",
+                  "grass",
+                  "water"
+               ]
+            }
+         }
+      },
+      "3093766462": {
+         "title": "Block Descriptor",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/855125494",
+               "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
+            },
+            {
+               "type": "string",
+               "minLength": 1
+            },
+            {
+               "$ref": "#/definitions/855125494",
+               "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
+            }
+         ]
+      },
+      "3120491116": {
+         "title": "Geometry",
+         "oneOf": [
+            {
+               "type": "string",
+               "maxLength": 256
+            },
+            {
+               "$ref": "#/definitions/1329969296",
+               "x-runtime-constraint-description": "Cannot use bone visibility feature with Vanilla geometries"
+            }
+         ]
+      },
+      "3206585215": {
+         "title": "Transformation",
+         "type": "object",
+         "properties": {
+            "rotation": {
+               "default": [
+                  0,
+                  0,
+                  0
+               ],
+               "$ref": "#/definitions/725374594",
+               "multipleOf": 90
+            },
+            "rotation_pivot": {
+               "default": [
+                  0,
+                  0,
+                  0
+               ],
+               "$ref": "#/definitions/725374594"
+            },
+            "scale": {
+               "default": [
+                  1,
+                  1,
+                  1
+               ],
+               "$ref": "#/definitions/725374594"
+            },
+            "scale_pivot": {
+               "default": [
+                  0,
+                  0,
+                  0
+               ],
+               "$ref": "#/definitions/725374594"
+            },
+            "translation": {
+               "default": [
+                  0,
+                  0,
+                  0
+               ],
+               "$ref": "#/definitions/725374594"
+            }
+         }
+      },
+      "3296186770": {
+         "title": "File Reference",
+         "type": "string",
+         "maxLength": 256
+      },
+      "3303454226": {
+         "title": "Block Unit Cube Component"
+      },
+      "3341012329": {
          "title": "Item Visual",
          "type": "object",
          "properties": {
             "geometry": {
-               "$ref": "#/definitions/3224784835"
+               "$ref": "#/definitions/3120491116"
             },
             "material_instances": {
-               "$ref": "#/definitions/1622905174"
+               "$ref": "#/definitions/1271156039"
             }
          },
          "required": [
             "geometry",
             "material_instances"
          ]
+      },
+      "3376621622": {
+         "title": "Friction",
+         "type": "number",
+         "minimum": 0,
+         "maximum": 0.8999999761581421
+      },
+      "3380013371": {
+         "title": "chest_obstruction",
+         "type": "object",
+         "properties": {
+            "obstruction_rule": {
+               "title": "Chest Obstruction rule",
+               "type": "string",
+               "default": "shape",
+               "enum": [
+                  "always",
+                  "never",
+                  "shape"
+               ]
+            }
+         }
+      },
+      "3579776439": {
+         "title": "Support",
+         "type": "object",
+         "properties": {
+            "shape": {
+               "title": "Support Shape",
+               "type": "string",
+               "enum": [
+                  "fence",
+                  "stair"
+               ]
+            }
+         },
+         "required": [
+            "shape"
+         ]
+      },
+      "3591463038": {
+         "title": "Player Placing Component"
+      },
+      "3628889911": {
+         "title": "Player Destroyed Component"
+      },
+      "3729244302": {
+         "title": "Reference",
+         "type": "string"
+      },
+      "3973052832": {
+         "title": "Tags",
+         "type": "array",
+         "items": {
+            "type": "string"
+         }
+      },
+      "3973602878": {
+         "title": "Embedded Visual",
+         "type": "object",
+         "properties": {
+            "geometry": {
+               "$ref": "#/definitions/3120491116"
+            },
+            "material_instances": {
+               "$ref": "#/definitions/1271156039"
+            }
+         },
+         "required": [
+            "geometry",
+            "material_instances"
+         ]
+      },
+      "3987695593": {
+         "title": "Material Instance",
+         "type": "object",
+         "properties": {
+            "alpha_masked_tint": {
+               "type": "boolean",
+               "default": false
+            },
+            "ambient_occlusion": {
+               "type": "number",
+               "default": 1,
+               "minimum": 0,
+               "maximum": 10
+            },
+            "face_dimming": {
+               "type": "boolean",
+               "default": true
+            },
+            "isotropic": {
+               "type": "boolean",
+               "default": false
+            },
+            "render_method": {
+               "title": "Block Render Layer",
+               "type": "string",
+               "default": "opaque",
+               "enum": [
+                  "double_sided",
+                  "blend",
+                  "blend_to_opaque",
+                  "opaque",
+                  "alpha_test_to_opaque",
+                  "alpha_test",
+                  "alpha_test_single_sided",
+                  "alpha_test_single_sided_to_opaque"
+               ]
+            },
+            "texture": {
+               "default": "",
+               "$ref": "#/definitions/3729244302"
+            },
+            "tint_method": {
+               "title": "Tint Method",
+               "type": "string",
+               "default": "none",
+               "enum": [
+                  "none",
+                  "default_foliage",
+                  "birch_foliage",
+                  "evergreen_foliage",
+                  "dry_foliage",
+                  "grass",
+                  "water"
+               ]
+            }
+         }
+      },
+      "4266723720": {
+         "title": "Blocked Directions",
+         "type": "array",
+         "items": {
+            "title": "Facing",
+            "type": "string",
+            "enum": [
+               "down",
+               "up",
+               "north",
+               "south",
+               "west",
+               "east"
+            ]
+         }
       }
    },
    "title": "Components",
@@ -1115,149 +1129,152 @@
    "properties": {
       "minecraft:breathability": {
          "deprecated": true,
-         "$ref": "#/definitions/3409248078"
+         "$ref": "#/definitions/450633891"
       },
       "minecraft:chest_obstruction": {
-         "$ref": "#/definitions/415070108"
+         "$ref": "#/definitions/3380013371"
       },
       "minecraft:collision_box": {
-         "$ref": "#/definitions/1008450416"
+         "$ref": "#/definitions/455305055"
       },
       "minecraft:connection_rule": {
-         "$ref": "#/definitions/1831323369"
+         "$ref": "#/definitions/2498903546"
       },
       "minecraft:crafting_table": {
-         "$ref": "#/definitions/66431717"
+         "$ref": "#/definitions/1839167724"
       },
       "minecraft:destructible_by_explosion": {
-         "$ref": "#/definitions/4181829993"
+         "$ref": "#/definitions/1888698660"
       },
       "minecraft:destructible_by_mining": {
-         "$ref": "#/definitions/2040512774"
+         "$ref": "#/definitions/131822589"
       },
       "minecraft:destruction_particles": {
-         "$ref": "#/definitions/2177620774"
+         "$ref": "#/definitions/2927423721"
       },
       "minecraft:display_name": {
-         "$ref": "#/definitions/256560940"
+         "$ref": "#/definitions/506906917"
       },
       "minecraft:embedded_visual": {
-         "$ref": "#/definitions/1356194009"
+         "$ref": "#/definitions/3973602878"
       },
       "minecraft:entity_fall_on": {
-         "$ref": "#/definitions/2278661106"
+         "$ref": "#/definitions/1522377193"
       },
       "minecraft:flammable": {
-         "$ref": "#/definitions/1996265198"
+         "$ref": "#/definitions/2114566239"
       },
       "minecraft:flower_pottable": {
-         "$ref": "#/definitions/1368069469"
+         "$ref": "#/definitions/1897889998"
       },
       "minecraft:friction": {
-         "$ref": "#/definitions/2453243141"
+         "$ref": "#/definitions/3376621622"
       },
       "minecraft:geometry": {
-         "$ref": "#/definitions/3224784835"
+         "$ref": "#/definitions/3120491116"
       },
       "minecraft:item_visual": {
-         "$ref": "#/definitions/4285263634"
+         "$ref": "#/definitions/3341012329"
+      },
+      "minecraft:leashable": {
+         "$ref": "#/definitions/1237523005"
       },
       "minecraft:light_dampening": {
-         "$ref": "#/definitions/1837502522"
+         "$ref": "#/definitions/159501301"
       },
       "minecraft:light_emission": {
-         "$ref": "#/definitions/4233714"
+         "$ref": "#/definitions/1372514207"
       },
       "minecraft:liquid_detection": {
-         "$ref": "#/definitions/960906594"
+         "$ref": "#/definitions/2021523939"
       },
       "minecraft:loot": {
-         "$ref": "#/definitions/1738876925"
+         "$ref": "#/definitions/770498994"
       },
       "minecraft:map_color": {
-         "$ref": "#/definitions/1212677976"
+         "$ref": "#/definitions/1110683283"
       },
       "minecraft:material_instances": {
-         "$ref": "#/definitions/1622905174"
+         "$ref": "#/definitions/1271156039"
       },
       "minecraft:movable": {
-         "$ref": "#/definitions/3388472705"
+         "$ref": "#/definitions/1063603012"
       },
       "minecraft:on_fall_on": {
          "deprecated": true,
-         "$ref": "#/definitions/749472828"
+         "$ref": "#/definitions/1599226559"
       },
       "minecraft:on_interact": {
          "deprecated": true,
-         "$ref": "#/definitions/2198751170"
+         "$ref": "#/definitions/479403241"
       },
       "minecraft:on_placed": {
          "deprecated": true,
-         "$ref": "#/definitions/1217970463"
+         "$ref": "#/definitions/814425212"
       },
       "minecraft:on_player_destroyed": {
          "deprecated": true,
-         "$ref": "#/definitions/623828846"
+         "$ref": "#/definitions/3628889911"
       },
       "minecraft:on_player_placing": {
          "deprecated": true,
-         "$ref": "#/definitions/2869280267"
+         "$ref": "#/definitions/3591463038"
       },
       "minecraft:on_step_off": {
          "deprecated": true,
-         "$ref": "#/definitions/2359878835"
+         "$ref": "#/definitions/1678560142"
       },
       "minecraft:on_step_on": {
          "deprecated": true,
-         "$ref": "#/definitions/673021985"
+         "$ref": "#/definitions/785806858"
       },
       "minecraft:placement_filter": {
-         "$ref": "#/definitions/102803464"
+         "$ref": "#/definitions/126168913"
       },
       "minecraft:precipitation_interactions": {
-         "$ref": "#/definitions/4098815121"
+         "$ref": "#/definitions/2150737388"
       },
       "minecraft:queued_ticking": {
          "deprecated": true,
-         "$ref": "#/definitions/4148960506"
+         "$ref": "#/definitions/1700044827"
       },
       "minecraft:random_offset": {
-         "$ref": "#/definitions/3739582967"
+         "$ref": "#/definitions/2123760640"
       },
       "minecraft:random_ticking": {
          "deprecated": true,
-         "$ref": "#/definitions/2757152868"
+         "$ref": "#/definitions/2516999789"
       },
       "minecraft:redstone_conductivity": {
-         "$ref": "#/definitions/3595738916"
+         "$ref": "#/definitions/398834691"
       },
       "minecraft:redstone_consumer": {
-         "$ref": "#/definitions/2908060043"
+         "$ref": "#/definitions/2549376032"
       },
       "minecraft:redstone_producer": {
-         "$ref": "#/definitions/3927443513"
+         "$ref": "#/definitions/583993718"
       },
       "minecraft:replaceable": {
-         "$ref": "#/definitions/3554656163"
+         "$ref": "#/definitions/1995545914"
       },
       "minecraft:selection_box": {
-         "$ref": "#/definitions/3065018194"
+         "$ref": "#/definitions/536784993"
       },
       "minecraft:support": {
-         "$ref": "#/definitions/2793951270"
+         "$ref": "#/definitions/3579776439"
       },
       "minecraft:tags": {
-         "$ref": "#/definitions/1900529901"
+         "$ref": "#/definitions/3973052832"
       },
       "minecraft:tick": {
-         "$ref": "#/definitions/2795899348"
+         "$ref": "#/definitions/198417187"
       },
       "minecraft:transformation": {
-         "$ref": "#/definitions/1240896376"
+         "$ref": "#/definitions/3206585215"
       },
       "minecraft:unit_cube": {
          "deprecated": true,
-         "$ref": "#/definitions/76382833"
+         "$ref": "#/definitions/3303454226"
       }
    }
 }

@@ -214,6 +214,7 @@ export enum EntityComponentTypes {
    Color = "minecraft:color",
    Color2 = "minecraft:color2",
    CursorInventory = "minecraft:cursor_inventory",
+   EnderInventory = "minecraft:ender_inventory",
    Equippable = "minecraft:equippable",
    Exhaustion = "minecraft:player.exhaustion",
    FireImmune = "minecraft:fire_immune",
@@ -323,37 +324,6 @@ export enum EntityInitializationCause {
    Loaded = "Loaded",
    Spawned = "Spawned",
    Transformed = "Transformed",
-}
-export enum EntitySpawnCategory {
-   Ambient = "Ambient",
-   Axolotls = "Axolotls",
-   Creature = "Creature",
-   Misc = "Misc",
-   Monster = "Monster",
-   UndergroundWaterCreature = "UndergroundWaterCreature",
-   WaterAmbient = "WaterAmbient",
-   WaterCreature = "WaterCreature",
-}
-export enum EntitySpawnReason {
-   Breeding = "Breeding",
-   Bucket = "Bucket",
-   ChunkGeneration = "ChunkGeneration",
-   Command = "Command",
-   Conversion = "Conversion",
-   DimensionTravel = "DimensionTravel",
-   Dispenser = "Dispenser",
-   Event = "Event",
-   Jockey = "Jockey",
-   Load = "Load",
-   MobSummoned = "MobSummoned",
-   Natural = "Natural",
-   Patrol = "Patrol",
-   Reinforcement = "Reinforcement",
-   SpawnEgg = "SpawnEgg",
-   Spawner = "Spawner",
-   Structure = "Structure",
-   TrialSpawner = "TrialSpawner",
-   Triggered = "Triggered",
 }
 export enum EntitySwingSource {
    Attack = "Attack",
@@ -671,6 +641,10 @@ export interface BlockBoundingBox {
    max: Vector3;
    min: Vector3;
 }
+export interface BlockContainerAccessEventOptions {
+   accessSourceFilter?: ContainerAccessSourceFilter;
+   blockFilter?: BlockFilter;
+}
 export interface BlockCustomComponent {
    beforeOnPlayerPlace?: (arg0: BlockComponentPlayerPlaceBeforeEvent, arg1: CustomComponentParameters)=>void;
    onBreak?: (arg0: BlockComponentBlockBreakEvent, arg1: CustomComponentParameters)=>void;
@@ -766,6 +740,12 @@ export interface CompoundBlockVolumeItem {
    locationRelativity?: CompoundBlockVolumePositionRelativity;
    volume: BlockVolume;
 }
+export interface ContainerAccessSource {
+   entity?: Entity;
+}
+export interface ContainerAccessSourceFilter {
+   entityFilter?: EntityFilter;
+}
 export interface ContainerRules {
    allowedItems: Array<string>;
    allowNestedStorageItems: boolean;
@@ -815,6 +795,10 @@ export interface EntityApplyDamageByProjectileOptions {
 export interface EntityApplyDamageOptions {
    cause: EntityDamageCause;
    damagingEntity?: Entity;
+}
+export interface EntityContainerAccessEventOptions {
+   accessSourceFilter?: ContainerAccessSourceFilter;
+   entityFilter?: EntityFilter;
 }
 export interface EntityDamageSource {
    cause: EntityDamageCause;
@@ -1358,6 +1342,26 @@ export class BlockComponentStepOnEvent extends BlockEvent {
 }
 //@ts-ignore
 export class BlockComponentTickEvent extends BlockEvent {
+   private constructor();
+}
+//@ts-ignore
+export class BlockContainerClosedAfterEvent extends BlockEvent {
+   public closeSource: ContainerAccessSource;
+   private constructor();
+}
+export class BlockContainerClosedAfterEventSignal {
+   public subscribe(callback: (arg0: BlockContainerClosedAfterEvent)=>void, options?: BlockContainerAccessEventOptions): (arg0: BlockContainerClosedAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: BlockContainerClosedAfterEvent)=>void): void;
+   private constructor();
+}
+//@ts-ignore
+export class BlockContainerOpenedAfterEvent extends BlockEvent {
+   public openSource: ContainerAccessSource;
+   private constructor();
+}
+export class BlockContainerOpenedAfterEventSignal {
+   public subscribe(callback: (arg0: BlockContainerOpenedAfterEvent)=>void, options?: BlockContainerAccessEventOptions): (arg0: BlockContainerOpenedAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: BlockContainerOpenedAfterEvent)=>void): void;
    private constructor();
 }
 //@ts-ignore
@@ -1962,6 +1966,26 @@ export class EntityComponent extends Component {
    public readonly entity: Entity;
    private constructor();
 }
+export class EntityContainerClosedAfterEvent {
+   public readonly closeSource: ContainerAccessSource;
+   public readonly entity: Entity;
+   private constructor();
+}
+export class EntityContainerClosedAfterEventSignal {
+   public subscribe(callback: (arg0: EntityContainerClosedAfterEvent)=>void, options?: EntityContainerAccessEventOptions): (arg0: EntityContainerClosedAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityContainerClosedAfterEvent)=>void): void;
+   private constructor();
+}
+export class EntityContainerOpenedAfterEvent {
+   public readonly entity: Entity;
+   public readonly openSource: ContainerAccessSource;
+   private constructor();
+}
+export class EntityContainerOpenedAfterEventSignal {
+   public subscribe(callback: (arg0: EntityContainerOpenedAfterEvent)=>void, options?: EntityContainerAccessEventOptions): (arg0: EntityContainerOpenedAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityContainerOpenedAfterEvent)=>void): void;
+   private constructor();
+}
 export class EntityDefinitionFeedItem {
    public readonly growth: number;
    public readonly item: string;
@@ -1976,6 +2000,12 @@ export class EntityDieAfterEvent {
 export class EntityDieAfterEventSignal {
    public subscribe(callback: (arg0: EntityDieAfterEvent)=>void, options?: EntityEventOptions): (arg0: EntityDieAfterEvent)=>void;
    public unsubscribe(callback: (arg0: EntityDieAfterEvent)=>void): void;
+   private constructor();
+}
+//@ts-ignore
+export class EntityEnderInventoryComponent extends EntityComponent {
+   public static readonly componentId = "minecraft:ender_inventory";
+   public readonly container: Container;
    private constructor();
 }
 //@ts-ignore
@@ -2493,23 +2523,6 @@ export class EntitySpawnAfterEvent {
 export class EntitySpawnAfterEventSignal {
    public subscribe(callback: (arg0: EntitySpawnAfterEvent)=>void): (arg0: EntitySpawnAfterEvent)=>void;
    public unsubscribe(callback: (arg0: EntitySpawnAfterEvent)=>void): void;
-   private constructor();
-}
-export class EntitySpawnCallbackArgs {
-   public readonly dimensionLocation: DimensionLocation;
-   public readonly spawnReason: EntitySpawnReason;
-   public readonly spawnType: EntitySpawnType;
-   private constructor();
-}
-export class EntitySpawnType {
-   public readonly entityId: string;
-   public readonly height: number;
-   public readonly isImmuneFire: boolean;
-   public readonly isSummonable: boolean;
-   public readonly spawnCategory: EntitySpawnCategory;
-   public readonly width: number;
-   public getSpawnAABB(position: Vector3): AABB;
-   public isBlockDangerous(block: Block): boolean;
    private constructor();
 }
 //@ts-ignore
@@ -3118,12 +3131,6 @@ export class MolangVariableMap {
    public setSpeedAndDirection(variableName: string, speed: number, direction: Vector3): void;
    public setVector3(variableName: string, vector: Vector3): void;
 }
-export class ObstructionCallbackArgs {
-   public readonly dimension: Dimension;
-   public readonly entity: Entity;
-   public readonly spawnType: EntitySpawnType;
-   private constructor();
-}
 export class PackSettingChangeAfterEvent {
    public readonly settingName: string;
    public readonly settingValue: boolean | number | string;
@@ -3530,6 +3537,27 @@ export class PressurePlatePushAfterEventSignal {
    public unsubscribe(callback: (arg0: PressurePlatePushAfterEvent)=>void): void;
    private constructor();
 }
+export class PrimitiveShape {
+   public attachedTo?: Entity;
+   public color: RGBA;
+   public readonly dimension: Dimension;
+   public readonly hasDuration: boolean;
+   public readonly location: Vector3;
+   public rotation: Vector3;
+   public scale: number;
+   public timeLeft?: number;
+   public readonly totalTimeLeft?: number;
+   public visibleTo: Array<Player>;
+   public remove(): void;
+   public setLocation(location: DimensionLocation | Vector3): void;
+   private constructor();
+}
+export class PrimitiveShapesManager {
+   public addText(text: TextPrimitive, dimension?: Dimension): void;
+   public removeAll(): void;
+   public removeText(text: TextPrimitive): void;
+   private constructor();
+}
 export class ProjectileHitBlockAfterEvent {
    public readonly dimension: Dimension;
    public readonly hitVector: Vector3;
@@ -3751,11 +3779,6 @@ export class ShutdownEvent {
 export class SmeltItemFunction extends LootItemFunction {
    private constructor();
 }
-export class SpawnRulesRegistry {
-   public registerEntitySpawnCallback(id: string, callback: (arg0: EntitySpawnCallbackArgs)=>boolean): void;
-   public registerObstructionCallback(id: string, callback: (arg0: ObstructionCallbackArgs)=>boolean): void;
-   private constructor();
-}
 //@ts-ignore
 export class SpecificEnchantFunction extends LootItemFunction {
    public readonly enchantments: Array<EnchantInfo>;
@@ -3770,7 +3793,6 @@ export class StartupEvent {
    public readonly blockComponentRegistry: BlockComponentRegistry;
    public readonly customCommandRegistry: CustomCommandRegistry;
    public readonly itemComponentRegistry: ItemComponentRegistry;
-   public getSpawnRulesRegistry(): SpawnRulesRegistry;
    private constructor();
 }
 export class Structure {
@@ -3789,6 +3811,7 @@ export class StructureManager {
    public createFromWorld(identifier: string, dimension: Dimension, from: Vector3, to: Vector3, options?: StructureCreateOptions): Structure;
    public delete(structure: string | Structure): boolean;
    public get(identifier: string): (Structure | undefined);
+   public getPackStructureIds(): Array<string>;
    public getWorldStructureIds(): Array<string>;
    public place(structure: string | Structure, dimension: Dimension, location: Vector3, options?: StructurePlaceOptions): void;
    public placeJigsaw(pool: string, targetJigsaw: string, maxDepth: number, dimension: Dimension, location: Vector3, options?: JigsawPlaceOptions): BlockBoundingBox;
@@ -3837,6 +3860,15 @@ export class TargetBlockHitAfterEventSignal {
    public subscribe(callback: (arg0: TargetBlockHitAfterEvent)=>void): (arg0: TargetBlockHitAfterEvent)=>void;
    public unsubscribe(callback: (arg0: TargetBlockHitAfterEvent)=>void): void;
    private constructor();
+}
+//@ts-ignore
+export class TextPrimitive extends PrimitiveShape {
+   public backgroundColorOverride?: RGBA;
+   public depthTest: boolean;
+   public readonly text: RawMessage | string;
+   public useRotation: boolean;
+   public constructor(location: DimensionLocation | Vector3, text: RawMessage | string);
+   public setText(text: RawMessage | string): void;
 }
 export class TickingAreaManager {
    public readonly chunkCount: number;
@@ -3912,6 +3944,7 @@ export class World {
    public readonly beforeEvents: WorldBeforeEvents;
    public readonly gameRules: GameRules;
    public readonly isHardcore: boolean;
+   public readonly primitiveShapesManager: PrimitiveShapesManager;
    public readonly scoreboard: Scoreboard;
    public readonly seed: string;
    public readonly structureManager: StructureManager;
@@ -3947,11 +3980,15 @@ export class World {
    private constructor();
 }
 export class WorldAfterEvents {
+   public readonly blockContainerClosed: BlockContainerClosedAfterEventSignal;
+   public readonly blockContainerOpened: BlockContainerOpenedAfterEventSignal;
    public readonly blockExplode: BlockExplodeAfterEventSignal;
    public readonly buttonPush: ButtonPushAfterEventSignal;
    public readonly chatSend: ChatSendAfterEventSignal;
    public readonly dataDrivenEntityTrigger: DataDrivenEntityTriggerAfterEventSignal;
    public readonly effectAdd: EffectAddAfterEventSignal;
+   public readonly entityContainerClosed: EntityContainerClosedAfterEventSignal;
+   public readonly entityContainerOpened: EntityContainerOpenedAfterEventSignal;
    public readonly entityDie: EntityDieAfterEventSignal;
    public readonly entityHeal: EntityHealAfterEventSignal;
    public readonly entityHealthChanged: EntityHealthChangedAfterEventSignal;
@@ -4032,7 +4069,6 @@ export class WorldLoadAfterEventSignal {
 
 export const HudElementsCount = 13;
 export const HudVisibilityCount = 2;
-export const isInternal = true;
 export const MoonPhaseCount = 8;
 export const TicksPerDay = 24000;
 export const TicksPerSecond = 20;
@@ -4198,10 +4234,6 @@ export class PlaceJigsawError extends Error {
 }
 //@ts-ignore
 export class RawMessageError extends Error {
-   private constructor();
-}
-//@ts-ignore
-export class SpawnRulesInvalidRegistryError extends Error {
    private constructor();
 }
 //@ts-ignore

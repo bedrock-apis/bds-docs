@@ -1,30 +1,43 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "3883188534",
+   "$id": "488240951",
    "x-format-version": "1.21.20",
    "definitions": {
-      "1088251937": {
-         "title": "Filter Group",
-         "oneOf": [
-            {
-               "$ref": "#/definitions/4150989894"
+      "100089226": {
+         "title": "Filter Group Map",
+         "type": "object",
+         "properties": {
+            "AND": {
+               "$ref": "#/definitions/2789112004"
             },
-            {
-               "type": "array",
-               "items": {
-                  "$ref": "#/definitions/1088251937"
-               }
+            "NOT": {
+               "$ref": "#/definitions/2789112004"
             },
-            {
-               "$ref": "#/definitions/3235433757"
+            "OR": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "none_of": {
+               "$ref": "#/definitions/2789112004"
             }
-         ]
+         }
       },
-      "2176758423": {
+      "1597111954": {
          "title": "Scatter Chance",
          "oneOf": [
             {
-               "$ref": "#/definitions/3178719147"
+               "$ref": "#/definitions/2014847524"
             },
             {
                "type": "object",
@@ -45,131 +58,22 @@
             }
          ]
       },
-      "2195141389": {
-         "title": "Scatter Params",
-         "type": "object",
-         "properties": {
-            "coordinate_eval_order": {
-               "title": "Coordinate Evaluation Order",
-               "type": "string",
-               "default": "xzy",
-               "enum": [
-                  "xyz",
-                  "xzy",
-                  "yxz",
-                  "yzx",
-                  "zxy",
-                  "zyx"
-               ]
-            },
-            "iterations": {
-               "$ref": "#/definitions/3178719147"
-            },
-            "scatter_chance": {
-               "$ref": "#/definitions/2176758423"
-            },
-            "x": {
-               "$ref": "#/definitions/4150871210"
-            },
-            "y": {
-               "$ref": "#/definitions/4150871210"
-            },
-            "z": {
-               "$ref": "#/definitions/4150871210"
-            }
-         },
-         "required": [
-            "iterations",
-            "x",
-            "y",
-            "z"
-         ]
-      },
-      "2267778531": {
-         "title": "Molang string",
-         "oneOf": [
-            {
-               "type": "string"
-            },
-            {
-               "type": "object",
-               "properties": {
-                  "expression": {
-                     "type": "string"
-                  },
-                  "version": {
-                     "type": "integer"
-                  }
-               },
-               "required": [
-                  "expression",
-                  "version"
-               ]
-            }
-         ]
-      },
-      "3178719147": {
+      "2014847524": {
          "title": "Molang expression",
          "oneOf": [
             {
-               "$ref": "#/definitions/2267778531"
+               "$ref": "#/definitions/2529973620"
             },
             {
                "type": "number"
             }
          ]
       },
-      "3235433757": {
-         "title": "Filter Group Map",
-         "type": "object",
-         "properties": {
-            "AND": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "NOT": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "OR": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "all": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "all_of": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "any": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "any_of": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "none_of": {
-               "$ref": "#/definitions/1088251937"
-            }
-         }
-      },
-      "3683814853": {
-         "title": "Feature Rule Description",
-         "type": "object",
-         "properties": {
-            "identifier": {
-               "type": "string"
-            },
-            "places_feature": {
-               "type": "string"
-            }
-         },
-         "required": [
-            "identifier",
-            "places_feature"
-         ]
-      },
-      "4150871210": {
+      "2311880263": {
          "title": "Coordinate Range",
          "oneOf": [
             {
-               "$ref": "#/definitions/3178719147"
+               "$ref": "#/definitions/2014847524"
             },
             {
                "type": "object",
@@ -189,7 +93,7 @@
                   "extent": {
                      "type": "array",
                      "items": {
-                        "$ref": "#/definitions/3178719147"
+                        "$ref": "#/definitions/2014847524"
                      },
                      "minItems": 2,
                      "maxItems": 2
@@ -210,7 +114,7 @@
             }
          ]
       },
-      "4150989894": {
+      "2457665045": {
          "title": "Filter Test",
          "type": "object",
          "properties": {
@@ -286,12 +190,35 @@
             "test"
          ]
       },
-      "4231469203": {
+      "2529973620": {
+         "title": "Molang string",
+         "oneOf": [
+            {
+               "type": "string"
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "expression": {
+                     "type": "string"
+                  },
+                  "version": {
+                     "type": "integer"
+                  }
+               },
+               "required": [
+                  "expression",
+                  "version"
+               ]
+            }
+         ]
+      },
+      "2585020112": {
          "title": "Feature Rule Conditions",
          "type": "object",
          "properties": {
             "minecraft:biome_filter": {
-               "$ref": "#/definitions/1088251937"
+               "$ref": "#/definitions/2789112004"
             },
             "placement_pass": {
                "type": "string"
@@ -300,19 +227,92 @@
          "required": [
             "placement_pass"
          ]
+      },
+      "2789112004": {
+         "title": "Filter Group",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2457665045"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/2789112004"
+               }
+            },
+            {
+               "$ref": "#/definitions/100089226"
+            }
+         ]
+      },
+      "3665477968": {
+         "title": "Scatter Params",
+         "type": "object",
+         "properties": {
+            "coordinate_eval_order": {
+               "title": "Coordinate Evaluation Order",
+               "type": "string",
+               "default": "xzy",
+               "enum": [
+                  "xyz",
+                  "xzy",
+                  "yxz",
+                  "yzx",
+                  "zxy",
+                  "zyx"
+               ]
+            },
+            "iterations": {
+               "$ref": "#/definitions/2014847524"
+            },
+            "scatter_chance": {
+               "$ref": "#/definitions/1597111954"
+            },
+            "x": {
+               "$ref": "#/definitions/2311880263"
+            },
+            "y": {
+               "$ref": "#/definitions/2311880263"
+            },
+            "z": {
+               "$ref": "#/definitions/2311880263"
+            }
+         },
+         "required": [
+            "iterations",
+            "x",
+            "y",
+            "z"
+         ]
+      },
+      "4039624408": {
+         "title": "Feature Rule Description",
+         "type": "object",
+         "properties": {
+            "identifier": {
+               "type": "string"
+            },
+            "places_feature": {
+               "type": "string"
+            }
+         },
+         "required": [
+            "identifier",
+            "places_feature"
+         ]
       }
    },
    "title": "Feature Rule Definition",
    "type": "object",
    "properties": {
       "conditions": {
-         "$ref": "#/definitions/4231469203"
+         "$ref": "#/definitions/2585020112"
       },
       "description": {
-         "$ref": "#/definitions/3683814853"
+         "$ref": "#/definitions/4039624408"
       },
       "distribution": {
-         "$ref": "#/definitions/2195141389"
+         "$ref": "#/definitions/3665477968"
       }
    },
    "required": [

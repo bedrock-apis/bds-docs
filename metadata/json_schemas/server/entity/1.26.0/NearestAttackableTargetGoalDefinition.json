@@ -1,9 +1,39 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "1658730604",
+   "$id": "94602699",
    "x-format-version": "1.26.0",
    "definitions": {
-      "792012262": {
+      "100089226": {
+         "title": "Filter Group Map",
+         "type": "object",
+         "properties": {
+            "AND": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "NOT": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "OR": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "none_of": {
+               "$ref": "#/definitions/2789112004"
+            }
+         }
+      },
+      "2397407737": {
          "title": "MobDescriptor",
          "type": "object",
          "properties": {
@@ -26,7 +56,7 @@
                   "any": null,
                   "NOT": null
                },
-               "$ref": "#/definitions/1088251937"
+               "$ref": "#/definitions/2789112004"
             },
             "max_dist": {
                "type": "number",
@@ -65,68 +95,7 @@
             }
          }
       },
-      "1057349585": {
-         "title": "FloatRange",
-         "type": "object",
-         "properties": {
-            "max": {
-               "type": "number",
-               "default": 0
-            },
-            "min": {
-               "type": "number",
-               "default": 0
-            }
-         }
-      },
-      "1088251937": {
-         "title": "Filter Group",
-         "oneOf": [
-            {
-               "$ref": "#/definitions/4150989894"
-            },
-            {
-               "type": "array",
-               "items": {
-                  "$ref": "#/definitions/1088251937"
-               }
-            },
-            {
-               "$ref": "#/definitions/3235433757"
-            }
-         ]
-      },
-      "3235433757": {
-         "title": "Filter Group Map",
-         "type": "object",
-         "properties": {
-            "AND": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "NOT": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "OR": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "all": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "all_of": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "any": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "any_of": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "none_of": {
-               "$ref": "#/definitions/1088251937"
-            }
-         }
-      },
-      "4150989894": {
+      "2457665045": {
          "title": "Filter Test",
          "type": "object",
          "properties": {
@@ -202,17 +171,48 @@
             "test"
          ]
       },
-      "4227886613": {
+      "2566306602": {
+         "title": "FloatRange",
+         "type": "object",
+         "properties": {
+            "max": {
+               "type": "number",
+               "default": 0
+            },
+            "min": {
+               "type": "number",
+               "default": 0
+            }
+         }
+      },
+      "2789112004": {
+         "title": "Filter Group",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2457665045"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/2789112004"
+               }
+            },
+            {
+               "$ref": "#/definitions/100089226"
+            }
+         ]
+      },
+      "3924190650": {
          "title": "EntityTypes",
          "oneOf": [
             {
                "type": "array",
                "items": {
-                  "$ref": "#/definitions/792012262"
+                  "$ref": "#/definitions/2397407737"
                }
             },
             {
-               "$ref": "#/definitions/792012262"
+               "$ref": "#/definitions/2397407737"
             }
          ]
       }
@@ -225,7 +225,7 @@
             "min": 0,
             "max": 0
          },
-         "$ref": "#/definitions/1057349585"
+         "$ref": "#/definitions/2566306602"
       },
       "attack_owner": {
          "type": "boolean",
@@ -246,7 +246,7 @@
       },
       "entity_types": {
          "default": [],
-         "$ref": "#/definitions/4227886613"
+         "$ref": "#/definitions/3924190650"
       },
       "must_reach": {
          "type": "boolean",

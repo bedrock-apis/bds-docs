@@ -1,58 +1,50 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "3704131722",
+   "$id": "1188614761",
    "x-format-version": "1.20.60",
    "definitions": {
-      "1287813091": {
-         "title": "minecraft:surface_material_adjustments - surface adjustment materials settings",
+      "300181770": {
+         "title": "minecraft:surface_material_adjustments - surface adjustment settings",
          "type": "object",
          "properties": {
-            "foundation_material": {
-               "$ref": "#/definitions/3076687790"
+            "height_range": {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/2953256050"
+               },
+               "minItems": 2,
+               "maxItems": 2
             },
-            "mid_material": {
-               "$ref": "#/definitions/3076687790"
+            "materials": {
+               "$ref": "#/definitions/3848188468"
             },
-            "sea_floor_material": {
-               "$ref": "#/definitions/3076687790"
-            },
-            "sea_material": {
-               "$ref": "#/definitions/3076687790"
-            },
-            "top_material": {
-               "$ref": "#/definitions/3076687790"
-            }
-         }
-      },
-      "1462219063": {
-         "title": "Molang Expression",
-         "oneOf": [
-            {
+            "noise_frequency_scale": {
                "type": "number"
             },
-            {
-               "type": "boolean"
-            },
-            {
-               "type": "string"
+            "noise_range": {
+               "type": "array",
+               "items": {
+                  "type": "number"
+               },
+               "minItems": 2,
+               "maxItems": 2
             }
+         },
+         "required": [
+            "materials"
          ]
       },
-      "1527037515": {
-         "title": "Reference",
-         "type": "string"
-      },
-      "3076687790": {
+      "1170899181": {
          "title": "Block Specifier",
          "oneOf": [
             {
-               "$ref": "#/definitions/1527037515"
+               "$ref": "#/definitions/3152646801"
             },
             {
                "type": "object",
                "properties": {
                   "name": {
-                     "$ref": "#/definitions/1527037515"
+                     "$ref": "#/definitions/3152646801"
                   },
                   "states": {
                      "type": "object",
@@ -78,36 +70,44 @@
             }
          ]
       },
-      "3263934683": {
-         "title": "minecraft:surface_material_adjustments - surface adjustment settings",
-         "type": "object",
-         "properties": {
-            "height_range": {
-               "type": "array",
-               "items": {
-                  "$ref": "#/definitions/1462219063"
-               },
-               "minItems": 2,
-               "maxItems": 2
-            },
-            "materials": {
-               "$ref": "#/definitions/1287813091"
-            },
-            "noise_frequency_scale": {
+      "2953256050": {
+         "title": "Molang Expression",
+         "oneOf": [
+            {
                "type": "number"
             },
-            "noise_range": {
-               "type": "array",
-               "items": {
-                  "type": "number"
-               },
-               "minItems": 2,
-               "maxItems": 2
+            {
+               "type": "boolean"
+            },
+            {
+               "type": "string"
             }
-         },
-         "required": [
-            "materials"
          ]
+      },
+      "3152646801": {
+         "title": "Reference",
+         "type": "string"
+      },
+      "3848188468": {
+         "title": "minecraft:surface_material_adjustments - surface adjustment materials settings",
+         "type": "object",
+         "properties": {
+            "foundation_material": {
+               "$ref": "#/definitions/1170899181"
+            },
+            "mid_material": {
+               "$ref": "#/definitions/1170899181"
+            },
+            "sea_floor_material": {
+               "$ref": "#/definitions/1170899181"
+            },
+            "sea_material": {
+               "$ref": "#/definitions/1170899181"
+            },
+            "top_material": {
+               "$ref": "#/definitions/1170899181"
+            }
+         }
       }
    },
    "title": "minecraft:surface_material_adjustments",
@@ -116,7 +116,7 @@
       "adjustments": {
          "type": "array",
          "items": {
-            "$ref": "#/definitions/3263934683"
+            "$ref": "#/definitions/300181770"
          }
       }
    }

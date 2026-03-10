@@ -1,44 +1,19 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "4185018795",
+   "$id": "580648804",
    "x-format-version": "1.20.60",
    "definitions": {
-      "1527037515": {
-         "title": "Reference",
-         "type": "string"
-      },
-      "2278320139": {
-         "title": "minecraft:mountain_parameters - steep_material_adjustment settings",
-         "type": "object",
-         "properties": {
-            "east_slopes": {
-               "type": "boolean"
-            },
-            "material": {
-               "$ref": "#/definitions/3076687790"
-            },
-            "north_slopes": {
-               "type": "boolean"
-            },
-            "south_slopes": {
-               "type": "boolean"
-            },
-            "west_slopes": {
-               "type": "boolean"
-            }
-         }
-      },
-      "3076687790": {
+      "1170899181": {
          "title": "Block Specifier",
          "oneOf": [
             {
-               "$ref": "#/definitions/1527037515"
+               "$ref": "#/definitions/3152646801"
             },
             {
                "type": "object",
                "properties": {
                   "name": {
-                     "$ref": "#/definitions/1527037515"
+                     "$ref": "#/definitions/3152646801"
                   },
                   "states": {
                      "type": "object",
@@ -64,7 +39,7 @@
             }
          ]
       },
-      "3848407258": {
+      "2064435201": {
          "title": "minecraft:mountain_parameters - top_slide settings",
          "type": "object",
          "properties": {
@@ -75,16 +50,41 @@
          "required": [
             "enabled"
          ]
+      },
+      "3152646801": {
+         "title": "Reference",
+         "type": "string"
+      },
+      "3304058386": {
+         "title": "minecraft:mountain_parameters - steep_material_adjustment settings",
+         "type": "object",
+         "properties": {
+            "east_slopes": {
+               "type": "boolean"
+            },
+            "material": {
+               "$ref": "#/definitions/1170899181"
+            },
+            "north_slopes": {
+               "type": "boolean"
+            },
+            "south_slopes": {
+               "type": "boolean"
+            },
+            "west_slopes": {
+               "type": "boolean"
+            }
+         }
       }
    },
    "title": "minecraft:mountain_parameters",
    "type": "object",
    "properties": {
       "steep_material_adjustment": {
-         "$ref": "#/definitions/2278320139"
+         "$ref": "#/definitions/3304058386"
       },
       "top_slide": {
-         "$ref": "#/definitions/3848407258"
+         "$ref": "#/definitions/2064435201"
       }
    }
 }
