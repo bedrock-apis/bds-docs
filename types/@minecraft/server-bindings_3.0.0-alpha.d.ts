@@ -470,6 +470,11 @@ export enum LiquidSettings {
 export enum LiquidType {
    Water = "Water",
 }
+export enum LocatorBarErrorReason {
+   WaypointAlreadyExists = "WaypointAlreadyExists",
+   WaypointLimitExceeded = "WaypointLimitExceeded",
+   WaypointNotFound = "WaypointNotFound",
+}
 export enum MemoryTier {
    High = 3,
    Low = 1,
@@ -601,6 +606,12 @@ export enum WatchdogTerminateReason {
    Hang = "Hang",
    StackOverflow = "StackOverflow",
 }
+export enum WaypointTexture {
+   Circle = "minecraft:circle",
+   SmallSquare = "minecraft:small_square",
+   SmallStar = "minecraft:small_star",
+   Square = "minecraft:square",
+}
 export enum WeatherType {
    Clear = "Clear",
    Rain = "Rain",
@@ -620,7 +631,6 @@ export interface BiomeFilter {
    excludeTags?: Array<string>;
    includeBiomes?: Array<string>;
    includeTags?: Array<string>;
-   superset: boolean;
 }
 export interface BiomeSearchOptions {
    boundingSize?: Vector3;
@@ -867,6 +877,11 @@ export interface EntityRaycastOptions extends EntityFilter {
    includePassableBlocks?: boolean;
    maxDistance?: number;
 }
+export interface EntityVisibilityRules {
+   showDead?: boolean;
+   showInvisible?: boolean;
+   showSneaking?: boolean;
+}
 export interface EqualsComparison {
    equals: boolean | number | string;
 }
@@ -960,6 +975,12 @@ export interface PlayerSoundOptions {
 export interface PlayerSwingEventOptions {
    heldItemOption?: HeldItemOption;
    swingSource?: EntitySwingSource;
+}
+//@ts-ignore
+export interface PlayerVisibilityRules extends EntityVisibilityRules {
+   showHidden?: boolean;
+   showSpectator?: boolean;
+   showSpectatorToSpectator?: boolean;
 }
 export interface ProgressKeyFrame {
    alpha: number;
@@ -1071,6 +1092,14 @@ export interface VectorXZ {
    x: number;
    z: number;
 }
+export interface WaypointTextureBounds {
+   lowerBound: number;
+   texture: WaypointTexture;
+   upperBound?: number;
+}
+export interface WaypointTextureSelector {
+   textureBoundsList: Array<WaypointTextureBounds>;
+}
 export interface WorldSoundOptions {
    pitch?: number;
    volume?: number;
@@ -1141,6 +1170,11 @@ export class AimAssistRegistry {
    public getPresets(): Array<AimAssistPreset>;
    private constructor();
 }
+export class BannerPattern {
+   public readonly color: string;
+   public readonly pattern: string;
+   private constructor();
+}
 export class BiomeType {
    public readonly id: string;
    public getTags(): Array<string>;
@@ -1180,6 +1214,7 @@ export class Block {
    public getItemStack(amount?: number, withData?: boolean): (ItemStack | undefined);
    public getLightLevel(): number;
    public getMapColor(): RGBA;
+   public getParts(): (Array<Block> | undefined);
    public getRedstonePower(): (number | undefined);
    public getSkyLightLevel(): number;
    public getTags(): Array<string>;
@@ -1228,7 +1263,7 @@ export class BlockComponentBlockBreakEvent extends BlockEvent {
 //@ts-ignore
 export class BlockComponentEntityEvent extends BlockEvent {
    public readonly blockPermutation: BlockPermutation;
-   public readonly entitySource?: Entity;
+   public readonly entitySource: Entity;
    public readonly name: string;
    private constructor();
 }
@@ -1621,7 +1656,7 @@ export class Dimension {
    public readonly heightRange: common.NumberRange;
    public readonly id: string;
    public readonly localizationKey: string;
-   public containsBiomes(volume: BlockVolumeBase, biomeFilter: BiomeFilter): boolean;
+   public containsBiomes(volume: BlockVolumeBase, biomeFilter: BiomeFilter, isSuperset: boolean): boolean;
    public containsBlock(volume: BlockVolumeBase, filter: BlockFilter, allowUnloadedChunks?: boolean): boolean;
    public createExplosion(location: Vector3, radius: number, explosionOptions?: ExplosionOptions): boolean;
    public fillBlocks(volume: BlockVolumeBase, block: BlockPermutation | BlockType | string, options?: BlockFillOptions): ListBlockVolume;
@@ -1758,6 +1793,7 @@ export class Entity {
    public readonly target?: Entity;
    public readonly typeId: string;
    public addEffect(effectType: EffectType | string, duration: number, options?: EntityEffectOptions): (Effect | undefined);
+   public addItem(itemStack: ItemStack): (ItemStack | undefined);
    public addTag(tag: string): boolean;
    public applyDamage(amount: number, options?: EntityApplyDamageByProjectileOptions | EntityApplyDamageOptions): boolean;
    public applyImpulse(vector: Vector3): void;
@@ -1890,7 +1926,7 @@ export class EntityComponent extends Component {
 export class EntityDefinitionFeedItem {
    public readonly growth: number;
    public readonly item: string;
-   public readonly resultItem: string;
+   public readonly resultItem?: string;
    private constructor();
 }
 export class EntityDieAfterEvent {
@@ -2483,6 +2519,12 @@ export class EntityWantsJockeyComponent extends EntityComponent {
    private constructor();
 }
 //@ts-ignore
+export class EntityWaypoint extends Waypoint {
+   public readonly entity: Entity;
+   public readonly entityRules: EntityVisibilityRules;
+   public constructor(entity: Entity, textureSelector: WaypointTextureSelector, entityRules: EntityVisibilityRules, color?: RGB);
+}
+//@ts-ignore
 export class ExplorationMapFunction extends LootItemFunction {
    public readonly destination: string;
    private constructor();
@@ -2516,7 +2558,7 @@ export class ExplosionDecayFunction extends LootItemFunction {
 export class FeedItem {
    public readonly healAmount: number;
    public readonly item: string;
-   public readonly resultItem: string;
+   public readonly resultItem?: string;
    public getEffects(): Array<FeedItemEffect>;
    private constructor();
 }
@@ -2918,6 +2960,21 @@ export class ListBlockVolume extends BlockVolumeBase {
    public remove(locations: Array<Vector3>): void;
 }
 //@ts-ignore
+export class LocationWaypoint extends Waypoint {
+   public constructor(dimensionLocation: DimensionLocation, textureSelector: WaypointTextureSelector, color?: RGB);
+   public setDimensionLocation(dimensionLocation: DimensionLocation): void;
+}
+export class LocatorBar {
+   public readonly count: number;
+   public readonly maxCount: number;
+   public addWaypoint(waypoint: Waypoint): void;
+   public getAllWaypoints(): Array<Waypoint>;
+   public hasWaypoint(waypoint: Waypoint): boolean;
+   public removeAllWaypoints(): void;
+   public removeWaypoint(waypoint: Waypoint): void;
+   private constructor();
+}
+//@ts-ignore
 export class LootingEnchantFunction extends LootItemFunction {
    public readonly count: common.NumberRange;
    private constructor();
@@ -3044,8 +3101,10 @@ export class Player extends Entity {
    public readonly isGliding: boolean;
    public readonly isJumping: boolean;
    public readonly level: number;
+   public readonly locatorBar: LocatorBar;
    public readonly name: string;
    public readonly onScreenDisplay: ScreenDisplay;
+   public readonly partyId?: string;
    public readonly playerPermissionLevel: PlayerPermissionLevel;
    public selectedSlotIndex: number;
    public readonly totalXpNeededForNextLevel: number;
@@ -3364,6 +3423,11 @@ export class PlayerUseNameTagAfterEventSignal {
    public unsubscribe(callback: (arg0: PlayerUseNameTagAfterEvent)=>void): void;
    private constructor();
 }
+//@ts-ignore
+export class PlayerWaypoint extends EntityWaypoint {
+   public readonly playerRules: PlayerVisibilityRules;
+   public constructor(player: Player, textureSelector: WaypointTextureSelector, playerRules: PlayerVisibilityRules, color?: RGB);
+}
 export class PotionDeliveryType {
    public readonly id: string;
    private constructor();
@@ -3552,6 +3616,8 @@ export class SetArmorTrimFunction extends LootItemFunction {
 }
 //@ts-ignore
 export class SetBannerDetailsFunction extends LootItemFunction {
+   public readonly baseColor: string;
+   public readonly patterns: Array<BannerPattern>;
    public readonly type: number;
    private constructor();
 }
@@ -3707,7 +3773,7 @@ export class TargetBlockHitAfterEventSignal {
 export class TickingAreaManager {
    public readonly chunkCount: number;
    public readonly maxChunkCount: number;
-   public createTickingArea(identifier: string, options: TickingAreaOptions): Promise<TickingArea>;
+   public createTickingArea(identifier: string, options: TickingAreaOptions): Promise<void>;
    public getAllTickingAreas(): Array<TickingArea>;
    public getTickingArea(identifier: string | TickingArea): (TickingArea | undefined);
    public hasCapacity(options: TickingAreaOptions): boolean;
@@ -3739,6 +3805,15 @@ export class WatchdogTerminateBeforeEvent {
 export class WatchdogTerminateBeforeEventSignal {
    public subscribe(callback: (arg0: WatchdogTerminateBeforeEvent)=>void): (arg0: WatchdogTerminateBeforeEvent)=>void;
    public unsubscribe(callback: (arg0: WatchdogTerminateBeforeEvent)=>void): void;
+   private constructor();
+}
+export class Waypoint {
+   public color?: RGB;
+   public isEnabled: boolean;
+   public readonly isValid: boolean;
+   public textureSelector: WaypointTextureSelector;
+   public getDimensionLocation(): DimensionLocation;
+   public remove(): void;
    private constructor();
 }
 export class WeatherChangeAfterEvent {
@@ -3978,6 +4053,10 @@ export class InvalidContainerSlotError extends Error {
    private constructor();
 }
 //@ts-ignore
+export class InvalidEntityComponentError extends Error {
+   private constructor();
+}
+//@ts-ignore
 export class InvalidEntityError extends Error {
    public readonly id: string;
    public readonly type: string;
@@ -4005,6 +4084,14 @@ export class InvalidStructureError extends Error {
    private constructor();
 }
 //@ts-ignore
+export class InvalidWaypointError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class InvalidWaypointTextureSelectorError extends Error {
+   private constructor();
+}
+//@ts-ignore
 export class ItemCustomComponentAlreadyRegisteredError extends Error {
    private constructor();
 }
@@ -4026,6 +4113,11 @@ export class LocationInUnloadedChunkError extends Error {
 }
 //@ts-ignore
 export class LocationOutOfWorldBoundariesError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class LocatorBarError extends Error {
+   public readonly reason: LocatorBarErrorReason;
    private constructor();
 }
 //@ts-ignore

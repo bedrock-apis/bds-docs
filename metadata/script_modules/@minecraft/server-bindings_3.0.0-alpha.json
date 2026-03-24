@@ -1562,6 +1562,49 @@
       {
          "base_types": [],
          "constants": [],
+         "functions": [],
+         "name": "BannerPattern",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "color",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "pattern",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "BannerPattern"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
          "functions": [
             {
                "arguments": [],
@@ -1713,9 +1756,7 @@
                "arguments": [
                   {
                      "details": {
-                        "default_value": 1,
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
+                        "default_value": 1
                      },
                      "name": "steps",
                      "type": {
@@ -1764,9 +1805,7 @@
                "arguments": [
                   {
                      "details": {
-                        "default_value": 1,
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
+                        "default_value": 1
                      },
                      "name": "steps",
                      "type": {
@@ -2009,9 +2048,7 @@
                "arguments": [
                   {
                      "details": {
-                        "default_value": 1,
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
+                        "default_value": 1
                      },
                      "name": "steps",
                      "type": {
@@ -2257,6 +2294,44 @@
                   "is_bind_type": true,
                   "is_errorable": true,
                   "name": "RGBA"
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getParts",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationInUnloadedChunkError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationOutOfWorldBoundariesError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "optional",
+                  "optional_type": {
+                     "element_type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Block"
+                     },
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "array"
+                  }
                }
             },
             {
@@ -2669,9 +2744,7 @@
                "arguments": [
                   {
                      "details": {
-                        "default_value": 1,
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
+                        "default_value": 1
                      },
                      "name": "steps",
                      "type": {
@@ -2899,9 +2972,7 @@
                "arguments": [
                   {
                      "details": {
-                        "default_value": 1,
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
+                        "default_value": 1
                      },
                      "name": "steps",
                      "type": {
@@ -2988,9 +3059,7 @@
                "arguments": [
                   {
                      "details": {
-                        "default_value": 1,
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
+                        "default_value": 1
                      },
                      "name": "steps",
                      "type": {
@@ -3884,14 +3953,9 @@
                "is_read_only": true,
                "name": "entitySource",
                "type": {
-                  "is_bind_type": false,
+                  "is_bind_type": true,
                   "is_errorable": false,
-                  "name": "optional",
-                  "optional_type": {
-                     "is_bind_type": true,
-                     "is_errorable": false,
-                     "name": "Entity"
-                  }
+                  "name": "Entity"
                }
             },
             {
@@ -8745,8 +8809,7 @@
                "arguments": [
                   {
                      "details": {
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
+                        "min_value": 0
                      },
                      "name": "slot",
                      "type": {
@@ -8783,8 +8846,7 @@
                "arguments": [
                   {
                      "details": {
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
+                        "min_value": 0
                      },
                      "name": "slot",
                      "type": {
@@ -8816,8 +8878,7 @@
                "arguments": [
                   {
                      "details": {
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
+                        "min_value": 0
                      },
                      "name": "fromSlot",
                      "type": {
@@ -8832,8 +8893,7 @@
                   },
                   {
                      "details": {
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
+                        "min_value": 0
                      },
                      "name": "toSlot",
                      "type": {
@@ -8886,8 +8946,7 @@
                "arguments": [
                   {
                      "details": {
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
+                        "min_value": 0
                      },
                      "name": "slot",
                      "type": {
@@ -8947,8 +9006,7 @@
                "arguments": [
                   {
                      "details": {
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
+                        "min_value": 0
                      },
                      "name": "slot",
                      "type": {
@@ -8963,8 +9021,7 @@
                   },
                   {
                      "details": {
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
+                        "min_value": 0
                      },
                      "name": "otherSlot",
                      "type": {
@@ -9017,8 +9074,7 @@
                "arguments": [
                   {
                      "details": {
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
+                        "min_value": 0
                      },
                      "name": "fromSlot",
                      "type": {
@@ -10028,6 +10084,8 @@
                ],
                "is_baked": false,
                "is_read_only": false,
+               "max_value": 255,
+               "min_value": 1,
                "name": "amount",
                "set_privilege": [
                   {
@@ -10747,6 +10805,15 @@
                         "is_bind_type": true,
                         "is_errorable": false,
                         "name": "BiomeFilter"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "isSuperset",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
                      }
                   }
                ],
@@ -13641,6 +13708,59 @@
                "arguments": [
                   {
                      "details": null,
+                     "name": "itemStack",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "ItemStack"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "addItem",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "ContainerRulesError"
+                     },
+                     {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "Error"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidEntityComponentError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidEntityError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "ItemStack"
+                  }
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
                      "name": "tag",
                      "type": {
                         "is_bind_type": false,
@@ -13683,10 +13803,7 @@
             {
                "arguments": [
                   {
-                     "details": {
-                        "max_value": 3.402823466385289e+38,
-                        "min_value": -3.402823466385289e+38
-                     },
+                     "details": null,
                      "name": "amount",
                      "type": {
                         "is_bind_type": false,
@@ -13823,10 +13940,7 @@
                      }
                   },
                   {
-                     "details": {
-                        "max_value": 3.402823466385289e+38,
-                        "min_value": -3.402823466385289e+38
-                     },
+                     "details": null,
                      "name": "verticalStrength",
                      "type": {
                         "is_bind_type": false,
@@ -15297,10 +15411,7 @@
             {
                "arguments": [
                   {
-                     "details": {
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
-                     },
+                     "details": null,
                      "name": "seconds",
                      "type": {
                         "is_bind_type": false,
@@ -16936,7 +17047,12 @@
                "type": {
                   "is_bind_type": false,
                   "is_errorable": false,
-                  "name": "string"
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  }
                }
             }
          ],
@@ -23812,6 +23928,146 @@
             {
                "is_bind_type": true,
                "is_errorable": false,
+               "name": "Waypoint"
+            }
+         ],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "entity",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Entity"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "textureSelector",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "WaypointTextureSelector"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "entityRules",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "EntityVisibilityRules"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "color",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "RGB"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": true,
+               "name": "constructor",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidWaypointTextureSelectorError"
+                     }
+                  ],
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "EntityWaypoint"
+               }
+            }
+         ],
+         "name": "EntityWaypoint",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "entity",
+               "type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidWaypointError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidWaypointTextureSelectorError"
+                     }
+                  ],
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "Entity"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "entityRules",
+               "type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidWaypointError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidWaypointTextureSelectorError"
+                     }
+                  ],
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "EntityVisibilityRules"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "EntityWaypoint"
+         }
+      },
+      {
+         "base_types": [
+            {
+               "is_bind_type": true,
+               "is_errorable": false,
                "name": "LootItemFunction"
             }
          ],
@@ -24306,7 +24562,12 @@
                "type": {
                   "is_bind_type": false,
                   "is_errorable": false,
-                  "name": "string"
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  }
                }
             }
          ],
@@ -25623,10 +25884,7 @@
             {
                "arguments": [
                   {
-                     "details": {
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
-                     },
+                     "details": null,
                      "name": "pageIndex",
                      "type": {
                         "is_bind_type": false,
@@ -25668,10 +25926,7 @@
             {
                "arguments": [
                   {
-                     "details": {
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
-                     },
+                     "details": null,
                      "name": "pageIndex",
                      "type": {
                         "is_bind_type": false,
@@ -25713,10 +25968,7 @@
             {
                "arguments": [
                   {
-                     "details": {
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
-                     },
+                     "details": null,
                      "name": "pageIndex",
                      "type": {
                         "is_bind_type": false,
@@ -25806,10 +26058,7 @@
             {
                "arguments": [
                   {
-                     "details": {
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
-                     },
+                     "details": null,
                      "name": "pageIndex",
                      "type": {
                         "is_bind_type": false,
@@ -25928,10 +26177,7 @@
             {
                "arguments": [
                   {
-                     "details": {
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
-                     },
+                     "details": null,
                      "name": "pageIndex",
                      "type": {
                         "is_bind_type": false,
@@ -29105,6 +29351,8 @@
                ],
                "is_baked": false,
                "is_read_only": false,
+               "max_value": 255,
+               "min_value": 1,
                "name": "amount",
                "set_privilege": [
                   {
@@ -30942,6 +31190,326 @@
             {
                "is_bind_type": true,
                "is_errorable": false,
+               "name": "Waypoint"
+            }
+         ],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "dimensionLocation",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "DimensionLocation"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "textureSelector",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "WaypointTextureSelector"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "color",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "RGB"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": true,
+               "name": "constructor",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidWaypointTextureSelectorError"
+                     }
+                  ],
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "LocationWaypoint"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "dimensionLocation",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "DimensionLocation"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "setDimensionLocation",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "LocationWaypoint",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "LocationWaypoint"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "waypoint",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Waypoint"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "addWaypoint",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "EngineError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidWaypointError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocatorBarError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getAllWaypoints",
+               "return_type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "Waypoint"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "array"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "waypoint",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Waypoint"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "hasWaypoint",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "removeAllWaypoints",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "EngineError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "waypoint",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Waypoint"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "removeWaypoint",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "EngineError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocatorBarError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "LocatorBar",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "count",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "maxCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "LocatorBar"
+         }
+      },
+      {
+         "base_types": [
+            {
+               "is_bind_type": true,
+               "is_errorable": false,
                "name": "LootItemFunction"
             }
          ],
@@ -32143,10 +32711,7 @@
                      }
                   },
                   {
-                     "details": {
-                        "max_value": 3.402823466385289e+38,
-                        "min_value": -3.402823466385289e+38
-                     },
+                     "details": null,
                      "name": "number",
                      "type": {
                         "is_bind_type": false,
@@ -32185,10 +32750,7 @@
                      }
                   },
                   {
-                     "details": {
-                        "max_value": 3.402823466385289e+38,
-                        "min_value": -3.402823466385289e+38
-                     },
+                     "details": null,
                      "name": "speed",
                      "type": {
                         "is_bind_type": false,
@@ -33782,6 +34344,21 @@
                ],
                "is_baked": false,
                "is_read_only": true,
+               "name": "locatorBar",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "LocatorBar"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
                "name": "name",
                "type": {
                   "is_bind_type": false,
@@ -33802,6 +34379,33 @@
                   "is_bind_type": true,
                   "is_errorable": true,
                   "name": "ScreenDisplay"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "partyId",
+               "type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidEntityError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  }
                }
             },
             {
@@ -38633,6 +39237,119 @@
          }
       },
       {
+         "base_types": [
+            {
+               "is_bind_type": true,
+               "is_errorable": false,
+               "name": "EntityWaypoint"
+            }
+         ],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "player",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Player"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "textureSelector",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "WaypointTextureSelector"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "playerRules",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PlayerVisibilityRules"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "color",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "RGB"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": true,
+               "name": "constructor",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidWaypointTextureSelectorError"
+                     }
+                  ],
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "PlayerWaypoint"
+               }
+            }
+         ],
+         "name": "PlayerWaypoint",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "playerRules",
+               "type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidWaypointError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidWaypointTextureSelectorError"
+                     }
+                  ],
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "PlayerVisibilityRules"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "PlayerWaypoint"
+         }
+      },
+      {
          "base_types": [],
          "constants": [],
          "functions": [],
@@ -40422,10 +41139,7 @@
                      }
                   },
                   {
-                     "details": {
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
-                     },
+                     "details": null,
                      "name": "scoreToAdd",
                      "type": {
                         "is_bind_type": false,
@@ -40665,10 +41379,7 @@
                      }
                   },
                   {
-                     "details": {
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
-                     },
+                     "details": null,
                      "name": "score",
                      "type": {
                         "is_bind_type": false,
@@ -41782,6 +42493,41 @@
          "functions": [],
          "name": "SetBannerDetailsFunction",
          "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "baseColor",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "patterns",
+               "type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "BannerPattern"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "array"
+               }
+            },
             {
                "get_privilege": [
                   {
@@ -43446,10 +44192,7 @@
             {
                "arguments": [
                   {
-                     "details": {
-                        "max_value": 4294967295,
-                        "min_value": 0
-                     },
+                     "details": null,
                      "name": "jobId",
                      "type": {
                         "is_bind_type": false,
@@ -43482,10 +44225,7 @@
             {
                "arguments": [
                   {
-                     "details": {
-                        "max_value": 4294967295,
-                        "min_value": 0
-                     },
+                     "details": null,
                      "name": "runId",
                      "type": {
                         "is_bind_type": false,
@@ -43802,10 +44542,7 @@
             {
                "arguments": [
                   {
-                     "details": {
-                        "max_value": 4294967295,
-                        "min_value": 0
-                     },
+                     "details": null,
                      "name": "ticks",
                      "type": {
                         "is_bind_type": false,
@@ -44340,9 +45077,9 @@
                   "is_errorable": true,
                   "name": "promise",
                   "promise_type": {
-                     "is_bind_type": true,
+                     "is_bind_type": false,
                      "is_errorable": false,
-                     "name": "TickingArea"
+                     "name": "undefined"
                   }
                }
             },
@@ -45008,6 +45745,144 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "WatchdogTerminateBeforeEventSignal"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getDimensionLocation",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidWaypointError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidWaypointTextureSelectorError"
+                     }
+                  ],
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "DimensionLocation"
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "remove",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "Waypoint",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "color",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "RGB"
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "isEnabled",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "isValid",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "textureSelector",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "WaypointTextureSelector"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "Waypoint"
          }
       },
       {
@@ -46065,10 +46940,7 @@
             {
                "arguments": [
                   {
-                     "details": {
-                        "max_value": 2147483647,
-                        "min_value": -2147483648
-                     },
+                     "details": null,
                      "name": "absoluteTime",
                      "type": {
                         "is_bind_type": false,
@@ -52472,6 +53344,44 @@
             {
                "is_read_only": true,
                "is_static": true,
+               "name": "WaypointAlreadyExists",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "WaypointAlreadyExists"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "WaypointLimitExceeded",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "WaypointLimitExceeded"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "WaypointNotFound",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "WaypointNotFound"
+            }
+         ],
+         "name": "LocatorBarErrorReason"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
                "name": "High",
                "type": {
                   "is_bind_type": true,
@@ -53556,6 +54466,55 @@
             {
                "is_read_only": true,
                "is_static": true,
+               "name": "Circle",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "minecraft:circle"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "SmallSquare",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "minecraft:small_square"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "SmallStar",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "minecraft:small_star"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Square",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "minecraft:square"
+            }
+         ],
+         "name": "WaypointTexture"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
                "name": "Clear",
                "type": {
                   "is_bind_type": false,
@@ -53871,6 +54830,15 @@
          }
       },
       {
+         "name": "InvalidEntityComponentError",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "InvalidEntityComponentError"
+         }
+      },
+      {
          "name": "InvalidEntityError",
          "properties": [
             {
@@ -53981,6 +54949,24 @@
          }
       },
       {
+         "name": "InvalidWaypointError",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "InvalidWaypointError"
+         }
+      },
+      {
+         "name": "InvalidWaypointTextureSelectorError",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "InvalidWaypointTextureSelectorError"
+         }
+      },
+      {
          "name": "ItemCustomComponentAlreadyRegisteredError",
          "properties": [],
          "type": {
@@ -54032,6 +55018,34 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "LocationOutOfWorldBoundariesError"
+         }
+      },
+      {
+         "name": "LocatorBarError",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  },
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "reason",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "LocatorBarErrorReason"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "LocatorBarError"
          }
       },
       {
@@ -54268,16 +55282,6 @@
                      "is_errorable": false,
                      "name": "array"
                   }
-               }
-            },
-            {
-               "is_baked": false,
-               "is_read_only": false,
-               "name": "superset",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "boolean"
                }
             }
          ],
@@ -57418,6 +58422,62 @@
       },
       {
          "base_types": [],
+         "name": "EntityVisibilityRules",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "showDead",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "boolean"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "showInvisible",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "boolean"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "showSneaking",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "boolean"
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "EntityVisibilityRules"
+         }
+      },
+      {
+         "base_types": [],
          "name": "EqualsComparison",
          "properties": [
             {
@@ -57627,6 +58687,8 @@
             {
                "is_baked": false,
                "is_read_only": false,
+               "max_value": 8,
+               "min_value": 0,
                "name": "allowedSlots",
                "type": {
                   "is_bind_type": false,
@@ -57708,6 +58770,8 @@
             {
                "is_baked": false,
                "is_read_only": false,
+               "max_value": 1000,
+               "min_value": 0,
                "name": "allowedSlots",
                "type": {
                   "is_bind_type": false,
@@ -58710,6 +59774,68 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "PlayerSwingEventOptions"
+         }
+      },
+      {
+         "base_types": [
+            {
+               "is_bind_type": true,
+               "is_errorable": false,
+               "name": "EntityVisibilityRules"
+            }
+         ],
+         "name": "PlayerVisibilityRules",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "showHidden",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "boolean"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "showSpectator",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "boolean"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "showSpectatorToSpectator",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "boolean"
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "PlayerVisibilityRules"
          }
       },
       {
@@ -59945,6 +61071,88 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "VectorXZ"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "WaypointTextureBounds",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "min_value": 0,
+               "name": "lowerBound",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "texture",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "WaypointTexture"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "min_value": 0,
+               "name": "upperBound",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "int32",
+                     "valid_range": {
+                        "max": 2147483647,
+                        "min": -2147483648
+                     }
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WaypointTextureBounds"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "WaypointTextureSelector",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "textureBoundsList",
+               "type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "WaypointTextureBounds"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "array"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WaypointTextureSelector"
          }
       },
       {

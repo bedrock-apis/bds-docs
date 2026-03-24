@@ -1,9 +1,9 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "3925154510",
+   "$id": "1738305950",
    "x-format-version": "1.21.110",
    "definitions": {
-      "825755857": {
+      "1314985857": {
          "title": "Range",
          "type": "object",
          "properties": {
@@ -19,7 +19,7 @@
             "min"
          ]
       },
-      "4240371320": {
+      "3359565352": {
          "title": "Values",
          "type": "object",
          "properties": {
@@ -35,7 +35,7 @@
                      "x-unique-values": true
                   },
                   {
-                     "$ref": "#/definitions/825755857",
+                     "$ref": "#/definitions/1314985857",
                      "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
                   }
                ]
@@ -50,7 +50,8 @@
    "type": "object",
    "propertyNames": {
       "type": "string",
-      "pattern": "^(?![^:]*\\b[mM][iI][nN][eE][cC][rR][aA][fF][tT]\\b)[^:\\s]+:[^:\\s]+$"
+      "pattern": "^\\S+$",
+      "x-regex-flags": "ECMAScript,icase"
    },
    "additionalProperties": {
       "oneOf": [
@@ -61,7 +62,7 @@
             }
          },
          {
-            "$ref": "#/definitions/4240371320"
+            "$ref": "#/definitions/3359565352"
          }
       ]
    }

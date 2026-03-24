@@ -1,0 +1,290 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "3077374526",
+   "x-format-version": "1.26.10",
+   "definitions": {
+      "121353999": {
+         "title": "ActorDefinitionTrigger",
+         "type": "object",
+         "properties": {
+            "event": {
+               "type": "string",
+               "default": ""
+            },
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/1088251937"
+            },
+            "target": {
+               "title": "FilterSubject",
+               "type": "string",
+               "default": "self",
+               "enum": [
+                  "self",
+                  "other",
+                  "player",
+                  "target",
+                  "parent",
+                  "baby",
+                  "block",
+                  "damager",
+                  "holder",
+                  "item"
+               ]
+            }
+         }
+      },
+      "1088251937": {
+         "title": "Filter Group",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/4150989894"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/1088251937"
+               }
+            },
+            {
+               "$ref": "#/definitions/3235433757"
+            }
+         ]
+      },
+      "3235433757": {
+         "title": "Filter Group Map",
+         "type": "object",
+         "properties": {
+            "AND": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "NOT": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "OR": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "all": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "all_of": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "any": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "any_of": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "none_of": {
+               "$ref": "#/definitions/1088251937"
+            }
+         }
+      },
+      "4004946602": {
+         "title": "vec3",
+         "oneOf": [
+            {
+               "type": "array",
+               "items": {
+                  "type": "number"
+               },
+               "minItems": 3,
+               "maxItems": 3
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "x": {
+                     "type": "number",
+                     "default": 0
+                  },
+                  "y": {
+                     "type": "number",
+                     "default": 0
+                  },
+                  "z": {
+                     "type": "number",
+                     "default": 0
+                  }
+               }
+            }
+         ]
+      },
+      "4150989894": {
+         "title": "Filter Test",
+         "type": "object",
+         "properties": {
+            "domain": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "operator": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "subject": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "test": {
+               "type": "string"
+            },
+            "value": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            }
+         },
+         "required": [
+            "test"
+         ]
+      }
+   },
+   "title": "minecraft:behavior.take_flower",
+   "type": "object",
+   "properties": {
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "title": "Goal's control flags",
+            "type": "string",
+            "enum": [
+               "move",
+               "look",
+               "jump"
+            ]
+         }
+      },
+      "filters": {
+         "default": {
+            "OR": null,
+            "all": null,
+            "all_of": null,
+            "AND": null,
+            "any_of": null,
+            "none_of": null,
+            "any": null,
+            "NOT": null
+         },
+         "$ref": "#/definitions/1088251937"
+      },
+      "max_head_rotation_y": {
+         "type": "number",
+         "default": 30,
+         "exclusiveMinimum": 0
+      },
+      "max_rotation_x": {
+         "type": "number",
+         "default": 30,
+         "exclusiveMinimum": 0
+      },
+      "max_wait_time": {
+         "type": "number",
+         "default": 20,
+         "minimum": 0
+      },
+      "min_distance_to_target": {
+         "type": "number",
+         "default": 2,
+         "exclusiveMinimum": 0
+      },
+      "min_wait_time": {
+         "type": "number",
+         "default": 4,
+         "minimum": 0
+      },
+      "on_take_flower": {
+         "default": {
+            "event": "",
+            "target": "self",
+            "filters": {
+               "OR": null,
+               "all": null,
+               "all_of": null,
+               "AND": null,
+               "any_of": null,
+               "none_of": null,
+               "any": null,
+               "NOT": null
+            }
+         },
+         "$ref": "#/definitions/121353999"
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "minimum": 0
+      },
+      "search_area": {
+         "default": [
+            6,
+            2,
+            6
+         ],
+         "$ref": "#/definitions/4004946602"
+      },
+      "speed_multiplier": {
+         "type": "number",
+         "default": 0.5,
+         "minimum": 0
+      }
+   }
+}

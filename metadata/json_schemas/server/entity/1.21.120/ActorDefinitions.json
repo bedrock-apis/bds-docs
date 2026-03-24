@@ -83,6 +83,26 @@
             }
          }
       },
+      "287215707": {
+         "title": "minecraft:experience_reward",
+         "type": "object",
+         "properties": {
+            "on_bred": {
+               "default": {
+                  "expression": "",
+                  "version": -1
+               },
+               "$ref": "#/definitions/3178719147"
+            },
+            "on_death": {
+               "default": {
+                  "expression": "",
+                  "version": -1
+               },
+               "$ref": "#/definitions/3178719147"
+            }
+         }
+      },
       "298010374": {
          "title": "minecraft:behavior.stay_near_noteblock",
          "type": "object",
@@ -380,26 +400,6 @@
             }
          }
       },
-      "957886722": {
-         "title": "minecraft:experience_reward",
-         "type": "object",
-         "properties": {
-            "on_bred": {
-               "default": {
-                  "expression": "",
-                  "version": -1
-               },
-               "$ref": "#/definitions/3178719147"
-            },
-            "on_death": {
-               "default": {
-                  "expression": "",
-                  "version": -1
-               },
-               "$ref": "#/definitions/3178719147"
-            }
-         }
-      },
       "1057040869": {
          "title": "minecraft:tick_world",
          "type": "object",
@@ -448,33 +448,7 @@
                }
             },
             {
-               "type": "object",
-               "properties": {
-                  "AND": {
-                     "$ref": "#/definitions/1088251937"
-                  },
-                  "NOT": {
-                     "$ref": "#/definitions/1088251937"
-                  },
-                  "OR": {
-                     "$ref": "#/definitions/1088251937"
-                  },
-                  "all": {
-                     "$ref": "#/definitions/1088251937"
-                  },
-                  "all_of": {
-                     "$ref": "#/definitions/1088251937"
-                  },
-                  "any": {
-                     "$ref": "#/definitions/1088251937"
-                  },
-                  "any_of": {
-                     "$ref": "#/definitions/1088251937"
-                  },
-                  "none_of": {
-                     "$ref": "#/definitions/1088251937"
-                  }
-               }
+               "$ref": "#/definitions/3235433757"
             }
          ]
       },
@@ -1067,6 +1041,8 @@
                   "item.golden_spear.use",
                   "item.diamond_spear.use",
                   "item.netherite_spear.use",
+                  "pause_growth",
+                  "reset_growth",
                   "undefined"
                ]
             },
@@ -1935,6 +1911,36 @@
             }
          ]
       },
+      "3235433757": {
+         "title": "Filter Group Map",
+         "type": "object",
+         "properties": {
+            "AND": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "NOT": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "OR": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "all": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "all_of": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "any": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "any_of": {
+               "$ref": "#/definitions/1088251937"
+            },
+            "none_of": {
+               "$ref": "#/definitions/1088251937"
+            }
+         }
+      },
       "3273917994": {
          "title": "minecraft:behavior.slime_random_direction",
          "type": "object",
@@ -2534,6 +2540,8 @@
                   "item.golden_spear.use",
                   "item.diamond_spear.use",
                   "item.netherite_spear.use",
+                  "pause_growth",
+                  "reset_growth",
                   "undefined"
                ]
             },
@@ -3165,6 +3173,8 @@
                   "item.golden_spear.use",
                   "item.diamond_spear.use",
                   "item.netherite_spear.use",
+                  "pause_growth",
+                  "reset_growth",
                   "undefined"
                ]
             },
@@ -4262,7 +4272,7 @@
          "description": "Dynamic value"
       },
       "minecraft:experience_reward": {
-         "$ref": "#/definitions/957886722"
+         "$ref": "#/definitions/287215707"
       },
       "minecraft:explode": {
          "description": "Dynamic value"
@@ -4579,7 +4589,10 @@
       "minecraft:push_through": {
          "description": "Dynamic value"
       },
-      "minecraft:pushable": {
+      "minecraft:pushable_by_block": {
+         "description": "Dynamic value"
+      },
+      "minecraft:pushable_by_entity": {
          "description": "Dynamic value"
       },
       "minecraft:raid_trigger": {
@@ -4628,6 +4641,9 @@
          "description": "Dynamic value"
       },
       "minecraft:sensor.find_nearest_entity_from": {
+         "description": "Dynamic value"
+      },
+      "minecraft:sensor.find_nearest_poi": {
          "description": "Dynamic value"
       },
       "minecraft:sensor.in_range_of_block": {

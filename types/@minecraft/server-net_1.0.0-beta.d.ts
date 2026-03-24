@@ -6,6 +6,7 @@ export enum HttpRequestMethod {
    Delete = "Delete",
    Get = "Get",
    Head = "Head",
+   Patch = "Patch",
    Post = "Post",
    Put = "Put",
 }
@@ -44,9 +45,10 @@ export enum PacketId {
    ChangeDimensionPacket = "ChangeDimensionPacket",
    ChangeMobPropertyPacket = "ChangeMobPropertyPacket",
    ChunkRadiusUpdatedPacket = "ChunkRadiusUpdatedPacket",
+   ClientboundAttributeLayerSyncPacket = "ClientboundAttributeLayerSyncPacket",
    ClientboundCloseFormPacket = "ClientboundCloseFormPacket",
    ClientboundControlSchemeSetPacket = "ClientboundControlSchemeSetPacket",
-   ClientboundDataDrivenUICloseAllScreensPacket = "ClientboundDataDrivenUICloseAllScreensPacket",
+   ClientboundDataDrivenUICloseScreenPacket = "ClientboundDataDrivenUICloseScreenPacket",
    ClientboundDataDrivenUIReloadPacket = "ClientboundDataDrivenUIReloadPacket",
    ClientboundDataDrivenUIShowScreenPacket = "ClientboundDataDrivenUIShowScreenPacket",
    ClientboundDataStorePacket = "ClientboundDataStorePacket",
@@ -107,6 +109,7 @@ export enum PacketId {
    LevelEventGenericPacket = "LevelEventGenericPacket",
    LevelEventPacket = "LevelEventPacket",
    LevelSoundEventPacket = "LevelSoundEventPacket",
+   LocatorBarPacket = "LocatorBarPacket",
    LoginPacket = "LoginPacket",
    MapCreateLockedCopyPacket = "MapCreateLockedCopyPacket",
    MapInfoRequestPacket = "MapInfoRequestPacket",
@@ -129,6 +132,7 @@ export enum PacketId {
    OnScreenTextureAnimationPacket = "OnScreenTextureAnimationPacket",
    OpenSignPacket = "OpenSignPacket",
    PacketViolationWarningPacket = "PacketViolationWarningPacket",
+   PartyChangedPacket = "PartyChangedPacket",
    PhotoTransferPacket = "PhotoTransferPacket",
    PlayerActionPacket = "PlayerActionPacket",
    PlayerArmorDamagePacket = "PlayerArmorDamagePacket",
@@ -160,9 +164,11 @@ export enum PacketId {
    ResourcePackClientResponsePacket = "ResourcePackClientResponsePacket",
    ResourcePackDataInfoPacket = "ResourcePackDataInfoPacket",
    ResourcePacksInfoPacket = "ResourcePacksInfoPacket",
+   ResourcePacksReadyForValidationPacket = "ResourcePacksReadyForValidationPacket",
    ResourcePackStackPacket = "ResourcePackStackPacket",
    RespawnPacket = "RespawnPacket",
    ScriptMessagePacket = "ScriptMessagePacket",
+   ServerboundDataDrivenScreenClosedPacket = "ServerboundDataDrivenScreenClosedPacket",
    ServerboundDataStorePacket = "ServerboundDataStorePacket",
    ServerboundDiagnosticsPacket = "ServerboundDiagnosticsPacket",
    ServerboundLoadingScreenPacket = "ServerboundLoadingScreenPacket",
@@ -207,6 +213,7 @@ export enum PacketId {
    SubChunkRequestPacket = "SubChunkRequestPacket",
    SubClientLoginPacket = "SubClientLoginPacket",
    SyncActorPropertyPacket = "SyncActorPropertyPacket",
+   SyncWorldClocksPacket = "SyncWorldClocksPacket",
    TakeItemActorPacket = "TakeItemActorPacket",
    TextPacket = "TextPacket",
    TickingAreasLoadStatusPacket = "TickingAreasLoadStatusPacket",
@@ -299,6 +306,28 @@ export const beforeEvents: NetworkBeforeEvents;
 export const http: HttpClient;
 
 
+//@ts-ignore
+export class HttpRequestBodyTooLargeError extends Error {
+   public readonly maxBytes: number;
+   public readonly providedBytes: number;
+   private constructor();
+}
+//@ts-ignore
+export class HttpRequestLimitExceededError extends Error {
+   public readonly inFlightRequests: number;
+   public readonly maxConcurrentRequests: number;
+   private constructor();
+}
+//@ts-ignore
+export class HttpRequestNotAllowedError extends Error {
+   public readonly uri: string;
+   private constructor();
+}
+//@ts-ignore
+export class HttpsOnlyError extends Error {
+   public readonly uri: string;
+   private constructor();
+}
 //@ts-ignore
 export class InternalHttpRequestError extends Error {
    public readonly code: number;

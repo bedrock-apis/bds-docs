@@ -14,6 +14,14 @@ export class AdminBeforeEvents {
    public readonly asyncPlayerJoin: AsyncPlayerJoinBeforeEventSignal;
    private constructor();
 }
+export class AllowList {
+   public enabled: boolean;
+   public add(player: server.Player | string): void;
+   public contains(player: server.Player | string): boolean;
+   public reloadFile(): void;
+   public remove(player: server.Player | string): void;
+   private constructor();
+}
 export class AsyncPlayerJoinBeforeEvent {
    public readonly name: string;
    public readonly persistentId: string;
@@ -26,6 +34,23 @@ export class AsyncPlayerJoinBeforeEvent {
 export class AsyncPlayerJoinBeforeEventSignal {
    public subscribe(callback: (arg0: AsyncPlayerJoinBeforeEvent)=>Promise<void>): (arg0: AsyncPlayerJoinBeforeEvent)=>Promise<void>;
    public unsubscribe(callback: (arg0: AsyncPlayerJoinBeforeEvent)=>Promise<void>): boolean;
+   private constructor();
+}
+export class DedicatedServerUtils {
+   public readonly allowList: AllowList;
+   public readonly levelStorage: LevelStorage;
+   public stopServer(): void;
+   private constructor();
+}
+export class LevelStorage {
+   public saveHold(): void;
+   public saveQuery(): Array<LevelStorageQuerySnapshotFile>;
+   public saveResume(): void;
+   private constructor();
+}
+export class LevelStorageQuerySnapshotFile {
+   public readonly fileName: string;
+   public readonly fileSize: number;
    private constructor();
 }
 export class SecretString {
@@ -44,13 +69,26 @@ export class ServerVariables {
 
 
 export const beforeEvents: AdminBeforeEvents;
+export const dedicatedServer?: DedicatedServerUtils;
 export const secrets: ServerSecrets;
 export const variables: ServerVariables;
 
 export function transferPlayer(player: server.Player, options: TransferPlayerIpPortOptions | TransferPlayerNetherNetOptions): void;
 
 //@ts-ignore
+export class AllowListFileReloadError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class AllowListModificationError extends Error {
+   private constructor();
+}
+//@ts-ignore
 export class DisconnectedError extends Error {
    public readonly id: string;
+   private constructor();
+}
+//@ts-ignore
+export class LevelStorageSaveStateChangeError extends Error {
    private constructor();
 }
