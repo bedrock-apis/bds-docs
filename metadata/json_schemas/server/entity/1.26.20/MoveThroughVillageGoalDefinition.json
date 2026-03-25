@@ -1,0 +1,35 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "4098221432",
+   "x-format-version": "1.26.20",
+   "title": "minecraft:behavior.move_through_village",
+   "type": "object",
+   "properties": {
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "title": "Goal's control flags",
+            "type": "string",
+            "enum": [
+               "move",
+               "look",
+               "jump"
+            ]
+         }
+      },
+      "only_at_night": {
+         "type": "boolean",
+         "default": false
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "minimum": 0
+      },
+      "speed_multiplier": {
+         "type": "number",
+         "default": 1
+      }
+   }
+}

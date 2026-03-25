@@ -39,6 +39,9 @@ export class AsyncPlayerJoinBeforeEventSignal {
 export class DedicatedServerUtils {
    public readonly allowList: AllowList;
    public readonly levelStorage: LevelStorage;
+   public reloadCDNConfig(): void;
+   public reloadPermissions(): void;
+   public reloadScriptingConfig(): void;
    public stopServer(): void;
    private constructor();
 }
@@ -73,7 +76,9 @@ export const dedicatedServer?: DedicatedServerUtils;
 export const secrets: ServerSecrets;
 export const variables: ServerVariables;
 
+export function deopPlayer(player: server.Player): void;
 export function kickPlayer(player: server.Player, reason?: string): void;
+export function opPlayer(player: server.Player): void;
 export function transferPlayer(player: server.Player, options: TransferPlayerIpPortOptions | TransferPlayerNetherNetOptions): void;
 
 //@ts-ignore
@@ -82,6 +87,10 @@ export class AllowListFileReloadError extends Error {
 }
 //@ts-ignore
 export class AllowListModificationError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class CannotDeopPlayerError extends Error {
    private constructor();
 }
 //@ts-ignore
@@ -95,5 +104,9 @@ export class DisconnectedError extends Error {
 }
 //@ts-ignore
 export class LevelStorageSaveStateChangeError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class PlayerAlreadyOpError extends Error {
    private constructor();
 }

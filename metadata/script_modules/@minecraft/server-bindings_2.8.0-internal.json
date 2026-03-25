@@ -8397,6 +8397,21 @@
                ],
                "is_baked": true,
                "is_read_only": true,
+               "name": "locale",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
                "name": "maxRenderDistance",
                "type": {
                   "is_bind_type": false,
@@ -41247,6 +41262,36 @@
                ],
                "is_baked": false,
                "is_read_only": false,
+               "min_value": 0,
+               "name": "maximumRenderDistance",
+               "set_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "float",
+                     "valid_range": {
+                        "max": 2147483647,
+                        "min": -2147483648
+                     }
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
                "name": "rotation",
                "set_privilege": [
                   {
@@ -41267,6 +41312,8 @@
                ],
                "is_baked": false,
                "is_read_only": false,
+               "max_value": 1000,
+               "min_value": -1000,
                "name": "scale",
                "set_privilege": [
                   {
@@ -41409,8 +41456,25 @@
                "is_static": false,
                "name": "addText",
                "return_type": {
+                  "error_types": [
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "EngineError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrimitiveShapeError"
+                     }
+                  ],
                   "is_bind_type": false,
-                  "is_errorable": false,
+                  "is_errorable": true,
                   "name": "undefined"
                }
             },
@@ -41458,7 +41522,27 @@
             }
          ],
          "name": "PrimitiveShapesManager",
-         "properties": [],
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "maxShapes",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            }
+         ],
          "type": {
             "is_bind_type": true,
             "is_errorable": false,
@@ -46816,6 +46900,26 @@
                ],
                "is_baked": false,
                "is_read_only": false,
+               "name": "backfaceVisible",
+               "set_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
                "name": "backgroundColorOverride",
                "set_privilege": [
                   {
@@ -46878,6 +46982,26 @@
                         "name": "string"
                      }
                   ]
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "textBackfaceVisible",
+               "set_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
                }
             },
             {
@@ -49170,6 +49294,26 @@
                   "is_bind_type": true,
                   "is_errorable": false,
                   "name": "WorldAfterEvents"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "allowCheats",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
                }
             },
             {
@@ -56841,6 +56985,7 @@
    ],
    "errors": [
       {
+         "functions": [],
          "name": "BlockCustomComponentAlreadyRegisteredError",
          "properties": [],
          "type": {
@@ -56850,6 +56995,7 @@
          }
       },
       {
+         "functions": [],
          "name": "BlockCustomComponentReloadNewComponentError",
          "properties": [],
          "type": {
@@ -56859,6 +57005,7 @@
          }
       },
       {
+         "functions": [],
          "name": "BlockCustomComponentReloadNewEventError",
          "properties": [],
          "type": {
@@ -56868,6 +57015,7 @@
          }
       },
       {
+         "functions": [],
          "name": "BlockCustomComponentReloadVersionError",
          "properties": [],
          "type": {
@@ -56877,6 +57025,7 @@
          }
       },
       {
+         "functions": [],
          "name": "BookError",
          "properties": [
             {
@@ -56905,6 +57054,7 @@
          }
       },
       {
+         "functions": [],
          "name": "BookPageContentError",
          "properties": [
             {
@@ -56955,6 +57105,7 @@
          }
       },
       {
+         "functions": [],
          "name": "CommandError",
          "properties": [],
          "type": {
@@ -56964,6 +57115,7 @@
          }
       },
       {
+         "functions": [],
          "name": "ContainerRulesError",
          "properties": [
             {
@@ -56992,6 +57144,7 @@
          }
       },
       {
+         "functions": [],
          "name": "CustomCommandError",
          "properties": [
             {
@@ -57020,6 +57173,7 @@
          }
       },
       {
+         "functions": [],
          "name": "CustomComponentInvalidRegistryError",
          "properties": [],
          "type": {
@@ -57029,6 +57183,7 @@
          }
       },
       {
+         "functions": [],
          "name": "CustomComponentNameError",
          "properties": [
             {
@@ -57057,6 +57212,7 @@
          }
       },
       {
+         "functions": [],
          "name": "EnchantmentLevelOutOfBoundsError",
          "properties": [],
          "type": {
@@ -57066,6 +57222,7 @@
          }
       },
       {
+         "functions": [],
          "name": "EnchantmentTypeNotCompatibleError",
          "properties": [],
          "type": {
@@ -57075,6 +57232,7 @@
          }
       },
       {
+         "functions": [],
          "name": "EnchantmentTypeUnknownIdError",
          "properties": [],
          "type": {
@@ -57084,6 +57242,7 @@
          }
       },
       {
+         "functions": [],
          "name": "EntitySpawnError",
          "properties": [],
          "type": {
@@ -57093,6 +57252,7 @@
          }
       },
       {
+         "functions": [],
          "name": "InvalidBlockComponentError",
          "properties": [],
          "type": {
@@ -57102,6 +57262,7 @@
          }
       },
       {
+         "functions": [],
          "name": "InvalidContainerError",
          "properties": [],
          "type": {
@@ -57111,6 +57272,7 @@
          }
       },
       {
+         "functions": [],
          "name": "InvalidContainerSlotError",
          "properties": [],
          "type": {
@@ -57120,6 +57282,7 @@
          }
       },
       {
+         "functions": [],
          "name": "InvalidEntityComponentError",
          "properties": [],
          "type": {
@@ -57129,6 +57292,7 @@
          }
       },
       {
+         "functions": [],
          "name": "InvalidEntityError",
          "properties": [
             {
@@ -57175,6 +57339,7 @@
          }
       },
       {
+         "functions": [],
          "name": "InvalidItemStackError",
          "properties": [
             {
@@ -57203,6 +57368,7 @@
          }
       },
       {
+         "functions": [],
          "name": "InvalidIteratorError",
          "properties": [],
          "type": {
@@ -57212,6 +57378,7 @@
          }
       },
       {
+         "functions": [],
          "name": "InvalidPotionDeliveryTypeError",
          "properties": [],
          "type": {
@@ -57221,6 +57388,7 @@
          }
       },
       {
+         "functions": [],
          "name": "InvalidPotionEffectTypeError",
          "properties": [],
          "type": {
@@ -57230,6 +57398,7 @@
          }
       },
       {
+         "functions": [],
          "name": "InvalidStructureError",
          "properties": [],
          "type": {
@@ -57239,6 +57408,7 @@
          }
       },
       {
+         "functions": [],
          "name": "InvalidWaypointError",
          "properties": [],
          "type": {
@@ -57248,6 +57418,7 @@
          }
       },
       {
+         "functions": [],
          "name": "InvalidWaypointTextureSelectorError",
          "properties": [],
          "type": {
@@ -57257,6 +57428,7 @@
          }
       },
       {
+         "functions": [],
          "name": "ItemCustomComponentAlreadyRegisteredError",
          "properties": [],
          "type": {
@@ -57266,6 +57438,7 @@
          }
       },
       {
+         "functions": [],
          "name": "ItemCustomComponentReloadNewComponentError",
          "properties": [],
          "type": {
@@ -57275,6 +57448,7 @@
          }
       },
       {
+         "functions": [],
          "name": "ItemCustomComponentReloadNewEventError",
          "properties": [],
          "type": {
@@ -57284,6 +57458,7 @@
          }
       },
       {
+         "functions": [],
          "name": "ItemCustomComponentReloadVersionError",
          "properties": [],
          "type": {
@@ -57293,6 +57468,7 @@
          }
       },
       {
+         "functions": [],
          "name": "LocationInUnloadedChunkError",
          "properties": [],
          "type": {
@@ -57302,6 +57478,7 @@
          }
       },
       {
+         "functions": [],
          "name": "LocationOutOfWorldBoundariesError",
          "properties": [],
          "type": {
@@ -57311,6 +57488,7 @@
          }
       },
       {
+         "functions": [],
          "name": "LocatorBarError",
          "properties": [
             {
@@ -57339,6 +57517,7 @@
          }
       },
       {
+         "functions": [],
          "name": "NamespaceNameError",
          "properties": [
             {
@@ -57367,6 +57546,7 @@
          }
       },
       {
+         "functions": [],
          "name": "PlaceJigsawError",
          "properties": [],
          "type": {
@@ -57376,6 +57556,17 @@
          }
       },
       {
+         "functions": [],
+         "name": "PrimitiveShapeError",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "PrimitiveShapeError"
+         }
+      },
+      {
+         "functions": [],
          "name": "RawMessageError",
          "properties": [],
          "type": {
@@ -57385,6 +57576,7 @@
          }
       },
       {
+         "functions": [],
          "name": "SpawnRulesInvalidRegistryError",
          "properties": [],
          "type": {
@@ -57394,6 +57586,7 @@
          }
       },
       {
+         "functions": [],
          "name": "TickingAreaError",
          "properties": [
             {
@@ -57422,6 +57615,7 @@
          }
       },
       {
+         "functions": [],
          "name": "UnloadedChunksError",
          "properties": [],
          "type": {
@@ -59299,6 +59493,59 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "CustomCommandResult"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "CustomTexture",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "max_value": 1,
+               "min_value": 0,
+               "name": "iconHeight",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "float",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "max_value": 1,
+               "min_value": 0,
+               "name": "iconWidth",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "float",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "path",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "CustomTexture"
          }
       },
       {
@@ -63567,9 +63814,21 @@
                "is_read_only": false,
                "name": "texture",
                "type": {
-                  "is_bind_type": true,
+                  "is_bind_type": false,
                   "is_errorable": false,
-                  "name": "WaypointTexture"
+                  "name": "variant",
+                  "variant_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "CustomTexture"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "WaypointTexture"
+                     }
+                  ]
                }
             },
             {

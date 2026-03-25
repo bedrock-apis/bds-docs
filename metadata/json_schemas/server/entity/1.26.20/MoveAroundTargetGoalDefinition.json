@@ -1,0 +1,209 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "3489422907",
+   "x-format-version": "1.26.20",
+   "definitions": {
+      "100089226": {
+         "title": "Filter Group Map",
+         "type": "object",
+         "properties": {
+            "AND": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "NOT": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "OR": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "none_of": {
+               "$ref": "#/definitions/2789112004"
+            }
+         }
+      },
+      "2457665045": {
+         "title": "Filter Test",
+         "type": "object",
+         "properties": {
+            "domain": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "operator": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "subject": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "test": {
+               "type": "string"
+            },
+            "value": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            }
+         },
+         "required": [
+            "test"
+         ]
+      },
+      "2566306602": {
+         "title": "FloatRange",
+         "type": "object",
+         "properties": {
+            "max": {
+               "type": "number",
+               "default": 0
+            },
+            "min": {
+               "type": "number",
+               "default": 0
+            }
+         }
+      },
+      "2789112004": {
+         "title": "Filter Group",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2457665045"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/2789112004"
+               }
+            },
+            {
+               "$ref": "#/definitions/100089226"
+            }
+         ]
+      }
+   },
+   "title": "minecraft:behavior.move_around_target",
+   "type": "object",
+   "properties": {
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "title": "Goal's control flags",
+            "type": "string",
+            "enum": [
+               "move",
+               "look",
+               "jump"
+            ]
+         }
+      },
+      "destination_pos_spread_degrees": {
+         "type": "number",
+         "default": 90
+      },
+      "destination_position_range": {
+         "default": {
+            "min": 4,
+            "max": 8
+         },
+         "$ref": "#/definitions/2566306602"
+      },
+      "filters": {
+         "default": {
+            "all_of": null,
+            "all": null,
+            "OR": null,
+            "AND": null,
+            "any_of": null,
+            "any": null,
+            "none_of": null,
+            "NOT": null
+         },
+         "$ref": "#/definitions/2789112004"
+      },
+      "height_difference_limit": {
+         "type": "number",
+         "default": 10,
+         "minimum": 0
+      },
+      "horizontal_search_distance": {
+         "type": "integer",
+         "default": 5,
+         "minimum": 0
+      },
+      "movement_speed": {
+         "type": "number",
+         "default": 0.6000000238418579
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "minimum": 0
+      },
+      "vertical_search_distance": {
+         "type": "integer",
+         "default": 5,
+         "minimum": 0
+      }
+   }
+}

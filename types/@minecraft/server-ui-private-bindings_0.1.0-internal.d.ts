@@ -20,16 +20,18 @@ export class DataDrivenScreen {
    public constructor(player: server.Player, screenId: string);
    public hideScreen(): void;
    public isShowing(): boolean;
-   public showScreen(): Promise<DataDrivenScreenResponse>;
+   public showScreen(instanceId?: number): Promise<DataDrivenScreenResponse>;
 }
 export class DataDrivenScreenResponse {
    public readonly closedReason: DataDrivenScreenClosedReason;
    private constructor();
 }
 export class DataStore {
+   public getInstanceIdOverride(): (number | undefined);
    public getProperty(player: server.Player, dataStoreName: string, property: string): (string | undefined);
    public getPropertyPath(player: server.Player, dataStoreName: string, property: string, path: string): (string | undefined);
    public setClientWritable(player: server.Player, dataStoreName: string, property: string, path: string, isWritable?: boolean): void;
+   public setInstanceIdOverride(instanceId?: number): void;
    public setProperty(player: server.Player, dataStoreName: string, property: string, data: string): void;
    public setPropertyPath(player: server.Player, dataStoreName: string, property: string, path: string, data: boolean | number | string): void;
    public subscribe(player: server.Player, dataStoreName: string, property: string, path: string, onChange: (arg0?: string)=>void): (arg0?: string)=>void;

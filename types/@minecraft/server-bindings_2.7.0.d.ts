@@ -1118,6 +1118,13 @@ export class AimAssistRegistry {
 }
 export class BiomeType {
    public readonly id: string;
+   public getTags(): Array<string>;
+   public hasTags(tags: Array<string>): boolean;
+   private constructor();
+}
+export class BiomeTypes {
+   public static get(typeName: string): (BiomeType | undefined);
+   public static getAll(): Array<BiomeType>;
    private constructor();
 }
 export class Block {

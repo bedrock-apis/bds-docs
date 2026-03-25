@@ -174,9 +174,11 @@ export enum PacketId {
    ServerboundLoadingScreenPacket = "ServerboundLoadingScreenPacket",
    ServerboundPackSettingChangePacket = "ServerboundPackSettingChangePacket",
    ServerPlayerPostMovePositionPacket = "ServerPlayerPostMovePositionPacket",
+   ServerPresenceInfoPacket = "ServerPresenceInfoPacket",
    ServerSettingsRequestPacket = "ServerSettingsRequestPacket",
    ServerSettingsResponsePacket = "ServerSettingsResponsePacket",
    ServerStatsPacket = "ServerStatsPacket",
+   ServerStoreInfoPacket = "ServerStoreInfoPacket",
    ServerToClientHandshakePacket = "ServerToClientHandshakePacket",
    SetActorDataPacket = "SetActorDataPacket",
    SetActorLinkPacket = "SetActorLinkPacket",
@@ -241,6 +243,11 @@ export interface PacketEventOptions {
    monitoredPacketIds?: Array<PacketId>;
 }
 
+export class CloseAfterEventSignal {
+   public subscribe(callback: (arg0: WebSocketClientCloseAfterEvent)=>void): (arg0: WebSocketClientCloseAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: WebSocketClientCloseAfterEvent)=>void): void;
+   private constructor();
+}
 export class HttpClient {
    public cancelAll(reason: string): void;
    public get(uri: string): Promise<HttpResponse>;
@@ -272,6 +279,11 @@ export class HttpResponse {
    public readonly status: number;
    private constructor();
 }
+export class MessageAfterEventSignal {
+   public subscribe(callback: (arg0: WebSocketClientReceiveAfterEvent)=>void): (arg0: WebSocketClientReceiveAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: WebSocketClientReceiveAfterEvent)=>void): void;
+   private constructor();
+}
 export class NetworkBeforeEvents {
    public readonly packetReceive: PacketReceiveBeforeEventSignal;
    public readonly packetSend: PacketSendBeforeEventSignal;
@@ -300,10 +312,34 @@ export class PacketSendBeforeEventSignal {
    public unsubscribe(callback: (arg0: PacketSendBeforeEvent)=>void): void;
    private constructor();
 }
+export class WebSocket {
+   public connect(uri: string): Promise<WebSocketClient>;
+   private constructor();
+}
+export class WebSocketClient {
+   public readonly afterEvents: WebSocketClientAfterEvents;
+   public readonly isOpen: boolean;
+   public close(): void;
+   public send(payload: string): void;
+   private constructor();
+}
+export class WebSocketClientAfterEvents {
+   public readonly close: CloseAfterEventSignal;
+   public readonly message: MessageAfterEventSignal;
+   private constructor();
+}
+export class WebSocketClientCloseAfterEvent {
+   private constructor();
+}
+export class WebSocketClientReceiveAfterEvent {
+   public readonly message: string;
+   private constructor();
+}
 
 
 export const beforeEvents: NetworkBeforeEvents;
 export const http: HttpClient;
+export const websocket: WebSocket;
 
 
 //@ts-ignore
@@ -314,8 +350,14 @@ export class HttpRequestLimitExceededError extends Error {
 }
 //@ts-ignore
 export class InternalHttpRequestError extends Error {
-   public readonly code: number;
-   public readonly message: string;
+   public readonly errorCode: number;
+   public readonly errorMessage: string;
+   private constructor();
+}
+//@ts-ignore
+export class InternalWebSocketError extends Error {
+   public readonly errorCode: number;
+   public readonly errorMessage: string;
    private constructor();
 }
 //@ts-ignore
@@ -336,5 +378,21 @@ export class TLSOnlyError extends Error {
 //@ts-ignore
 export class UriNotAllowedError extends Error {
    public readonly uri: string;
+   private constructor();
+}
+//@ts-ignore
+export class WebSocketConnectionFailedError extends Error {
+   public readonly errorCode: number;
+   public readonly uri: string;
+   private constructor();
+}
+//@ts-ignore
+export class WebSocketLimitExceededError extends Error {
+   public readonly connectedSockets: number;
+   public readonly maxConcurrentConnections: number;
+   private constructor();
+}
+//@ts-ignore
+export class WebSocketNotConnectedError extends Error {
    private constructor();
 }

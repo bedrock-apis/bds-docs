@@ -800,6 +800,11 @@ export interface CustomCommandResult {
    message?: string;
    status: CustomCommandStatus;
 }
+export interface CustomTexture {
+   iconHeight: number;
+   iconWidth: number;
+   path: string;
+}
 export interface DefinitionModifier {
    addedComponentGroups: Array<string>;
    removedComponentGroups: Array<string>;
@@ -1142,7 +1147,7 @@ export interface VectorXZ {
 }
 export interface WaypointTextureBounds {
    lowerBound: number;
-   texture: WaypointTexture;
+   texture: CustomTexture | WaypointTexture;
    upperBound?: number;
 }
 export interface WaypointTextureSelector {
@@ -1608,6 +1613,7 @@ export class ChatSendBeforeEventSignal {
 }
 //@ts-ignore
 export class ClientSystemInfo extends SystemInfo {
+   public readonly locale: string;
    public readonly maxRenderDistance: number;
    public readonly platformType: PlatformType;
    private constructor();
@@ -3597,6 +3603,7 @@ export class PrimitiveShape {
    public readonly dimension: Dimension;
    public readonly hasDuration: boolean;
    public readonly location: Vector3;
+   public maximumRenderDistance?: number;
    public rotation: Vector3;
    public scale: number;
    public timeLeft?: number;
@@ -3607,6 +3614,7 @@ export class PrimitiveShape {
    private constructor();
 }
 export class PrimitiveShapesManager {
+   public readonly maxShapes: number;
    public addText(text: TextPrimitive, dimension?: Dimension): void;
    public removeAll(): void;
    public removeText(text: TextPrimitive): void;
@@ -3923,9 +3931,11 @@ export class TargetBlockHitAfterEventSignal {
 }
 //@ts-ignore
 export class TextPrimitive extends PrimitiveShape {
+   public backfaceVisible: boolean;
    public backgroundColorOverride?: RGBA;
    public depthTest: boolean;
    public readonly text: RawMessage | string;
+   public textBackfaceVisible: boolean;
    public useRotation: boolean;
    public constructor(location: DimensionLocation | Vector3, text: RawMessage | string);
    public setText(text: RawMessage | string): void;
@@ -4001,6 +4011,7 @@ export class WeatherChangeBeforeEventSignal {
 }
 export class World {
    public readonly afterEvents: WorldAfterEvents;
+   public allowCheats: boolean;
    public readonly beforeEvents: WorldBeforeEvents;
    public readonly gameRules: GameRules;
    public readonly isHardcore: boolean;
@@ -4291,6 +4302,10 @@ export class NamespaceNameError extends Error {
 }
 //@ts-ignore
 export class PlaceJigsawError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class PrimitiveShapeError extends Error {
    private constructor();
 }
 //@ts-ignore

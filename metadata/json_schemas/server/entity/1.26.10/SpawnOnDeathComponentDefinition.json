@@ -1,0 +1,49 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "2356116542",
+   "x-format-version": "1.26.10",
+   "definitions": {
+      "3861103875": {
+         "title": "IntRange",
+         "type": "object",
+         "properties": {
+            "max": {
+               "type": "integer",
+               "default": 0
+            },
+            "min": {
+               "type": "integer",
+               "default": 0
+            }
+         }
+      }
+   },
+   "title": "minecraft:spawn_on_death",
+   "type": "object",
+   "properties": {
+      "additional_spawn_range": {
+         "default": {
+            "min": 0,
+            "max": 0
+         },
+         "$ref": "#/definitions/3861103875"
+      },
+      "entity_to_spawn": {
+         "type": "string",
+         "default": "self"
+      },
+      "inherit_parent_name": {
+         "type": "boolean",
+         "default": true
+      },
+      "spawn_amount": {
+         "type": "integer",
+         "default": 1,
+         "exclusiveMinimum": 0
+      },
+      "spawn_method": {
+         "type": "string",
+         "default": "spawned"
+      }
+   }
+}

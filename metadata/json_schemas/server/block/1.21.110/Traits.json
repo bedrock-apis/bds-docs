@@ -1,9 +1,29 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "3639862792",
+   "$id": "441048361",
    "x-format-version": "1.21.110",
    "definitions": {
-      "595521793": {
+      "219241380": {
+         "title": "Connection",
+         "type": "object",
+         "properties": {
+            "enabled_states": {
+               "type": "array",
+               "items": {
+                  "title": "Connection Enabled State",
+                  "type": "string",
+                  "enum": [
+                     "minecraft:cardinal_connections"
+                  ]
+               },
+               "minItems": 1
+            }
+         },
+         "required": [
+            "enabled_states"
+         ]
+      },
+      "287521916": {
          "title": "Placement Direction",
          "type": "object",
          "properties": {
@@ -59,48 +79,7 @@
             }
          }
       },
-      "1463434457": {
-         "title": "Connection",
-         "type": "object",
-         "properties": {
-            "enabled_states": {
-               "type": "array",
-               "items": {
-                  "title": "Connection Enabled State",
-                  "type": "string",
-                  "enum": [
-                     "minecraft:cardinal_connections"
-                  ]
-               },
-               "minItems": 1
-            }
-         },
-         "required": [
-            "enabled_states"
-         ]
-      },
-      "2125795619": {
-         "title": "Placement Position",
-         "type": "object",
-         "properties": {
-            "enabled_states": {
-               "type": "array",
-               "items": {
-                  "title": "Placement Position Enabled State",
-                  "type": "string",
-                  "enum": [
-                     "minecraft:block_face",
-                     "minecraft:vertical_half"
-                  ]
-               },
-               "minItems": 1
-            }
-         },
-         "required": [
-            "enabled_states"
-         ]
-      },
-      "2318834135": {
+      "1235439510": {
          "title": "Multi Block",
          "type": "object",
          "properties": {
@@ -165,6 +144,27 @@
                "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
             }
          ]
+      },
+      "3516045664": {
+         "title": "Placement Position",
+         "type": "object",
+         "properties": {
+            "enabled_states": {
+               "type": "array",
+               "items": {
+                  "title": "Placement Position Enabled State",
+                  "type": "string",
+                  "enum": [
+                     "minecraft:block_face",
+                     "minecraft:vertical_half"
+                  ]
+               },
+               "minItems": 1
+            }
+         },
+         "required": [
+            "enabled_states"
+         ]
       }
    },
    "title": "Traits",
@@ -174,15 +174,15 @@
          "default": {
             "enabled_states": []
          },
-         "$ref": "#/definitions/1463434457"
+         "$ref": "#/definitions/219241380"
       },
       "minecraft:multi_block": {
          "default": {
-            "parts": 2,
             "enabled_states": [],
+            "parts": 2,
             "direction": "up"
          },
-         "$ref": "#/definitions/2318834135"
+         "$ref": "#/definitions/1235439510"
       },
       "minecraft:placement_direction": {
          "default": {
@@ -190,14 +190,14 @@
             "y_rotation_offset": null,
             "blocks_to_corner_with": []
          },
-         "$ref": "#/definitions/595521793",
+         "$ref": "#/definitions/287521916",
          "x-runtime-constraint-description": "\"y_rotation_offset\" can only be used when \"minecraft:cardinal_direction\" and/or \"minecraft:facing_direction\" are enabled in \"enabled_states\". and \"blocks_to_corner_with\" can only be used when \"minecraft:corner_and_cardinal_direction\" is enabled in \"enabled_states\"."
       },
       "minecraft:placement_position": {
          "default": {
             "enabled_states": []
          },
-         "$ref": "#/definitions/2125795619"
+         "$ref": "#/definitions/3516045664"
       }
    }
 }

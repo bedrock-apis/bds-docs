@@ -82,9 +82,11 @@ export class DebugSphere extends DebugShape {
 }
 //@ts-ignore
 export class DebugText extends DebugShape {
+   public backfaceVisible: boolean;
    public backgroundColorOverride?: server.RGBA;
    public depthTest: boolean;
    public readonly text: server.RawMessage | string;
+   public textBackfaceVisible: boolean;
    public useRotation: boolean;
    public constructor(location: server.DimensionLocation | server.Vector3, text: server.RawMessage | string);
    public setText(text: server.RawMessage | string): void;
