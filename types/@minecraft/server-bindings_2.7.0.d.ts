@@ -1668,6 +1668,7 @@ export class Entity {
    public readonly scoreboardIdentity?: ScoreboardIdentity;
    public readonly typeId: string;
    public addEffect(effectType: EffectType | string, duration: number, options?: EntityEffectOptions): (Effect | undefined);
+   public addItem(itemStack: ItemStack): (ItemStack | undefined);
    public addTag(tag: string): boolean;
    public applyDamage(amount: number, options?: EntityApplyDamageByProjectileOptions | EntityApplyDamageOptions): boolean;
    public applyImpulse(vector: Vector3): void;
@@ -3802,6 +3803,10 @@ export class InvalidContainerError extends Error {
 }
 //@ts-ignore
 export class InvalidContainerSlotError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class InvalidEntityComponentError extends Error {
    private constructor();
 }
 //@ts-ignore

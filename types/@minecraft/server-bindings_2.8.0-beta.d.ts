@@ -317,6 +317,7 @@ export enum EntityHealCause {
    Heal = "Heal",
    Regeneration = "Regeneration",
    SelfHeal = "SelfHeal",
+   TotemOfUndying = "TotemOfUndying",
 }
 export enum EntityInitializationCause {
    Born = "Born",
@@ -647,6 +648,7 @@ export interface BlockContainerAccessEventOptions {
 }
 export interface BlockCustomComponent {
    beforeOnPlayerPlace?: (arg0: BlockComponentPlayerPlaceBeforeEvent, arg1: CustomComponentParameters)=>void;
+   onBlockStateChange?: (arg0: BlockComponentBlockStateChangeEvent, arg1: CustomComponentParameters)=>void;
    onBreak?: (arg0: BlockComponentBlockBreakEvent, arg1: CustomComponentParameters)=>void;
    onEntity?: (arg0: BlockComponentEntityEvent, arg1: CustomComponentParameters)=>void;
    onEntityFallOn?: (arg0: BlockComponentEntityFallOnEvent, arg1: CustomComponentParameters)=>void;
@@ -976,6 +978,10 @@ export interface MusicOptions {
 export interface NotEqualsComparison {
    notEquals: boolean | number | string;
 }
+export interface PartyInfo {
+   isLeader: boolean;
+   partyId: string;
+}
 export interface PlayAnimationOptions {
    blendOutTime?: number;
    controller?: string;
@@ -1283,6 +1289,11 @@ export class BlockComponentBlockBreakEvent extends BlockEvent {
    private constructor();
 }
 //@ts-ignore
+export class BlockComponentBlockStateChangeEvent extends BlockEvent {
+   public readonly previousPermutation: BlockPermutation;
+   private constructor();
+}
+//@ts-ignore
 export class BlockComponentEntityEvent extends BlockEvent {
    public readonly blockPermutation: BlockPermutation;
    public readonly entitySource: Entity;
@@ -1327,6 +1338,7 @@ export class BlockComponentRandomTickEvent extends BlockEvent {
 }
 //@ts-ignore
 export class BlockComponentRedstoneUpdateEvent extends BlockEvent {
+   public readonly firstUpdate: boolean;
    public readonly powerLevel: number;
    public readonly previousPowerLevel: number;
    private constructor();
@@ -1457,6 +1469,7 @@ export class BlockPistonComponent extends BlockComponent {
 export class BlockPrecipitationInteractionsComponent extends BlockComponent {
    public static readonly componentId = "minecraft:precipitation_interactions";
    public accumulatesSnow(): boolean;
+   public isSnowLoggable(): boolean;
    public obstructsRain(): boolean;
    private constructor();
 }
@@ -1736,6 +1749,7 @@ export class Dimension {
    public spawnEntity(identifier: EntityType | string, location: Vector3, options?: SpawnEntityOptions): Entity;
    public spawnItem(itemStack: ItemStack, location: Vector3): Entity;
    public spawnParticle(effectName: string, location: Vector3, molangVariables?: MolangVariableMap): void;
+   public spawnXp(location: Vector3, amount: number): void;
    public stopAllSounds(): void;
    public stopSound(soundId: string): void;
    private constructor();
@@ -1837,6 +1851,8 @@ export class Entity {
    public readonly isValid: boolean;
    public readonly localizationKey: string;
    public readonly location: Vector3;
+   public nameplateDepthTested: boolean;
+   public nameplateRenderDistance: number;
    public nameTag: string;
    public readonly scoreboardIdentity?: ScoreboardIdentity;
    public readonly target?: Entity;
@@ -3166,6 +3182,10 @@ export class PistonActivateAfterEventSignal {
 //@ts-ignore
 export class Player extends Entity {
    public readonly camera: Camera;
+   public readonly chatDisplayName: string;
+   public chatMessagePrefix?: string;
+   public chatNamePrefix?: string;
+   public chatNameSuffix?: string;
    public readonly clientSystemInfo: ClientSystemInfo;
    public commandPermissionLevel: CommandPermissionLevel;
    public readonly graphicsMode: GraphicsMode;
@@ -3179,7 +3199,7 @@ export class Player extends Entity {
    public readonly locatorBar: LocatorBar;
    public readonly name: string;
    public readonly onScreenDisplay: ScreenDisplay;
-   public readonly partyId?: string;
+   public readonly partyInfo?: PartyInfo;
    public readonly playerPermissionLevel: PlayerPermissionLevel;
    public selectedSlotIndex: number;
    public readonly totalXpNeededForNextLevel: number;

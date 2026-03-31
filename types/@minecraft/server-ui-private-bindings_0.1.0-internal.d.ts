@@ -13,6 +13,11 @@ export enum DataDrivenScreenRejectReason {
    PlayerLeave = "PlayerLeave",
    ServerShutdown = "ServerShutdown",
 }
+export enum InternalTextFilteringError {
+   DisabledByPlayer = "DisabledByPlayer",
+   TextProcessorServiceUnreachable = "TextProcessorServiceUnreachable",
+   Unknown = "Unknown",
+}
 
 
 export class DataDrivenScreen {
@@ -27,6 +32,7 @@ export class DataDrivenScreenResponse {
    private constructor();
 }
 export class DataStore {
+   public getFilteredText(player: server.Player, text: string): Promise<Array<InternalTextFilteringError> | string>;
    public getInstanceIdOverride(): (number | undefined);
    public getProperty(player: server.Player, dataStoreName: string, property: string): (string | undefined);
    public getPropertyPath(player: server.Player, dataStoreName: string, property: string, path: string): (string | undefined);

@@ -350,7 +350,8 @@
                   "blueflame",
                   "greenflame",
                   "pausemobgrowth",
-                  "resetmobgrowth"
+                  "resetmobgrowth",
+                  "sulfurcube"
                ]
             },
             "sound_event": {
@@ -911,6 +912,8 @@
                   "item.netherite_spear.use",
                   "pause_growth",
                   "reset_growth",
+                  "pushed_by_player",
+                  "bounce",
                   "undefined"
                ]
             }
@@ -971,6 +974,26 @@
                   }
                }
             }
+         ]
+      },
+      "590136708": {
+         "title": "description",
+         "type": "object",
+         "properties": {
+            "identifier": {
+               "$ref": "#/definitions/3586578163"
+            },
+            "menu_category": {
+               "default": {
+                  "category": "none",
+                  "group": null,
+                  "is_hidden_in_commands": null
+               },
+               "$ref": "#/definitions/3821849217"
+            }
+         },
+         "required": [
+            "identifier"
          ]
       },
       "714977863": {
@@ -1597,6 +1620,8 @@
                   "item.netherite_spear.use",
                   "pause_growth",
                   "reset_growth",
+                  "pushed_by_player",
+                  "bounce",
                   "undefined"
                ]
             },
@@ -2157,6 +2182,8 @@
                   "item.netherite_spear.use",
                   "pause_growth",
                   "reset_growth",
+                  "pushed_by_player",
+                  "bounce",
                   "undefined"
                ]
             },
@@ -2717,6 +2744,8 @@
                   "item.netherite_spear.use",
                   "pause_growth",
                   "reset_growth",
+                  "pushed_by_player",
+                  "bounce",
                   "undefined"
                ]
             }
@@ -2977,26 +3006,6 @@
                }
             }
          }
-      },
-      "2003339578": {
-         "title": "description",
-         "type": "object",
-         "properties": {
-            "identifier": {
-               "$ref": "#/definitions/3586578163"
-            },
-            "menu_category": {
-               "default": {
-                  "category": "none",
-                  "group": null,
-                  "is_hidden_in_commands": null
-               },
-               "$ref": "#/definitions/4029201081"
-            }
-         },
-         "required": [
-            "identifier"
-         ]
       },
       "2014847524": {
          "title": "Molang expression",
@@ -3853,6 +3862,8 @@
                   "item.netherite_spear.use",
                   "pause_growth",
                   "reset_growth",
+                  "pushed_by_player",
+                  "bounce",
                   "undefined"
                ]
             },
@@ -4500,6 +4511,8 @@
                   "item.netherite_spear.use",
                   "pause_growth",
                   "reset_growth",
+                  "pushed_by_player",
+                  "bounce",
                   "undefined"
                ]
             }
@@ -4624,6 +4637,33 @@
             }
          ]
       },
+      "3821849217": {
+         "title": "menu_category",
+         "type": "object",
+         "properties": {
+            "category": {
+               "title": "CreativeItemCategory",
+               "type": "string",
+               "default": "none",
+               "enum": [
+                  "construction",
+                  "nature",
+                  "equipment",
+                  "items",
+                  "none"
+               ]
+            },
+            "group": {
+               "type": "string",
+               "maxLength": 256,
+               "pattern": "^(?:.)+:(?:.)+$",
+               "x-regex-flags": "ECMAScript,icase"
+            },
+            "is_hidden_in_commands": {
+               "type": "boolean"
+            }
+         }
+      },
       "3842531986": {
          "title": "minecraft:damage_absorption",
          "type": "object",
@@ -4651,33 +4691,6 @@
             "min": {
                "type": "integer",
                "default": 0
-            }
-         }
-      },
-      "4029201081": {
-         "title": "menu_category",
-         "type": "object",
-         "properties": {
-            "category": {
-               "title": "CreativeItemCategory",
-               "type": "string",
-               "default": "none",
-               "enum": [
-                  "construction",
-                  "nature",
-                  "equipment",
-                  "items",
-                  "none"
-               ]
-            },
-            "group": {
-               "type": "string",
-               "maxLength": 256,
-               "pattern": "^(?:.)+:(?:.)+$",
-               "x-regex-flags": "ECMAScript,icase"
-            },
-            "is_hidden_in_commands": {
-               "type": "boolean"
             }
          }
       },
@@ -4794,7 +4807,7 @@
          "$ref": "#/definitions/372342379"
       },
       "description": {
-         "$ref": "#/definitions/2003339578"
+         "$ref": "#/definitions/590136708"
       }
    },
    "required": [

@@ -350,7 +350,8 @@
                   "blueflame",
                   "greenflame",
                   "pausemobgrowth",
-                  "resetmobgrowth"
+                  "resetmobgrowth",
+                  "sulfurcube"
                ]
             },
             "sound_event": {
@@ -911,6 +912,8 @@
                   "item.netherite_spear.use",
                   "pause_growth",
                   "reset_growth",
+                  "pushed_by_player",
+                  "bounce",
                   "undefined"
                ]
             }
@@ -1597,6 +1600,8 @@
                   "item.netherite_spear.use",
                   "pause_growth",
                   "reset_growth",
+                  "pushed_by_player",
+                  "bounce",
                   "undefined"
                ]
             },
@@ -2157,6 +2162,8 @@
                   "item.netherite_spear.use",
                   "pause_growth",
                   "reset_growth",
+                  "pushed_by_player",
+                  "bounce",
                   "undefined"
                ]
             },
@@ -2717,6 +2724,8 @@
                   "item.netherite_spear.use",
                   "pause_growth",
                   "reset_growth",
+                  "pushed_by_player",
+                  "bounce",
                   "undefined"
                ]
             }
@@ -2842,33 +2851,6 @@
             }
          ]
       },
-      "1494190463": {
-         "title": "menu_category",
-         "type": "object",
-         "properties": {
-            "category": {
-               "title": "CreativeItemCategory",
-               "type": "string",
-               "default": "none",
-               "enum": [
-                  "construction",
-                  "nature",
-                  "equipment",
-                  "items",
-                  "none"
-               ]
-            },
-            "group": {
-               "type": "string",
-               "maxLength": 256,
-               "pattern": "^(?:.)+:(?:.)+$",
-               "x-regex-flags": "ECMAScript,icase"
-            },
-            "is_hidden_in_commands": {
-               "type": "boolean"
-            }
-         }
-      },
       "1570893760": {
          "title": "minecraft:display_name",
          "type": "object",
@@ -2902,6 +2884,26 @@
          "required": [
             "category",
             "duration"
+         ]
+      },
+      "1682980338": {
+         "title": "description",
+         "type": "object",
+         "properties": {
+            "identifier": {
+               "$ref": "#/definitions/3586578163"
+            },
+            "menu_category": {
+               "default": {
+                  "category": "none",
+                  "group": null,
+                  "is_hidden_in_commands": null
+               },
+               "$ref": "#/definitions/4145409907"
+            }
+         },
+         "required": [
+            "identifier"
          ]
       },
       "1722961183": {
@@ -3252,26 +3254,6 @@
                "$ref": "#/definitions/2566306602"
             }
          }
-      },
-      "2971879566": {
-         "title": "description",
-         "type": "object",
-         "properties": {
-            "identifier": {
-               "$ref": "#/definitions/3586578163"
-            },
-            "menu_category": {
-               "default": {
-                  "category": "none",
-                  "group": null,
-                  "is_hidden_in_commands": null
-               },
-               "$ref": "#/definitions/1494190463"
-            }
-         },
-         "required": [
-            "identifier"
-         ]
       },
       "3093766462": {
          "title": "Block Descriptor",
@@ -3880,6 +3862,8 @@
                   "item.netherite_spear.use",
                   "pause_growth",
                   "reset_growth",
+                  "pushed_by_player",
+                  "bounce",
                   "undefined"
                ]
             },
@@ -4527,6 +4511,8 @@
                   "item.netherite_spear.use",
                   "pause_growth",
                   "reset_growth",
+                  "pushed_by_player",
+                  "bounce",
                   "undefined"
                ]
             }
@@ -4685,6 +4671,33 @@
          "title": "Reference",
          "type": "string"
       },
+      "4145409907": {
+         "title": "menu_category",
+         "type": "object",
+         "properties": {
+            "category": {
+               "title": "CreativeItemCategory",
+               "type": "string",
+               "default": "none",
+               "enum": [
+                  "construction",
+                  "nature",
+                  "equipment",
+                  "items",
+                  "none"
+               ]
+            },
+            "group": {
+               "type": "string",
+               "maxLength": 256,
+               "pattern": "^(?:.)+:(?:.)+$",
+               "x-regex-flags": "ECMAScript,icase"
+            },
+            "is_hidden_in_commands": {
+               "type": "boolean"
+            }
+         }
+      },
       "4219241994": {
          "title": "minecraft:liquid_clipped",
          "oneOf": [
@@ -4794,7 +4807,7 @@
          "$ref": "#/definitions/372342379"
       },
       "description": {
-         "$ref": "#/definitions/2971879566"
+         "$ref": "#/definitions/1682980338"
       }
    },
    "required": [

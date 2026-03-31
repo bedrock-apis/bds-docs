@@ -1,0 +1,287 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "737223098",
+   "x-format-version": "1.26.20",
+   "definitions": {
+      "100089226": {
+         "title": "Filter Group Map",
+         "type": "object",
+         "properties": {
+            "AND": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "NOT": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "OR": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "none_of": {
+               "$ref": "#/definitions/2789112004"
+            }
+         }
+      },
+      "1429287564": {
+         "title": "Item Descriptor",
+         "oneOf": [
+            {
+               "type": "string"
+            },
+            {
+               "type": "object",
+               "additionalProperties": {
+                  "type": "string"
+               }
+            }
+         ]
+      },
+      "2457665045": {
+         "title": "Filter Test",
+         "type": "object",
+         "properties": {
+            "domain": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "operator": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "subject": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "test": {
+               "type": "string"
+            },
+            "value": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            }
+         },
+         "required": [
+            "test"
+         ]
+      },
+      "2789112004": {
+         "title": "Filter Group",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2457665045"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/2789112004"
+               }
+            },
+            {
+               "$ref": "#/definitions/100089226"
+            }
+         ]
+      },
+      "3379368818": {
+         "title": "ActorDefinitionTrigger",
+         "type": "object",
+         "properties": {
+            "event": {
+               "type": "string",
+               "default": ""
+            },
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/2789112004"
+            },
+            "target": {
+               "title": "FilterSubject",
+               "type": "string",
+               "default": "self",
+               "enum": [
+                  "self",
+                  "other",
+                  "player",
+                  "target",
+                  "parent",
+                  "baby",
+                  "block",
+                  "damager",
+                  "holder",
+                  "item"
+               ]
+            }
+         }
+      }
+   },
+   "title": "minecraft:behavior.pickup_items",
+   "type": "object",
+   "properties": {
+      "can_pickup_any_item": {
+         "type": "boolean",
+         "default": false
+      },
+      "can_pickup_to_hand_or_equipment": {
+         "type": "boolean",
+         "default": true
+      },
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "title": "Goal's control flags",
+            "type": "string",
+            "enum": [
+               "move",
+               "look",
+               "jump"
+            ]
+         }
+      },
+      "cooldown_after_being_attacked": {
+         "type": "integer",
+         "default": 0
+      },
+      "excluded_items": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "#/definitions/1429287564"
+         }
+      },
+      "goal_radius": {
+         "type": "number",
+         "default": 0.5
+      },
+      "max_dist": {
+         "type": "integer",
+         "default": 1
+      },
+      "on_pickup_item_end": {
+         "default": {
+            "event": "",
+            "target": "self",
+            "filters": {
+               "all_of": null,
+               "all": null,
+               "OR": null,
+               "AND": null,
+               "any_of": null,
+               "any": null,
+               "none_of": null,
+               "NOT": null
+            }
+         },
+         "$ref": "#/definitions/3379368818"
+      },
+      "on_pickup_item_start": {
+         "default": {
+            "event": "",
+            "target": "self",
+            "filters": {
+               "all_of": null,
+               "all": null,
+               "OR": null,
+               "AND": null,
+               "any_of": null,
+               "any": null,
+               "none_of": null,
+               "NOT": null
+            }
+         },
+         "$ref": "#/definitions/3379368818"
+      },
+      "pickup_based_on_chance": {
+         "type": "boolean",
+         "default": false
+      },
+      "pickup_same_items_as_in_hand": {
+         "type": "boolean",
+         "default": false
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "minimum": 0
+      },
+      "search_height": {
+         "type": "integer",
+         "default": 1
+      },
+      "speed_multiplier": {
+         "type": "number",
+         "default": 1
+      },
+      "track_target": {
+         "type": "boolean",
+         "default": false
+      }
+   }
+}

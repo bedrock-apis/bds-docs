@@ -1082,11 +1082,13 @@
             },
             "group": {
                "type": "string",
+               "default": "",
                "pattern": "^\\S+$",
                "x-regex-flags": "ECMAScript,icase"
             },
             "is_hidden_in_commands": {
-               "type": "boolean"
+               "type": "boolean",
+               "default": false
             }
          },
          "required": [
@@ -1532,6 +1534,11 @@
                "x-regex-flags": "ECMAScript,icase"
             },
             "menu_category": {
+               "default": {
+                  "category": "none",
+                  "group": "",
+                  "is_hidden_in_commands": false
+               },
                "$ref": "#/definitions/2743259834"
             },
             "states": {

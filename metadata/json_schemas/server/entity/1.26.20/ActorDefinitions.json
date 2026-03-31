@@ -881,6 +881,8 @@
                   "item.netherite_spear.use",
                   "pause_growth",
                   "reset_growth",
+                  "pushed_by_player",
+                  "bounce",
                   "undefined"
                ]
             },
@@ -1264,6 +1266,52 @@
             }
          }
       },
+      "315797137": {
+         "title": "minecraft:apply_knockback_rules",
+         "type": "object",
+         "properties": {
+            "check_if_target_is_immersed_in_water": {
+               "type": "boolean",
+               "default": false
+            },
+            "horizontal_power": {
+               "type": "number",
+               "default": 1
+            },
+            "vertical_power": {
+               "type": "number",
+               "default": 0.4000000059604645
+            },
+            "vertical_velocity_cap": {
+               "type": "number",
+               "default": 0.4000000059604645
+            }
+         }
+      },
+      "343958640": {
+         "title": "minecraft:behavior.player_ride_tamed",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            }
+         }
+      },
       "352673228": {
          "title": "minecraft:behavior.fertilize_farm_block",
          "type": "object",
@@ -1325,6 +1373,9 @@
       },
       "355630026": {
          "title": "BodyRotationAlwaysFollowsHeadDefinition"
+      },
+      "359329739": {
+         "title": "minecraft:pushable_by_entity"
       },
       "424549894": {
          "title": "OnEquipmentChangedSlotEntryDescriptor",
@@ -2072,6 +2123,8 @@
                   "item.netherite_spear.use",
                   "pause_growth",
                   "reset_growth",
+                  "pushed_by_player",
+                  "bounce",
                   "undefined"
                ]
             },
@@ -2929,6 +2982,8 @@
                   "item.netherite_spear.use",
                   "pause_growth",
                   "reset_growth",
+                  "pushed_by_player",
+                  "bounce",
                   "undefined"
                ]
             },
@@ -3499,6 +3554,8 @@
                   "item.netherite_spear.use",
                   "pause_growth",
                   "reset_growth",
+                  "pushed_by_player",
+                  "bounce",
                   "undefined"
                ]
             },
@@ -4100,6 +4157,8 @@
                   "item.netherite_spear.use",
                   "pause_growth",
                   "reset_growth",
+                  "pushed_by_player",
+                  "bounce",
                   "undefined"
                ]
             },
@@ -4317,6 +4376,111 @@
                }
             }
          ]
+      },
+      "737223098": {
+         "title": "minecraft:behavior.pickup_items",
+         "type": "object",
+         "properties": {
+            "can_pickup_any_item": {
+               "type": "boolean",
+               "default": false
+            },
+            "can_pickup_to_hand_or_equipment": {
+               "type": "boolean",
+               "default": true
+            },
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "cooldown_after_being_attacked": {
+               "type": "integer",
+               "default": 0
+            },
+            "excluded_items": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/1429287564"
+               }
+            },
+            "goal_radius": {
+               "type": "number",
+               "default": 0.5
+            },
+            "max_dist": {
+               "type": "integer",
+               "default": 1
+            },
+            "on_pickup_item_end": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "all_of": null,
+                     "all": null,
+                     "OR": null,
+                     "AND": null,
+                     "any_of": null,
+                     "any": null,
+                     "none_of": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/3379368818"
+            },
+            "on_pickup_item_start": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "all_of": null,
+                     "all": null,
+                     "OR": null,
+                     "AND": null,
+                     "any_of": null,
+                     "any": null,
+                     "none_of": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/3379368818"
+            },
+            "pickup_based_on_chance": {
+               "type": "boolean",
+               "default": false
+            },
+            "pickup_same_items_as_in_hand": {
+               "type": "boolean",
+               "default": false
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "search_height": {
+               "type": "integer",
+               "default": 1
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1
+            },
+            "track_target": {
+               "type": "boolean",
+               "default": false
+            }
+         }
       },
       "742152213": {
          "title": "Vec2",
@@ -4955,6 +5119,8 @@
                   "item.netherite_spear.use",
                   "pause_growth",
                   "reset_growth",
+                  "pushed_by_player",
+                  "bounce",
                   "undefined"
                ]
             },
@@ -5021,6 +5187,46 @@
             "use_default_animation": {
                "type": "boolean",
                "default": true
+            }
+         }
+      },
+      "823494865": {
+         "title": "minecraft:behavior.pet_sleep_with_owner",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "goal_radius": {
+               "type": "number",
+               "default": 0.5
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "search_height": {
+               "type": "integer",
+               "default": 1
+            },
+            "search_range": {
+               "type": "integer",
+               "default": 0
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1
             }
          }
       },
@@ -8994,6 +9200,8 @@
                   "item.netherite_spear.use",
                   "pause_growth",
                   "reset_growth",
+                  "pushed_by_player",
+                  "bounce",
                   "undefined"
                ]
             },
@@ -11059,6 +11267,8 @@
                   "item.netherite_spear.use",
                   "pause_growth",
                   "reset_growth",
+                  "pushed_by_player",
+                  "bounce",
                   "undefined"
                ]
             },
@@ -11258,6 +11468,9 @@
       "minecraft:annotation.open_door": {
          "description": "Dynamic value"
       },
+      "minecraft:apply_knockback_rules": {
+         "$ref": "#/definitions/315797137"
+      },
       "minecraft:area_attack": {
          "description": "Dynamic value"
       },
@@ -11435,7 +11648,7 @@
       "minecraft:behavior.follow_parent": {
          "$ref": "#/definitions/3148256395"
       },
-      "minecraft:behavior.follow_target_captain": {
+      "minecraft:behavior.follow_target_leader": {
          "description": "Dynamic value"
       },
       "minecraft:behavior.go_and_give_items_to_noteblock": {
@@ -11592,10 +11805,10 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.pet_sleep_with_owner": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/823494865"
       },
       "minecraft:behavior.pickup_items": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/737223098"
       },
       "minecraft:behavior.place_block": {
          "description": "Dynamic value"
@@ -11607,7 +11820,7 @@
          "$ref": "#/definitions/2807530677"
       },
       "minecraft:behavior.player_ride_tamed": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/343958640"
       },
       "minecraft:behavior.raid_garden": {
          "$ref": "#/definitions/489956372"
@@ -12288,7 +12501,7 @@
          "description": "Dynamic value"
       },
       "minecraft:pushable_by_entity": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/359329739"
       },
       "minecraft:raid_trigger": {
          "description": "Dynamic value"

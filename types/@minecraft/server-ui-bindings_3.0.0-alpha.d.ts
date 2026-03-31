@@ -80,6 +80,27 @@ export class ModalFormResponse extends FormResponse {
    public readonly formValues?: Array<boolean | number | string | undefined>;
    private constructor();
 }
+export class ObservableBoolean {
+   public constructor(data: boolean);
+   public getData(): boolean;
+   public setData(data: boolean): void;
+   public subscribe(callback: (arg0: boolean)=>void): (arg0: boolean)=>void;
+   public unsubscribe(callback: (arg0: boolean)=>void): boolean;
+}
+export class ObservableNumber {
+   public constructor(data: number);
+   public getData(): number;
+   public setData(data: number): void;
+   public subscribe(callback: (arg0: number)=>void): (arg0: number)=>void;
+   public unsubscribe(callback: (arg0: number)=>void): boolean;
+}
+export class ObservableString {
+   public constructor(data: string);
+   public getData(): string;
+   public setData(data: string): void;
+   public subscribe(callback: (arg0: string)=>void): (arg0: string)=>void;
+   public unsubscribe(callback: (arg0: string)=>void): boolean;
+}
 export class UIManager {
    public closeAllForms(player: server.Player): void;
    private constructor();

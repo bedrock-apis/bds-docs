@@ -195,6 +195,7 @@ export class DataStore {
    public readonly menuContainer: DataStoreMenuContainer;
    public readonly modalToolContainer: DataStoreModalToolContainer;
    public readonly paneContainer: DataStorePaneContainer;
+   public sendNetworkEvent(dataTag: string, payload: string): void;
    public sendNotificationEvent(dataTag: string, payload: string): void;
    private constructor();
 }

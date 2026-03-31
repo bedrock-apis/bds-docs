@@ -67,6 +67,7 @@ export class DebugShape {
    public readonly dimension: server.Dimension;
    public readonly hasDuration: boolean;
    public readonly location: server.Vector3;
+   public maximumRenderDistance?: number;
    public rotation: server.Vector3;
    public scale: number;
    public timeLeft?: number;
