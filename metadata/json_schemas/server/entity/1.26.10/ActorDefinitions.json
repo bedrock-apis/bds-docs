@@ -245,6 +245,41 @@
       "122002744": {
          "title": "CanPowerJumpDefinition"
       },
+      "230539035": {
+         "title": "minecraft:apply_knockback_rules_instance",
+         "type": "object",
+         "properties": {
+            "check_if_target_is_immersed_in_water": {
+               "type": "boolean",
+               "default": false
+            },
+            "filter": {
+               "default": {
+                  "all_of": null,
+                  "all": null,
+                  "OR": null,
+                  "AND": null,
+                  "any_of": null,
+                  "any": null,
+                  "none_of": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/2789112004"
+            },
+            "horizontal_power": {
+               "type": "number",
+               "default": 1
+            },
+            "vertical_power": {
+               "type": "number",
+               "default": 0.4000000059604645
+            },
+            "vertical_velocity_cap": {
+               "type": "number",
+               "default": 0.4000000059604645
+            }
+         }
+      },
       "259696098": {
          "title": "minecraft:behavior.celebrate",
          "type": "object",
@@ -843,13 +878,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "OR": null,
-                     "all": null,
                      "all_of": null,
+                     "all": null,
+                     "OR": null,
                      "AND": null,
                      "any_of": null,
-                     "none_of": null,
                      "any": null,
+                     "none_of": null,
                      "NOT": null
                   }
                },
@@ -1189,28 +1224,6 @@
             "target_dig_position_offset": {
                "type": "number",
                "default": 2.25
-            }
-         }
-      },
-      "315797137": {
-         "title": "minecraft:apply_knockback_rules",
-         "type": "object",
-         "properties": {
-            "check_if_target_is_immersed_in_water": {
-               "type": "boolean",
-               "default": false
-            },
-            "horizontal_power": {
-               "type": "number",
-               "default": 1
-            },
-            "vertical_power": {
-               "type": "number",
-               "default": 0.4000000059604645
-            },
-            "vertical_velocity_cap": {
-               "type": "number",
-               "default": 0.4000000059604645
             }
          }
       },
@@ -6829,6 +6842,19 @@
             }
          }
       },
+      "2673184818": {
+         "title": "minecraft:apply_knockback_rules",
+         "type": "object",
+         "properties": {
+            "presets": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/230539035"
+               }
+            }
+         }
+      },
       "2691830830": {
          "title": "FireImmuneDefinition"
       },
@@ -9922,7 +9948,7 @@
          "description": "Dynamic value"
       },
       "minecraft:apply_knockback_rules": {
-         "$ref": "#/definitions/315797137"
+         "$ref": "#/definitions/2673184818"
       },
       "minecraft:area_attack": {
          "description": "Dynamic value"

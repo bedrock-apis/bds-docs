@@ -1,0 +1,222 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "2492648039",
+   "x-format-version": "1.26.20",
+   "definitions": {
+      "100089226": {
+         "title": "Filter Group Map",
+         "type": "object",
+         "properties": {
+            "AND": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "NOT": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "OR": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "none_of": {
+               "$ref": "#/definitions/2789112004"
+            }
+         }
+      },
+      "2457665045": {
+         "title": "Filter Test",
+         "type": "object",
+         "properties": {
+            "domain": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "operator": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "subject": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "test": {
+               "type": "string"
+            },
+            "value": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            }
+         },
+         "required": [
+            "test"
+         ]
+      },
+      "2789112004": {
+         "title": "Filter Group",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2457665045"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/2789112004"
+               }
+            },
+            {
+               "$ref": "#/definitions/100089226"
+            }
+         ]
+      },
+      "3379368818": {
+         "title": "ActorDefinitionTrigger",
+         "type": "object",
+         "properties": {
+            "event": {
+               "type": "string",
+               "default": ""
+            },
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/2789112004"
+            },
+            "target": {
+               "title": "FilterSubject",
+               "type": "string",
+               "default": "self",
+               "enum": [
+                  "self",
+                  "other",
+                  "player",
+                  "target",
+                  "parent",
+                  "baby",
+                  "block",
+                  "damager",
+                  "holder",
+                  "item"
+               ]
+            }
+         }
+      }
+   },
+   "title": "minecraft:behavior.go_home",
+   "type": "object",
+   "properties": {
+      "calculate_new_path_radius": {
+         "type": "number",
+         "default": 2
+      },
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "title": "Goal's control flags",
+            "type": "string",
+            "enum": [
+               "move",
+               "look",
+               "jump"
+            ]
+         }
+      },
+      "goal_radius": {
+         "type": "number",
+         "default": 0.5
+      },
+      "interval": {
+         "type": "integer",
+         "default": 120
+      },
+      "on_failed": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "#/definitions/3379368818"
+         }
+      },
+      "on_home": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "#/definitions/3379368818"
+         }
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "minimum": 0
+      },
+      "speed_multiplier": {
+         "type": "number",
+         "default": 1
+      }
+   }
+}

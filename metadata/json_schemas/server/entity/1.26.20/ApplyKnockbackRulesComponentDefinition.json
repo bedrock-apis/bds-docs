@@ -1,7 +1,7 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "2334974500",
-   "x-format-version": "beta",
+   "$id": "2673184818",
+   "x-format-version": "1.26.20",
    "definitions": {
       "100089226": {
          "title": "Filter Group Map",
@@ -33,11 +33,15 @@
             }
          }
       },
-      "1432208322": {
-         "title": "PushableByEntityPreset",
+      "230539035": {
+         "title": "minecraft:apply_knockback_rules_instance",
          "type": "object",
          "properties": {
-            "filters": {
+            "check_if_target_is_immersed_in_water": {
+               "type": "boolean",
+               "default": false
+            },
+            "filter": {
                "default": {
                   "all_of": null,
                   "all": null,
@@ -50,52 +54,17 @@
                },
                "$ref": "#/definitions/2789112004"
             },
-            "kick_distance_threshold": {
-               "type": "number",
-               "default": 1.2999999523162842
-            },
-            "kick_speed_scale": {
-               "type": "number",
-               "default": 2
-            },
-            "max_kick_speed": {
-               "type": "number",
-               "default": 0.5
-            },
-            "min_distance": {
-               "type": "number",
-               "default": 0.009999999776482582
-            },
-            "min_kick_speed": {
-               "type": "number",
-               "default": 0
-            },
-            "push_mode": {
-               "title": "PushMode",
-               "type": "string",
-               "default": "default",
-               "enum": [
-                  "default",
-                  "legacy_boat",
-                  "legacy_minecart",
-                  "ball"
-               ]
-            },
-            "push_scale_other": {
+            "horizontal_power": {
                "type": "number",
                "default": 1
             },
-            "push_scale_self": {
+            "vertical_power": {
                "type": "number",
-               "default": 1
+               "default": 0.4000000059604645
             },
-            "strength_multiplier": {
+            "vertical_velocity_cap": {
                "type": "number",
-               "default": 0.05000000074505806
-            },
-            "vertical_kick_multiplier": {
-               "type": "number",
-               "default": 0.30000001192092896
+               "default": 0.4000000059604645
             }
          }
       },
@@ -193,14 +162,14 @@
          ]
       }
    },
-   "title": "minecraft:pushable_by_entity",
+   "title": "minecraft:apply_knockback_rules",
    "type": "object",
    "properties": {
       "presets": {
          "type": "array",
          "default": [],
          "items": {
-            "$ref": "#/definitions/1432208322"
+            "$ref": "#/definitions/230539035"
          }
       }
    }

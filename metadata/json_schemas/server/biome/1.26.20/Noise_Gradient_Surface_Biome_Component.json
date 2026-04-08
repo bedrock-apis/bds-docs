@@ -47,11 +47,26 @@
    "title": "minecraft:noise_gradient",
    "type": "object",
    "properties": {
+      "amplitudes": {
+         "type": "array",
+         "items": {
+            "type": "number"
+         },
+         "minItems": 1
+      },
+      "first_octave": {
+         "type": "integer"
+      },
       "gradient_blocks": {
          "type": "array",
          "items": {
             "$ref": "#/definitions/1170899181"
-         }
+         },
+         "minItems": 1
+      },
+      "noise_seed_string": {
+         "type": "string",
+         "minLength": 1
       },
       "non_replaceable_blocks": {
          "type": "array",
@@ -75,7 +90,10 @@
       }
    },
    "required": [
+      "amplitudes",
+      "first_octave",
       "gradient_blocks",
+      "noise_seed_string",
       "non_replaceable_blocks",
       "type"
    ]

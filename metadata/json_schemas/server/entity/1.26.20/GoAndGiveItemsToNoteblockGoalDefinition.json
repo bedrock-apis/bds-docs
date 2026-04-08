@@ -1,7 +1,7 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "259696098",
-   "x-format-version": "1.26.10",
+   "$id": "1168075298",
+   "x-format-version": "1.26.20",
    "definitions": {
       "100089226": {
          "title": "Filter Group Map",
@@ -109,20 +109,6 @@
             "test"
          ]
       },
-      "2566306602": {
-         "title": "FloatRange",
-         "type": "object",
-         "properties": {
-            "max": {
-               "type": "number",
-               "default": 0
-            },
-            "min": {
-               "type": "number",
-               "default": 0
-            }
-         }
-      },
       "2789112004": {
          "title": "Filter Group",
          "oneOf": [
@@ -181,13 +167,54 @@
          }
       }
    },
-   "title": "minecraft:behavior.celebrate",
+   "title": "minecraft:behavior.go_and_give_items_to_noteblock",
    "type": "object",
    "properties": {
-      "celebration_sound": {
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "title": "Goal's control flags",
+            "type": "string",
+            "enum": [
+               "move",
+               "look",
+               "jump"
+            ]
+         }
+      },
+      "listen_time": {
+         "type": "integer",
+         "default": 30
+      },
+      "on_item_throw": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "#/definitions/3379368818"
+         }
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "minimum": 0
+      },
+      "reach_block_distance": {
+         "type": "number",
+         "default": 3
+      },
+      "run_speed": {
+         "type": "number",
+         "default": 1
+      },
+      "throw_force": {
+         "type": "number",
+         "default": 0.20000000298023224
+      },
+      "throw_sound": {
          "title": "LevelSoundEvent",
          "type": "string",
-         "default": "celebrate",
+         "default": "charge",
          "enum": [
             "item.use.on",
             "hit",
@@ -747,61 +774,9 @@
             "undefined"
          ]
       },
-      "control_flags": {
-         "type": "array",
-         "default": [],
-         "items": {
-            "title": "Goal's control flags",
-            "type": "string",
-            "enum": [
-               "move",
-               "look",
-               "jump"
-            ]
-         }
-      },
-      "duration": {
+      "vertical_throw_mul": {
          "type": "number",
-         "default": 30,
-         "minimum": 0
-      },
-      "jump_interval": {
-         "default": {
-            "min": 1,
-            "max": 3.5
-         },
-         "$ref": "#/definitions/2566306602",
-         "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
-      },
-      "on_celebration_end_event": {
-         "default": {
-            "event": "",
-            "target": "self",
-            "filters": {
-               "all_of": null,
-               "all": null,
-               "OR": null,
-               "AND": null,
-               "any_of": null,
-               "any": null,
-               "none_of": null,
-               "NOT": null
-            }
-         },
-         "$ref": "#/definitions/3379368818"
-      },
-      "priority": {
-         "type": "integer",
-         "default": 0,
-         "minimum": 0
-      },
-      "sound_interval": {
-         "default": {
-            "min": 2,
-            "max": 7
-         },
-         "$ref": "#/definitions/2566306602",
-         "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
+         "default": 1.5
       }
    }
 }

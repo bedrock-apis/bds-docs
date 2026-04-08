@@ -1746,6 +1746,10 @@ export class Dimension {
    public stopSound(soundId: string): void;
    private constructor();
 }
+export class DimensionRegistry {
+   public registerCustomDimension(typeId: string): void;
+   private constructor();
+}
 export class DimensionType {
    public readonly typeId: string;
    private constructor();
@@ -3812,6 +3816,7 @@ export class StartupBeforeEventSignal {
 export class StartupEvent {
    public readonly blockComponentRegistry: BlockComponentRegistry;
    public readonly customCommandRegistry: CustomCommandRegistry;
+   public readonly dimensionRegistry: DimensionRegistry;
    public readonly itemComponentRegistry: ItemComponentRegistry;
    private constructor();
 }
@@ -4150,6 +4155,22 @@ export class CustomComponentInvalidRegistryError extends Error {
 //@ts-ignore
 export class CustomComponentNameError extends Error {
    public readonly reason: CustomComponentNameErrorReason;
+   private constructor();
+}
+//@ts-ignore
+export class CustomDimensionAlreadyRegisteredError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class CustomDimensionInvalidRegistryError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class CustomDimensionNameError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class CustomDimensionReloadNewDimensionError extends Error {
    private constructor();
 }
 //@ts-ignore

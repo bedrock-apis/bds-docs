@@ -1,0 +1,185 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "2356116542",
+   "x-format-version": "1.26.20",
+   "definitions": {
+      "100089226": {
+         "title": "Filter Group Map",
+         "type": "object",
+         "properties": {
+            "AND": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "NOT": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "OR": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "none_of": {
+               "$ref": "#/definitions/2789112004"
+            }
+         }
+      },
+      "2457665045": {
+         "title": "Filter Test",
+         "type": "object",
+         "properties": {
+            "domain": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "operator": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "subject": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "test": {
+               "type": "string"
+            },
+            "value": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            }
+         },
+         "required": [
+            "test"
+         ]
+      },
+      "2789112004": {
+         "title": "Filter Group",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2457665045"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/2789112004"
+               }
+            },
+            {
+               "$ref": "#/definitions/100089226"
+            }
+         ]
+      },
+      "3861103875": {
+         "title": "IntRange",
+         "type": "object",
+         "properties": {
+            "max": {
+               "type": "integer",
+               "default": 0
+            },
+            "min": {
+               "type": "integer",
+               "default": 0
+            }
+         }
+      }
+   },
+   "title": "minecraft:spawn_on_death",
+   "type": "object",
+   "properties": {
+      "additional_spawn_range": {
+         "default": {
+            "min": 0,
+            "max": 0
+         },
+         "$ref": "#/definitions/3861103875"
+      },
+      "entity_to_spawn": {
+         "type": "string",
+         "default": "self"
+      },
+      "filters": {
+         "default": {
+            "all_of": null,
+            "all": null,
+            "OR": null,
+            "AND": null,
+            "any_of": null,
+            "any": null,
+            "none_of": null,
+            "NOT": null
+         },
+         "$ref": "#/definitions/2789112004"
+      },
+      "inherit_parent_name": {
+         "type": "boolean",
+         "default": true
+      },
+      "spawn_amount": {
+         "type": "integer",
+         "default": 1,
+         "exclusiveMinimum": 0
+      },
+      "spawn_method": {
+         "type": "string",
+         "default": "spawned"
+      }
+   }
+}
