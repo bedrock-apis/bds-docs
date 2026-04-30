@@ -1,0 +1,49 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "1177007155",
+   "x-format-version": "MISSING VERSION",
+   "x-protocol-version": 986,
+   "definitions": {
+      "767557450": {
+         "title": "PositionTrackingId",
+         "type": "object",
+         "properties": {
+            "Value": {
+               "type": "integer",
+               "x-underlying-type": "int32",
+               "x-serialization-options": [
+                  "Compression"
+               ],
+               "x-ordinal-index": 0
+            }
+         },
+         "required": [
+            "Value"
+         ]
+      }
+   },
+   "title": "PositionTrackingDBClientRequestPacket",
+   "type": "object",
+   "properties": {
+      "Action": {
+         "title": "PositionTrackingDBClientRequestPacketPayload::Action",
+         "type": "string",
+         "enum": [
+            "Query"
+         ],
+         "x-underlying-type": "uint8",
+         "x-serialization-options": [
+            "Enum-as-Value"
+         ],
+         "x-ordinal-index": 0
+      },
+      "Id": {
+         "$ref": "#/definitions/767557450",
+         "x-ordinal-index": 1
+      }
+   },
+   "required": [
+      "Action",
+      "Id"
+   ]
+}

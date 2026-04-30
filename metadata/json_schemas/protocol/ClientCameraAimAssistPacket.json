@@ -1,0 +1,37 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "2262784813",
+   "x-format-version": "MISSING VERSION",
+   "x-protocol-version": 986,
+   "title": "ClientCameraAimAssistPacket",
+   "type": "object",
+   "properties": {
+      "Action": {
+         "title": "ClientCameraAimAssistPacketAction",
+         "type": "string",
+         "enum": [
+            "SetFromCameraPreset",
+            "Clear"
+         ],
+         "x-underlying-type": "uint8",
+         "x-serialization-options": [
+            "Enum-as-Value"
+         ],
+         "x-ordinal-index": 1
+      },
+      "Allow aim assist": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 2
+      },
+      "Camera Preset Id": {
+         "type": "string",
+         "x-ordinal-index": 0
+      }
+   },
+   "required": [
+      "Action",
+      "Camera Preset Id"
+   ]
+}

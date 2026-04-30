@@ -1,0 +1,28 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "1228646201",
+   "x-format-version": "MISSING VERSION",
+   "x-protocol-version": 986,
+   "title": "SimpleEventPacket",
+   "type": "object",
+   "properties": {
+      "Type": {
+         "title": "Subtype",
+         "type": "string",
+         "enum": [
+            "UninitializedSubtype",
+            "EnableCommands",
+            "DisableCommands",
+            "UnlockWorldTemplateSettings"
+         ],
+         "x-underlying-type": "uint16",
+         "x-serialization-options": [
+            "Enum-as-Value"
+         ],
+         "x-ordinal-index": 0
+      }
+   },
+   "required": [
+      "Type"
+   ]
+}

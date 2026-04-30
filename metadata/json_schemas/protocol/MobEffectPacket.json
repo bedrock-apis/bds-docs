@@ -1,0 +1,115 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "2418207548",
+   "x-format-version": "MISSING VERSION",
+   "x-protocol-version": 986,
+   "definitions": {
+      "1262916889": {
+         "title": "PlayerInputTick",
+         "type": "object",
+         "properties": {
+            "Input tick": {
+               "type": "integer",
+               "x-underlying-type": "uint64",
+               "x-serialization-options": [
+                  "Compression"
+               ],
+               "x-ordinal-index": 0,
+               "minimum": 0
+            }
+         },
+         "required": [
+            "Input tick"
+         ]
+      },
+      "1750201151": {
+         "title": "ActorRuntimeID",
+         "type": "object",
+         "properties": {
+            "Actor Runtime ID": {
+               "type": "integer",
+               "x-underlying-type": "uint64",
+               "x-serialization-options": [
+                  "Compression"
+               ],
+               "x-ordinal-index": 0,
+               "minimum": 0
+            }
+         },
+         "required": [
+            "Actor Runtime ID"
+         ]
+      }
+   },
+   "title": "MobEffectPacket",
+   "type": "object",
+   "properties": {
+      "Ambient": {
+         "type": "boolean",
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 7
+      },
+      "Effect Amplifier": {
+         "type": "integer",
+         "x-underlying-type": "int32",
+         "x-serialization-options": [
+            "Compression"
+         ],
+         "x-ordinal-index": 3
+      },
+      "Effect Duration Ticks": {
+         "type": "integer",
+         "x-underlying-type": "int32",
+         "x-serialization-options": [
+            "Compression"
+         ],
+         "x-ordinal-index": 5
+      },
+      "Effect ID": {
+         "type": "integer",
+         "x-underlying-type": "int32",
+         "x-serialization-options": [
+            "Compression"
+         ],
+         "x-ordinal-index": 2
+      },
+      "Event ID": {
+         "title": "MobEffectPacketPayload::Event",
+         "type": "string",
+         "enum": [
+            "Invalid",
+            "Add",
+            "Update",
+            "Remove"
+         ],
+         "x-underlying-type": "uint8",
+         "x-serialization-options": [
+            "Enum-as-Value"
+         ],
+         "x-ordinal-index": 1
+      },
+      "Show Particles": {
+         "type": "boolean",
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 4
+      },
+      "Target Runtime ID": {
+         "$ref": "#/definitions/1750201151",
+         "x-ordinal-index": 0
+      },
+      "Tick": {
+         "$ref": "#/definitions/1262916889",
+         "x-ordinal-index": 6
+      }
+   },
+   "required": [
+      "Ambient",
+      "Effect Amplifier",
+      "Effect Duration Ticks",
+      "Effect ID",
+      "Event ID",
+      "Show Particles",
+      "Target Runtime ID",
+      "Tick"
+   ]
+}

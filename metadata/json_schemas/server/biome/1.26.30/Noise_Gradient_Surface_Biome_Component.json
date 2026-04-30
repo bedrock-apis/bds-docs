@@ -1,0 +1,154 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "1609720327",
+   "x-format-version": "1.26.30",
+   "definitions": {
+      "1170899181": {
+         "title": "Block Specifier",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/3152646801"
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "name": {
+                     "$ref": "#/definitions/3152646801"
+                  },
+                  "states": {
+                     "type": "object",
+                     "additionalProperties": {
+                        "oneOf": [
+                           {
+                              "type": "integer"
+                           },
+                           {
+                              "type": "boolean"
+                           },
+                           {
+                              "type": "string"
+                           }
+                        ]
+                     },
+                     "default": {}
+                  }
+               },
+               "required": [
+                  "name"
+               ]
+            }
+         ]
+      },
+      "1854367640": {
+         "title": "NoiseDescriptor",
+         "type": "object",
+         "properties": {
+            "amplitudes": {
+               "type": "array",
+               "items": {
+                  "type": "number"
+               },
+               "minItems": 1,
+               "maxItems": 100
+            },
+            "first_octave": {
+               "type": "integer"
+            },
+            "name": {
+               "type": "string"
+            }
+         },
+         "required": [
+            "amplitudes",
+            "first_octave",
+            "name"
+         ]
+      },
+      "2521241142": {
+         "title": "NoiseBlockSpecifier",
+         "type": "object",
+         "properties": {
+            "block": {
+               "$ref": "#/definitions/1170899181"
+            },
+            "noise": {
+               "type": "string",
+               "default": "",
+               "pattern": "^\\S+$",
+               "x-regex-flags": "ECMAScript,icase"
+            },
+            "range": {
+               "default": {
+                  "min": 0,
+                  "max": 0
+               },
+               "$ref": "#/definitions/2566306602"
+            },
+            "threshold": {
+               "type": "number",
+               "default": 0
+            }
+         },
+         "required": [
+            "block"
+         ]
+      },
+      "2566306602": {
+         "title": "FloatRange",
+         "type": "object",
+         "properties": {
+            "max": {
+               "type": "number",
+               "default": 0
+            },
+            "min": {
+               "type": "number",
+               "default": 0
+            }
+         }
+      },
+      "3152646801": {
+         "title": "Reference",
+         "type": "string"
+      }
+   },
+   "title": "minecraft:noise_gradient",
+   "type": "object",
+   "properties": {
+      "noise_block_specifiers": {
+         "type": "array",
+         "items": {
+            "$ref": "#/definitions/2521241142"
+         },
+         "minItems": 1
+      },
+      "noise_descriptor": {
+         "$ref": "#/definitions/1854367640"
+      },
+      "non_replaceable_blocks": {
+         "type": "array",
+         "items": {
+            "$ref": "#/definitions/1170899181"
+         }
+      },
+      "type": {
+         "title": "SurfaceBuilderType",
+         "type": "string",
+         "const": "minecraft:noise_gradient",
+         "enum": [
+            "minecraft:overworld",
+            "minecraft:frozen_ocean",
+            "minecraft:mesa",
+            "minecraft:swamp",
+            "minecraft:capped",
+            "minecraft:the_end",
+            "minecraft:noise_gradient"
+         ]
+      }
+   },
+   "required": [
+      "noise_block_specifiers",
+      "noise_descriptor",
+      "type"
+   ]
+}

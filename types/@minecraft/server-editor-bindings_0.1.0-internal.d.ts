@@ -120,7 +120,13 @@ export enum LogChannel {
    Toast = 2,
 }
 export enum MinimapMarkerType {
+   Custom = 2,
+   Location = 1,
    Multiplayer = 0,
+}
+export enum MinimapTrackingMode {
+   FollowPlayer = 0,
+   FreeCenter = 1,
 }
 export enum MinimapViewType {
    BlockView = 0,
@@ -175,10 +181,12 @@ export enum PrimitiveType {
    Line = 2,
    Pyramid = 8,
    Text = 0,
+   WireframeMesh = 12,
 }
 export enum ProjectExportType {
    PlayableWorld = 0,
    ProjectBackup = 1,
+   ShareableWorld = 3,
    WorldTemplate = 2,
 }
 export enum SelectionVolumeEventType {
@@ -394,7 +402,6 @@ export interface GameOptions {
    keepPlayerData?: boolean;
    lanVisibility?: boolean;
    limitedCrafting?: boolean;
-   locatorBar?: boolean;
    maxCommandChainLength?: number;
    mobGriefing?: boolean;
    mobLoot?: boolean;
@@ -403,6 +410,7 @@ export interface GameOptions {
    naturalRegeneration?: boolean;
    playerAccess?: GamePublishSetting;
    playerPermissions?: server.PlayerPermissionLevel;
+   playerWaypoints?: server.PlayerWaypointsMode;
    randomTickSpeed?: number;
    recipeUnlocking?: boolean;
    respawnBlocksExplode?: boolean;
@@ -432,6 +440,20 @@ export interface LogProperties {
    player?: server.Player;
    subMessage?: LocalizationEntry | string;
    tags?: Array<string>;
+}
+export interface MinimapCreateOptions {
+   dataId?: string;
+   freeCenter?: server.VectorXZ;
+   trackingMode?: MinimapTrackingMode;
+   yLevel?: number;
+}
+export interface MinimapMarkerData {
+   clickable: boolean;
+   color: server.RGBA;
+   label: string;
+   position: server.Vector3;
+   rotation: number;
+   tooltip: string;
 }
 export interface ProjectExportOptions {
    alwaysDay?: boolean;
@@ -572,6 +594,11 @@ export interface WidgetGroupCreateOptions {
    groupSelectionMode?: WidgetGroupSelectionMode;
    showBounds?: boolean;
    visible?: boolean;
+}
+export interface WireframeMeshOptions {
+   alpha?: number;
+   rotation?: server.Vector3;
+   scale?: server.Vector3;
 }
 
 export class AudioSettings {
@@ -844,18 +871,31 @@ export class MinecraftEditor {
    private constructor();
 }
 export class MinimapItem {
+   public readonly freeCenter: server.VectorXZ;
    public readonly id: string;
    public readonly isActive: boolean;
-   public addMarker(markerType: MinimapMarkerType): void;
+   public readonly yLevel: number;
+   public addCustomMarker(iconIdentifier: string, data: Array<MinimapMarkerData>, dimensionId: string): void;
+   public addLocationMarker(data: Array<MinimapMarkerData>, dimensionId: string): void;
+   public addMultiplayerMarker(): void;
+   public getMarkerTypes(): Array<MinimapMarkerType>;
    public getPlayerColor(playerId: string): server.RGBA;
-   public removeMarker(markerType: MinimapMarkerType): void;
+   public hasCustomGroup(iconIdentifier: string): boolean;
+   public hasMarkerOfType(type: MinimapMarkerType): boolean;
+   public removeAllCustomMarkers(dimensionId: string): void;
+   public removeCustomMarker(iconIdentifier: string, dimensionId: string): void;
+   public removeLocationMarker(dimensionId: string): void;
+   public removeMultiplayerMarker(): void;
    public setActive(active: boolean): void;
+   public setFreeCenter(center: server.VectorXZ): void;
    public setSize(mapWidth: number, mapHeight: number): void;
+   public setTrackingMode(mode: MinimapTrackingMode): void;
    public setViewType(viewType: MinimapViewType): void;
+   public setYLevel(yLevel: number): void;
    private constructor();
 }
 export class MinimapManager {
-   public createMinimap(viewType: MinimapViewType, mapWidth: number, mapHeight: number, dataId?: string): MinimapItem;
+   public createMinimap(viewType: MinimapViewType, mapWidth: number, mapHeight: number, options?: MinimapCreateOptions): MinimapItem;
    public destroyMinimap(minimapId: string): void;
    public getAllMinimapIds(): Array<string>;
    public getMinimap(minimapId: string): MinimapItem;
@@ -1037,7 +1077,7 @@ export class Widget {
    public addGizmoComponent(componentName: string, options?: WidgetComponentGizmoOptions): WidgetComponentGizmo;
    public addGridComponent(componentName: string, options?: WidgetComponentGridOptions): WidgetComponentGrid;
    public addGuideComponent(componentName: string, options?: WidgetComponentGuideOptions): WidgetComponentGuide;
-   public addRenderPrimitiveComponent(componentName: string, primitiveType: WidgetComponentRenderPrimitiveTypeAxialSphere | WidgetComponentRenderPrimitiveTypeBox | WidgetComponentRenderPrimitiveTypeCone | WidgetComponentRenderPrimitiveTypeCuboid | WidgetComponentRenderPrimitiveTypeCylinder | WidgetComponentRenderPrimitiveTypeDisc | WidgetComponentRenderPrimitiveTypeEllipsoid | WidgetComponentRenderPrimitiveTypeLine | WidgetComponentRenderPrimitiveTypePyramid, options?: WidgetComponentRenderPrimitiveOptions): WidgetComponentRenderPrimitive;
+   public addRenderPrimitiveComponent(componentName: string, primitiveType: WidgetComponentRenderPrimitiveTypeAxialSphere | WidgetComponentRenderPrimitiveTypeBox | WidgetComponentRenderPrimitiveTypeCone | WidgetComponentRenderPrimitiveTypeCuboid | WidgetComponentRenderPrimitiveTypeCylinder | WidgetComponentRenderPrimitiveTypeDisc | WidgetComponentRenderPrimitiveTypeEllipsoid | WidgetComponentRenderPrimitiveTypeLine | WidgetComponentRenderPrimitiveTypePyramid | WidgetComponentRenderPrimitiveTypeWireframeMesh, options?: WidgetComponentRenderPrimitiveOptions): WidgetComponentRenderPrimitive;
    public addSplineComponent(componentName: string, options?: WidgetComponentSplineOptions): WidgetComponentSpline;
    public addTextComponent(componentName: string, label: string, options?: WidgetComponentTextOptions): WidgetComponentText;
    public addVolumeOutline(componentName: string, volume?: server.BlockVolumeBase | RelativeVolumeListBlockVolume, options?: WidgetComponentVolumeOutlineOptions): WidgetComponentVolumeOutline;
@@ -1133,7 +1173,7 @@ export class WidgetComponentGuide extends WidgetComponentBase {
 //@ts-ignore
 export class WidgetComponentRenderPrimitive extends WidgetComponentBase {
    public readonly primitiveType: PrimitiveType;
-   public setPrimitive(primitive: WidgetComponentRenderPrimitiveTypeAxialSphere | WidgetComponentRenderPrimitiveTypeBox | WidgetComponentRenderPrimitiveTypeCone | WidgetComponentRenderPrimitiveTypeCuboid | WidgetComponentRenderPrimitiveTypeCylinder | WidgetComponentRenderPrimitiveTypeDisc | WidgetComponentRenderPrimitiveTypeEllipsoid | WidgetComponentRenderPrimitiveTypeLine | WidgetComponentRenderPrimitiveTypePyramid): void;
+   public setPrimitive(primitive: WidgetComponentRenderPrimitiveTypeAxialSphere | WidgetComponentRenderPrimitiveTypeBox | WidgetComponentRenderPrimitiveTypeCone | WidgetComponentRenderPrimitiveTypeCuboid | WidgetComponentRenderPrimitiveTypeCylinder | WidgetComponentRenderPrimitiveTypeDisc | WidgetComponentRenderPrimitiveTypeEllipsoid | WidgetComponentRenderPrimitiveTypeLine | WidgetComponentRenderPrimitiveTypePyramid | WidgetComponentRenderPrimitiveTypeWireframeMesh): void;
    private constructor();
 }
 //@ts-ignore
@@ -1222,6 +1262,16 @@ export class WidgetComponentRenderPrimitiveTypePyramid extends WidgetComponentRe
    public widthX: number;
    public widthZ?: number;
    public constructor(center: server.Vector3, widthX: number, height: number, color: server.RGBA, widthZ?: number, rotation?: server.Vector3, alpha?: number);
+}
+//@ts-ignore
+export class WidgetComponentRenderPrimitiveTypeWireframeMesh extends WidgetComponentRenderPrimitiveTypeBase {
+   public alpha?: number;
+   public center: server.Vector3;
+   public color: server.RGBA;
+   public meshId: string;
+   public rotation?: server.Vector3;
+   public scale?: server.Vector3;
+   public constructor(center: server.Vector3, meshId: string, color: server.RGBA, options?: WireframeMeshOptions);
 }
 //@ts-ignore
 export class WidgetComponentSpline extends WidgetComponentBase {

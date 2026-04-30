@@ -377,11 +377,11 @@ export enum GameRule {
    FreezeDamage = "freezeDamage",
    FunctionCommandLimit = "functionCommandLimit",
    KeepInventory = "keepInventory",
-   LocatorBar = "locatorBar",
    MaxCommandChainLength = "maxCommandChainLength",
    MobGriefing = "mobGriefing",
    NaturalRegeneration = "naturalRegeneration",
    PlayersSleepingPercentage = "playersSleepingPercentage",
+   PlayerWaypoints = "playerWaypoints",
    ProjectilesCanBreakBlocks = "projectilesCanBreakBlocks",
    Pvp = "pvp",
    RandomTickSpeed = "randomTickSpeed",
@@ -540,6 +540,10 @@ export enum PlayerPermissionLevel {
    Member = 1,
    Operator = 2,
    Visitor = 0,
+}
+export enum PlayerWaypointsMode {
+   Everyone = "Everyone",
+   Off = "Off",
 }
 export enum ScoreboardIdentityType {
    Entity = "Entity",
@@ -1733,7 +1737,7 @@ export class Dimension {
    public isChunkLoaded(location: Vector3): boolean;
    public placeFeature(featureName: string, location: Vector3, shouldThrow?: boolean): boolean;
    public placeFeatureRule(featureRuleName: string, location: Vector3): boolean;
-   public playSound(soundId: string, location: Vector3, soundOptions?: WorldSoundOptions): void;
+   public playSound(soundId: string, location: Vector3, soundOptions?: WorldSoundOptions): SoundInstance;
    public runCommand(commandString: string): CommandResult;
    public setBlockPermutation(location: Vector3, permutation: BlockPermutation): void;
    public setBlockType(location: Vector3, blockType: BlockType | string): void;
@@ -2594,6 +2598,17 @@ export class EntityUnderwaterMovementComponent extends EntityAttributeComponent 
    public static readonly componentId = "minecraft:underwater_movement";
    private constructor();
 }
+export class EntityUpgradeAfterEvent {
+   public readonly entity: Entity;
+   public readonly upgradeId: string;
+   public getModifiers(): Array<DefinitionModifier>;
+   private constructor();
+}
+export class EntityUpgradeAfterEventSignal {
+   public subscribe(callback: (arg0: EntityUpgradeAfterEvent)=>void, options?: EntityDataDrivenTriggerEventOptions): (arg0: EntityUpgradeAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityUpgradeAfterEvent)=>void): void;
+   private constructor();
+}
 //@ts-ignore
 export class EntityVariantComponent extends EntityComponent {
    public static readonly componentId = "minecraft:variant";
@@ -2695,11 +2710,11 @@ export class GameRules {
    public freezeDamage: boolean;
    public functionCommandLimit: number;
    public keepInventory: boolean;
-   public locatorBar: boolean;
    public maxCommandChainLength: number;
    public mobGriefing: boolean;
    public naturalRegeneration: boolean;
    public playersSleepingPercentage: number;
+   public playerWaypoints: PlayerWaypointsMode;
    public projectilesCanBreakBlocks: boolean;
    public pvp: boolean;
    public randomTickSpeed: number;
@@ -3197,6 +3212,7 @@ export class Player extends Entity {
    public readonly onScreenDisplay: ScreenDisplay;
    public readonly partyInfo?: PartyInfo;
    public readonly playerPermissionLevel: PlayerPermissionLevel;
+   public readonly playfabId: string;
    public selectedSlotIndex: number;
    public readonly totalXpNeededForNextLevel: number;
    public readonly xpEarnedAtCurrentLevel: number;
@@ -3208,10 +3224,11 @@ export class Player extends Entity {
    public getControlScheme(): ControlScheme;
    public getGameMode(): GameMode;
    public getItemCooldown(cooldownCategory: string): number;
+   public getPing(): number;
    public getSpawnPoint(): (DimensionLocation | undefined);
    public getTotalXp(): number;
    public playMusic(trackId: string, musicOptions?: MusicOptions): void;
-   public playSound(soundId: string, soundOptions?: PlayerSoundOptions): void;
+   public playSound(soundId: string, soundOptions?: PlayerSoundOptions): SoundInstance;
    public postClientMessage(id: string, value: string): void;
    public queueMusic(trackId: string, musicOptions?: MusicOptions): void;
    public removePropertyOverrideForEntity(targetEntity: Entity, identifier: string): void;
@@ -3803,6 +3820,10 @@ export class ShutdownEvent {
 export class SmeltItemFunction extends LootItemFunction {
    private constructor();
 }
+export class SoundInstance {
+   public stop(): void;
+   private constructor();
+}
 //@ts-ignore
 export class SpecificEnchantFunction extends LootItemFunction {
    public readonly enchantments: Array<EnchantInfo>;
@@ -4028,6 +4049,7 @@ export class WorldAfterEvents {
    public readonly entityLoad: EntityLoadAfterEventSignal;
    public readonly entityRemove: EntityRemoveAfterEventSignal;
    public readonly entitySpawn: EntitySpawnAfterEventSignal;
+   public readonly entityUpgrade: EntityUpgradeAfterEventSignal;
    public readonly explosion: ExplosionAfterEventSignal;
    public readonly gameRuleChange: GameRuleChangeAfterEventSignal;
    public readonly itemCompleteUse: ItemCompleteUseAfterEventSignal;

@@ -12528,12 +12528,22 @@
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
+                        "name": "EngineError"
+                     },
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
                         "name": "PropertyOutOfBoundsError"
                      }
                   ],
-                  "is_bind_type": false,
+                  "is_bind_type": true,
                   "is_errorable": true,
-                  "name": "undefined"
+                  "name": "SoundInstance"
                }
             },
             {
@@ -24858,6 +24868,203 @@
          }
       },
       {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getModifiers",
+               "return_type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "DefinitionModifier"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "array"
+               }
+            }
+         ],
+         "name": "EntityUpgradeAfterEvent",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "entity",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Entity"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "upgradeId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "EntityUpgradeAfterEvent"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "EntityUpgradeAfterEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "default"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "EntityDataDrivenTriggerEventOptions"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "subscribe",
+               "return_type": {
+                  "closure_type": {
+                     "argument_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "EntityUpgradeAfterEvent"
+                        }
+                     ],
+                     "call_privilege": {
+                        "name": "default"
+                     },
+                     "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                     }
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "closure"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "EntityUpgradeAfterEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "default"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "unsubscribe",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "EntityUpgradeAfterEventSignal",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "EntityUpgradeAfterEventSignal"
+         }
+      },
+      {
          "base_types": [
             {
                "is_bind_type": true,
@@ -26306,26 +26513,6 @@
                ],
                "is_baked": false,
                "is_read_only": false,
-               "name": "locatorBar",
-               "set_privilege": [
-                  {
-                     "name": "default"
-                  }
-               ],
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "boolean"
-               }
-            },
-            {
-               "get_privilege": [
-                  {
-                     "name": "restricted_execution"
-                  }
-               ],
-               "is_baked": false,
-               "is_read_only": false,
                "name": "maxCommandChainLength",
                "set_privilege": [
                   {
@@ -26404,6 +26591,26 @@
                      "max": 2147483647,
                      "min": -2147483648
                   }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "playerWaypoints",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlayerWaypointsMode"
                }
             },
             {
@@ -34460,6 +34667,43 @@
                "arguments": [],
                "call_privilege": [
                   {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getPing",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "EngineError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidEntityError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "int64",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
                      "name": "restricted_execution"
                   }
                ],
@@ -34576,9 +34820,26 @@
                "is_static": false,
                "name": "playSound",
                "return_type": {
-                  "is_bind_type": false,
+                  "error_types": [
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "EngineError"
+                     },
+                     {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "Error"
+                     }
+                  ],
+                  "is_bind_type": true,
                   "is_errorable": true,
-                  "name": "undefined"
+                  "name": "SoundInstance"
                }
             },
             {
@@ -35539,6 +35800,38 @@
                   "is_bind_type": true,
                   "is_errorable": true,
                   "name": "PlayerPermissionLevel"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "playfabId",
+               "type": {
+                  "error_types": [
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "EngineError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidEntityError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "string"
                }
             },
             {
@@ -44685,6 +44978,35 @@
          }
       },
       {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "stop",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "SoundInstance",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "SoundInstance"
+         }
+      },
+      {
          "base_types": [
             {
                "is_bind_type": true,
@@ -49675,6 +49997,24 @@
                ],
                "is_baked": false,
                "is_read_only": true,
+               "name": "entityUpgrade",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "EntityUpgradeAfterEventSignal"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  },
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
                "name": "explosion",
                "type": {
                   "is_bind_type": true,
@@ -54482,17 +54822,6 @@
             {
                "is_read_only": true,
                "is_static": true,
-               "name": "LocatorBar",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "string"
-               },
-               "value": "locatorBar"
-            },
-            {
-               "is_read_only": true,
-               "is_static": true,
                "name": "MaxCommandChainLength",
                "type": {
                   "is_bind_type": false,
@@ -54533,6 +54862,17 @@
                   "name": "string"
                },
                "value": "playersSleepingPercentage"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "PlayerWaypoints",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "playerWaypoints"
             },
             {
                "is_read_only": true,
@@ -55917,6 +56257,33 @@
             }
          ],
          "name": "PlayerPermissionLevel"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Everyone",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "Everyone"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Off",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "Off"
+            }
+         ],
+         "name": "PlayerWaypointsMode"
       },
       {
          "constants": [

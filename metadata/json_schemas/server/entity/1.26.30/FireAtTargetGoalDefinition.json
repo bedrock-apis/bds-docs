@@ -1,0 +1,275 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "3536776907",
+   "x-format-version": "1.26.30",
+   "definitions": {
+      "100089226": {
+         "title": "Filter Group Map",
+         "type": "object",
+         "properties": {
+            "AND": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "NOT": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "OR": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "none_of": {
+               "$ref": "#/definitions/2789112004"
+            }
+         }
+      },
+      "725374594": {
+         "title": "vec3",
+         "oneOf": [
+            {
+               "type": "array",
+               "items": {
+                  "type": "number"
+               },
+               "minItems": 3,
+               "maxItems": 3
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "x": {
+                     "type": "number",
+                     "default": 0
+                  },
+                  "y": {
+                     "type": "number",
+                     "default": 0
+                  },
+                  "z": {
+                     "type": "number",
+                     "default": 0
+                  }
+               }
+            }
+         ]
+      },
+      "2053093711": {
+         "title": "ProjectileAnchorProxy",
+         "type": "integer"
+      },
+      "2457665045": {
+         "title": "Filter Test",
+         "type": "object",
+         "properties": {
+            "domain": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "operator": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "subject": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "test": {
+               "type": "string"
+            },
+            "value": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            }
+         },
+         "required": [
+            "test"
+         ]
+      },
+      "2566306602": {
+         "title": "FloatRange",
+         "type": "object",
+         "properties": {
+            "max": {
+               "type": "number",
+               "default": 0
+            },
+            "min": {
+               "type": "number",
+               "default": 0
+            }
+         }
+      },
+      "2789112004": {
+         "title": "Filter Group",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2457665045"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/2789112004"
+               }
+            },
+            {
+               "$ref": "#/definitions/100089226"
+            }
+         ]
+      }
+   },
+   "title": "minecraft:behavior.fire_at_target",
+   "type": "object",
+   "properties": {
+      "attack_cooldown": {
+         "type": "number",
+         "default": 0.5,
+         "minimum": 0
+      },
+      "attack_range": {
+         "default": {
+            "min": 0,
+            "max": 0
+         },
+         "$ref": "#/definitions/2566306602"
+      },
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "title": "Goal's control flags",
+            "type": "string",
+            "enum": [
+               "move",
+               "look",
+               "jump"
+            ]
+         }
+      },
+      "filters": {
+         "default": {
+            "OR": null,
+            "all": null,
+            "all_of": null,
+            "AND": null,
+            "any_of": null,
+            "none_of": null,
+            "any": null,
+            "NOT": null
+         },
+         "$ref": "#/definitions/2789112004"
+      },
+      "max_head_rotation_x": {
+         "type": "number",
+         "default": 30
+      },
+      "max_head_rotation_y": {
+         "type": "number",
+         "default": 30
+      },
+      "owner_anchor": {
+         "default": 2,
+         "$ref": "#/definitions/2053093711"
+      },
+      "owner_offset": {
+         "default": [
+            0,
+            0,
+            0
+         ],
+         "$ref": "#/definitions/725374594"
+      },
+      "post_shoot_delay": {
+         "type": "number",
+         "default": 0.20000000298023224,
+         "minimum": 0
+      },
+      "pre_shoot_delay": {
+         "type": "number",
+         "default": 0.75,
+         "minimum": 0
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "minimum": 0
+      },
+      "projectile_def": {
+         "type": "string",
+         "default": ""
+      },
+      "ranged_fov": {
+         "type": "number",
+         "default": 90
+      },
+      "target_anchor": {
+         "default": 2,
+         "$ref": "#/definitions/2053093711"
+      },
+      "target_offset": {
+         "default": [
+            0,
+            0,
+            0
+         ],
+         "$ref": "#/definitions/725374594"
+      }
+   }
+}

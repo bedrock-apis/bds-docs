@@ -1,0 +1,28 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "1900756958",
+   "x-format-version": "MISSING VERSION",
+   "x-protocol-version": 986,
+   "title": "MultiplayerSettingsPacket",
+   "type": "object",
+   "properties": {
+      "PacketType": {
+         "title": "MultiplayerSettingsPacketType",
+         "type": "string",
+         "enum": [
+            "EnableMultiplayer",
+            "DisableMultiplayer",
+            "RefreshJoincode"
+         ],
+         "x-underlying-type": "int32",
+         "x-serialization-options": [
+            "Compression",
+            "Enum-as-Value"
+         ],
+         "x-ordinal-index": 0
+      }
+   },
+   "required": [
+      "PacketType"
+   ]
+}

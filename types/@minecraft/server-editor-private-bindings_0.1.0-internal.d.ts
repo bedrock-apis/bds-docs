@@ -110,6 +110,11 @@ export interface EditorRegistryFile {
    fileJson: string;
    fileName: string;
 }
+export interface FileSelectorOptions {
+   extensions: Array<string>;
+   maxFileSize: number;
+   title?: string;
+}
 export interface InputBindingInfo {
    actionId?: string;
    canRebind: boolean;
@@ -125,6 +130,18 @@ export interface JigsawBlockData {
    selectionPriority: number;
    target: string;
    targetPool: string;
+}
+export interface MeshInfo {
+   id: string;
+   length: number;
+   materialCount: number;
+   maxBounds: server.Vector3;
+   minBounds: server.Vector3;
+   name: string;
+   triangleCount: number;
+}
+export interface MeshLoadOptions {
+   maxTriangleCount?: number;
 }
 export interface PersistenceGroupCreationOptions {
    groupType?: PersistenceGroupType;
@@ -186,6 +203,10 @@ export interface ProjectRegionOptions {
    extentZ: common.NumberRange;
 }
 
+export class ClientFilesystem {
+   public chooseFile(options: FileSelectorOptions): Promise<string>;
+   private constructor();
+}
 export class CustomBiomeSource {
    public readonly id: string;
    public destroy(): void;
@@ -248,6 +269,7 @@ export class DataStoreModalToolActivationChangedEventSignal {
 export class DataStoreModalToolContainer {
    public readonly toolActivationChanged: DataStoreModalToolActivationChangedEventSignal;
    public getSelectedTool(): (string | undefined);
+   public getSortOrder(groupId: string): (Array<string> | undefined);
    public getToolPayload(id: string): string;
    public getToolProperty(id: string, property: string): (boolean | number | string | undefined);
    public hasToolPayload(id: string): boolean;
@@ -257,6 +279,7 @@ export class DataStoreModalToolContainer {
    public updateRegisteredTool(id: string, payload: string): void;
    public updateRegisteredToolProperty(id: string, payload: string, property: string): void;
    public updateSelectedTool(toolId?: string): void;
+   public updateSortOrder(groupId: string, sortOrder?: Array<string>): void;
    private constructor();
 }
 export class DataStorePaneContainer {
@@ -334,11 +357,13 @@ export class InternalPersistenceManager {
    private constructor();
 }
 export class InternalPlayerServiceContext {
+   public readonly clientFilesystem: ClientFilesystem;
    public readonly dataStore: DataStore;
    public readonly dataTransfer: DataTransferManager;
    public readonly input: InputService;
    public readonly internalPersistenceManager: InternalPersistenceManager;
    public readonly jigsawService: JigsawService;
+   public readonly meshCacheManager: MeshCacheManager;
    public readonly prefabManager: PrefabManager;
    public readonly realmsService: RealmsService;
    public readonly regionManager: PlayerProjectRegionManager;
@@ -354,6 +379,12 @@ export class JigsawService {
    public getRegistryList(): Array<string>;
    public setJigsawBlockData(pos: server.Vector3, jigsawData: JigsawBlockData): void;
    public setRegistryData(registryName: string, processorData: Array<EditorRegistryFile>, structureData: Array<EditorRegistryFile>, structureSetData: Array<EditorRegistryFile>, templatePoolData: Array<EditorRegistryFile>): Promise<Array<string>>;
+   private constructor();
+}
+export class MeshCacheManager {
+   public getMeshList(): Array<MeshInfo>;
+   public loadMesh(filePath: string, options?: MeshLoadOptions): Promise<MeshInfo>;
+   public unloadMesh(meshId: string): void;
    private constructor();
 }
 export class MinecraftEditorInternal {

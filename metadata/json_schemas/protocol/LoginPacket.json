@@ -1,0 +1,27 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "1423027338",
+   "x-format-version": "MISSING VERSION",
+   "x-protocol-version": 986,
+   "title": "LoginPacket",
+   "type": "object",
+   "properties": {
+      "Client Network Version": {
+         "type": "integer",
+         "x-underlying-type": "int32",
+         "x-serialization-options": [
+            "Big Endian"
+         ],
+         "x-ordinal-index": 0
+      },
+      "Connection Request": {
+         "type": "string",
+         "x-ordinal-index": 1,
+         "x-runtime-constraint-description": "Connection request validity check"
+      }
+   },
+   "required": [
+      "Client Network Version",
+      "Connection Request"
+   ]
+}

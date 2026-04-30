@@ -1,0 +1,68 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "2064571028",
+   "x-format-version": "MISSING VERSION",
+   "x-protocol-version": 986,
+   "definitions": {
+      "1488572312": {
+         "title": "BlockPos",
+         "type": "object",
+         "properties": {
+            "X": {
+               "type": "integer",
+               "x-underlying-type": "int32",
+               "x-serialization-options": [
+                  "Compression"
+               ],
+               "x-ordinal-index": 0
+            },
+            "Y": {
+               "type": "integer",
+               "x-underlying-type": "int32",
+               "x-serialization-options": [
+                  "Compression"
+               ],
+               "x-ordinal-index": 1
+            },
+            "Z": {
+               "type": "integer",
+               "x-underlying-type": "int32",
+               "x-serialization-options": [
+                  "Compression"
+               ],
+               "x-ordinal-index": 2
+            }
+         },
+         "required": [
+            "X",
+            "Y",
+            "Z"
+         ]
+      }
+   },
+   "title": "BlockPickRequestPacket",
+   "type": "object",
+   "properties": {
+      "Max Slots": {
+         "type": "integer",
+         "x-underlying-type": "uint8",
+         "x-ordinal-index": 2,
+         "minimum": 0,
+         "maximum": 255
+      },
+      "Position": {
+         "$ref": "#/definitions/1488572312",
+         "x-ordinal-index": 0
+      },
+      "With Data?": {
+         "type": "boolean",
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 1
+      }
+   },
+   "required": [
+      "Max Slots",
+      "Position",
+      "With Data?"
+   ]
+}
