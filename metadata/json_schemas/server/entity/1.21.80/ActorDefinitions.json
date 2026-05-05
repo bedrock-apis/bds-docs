@@ -1,7 +1,180 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "115319032",
+   "$id": "2984279167",
    "x-format-version": "1.21.80",
+   "definitions": {
+      "100089226": {
+         "title": "Filter Group Map",
+         "type": "object",
+         "properties": {
+            "AND": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "NOT": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "OR": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "none_of": {
+               "$ref": "#/definitions/2789112004"
+            }
+         }
+      },
+      "230539035": {
+         "title": "minecraft:apply_knockback_rules_instance",
+         "type": "object",
+         "properties": {
+            "check_if_target_is_immersed_in_water": {
+               "type": "boolean",
+               "default": false
+            },
+            "filter": {
+               "default": {
+                  "all_of": null,
+                  "all": null,
+                  "OR": null,
+                  "AND": null,
+                  "any_of": null,
+                  "any": null,
+                  "none_of": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/2789112004"
+            },
+            "horizontal_power": {
+               "type": "number",
+               "default": 1
+            },
+            "vertical_power": {
+               "type": "number",
+               "default": 0.4000000059604645
+            },
+            "vertical_velocity_cap": {
+               "type": "number",
+               "default": 0.4000000059604645
+            }
+         }
+      },
+      "2457665045": {
+         "title": "Filter Test",
+         "type": "object",
+         "properties": {
+            "domain": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "operator": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "subject": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "test": {
+               "type": "string"
+            },
+            "value": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            }
+         },
+         "required": [
+            "test"
+         ]
+      },
+      "2673184818": {
+         "title": "minecraft:apply_knockback_rules",
+         "type": "object",
+         "properties": {
+            "presets": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/230539035"
+               }
+            }
+         }
+      },
+      "2789112004": {
+         "title": "Filter Group",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2457665045"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/2789112004"
+               }
+            },
+            {
+               "$ref": "#/definitions/100089226"
+            }
+         ]
+      }
+   },
    "title": "Entity component definitions",
    "type": "object",
    "properties": {
@@ -31,6 +204,9 @@
       },
       "minecraft:annotation.open_door": {
          "description": "Dynamic value"
+      },
+      "minecraft:apply_knockback_rules": {
+         "$ref": "#/definitions/2673184818"
       },
       "minecraft:area_attack": {
          "description": "Dynamic value"
@@ -206,7 +382,7 @@
       "minecraft:behavior.follow_parent": {
          "description": "Dynamic value"
       },
-      "minecraft:behavior.follow_target_captain": {
+      "minecraft:behavior.follow_target_leader": {
          "description": "Dynamic value"
       },
       "minecraft:behavior.go_and_give_items_to_noteblock": {
@@ -878,13 +1054,34 @@
       "minecraft:mark_variant": {
          "description": "Dynamic value"
       },
-      "minecraft:memory_behavior.collect_nectar": {
-         "description": "Dynamic value"
-      },
       "minecraft:memory_behavior.flee_threat": {
          "description": "Dynamic value"
       },
       "minecraft:memory_behavior.follow_target": {
+         "description": "Dynamic value"
+      },
+      "minecraft:memory_behavior.move_to_position": {
+         "description": "Dynamic value"
+      },
+      "minecraft:memory_sensor.find_nearest_block": {
+         "description": "Dynamic value"
+      },
+      "minecraft:memory_sensor.find_nearest_block_from": {
+         "description": "Dynamic value"
+      },
+      "minecraft:memory_sensor.find_nearest_entity": {
+         "description": "Dynamic value"
+      },
+      "minecraft:memory_sensor.find_nearest_entity_from": {
+         "description": "Dynamic value"
+      },
+      "minecraft:memory_sensor.find_nearest_poi": {
+         "description": "Dynamic value"
+      },
+      "minecraft:memory_sensor.in_range_of_block": {
+         "description": "Dynamic value"
+      },
+      "minecraft:memory_sensor.in_range_of_entity": {
          "description": "Dynamic value"
       },
       "minecraft:mob_effect": {
@@ -1067,27 +1264,6 @@
       "minecraft:scheduler": {
          "description": "Dynamic value"
       },
-      "minecraft:sensor.find_nearest_block": {
-         "description": "Dynamic value"
-      },
-      "minecraft:sensor.find_nearest_block_from": {
-         "description": "Dynamic value"
-      },
-      "minecraft:sensor.find_nearest_entity": {
-         "description": "Dynamic value"
-      },
-      "minecraft:sensor.find_nearest_entity_from": {
-         "description": "Dynamic value"
-      },
-      "minecraft:sensor.find_nearest_poi": {
-         "description": "Dynamic value"
-      },
-      "minecraft:sensor.in_range_of_block": {
-         "description": "Dynamic value"
-      },
-      "minecraft:sensor.in_range_of_entity": {
-         "description": "Dynamic value"
-      },
       "minecraft:shareables": {
          "description": "Dynamic value"
       },
@@ -1164,6 +1340,9 @@
          "description": "Dynamic value"
       },
       "minecraft:underwater_movement": {
+         "description": "Dynamic value"
+      },
+      "minecraft:uses_legacy_friction": {
          "description": "Dynamic value"
       },
       "minecraft:variable_max_auto_step": {

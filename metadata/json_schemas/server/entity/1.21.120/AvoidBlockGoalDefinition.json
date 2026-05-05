@@ -1,80 +1,39 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "3326653763",
+   "$id": "460911246",
    "x-format-version": "1.21.120",
    "definitions": {
-      "121353999": {
-         "title": "ActorDefinitionTrigger",
+      "100089226": {
+         "title": "Filter Group Map",
          "type": "object",
          "properties": {
-            "event": {
-               "type": "string",
-               "default": ""
+            "AND": {
+               "$ref": "#/definitions/2789112004"
             },
-            "filters": {
-               "default": {
-                  "OR": null,
-                  "all": null,
-                  "all_of": null,
-                  "AND": null,
-                  "any_of": null,
-                  "none_of": null,
-                  "any": null,
-                  "NOT": null
-               },
-               "$ref": "#/definitions/1088251937"
+            "NOT": {
+               "$ref": "#/definitions/2789112004"
             },
-            "target": {
-               "title": "FilterSubject",
-               "type": "string",
-               "default": "self",
-               "enum": [
-                  "self",
-                  "other",
-                  "player",
-                  "target",
-                  "parent",
-                  "baby",
-                  "block",
-                  "damager",
-                  "holder",
-                  "item"
-               ]
+            "OR": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "none_of": {
+               "$ref": "#/definitions/2789112004"
             }
          }
       },
-      "1057349585": {
-         "title": "FloatRange",
-         "type": "object",
-         "properties": {
-            "max": {
-               "type": "number",
-               "default": 0
-            },
-            "min": {
-               "type": "number",
-               "default": 0
-            }
-         }
-      },
-      "1088251937": {
-         "title": "Filter Group",
-         "oneOf": [
-            {
-               "$ref": "#/definitions/4150989894"
-            },
-            {
-               "type": "array",
-               "items": {
-                  "$ref": "#/definitions/1088251937"
-               }
-            },
-            {
-               "$ref": "#/definitions/3235433757"
-            }
-         ]
-      },
-      "1531870811": {
+      "1429287564": {
          "title": "Item Descriptor",
          "oneOf": [
             {
@@ -88,37 +47,7 @@
             }
          ]
       },
-      "3235433757": {
-         "title": "Filter Group Map",
-         "type": "object",
-         "properties": {
-            "AND": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "NOT": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "OR": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "all": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "all_of": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "any": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "any_of": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "none_of": {
-               "$ref": "#/definitions/1088251937"
-            }
-         }
-      },
-      "4150989894": {
+      "2457665045": {
          "title": "Filter Test",
          "type": "object",
          "properties": {
@@ -193,6 +122,77 @@
          "required": [
             "test"
          ]
+      },
+      "2566306602": {
+         "title": "FloatRange",
+         "type": "object",
+         "properties": {
+            "max": {
+               "type": "number",
+               "default": 0
+            },
+            "min": {
+               "type": "number",
+               "default": 0
+            }
+         }
+      },
+      "2789112004": {
+         "title": "Filter Group",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2457665045"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/2789112004"
+               }
+            },
+            {
+               "$ref": "#/definitions/100089226"
+            }
+         ]
+      },
+      "3379368818": {
+         "title": "ActorDefinitionTrigger",
+         "type": "object",
+         "properties": {
+            "event": {
+               "type": "string",
+               "default": ""
+            },
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/2789112004"
+            },
+            "target": {
+               "title": "FilterSubject",
+               "type": "string",
+               "default": "self",
+               "enum": [
+                  "self",
+                  "other",
+                  "player",
+                  "target",
+                  "parent",
+                  "baby",
+                  "block",
+                  "damager",
+                  "holder",
+                  "item"
+               ]
+            }
+         }
       }
    },
    "title": "minecraft:behavior.avoid_block",
@@ -756,6 +756,8 @@
             "item.netherite_spear.use",
             "pause_growth",
             "reset_growth",
+            "pushed_by_player",
+            "bounce",
             "undefined"
          ]
       },
@@ -776,7 +778,7 @@
          "type": "array",
          "default": [],
          "items": {
-            "$ref": "#/definitions/121353999"
+            "$ref": "#/definitions/3379368818"
          }
       },
       "priority": {
@@ -797,7 +799,7 @@
             "min": 3,
             "max": 8
          },
-         "$ref": "#/definitions/1057349585"
+         "$ref": "#/definitions/2566306602"
       },
       "sprint_speed_modifier": {
          "type": "number",
@@ -807,7 +809,7 @@
          "type": "array",
          "default": [],
          "items": {
-            "$ref": "#/definitions/1531870811"
+            "$ref": "#/definitions/1429287564"
          }
       },
       "target_selection_method": {

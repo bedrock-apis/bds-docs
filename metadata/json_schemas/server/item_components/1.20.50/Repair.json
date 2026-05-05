@@ -1,9 +1,9 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "3256164975",
+   "$id": "3654032876",
    "x-format-version": "1.20.50",
    "definitions": {
-      "1531870811": {
+      "1429287564": {
          "title": "Item Descriptor",
          "oneOf": [
             {
@@ -17,7 +17,18 @@
             }
          ]
       },
-      "2267778531": {
+      "2014847524": {
+         "title": "Molang expression",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2529973620"
+            },
+            {
+               "type": "number"
+            }
+         ]
+      },
+      "2529973620": {
          "title": "Molang string",
          "oneOf": [
             {
@@ -39,17 +50,6 @@
                ]
             }
          ]
-      },
-      "3178719147": {
-         "title": "Molang expression",
-         "oneOf": [
-            {
-               "$ref": "#/definitions/2267778531"
-            },
-            {
-               "type": "number"
-            }
-         ]
       }
    },
    "title": "Repair",
@@ -57,7 +57,7 @@
       {
          "type": "array",
          "items": {
-            "$ref": "#/definitions/1531870811"
+            "$ref": "#/definitions/1429287564"
          }
       },
       {
@@ -66,7 +66,7 @@
             "items": {
                "type": "array",
                "items": {
-                  "$ref": "#/definitions/1531870811"
+                  "$ref": "#/definitions/1429287564"
                }
             },
             "repair_amount": {
@@ -74,7 +74,7 @@
                   "expression": "",
                   "version": -1
                },
-               "$ref": "#/definitions/3178719147"
+               "$ref": "#/definitions/2014847524"
             }
          },
          "required": [

@@ -1,9 +1,34 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "853889472",
+   "$id": "3737626741",
    "x-format-version": "1.20.50",
    "definitions": {
-      "517105782": {
+      "855125494": {
+         "title": "BlockDescriptorProxy",
+         "type": "object",
+         "properties": {
+            "name": {
+               "type": "string",
+               "default": ""
+            },
+            "states": {
+               "type": "object",
+               "additionalProperties": {
+                  "$ref": "#/definitions/2565245911"
+               },
+               "default": {}
+            },
+            "tags": {
+               "type": "string",
+               "default": ""
+            }
+         }
+      },
+      "2033610203": {
+         "title": "Reference",
+         "type": "string"
+      },
+      "2565245911": {
          "title": "compound_proxy",
          "oneOf": [
             {
@@ -17,36 +42,11 @@
             }
          ]
       },
-      "1493335182": {
-         "title": "Reference",
-         "type": "string"
-      },
-      "2770948419": {
-         "title": "BlockDescriptorProxy",
-         "type": "object",
-         "properties": {
-            "name": {
-               "type": "string",
-               "default": ""
-            },
-            "states": {
-               "type": "object",
-               "additionalProperties": {
-                  "$ref": "#/definitions/517105782"
-               },
-               "default": {}
-            },
-            "tags": {
-               "type": "string",
-               "default": ""
-            }
-         }
-      },
-      "2794205495": {
+      "3093766462": {
          "title": "Block Descriptor",
          "oneOf": [
             {
-               "$ref": "#/definitions/2770948419",
+               "$ref": "#/definitions/855125494",
                "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
             },
             {
@@ -54,7 +54,7 @@
                "minLength": 1
             },
             {
-               "$ref": "#/definitions/2770948419",
+               "$ref": "#/definitions/855125494",
                "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
             }
          ]
@@ -67,12 +67,12 @@
          "type": "array",
          "default": [],
          "items": {
-            "$ref": "#/definitions/2794205495"
+            "$ref": "#/definitions/3093766462"
          }
       },
       "entity": {
          "default": "",
-         "$ref": "#/definitions/1493335182",
+         "$ref": "#/definitions/2033610203",
          "minLength": 0,
          "pattern": "^(?:\\w+(?:\\.\\w+)*:(?=\\w))?(?:\\w+(?:\\.\\w+)*)(?:<((?:\\w+(?:\\.\\w+)*:(?=\\w))?\\w+(?:\\.\\w+)*)*>)?$"
       },
@@ -80,7 +80,7 @@
          "type": "array",
          "default": [],
          "items": {
-            "$ref": "#/definitions/2794205495"
+            "$ref": "#/definitions/3093766462"
          }
       }
    }

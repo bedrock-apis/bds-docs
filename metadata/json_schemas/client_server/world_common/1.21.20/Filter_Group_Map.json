@@ -1,26 +1,9 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "3235433757",
+   "$id": "100089226",
    "x-format-version": "1.21.20",
    "definitions": {
-      "1088251937": {
-         "title": "Filter Group",
-         "oneOf": [
-            {
-               "$ref": "#/definitions/4150989894"
-            },
-            {
-               "type": "array",
-               "items": {
-                  "$ref": "#/definitions/1088251937"
-               }
-            },
-            {
-               "$ref": "3235433757"
-            }
-         ]
-      },
-      "4150989894": {
+      "2457665045": {
          "title": "Filter Test",
          "type": "object",
          "properties": {
@@ -95,34 +78,51 @@
          "required": [
             "test"
          ]
+      },
+      "2789112004": {
+         "title": "Filter Group",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2457665045"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/2789112004"
+               }
+            },
+            {
+               "$ref": "100089226"
+            }
+         ]
       }
    },
    "title": "Filter Group Map",
    "type": "object",
    "properties": {
       "AND": {
-         "$ref": "#/definitions/1088251937"
+         "$ref": "#/definitions/2789112004"
       },
       "NOT": {
-         "$ref": "#/definitions/1088251937"
+         "$ref": "#/definitions/2789112004"
       },
       "OR": {
-         "$ref": "#/definitions/1088251937"
+         "$ref": "#/definitions/2789112004"
       },
       "all": {
-         "$ref": "#/definitions/1088251937"
+         "$ref": "#/definitions/2789112004"
       },
       "all_of": {
-         "$ref": "#/definitions/1088251937"
+         "$ref": "#/definitions/2789112004"
       },
       "any": {
-         "$ref": "#/definitions/1088251937"
+         "$ref": "#/definitions/2789112004"
       },
       "any_of": {
-         "$ref": "#/definitions/1088251937"
+         "$ref": "#/definitions/2789112004"
       },
       "none_of": {
-         "$ref": "#/definitions/1088251937"
+         "$ref": "#/definitions/2789112004"
       }
    }
 }

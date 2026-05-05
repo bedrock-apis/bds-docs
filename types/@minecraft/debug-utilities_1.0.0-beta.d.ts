@@ -63,10 +63,11 @@ export class DebugLine extends DebugShape {
 }
 export class DebugShape {
    public attachedTo?: server.Entity;
-   public color: server.RGB;
+   public color: server.RGBA;
    public readonly dimension: server.Dimension;
    public readonly hasDuration: boolean;
    public readonly location: server.Vector3;
+   public maximumRenderDistance?: number;
    public rotation: server.Vector3;
    public scale: number;
    public timeLeft?: number;
@@ -82,8 +83,14 @@ export class DebugSphere extends DebugShape {
 }
 //@ts-ignore
 export class DebugText extends DebugShape {
-   public text: string;
-   public constructor(location: server.DimensionLocation | server.Vector3, text: string);
+   public backfaceVisible: boolean;
+   public backgroundColorOverride?: server.RGBA;
+   public depthTest: boolean;
+   public readonly text: server.RawMessage | string;
+   public textBackfaceVisible: boolean;
+   public useRotation: boolean;
+   public constructor(location: server.DimensionLocation | server.Vector3, text: server.RawMessage | string);
+   public setText(text: server.RawMessage | string): void;
 }
 
 

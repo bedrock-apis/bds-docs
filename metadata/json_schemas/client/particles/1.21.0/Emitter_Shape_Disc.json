@@ -1,9 +1,9 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "3649962860",
+   "$id": "3133367181",
    "x-format-version": "1.21.0",
    "definitions": {
-      "1399264962": {
+      "636624253": {
          "title": "particle_emitter_direction",
          "oneOf": [
             {
@@ -17,14 +17,25 @@
             {
                "type": "array",
                "items": {
-                  "$ref": "#/definitions/3178719147"
+                  "$ref": "#/definitions/2014847524"
                },
                "minItems": 3,
                "maxItems": 3
             }
          ]
       },
-      "2267778531": {
+      "2014847524": {
+         "title": "Molang expression",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2529973620"
+            },
+            {
+               "type": "number"
+            }
+         ]
+      },
+      "2529973620": {
          "title": "Molang string",
          "oneOf": [
             {
@@ -47,7 +58,7 @@
             }
          ]
       },
-      "2706354626": {
+      "2890395587": {
          "title": "particle_plane_normal",
          "oneOf": [
             {
@@ -62,21 +73,10 @@
             {
                "type": "array",
                "items": {
-                  "$ref": "#/definitions/3178719147"
+                  "$ref": "#/definitions/2014847524"
                },
                "minItems": 3,
                "maxItems": 3
-            }
-         ]
-      },
-      "3178719147": {
-         "title": "Molang expression",
-         "oneOf": [
-            {
-               "$ref": "#/definitions/2267778531"
-            },
-            {
-               "type": "number"
             }
          ]
       }
@@ -85,7 +85,7 @@
    "type": "object",
    "properties": {
       "direction": {
-         "$ref": "#/definitions/1399264962"
+         "$ref": "#/definitions/636624253"
       },
       "offset": {
          "type": "array",
@@ -95,7 +95,7 @@
             0
          ],
          "items": {
-            "$ref": "#/definitions/3178719147"
+            "$ref": "#/definitions/2014847524"
          },
          "minItems": 3,
          "maxItems": 3
@@ -106,11 +106,11 @@
             1,
             0
          ],
-         "$ref": "#/definitions/2706354626"
+         "$ref": "#/definitions/2890395587"
       },
       "radius": {
          "default": 1,
-         "$ref": "#/definitions/3178719147"
+         "$ref": "#/definitions/2014847524"
       },
       "surface_only": {
          "type": "boolean",

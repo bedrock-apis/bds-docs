@@ -1,9 +1,20 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "4150871210",
+   "$id": "2311880263",
    "x-format-version": "1.21.10",
    "definitions": {
-      "2267778531": {
+      "2014847524": {
+         "title": "Molang expression",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2529973620"
+            },
+            {
+               "type": "number"
+            }
+         ]
+      },
+      "2529973620": {
          "title": "Molang string",
          "oneOf": [
             {
@@ -25,23 +36,12 @@
                ]
             }
          ]
-      },
-      "3178719147": {
-         "title": "Molang expression",
-         "oneOf": [
-            {
-               "$ref": "#/definitions/2267778531"
-            },
-            {
-               "type": "number"
-            }
-         ]
       }
    },
    "title": "Coordinate Range",
    "oneOf": [
       {
-         "$ref": "#/definitions/3178719147"
+         "$ref": "#/definitions/2014847524"
       },
       {
          "type": "object",
@@ -61,7 +61,7 @@
             "extent": {
                "type": "array",
                "items": {
-                  "$ref": "#/definitions/3178719147"
+                  "$ref": "#/definitions/2014847524"
                },
                "minItems": 2,
                "maxItems": 2

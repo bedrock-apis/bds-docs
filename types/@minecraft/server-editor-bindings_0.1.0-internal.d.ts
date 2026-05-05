@@ -319,6 +319,7 @@ export interface BlockMaskList {
    maskType: BlockMaskListType;
 }
 export interface ClipboardWriteOptions {
+   excludeAirBlocks?: boolean;
    mirror?: server.StructureMirrorAxis;
    normalizedOrigin?: server.Vector3;
    offset?: server.Vector3;
@@ -858,6 +859,8 @@ export class MinimapManager {
    public destroyMinimap(minimapId: string): void;
    public getAllMinimapIds(): Array<string>;
    public getMinimap(minimapId: string): MinimapItem;
+   public setVanillaBiomeColorMap(colorMap: Record<string,server.RGB>): void;
+   public updateVanillaColorMap(biomeType: server.BiomeType, color: server.RGB): void;
    private constructor();
 }
 export class ModeChangeAfterEvent {

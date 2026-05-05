@@ -1,33 +1,23 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "70508991",
+   "$id": "894322940",
    "x-format-version": "1.20.60",
    "definitions": {
-      "553173857": {
-         "title": "WeightedBiomeName",
+      "1174808755": {
+         "title": "minecraft:overworld_generation_rules - Weighted biome names settings",
          "oneOf": [
             {
                "type": "array",
                "items": {
-                  "oneOf": [
-                     {
-                        "$ref": "#/definitions/1493629372"
-                     },
-                     {
-                        "type": "integer",
-                        "minimum": 0
-                     }
-                  ]
-               },
-               "minItems": 2,
-               "maxItems": 2
+                  "$ref": "#/definitions/3448476628"
+               }
             },
             {
-               "$ref": "#/definitions/1493629372"
+               "$ref": "#/definitions/1641785394"
             }
          ]
       },
-      "891697368": {
+      "1253141013": {
          "title": "minecraft:overworld_generation_rules - Weighted climate categories settings",
          "type": "array",
          "items": {
@@ -52,21 +42,31 @@
          "minItems": 2,
          "maxItems": 2
       },
-      "1493629372": {
+      "1641785394": {
          "title": "Reference",
          "type": "string"
       },
-      "2586207614": {
-         "title": "minecraft:overworld_generation_rules - Weighted biome names settings",
+      "3448476628": {
+         "title": "WeightedBiomeName",
          "oneOf": [
             {
                "type": "array",
                "items": {
-                  "$ref": "#/definitions/553173857"
-               }
+                  "oneOf": [
+                     {
+                        "$ref": "#/definitions/1641785394"
+                     },
+                     {
+                        "type": "integer",
+                        "minimum": 0
+                     }
+                  ]
+               },
+               "minItems": 2,
+               "maxItems": 2
             },
             {
-               "$ref": "#/definitions/1493629372"
+               "$ref": "#/definitions/1641785394"
             }
          ]
       }
@@ -77,20 +77,20 @@
       "generate_for_climates": {
          "type": "array",
          "items": {
-            "$ref": "#/definitions/891697368"
+            "$ref": "#/definitions/1253141013"
          }
       },
       "hills_transformation": {
-         "$ref": "#/definitions/2586207614"
+         "$ref": "#/definitions/1174808755"
       },
       "mutate_transformation": {
-         "$ref": "#/definitions/2586207614"
+         "$ref": "#/definitions/1174808755"
       },
       "river_transformation": {
-         "$ref": "#/definitions/2586207614"
+         "$ref": "#/definitions/1174808755"
       },
       "shore_transformation": {
-         "$ref": "#/definitions/2586207614"
+         "$ref": "#/definitions/1174808755"
       }
    }
 }

@@ -1,94 +1,39 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "1503334322",
+   "$id": "293717377",
    "x-format-version": "1.26.10",
    "definitions": {
-      "121353999": {
-         "title": "ActorDefinitionTrigger",
+      "100089226": {
+         "title": "Filter Group Map",
          "type": "object",
          "properties": {
-            "event": {
-               "type": "string",
-               "default": ""
+            "AND": {
+               "$ref": "#/definitions/2789112004"
             },
-            "filters": {
-               "default": {
-                  "OR": null,
-                  "all": null,
-                  "all_of": null,
-                  "AND": null,
-                  "any_of": null,
-                  "none_of": null,
-                  "any": null,
-                  "NOT": null
-               },
-               "$ref": "#/definitions/1088251937"
+            "NOT": {
+               "$ref": "#/definitions/2789112004"
             },
-            "target": {
-               "title": "FilterSubject",
-               "type": "string",
-               "default": "self",
-               "enum": [
-                  "self",
-                  "other",
-                  "player",
-                  "target",
-                  "parent",
-                  "baby",
-                  "block",
-                  "damager",
-                  "holder",
-                  "item"
-               ]
+            "OR": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "none_of": {
+               "$ref": "#/definitions/2789112004"
             }
          }
       },
-      "517105782": {
-         "title": "compound_proxy",
-         "oneOf": [
-            {
-               "type": "integer"
-            },
-            {
-               "type": "string"
-            },
-            {
-               "type": "boolean"
-            }
-         ]
-      },
-      "1057349585": {
-         "title": "FloatRange",
-         "type": "object",
-         "properties": {
-            "max": {
-               "type": "number",
-               "default": 0
-            },
-            "min": {
-               "type": "number",
-               "default": 0
-            }
-         }
-      },
-      "1088251937": {
-         "title": "Filter Group",
-         "oneOf": [
-            {
-               "$ref": "#/definitions/4150989894"
-            },
-            {
-               "type": "array",
-               "items": {
-                  "$ref": "#/definitions/1088251937"
-               }
-            },
-            {
-               "$ref": "#/definitions/3235433757"
-            }
-         ]
-      },
-      "2770948419": {
+      "855125494": {
          "title": "BlockDescriptorProxy",
          "type": "object",
          "properties": {
@@ -99,7 +44,7 @@
             "states": {
                "type": "object",
                "additionalProperties": {
-                  "$ref": "#/definitions/517105782"
+                  "$ref": "#/definitions/2565245911"
                },
                "default": {}
             },
@@ -109,54 +54,7 @@
             }
          }
       },
-      "2794205495": {
-         "title": "Block Descriptor",
-         "oneOf": [
-            {
-               "$ref": "#/definitions/2770948419",
-               "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
-            },
-            {
-               "type": "string",
-               "minLength": 1
-            },
-            {
-               "$ref": "#/definitions/2770948419",
-               "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
-            }
-         ]
-      },
-      "3235433757": {
-         "title": "Filter Group Map",
-         "type": "object",
-         "properties": {
-            "AND": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "NOT": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "OR": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "all": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "all_of": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "any": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "any_of": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "none_of": {
-               "$ref": "#/definitions/1088251937"
-            }
-         }
-      },
-      "4150989894": {
+      "2457665045": {
          "title": "Filter Test",
          "type": "object",
          "properties": {
@@ -231,6 +129,108 @@
          "required": [
             "test"
          ]
+      },
+      "2565245911": {
+         "title": "compound_proxy",
+         "oneOf": [
+            {
+               "type": "integer"
+            },
+            {
+               "type": "string"
+            },
+            {
+               "type": "boolean"
+            }
+         ]
+      },
+      "2566306602": {
+         "title": "FloatRange",
+         "type": "object",
+         "properties": {
+            "max": {
+               "type": "number",
+               "default": 0
+            },
+            "min": {
+               "type": "number",
+               "default": 0
+            }
+         }
+      },
+      "2789112004": {
+         "title": "Filter Group",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2457665045"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/2789112004"
+               }
+            },
+            {
+               "$ref": "#/definitions/100089226"
+            }
+         ]
+      },
+      "3093766462": {
+         "title": "Block Descriptor",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/855125494",
+               "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
+            },
+            {
+               "type": "string",
+               "minLength": 1
+            },
+            {
+               "$ref": "#/definitions/855125494",
+               "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
+            }
+         ]
+      },
+      "3379368818": {
+         "title": "ActorDefinitionTrigger",
+         "type": "object",
+         "properties": {
+            "event": {
+               "type": "string",
+               "default": ""
+            },
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/2789112004"
+            },
+            "target": {
+               "title": "FilterSubject",
+               "type": "string",
+               "default": "self",
+               "enum": [
+                  "self",
+                  "other",
+                  "player",
+                  "target",
+                  "parent",
+                  "baby",
+                  "block",
+                  "damager",
+                  "holder",
+                  "item"
+               ]
+            }
+         }
       }
    },
    "title": "minecraft:behavior.random_search_and_dig",
@@ -254,14 +254,14 @@
             "min": 0,
             "max": 0
          },
-         "$ref": "#/definitions/1057349585"
+         "$ref": "#/definitions/2566306602"
       },
       "digging_duration_range": {
          "default": {
             "min": 8,
             "max": 10
          },
-         "$ref": "#/definitions/1057349585"
+         "$ref": "#/definitions/2566306602"
       },
       "find_valid_position_retries": {
          "type": "integer",
@@ -280,102 +280,102 @@
             "event": "",
             "target": "self",
             "filters": {
-               "OR": null,
-               "all": null,
                "all_of": null,
+               "all": null,
+               "OR": null,
                "AND": null,
                "any_of": null,
-               "none_of": null,
                "any": null,
+               "none_of": null,
                "NOT": null
             }
          },
-         "$ref": "#/definitions/121353999"
+         "$ref": "#/definitions/3379368818"
       },
       "on_fail_during_digging": {
          "default": {
             "event": "",
             "target": "self",
             "filters": {
-               "OR": null,
-               "all": null,
                "all_of": null,
+               "all": null,
+               "OR": null,
                "AND": null,
                "any_of": null,
-               "none_of": null,
                "any": null,
+               "none_of": null,
                "NOT": null
             }
          },
-         "$ref": "#/definitions/121353999"
+         "$ref": "#/definitions/3379368818"
       },
       "on_fail_during_searching": {
          "default": {
             "event": "",
             "target": "self",
             "filters": {
-               "OR": null,
-               "all": null,
                "all_of": null,
+               "all": null,
+               "OR": null,
                "AND": null,
                "any_of": null,
-               "none_of": null,
                "any": null,
+               "none_of": null,
                "NOT": null
             }
          },
-         "$ref": "#/definitions/121353999"
+         "$ref": "#/definitions/3379368818"
       },
       "on_item_found": {
          "default": {
             "event": "",
             "target": "self",
             "filters": {
-               "OR": null,
-               "all": null,
                "all_of": null,
+               "all": null,
+               "OR": null,
                "AND": null,
                "any_of": null,
-               "none_of": null,
                "any": null,
+               "none_of": null,
                "NOT": null
             }
          },
-         "$ref": "#/definitions/121353999"
+         "$ref": "#/definitions/3379368818"
       },
       "on_searching_start": {
          "default": {
             "event": "",
             "target": "self",
             "filters": {
-               "OR": null,
-               "all": null,
                "all_of": null,
+               "all": null,
+               "OR": null,
                "AND": null,
                "any_of": null,
-               "none_of": null,
                "any": null,
+               "none_of": null,
                "NOT": null
             }
          },
-         "$ref": "#/definitions/121353999"
+         "$ref": "#/definitions/3379368818"
       },
       "on_success": {
          "default": {
             "event": "",
             "target": "self",
             "filters": {
-               "OR": null,
-               "all": null,
                "all_of": null,
+               "all": null,
+               "OR": null,
                "AND": null,
                "any_of": null,
-               "none_of": null,
                "any": null,
+               "none_of": null,
                "NOT": null
             }
          },
-         "$ref": "#/definitions/121353999"
+         "$ref": "#/definitions/3379368818"
       },
       "priority": {
          "type": "integer",
@@ -409,7 +409,7 @@
          "type": "array",
          "default": [],
          "items": {
-            "$ref": "#/definitions/2794205495"
+            "$ref": "#/definitions/3093766462"
          }
       },
       "target_dig_position_offset": {

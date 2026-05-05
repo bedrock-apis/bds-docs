@@ -60,6 +60,12 @@ export enum RealmsWorldUploadResult {
    WorldUploadBusy = 5,
 }
 
+export interface BiomeFillOptions {
+   biomeFilter?: server.BiomeFilter;
+   includeContainedPositions?: boolean;
+   includePositionsAbove?: boolean;
+   includePositionsBelow?: boolean;
+}
 export interface CustomBiomeConfig {
    name: string;
    replacements: Array<CustomBiomeReplacementConfig>;
@@ -195,6 +201,7 @@ export class DataStore {
    public readonly menuContainer: DataStoreMenuContainer;
    public readonly modalToolContainer: DataStoreModalToolContainer;
    public readonly paneContainer: DataStorePaneContainer;
+   public sendNetworkEvent(dataTag: string, payload: string): void;
    public sendNotificationEvent(dataTag: string, payload: string): void;
    private constructor();
 }
@@ -353,6 +360,7 @@ export class MinecraftEditorInternal {
    public readonly isNewLevel: boolean;
    public readonly regionManager: ProjectRegionManager;
    public createCustomBiomeSource(config: CustomBiomeSourceConfig): CustomBiomeSource;
+   public fillBiomes(dimension: server.Dimension, volume: server.BlockVolumeBase | server.CompoundBlockVolume, biome: server.BiomeType, options?: BiomeFillOptions): void;
    public fireTelemetryEvent(player: server.Player, source: string, eventName: string, metadata: string): void;
    public getPlayerServices(player: server.Player): InternalPlayerServiceContext;
    public registerExtension(extensionName: string, activationFunction: (arg0: server_editor.ExtensionContext)=>void, shutdownFunction: (arg0: server_editor.ExtensionContext)=>void, options?: server_editor.ExtensionOptionalParameters): server_editor.Extension;

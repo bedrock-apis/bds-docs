@@ -1,9 +1,20 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "4184501408",
+   "$id": "3331015653",
    "x-format-version": "1.21.0",
    "definitions": {
-      "2267778531": {
+      "2014847524": {
+         "title": "Molang expression",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2529973620"
+            },
+            {
+               "type": "number"
+            }
+         ]
+      },
+      "2529973620": {
          "title": "Molang string",
          "oneOf": [
             {
@@ -25,17 +36,6 @@
                ]
             }
          ]
-      },
-      "3178719147": {
-         "title": "Molang expression",
-         "oneOf": [
-            {
-               "$ref": "#/definitions/2267778531"
-            },
-            {
-               "type": "number"
-            }
-         ]
       }
    },
    "title": "particle_motion_parametric",
@@ -44,7 +44,7 @@
       "direction": {
          "type": "array",
          "items": {
-            "$ref": "#/definitions/3178719147"
+            "$ref": "#/definitions/2014847524"
          },
          "minItems": 3,
          "maxItems": 3
@@ -52,13 +52,13 @@
       "relative_position": {
          "type": "array",
          "items": {
-            "$ref": "#/definitions/3178719147"
+            "$ref": "#/definitions/2014847524"
          },
          "minItems": 3,
          "maxItems": 3
       },
       "rotation": {
-         "$ref": "#/definitions/3178719147"
+         "$ref": "#/definitions/2014847524"
       }
    }
 }

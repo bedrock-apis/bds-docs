@@ -1,9 +1,69 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "3999604596",
+   "$id": "3453366163",
    "x-format-version": "1.26.10",
    "definitions": {
-      "792012262": {
+      "100089226": {
+         "title": "Filter Group Map",
+         "type": "object",
+         "properties": {
+            "AND": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "NOT": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "OR": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "none_of": {
+               "$ref": "#/definitions/2789112004"
+            }
+         }
+      },
+      "725374594": {
+         "title": "vec3",
+         "oneOf": [
+            {
+               "type": "array",
+               "items": {
+                  "type": "number"
+               },
+               "minItems": 3,
+               "maxItems": 3
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "x": {
+                     "type": "number",
+                     "default": 0
+                  },
+                  "y": {
+                     "type": "number",
+                     "default": 0
+                  },
+                  "z": {
+                     "type": "number",
+                     "default": 0
+                  }
+               }
+            }
+         ]
+      },
+      "2397407737": {
          "title": "MobDescriptor",
          "type": "object",
          "properties": {
@@ -26,7 +86,7 @@
                   "any": null,
                   "NOT": null
                },
-               "$ref": "#/definitions/1088251937"
+               "$ref": "#/definitions/2789112004"
             },
             "max_dist": {
                "type": "number",
@@ -65,84 +125,7 @@
             }
          }
       },
-      "1088251937": {
-         "title": "Filter Group",
-         "oneOf": [
-            {
-               "$ref": "#/definitions/4150989894"
-            },
-            {
-               "type": "array",
-               "items": {
-                  "$ref": "#/definitions/1088251937"
-               }
-            },
-            {
-               "$ref": "#/definitions/3235433757"
-            }
-         ]
-      },
-      "3235433757": {
-         "title": "Filter Group Map",
-         "type": "object",
-         "properties": {
-            "AND": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "NOT": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "OR": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "all": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "all_of": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "any": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "any_of": {
-               "$ref": "#/definitions/1088251937"
-            },
-            "none_of": {
-               "$ref": "#/definitions/1088251937"
-            }
-         }
-      },
-      "4004946602": {
-         "title": "vec3",
-         "oneOf": [
-            {
-               "type": "array",
-               "items": {
-                  "type": "number"
-               },
-               "minItems": 3,
-               "maxItems": 3
-            },
-            {
-               "type": "object",
-               "properties": {
-                  "x": {
-                     "type": "number",
-                     "default": 0
-                  },
-                  "y": {
-                     "type": "number",
-                     "default": 0
-                  },
-                  "z": {
-                     "type": "number",
-                     "default": 0
-                  }
-               }
-            }
-         ]
-      },
-      "4150989894": {
+      "2457665045": {
          "title": "Filter Test",
          "type": "object",
          "properties": {
@@ -218,17 +201,34 @@
             "test"
          ]
       },
-      "4227886613": {
+      "2789112004": {
+         "title": "Filter Group",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2457665045"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/2789112004"
+               }
+            },
+            {
+               "$ref": "#/definitions/100089226"
+            }
+         ]
+      },
+      "3924190650": {
          "title": "EntityTypes",
          "oneOf": [
             {
                "type": "array",
                "items": {
-                  "$ref": "#/definitions/792012262"
+                  "$ref": "#/definitions/2397407737"
                }
             },
             {
-               "$ref": "#/definitions/792012262"
+               "$ref": "#/definitions/2397407737"
             }
          ]
       }
@@ -266,11 +266,11 @@
             3,
             6
          ],
-         "$ref": "#/definitions/4004946602"
+         "$ref": "#/definitions/725374594"
       },
       "friend_types": {
          "default": [],
-         "$ref": "#/definitions/4227886613"
+         "$ref": "#/definitions/3924190650"
       },
       "max_play_duration_seconds": {
          "type": "number",

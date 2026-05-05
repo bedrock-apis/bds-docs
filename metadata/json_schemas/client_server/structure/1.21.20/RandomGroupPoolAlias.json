@@ -1,49 +1,9 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "2375908812",
+   "$id": "132644959",
    "x-format-version": "1.21.20",
    "definitions": {
-      "169701669": {
-         "title": "RandomPoolAlias",
-         "type": "object",
-         "properties": {
-            "alias": {
-               "type": "string"
-            },
-            "targets": {
-               "type": "array",
-               "items": {
-                  "$ref": "#/definitions/1715022163"
-               }
-            }
-         },
-         "required": [
-            "alias",
-            "targets"
-         ]
-      },
-      "1356053607": {
-         "title": "Reference",
-         "type": "string"
-      },
-      "1715022163": {
-         "title": "JigsawTemplatePool",
-         "type": "object",
-         "properties": {
-            "data": {
-               "$ref": "#/definitions/1356053607"
-            },
-            "weight": {
-               "type": "integer",
-               "minimum": 0
-            }
-         },
-         "required": [
-            "data",
-            "weight"
-         ]
-      },
-      "2155635173": {
+      "146633914": {
          "title": "RandomGroupBindings",
          "type": "object",
          "properties": {
@@ -52,10 +12,10 @@
                "items": {
                   "oneOf": [
                      {
-                        "$ref": "#/definitions/3138104923"
+                        "$ref": "#/definitions/3330280218"
                      },
                      {
-                        "$ref": "#/definitions/169701669"
+                        "$ref": "#/definitions/2054874732"
                      }
                   ]
                }
@@ -70,7 +30,43 @@
             "weight"
          ]
       },
-      "3138104923": {
+      "2054874732": {
+         "title": "RandomPoolAlias",
+         "type": "object",
+         "properties": {
+            "alias": {
+               "type": "string"
+            },
+            "targets": {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/2866644962"
+               }
+            }
+         },
+         "required": [
+            "alias",
+            "targets"
+         ]
+      },
+      "2866644962": {
+         "title": "JigsawTemplatePool",
+         "type": "object",
+         "properties": {
+            "data": {
+               "$ref": "#/definitions/3634282923"
+            },
+            "weight": {
+               "type": "integer",
+               "minimum": 0
+            }
+         },
+         "required": [
+            "data",
+            "weight"
+         ]
+      },
+      "3330280218": {
          "title": "DirectPoolAlias",
          "type": "object",
          "properties": {
@@ -78,13 +74,17 @@
                "type": "string"
             },
             "target": {
-               "$ref": "#/definitions/1356053607"
+               "$ref": "#/definitions/3634282923"
             }
          },
          "required": [
             "alias",
             "target"
          ]
+      },
+      "3634282923": {
+         "title": "Reference",
+         "type": "string"
       }
    },
    "title": "RandomGroupPoolAlias",
@@ -93,7 +93,7 @@
       "groups": {
          "type": "array",
          "items": {
-            "$ref": "#/definitions/2155635173"
+            "$ref": "#/definitions/146633914"
          }
       }
    },

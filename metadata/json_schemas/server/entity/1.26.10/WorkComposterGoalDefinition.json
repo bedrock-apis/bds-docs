@@ -1,96 +1,39 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "3491578613",
+   "$id": "2222370208",
    "x-format-version": "1.26.10",
    "definitions": {
-      "121353999": {
-         "title": "ActorDefinitionTrigger",
-         "type": "object",
-         "properties": {
-            "event": {
-               "type": "string",
-               "default": ""
-            },
-            "filters": {
-               "default": {
-                  "OR": null,
-                  "all": null,
-                  "all_of": null,
-                  "AND": null,
-                  "any_of": null,
-                  "none_of": null,
-                  "any": null,
-                  "NOT": null
-               },
-               "$ref": "#/definitions/1088251937"
-            },
-            "target": {
-               "title": "FilterSubject",
-               "type": "string",
-               "default": "self",
-               "enum": [
-                  "self",
-                  "other",
-                  "player",
-                  "target",
-                  "parent",
-                  "baby",
-                  "block",
-                  "damager",
-                  "holder",
-                  "item"
-               ]
-            }
-         }
-      },
-      "1088251937": {
-         "title": "Filter Group",
-         "oneOf": [
-            {
-               "$ref": "#/definitions/4150989894"
-            },
-            {
-               "type": "array",
-               "items": {
-                  "$ref": "#/definitions/1088251937"
-               }
-            },
-            {
-               "$ref": "#/definitions/3235433757"
-            }
-         ]
-      },
-      "3235433757": {
+      "100089226": {
          "title": "Filter Group Map",
          "type": "object",
          "properties": {
             "AND": {
-               "$ref": "#/definitions/1088251937"
+               "$ref": "#/definitions/2789112004"
             },
             "NOT": {
-               "$ref": "#/definitions/1088251937"
+               "$ref": "#/definitions/2789112004"
             },
             "OR": {
-               "$ref": "#/definitions/1088251937"
+               "$ref": "#/definitions/2789112004"
             },
             "all": {
-               "$ref": "#/definitions/1088251937"
+               "$ref": "#/definitions/2789112004"
             },
             "all_of": {
-               "$ref": "#/definitions/1088251937"
+               "$ref": "#/definitions/2789112004"
             },
             "any": {
-               "$ref": "#/definitions/1088251937"
+               "$ref": "#/definitions/2789112004"
             },
             "any_of": {
-               "$ref": "#/definitions/1088251937"
+               "$ref": "#/definitions/2789112004"
             },
             "none_of": {
-               "$ref": "#/definitions/1088251937"
+               "$ref": "#/definitions/2789112004"
             }
          }
       },
-      "4150989894": {
+      "2457665045": {
          "title": "Filter Test",
          "type": "object",
          "properties": {
@@ -165,6 +108,63 @@
          "required": [
             "test"
          ]
+      },
+      "2789112004": {
+         "title": "Filter Group",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2457665045"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/2789112004"
+               }
+            },
+            {
+               "$ref": "#/definitions/100089226"
+            }
+         ]
+      },
+      "3379368818": {
+         "title": "ActorDefinitionTrigger",
+         "type": "object",
+         "properties": {
+            "event": {
+               "type": "string",
+               "default": ""
+            },
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/2789112004"
+            },
+            "target": {
+               "title": "FilterSubject",
+               "type": "string",
+               "default": "self",
+               "enum": [
+                  "self",
+                  "other",
+                  "player",
+                  "target",
+                  "parent",
+                  "baby",
+                  "block",
+                  "damager",
+                  "holder",
+                  "item"
+               ]
+            }
+         }
       }
    },
    "title": "minecraft:behavior.work_composter",
@@ -224,17 +224,17 @@
             "event": "",
             "target": "self",
             "filters": {
-               "OR": null,
-               "all": null,
                "all_of": null,
+               "all": null,
+               "OR": null,
                "AND": null,
                "any_of": null,
-               "none_of": null,
                "any": null,
+               "none_of": null,
                "NOT": null
             }
          },
-         "$ref": "#/definitions/121353999"
+         "$ref": "#/definitions/3379368818"
       },
       "priority": {
          "type": "integer",

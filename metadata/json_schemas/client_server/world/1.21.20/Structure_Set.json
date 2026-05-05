@@ -1,9 +1,31 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "760104054",
+   "$id": "473143217",
    "x-format-version": "1.21.20",
    "definitions": {
-      "741112715": {
+      "325860804": {
+         "title": "Structure",
+         "type": "object",
+         "properties": {
+            "structure": {
+               "$ref": "#/definitions/1130472626"
+            },
+            "weight": {
+               "type": "integer",
+               "minimum": 1,
+               "maximum": 200
+            }
+         },
+         "required": [
+            "structure",
+            "weight"
+         ]
+      },
+      "1130472626": {
+         "title": "Reference",
+         "type": "string"
+      },
+      "1429402238": {
          "title": "RandomSpreadPlacement",
          "type": "object",
          "properties": {
@@ -42,42 +64,20 @@
             "type"
          ]
       },
-      "1357039345": {
-         "title": "Reference",
+      "2045490702": {
+         "title": "Identifier",
          "type": "string"
       },
-      "1509348670": {
+      "3424758051": {
          "title": "Description",
          "type": "object",
          "properties": {
             "identifier": {
-               "$ref": "#/definitions/1533541232"
+               "$ref": "#/definitions/2045490702"
             }
          },
          "required": [
             "identifier"
-         ]
-      },
-      "1533541232": {
-         "title": "Identifier",
-         "type": "string"
-      },
-      "3295675449": {
-         "title": "Structure",
-         "type": "object",
-         "properties": {
-            "structure": {
-               "$ref": "#/definitions/1357039345"
-            },
-            "weight": {
-               "type": "integer",
-               "minimum": 1,
-               "maximum": 200
-            }
-         },
-         "required": [
-            "structure",
-            "weight"
          ]
       }
    },
@@ -85,15 +85,15 @@
    "type": "object",
    "properties": {
       "description": {
-         "$ref": "#/definitions/1509348670"
+         "$ref": "#/definitions/3424758051"
       },
       "placement": {
-         "$ref": "#/definitions/741112715"
+         "$ref": "#/definitions/1429402238"
       },
       "structures": {
          "type": "array",
          "items": {
-            "$ref": "#/definitions/3295675449"
+            "$ref": "#/definitions/325860804"
          }
       }
    },

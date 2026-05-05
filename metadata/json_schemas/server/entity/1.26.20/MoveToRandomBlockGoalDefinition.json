@@ -1,0 +1,39 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "1839745174",
+   "x-format-version": "1.26.20",
+   "title": "minecraft:behavior.move_to_random_block",
+   "type": "object",
+   "properties": {
+      "block_distance": {
+         "type": "number",
+         "default": 16
+      },
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "title": "Goal's control flags",
+            "type": "string",
+            "enum": [
+               "move",
+               "look",
+               "jump"
+            ]
+         }
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "minimum": 0
+      },
+      "speed_multiplier": {
+         "type": "number",
+         "default": 1
+      },
+      "within_radius": {
+         "type": "number",
+         "default": 0
+      }
+   }
+}

@@ -14,6 +14,11 @@ export class ArgumentOutOfBoundsError extends Error {
    private constructor();
 }
 //@ts-ignore
+export class ContainerSizeOutOfBoundsError extends Error {
+   public readonly maxValue: number;
+   private constructor();
+}
+//@ts-ignore
 export class InvalidArgumentError extends Error {
    public readonly index: number;
    private constructor();

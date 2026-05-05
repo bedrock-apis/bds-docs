@@ -1,191 +1,14 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "1391327946",
+   "$id": "692354693",
    "x-format-version": "1.21.20",
    "definitions": {
-      "45584192": {
-         "title": "Passthrough",
-         "type": "object",
-         "properties": {
-            "type": {
-               "title": "BlockEntityModifierType",
-               "type": "string",
-               "const": "minecraft:passthrough",
-               "enum": [
-                  "minecraft:passthrough",
-                  "minecraft:append_loot"
-               ]
-            }
-         },
-         "required": [
-            "type"
-         ]
-      },
-      "1134690608": {
-         "title": "AppendLoot",
-         "type": "object",
-         "properties": {
-            "loot_table": {
-               "$ref": "#/definitions/1135547207"
-            },
-            "type": {
-               "title": "BlockEntityModifierType",
-               "type": "string",
-               "const": "minecraft:append_loot",
-               "enum": [
-                  "minecraft:passthrough",
-                  "minecraft:append_loot"
-               ]
-            }
-         },
-         "required": [
-            "loot_table",
-            "type"
-         ]
-      },
-      "1135547207": {
-         "title": "File Reference",
-         "type": "string",
-         "maxLength": 256
-      },
-      "1218029234": {
-         "title": "Processor List Description",
-         "type": "object",
-         "properties": {
-            "identifier": {
-               "$ref": "#/definitions/3681370654"
-            }
-         },
-         "required": [
-            "identifier"
-         ]
-      },
-      "1354340864": {
-         "title": "ConstantIntProvider",
-         "type": "object",
-         "properties": {
-            "type": {
-               "title": "IntProviderType",
-               "type": "string",
-               "const": "constant",
-               "enum": [
-                  "constant",
-                  "uniform"
-               ]
-            },
-            "value": {
-               "type": "integer"
-            }
-         },
-         "required": [
-            "type",
-            "value"
-         ]
-      },
-      "1527037515": {
-         "title": "Reference",
-         "type": "string"
-      },
-      "1556792771": {
-         "title": "AlwaysTruePos",
-         "type": "object",
-         "properties": {
-            "predicate_type": {
-               "title": "PosType",
-               "type": "string",
-               "const": "minecraft:always_true",
-               "enum": [
-                  "minecraft:always_true",
-                  "minecraft:axis_aligned_linear_pos"
-               ]
-            }
-         },
-         "required": [
-            "predicate_type"
-         ]
-      },
-      "1740413124": {
-         "title": "UniformIntProvider",
-         "type": "object",
-         "properties": {
-            "max_inclusive": {
-               "type": "integer"
-            },
-            "min_inclusive": {
-               "type": "integer"
-            },
-            "type": {
-               "title": "IntProviderType",
-               "type": "string",
-               "const": "uniform",
-               "enum": [
-                  "constant",
-                  "uniform"
-               ]
-            }
-         },
-         "required": [
-            "max_inclusive",
-            "min_inclusive",
-            "type"
-         ]
-      },
-      "1766729433": {
-         "title": "BlockStateMatch",
-         "type": "object",
-         "properties": {
-            "block_state": {
-               "$ref": "#/definitions/3076687790"
-            },
-            "predicate_type": {
-               "title": "BlockType",
-               "type": "string",
-               "const": "minecraft:blockstate_match",
-               "enum": [
-                  "minecraft:always_true",
-                  "minecraft:block_match",
-                  "minecraft:random_block_match",
-                  "minecraft:tag_match",
-                  "minecraft:blockstate_match",
-                  "minecraft:random_blockstate_match"
-               ]
-            }
-         },
-         "required": [
-            "block_state",
-            "predicate_type"
-         ]
-      },
-      "1810898542": {
-         "title": "Protected Block",
-         "type": "object",
-         "properties": {
-            "processor_type": {
-               "title": "Jigsaw Processro Type",
-               "type": "string",
-               "const": "minecraft:protected_blocks",
-               "enum": [
-                  "minecraft:block_ignore",
-                  "minecraft:rule",
-                  "minecraft:capped",
-                  "minecraft:protected_blocks"
-               ]
-            },
-            "value": {
-               "type": "string"
-            }
-         },
-         "required": [
-            "processor_type",
-            "value"
-         ]
-      },
-      "2198589344": {
+      "29129971": {
          "title": "BlockMatch",
          "type": "object",
          "properties": {
             "block": {
-               "$ref": "#/definitions/1527037515"
+               "$ref": "#/definitions/3152646801"
             },
             "predicate_type": {
                "title": "BlockType",
@@ -206,55 +29,25 @@
             "predicate_type"
          ]
       },
-      "2581260060": {
-         "title": "Capped",
+      "490162462": {
+         "title": "AlwaysTruePos",
          "type": "object",
          "properties": {
-            "delegate": {
-               "oneOf": [
-                  {
-                     "$ref": "#/definitions/3016468321"
-                  },
-                  {
-                     "$ref": "#/definitions/3518228880"
-                  },
-                  {
-                     "$ref": "#/definitions/1810898542"
-                  }
-               ]
-            },
-            "limit": {
-               "oneOf": [
-                  {
-                     "type": "integer"
-                  },
-                  {
-                     "$ref": "#/definitions/1354340864"
-                  },
-                  {
-                     "$ref": "#/definitions/1740413124"
-                  }
-               ]
-            },
-            "processor_type": {
-               "title": "Jigsaw Processro Type",
+            "predicate_type": {
+               "title": "PosType",
                "type": "string",
-               "const": "minecraft:capped",
+               "const": "minecraft:always_true",
                "enum": [
-                  "minecraft:block_ignore",
-                  "minecraft:rule",
-                  "minecraft:capped",
-                  "minecraft:protected_blocks"
+                  "minecraft:always_true",
+                  "minecraft:axis_aligned_linear_pos"
                ]
             }
          },
          "required": [
-            "delegate",
-            "limit",
-            "processor_type"
+            "predicate_type"
          ]
       },
-      "3016468321": {
+      "621179656": {
          "title": "BlockRules",
          "type": "object",
          "properties": {
@@ -272,7 +65,7 @@
             "rules": {
                "type": "array",
                "items": {
-                  "$ref": "#/definitions/3035388266"
+                  "$ref": "#/definitions/828807807"
                }
             }
          },
@@ -281,7 +74,7 @@
             "rules"
          ]
       },
-      "3034820683": {
+      "625050612": {
          "title": "TagMatch",
          "type": "object",
          "properties": {
@@ -307,17 +100,17 @@
             "tag"
          ]
       },
-      "3035388266": {
+      "828807807": {
          "title": "Processor Rule",
          "type": "object",
          "properties": {
             "block_entity_modifier": {
                "oneOf": [
                   {
-                     "$ref": "#/definitions/45584192"
+                     "$ref": "#/definitions/1678956529"
                   },
                   {
-                     "$ref": "#/definitions/1134690608"
+                     "$ref": "#/definitions/1496353939"
                   }
                ]
             },
@@ -327,22 +120,22 @@
                },
                "oneOf": [
                   {
-                     "$ref": "#/definitions/4275912652"
+                     "$ref": "#/definitions/1700670701"
                   },
                   {
-                     "$ref": "#/definitions/2198589344"
+                     "$ref": "#/definitions/29129971"
                   },
                   {
-                     "$ref": "#/definitions/3523914459"
+                     "$ref": "#/definitions/1655154128"
                   },
                   {
-                     "$ref": "#/definitions/3034820683"
+                     "$ref": "#/definitions/625050612"
                   },
                   {
-                     "$ref": "#/definitions/1766729433"
+                     "$ref": "#/definitions/2275438672"
                   },
                   {
-                     "$ref": "#/definitions/3589682888"
+                     "$ref": "#/definitions/1243305609"
                   }
                ]
             },
@@ -352,35 +145,35 @@
                },
                "oneOf": [
                   {
-                     "$ref": "#/definitions/4275912652"
+                     "$ref": "#/definitions/1700670701"
                   },
                   {
-                     "$ref": "#/definitions/2198589344"
+                     "$ref": "#/definitions/29129971"
                   },
                   {
-                     "$ref": "#/definitions/3523914459"
+                     "$ref": "#/definitions/1655154128"
                   },
                   {
-                     "$ref": "#/definitions/3034820683"
+                     "$ref": "#/definitions/625050612"
                   },
                   {
-                     "$ref": "#/definitions/1766729433"
+                     "$ref": "#/definitions/2275438672"
                   },
                   {
-                     "$ref": "#/definitions/3589682888"
+                     "$ref": "#/definitions/1243305609"
                   }
                ]
             },
             "output_state": {
-               "$ref": "#/definitions/3076687790"
+               "$ref": "#/definitions/1170899181"
             },
             "position_predicate": {
                "oneOf": [
                   {
-                     "$ref": "#/definitions/1556792771"
+                     "$ref": "#/definitions/490162462"
                   },
                   {
-                     "$ref": "#/definitions/3839910888"
+                     "$ref": "#/definitions/2537535649"
                   }
                ]
             }
@@ -389,17 +182,17 @@
             "output_state"
          ]
       },
-      "3076687790": {
+      "1170899181": {
          "title": "Block Specifier",
          "oneOf": [
             {
-               "$ref": "#/definitions/1527037515"
+               "$ref": "#/definitions/3152646801"
             },
             {
                "type": "object",
                "properties": {
                   "name": {
-                     "$ref": "#/definitions/1527037515"
+                     "$ref": "#/definitions/3152646801"
                   },
                   "states": {
                      "type": "object",
@@ -425,71 +218,12 @@
             }
          ]
       },
-      "3518228880": {
-         "title": "BlockIgnore",
-         "type": "object",
-         "properties": {
-            "blocks": {
-               "type": "array",
-               "items": {
-                  "$ref": "#/definitions/1527037515"
-               }
-            },
-            "processor_type": {
-               "title": "Jigsaw Processro Type",
-               "type": "string",
-               "const": "minecraft:block_ignore",
-               "enum": [
-                  "minecraft:block_ignore",
-                  "minecraft:rule",
-                  "minecraft:capped",
-                  "minecraft:protected_blocks"
-               ]
-            }
-         },
-         "required": [
-            "blocks",
-            "processor_type"
-         ]
-      },
-      "3523914459": {
-         "title": "RandomBlockMatch",
-         "type": "object",
-         "properties": {
-            "block": {
-               "$ref": "#/definitions/1527037515"
-            },
-            "predicate_type": {
-               "title": "BlockType",
-               "type": "string",
-               "const": "minecraft:random_block_match",
-               "enum": [
-                  "minecraft:always_true",
-                  "minecraft:block_match",
-                  "minecraft:random_block_match",
-                  "minecraft:tag_match",
-                  "minecraft:blockstate_match",
-                  "minecraft:random_blockstate_match"
-               ]
-            },
-            "probability": {
-               "type": "number",
-               "minimum": 0,
-               "maximum": 1
-            }
-         },
-         "required": [
-            "block",
-            "predicate_type",
-            "probability"
-         ]
-      },
-      "3589682888": {
+      "1243305609": {
          "title": "RandomBlockStateMatch",
          "type": "object",
          "properties": {
             "block_state": {
-               "$ref": "#/definitions/3076687790"
+               "$ref": "#/definitions/1170899181"
             },
             "predicate_type": {
                "title": "BlockType",
@@ -516,11 +250,228 @@
             "probability"
          ]
       },
-      "3681370654": {
-         "title": "Identifier",
-         "type": "string"
+      "1395133979": {
+         "title": "BlockIgnore",
+         "type": "object",
+         "properties": {
+            "blocks": {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/3152646801"
+               }
+            },
+            "processor_type": {
+               "title": "Jigsaw Processro Type",
+               "type": "string",
+               "const": "minecraft:block_ignore",
+               "enum": [
+                  "minecraft:block_ignore",
+                  "minecraft:rule",
+                  "minecraft:capped",
+                  "minecraft:protected_blocks"
+               ]
+            }
+         },
+         "required": [
+            "blocks",
+            "processor_type"
+         ]
       },
-      "3839910888": {
+      "1496353939": {
+         "title": "AppendLoot",
+         "type": "object",
+         "properties": {
+            "loot_table": {
+               "$ref": "#/definitions/3296186770"
+            },
+            "type": {
+               "title": "BlockEntityModifierType",
+               "type": "string",
+               "const": "minecraft:append_loot",
+               "enum": [
+                  "minecraft:passthrough",
+                  "minecraft:append_loot"
+               ]
+            }
+         },
+         "required": [
+            "loot_table",
+            "type"
+         ]
+      },
+      "1655154128": {
+         "title": "RandomBlockMatch",
+         "type": "object",
+         "properties": {
+            "block": {
+               "$ref": "#/definitions/3152646801"
+            },
+            "predicate_type": {
+               "title": "BlockType",
+               "type": "string",
+               "const": "minecraft:random_block_match",
+               "enum": [
+                  "minecraft:always_true",
+                  "minecraft:block_match",
+                  "minecraft:random_block_match",
+                  "minecraft:tag_match",
+                  "minecraft:blockstate_match",
+                  "minecraft:random_blockstate_match"
+               ]
+            },
+            "probability": {
+               "type": "number",
+               "minimum": 0,
+               "maximum": 1
+            }
+         },
+         "required": [
+            "block",
+            "predicate_type",
+            "probability"
+         ]
+      },
+      "1678956529": {
+         "title": "Passthrough",
+         "type": "object",
+         "properties": {
+            "type": {
+               "title": "BlockEntityModifierType",
+               "type": "string",
+               "const": "minecraft:passthrough",
+               "enum": [
+                  "minecraft:passthrough",
+                  "minecraft:append_loot"
+               ]
+            }
+         },
+         "required": [
+            "type"
+         ]
+      },
+      "1700670701": {
+         "title": "AlwaysTrueBlock",
+         "type": "object",
+         "properties": {
+            "predicate_type": {
+               "title": "BlockType",
+               "type": "string",
+               "const": "minecraft:always_true",
+               "enum": [
+                  "minecraft:always_true",
+                  "minecraft:block_match",
+                  "minecraft:random_block_match",
+                  "minecraft:tag_match",
+                  "minecraft:blockstate_match",
+                  "minecraft:random_blockstate_match"
+               ]
+            }
+         },
+         "required": [
+            "predicate_type"
+         ]
+      },
+      "1897218349": {
+         "title": "Capped",
+         "type": "object",
+         "properties": {
+            "delegate": {
+               "oneOf": [
+                  {
+                     "$ref": "#/definitions/621179656"
+                  },
+                  {
+                     "$ref": "#/definitions/1395133979"
+                  },
+                  {
+                     "$ref": "#/definitions/3635426223"
+                  }
+               ]
+            },
+            "limit": {
+               "oneOf": [
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "$ref": "#/definitions/3996257997"
+                  },
+                  {
+                     "$ref": "#/definitions/2405729227"
+                  }
+               ]
+            },
+            "processor_type": {
+               "title": "Jigsaw Processro Type",
+               "type": "string",
+               "const": "minecraft:capped",
+               "enum": [
+                  "minecraft:block_ignore",
+                  "minecraft:rule",
+                  "minecraft:capped",
+                  "minecraft:protected_blocks"
+               ]
+            }
+         },
+         "required": [
+            "delegate",
+            "limit",
+            "processor_type"
+         ]
+      },
+      "2275438672": {
+         "title": "BlockStateMatch",
+         "type": "object",
+         "properties": {
+            "block_state": {
+               "$ref": "#/definitions/1170899181"
+            },
+            "predicate_type": {
+               "title": "BlockType",
+               "type": "string",
+               "const": "minecraft:blockstate_match",
+               "enum": [
+                  "minecraft:always_true",
+                  "minecraft:block_match",
+                  "minecraft:random_block_match",
+                  "minecraft:tag_match",
+                  "minecraft:blockstate_match",
+                  "minecraft:random_blockstate_match"
+               ]
+            }
+         },
+         "required": [
+            "block_state",
+            "predicate_type"
+         ]
+      },
+      "2405729227": {
+         "title": "UniformIntProvider",
+         "type": "object",
+         "properties": {
+            "max_inclusive": {
+               "type": "integer"
+            },
+            "min_inclusive": {
+               "type": "integer"
+            },
+            "type": {
+               "title": "IntProviderType",
+               "type": "string",
+               "const": "uniform",
+               "enum": [
+                  "constant",
+                  "uniform"
+               ]
+            }
+         },
+         "required": [
+            "max_inclusive",
+            "min_inclusive",
+            "type"
+         ]
+      },
+      "2537535649": {
          "title": "AxisAlignedLinear",
          "type": "object",
          "properties": {
@@ -570,50 +521,99 @@
             "predicate_type"
          ]
       },
-      "4275912652": {
-         "title": "AlwaysTrueBlock",
+      "3152646801": {
+         "title": "Reference",
+         "type": "string"
+      },
+      "3296186770": {
+         "title": "File Reference",
+         "type": "string",
+         "maxLength": 256
+      },
+      "3562464135": {
+         "title": "Processor List Description",
          "type": "object",
          "properties": {
-            "predicate_type": {
-               "title": "BlockType",
-               "type": "string",
-               "const": "minecraft:always_true",
-               "enum": [
-                  "minecraft:always_true",
-                  "minecraft:block_match",
-                  "minecraft:random_block_match",
-                  "minecraft:tag_match",
-                  "minecraft:blockstate_match",
-                  "minecraft:random_blockstate_match"
-               ]
+            "identifier": {
+               "$ref": "#/definitions/4002045969"
             }
          },
          "required": [
-            "predicate_type"
+            "identifier"
          ]
+      },
+      "3635426223": {
+         "title": "Protected Block",
+         "type": "object",
+         "properties": {
+            "processor_type": {
+               "title": "Jigsaw Processro Type",
+               "type": "string",
+               "const": "minecraft:protected_blocks",
+               "enum": [
+                  "minecraft:block_ignore",
+                  "minecraft:rule",
+                  "minecraft:capped",
+                  "minecraft:protected_blocks"
+               ]
+            },
+            "value": {
+               "type": "string"
+            }
+         },
+         "required": [
+            "processor_type",
+            "value"
+         ]
+      },
+      "3996257997": {
+         "title": "ConstantIntProvider",
+         "type": "object",
+         "properties": {
+            "type": {
+               "title": "IntProviderType",
+               "type": "string",
+               "const": "constant",
+               "enum": [
+                  "constant",
+                  "uniform"
+               ]
+            },
+            "value": {
+               "type": "integer"
+            }
+         },
+         "required": [
+            "type",
+            "value"
+         ]
+      },
+      "4002045969": {
+         "title": "Identifier",
+         "type": "string"
       }
    },
    "title": "Rules used by Jigsaw Structures to determine which blocks to modify or replace when placing a Structure Template in the world.",
    "type": "object",
    "properties": {
       "description": {
-         "$ref": "#/definitions/1218029234"
+         "$ref": "#/definitions/3562464135"
       },
       "processors": {
          "type": "array",
          "items": {
             "oneOf": [
                {
-                  "$ref": "#/definitions/3016468321"
+                  "$ref": "#/definitions/621179656"
                },
                {
-                  "$ref": "#/definitions/1810898542"
+                  "$ref": "#/definitions/3635426223"
                },
                {
-                  "$ref": "#/definitions/3518228880"
+                  "$ref": "#/definitions/1395133979"
                },
                {
-                  "$ref": "#/definitions/2581260060"
+                  "$ref": "#/definitions/1897218349"
                }
             ]
          }

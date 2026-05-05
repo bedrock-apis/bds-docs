@@ -1,9 +1,30 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "770029759",
+   "$id": "509260318",
    "x-format-version": "1.26.0",
    "definitions": {
-      "517105782": {
+      "855125494": {
+         "title": "BlockDescriptorProxy",
+         "type": "object",
+         "properties": {
+            "name": {
+               "type": "string",
+               "default": ""
+            },
+            "states": {
+               "type": "object",
+               "additionalProperties": {
+                  "$ref": "#/definitions/2565245911"
+               },
+               "default": {}
+            },
+            "tags": {
+               "type": "string",
+               "default": ""
+            }
+         }
+      },
+      "2565245911": {
          "title": "compound_proxy",
          "oneOf": [
             {
@@ -17,36 +38,11 @@
             }
          ]
       },
-      "1527037515": {
-         "title": "Reference",
-         "type": "string"
-      },
-      "2770948419": {
-         "title": "BlockDescriptorProxy",
-         "type": "object",
-         "properties": {
-            "name": {
-               "type": "string",
-               "default": ""
-            },
-            "states": {
-               "type": "object",
-               "additionalProperties": {
-                  "$ref": "#/definitions/517105782"
-               },
-               "default": {}
-            },
-            "tags": {
-               "type": "string",
-               "default": ""
-            }
-         }
-      },
-      "2794205495": {
+      "3093766462": {
          "title": "Block Descriptor",
          "oneOf": [
             {
-               "$ref": "#/definitions/2770948419",
+               "$ref": "#/definitions/855125494",
                "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
             },
             {
@@ -54,10 +50,14 @@
                "minLength": 1
             },
             {
-               "$ref": "#/definitions/2770948419",
+               "$ref": "#/definitions/855125494",
                "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
             }
          ]
+      },
+      "3152646801": {
+         "title": "Reference",
+         "type": "string"
       }
    },
    "title": "minecraft:block_placer",
@@ -68,7 +68,7 @@
          "default": false
       },
       "block": {
-         "$ref": "#/definitions/1527037515"
+         "$ref": "#/definitions/3152646801"
       },
       "replace_block_item": {
          "type": "boolean",
@@ -78,7 +78,7 @@
          "type": "array",
          "default": [],
          "items": {
-            "$ref": "#/definitions/2794205495"
+            "$ref": "#/definitions/3093766462"
          },
          "maxItems": 256,
          "x-unique-values": true

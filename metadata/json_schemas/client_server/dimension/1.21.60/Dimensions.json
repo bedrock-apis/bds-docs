@@ -1,9 +1,21 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "1486903430",
+   "$id": "3152900197",
    "x-format-version": "1.21.60",
    "definitions": {
-      "164563289": {
+      "846838674": {
+         "title": "Description",
+         "type": "object",
+         "properties": {
+            "identifier": {
+               "type": "string"
+            }
+         },
+         "required": [
+            "identifier"
+         ]
+      },
+      "1336804412": {
          "title": "Components",
          "type": "object",
          "properties": {
@@ -12,17 +24,17 @@
                   "min": 0,
                   "max": 0
                },
-               "$ref": "#/definitions/1168660568"
+               "$ref": "#/definitions/2004589657"
             },
             "minecraft:generation": {
-               "$ref": "#/definitions/1892745351"
+               "$ref": "#/definitions/3256507006"
             }
          },
          "required": [
             "minecraft:generation"
          ]
       },
-      "1168660568": {
+      "2004589657": {
          "title": "Bounds",
          "type": "object",
          "properties": {
@@ -44,19 +56,7 @@
             "min"
          ]
       },
-      "1299192089": {
-         "title": "Description",
-         "type": "object",
-         "properties": {
-            "identifier": {
-               "type": "string"
-            }
-         },
-         "required": [
-            "identifier"
-         ]
-      },
-      "1892745351": {
+      "3256507006": {
          "title": "Generation",
          "type": "object",
          "properties": {
@@ -68,15 +68,15 @@
             "generator_type"
          ]
       },
-      "3731137331": {
+      "4235864708": {
          "title": "Dimension",
          "type": "object",
          "properties": {
             "components": {
-               "$ref": "#/definitions/164563289"
+               "$ref": "#/definitions/1336804412"
             },
             "description": {
-               "$ref": "#/definitions/1299192089"
+               "$ref": "#/definitions/846838674"
             }
          },
          "required": [
@@ -89,7 +89,7 @@
    "type": "object",
    "properties": {
       "minecraft:dimension": {
-         "$ref": "#/definitions/3731137331"
+         "$ref": "#/definitions/4235864708"
       }
    },
    "required": [
