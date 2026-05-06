@@ -194,6 +194,15 @@
                "type": "integer",
                "default": 20,
                "minimum": 0
+            },
+            "lava_flammable": {
+               "title": "Lava Flammable",
+               "type": "string",
+               "default": "never",
+               "enum": [
+                  "always",
+                  "never"
+               ]
             }
          }
       },
@@ -582,7 +591,7 @@
             },
             {
                "$ref": "#/definitions/3078929707",
-               "x-runtime-constraint-description": "Cannot use bone visibility feature with Vanilla geometries"
+               "x-runtime-constraint-description": "Cannot use bone visibility feature with minecraft:geometry.cross or minecraft:geometry.full_block"
             }
          ]
       },

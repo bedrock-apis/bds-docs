@@ -219,6 +219,7 @@ export class DataStore {
    public readonly actionBarContainer: DataStoreActionBarContainer;
    public readonly actionContainer: DataStoreActionContainer;
    public readonly afterEvents: DataStoreAfterEvents;
+   public readonly contentBadgeContainer: DataStoreContentBadgeContainer;
    public readonly menuContainer: DataStoreMenuContainer;
    public readonly modalToolContainer: DataStoreModalToolContainer;
    public readonly paneContainer: DataStorePaneContainer;
@@ -244,6 +245,11 @@ export class DataStoreActionContainer {
 }
 export class DataStoreAfterEvents {
    public readonly payloadReceived: DataStorePayloadAfterEventSignal;
+   private constructor();
+}
+export class DataStoreContentBadgeContainer {
+   public registerBadge(id: string, iteration: number): void;
+   public unregisterBadge(id: string): void;
    private constructor();
 }
 export class DataStoreMenuContainer {

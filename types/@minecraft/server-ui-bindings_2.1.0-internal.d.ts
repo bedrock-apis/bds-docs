@@ -1,6 +1,11 @@
 import * as common from "@minecraft/common";
 import * as server from "@minecraft/server";
 
+export enum DataDrivenScreenClosedReason {
+   ClientClosed = "ClientClosed",
+   ServerClosed = "ServerClosed",
+   UserBusy = "UserBusy",
+}
 export enum FormCancelationReason {
    UserBusy = "UserBusy",
    UserClosed = "UserClosed",
@@ -10,73 +15,37 @@ export enum FormRejectReason {
    PlayerQuit = "PlayerQuit",
    ServerShutdown = "ServerShutdown",
 }
-export enum InternalDataDrivenScreenClosedReason {
-   ClientClosed = "ClientClosed",
-   ServerClosed = "ServerClosed",
-   UserBusy = "UserBusy",
-}
-export enum InternalFormVisibilityErrorReason {
+export enum FormVisibilityErrorReason {
    AlreadyShowing = "AlreadyShowing",
    NotShowing = "NotShowing",
 }
-export enum InternalTextFilteringError {
+export enum TextFilteringError {
    DisabledByPlayer = "DisabledByPlayer",
    TextProcessorServiceUnreachable = "TextProcessorServiceUnreachable",
    Unknown = "Unknown",
 }
 
-export interface InternalButtonOptions {
+export interface ButtonOptions {
    disabled?: boolean | ObservableBoolean;
-   tooltip?: InternalUIRawMessage | ObservableString | ObservableUIRawMessage | string;
+   tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
    visible?: boolean | ObservableBoolean;
 }
-export interface InternalDividerOptions {
+export interface DividerOptions {
    visible?: boolean | ObservableBoolean;
 }
-export interface InternalDropdownItemData {
-   description?: InternalUIRawMessage | ObservableString | ObservableUIRawMessage | string;
-   label: InternalUIRawMessage | ObservableString | ObservableUIRawMessage | string;
+export interface DropdownItemData {
+   description?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
+   label: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
    value: number;
 }
-export interface InternalDropdownOptions {
-   description?: InternalUIRawMessage | ObservableString | ObservableUIRawMessage | string;
+export interface DropdownOptions {
+   description?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
    disabled?: boolean | ObservableBoolean;
    visible?: boolean | ObservableBoolean;
 }
-export interface InternalMessageBoxResult {
-   closeReason: InternalDataDrivenScreenClosedReason;
+export interface MessageBoxResult {
+   closeReason: DataDrivenScreenClosedReason;
    selection?: number;
-}
-export interface InternalObservableOptions {
-   clientWritable: boolean;
-}
-export interface InternalSliderOptions {
-   description?: InternalUIRawMessage | ObservableString | ObservableUIRawMessage | string;
-   disabled?: boolean | ObservableBoolean;
-   step?: number | ObservableNumber;
-   visible?: boolean | ObservableBoolean;
-}
-export interface InternalSpacingOptions {
-   visible?: boolean | ObservableBoolean;
-}
-export interface InternalTextFieldOptions {
-   description?: InternalUIRawMessage | ObservableString | ObservableUIRawMessage | string;
-   disabled?: boolean | ObservableBoolean;
-   visible?: boolean | ObservableBoolean;
-}
-export interface InternalTextOptions {
-   visible?: boolean | ObservableBoolean;
-}
-export interface InternalToggleOptions {
-   description?: InternalUIRawMessage | ObservableString | ObservableUIRawMessage | string;
-   disabled?: boolean | ObservableBoolean;
-   visible?: boolean | ObservableBoolean;
-}
-export interface InternalUIRawMessage {
-   rawtext?: Array<InternalUIRawMessage>;
-   text?: string;
-   translate?: string;
-   with?: Array<string> | InternalUIRawMessage;
 }
 export interface ModalFormDataDropdownOptions {
    defaultValueIndex?: number;
@@ -95,6 +64,37 @@ export interface ModalFormDataToggleOptions {
    defaultValue?: boolean;
    tooltip?: server.RawMessage | string;
 }
+export interface ObservableOptions {
+   clientWritable: boolean;
+}
+export interface SliderOptions {
+   description?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
+   disabled?: boolean | ObservableBoolean;
+   step?: number | ObservableNumber;
+   visible?: boolean | ObservableBoolean;
+}
+export interface SpacingOptions {
+   visible?: boolean | ObservableBoolean;
+}
+export interface TextFieldOptions {
+   description?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
+   disabled?: boolean | ObservableBoolean;
+   visible?: boolean | ObservableBoolean;
+}
+export interface TextOptions {
+   visible?: boolean | ObservableBoolean;
+}
+export interface ToggleOptions {
+   description?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
+   disabled?: boolean | ObservableBoolean;
+   visible?: boolean | ObservableBoolean;
+}
+export interface UIRawMessage {
+   rawtext?: Array<UIRawMessage>;
+   text?: string;
+   translate?: string;
+   with?: Array<string> | UIRawMessage;
+}
 
 export class ActionFormData {
    public body(bodyText: server.RawMessage | string): ActionFormData;
@@ -111,35 +111,35 @@ export class ActionFormResponse extends FormResponse {
    public readonly selection?: number;
    private constructor();
 }
+export class CustomForm {
+   public button(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, onClick: ()=>void, options?: ButtonOptions): CustomForm;
+   public close(): void;
+   public closeButton(): CustomForm;
+   public constructor(player: server.Player, title: ObservableString | ObservableUIRawMessage | string | UIRawMessage);
+   public divider(options?: DividerOptions): CustomForm;
+   public dropdown(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, value: ObservableNumber, items: Array<DropdownItemData>, options?: DropdownOptions): CustomForm;
+   public header(text: ObservableString | ObservableUIRawMessage | string | UIRawMessage, options?: TextOptions): CustomForm;
+   public isShowing(): boolean;
+   public label(text: ObservableString | ObservableUIRawMessage | string | UIRawMessage, options?: TextOptions): CustomForm;
+   public show(): Promise<DataDrivenScreenClosedReason>;
+   public slider(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, value: ObservableNumber, min: number | ObservableNumber, max: number | ObservableNumber, options?: SliderOptions): CustomForm;
+   public spacer(options?: SpacingOptions): CustomForm;
+   public textField(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, text: ObservableString, options?: TextFieldOptions): CustomForm;
+   public toggle(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, toggled: ObservableBoolean, options?: ToggleOptions): CustomForm;
+}
 export class FormResponse {
    public readonly cancelationReason?: FormCancelationReason;
    public readonly canceled: boolean;
    private constructor();
 }
-export class InternalCustomForm {
-   public button(label: InternalUIRawMessage | ObservableString | ObservableUIRawMessage | string, onClick: ()=>void, options?: InternalButtonOptions): InternalCustomForm;
+export class MessageBox {
+   public body(body: ObservableString | ObservableUIRawMessage | string | UIRawMessage): MessageBox;
+   public button1(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage): MessageBox;
+   public button2(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage): MessageBox;
    public close(): void;
-   public closeButton(): InternalCustomForm;
-   public constructor(player: server.Player, title: InternalUIRawMessage | ObservableString | ObservableUIRawMessage | string);
-   public divider(options?: InternalDividerOptions): InternalCustomForm;
-   public dropdown(label: InternalUIRawMessage | ObservableString | ObservableUIRawMessage | string, value: ObservableNumber, items: Array<InternalDropdownItemData>, options?: InternalDropdownOptions): InternalCustomForm;
-   public header(text: InternalUIRawMessage | ObservableString | ObservableUIRawMessage | string, options?: InternalTextOptions): InternalCustomForm;
+   public constructor(player: server.Player, title: ObservableString | ObservableUIRawMessage | string | UIRawMessage);
    public isShowing(): boolean;
-   public label(text: InternalUIRawMessage | ObservableString | ObservableUIRawMessage | string, options?: InternalTextOptions): InternalCustomForm;
-   public show(): Promise<InternalDataDrivenScreenClosedReason>;
-   public slider(label: InternalUIRawMessage | ObservableString | ObservableUIRawMessage | string, value: ObservableNumber, min: number | ObservableNumber, max: number | ObservableNumber, options?: InternalSliderOptions): InternalCustomForm;
-   public spacer(options?: InternalSpacingOptions): InternalCustomForm;
-   public textField(label: InternalUIRawMessage | ObservableString | ObservableUIRawMessage | string, text: ObservableString, options?: InternalTextFieldOptions): InternalCustomForm;
-   public toggle(label: InternalUIRawMessage | ObservableString | ObservableUIRawMessage | string, toggled: ObservableBoolean, options?: InternalToggleOptions): InternalCustomForm;
-}
-export class InternalMessageBox {
-   public body(body: InternalUIRawMessage | ObservableString | ObservableUIRawMessage | string): InternalMessageBox;
-   public button1(label: InternalUIRawMessage | ObservableString | ObservableUIRawMessage | string, tooltip?: InternalUIRawMessage | ObservableString | ObservableUIRawMessage | string): InternalMessageBox;
-   public button2(label: InternalUIRawMessage | ObservableString | ObservableUIRawMessage | string, tooltip?: InternalUIRawMessage | ObservableString | ObservableUIRawMessage | string): InternalMessageBox;
-   public close(): void;
-   public constructor(player: server.Player, title: InternalUIRawMessage | ObservableString | ObservableUIRawMessage | string);
-   public isShowing(): boolean;
-   public show(): Promise<InternalMessageBoxResult>;
+   public show(): Promise<MessageBoxResult>;
 }
 export class MessageFormData {
    public body(bodyText: server.RawMessage | string): MessageFormData;
@@ -173,33 +173,33 @@ export class ModalFormResponse extends FormResponse {
    private constructor();
 }
 export class ObservableBoolean {
-   public constructor(data: boolean, options?: InternalObservableOptions);
+   public constructor(data: boolean, options?: ObservableOptions);
    public getData(): boolean;
    public setData(data: boolean): void;
    public subscribe(callback: (arg0: boolean)=>void): (arg0: boolean)=>void;
    public unsubscribe(callback: (arg0: boolean)=>void): boolean;
 }
 export class ObservableNumber {
-   public constructor(data: number, options?: InternalObservableOptions);
+   public constructor(data: number, options?: ObservableOptions);
    public getData(): number;
    public setData(data: number): void;
    public subscribe(callback: (arg0: number)=>void): (arg0: number)=>void;
    public unsubscribe(callback: (arg0: number)=>void): boolean;
 }
 export class ObservableString {
-   public constructor(data: string, options?: InternalObservableOptions);
+   public constructor(data: string, options?: ObservableOptions);
    public getData(): string;
-   public getFilteredText(player: server.Player): Promise<Array<InternalTextFilteringError> | string>;
+   public getFilteredText(player: server.Player): Promise<Array<TextFilteringError> | string>;
    public setData(data: string): void;
    public subscribe(callback: (arg0: string)=>void): (arg0: string)=>void;
    public unsubscribe(callback: (arg0: string)=>void): boolean;
 }
 export class ObservableUIRawMessage {
-   public constructor(data: InternalUIRawMessage, options?: InternalObservableOptions);
-   public getData(): InternalUIRawMessage;
-   public setData(data: InternalUIRawMessage): void;
-   public subscribe(callback: (arg0: InternalUIRawMessage)=>void): (arg0: InternalUIRawMessage)=>void;
-   public unsubscribe(callback: (arg0: InternalUIRawMessage)=>void): boolean;
+   public constructor(data: UIRawMessage, options?: ObservableOptions);
+   public getData(): UIRawMessage;
+   public setData(data: UIRawMessage): void;
+   public subscribe(callback: (arg0: UIRawMessage)=>void): (arg0: UIRawMessage)=>void;
+   public unsubscribe(callback: (arg0: UIRawMessage)=>void): boolean;
 }
 export class UIManager {
    public closeAllForms(player: server.Player): void;
@@ -216,23 +216,23 @@ export class FormRejectError extends Error {
    private constructor();
 }
 //@ts-ignore
-export class InternalFormVisibilityError extends Error {
+export class FormVisibilityError extends Error {
    public readonly formId: string;
-   public readonly reason: InternalFormVisibilityErrorReason;
+   public readonly reason: FormVisibilityErrorReason;
    private constructor();
 }
 //@ts-ignore
-export class InternalInvalidFormError extends Error {
-   public readonly formId: string;
-   private constructor();
-}
-//@ts-ignore
-export class InternalInvalidFormModificationError extends Error {
+export class InvalidFormError extends Error {
    public readonly formId: string;
    private constructor();
 }
 //@ts-ignore
-export class InternalPlayerLeftError extends Error {
+export class InvalidFormModificationError extends Error {
+   public readonly formId: string;
+   private constructor();
+}
+//@ts-ignore
+export class PlayerLeftError extends Error {
    public readonly formId: string;
    private constructor();
 }

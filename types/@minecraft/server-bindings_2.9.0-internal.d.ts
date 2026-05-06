@@ -936,6 +936,9 @@ export interface EntityRaycastOptions extends EntityFilter {
    includePassableBlocks?: boolean;
    maxDistance?: number;
 }
+export interface EntitySneakingChangedEventOptions {
+   entityFilter?: EntityFilter;
+}
 export interface EntityVisibilityRules {
    showDead?: boolean;
    showInvisible?: boolean;
@@ -2603,6 +2606,15 @@ export class EntitySpawnType {
    public isBlockDangerous(block: Block): boolean;
    private constructor();
 }
+export class EntityStartSneakingAfterEvent {
+   public readonly entity: Entity;
+   private constructor();
+}
+export class EntityStartSneakingAfterEventSignal {
+   public subscribe(callback: (arg0: EntityStartSneakingAfterEvent)=>void, options?: EntitySneakingChangedEventOptions): (arg0: EntityStartSneakingAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityStartSneakingAfterEvent)=>void): void;
+   private constructor();
+}
 //@ts-ignore
 export class EntityStrengthComponent extends EntityComponent {
    public static readonly componentId = "minecraft:strength";
@@ -4117,6 +4129,7 @@ export class WorldAfterEvents {
    public readonly entityLoad: EntityLoadAfterEventSignal;
    public readonly entityRemove: EntityRemoveAfterEventSignal;
    public readonly entitySpawn: EntitySpawnAfterEventSignal;
+   public readonly entityStartSneaking: EntityStartSneakingAfterEventSignal;
    public readonly entityUpgrade: EntityUpgradeAfterEventSignal;
    public readonly explosion: ExplosionAfterEventSignal;
    public readonly gameRuleChange: GameRuleChangeAfterEventSignal;

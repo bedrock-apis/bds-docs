@@ -1371,6 +1371,7 @@ export class BlockPistonComponent extends BlockComponent {
 export class BlockPrecipitationInteractionsComponent extends BlockComponent {
    public static readonly componentId = "minecraft:precipitation_interactions";
    public accumulatesSnow(): boolean;
+   public isSnowLoggable(): boolean;
    public obstructsRain(): boolean;
    private constructor();
 }

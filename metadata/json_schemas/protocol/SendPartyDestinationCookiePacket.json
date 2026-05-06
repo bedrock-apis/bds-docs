@@ -1,0 +1,36 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "3699646305",
+   "x-format-version": "MISSING VERSION",
+   "x-protocol-version": 990,
+   "title": "SendPartyDestinationCookiePacket",
+   "type": "object",
+   "properties": {
+      "cookie": {
+         "type": "string",
+         "x-ordinal-index": 0,
+         "maxLength": 2048
+      },
+      "destination_name": {
+         "type": "string",
+         "x-ordinal-index": 2,
+         "maxLength": 64
+      },
+      "intent": {
+         "title": "PartyDestinationCookieIntent",
+         "type": "string",
+         "enum": [
+            "Notify",
+            "OptIn",
+            "OptOut"
+         ],
+         "x-underlying-type": "int8",
+         "x-ordinal-index": 1
+      }
+   },
+   "required": [
+      "cookie",
+      "destination_name",
+      "intent"
+   ]
+}

@@ -886,6 +886,8 @@
                   "slime_landing",
                   "absorb_block",
                   "eject_block",
+                  "geyser_eruption_start",
+                  "geyser_eruption_active",
                   "undefined"
                ]
             },
@@ -1354,6 +1356,30 @@
       },
       "355630026": {
          "title": "BodyRotationAlwaysFollowsHeadDefinition"
+      },
+      "408549500": {
+         "title": "minecraft:memory_behavior.move_to_position",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            }
+         }
       },
       "424549894": {
          "title": "OnEquipmentChangedSlotEntryDescriptor",
@@ -2106,6 +2132,8 @@
                   "slime_landing",
                   "absorb_block",
                   "eject_block",
+                  "geyser_eruption_start",
+                  "geyser_eruption_active",
                   "undefined"
                ]
             },
@@ -2968,6 +2996,8 @@
                   "slime_landing",
                   "absorb_block",
                   "eject_block",
+                  "geyser_eruption_start",
+                  "geyser_eruption_active",
                   "undefined"
                ]
             },
@@ -3543,6 +3573,8 @@
                   "slime_landing",
                   "absorb_block",
                   "eject_block",
+                  "geyser_eruption_start",
+                  "geyser_eruption_active",
                   "undefined"
                ]
             },
@@ -4149,6 +4181,8 @@
                   "slime_landing",
                   "absorb_block",
                   "eject_block",
+                  "geyser_eruption_start",
+                  "geyser_eruption_active",
                   "undefined"
                ]
             },
@@ -5162,6 +5196,8 @@
                   "slime_landing",
                   "absorb_block",
                   "eject_block",
+                  "geyser_eruption_start",
+                  "geyser_eruption_active",
                   "undefined"
                ]
             },
@@ -5268,6 +5304,49 @@
             "speed_multiplier": {
                "type": "number",
                "default": 1
+            }
+         }
+      },
+      "843983242": {
+         "title": "minecraft:behavior.random_look_around",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "look_time": {
+               "default": {
+                  "min": 20,
+                  "max": 40
+               },
+               "$ref": "#/definitions/3861103875"
+            },
+            "max_angle_of_view_horizontal": {
+               "type": "number",
+               "default": 180
+            },
+            "min_angle_of_view_horizontal": {
+               "type": "number",
+               "default": -180
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "probability": {
+               "type": "number",
+               "default": 0.019999999552965164
             }
          }
       },
@@ -5497,6 +5576,34 @@
             "probability": {
                "type": "number",
                "default": 0.019999999552965164
+            }
+         }
+      },
+      "1125060330": {
+         "title": "minecraft:behavior.owner_hurt_target",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "entity_types": {
+               "default": [],
+               "$ref": "#/definitions/3924190650"
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
             }
          }
       },
@@ -6228,6 +6335,8 @@
                   "slime_landing",
                   "absorb_block",
                   "eject_block",
+                  "geyser_eruption_start",
+                  "geyser_eruption_active",
                   "undefined"
                ]
             },
@@ -6403,6 +6512,34 @@
                "default": 0.019999999552965164,
                "minimum": 0,
                "maximum": 1
+            }
+         }
+      },
+      "1348964214": {
+         "title": "minecraft:behavior.wither_target_highest_damage",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "entity_types": {
+               "default": [],
+               "$ref": "#/definitions/3924190650"
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
             }
          }
       },
@@ -7227,6 +7364,34 @@
             }
          }
       },
+      "1900131771": {
+         "title": "minecraft:behavior.owner_hurt_by_target",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "entity_types": {
+               "default": [],
+               "$ref": "#/definitions/3924190650"
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            }
+         }
+      },
       "1950611815": {
          "title": "minecraft:behavior.rise_to_liquid_level",
          "type": "object",
@@ -7489,6 +7654,30 @@
       },
       "2121103369": {
          "title": "IsIgnitedDefinition"
+      },
+      "2122299450": {
+         "title": "minecraft:behavior.break_door",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            }
+         }
       },
       "2150452012": {
          "title": "minecraft:behavior.melee_attack",
@@ -8041,6 +8230,30 @@
             "timer_ratio": {
                "type": "number",
                "default": 2
+            }
+         }
+      },
+      "2318114121": {
+         "title": "minecraft:behavior.door_interact",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
             }
          }
       },
@@ -9575,6 +9788,8 @@
                   "slime_landing",
                   "absorb_block",
                   "eject_block",
+                  "geyser_eruption_start",
+                  "geyser_eruption_active",
                   "undefined"
                ]
             },
@@ -10076,6 +10291,34 @@
                "type": "number",
                "default": 30,
                "exclusiveMinimum": 0
+            }
+         }
+      },
+      "2854386635": {
+         "title": "minecraft:behavior.open_door",
+         "type": "object",
+         "properties": {
+            "close_door_after": {
+               "type": "boolean",
+               "default": true
+            },
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
             }
          }
       },
@@ -11272,6 +11515,8 @@
                   "slime_landing",
                   "absorb_block",
                   "eject_block",
+                  "geyser_eruption_start",
+                  "geyser_eruption_active",
                   "undefined"
                ]
             },
@@ -11575,6 +11820,70 @@
             "speed_multiplier": {
                "type": "number",
                "default": 1
+            }
+         }
+      },
+      "3447927369": {
+         "title": "minecraft:behavior.random_look_around_and_sit",
+         "type": "object",
+         "properties": {
+            "continue_if_leashed": {
+               "type": "boolean",
+               "default": false
+            },
+            "continue_sitting_on_reload": {
+               "type": "boolean",
+               "default": false
+            },
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "max_angle_of_view_horizontal": {
+               "type": "number",
+               "default": 180
+            },
+            "max_look_count": {
+               "type": "integer",
+               "default": 2
+            },
+            "max_look_time": {
+               "type": "integer",
+               "default": 40
+            },
+            "min_angle_of_view_horizontal": {
+               "type": "number",
+               "default": -180
+            },
+            "min_look_count": {
+               "type": "integer",
+               "default": 1
+            },
+            "min_look_time": {
+               "type": "integer",
+               "default": 20
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "probability": {
+               "type": "number",
+               "default": 0.019999999552965164
+            },
+            "random_look_around_cooldown": {
+               "type": "integer",
+               "default": 0
             }
          }
       },
@@ -11953,6 +12262,34 @@
             "speed_multiplier": {
                "type": "number",
                "default": 0.5,
+               "minimum": 0
+            }
+         }
+      },
+      "3559886795": {
+         "title": "minecraft:wither_target_highest_damage",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "entity_types": {
+               "default": [],
+               "$ref": "#/definitions/3924190650"
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
                "minimum": 0
             }
          }
@@ -12638,6 +12975,38 @@
       },
       "4109513812": {
          "title": "minecraft:transient"
+      },
+      "4118700274": {
+         "title": "minecraft:behavior.hurt_by_target",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "entity_types": {
+               "default": [],
+               "$ref": "#/definitions/3924190650"
+            },
+            "hurt_owner": {
+               "type": "boolean",
+               "default": false
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            }
+         }
       },
       "4136150952": {
          "title": "minecraft:behavior.move_to_land",
@@ -13582,6 +13951,8 @@
                   "slime_landing",
                   "absorb_block",
                   "eject_block",
+                  "geyser_eruption_start",
+                  "geyser_eruption_active",
                   "undefined"
                ]
             },
@@ -13827,7 +14198,7 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.break_door": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/2122299450"
       },
       "minecraft:behavior.breed": {
          "$ref": "#/definitions/1528866228"
@@ -13866,7 +14237,7 @@
          "$ref": "#/definitions/2343980756"
       },
       "minecraft:behavior.door_interact": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/2318114121"
       },
       "minecraft:behavior.dragonchargeplayer": {
          "$ref": "#/definitions/722416426"
@@ -13992,7 +14363,7 @@
          "$ref": "#/definitions/4137479340"
       },
       "minecraft:behavior.hurt_by_target": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/4118700274"
       },
       "minecraft:behavior.inspect_bookshelf": {
          "$ref": "#/definitions/3073310018"
@@ -14109,13 +14480,13 @@
          "$ref": "#/definitions/1275060270"
       },
       "minecraft:behavior.open_door": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/2854386635"
       },
       "minecraft:behavior.owner_hurt_by_target": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/1900131771"
       },
       "minecraft:behavior.owner_hurt_target": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/1125060330"
       },
       "minecraft:behavior.panic": {
          "description": "Dynamic value"
@@ -14154,10 +14525,10 @@
          "$ref": "#/definitions/1382499357"
       },
       "minecraft:behavior.random_look_around": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/843983242"
       },
       "minecraft:behavior.random_look_around_and_sit": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/3447927369"
       },
       "minecraft:behavior.random_search_and_dig": {
          "$ref": "#/definitions/293717377"
@@ -14340,7 +14711,7 @@
          "description": "Dynamic value"
       },
       "minecraft:behavior.wither_target_highest_damage": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/1348964214"
       },
       "minecraft:behavior.work": {
          "$ref": "#/definitions/4182987204"
@@ -14652,12 +15023,9 @@
          "description": "Dynamic value"
       },
       "minecraft:memory_behavior.move_to_position": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/408549500"
       },
       "minecraft:memory_sensor.find_nearest_block": {
-         "description": "Dynamic value"
-      },
-      "minecraft:memory_sensor.find_nearest_block_from": {
          "description": "Dynamic value"
       },
       "minecraft:memory_sensor.find_nearest_entity": {
@@ -14970,7 +15338,7 @@
          "description": "Dynamic value"
       },
       "minecraft:wither_target_highest_damage": {
-         "description": "Dynamic value"
+         "$ref": "#/definitions/3559886795"
       }
    }
 }

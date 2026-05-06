@@ -1,0 +1,62 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "843983242",
+   "x-format-version": "1.26.30",
+   "definitions": {
+      "3861103875": {
+         "title": "IntRange",
+         "type": "object",
+         "properties": {
+            "max": {
+               "type": "integer",
+               "default": 0
+            },
+            "min": {
+               "type": "integer",
+               "default": 0
+            }
+         }
+      }
+   },
+   "title": "minecraft:behavior.random_look_around",
+   "type": "object",
+   "properties": {
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "title": "Goal's control flags",
+            "type": "string",
+            "enum": [
+               "move",
+               "look",
+               "jump"
+            ]
+         }
+      },
+      "look_time": {
+         "default": {
+            "min": 20,
+            "max": 40
+         },
+         "$ref": "#/definitions/3861103875"
+      },
+      "max_angle_of_view_horizontal": {
+         "type": "number",
+         "default": 180
+      },
+      "min_angle_of_view_horizontal": {
+         "type": "number",
+         "default": -180
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "minimum": 0
+      },
+      "probability": {
+         "type": "number",
+         "default": 0.019999999552965164
+      }
+   }
+}
