@@ -1,0 +1,323 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "4061395001",
+   "x-format-version": "1.26.30",
+   "definitions": {
+      "100089226": {
+         "title": "Filter Group Map",
+         "type": "object",
+         "properties": {
+            "AND": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "NOT": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "OR": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "none_of": {
+               "$ref": "#/definitions/2789112004"
+            }
+         }
+      },
+      "855125494": {
+         "title": "BlockDescriptorProxy",
+         "type": "object",
+         "properties": {
+            "name": {
+               "type": "string",
+               "default": ""
+            },
+            "states": {
+               "type": "object",
+               "additionalProperties": {
+                  "$ref": "#/definitions/2565245911"
+               },
+               "default": {}
+            },
+            "tags": {
+               "type": "string",
+               "default": ""
+            }
+         }
+      },
+      "2457665045": {
+         "title": "Filter Test",
+         "type": "object",
+         "properties": {
+            "domain": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "operator": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "subject": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "test": {
+               "type": "string"
+            },
+            "value": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            }
+         },
+         "required": [
+            "test"
+         ]
+      },
+      "2565245911": {
+         "title": "compound_proxy",
+         "oneOf": [
+            {
+               "type": "integer"
+            },
+            {
+               "type": "string"
+            },
+            {
+               "type": "boolean"
+            }
+         ]
+      },
+      "2789112004": {
+         "title": "Filter Group",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2457665045"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/2789112004"
+               }
+            },
+            {
+               "$ref": "#/definitions/100089226"
+            }
+         ]
+      },
+      "3093766462": {
+         "title": "Block Descriptor",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/855125494",
+               "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
+            },
+            {
+               "type": "string",
+               "minLength": 1
+            },
+            {
+               "$ref": "#/definitions/855125494",
+               "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
+            }
+         ]
+      },
+      "3379368818": {
+         "title": "ActorDefinitionTrigger",
+         "type": "object",
+         "properties": {
+            "event": {
+               "type": "string",
+               "default": ""
+            },
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/2789112004"
+            },
+            "target": {
+               "title": "FilterSubject",
+               "type": "string",
+               "default": "self",
+               "enum": [
+                  "self",
+                  "other",
+                  "player",
+                  "target",
+                  "parent",
+                  "baby",
+                  "block",
+                  "damager",
+                  "holder",
+                  "item"
+               ]
+            }
+         }
+      },
+      "3861103875": {
+         "title": "IntRange",
+         "type": "object",
+         "properties": {
+            "max": {
+               "type": "integer",
+               "default": 0
+            },
+            "min": {
+               "type": "integer",
+               "default": 0
+            }
+         }
+      }
+   },
+   "title": "minecraft:behavior.take_block",
+   "type": "object",
+   "properties": {
+      "affected_by_griefing_rule": {
+         "type": "boolean",
+         "default": true
+      },
+      "blocks": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "#/definitions/3093766462"
+         }
+      },
+      "can_take": {
+         "default": {
+            "OR": null,
+            "all": null,
+            "all_of": null,
+            "AND": null,
+            "any_of": null,
+            "none_of": null,
+            "any": null,
+            "NOT": null
+         },
+         "$ref": "#/definitions/2789112004"
+      },
+      "chance": {
+         "type": "number",
+         "default": 1,
+         "minimum": 0,
+         "maximum": 1
+      },
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "title": "Goal's control flags",
+            "type": "string",
+            "enum": [
+               "move",
+               "look",
+               "jump"
+            ]
+         }
+      },
+      "on_take": {
+         "default": {
+            "event": "",
+            "target": "self",
+            "filters": {
+               "OR": null,
+               "all": null,
+               "all_of": null,
+               "AND": null,
+               "any_of": null,
+               "none_of": null,
+               "any": null,
+               "NOT": null
+            }
+         },
+         "$ref": "#/definitions/3379368818"
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "minimum": 0
+      },
+      "requires_line_of_sight": {
+         "type": "boolean",
+         "default": true
+      },
+      "xz_range": {
+         "default": {
+            "min": -2,
+            "max": 2
+         },
+         "$ref": "#/definitions/3861103875"
+      },
+      "y_range": {
+         "default": {
+            "min": 0,
+            "max": 3
+         },
+         "$ref": "#/definitions/3861103875"
+      }
+   }
+}

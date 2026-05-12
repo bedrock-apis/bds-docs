@@ -232,6 +232,10 @@ export class InvalidFormModificationError extends Error {
    private constructor();
 }
 //@ts-ignore
+export class InvalidObservableError extends Error {
+   private constructor();
+}
+//@ts-ignore
 export class PlayerLeftError extends Error {
    public readonly formId: string;
    private constructor();

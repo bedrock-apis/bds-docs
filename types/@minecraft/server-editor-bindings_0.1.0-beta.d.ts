@@ -137,6 +137,13 @@ export enum MouseActionCategory {
    Drag = 3,
    Wheel = 2,
 }
+export enum MouseCursorIconType {
+   Crosshair = "Crosshair",
+   Default = "Default",
+   Move = "Move",
+   NotAllowed = "NotAllowed",
+   Wait = "Wait",
+}
 export enum PaintCompletionState {
    Canceled = 1,
    Failed = 2,
@@ -188,6 +195,13 @@ export enum ProjectExportType {
    ProjectBackup = 1,
    ShareableWorld = 3,
    WorldTemplate = 2,
+}
+export enum RenderPlaneGridResolution {
+   EightBlocks = "EightBlocks",
+   FourBlocks = "FourBlocks",
+   None = "None",
+   OneBlock = "OneBlock",
+   SixteenBlocks = "SixteenBlocks",
 }
 export enum SelectionVolumeEventType {
    Add = 2,
@@ -254,6 +268,7 @@ export enum ThemeSettingsColorKey {
    PrefillVolumeBorder = "PrefillVolumeBorder",
    PrefillVolumeFill = "PrefillVolumeFill",
    PrimaryActive = "PrimaryActive",
+   PrimaryAttention = "PrimaryAttention",
    PrimaryBackground1 = "PrimaryBackground1",
    PrimaryBackground2 = "PrimaryBackground2",
    PrimaryBackground3 = "PrimaryBackground3",
@@ -263,6 +278,7 @@ export enum ThemeSettingsColorKey {
    PrimaryMute = "PrimaryMute",
    ScrollBar = "ScrollBar",
    SecondaryActive = "SecondaryActive",
+   SecondaryAttention = "SecondaryAttention",
    SecondaryBackground1 = "SecondaryBackground1",
    SecondaryBackground2 = "SecondaryBackground2",
    SecondaryBackground3 = "SecondaryBackground3",
@@ -289,6 +305,7 @@ export enum WidgetComponentType {
    Gizmo = "Gizmo",
    Grid = "Grid",
    Guide = "Guide",
+   RenderPlane = "RenderPlane",
    RenderPrim = "RenderPrim",
    Spline = "Spline",
    Text = "Text",
@@ -431,6 +448,14 @@ export interface GameOptions {
    weather?: number;
    worldName?: string;
 }
+export interface GuidePlane {
+   fillColor: server.RGBA;
+   normal: server.Vector3;
+   origin: server.Vector3;
+   outlineColor: server.RGBA;
+   planeId: string;
+   visible: boolean;
+}
 export interface LocalizationEntry {
    id: string;
    props?: Array<string>;
@@ -548,6 +573,14 @@ export interface WidgetComponentGridOptions extends WidgetComponentBaseOptions {
 }
 //@ts-ignore
 export interface WidgetComponentGuideOptions extends WidgetComponentBaseOptions {
+}
+//@ts-ignore
+export interface WidgetComponentRenderPlaneOptions extends WidgetComponentBaseOptions {
+   fillColor?: server.RGBA;
+   gridResolution?: RenderPlaneGridResolution;
+   maxSizeChunks?: number;
+   normal?: server.Vector3;
+   outlineColor?: server.RGBA;
 }
 //@ts-ignore
 export interface WidgetComponentRenderPrimitiveOptions extends WidgetComponentBaseOptions {
@@ -821,6 +854,7 @@ export class ExtensionContext {
    public readonly cursor: Cursor;
    public readonly exportManager: ExportManager;
    public readonly extensionInfo: Extension;
+   public readonly guidePlaneManager: GuidePlaneManager;
    public readonly minimapManager: MinimapManager;
    public readonly player: server.Player;
    public readonly playtest: PlaytestManager;
@@ -846,6 +880,18 @@ export class GraphicsSettings {
    public getAll(): Record<string,boolean | number | string | undefined>;
    public set(property: GraphicsSettingsProperty, value: boolean | number | string): void;
    public setAll(properties: Record<string,boolean | number | string | undefined>): void;
+   private constructor();
+}
+export class GuidePlaneManager {
+   public allPlanesVisible: boolean;
+   public addPlane(origin: server.Vector3, normal: server.Vector3, visible: boolean, outlineColor: server.RGBA, fillColor: server.RGBA): string;
+   public getPlane(planeId: string): (GuidePlane | undefined);
+   public getPlanes(): Array<GuidePlane>;
+   public removePlane(planeId: string): void;
+   public setPlaneColors(planeId: string, outlineColor: server.RGBA, fillColor: server.RGBA): void;
+   public setPlaneNormal(planeId: string, normal: server.Vector3): void;
+   public setPlaneOrigin(planeId: string, origin: server.Vector3): void;
+   public setPlaneVisibility(planeId: string, visible: boolean): void;
    private constructor();
 }
 export class IBlockPaletteItem {
@@ -1077,6 +1123,7 @@ export class Widget {
    public addGizmoComponent(componentName: string, options?: WidgetComponentGizmoOptions): WidgetComponentGizmo;
    public addGridComponent(componentName: string, options?: WidgetComponentGridOptions): WidgetComponentGrid;
    public addGuideComponent(componentName: string, options?: WidgetComponentGuideOptions): WidgetComponentGuide;
+   public addRenderPlaneComponent(componentName: string, options?: WidgetComponentRenderPlaneOptions): WidgetComponentRenderPlane;
    public addRenderPrimitiveComponent(componentName: string, primitiveType: WidgetComponentRenderPrimitiveTypeAxialSphere | WidgetComponentRenderPrimitiveTypeBox | WidgetComponentRenderPrimitiveTypeCone | WidgetComponentRenderPrimitiveTypeCuboid | WidgetComponentRenderPrimitiveTypeCylinder | WidgetComponentRenderPrimitiveTypeDisc | WidgetComponentRenderPrimitiveTypeEllipsoid | WidgetComponentRenderPrimitiveTypeLine | WidgetComponentRenderPrimitiveTypePyramid | WidgetComponentRenderPrimitiveTypeWireframeMesh, options?: WidgetComponentRenderPrimitiveOptions): WidgetComponentRenderPrimitive;
    public addSplineComponent(componentName: string, options?: WidgetComponentSplineOptions): WidgetComponentSpline;
    public addTextComponent(componentName: string, label: string, options?: WidgetComponentTextOptions): WidgetComponentText;
@@ -1168,6 +1215,15 @@ export class WidgetComponentGrid extends WidgetComponentBase {
 }
 //@ts-ignore
 export class WidgetComponentGuide extends WidgetComponentBase {
+   private constructor();
+}
+//@ts-ignore
+export class WidgetComponentRenderPlane extends WidgetComponentBase {
+   public fillColor: server.RGBA;
+   public gridResolution: RenderPlaneGridResolution;
+   public maxSizeChunks: number;
+   public normal: server.Vector3;
+   public outlineColor: server.RGBA;
    private constructor();
 }
 //@ts-ignore

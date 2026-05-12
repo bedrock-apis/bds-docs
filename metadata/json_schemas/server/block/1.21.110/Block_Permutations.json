@@ -705,6 +705,16 @@
       "2394613889": {
          "title": "Block Unit Cube Component"
       },
+      "2527690833": {
+         "title": "block_entity",
+         "type": "object",
+         "properties": {
+            "dynamic_properties": {
+               "type": "boolean",
+               "default": false
+            }
+         }
+      },
       "2529973620": {
          "title": "Molang string",
          "oneOf": [
@@ -732,6 +742,9 @@
          "title": "Components",
          "type": "object",
          "properties": {
+            "minecraft:block_entity": {
+               "$ref": "#/definitions/2527690833"
+            },
             "minecraft:breathability": {
                "deprecated": true,
                "$ref": "#/definitions/2192817374"
@@ -1008,6 +1021,9 @@
                "type": "string",
                "maxLength": 256
             },
+            "n_way_visual_rotation": {
+               "$ref": "#/definitions/3924251301"
+            },
             "uv_lock": {
                "default": false,
                "oneOf": [
@@ -1189,6 +1205,27 @@
             "crafting_tags"
          ]
       },
+      "3924251301": {
+         "title": "NWayVisualRotation",
+         "type": "object",
+         "properties": {
+            "x": {
+               "type": "string",
+               "default": "",
+               "maxLength": 256
+            },
+            "y": {
+               "type": "string",
+               "default": "",
+               "maxLength": 256
+            },
+            "z": {
+               "type": "string",
+               "default": "",
+               "maxLength": 256
+            }
+         }
+      },
       "3987904724": {
          "title": "Detailed Resistance",
          "type": "object",
@@ -1295,7 +1332,7 @@
       "components": {
          "propertyNames": {
             "type": "string",
-            "pattern": "^(?!(minecraft:flower_pottable|minecraft:on_fall_on|minecraft:redstone_consumer|minecraft:embedded_visual|minecraft:on_placed|minecraft:support|minecraft:item_visual|minecraft:on_interact|minecraft:breathability|minecraft:on_player_destroyed|minecraft:on_player_placing|minecraft:on_step_off|minecraft:on_step_on|minecraft:queued_ticking|minecraft:random_ticking|minecraft:unit_cube)$)"
+            "pattern": "^(?!(minecraft:redstone_consumer|minecraft:block_entity|minecraft:on_placed|minecraft:support|minecraft:embedded_visual|minecraft:flower_pottable|minecraft:on_fall_on|minecraft:item_visual|minecraft:breathability|minecraft:on_interact|minecraft:on_player_destroyed|minecraft:on_player_placing|minecraft:queued_ticking|minecraft:random_ticking|minecraft:on_step_off|minecraft:on_step_on|minecraft:unit_cube)$)"
          },
          "$ref": "#/definitions/2556852513",
          "x-runtime-constraint-description": "Blocks with precipitation interactions \"snowlogging\" must have collision box disabled"

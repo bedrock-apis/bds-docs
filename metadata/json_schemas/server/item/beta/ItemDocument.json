@@ -1,0 +1,1438 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "3640518625",
+   "x-format-version": "beta",
+   "definitions": {
+      "5745680": {
+         "title": "minecraft:durability",
+         "type": "object",
+         "properties": {
+            "damage_chance": {
+               "default": {
+                  "min": 100,
+                  "max": 100
+               },
+               "$ref": "#/definitions/3861103875",
+               "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
+            },
+            "max_durability": {
+               "type": "integer",
+               "minimum": 0
+            }
+         },
+         "required": [
+            "max_durability"
+         ]
+      },
+      "24763745": {
+         "title": "minecraft:hover_text_color",
+         "oneOf": [
+            {
+               "type": "string"
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "value": {
+                     "type": "string",
+                     "default": ""
+                  }
+               }
+            }
+         ]
+      },
+      "138513870": {
+         "title": "minecraft:repairable",
+         "type": "object",
+         "properties": {
+            "repair_items": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/3654032876"
+               }
+            }
+         }
+      },
+      "249997987": {
+         "title": "minecraft:durability_sensor durability_threshold (beta)",
+         "type": "object",
+         "properties": {
+            "durability": {
+               "type": "integer",
+               "default": 0
+            },
+            "particle_type": {
+               "title": "ParticleType",
+               "type": "string",
+               "default": "none",
+               "enum": [
+                  "none",
+                  "bubble",
+                  "bubblemanual",
+                  "crit",
+                  "blockforcefield",
+                  "smoke",
+                  "explode",
+                  "evaporation",
+                  "flame",
+                  "candleflame",
+                  "lava",
+                  "largesmoke",
+                  "reddust",
+                  "risingborderdust",
+                  "iconcrack",
+                  "snowballpoof",
+                  "largeexplode",
+                  "hugeexplosion",
+                  "breezewindexplosion",
+                  "mobflame",
+                  "heart",
+                  "terrain",
+                  "townaura",
+                  "portal",
+                  "watersplash",
+                  "watersplashmanual",
+                  "waterwake",
+                  "dripwater",
+                  "driplava",
+                  "driphoney",
+                  "stalactitedripwater",
+                  "stalactitedriplava",
+                  "fallingdust",
+                  "mobspell",
+                  "mobspellambient",
+                  "mobspellinstantaneous",
+                  "ink",
+                  "slime",
+                  "rainsplash",
+                  "villagerangry",
+                  "villagerhappy",
+                  "enchantingtable",
+                  "trackingemitter",
+                  "note",
+                  "witchspell",
+                  "carrotboost",
+                  "mobappearance",
+                  "endrod",
+                  "dragonbreath",
+                  "spit",
+                  "totem",
+                  "food",
+                  "fireworksstarter",
+                  "fireworks",
+                  "fireworksoverlay",
+                  "balloongas",
+                  "coloredflame",
+                  "sparkler",
+                  "conduit",
+                  "bubblecolumnup",
+                  "bubblecolumndown",
+                  "sneeze",
+                  "shulkerbullet",
+                  "bleach",
+                  "dragondestroyblock",
+                  "myceliumdust",
+                  "fallingborderdust",
+                  "campfiresmoke",
+                  "campfiresmoketall",
+                  "dragonbreathfire",
+                  "dragonbreathtrail",
+                  "soul",
+                  "obsidiantear",
+                  "portalreverse",
+                  "snowflake",
+                  "wax",
+                  "electricspark",
+                  "shriek",
+                  "sculksoul",
+                  "sonicexplosion",
+                  "dustplume",
+                  "whitesmoke",
+                  "vaultconnection",
+                  "windexplosion",
+                  "wolfarmorcrack",
+                  "creakingcrumble",
+                  "paleoakleaves",
+                  "eyeblossomopen",
+                  "eyeblossomclose",
+                  "blueflame",
+                  "greenflame",
+                  "pausemobgrowth",
+                  "resetmobgrowth",
+                  "sulfurcube"
+               ]
+            },
+            "sound_event": {
+               "default": "",
+               "$ref": "#/definitions/1755967692"
+            }
+         }
+      },
+      "300033528": {
+         "title": "minecraft:kinetic_weapon kinetic_effect_conditions",
+         "type": "object",
+         "properties": {
+            "max_duration": {
+               "type": "integer",
+               "default": -1
+            },
+            "min_relative_speed": {
+               "type": "number",
+               "default": 0,
+               "minimum": 0
+            },
+            "min_speed": {
+               "type": "number",
+               "default": 0,
+               "minimum": 0
+            }
+         }
+      },
+      "320508795": {
+         "title": "minecraft:compostable",
+         "type": "object",
+         "properties": {
+            "composting_chance": {
+               "type": "integer",
+               "minimum": 1,
+               "maximum": 100
+            }
+         },
+         "required": [
+            "composting_chance"
+         ]
+      },
+      "346557773": {
+         "title": "minecraft:fuel",
+         "oneOf": [
+            {
+               "type": "number",
+               "minimum": 0.05000000074505806
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "duration": {
+                     "type": "number",
+                     "default": 0.05000000074505806,
+                     "minimum": 0.05000000074505806
+                  }
+               }
+            }
+         ]
+      },
+      "357550247": {
+         "title": "minecraft:damage",
+         "oneOf": [
+            {
+               "type": "integer",
+               "minimum": 0,
+               "maximum": 32767
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "value": {
+                     "type": "integer",
+                     "default": 0,
+                     "minimum": 0,
+                     "maximum": 32767
+                  }
+               }
+            }
+         ]
+      },
+      "509260318": {
+         "title": "minecraft:block_placer",
+         "type": "object",
+         "properties": {
+            "aligned_placement": {
+               "type": "boolean",
+               "default": false
+            },
+            "block": {
+               "$ref": "#/definitions/3152646801"
+            },
+            "replace_block_item": {
+               "type": "boolean",
+               "default": false
+            },
+            "use_on": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/3093766462"
+               },
+               "maxItems": 256,
+               "x-unique-values": true
+            }
+         },
+         "required": [
+            "block"
+         ]
+      },
+      "556977336": {
+         "title": "Ammunition",
+         "type": "object",
+         "properties": {
+            "item": {
+               "$ref": "#/definitions/1429287564"
+            },
+            "search_inventory": {
+               "type": "boolean",
+               "default": false
+            },
+            "use_in_creative": {
+               "type": "boolean",
+               "default": false
+            },
+            "use_offhand": {
+               "type": "boolean",
+               "default": false
+            }
+         },
+         "required": [
+            "item"
+         ]
+      },
+      "561385360": {
+         "title": "BlockInfo",
+         "type": "object",
+         "properties": {
+            "block": {
+               "$ref": "#/definitions/3093766462"
+            },
+            "speed": {
+               "type": "integer"
+            }
+         },
+         "required": [
+            "block",
+            "speed"
+         ]
+      },
+      "577883191": {
+         "title": "minecraft:stacked_by_data",
+         "oneOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "value": {
+                     "type": "boolean",
+                     "default": false
+                  }
+               }
+            }
+         ]
+      },
+      "590136708": {
+         "title": "description",
+         "type": "object",
+         "properties": {
+            "identifier": {
+               "$ref": "#/definitions/3586578163"
+            },
+            "menu_category": {
+               "default": {
+                  "category": "none",
+                  "group": null,
+                  "is_hidden_in_commands": null
+               },
+               "$ref": "#/definitions/3821849217"
+            }
+         },
+         "required": [
+            "identifier"
+         ]
+      },
+      "714977863": {
+         "title": "minecraft:glint",
+         "oneOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "value": {
+                     "type": "boolean",
+                     "default": false
+                  }
+               }
+            }
+         ]
+      },
+      "763867935": {
+         "title": "minecraft:shooter",
+         "type": "object",
+         "properties": {
+            "ammunition": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/556977336"
+               }
+            },
+            "charge_on_draw": {
+               "type": "boolean",
+               "default": false
+            },
+            "max_draw_duration": {
+               "type": "number",
+               "default": 0
+            },
+            "scale_power_by_draw_duration": {
+               "type": "boolean",
+               "default": false
+            }
+         }
+      },
+      "855125494": {
+         "title": "BlockDescriptorProxy",
+         "type": "object",
+         "properties": {
+            "name": {
+               "type": "string",
+               "default": ""
+            },
+            "states": {
+               "type": "object",
+               "additionalProperties": {
+                  "$ref": "#/definitions/2565245911"
+               },
+               "default": {}
+            },
+            "tags": {
+               "type": "string",
+               "default": ""
+            }
+         }
+      },
+      "955967972": {
+         "title": "minecraft:use_animation",
+         "oneOf": [
+            {
+               "title": "Animation",
+               "type": "string",
+               "enum": [
+                  "none",
+                  "eat",
+                  "drink",
+                  "block",
+                  "bow",
+                  "camera",
+                  "crossbow",
+                  "spear",
+                  "spyglass",
+                  "brush"
+               ]
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "value": {
+                     "title": "Animation",
+                     "type": "string",
+                     "default": "none",
+                     "enum": [
+                        "none",
+                        "eat",
+                        "drink",
+                        "block",
+                        "bow",
+                        "camera",
+                        "crossbow",
+                        "spear",
+                        "spyglass",
+                        "brush"
+                     ]
+                  }
+               }
+            }
+         ]
+      },
+      "957401460": {
+         "title": "minecraft:max_stack_size",
+         "oneOf": [
+            {
+               "type": "integer",
+               "minimum": 1,
+               "maximum": 64
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "value": {
+                     "type": "integer",
+                     "default": 1,
+                     "minimum": 1,
+                     "maximum": 64
+                  }
+               }
+            }
+         ]
+      },
+      "1039498256": {
+         "title": "minecraft:swing_duration",
+         "type": "object",
+         "properties": {
+            "value": {
+               "type": "number",
+               "default": 0.30000001192092896,
+               "minimum": 0
+            }
+         }
+      },
+      "1293304755": {
+         "title": "minecraft:wearable",
+         "type": "object",
+         "properties": {
+            "hides_player_location": {
+               "type": "boolean",
+               "default": false
+            },
+            "protection": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "slot": {
+               "title": "EquipmentSlot",
+               "type": "string",
+               "enum": [
+                  "slot.weapon.mainhand",
+                  "slot.weapon.offhand",
+                  "slot.armor.head",
+                  "slot.armor.chest",
+                  "slot.armor.legs",
+                  "slot.armor.feet",
+                  "slot.armor.body"
+               ]
+            }
+         },
+         "required": [
+            "slot"
+         ]
+      },
+      "1429287564": {
+         "title": "Item Descriptor",
+         "oneOf": [
+            {
+               "type": "string"
+            },
+            {
+               "type": "object",
+               "additionalProperties": {
+                  "type": "string"
+               }
+            }
+         ]
+      },
+      "1570893760": {
+         "title": "minecraft:display_name",
+         "type": "object",
+         "properties": {
+            "value": {
+               "type": "string",
+               "default": ""
+            }
+         }
+      },
+      "1612372290": {
+         "title": "minecraft:cooldown",
+         "type": "object",
+         "properties": {
+            "category": {
+               "type": "string"
+            },
+            "duration": {
+               "type": "number"
+            },
+            "type": {
+               "title": "ItemCooldownType",
+               "type": "string",
+               "default": "use",
+               "enum": [
+                  "use",
+                  "attack"
+               ]
+            }
+         },
+         "required": [
+            "category",
+            "duration"
+         ]
+      },
+      "1722961183": {
+         "title": "minecraft:storage_weight_limit",
+         "type": "object",
+         "properties": {
+            "max_weight_limit": {
+               "type": "integer",
+               "default": 64,
+               "maximum": 64
+            }
+         }
+      },
+      "1755967692": {
+         "title": "SoundEventName",
+         "type": "string"
+      },
+      "1788805030": {
+         "title": "minecraft:storage_item",
+         "type": "object",
+         "properties": {
+            "allow_nested_storage_items": {
+               "type": "boolean",
+               "default": true
+            },
+            "allowed_items": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/1429287564"
+               }
+            },
+            "banned_items": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/1429287564"
+               }
+            },
+            "max_slots": {
+               "type": "integer",
+               "default": 64,
+               "maximum": 64
+            }
+         }
+      },
+      "1832095578": {
+         "title": "minecraft:dyeable",
+         "type": "object",
+         "properties": {
+            "default_color": {
+               "default": [
+                  255,
+                  255,
+                  255
+               ],
+               "$ref": "#/definitions/2022750183"
+            }
+         }
+      },
+      "1849296816": {
+         "title": "minecraft:allow_off_hand",
+         "oneOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "value": {
+                     "type": "boolean",
+                     "default": false
+                  }
+               }
+            }
+         ]
+      },
+      "1856946845": {
+         "title": "minecraft:hand_equipped",
+         "oneOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "value": {
+                     "type": "boolean",
+                     "default": false
+                  }
+               }
+            }
+         ]
+      },
+      "1884046047": {
+         "title": "minecraft:swing_sounds (beta)",
+         "type": "object",
+         "properties": {
+            "attack_critical_hit": {
+               "$ref": "#/definitions/1755967692"
+            },
+            "attack_hit": {
+               "$ref": "#/definitions/1755967692"
+            },
+            "attack_miss": {
+               "$ref": "#/definitions/1755967692"
+            }
+         }
+      },
+      "1992003962": {
+         "title": "minecraft:tags",
+         "type": "object",
+         "properties": {
+            "tags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "type": "string"
+               }
+            }
+         }
+      },
+      "2014847524": {
+         "title": "Molang expression",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2529973620"
+            },
+            {
+               "type": "number"
+            }
+         ]
+      },
+      "2022750183": {
+         "title": "Color255RGB",
+         "oneOf": [
+            {
+               "type": "string",
+               "pattern": "^#[a-fA-F0-9]{6}$"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "type": "integer"
+               },
+               "minItems": 3,
+               "maxItems": 3
+            }
+         ],
+         "$metaProperties": {
+            "CEREAL_EDITOR_SCHEMA_TAG": "type:color"
+         }
+      },
+      "2033610203": {
+         "title": "Reference",
+         "type": "string"
+      },
+      "2325096106": {
+         "title": "minecraft:should_despawn",
+         "oneOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "value": {
+                     "type": "boolean",
+                     "default": false
+                  }
+               }
+            }
+         ]
+      },
+      "2406761778": {
+         "title": "minecraft:use_modifiers (beta)",
+         "type": "object",
+         "properties": {
+            "emit_vibrations": {
+               "type": "boolean",
+               "default": true
+            },
+            "movement_modifier": {
+               "type": "number",
+               "minimum": 0,
+               "maximum": 1
+            },
+            "start_sound": {
+               "$ref": "#/definitions/1755967692"
+            },
+            "start_using": {
+               "title": "StartUsing",
+               "type": "string",
+               "default": "if_first",
+               "enum": [
+                  "if_first",
+                  "always"
+               ]
+            },
+            "use_duration": {
+               "type": "number",
+               "default": 0,
+               "minimum": 0
+            }
+         }
+      },
+      "2473825852": {
+         "title": "minecraft:projectile",
+         "type": "object",
+         "properties": {
+            "minimum_critical_power": {
+               "type": "number",
+               "default": 0
+            },
+            "projectile_entity": {
+               "$ref": "#/definitions/2033610203",
+               "minLength": 0,
+               "pattern": "^(?:\\w+(?:\\.\\w+)*:(?=\\w))?(?:\\w+(?:\\.\\w+)*)(?:<((?:\\w+(?:\\.\\w+)*:(?=\\w))?\\w+(?:\\.\\w+)*)*>)?$"
+            }
+         },
+         "required": [
+            "projectile_entity"
+         ]
+      },
+      "2529973620": {
+         "title": "Molang string",
+         "oneOf": [
+            {
+               "type": "string"
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "expression": {
+                     "type": "string"
+                  },
+                  "version": {
+                     "type": "integer"
+                  }
+               },
+               "required": [
+                  "expression",
+                  "version"
+               ]
+            }
+         ]
+      },
+      "2565245911": {
+         "title": "compound_proxy",
+         "oneOf": [
+            {
+               "type": "integer"
+            },
+            {
+               "type": "string"
+            },
+            {
+               "type": "boolean"
+            }
+         ]
+      },
+      "2566306602": {
+         "title": "FloatRange",
+         "type": "object",
+         "properties": {
+            "max": {
+               "type": "number",
+               "default": 0
+            },
+            "min": {
+               "type": "number",
+               "default": 0
+            }
+         }
+      },
+      "2659245187": {
+         "title": "minecraft:digger",
+         "type": "object",
+         "properties": {
+            "destroy_speeds": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/561385360"
+               }
+            },
+            "use_efficiency": {
+               "type": "boolean",
+               "default": false
+            }
+         }
+      },
+      "2865317605": {
+         "title": "minecraft:storage_weight_modifier",
+         "type": "object",
+         "properties": {
+            "weight_in_storage_item": {
+               "type": "integer",
+               "default": 4,
+               "minimum": 0
+            }
+         }
+      },
+      "2890009531": {
+         "title": "minecraft:kinetic_weapon",
+         "type": "object",
+         "properties": {
+            "creative_reach": {
+               "$ref": "#/definitions/2566306602"
+            },
+            "damage_conditions": {
+               "$ref": "#/definitions/300033528"
+            },
+            "damage_modifier": {
+               "type": "number",
+               "default": 0
+            },
+            "damage_multiplier": {
+               "type": "number",
+               "default": 1
+            },
+            "delay": {
+               "type": "integer",
+               "default": 0
+            },
+            "dismount_conditions": {
+               "$ref": "#/definitions/300033528"
+            },
+            "hitbox_margin": {
+               "type": "number",
+               "default": 0
+            },
+            "knockback_conditions": {
+               "$ref": "#/definitions/300033528"
+            },
+            "reach": {
+               "default": {
+                  "min": 0,
+                  "max": 3
+               },
+               "$ref": "#/definitions/2566306602"
+            }
+         }
+      },
+      "3093766462": {
+         "title": "Block Descriptor",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/855125494",
+               "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
+            },
+            {
+               "type": "string",
+               "minLength": 1
+            },
+            {
+               "$ref": "#/definitions/855125494",
+               "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
+            }
+         ]
+      },
+      "3110660491": {
+         "title": "minecraft:piercing_weapon",
+         "type": "object",
+         "properties": {
+            "creative_reach": {
+               "$ref": "#/definitions/2566306602"
+            },
+            "hitbox_margin": {
+               "type": "number",
+               "default": 0
+            },
+            "reach": {
+               "default": {
+                  "min": 0,
+                  "max": 3
+               },
+               "$ref": "#/definitions/2566306602"
+            }
+         }
+      },
+      "3130792076": {
+         "title": "Item Components (Beta)",
+         "type": "object",
+         "properties": {
+            "minecraft:allow_off_hand": {
+               "$ref": "#/definitions/1849296816"
+            },
+            "minecraft:block_placer": {
+               "$ref": "#/definitions/509260318"
+            },
+            "minecraft:bundle_interaction": {
+               "$ref": "#/definitions/3150009352"
+            },
+            "minecraft:can_destroy_in_creative": {
+               "$ref": "#/definitions/3611145847"
+            },
+            "minecraft:compostable": {
+               "$ref": "#/definitions/320508795"
+            },
+            "minecraft:cooldown": {
+               "$ref": "#/definitions/1612372290"
+            },
+            "minecraft:damage": {
+               "$ref": "#/definitions/357550247"
+            },
+            "minecraft:damage_absorption": {
+               "$ref": "#/definitions/3842531986"
+            },
+            "minecraft:digger": {
+               "$ref": "#/definitions/2659245187"
+            },
+            "minecraft:display_name": {
+               "$ref": "#/definitions/1570893760"
+            },
+            "minecraft:durability": {
+               "$ref": "#/definitions/5745680"
+            },
+            "minecraft:durability_sensor": {
+               "$ref": "#/definitions/3325653656"
+            },
+            "minecraft:dyeable": {
+               "$ref": "#/definitions/1832095578"
+            },
+            "minecraft:enchantable": {
+               "$ref": "#/definitions/4281216112"
+            },
+            "minecraft:entity_placer": {
+               "$ref": "#/definitions/3737626741"
+            },
+            "minecraft:fire_resistant": {
+               "$ref": "#/definitions/3383997803"
+            },
+            "minecraft:food": {
+               "$ref": "#/definitions/3654280593"
+            },
+            "minecraft:fuel": {
+               "$ref": "#/definitions/346557773"
+            },
+            "minecraft:glint": {
+               "$ref": "#/definitions/714977863"
+            },
+            "minecraft:hand_equipped": {
+               "$ref": "#/definitions/1856946845"
+            },
+            "minecraft:hover_text_color": {
+               "$ref": "#/definitions/24763745"
+            },
+            "minecraft:icon": {
+               "$ref": "#/definitions/4293743214"
+            },
+            "minecraft:interact_button": {
+               "$ref": "#/definitions/3242860599"
+            },
+            "minecraft:kinetic_weapon": {
+               "$ref": "#/definitions/2890009531"
+            },
+            "minecraft:liquid_clipped": {
+               "$ref": "#/definitions/4219241994"
+            },
+            "minecraft:max_stack_size": {
+               "$ref": "#/definitions/957401460"
+            },
+            "minecraft:piercing_weapon": {
+               "$ref": "#/definitions/3110660491"
+            },
+            "minecraft:projectile": {
+               "$ref": "#/definitions/2473825852"
+            },
+            "minecraft:rarity": {
+               "$ref": "#/definitions/3754481289"
+            },
+            "minecraft:record": {
+               "$ref": "#/definitions/4153824736"
+            },
+            "minecraft:repairable": {
+               "$ref": "#/definitions/138513870"
+            },
+            "minecraft:shooter": {
+               "$ref": "#/definitions/763867935"
+            },
+            "minecraft:should_despawn": {
+               "$ref": "#/definitions/2325096106"
+            },
+            "minecraft:stacked_by_data": {
+               "$ref": "#/definitions/577883191"
+            },
+            "minecraft:storage_item": {
+               "$ref": "#/definitions/1788805030"
+            },
+            "minecraft:storage_weight_limit": {
+               "$ref": "#/definitions/1722961183"
+            },
+            "minecraft:storage_weight_modifier": {
+               "$ref": "#/definitions/2865317605"
+            },
+            "minecraft:swing_duration": {
+               "$ref": "#/definitions/1039498256"
+            },
+            "minecraft:swing_sounds": {
+               "$ref": "#/definitions/1884046047"
+            },
+            "minecraft:tags": {
+               "$ref": "#/definitions/1992003962"
+            },
+            "minecraft:throwable": {
+               "$ref": "#/definitions/3378607947"
+            },
+            "minecraft:use_animation": {
+               "$ref": "#/definitions/955967972"
+            },
+            "minecraft:use_modifiers": {
+               "$ref": "#/definitions/2406761778"
+            },
+            "minecraft:wearable": {
+               "$ref": "#/definitions/1293304755"
+            }
+         }
+      },
+      "3150009352": {
+         "title": "minecraft:bundle_interaction",
+         "type": "object",
+         "properties": {
+            "num_viewable_slots": {
+               "type": "integer",
+               "default": 12,
+               "minimum": 1,
+               "maximum": 64
+            }
+         }
+      },
+      "3152646801": {
+         "title": "Reference",
+         "type": "string"
+      },
+      "3242860599": {
+         "title": "minecraft:interact_button",
+         "oneOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "type": "string"
+            }
+         ]
+      },
+      "3325653656": {
+         "title": "minecraft:durability_sensor (beta)",
+         "type": "object",
+         "properties": {
+            "durability_thresholds": {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/249997987"
+               },
+               "minItems": 1
+            }
+         },
+         "required": [
+            "durability_thresholds"
+         ]
+      },
+      "3378607947": {
+         "title": "minecraft:throwable",
+         "type": "object",
+         "properties": {
+            "do_swing_animation": {
+               "type": "boolean",
+               "default": false
+            },
+            "launch_power_scale": {
+               "type": "number",
+               "default": 1
+            },
+            "max_draw_duration": {
+               "type": "number",
+               "default": 0
+            },
+            "max_launch_power": {
+               "type": "number",
+               "default": 1
+            },
+            "min_draw_duration": {
+               "type": "number",
+               "default": 0
+            },
+            "scale_power_by_draw_duration": {
+               "type": "boolean",
+               "default": false
+            }
+         }
+      },
+      "3383997803": {
+         "title": "minecraft:fire_resistant",
+         "type": "object",
+         "properties": {
+            "value": {
+               "type": "boolean",
+               "default": true
+            }
+         }
+      },
+      "3586578163": {
+         "title": "Identifier",
+         "type": "string"
+      },
+      "3611145847": {
+         "title": "minecraft:can_destroy_in_creative",
+         "oneOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "value": {
+                     "type": "boolean",
+                     "default": false
+                  }
+               }
+            }
+         ]
+      },
+      "3654032876": {
+         "title": "Repair",
+         "oneOf": [
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/1429287564"
+               }
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "items": {
+                     "type": "array",
+                     "items": {
+                        "$ref": "#/definitions/1429287564"
+                     }
+                  },
+                  "repair_amount": {
+                     "default": {
+                        "expression": "",
+                        "version": -1
+                     },
+                     "$ref": "#/definitions/2014847524"
+                  }
+               },
+               "required": [
+                  "items"
+               ]
+            }
+         ]
+      },
+      "3654280593": {
+         "title": "minecraft:food",
+         "type": "object",
+         "properties": {
+            "can_always_eat": {
+               "type": "boolean",
+               "default": false
+            },
+            "nutrition": {
+               "type": "integer",
+               "default": 0
+            },
+            "saturation_modifier": {
+               "type": "number",
+               "default": 0.6000000238418579,
+               "minimum": 0
+            },
+            "using_converts_to": {
+               "default": {},
+               "$ref": "#/definitions/1429287564"
+            }
+         }
+      },
+      "3737626741": {
+         "title": "minecraft:entity_placer",
+         "type": "object",
+         "properties": {
+            "dispense_on": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/3093766462"
+               }
+            },
+            "entity": {
+               "default": "",
+               "$ref": "#/definitions/2033610203",
+               "minLength": 0,
+               "pattern": "^(?:\\w+(?:\\.\\w+)*:(?=\\w))?(?:\\w+(?:\\.\\w+)*)(?:<((?:\\w+(?:\\.\\w+)*:(?=\\w))?\\w+(?:\\.\\w+)*)*>)?$"
+            },
+            "use_on": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/3093766462"
+               }
+            }
+         }
+      },
+      "3754481289": {
+         "title": "minecraft:rarity",
+         "oneOf": [
+            {
+               "type": "string"
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "value": {
+                     "type": "string",
+                     "default": ""
+                  }
+               }
+            }
+         ]
+      },
+      "3821849217": {
+         "title": "menu_category",
+         "type": "object",
+         "properties": {
+            "category": {
+               "title": "CreativeItemCategory",
+               "type": "string",
+               "default": "none",
+               "enum": [
+                  "construction",
+                  "nature",
+                  "equipment",
+                  "items",
+                  "none"
+               ]
+            },
+            "group": {
+               "type": "string",
+               "maxLength": 256,
+               "pattern": "^(?:.)+:(?:.)+$",
+               "x-regex-flags": "ECMAScript,icase"
+            },
+            "is_hidden_in_commands": {
+               "type": "boolean"
+            }
+         }
+      },
+      "3842531986": {
+         "title": "minecraft:damage_absorption",
+         "type": "object",
+         "properties": {
+            "absorbable_causes": {
+               "type": "array",
+               "items": {
+                  "type": "string"
+               },
+               "minItems": 1
+            }
+         },
+         "required": [
+            "absorbable_causes"
+         ]
+      },
+      "3861103875": {
+         "title": "IntRange",
+         "type": "object",
+         "properties": {
+            "max": {
+               "type": "integer",
+               "default": 0
+            },
+            "min": {
+               "type": "integer",
+               "default": 0
+            }
+         }
+      },
+      "4059368180": {
+         "title": "Reference",
+         "type": "string"
+      },
+      "4153824736": {
+         "title": "minecraft:record (beta)",
+         "type": "object",
+         "properties": {
+            "comparator_signal": {
+               "type": "integer",
+               "default": 1
+            },
+            "duration": {
+               "type": "number",
+               "default": 0
+            },
+            "sound_event": {
+               "default": "",
+               "$ref": "#/definitions/1755967692"
+            }
+         }
+      },
+      "4219241994": {
+         "title": "minecraft:liquid_clipped",
+         "oneOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "value": {
+                     "type": "boolean",
+                     "default": false
+                  }
+               }
+            }
+         ]
+      },
+      "4281216112": {
+         "title": "minecraft:enchantable",
+         "type": "object",
+         "properties": {
+            "slot": {
+               "type": "string",
+               "pattern": "none|all|g_armor|armor_head|armor_torso|armor_feet|armor_legs|sword|bow|spear|crossbow|melee_spear|g_tool|hoe|shears|flintsteel|shield|g_digging|axe|pickaxe|shovel|fishing_rod|carrot_stick|elytra|cosmetic_head"
+            },
+            "value": {
+               "type": "integer",
+               "minimum": 0
+            }
+         },
+         "required": [
+            "slot",
+            "value"
+         ]
+      },
+      "4293743214": {
+         "title": "minecraft:icon v1.21.80",
+         "oneOf": [
+            {
+               "type": "string"
+            },
+            {
+               "type": "object",
+               "properties": {
+                  "textures": {
+                     "type": "object",
+                     "additionalProperties": {
+                        "$ref": "#/definitions/4059368180"
+                     },
+                     "default": {}
+                  }
+               }
+            }
+         ]
+      }
+   },
+   "title": "Item Document (Beta)",
+   "type": "object",
+   "properties": {
+      "components": {
+         "$ref": "#/definitions/3130792076"
+      },
+      "description": {
+         "$ref": "#/definitions/590136708"
+      }
+   },
+   "required": [
+      "components",
+      "description"
+   ]
+}

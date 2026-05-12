@@ -307,6 +307,7 @@ export enum EntityHealCause {
    Heal = "Heal",
    Regeneration = "Regeneration",
    SelfHeal = "SelfHeal",
+   TotemOfUndying = "TotemOfUndying",
 }
 export enum EntityInitializationCause {
    Born = "Born",
@@ -617,6 +618,7 @@ export interface BlockContainerAccessEventOptions {
 }
 export interface BlockCustomComponent {
    beforeOnPlayerPlace?: (arg0: BlockComponentPlayerPlaceBeforeEvent, arg1: CustomComponentParameters)=>void;
+   onBlockStateChange?: (arg0: BlockComponentBlockStateChangeEvent, arg1: CustomComponentParameters)=>void;
    onBreak?: (arg0: BlockComponentBlockBreakEvent, arg1: CustomComponentParameters)=>void;
    onEntity?: (arg0: BlockComponentEntityEvent, arg1: CustomComponentParameters)=>void;
    onEntityFallOn?: (arg0: BlockComponentEntityFallOnEvent, arg1: CustomComponentParameters)=>void;
@@ -1195,6 +1197,11 @@ export class BlockComponentBlockBreakEvent extends BlockEvent {
    public readonly blockDestructionSource?: Block;
    public readonly brokenBlockPermutation: BlockPermutation;
    public readonly entitySource?: Entity;
+   private constructor();
+}
+//@ts-ignore
+export class BlockComponentBlockStateChangeEvent extends BlockEvent {
+   public readonly previousPermutation: BlockPermutation;
    private constructor();
 }
 //@ts-ignore
@@ -2435,6 +2442,12 @@ export class EntityUnderwaterMovementComponent extends EntityAttributeComponent 
    public static readonly componentId = "minecraft:underwater_movement";
    private constructor();
 }
+export class EntityUpgradeAfterEvent {
+   public readonly entity: Entity;
+   public readonly upgradeId: string;
+   public getModifiers(): Array<DefinitionModifier>;
+   private constructor();
+}
 //@ts-ignore
 export class EntityVariantComponent extends EntityComponent {
    public static readonly componentId = "minecraft:variant";
@@ -3321,6 +3334,29 @@ export class PressurePlatePushAfterEventSignal {
    public unsubscribe(callback: (arg0: PressurePlatePushAfterEvent)=>void): void;
    private constructor();
 }
+export class PrimitiveShape {
+   public attachedTo?: Entity;
+   public color: RGBA;
+   public readonly dimension: Dimension;
+   public readonly hasDuration: boolean;
+   public readonly location: Vector3;
+   public maximumRenderDistance?: number;
+   public rotation: Vector3;
+   public scale: number;
+   public timeLeft?: number;
+   public readonly totalTimeLeft?: number;
+   public visibleTo: Array<Player>;
+   public remove(): void;
+   public setLocation(location: DimensionLocation | Vector3): void;
+   private constructor();
+}
+export class PrimitiveShapesManager {
+   public readonly maxShapes: number;
+   public addText(text: TextPrimitive, dimension?: Dimension): void;
+   public removeAll(): void;
+   public removeText(text: TextPrimitive): void;
+   private constructor();
+}
 export class ProjectileHitBlockAfterEvent {
    public readonly dimension: Dimension;
    public readonly hitVector: Vector3;
@@ -3616,6 +3652,17 @@ export class TargetBlockHitAfterEventSignal {
    public unsubscribe(callback: (arg0: TargetBlockHitAfterEvent)=>void): void;
    private constructor();
 }
+//@ts-ignore
+export class TextPrimitive extends PrimitiveShape {
+   public backfaceVisible: boolean;
+   public backgroundColorOverride?: RGBA;
+   public depthTest: boolean;
+   public readonly text: RawMessage | string;
+   public textBackfaceVisible: boolean;
+   public useRotation: boolean;
+   public constructor(location: DimensionLocation | Vector3, text: RawMessage | string);
+   public setText(text: RawMessage | string): void;
+}
 export class TickingAreaManager {
    public readonly chunkCount: number;
    public readonly maxChunkCount: number;
@@ -3671,6 +3718,7 @@ export class World {
    public readonly beforeEvents: WorldBeforeEvents;
    public readonly gameRules: GameRules;
    public readonly isHardcore: boolean;
+   public readonly primitiveShapesManager: PrimitiveShapesManager;
    public readonly scoreboard: Scoreboard;
    public readonly seed: string;
    public readonly structureManager: StructureManager;
@@ -3689,6 +3737,7 @@ export class World {
    public getEntity(id: string): (Entity | undefined);
    public getLootTableManager(): LootTableManager;
    public getMoonPhase(): MoonPhase;
+   public getPackSettings(): Record<string,boolean | number | string>;
    public getPlayers(options?: EntityQueryOptions): Array<Player>;
    public getTimeOfDay(): number;
    public playMusic(trackId: string, musicOptions?: MusicOptions): void;
@@ -3935,6 +3984,10 @@ export class NamespaceNameError extends Error {
 }
 //@ts-ignore
 export class PlaceJigsawError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class PrimitiveShapeError extends Error {
    private constructor();
 }
 //@ts-ignore

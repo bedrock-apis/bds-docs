@@ -5,6 +5,7 @@ export enum AimAssistTargetMode {
    Distance = "Distance",
 }
 export enum BlockComponentTypes {
+   DynamicProperties = "minecraft:dynamic_properties",
    FluidContainer = "minecraft:fluid_container",
    Inventory = "minecraft:inventory",
    MapColor = "minecraft:map_color",
@@ -985,10 +986,6 @@ export interface MusicOptions {
 export interface NotEqualsComparison {
    notEquals: boolean | number | string;
 }
-export interface PartyInfo {
-   isLeader: boolean;
-   partyId: string;
-}
 export interface PlayAnimationOptions {
    blendOutTime?: number;
    controller?: string;
@@ -1001,6 +998,10 @@ export interface PlayerAimAssistSettings {
    presetId: string;
    targetMode?: AimAssistTargetMode;
    viewAngle?: Vector2;
+}
+export interface PlayerBreakingBlockEventOptions {
+   blockFilter?: BlockFilter;
+   playerFilter?: EntityFilter;
 }
 export interface PlayerSoundOptions {
    location?: Vector3;
@@ -1391,6 +1392,14 @@ export class BlockContainerOpenedAfterEventSignal {
 //@ts-ignore
 export class BlockCustomComponentInstance extends BlockComponent {
    public readonly customComponentParameters: CustomComponentParameters;
+   private constructor();
+}
+//@ts-ignore
+export class BlockDynamicPropertiesComponent extends BlockComponent {
+   public static readonly componentId = "minecraft:dynamic_properties";
+   public get(key: string): (boolean | number | number | string | Vector3 | undefined);
+   public set(key: string, value?: boolean | number | number | string | Vector3): void;
+   public totalByteCount(): number;
    private constructor();
 }
 export class BlockEvent {
@@ -3103,6 +3112,7 @@ export class LootingEnchantFunction extends LootItemFunction {
 }
 //@ts-ignore
 export class LootItem extends LootPoolEntry {
+   public readonly conditions: Array<LootItemCondition>;
    public readonly functions: Array<LootItemFunction>;
    public readonly name?: ItemType;
    private constructor();
@@ -3230,7 +3240,6 @@ export class Player extends Entity {
    public readonly locatorBar: LocatorBar;
    public readonly name: string;
    public readonly onScreenDisplay: ScreenDisplay;
-   public readonly partyInfo?: PartyInfo;
    public readonly playerPermissionLevel: PlayerPermissionLevel;
    public readonly playfabId: string;
    public selectedSlotIndex: number;
@@ -3526,6 +3535,19 @@ export class PlayerSpawnAfterEvent {
 export class PlayerSpawnAfterEventSignal {
    public subscribe(callback: (arg0: PlayerSpawnAfterEvent)=>void): (arg0: PlayerSpawnAfterEvent)=>void;
    public unsubscribe(callback: (arg0: PlayerSpawnAfterEvent)=>void): void;
+   private constructor();
+}
+//@ts-ignore
+export class PlayerStartBreakingBlockAfterEvent extends BlockEvent {
+   public readonly blockPermutation: BlockPermutation;
+   public readonly face: Direction;
+   public readonly heldItemStack?: ItemStack;
+   public readonly player: Player;
+   private constructor();
+}
+export class PlayerStartBreakingBlockAfterEventSignal {
+   public subscribe(callback: (arg0: PlayerStartBreakingBlockAfterEvent)=>void, options?: PlayerBreakingBlockEventOptions): (arg0: PlayerStartBreakingBlockAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: PlayerStartBreakingBlockAfterEvent)=>void): void;
    private constructor();
 }
 export class PlayerSwingStartAfterEvent {
@@ -4099,6 +4121,7 @@ export class WorldAfterEvents {
    public readonly playerLeave: PlayerLeaveAfterEventSignal;
    public readonly playerPlaceBlock: PlayerPlaceBlockAfterEventSignal;
    public readonly playerSpawn: PlayerSpawnAfterEventSignal;
+   public readonly playerStartBreakingBlock: PlayerStartBreakingBlockAfterEventSignal;
    public readonly playerSwingStart: PlayerSwingStartAfterEventSignal;
    public readonly playerUseNameTag: PlayerUseNameTagAfterEventSignal;
    public readonly pressurePlatePop: PressurePlatePopAfterEventSignal;

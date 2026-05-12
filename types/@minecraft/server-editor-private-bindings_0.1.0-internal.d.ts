@@ -215,6 +215,12 @@ export class CustomBiomeSource {
    public updateColor(biomeName: string, color: server.RGBA): void;
    private constructor();
 }
+export class CustomDimensionManager {
+   public addDimension(dimensionName: string): void;
+   public getCustomDimensionIds(): Array<string>;
+   public removeDimension(dimensionName: string): void;
+   private constructor();
+}
 export class DataStore {
    public readonly actionBarContainer: DataStoreActionBarContainer;
    public readonly actionContainer: DataStoreActionContainer;
@@ -347,6 +353,7 @@ export class InputService {
    public getKeyBindingProcessingState(contextId: string, bindingId: string): (number | undefined);
    public registerKeyBinding(contextId: string, bindingId: string, key: number, modifier: server_editor.InputModifier, info: InputBindingInfo): void;
    public registerMouseBinding(contextId: string, bindingId: string, mouseAction: server_editor.MouseActionCategory): void;
+   public setMouseIcon(contextId: string, mouseIcon?: server_editor.MouseCursorIconType): void;
    public unregisterKeyBinding(contextId: string, bindingId: string): void;
    public unregisterMouseBinding(contextId: string, bindingId: string): void;
    public updateKeyBindingProcessingState(contextId: string, bindingId: string, state?: number): void;
@@ -394,6 +401,7 @@ export class MeshCacheManager {
    private constructor();
 }
 export class MinecraftEditorInternal {
+   public readonly customDimensionManager: CustomDimensionManager;
    public readonly isNewLevel: boolean;
    public readonly regionManager: ProjectRegionManager;
    public createCustomBiomeSource(config: CustomBiomeSourceConfig): CustomBiomeSource;
@@ -401,6 +409,7 @@ export class MinecraftEditorInternal {
    public fireTelemetryEvent(player: server.Player, source: string, eventName: string, metadata: string): void;
    public getPlayerServices(player: server.Player): InternalPlayerServiceContext;
    public registerExtension(extensionName: string, activationFunction: (arg0: server_editor.ExtensionContext)=>void, shutdownFunction: (arg0: server_editor.ExtensionContext)=>void, options?: server_editor.ExtensionOptionalParameters): server_editor.Extension;
+   public reloadEditor(): void;
    private constructor();
 }
 export class PersistenceGroup {

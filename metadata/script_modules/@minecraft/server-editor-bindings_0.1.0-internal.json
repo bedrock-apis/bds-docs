@@ -4780,6 +4780,21 @@
                ],
                "is_baked": false,
                "is_read_only": true,
+               "name": "guidePlaneManager",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "GuidePlaneManager"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
                "name": "minimapManager",
                "type": {
                   "is_bind_type": true,
@@ -5276,6 +5291,369 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "GraphicsSettings"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "origin",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-bindings",
+                           "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                           "version": "2.9.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "normal",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-bindings",
+                           "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                           "version": "2.9.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "visible",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "outlineColor",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-bindings",
+                           "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                           "version": "2.9.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "RGBA"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "fillColor",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-bindings",
+                           "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                           "version": "2.9.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "RGBA"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "addPlane",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "string"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "planeId",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getPlane",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "GuidePlane"
+                  }
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getPlanes",
+               "return_type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "GuidePlane"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "array"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "planeId",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "removePlane",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "planeId",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "outlineColor",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-bindings",
+                           "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                           "version": "2.9.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "RGBA"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "fillColor",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-bindings",
+                           "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                           "version": "2.9.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "RGBA"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "setPlaneColors",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "planeId",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "normal",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-bindings",
+                           "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                           "version": "2.9.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "setPlaneNormal",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "planeId",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "origin",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-bindings",
+                           "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                           "version": "2.9.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "setPlaneOrigin",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "planeId",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "visible",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "setPlaneVisibility",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "GuidePlaneManager",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "allPlanesVisible",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "GuidePlaneManager"
          }
       },
       {
@@ -9932,6 +10310,48 @@
                      }
                   },
                   {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "WidgetComponentRenderPlaneOptions"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "addRenderPlaneComponent",
+               "return_type": {
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "WidgetComponentRenderPlane"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "componentName",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  },
+                  {
                      "details": null,
                      "name": "primitiveType",
                      "type": {
@@ -12036,6 +12456,144 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "WidgetComponentGuide"
+         }
+      },
+      {
+         "base_types": [
+            {
+               "is_bind_type": true,
+               "is_errorable": false,
+               "name": "WidgetComponentBase"
+            }
+         ],
+         "constants": [],
+         "functions": [],
+         "name": "WidgetComponentRenderPlane",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "fillColor",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.9.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "RGBA"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "gridResolution",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "RenderPlaneGridResolution"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "maxSizeChunks",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "normal",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.9.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Vector3"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "outlineColor",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.9.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "RGBA"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WidgetComponentRenderPlane"
          }
       },
       {
@@ -16991,6 +17549,66 @@
             {
                "is_read_only": true,
                "is_static": true,
+               "name": "Crosshair",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "Crosshair"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Default",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "Default"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Move",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "Move"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "NotAllowed",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "NotAllowed"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Wait",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "Wait"
+            }
+         ],
+         "name": "MouseCursorIconType"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
                "name": "Canceled",
                "type": {
                   "is_bind_type": true,
@@ -17455,6 +18073,66 @@
             }
          ],
          "name": "ProjectExportType"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "EightBlocks",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "EightBlocks"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "FourBlocks",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "FourBlocks"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "None",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "None"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "OneBlock",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "OneBlock"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "SixteenBlocks",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "SixteenBlocks"
+            }
+         ],
+         "name": "RenderPlaneGridResolution"
       },
       {
          "constants": [
@@ -18097,6 +18775,17 @@
             {
                "is_read_only": true,
                "is_static": true,
+               "name": "PrimaryAttention",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "PrimaryAttention"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
                "name": "PrimaryBackground1",
                "type": {
                   "is_bind_type": false,
@@ -18192,6 +18881,17 @@
                   "name": "string"
                },
                "value": "SecondaryActive"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "SecondaryAttention",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "SecondaryAttention"
             },
             {
                "is_read_only": true,
@@ -18444,6 +19144,17 @@
                   "name": "string"
                },
                "value": "Guide"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "RenderPlane",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "RenderPlane"
             },
             {
                "is_read_only": true,
@@ -20371,6 +21082,97 @@
       },
       {
          "base_types": [],
+         "name": "GuidePlane",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "fillColor",
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.9.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "RGBA"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "normal",
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.9.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Vector3"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "origin",
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.9.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Vector3"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "outlineColor",
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.9.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "RGBA"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "planeId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "visible",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "GuidePlane"
+         }
+      },
+      {
+         "base_types": [],
          "name": "LocalizationEntry",
          "properties": [
             {
@@ -21922,6 +22724,117 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "WidgetComponentGuideOptions"
+         }
+      },
+      {
+         "base_types": [
+            {
+               "is_bind_type": true,
+               "is_errorable": false,
+               "name": "WidgetComponentBaseOptions"
+            }
+         ],
+         "name": "WidgetComponentRenderPlaneOptions",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "fillColor",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "from_module": {
+                        "name": "@minecraft/server-bindings",
+                        "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                        "version": "2.9.0-internal"
+                     },
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "RGBA"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "gridResolution",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "RenderPlaneGridResolution"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "maxSizeChunks",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "int32",
+                     "valid_range": {
+                        "max": 2147483647,
+                        "min": -2147483648
+                     }
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "normal",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "from_module": {
+                        "name": "@minecraft/server-bindings",
+                        "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                        "version": "2.9.0-internal"
+                     },
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "Vector3"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "outlineColor",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "from_module": {
+                        "name": "@minecraft/server-bindings",
+                        "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                        "version": "2.9.0-internal"
+                     },
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "RGBA"
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WidgetComponentRenderPlaneOptions"
          }
       },
       {
