@@ -126,13 +126,14 @@
                },
                "$ref": "#/definitions/2789112004"
             },
-            "kick_distance_threshold": {
-               "type": "number",
-               "default": 1.2999999523162842
-            },
             "kick_speed_scale": {
                "type": "number",
                "default": 2
+            },
+            "max_distance": {
+               "type": "number",
+               "default": 3.4028234663852886e+38,
+               "minimum": 0
             },
             "max_kick_speed": {
                "type": "number",
@@ -140,11 +141,16 @@
             },
             "min_distance": {
                "type": "number",
-               "default": 0.009999999776482582
+               "default": 0.009999999776482582,
+               "minimum": 0
             },
             "min_kick_speed": {
                "type": "number",
                "default": 0
+            },
+            "play_sound": {
+               "type": "boolean",
+               "default": false
             },
             "play_sound_cooldown_in_seconds": {
                "type": "number",
@@ -161,6 +167,7 @@
                "type": "string",
                "default": "default",
                "enum": [
+                  "none",
                   "default",
                   "legacy_boat",
                   "legacy_minecart",

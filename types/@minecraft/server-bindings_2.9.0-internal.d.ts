@@ -221,6 +221,7 @@ export enum EntityComponentTypes {
    FireImmune = "minecraft:fire_immune",
    FloatsInLiquid = "minecraft:floats_in_liquid",
    FlyingSpeed = "minecraft:flying_speed",
+   Fog = "minecraft:player.fog",
    FrictionModifier = "minecraft:friction_modifier",
    Healable = "minecraft:healable",
    Health = "minecraft:health",
@@ -2113,6 +2114,17 @@ export class EntityFlyingSpeedComponent extends EntityComponent {
    private constructor();
 }
 //@ts-ignore
+export class EntityFogComponent extends EntityComponent {
+   public static readonly componentId = "minecraft:player.fog";
+   public applyStack(fogIds: Array<string>, tag?: string): void;
+   public getStack(): Array<string>;
+   public getTags(): Array<string>;
+   public pop(tag?: string): (string | undefined);
+   public push(fogId: string, tag?: string): number;
+   public remove(tag?: string): boolean;
+   private constructor();
+}
+//@ts-ignore
 export class EntityFrictionModifierComponent extends EntityComponent {
    public static readonly componentId = "minecraft:friction_modifier";
    public readonly value: number;
@@ -2820,6 +2832,9 @@ export class InputInfo {
 export class IsBabyCondition extends LootItemCondition {
    private constructor();
 }
+export class ISerializable {
+   private constructor();
+}
 //@ts-ignore
 export class ItemBookComponent extends ItemComponent {
    public static readonly componentId = "minecraft:book";
@@ -3367,6 +3382,20 @@ export class PlayerButtonInputAfterEvent {
 export class PlayerButtonInputAfterEventSignal {
    public subscribe(callback: (arg0: PlayerButtonInputAfterEvent)=>void, options?: InputEventOptions): (arg0: PlayerButtonInputAfterEvent)=>void;
    public unsubscribe(callback: (arg0: PlayerButtonInputAfterEvent)=>void): void;
+   private constructor();
+}
+//@ts-ignore
+export class PlayerCancelBreakingBlockAfterEvent extends BlockEvent {
+   public readonly blockPermutation: BlockPermutation;
+   public readonly breakProgress: number;
+   public readonly face: Direction;
+   public readonly heldItemStack?: ItemStack;
+   public readonly player: Player;
+   private constructor();
+}
+export class PlayerCancelBreakingBlockAfterEventSignal {
+   public subscribe(callback: (arg0: PlayerCancelBreakingBlockAfterEvent)=>void, options?: PlayerBreakingBlockEventOptions): (arg0: PlayerCancelBreakingBlockAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: PlayerCancelBreakingBlockAfterEvent)=>void): void;
    private constructor();
 }
 //@ts-ignore
@@ -3943,7 +3972,8 @@ export class StartupEvent {
    public getSpawnRulesRegistry(): SpawnRulesRegistry;
    private constructor();
 }
-export class Structure {
+//@ts-ignore
+export class Structure extends ISerializable {
    public readonly id: string;
    public readonly isValid: boolean;
    public readonly size: Vector3;
@@ -4168,6 +4198,7 @@ export class WorldAfterEvents {
    public readonly pistonActivate: PistonActivateAfterEventSignal;
    public readonly playerBreakBlock: PlayerBreakBlockAfterEventSignal;
    public readonly playerButtonInput: PlayerButtonInputAfterEventSignal;
+   public readonly playerCancelBreakingBlock: PlayerCancelBreakingBlockAfterEventSignal;
    public readonly playerDimensionChange: PlayerDimensionChangeAfterEventSignal;
    public readonly playerEmote: PlayerEmoteAfterEventSignal;
    public readonly playerGameModeChange: PlayerGameModeChangeAfterEventSignal;
@@ -4308,6 +4339,10 @@ export class EnchantmentTypeNotCompatibleError extends Error {
 }
 //@ts-ignore
 export class EnchantmentTypeUnknownIdError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class EntityFogComponentError extends Error {
    private constructor();
 }
 //@ts-ignore

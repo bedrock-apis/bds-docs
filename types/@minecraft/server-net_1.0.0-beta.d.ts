@@ -334,14 +334,14 @@ export class HttpHeader {
    public constructor(key: string, value: server_admin.SecretString | string);
 }
 export class HttpRequest {
-   public body: string;
+   public body: server.ISerializable | string;
    public headers: Array<HttpHeader>;
    public method: HttpRequestMethod;
    public timeout: number;
    public uri: string;
    public addHeader(key: string, value: server_admin.SecretString | string): HttpRequest;
    public constructor(uri: string);
-   public setBody(body: string): HttpRequest;
+   public setBody(body: server.ISerializable | string): HttpRequest;
    public setHeaders(headers: Array<HttpHeader>): HttpRequest;
    public setMethod(method: HttpRequestMethod): HttpRequest;
    public setTimeout(timeout: number): HttpRequest;
@@ -351,6 +351,7 @@ export class HttpResponse {
    public readonly headers: Array<HttpHeader>;
    public readonly request: HttpRequest;
    public readonly status: number;
+   public deserialize(identifier: string): server.ISerializable;
    private constructor();
 }
 export class MessageAfterEventSignal {
@@ -443,6 +444,10 @@ export class MalformedUriError extends Error {
 export class RequestBodyTooLargeError extends Error {
    public readonly maxBytes: number;
    public readonly providedBytes: number;
+   private constructor();
+}
+//@ts-ignore
+export class SerializableParseError extends Error {
    private constructor();
 }
 //@ts-ignore

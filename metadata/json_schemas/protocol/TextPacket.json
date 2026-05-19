@@ -2,7 +2,7 @@
    "$schema": "http://json-schema.org/draft-07/schema#",
    "$id": "3859742646",
    "x-format-version": "MISSING VERSION",
-   "x-protocol-version": 998,
+   "x-protocol-version": 1001,
    "definitions": {
       "850792331": {
          "title": "AuthorAndMessage",
@@ -12,7 +12,8 @@
                "type": "string",
                "default": "",
                "x-ordinal-index": 2,
-               "minLength": 1
+               "minLength": 1,
+               "maxLength": 65536
             },
             "Message Type": {
                "title": "TextPacketType",
@@ -32,7 +33,8 @@
             "Player Name": {
                "type": "string",
                "default": "",
-               "x-ordinal-index": 1
+               "x-ordinal-index": 1,
+               "maxLength": 256
             }
          },
          "required": [
@@ -47,7 +49,8 @@
                "type": "string",
                "default": "",
                "x-ordinal-index": 1,
-               "minLength": 1
+               "minLength": 1,
+               "maxLength": 65536
             },
             "Message Type": {
                "title": "TextPacketType",
@@ -80,7 +83,8 @@
                "type": "string",
                "default": "",
                "x-ordinal-index": 1,
-               "minLength": 1
+               "minLength": 1,
+               "maxLength": 65536
             },
             "Message Type": {
                "title": "TextPacketType",
@@ -135,7 +139,8 @@
       },
       "Filtered Message": {
          "type": "string",
-         "x-ordinal-index": 4
+         "x-ordinal-index": 4,
+         "maxLength": 65536
       },
       "Localize?": {
          "type": "boolean",
@@ -145,12 +150,14 @@
       "Platform Id": {
          "type": "string",
          "default": "",
-         "x-ordinal-index": 3
+         "x-ordinal-index": 3,
+         "maxLength": 256
       },
       "Sender's XUID": {
          "type": "string",
          "default": "",
-         "x-ordinal-index": 2
+         "x-ordinal-index": 2,
+         "maxLength": 64
       }
    },
    "required": [

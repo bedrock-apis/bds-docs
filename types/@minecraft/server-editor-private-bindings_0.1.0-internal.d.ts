@@ -10,6 +10,27 @@ export enum EditorRealmsServiceAvailability {
    Success = 4,
    Unknown = 5,
 }
+export enum FilePickerError {
+   AccessDenied = "access-denied",
+   Cancelled = "cancelled",
+   FileTooLarge = "file-too-large",
+}
+export enum GeneralInputBindingCategory {
+   ApplyFlood = 8,
+   Clear = 6,
+   Copy = 3,
+   Cut = 2,
+   Delete = 5,
+   Fill = 7,
+   OpenChatWindow = 9,
+   Paste = 4,
+   Redo = 1,
+   Reload = 10,
+   ShowGameMenu = 11,
+   ShowLogPanel = 13,
+   ToggleMode = 12,
+   Undo = 0,
+}
 export enum JigsawJointType {
    Aligned = 1,
    Rollable = 0,
@@ -19,6 +40,28 @@ export enum JigsawJsonType {
    Structure = 1,
    StructureSet = 2,
    TemplatePool = 3,
+}
+export enum MeshLoadError {
+   AccessDenied = "access-denied",
+   EmptyFile = "empty-file",
+   FileTooLarge = "file-too-large",
+   InternalError = "internal-error",
+   MeshNotFound = "mesh-not-found",
+   MissingMaterials = "missing-materials",
+   TooManyTriangles = "too-many-triangles",
+   UnknownFormat = "unknown-format",
+}
+export enum MeshPlacementError {
+   Cancelled = "cancelled",
+   CommitInProgress = "commit-in-progress",
+   GridAxisExceeded = "grid-axis-exceeded",
+   GridVolumeExceeded = "grid-volume-exceeded",
+   InvalidBlockType = "invalid-block-type",
+   InvalidParameters = "invalid-parameters",
+   NoBlocks = "no-blocks",
+   NoTransaction = "no-transaction",
+   PlayerUnavailable = "player-unavailable",
+   VoxelizationTimeout = "voxelization-timeout",
 }
 export enum PersistenceGroupType {
    Local = 0,
@@ -60,6 +103,10 @@ export enum RealmsWorldUploadResult {
    WorldUploadBusy = 5,
 }
 
+export interface BindingCategoryInfo {
+   label: string;
+   order: number;
+}
 export interface BiomeFillOptions {
    biomeFilter?: server.BiomeFilter;
    includeContainedPositions?: boolean;
@@ -117,6 +164,8 @@ export interface FileSelectorOptions {
 }
 export interface InputBindingInfo {
    actionId?: string;
+   bindingCategory?: string;
+   bindingPriority?: number;
    canRebind: boolean;
    label?: string;
    tooltip?: string;
@@ -142,6 +191,19 @@ export interface MeshInfo {
 }
 export interface MeshLoadOptions {
    maxTriangleCount?: number;
+}
+export interface MeshPlacementOptions {
+   blockType: string;
+   location: server.Vector3;
+   requestId?: string;
+   rotation: server.Vector3;
+   rotationPivot?: server.Vector3;
+   scaleFactor: number;
+}
+export interface MeshPlacementResult {
+   blockCount: number;
+   errorMessage: string;
+   requestId: string;
 }
 export interface PersistenceGroupCreationOptions {
    groupType?: PersistenceGroupType;
@@ -332,6 +394,7 @@ export class DataTransferManager {
    public openSession(collectionUniqueId: string): void;
    public requestBiomeConfig(biomeIdentifier: string): Promise<DataTransferBiomeConfigData>;
    public requestData(collectionUniqueId: string, options?: DataTransferRequestDataOptions): Promise<DataTransferRequestResponse>;
+   public requestDefaultBiomeConfig(biomeIdentifier: string): Promise<DataTransferBiomeConfigData>;
    public requestIdentifiers(collectionUniqueId: string): Promise<DataTransferRequestIdentifiersResponse>;
    public sendData(collectionUniqueId: string, jsonData: string, options?: DataTransferSendDataOptions): void;
    public sendDataToClipboard(jsonData: string): void;
@@ -351,9 +414,12 @@ export class DataTransferRequestResponse {
 export class InputService {
    public focusViewport(): void;
    public getKeyBindingProcessingState(contextId: string, bindingId: string): (number | undefined);
+   public registerBindingCategory(id: string, label: string, order: number): void;
    public registerKeyBinding(contextId: string, bindingId: string, key: number, modifier: server_editor.InputModifier, info: InputBindingInfo): void;
    public registerMouseBinding(contextId: string, bindingId: string, mouseAction: server_editor.MouseActionCategory): void;
    public setMouseIcon(contextId: string, mouseIcon?: server_editor.MouseCursorIconType): void;
+   public tryGetBindingCategoryInfo(id: string): (BindingCategoryInfo | undefined);
+   public unregisterBindingCategory(id: string): void;
    public unregisterKeyBinding(contextId: string, bindingId: string): void;
    public unregisterMouseBinding(contextId: string, bindingId: string): void;
    public updateKeyBindingProcessingState(contextId: string, bindingId: string, state?: number): void;
@@ -395,6 +461,8 @@ export class JigsawService {
    private constructor();
 }
 export class MeshCacheManager {
+   public cancelPlacement(requestId: string): void;
+   public commitToWorld(meshId: string, options: MeshPlacementOptions): Promise<MeshPlacementResult>;
    public getMeshList(): Array<MeshInfo>;
    public loadMesh(filePath: string, options?: MeshLoadOptions): Promise<MeshInfo>;
    public unloadMesh(meshId: string): void;

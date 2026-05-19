@@ -2477,6 +2477,37 @@
                "arguments": [
                   {
                      "details": null,
+                     "name": "biomeIdentifier",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "requestDefaultBiomeConfig",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "DataTransferBiomeConfigData"
+                  }
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
                      "name": "collectionUniqueId",
                      "type": {
                         "is_bind_type": false,
@@ -2780,6 +2811,54 @@
                "arguments": [
                   {
                      "details": null,
+                     "name": "id",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "label",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "order",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "int32",
+                        "valid_range": {
+                           "max": 2147483647,
+                           "min": -2147483648
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "registerBindingCategory",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
                      "name": "contextId",
                      "type": {
                         "is_bind_type": false,
@@ -2937,6 +3016,63 @@
                "is_constructor": false,
                "is_static": false,
                "name": "setMouseIcon",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "id",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "tryGetBindingCategoryInfo",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "BindingCategoryInfo"
+                  }
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "id",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "unregisterBindingCategory",
                "return_type": {
                   "is_bind_type": false,
                   "is_errorable": true,
@@ -3938,6 +4074,72 @@
          "base_types": [],
          "constants": [],
          "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "requestId",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "cancelPlacement",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "meshId",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "MeshPlacementOptions"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "commitToWorld",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "MeshPlacementResult"
+                  }
+               }
+            },
             {
                "arguments": [],
                "call_privilege": [
@@ -8081,6 +8283,203 @@
             {
                "is_read_only": true,
                "is_static": true,
+               "name": "AccessDenied",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "access-denied"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Cancelled",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "cancelled"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "FileTooLarge",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "file-too-large"
+            }
+         ],
+         "name": "FilePickerError"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "ApplyFlood",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "GeneralInputBindingCategory"
+               },
+               "value": 8
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Clear",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "GeneralInputBindingCategory"
+               },
+               "value": 6
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Copy",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "GeneralInputBindingCategory"
+               },
+               "value": 3
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Cut",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "GeneralInputBindingCategory"
+               },
+               "value": 2
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Delete",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "GeneralInputBindingCategory"
+               },
+               "value": 5
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Fill",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "GeneralInputBindingCategory"
+               },
+               "value": 7
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "OpenChatWindow",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "GeneralInputBindingCategory"
+               },
+               "value": 9
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Paste",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "GeneralInputBindingCategory"
+               },
+               "value": 4
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Redo",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "GeneralInputBindingCategory"
+               },
+               "value": 1
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Reload",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "GeneralInputBindingCategory"
+               },
+               "value": 10
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "ShowGameMenu",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "GeneralInputBindingCategory"
+               },
+               "value": 11
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "ShowLogPanel",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "GeneralInputBindingCategory"
+               },
+               "value": 13
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "ToggleMode",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "GeneralInputBindingCategory"
+               },
+               "value": 12
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Undo",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "GeneralInputBindingCategory"
+               },
+               "value": 0
+            }
+         ],
+         "name": "GeneralInputBindingCategory"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
                "name": "Aligned",
                "type": {
                   "is_bind_type": true,
@@ -8151,6 +8550,214 @@
             }
          ],
          "name": "JigsawJsonType"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "AccessDenied",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "access-denied"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "EmptyFile",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "empty-file"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "FileTooLarge",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "file-too-large"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "InternalError",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "internal-error"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "MeshNotFound",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "mesh-not-found"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "MissingMaterials",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "missing-materials"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "TooManyTriangles",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "too-many-triangles"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "UnknownFormat",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "unknown-format"
+            }
+         ],
+         "name": "MeshLoadError"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Cancelled",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "cancelled"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "CommitInProgress",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "commit-in-progress"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "GridAxisExceeded",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "grid-axis-exceeded"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "GridVolumeExceeded",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "grid-volume-exceeded"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "InvalidBlockType",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "invalid-block-type"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "InvalidParameters",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "invalid-parameters"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "NoBlocks",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "no-blocks"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "NoTransaction",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "no-transaction"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "PlayerUnavailable",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "player-unavailable"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "VoxelizationTimeout",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "voxelization-timeout"
+            }
+         ],
+         "name": "MeshPlacementError"
       },
       {
          "constants": [
@@ -8630,6 +9237,41 @@
    ],
    "functions": [],
    "interfaces": [
+      {
+         "base_types": [],
+         "name": "BindingCategoryInfo",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "label",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "order",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "BindingCategoryInfo"
+         }
+      },
       {
          "base_types": [],
          "name": "BiomeFillOptions",
@@ -9214,6 +9856,40 @@
             {
                "is_baked": false,
                "is_read_only": false,
+               "name": "bindingCategory",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "bindingPriority",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "int32",
+                     "valid_range": {
+                        "max": 2147483647,
+                        "min": -2147483648
+                     }
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
                "name": "canRebind",
                "type": {
                   "is_bind_type": false,
@@ -9488,6 +10164,151 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "MeshLoadOptions"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "MeshPlacementOptions",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "blockType",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "location",
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.9.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Vector3"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "requestId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "rotation",
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.9.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Vector3"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "rotationPivot",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "from_module": {
+                        "name": "@minecraft/server-bindings",
+                        "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                        "version": "2.9.0-internal"
+                     },
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "Vector3"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "scaleFactor",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "float",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "MeshPlacementOptions"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "MeshPlacementResult",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "blockCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "errorMessage",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "requestId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "MeshPlacementResult"
          }
       },
       {

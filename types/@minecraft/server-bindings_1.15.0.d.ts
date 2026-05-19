@@ -1801,6 +1801,9 @@ export class IPlayerSpawnAfterEventSignal {
    public unsubscribe(callback: (arg0: PlayerSpawnAfterEvent)=>void): void;
    private constructor();
 }
+export class ISerializable {
+   private constructor();
+}
 export class ItemCompleteUseAfterEvent {
    public readonly itemStack: ItemStack;
    public readonly source: Player;
@@ -2441,7 +2444,8 @@ export class Seat {
    public readonly seatRotation: number;
    private constructor();
 }
-export class Structure {
+//@ts-ignore
+export class Structure extends ISerializable {
    public readonly id: string;
    public readonly size: Vector3;
    public getBlockPermutation(location: Vector3): (BlockPermutation | undefined);

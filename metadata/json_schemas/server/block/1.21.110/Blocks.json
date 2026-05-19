@@ -863,6 +863,49 @@
             "CEREAL_EDITOR_SCHEMA_TAG": "type:color"
          }
       },
+      "2165468200": {
+         "title": "Instrument Sound",
+         "type": "object",
+         "propertyNames": {
+            "type": "string",
+            "pattern": "^(up|down)$"
+         },
+         "additionalProperties": {
+            "title": "Instrument",
+            "type": "string",
+            "enum": [
+               "note.harp",
+               "note.bd",
+               "note.snare",
+               "note.hat",
+               "note.bassattack",
+               "note.flute",
+               "note.bell",
+               "note.guitar",
+               "note.chime",
+               "note.xylophone",
+               "note.iron_xylophone",
+               "note.cow_bell",
+               "note.didgeridoo",
+               "note.bit",
+               "note.banjo",
+               "note.pling",
+               "note.trumpet",
+               "note.trumpet_exposed",
+               "note.trumpet_weathered",
+               "note.trumpet_oxidized",
+               "note.zombie",
+               "note.skeleton",
+               "note.creeper",
+               "note.enderdragon",
+               "note.witherskeleton",
+               "note.piglin",
+               "note.none"
+            ]
+         },
+         "minProperties": 1,
+         "maxProperties": 2
+      },
       "2192817374": {
          "title": "Block Breathability Component"
       },
@@ -954,6 +997,9 @@
             },
             "minecraft:geometry": {
                "$ref": "#/definitions/1857376691"
+            },
+            "minecraft:instrument_sound": {
+               "$ref": "#/definitions/2165468200"
             },
             "minecraft:item_visual": {
                "$ref": "#/definitions/4065594530"

@@ -916,6 +916,8 @@
                   "record.bounce",
                   "bucket.fill.land_animal",
                   "bucket.empty.land_animal",
+                  "geyser_continuous_eruption_start",
+                  "geyser_continuous_eruption_active",
                   "undefined"
                ]
             },
@@ -2166,6 +2168,8 @@
                   "record.bounce",
                   "bucket.fill.land_animal",
                   "bucket.empty.land_animal",
+                  "geyser_continuous_eruption_start",
+                  "geyser_continuous_eruption_active",
                   "undefined"
                ]
             },
@@ -3183,6 +3187,8 @@
                   "record.bounce",
                   "bucket.fill.land_animal",
                   "bucket.empty.land_animal",
+                  "geyser_continuous_eruption_start",
+                  "geyser_continuous_eruption_active",
                   "undefined"
                ]
             },
@@ -3764,6 +3770,8 @@
                   "record.bounce",
                   "bucket.fill.land_animal",
                   "bucket.empty.land_animal",
+                  "geyser_continuous_eruption_start",
+                  "geyser_continuous_eruption_active",
                   "undefined"
                ]
             },
@@ -4376,6 +4384,8 @@
                   "record.bounce",
                   "bucket.fill.land_animal",
                   "bucket.empty.land_animal",
+                  "geyser_continuous_eruption_start",
+                  "geyser_continuous_eruption_active",
                   "undefined"
                ]
             },
@@ -4617,111 +4627,6 @@
                }
             }
          ]
-      },
-      "737223098": {
-         "title": "minecraft:behavior.pickup_items",
-         "type": "object",
-         "properties": {
-            "can_pickup_any_item": {
-               "type": "boolean",
-               "default": false
-            },
-            "can_pickup_to_hand_or_equipment": {
-               "type": "boolean",
-               "default": true
-            },
-            "control_flags": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "title": "Goal's control flags",
-                  "type": "string",
-                  "enum": [
-                     "move",
-                     "look",
-                     "jump"
-                  ]
-               }
-            },
-            "cooldown_after_being_attacked": {
-               "type": "integer",
-               "default": 0
-            },
-            "excluded_items": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "$ref": "#/definitions/1429287564"
-               }
-            },
-            "goal_radius": {
-               "type": "number",
-               "default": 0.5
-            },
-            "max_dist": {
-               "type": "integer",
-               "default": 1
-            },
-            "on_pickup_item_end": {
-               "default": {
-                  "event": "",
-                  "target": "self",
-                  "filters": {
-                     "all_of": null,
-                     "all": null,
-                     "OR": null,
-                     "AND": null,
-                     "any_of": null,
-                     "any": null,
-                     "none_of": null,
-                     "NOT": null
-                  }
-               },
-               "$ref": "#/definitions/3379368818"
-            },
-            "on_pickup_item_start": {
-               "default": {
-                  "event": "",
-                  "target": "self",
-                  "filters": {
-                     "all_of": null,
-                     "all": null,
-                     "OR": null,
-                     "AND": null,
-                     "any_of": null,
-                     "any": null,
-                     "none_of": null,
-                     "NOT": null
-                  }
-               },
-               "$ref": "#/definitions/3379368818"
-            },
-            "pickup_based_on_chance": {
-               "type": "boolean",
-               "default": false
-            },
-            "pickup_same_items_as_in_hand": {
-               "type": "boolean",
-               "default": false
-            },
-            "priority": {
-               "type": "integer",
-               "default": 0,
-               "minimum": 0
-            },
-            "search_height": {
-               "type": "integer",
-               "default": 1
-            },
-            "speed_multiplier": {
-               "type": "number",
-               "default": 1
-            },
-            "track_target": {
-               "type": "boolean",
-               "default": false
-            }
-         }
       },
       "742152213": {
          "title": "Vec2",
@@ -5349,6 +5254,8 @@
                   "record.bounce",
                   "bucket.fill.land_animal",
                   "bucket.empty.land_animal",
+                  "geyser_continuous_eruption_start",
+                  "geyser_continuous_eruption_active",
                   "undefined"
                ]
             },
@@ -6028,6 +5935,8 @@
                   "record.bounce",
                   "bucket.fill.land_animal",
                   "bucket.empty.land_animal",
+                  "geyser_continuous_eruption_start",
+                  "geyser_continuous_eruption_active",
                   "undefined"
                ]
             },
@@ -6503,6 +6412,15 @@
             "check_if_target_is_immersed_in_water": {
                "type": "boolean",
                "default": false
+            },
+            "extra_knockback_approach": {
+               "title": "ExtraKnockbackApproach",
+               "type": "string",
+               "default": "reapply_default",
+               "enum": [
+                  "reapply_default",
+                  "multiply_reduced"
+               ]
             },
             "filter": {
                "default": {
@@ -7171,6 +7089,8 @@
                   "record.bounce",
                   "bucket.fill.land_animal",
                   "bucket.empty.land_animal",
+                  "geyser_continuous_eruption_start",
+                  "geyser_continuous_eruption_active",
                   "undefined"
                ]
             },
@@ -10652,6 +10572,8 @@
                   "record.bounce",
                   "bucket.fill.land_animal",
                   "bucket.empty.land_animal",
+                  "geyser_continuous_eruption_start",
+                  "geyser_continuous_eruption_active",
                   "undefined"
                ]
             },
@@ -10967,13 +10889,14 @@
                },
                "$ref": "#/definitions/2789112004"
             },
-            "kick_distance_threshold": {
-               "type": "number",
-               "default": 1.2999999523162842
-            },
             "kick_speed_scale": {
                "type": "number",
                "default": 2
+            },
+            "max_distance": {
+               "type": "number",
+               "default": 3.4028234663852886e+38,
+               "minimum": 0
             },
             "max_kick_speed": {
                "type": "number",
@@ -10981,11 +10904,16 @@
             },
             "min_distance": {
                "type": "number",
-               "default": 0.009999999776482582
+               "default": 0.009999999776482582,
+               "minimum": 0
             },
             "min_kick_speed": {
                "type": "number",
                "default": 0
+            },
+            "play_sound": {
+               "type": "boolean",
+               "default": false
             },
             "play_sound_cooldown_in_seconds": {
                "type": "number",
@@ -11002,6 +10930,7 @@
                "type": "string",
                "default": "default",
                "enum": [
+                  "none",
                   "default",
                   "legacy_boat",
                   "legacy_minecart",
@@ -11338,6 +11267,115 @@
                "items": {
                   "$ref": "#/definitions/424549894"
                }
+            }
+         }
+      },
+      "2865467525": {
+         "title": "minecraft:behavior.pickup_items",
+         "type": "object",
+         "properties": {
+            "can_pickup_any_item": {
+               "type": "boolean",
+               "default": false
+            },
+            "can_pickup_to_hand_or_equipment": {
+               "type": "boolean",
+               "default": true
+            },
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "cooldown_after_being_attacked": {
+               "type": "integer",
+               "default": 0
+            },
+            "excluded_items": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "$ref": "#/definitions/1429287564"
+               }
+            },
+            "goal_radius": {
+               "type": "number",
+               "default": 0.5
+            },
+            "max_dist": {
+               "type": "integer",
+               "default": 1
+            },
+            "on_pickup_item_end": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "OR": null,
+                     "all": null,
+                     "all_of": null,
+                     "AND": null,
+                     "any_of": null,
+                     "none_of": null,
+                     "any": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/3379368818"
+            },
+            "on_pickup_item_start": {
+               "default": {
+                  "event": "",
+                  "target": "self",
+                  "filters": {
+                     "OR": null,
+                     "all": null,
+                     "all_of": null,
+                     "AND": null,
+                     "any_of": null,
+                     "none_of": null,
+                     "any": null,
+                     "NOT": null
+                  }
+               },
+               "$ref": "#/definitions/3379368818"
+            },
+            "pickup_based_on_chance": {
+               "type": "boolean",
+               "default": false
+            },
+            "pickup_same_items_as_in_hand": {
+               "type": "boolean",
+               "default": false
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            },
+            "search_height": {
+               "type": "integer",
+               "default": 1
+            },
+            "speed_multiplier": {
+               "type": "number",
+               "default": 1
+            },
+            "stop_if_holding_item": {
+               "type": "boolean",
+               "default": false
+            },
+            "track_target": {
+               "type": "boolean",
+               "default": false
             }
          }
       },
@@ -12578,6 +12616,8 @@
                   "record.bounce",
                   "bucket.fill.land_animal",
                   "bucket.empty.land_animal",
+                  "geyser_continuous_eruption_start",
+                  "geyser_continuous_eruption_active",
                   "undefined"
                ]
             },
@@ -15239,6 +15279,8 @@
                   "record.bounce",
                   "bucket.fill.land_animal",
                   "bucket.empty.land_animal",
+                  "geyser_continuous_eruption_start",
+                  "geyser_continuous_eruption_active",
                   "undefined"
                ]
             },
@@ -15781,7 +15823,7 @@
          "$ref": "#/definitions/823494865"
       },
       "minecraft:behavior.pickup_items": {
-         "$ref": "#/definitions/737223098"
+         "$ref": "#/definitions/2865467525"
       },
       "minecraft:behavior.place_block": {
          "$ref": "#/definitions/545080219"
@@ -16308,12 +16350,6 @@
       "minecraft:memory_behavior.follow_target": {
          "description": "Dynamic value"
       },
-      "minecraft:memory_behavior.move_to_position": {
-         "$ref": "#/definitions/408549500"
-      },
-      "minecraft:memory_sensor.find_nearest_block": {
-         "description": "Dynamic value"
-      },
       "minecraft:memory_sensor.find_nearest_entity": {
          "description": "Dynamic value"
       },
@@ -16625,6 +16661,11 @@
       },
       "minecraft:wither_target_highest_damage": {
          "$ref": "#/definitions/3559886795"
+      }
+   },
+   "patternProperties": {
+      "^minecraft:memory_behavior.move_to_position\\.[A-Za-z0-9_]{1,32}$": {
+         "$ref": "#/definitions/408549500"
       }
    }
 }

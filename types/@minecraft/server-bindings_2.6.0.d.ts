@@ -2491,6 +2491,9 @@ export class InputInfo {
 export class IsBabyCondition extends LootItemCondition {
    private constructor();
 }
+export class ISerializable {
+   private constructor();
+}
 //@ts-ignore
 export class ItemBookComponent extends ItemComponent {
    public static readonly componentId = "minecraft:book";
@@ -3480,7 +3483,8 @@ export class StartupEvent {
    public readonly itemComponentRegistry: ItemComponentRegistry;
    private constructor();
 }
-export class Structure {
+//@ts-ignore
+export class Structure extends ISerializable {
    public readonly id: string;
    public readonly isValid: boolean;
    public readonly size: Vector3;
