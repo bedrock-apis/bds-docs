@@ -15,7 +15,7 @@ export enum FilePickerError {
    Cancelled = "cancelled",
    FileTooLarge = "file-too-large",
 }
-export enum GeneralInputBindingCategory {
+export enum GeneralInputBindingPriority {
    ApplyFlood = 8,
    Clear = 6,
    Copy = 3,
@@ -385,11 +385,18 @@ export class DataTransferCreateSettingResponse {
    public readonly success: boolean;
    private constructor();
 }
+export class DataTransferExportConfigsResponse {
+   public readonly message?: string;
+   public readonly packPath: string;
+   public readonly success: boolean;
+   private constructor();
+}
 export class DataTransferManager {
    public readonly isDeferredExperimentEnabled: boolean;
    public changeBiomeMapping(biomeIdentifier: string, collectionUniqueId: string, identifier: string): void;
    public closeSession(collectionUniqueId: string): void;
    public createSetting(collectionUniqueId: string, identifier: string, jsonData: string, lockToBiome: boolean): Promise<DataTransferCreateSettingResponse>;
+   public exportAllConfigsToPack(packName: string): Promise<DataTransferExportConfigsResponse>;
    public getRegisteredAccessors(): Array<DataTransferCollectionNameData>;
    public openSession(collectionUniqueId: string): void;
    public requestBiomeConfig(biomeIdentifier: string): Promise<DataTransferBiomeConfigData>;

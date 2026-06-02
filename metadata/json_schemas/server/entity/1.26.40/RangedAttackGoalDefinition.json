@@ -1,0 +1,113 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "1978051027",
+   "x-format-version": "1.26.40",
+   "definitions": {
+      "2566306602": {
+         "title": "FloatRange",
+         "type": "object",
+         "properties": {
+            "max": {
+               "type": "number",
+               "default": 0
+            },
+            "min": {
+               "type": "number",
+               "default": 0
+            }
+         }
+      }
+   },
+   "title": "minecraft:behavior.ranged_attack",
+   "type": "object",
+   "properties": {
+      "attack_interval": {
+         "default": {
+            "min": -1,
+            "max": -1
+         },
+         "$ref": "#/definitions/2566306602",
+         "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
+      },
+      "attack_radius": {
+         "type": "number",
+         "default": 0,
+         "exclusiveMinimum": 0
+      },
+      "attack_radius_min": {
+         "type": "number",
+         "default": 0,
+         "exclusiveMinimum": 0
+      },
+      "burst_interval": {
+         "type": "number",
+         "default": 0,
+         "exclusiveMinimum": 0
+      },
+      "burst_shots": {
+         "type": "integer",
+         "default": 1
+      },
+      "charge_charged_trigger": {
+         "type": "number",
+         "default": 0,
+         "exclusiveMinimum": 0
+      },
+      "charge_shoot_trigger": {
+         "type": "number",
+         "default": 0,
+         "exclusiveMinimum": 0
+      },
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "title": "Goal's control flags",
+            "type": "string",
+            "enum": [
+               "move",
+               "look",
+               "jump"
+            ]
+         }
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "minimum": 0
+      },
+      "ranged_fov": {
+         "type": "number",
+         "default": 90,
+         "minimum": 0
+      },
+      "set_persistent": {
+         "type": "boolean",
+         "default": false
+      },
+      "speed_multiplier": {
+         "type": "number",
+         "default": 1,
+         "exclusiveMinimum": 0
+      },
+      "swing": {
+         "type": "boolean",
+         "default": false
+      },
+      "target_in_sight_time": {
+         "type": "number",
+         "default": 1,
+         "exclusiveMinimum": 0
+      },
+      "x_max_rotation": {
+         "type": "number",
+         "default": 30,
+         "minimum": 0
+      },
+      "y_max_head_rotation": {
+         "type": "number",
+         "default": 30,
+         "minimum": 0
+      }
+   }
+}

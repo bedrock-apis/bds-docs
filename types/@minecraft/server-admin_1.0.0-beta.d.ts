@@ -17,6 +17,7 @@ export class AdminBeforeEvents {
 export class AllowList {
    public enabled: boolean;
    public add(player: server.Player | string): void;
+   public clear(): void;
    public contains(player: server.Player | string): boolean;
    public reloadFile(): void;
    public remove(player: server.Player | string): void;

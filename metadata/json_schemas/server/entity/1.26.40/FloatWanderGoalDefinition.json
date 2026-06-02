@@ -1,0 +1,98 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "1612485739",
+   "x-format-version": "1.26.40",
+   "definitions": {
+      "2566306602": {
+         "title": "FloatRange",
+         "type": "object",
+         "properties": {
+            "max": {
+               "type": "number",
+               "default": 0
+            },
+            "min": {
+               "type": "number",
+               "default": 0
+            }
+         }
+      }
+   },
+   "title": "minecraft:behavior.float_wander",
+   "type": "object",
+   "properties": {
+      "additional_collision_buffer": {
+         "type": "boolean",
+         "default": false
+      },
+      "allow_navigating_through_liquids": {
+         "type": "boolean",
+         "default": false
+      },
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "title": "Goal's control flags",
+            "type": "string",
+            "enum": [
+               "move",
+               "look",
+               "jump"
+            ]
+         }
+      },
+      "float_duration": {
+         "default": {
+            "min": 0,
+            "max": 0
+         },
+         "$ref": "#/definitions/2566306602"
+      },
+      "float_wander_has_move_control": {
+         "type": "boolean",
+         "default": true
+      },
+      "must_reach": {
+         "type": "boolean",
+         "default": false
+      },
+      "navigate_around_surface": {
+         "type": "boolean",
+         "default": false
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "minimum": 0
+      },
+      "random_reselect": {
+         "type": "boolean",
+         "default": false
+      },
+      "surface_xz_dist": {
+         "type": "integer",
+         "default": 8
+      },
+      "surface_y_dist": {
+         "type": "integer",
+         "default": 8
+      },
+      "use_home_position_restriction": {
+         "type": "boolean",
+         "default": true
+      },
+      "xz_dist": {
+         "type": "integer",
+         "default": 10
+      },
+      "y_dist": {
+         "type": "integer",
+         "default": 7
+      },
+      "y_offset": {
+         "type": "number",
+         "default": 0
+      }
+   }
+}
