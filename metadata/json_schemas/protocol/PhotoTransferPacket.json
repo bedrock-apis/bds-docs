@@ -2,7 +2,7 @@
    "$schema": "http://json-schema.org/draft-07/schema#",
    "$id": "3552391344",
    "x-format-version": "MISSING VERSION",
-   "x-protocol-version": 1011,
+   "x-protocol-version": 2138,
    "title": "PhotoTransferPacket",
    "type": "object",
    "properties": {
@@ -21,11 +21,13 @@
       },
       "Photo Data": {
          "type": "string",
-         "x-ordinal-index": 1
+         "x-ordinal-index": 1,
+         "maxLength": 20971520
       },
       "Photo Name": {
          "type": "string",
-         "x-ordinal-index": 0
+         "x-ordinal-index": 0,
+         "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\\.jpeg$"
       },
       "Source Type": {
          "title": "PhotoType",

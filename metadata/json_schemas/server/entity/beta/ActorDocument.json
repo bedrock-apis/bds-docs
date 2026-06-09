@@ -5213,6 +5213,46 @@
             }
          }
       },
+      "577169684": {
+         "title": "minecraft:on_target_escape",
+         "type": "object",
+         "properties": {
+            "event": {
+               "type": "string",
+               "default": ""
+            },
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/2789112004"
+            },
+            "target": {
+               "title": "FilterSubject",
+               "type": "string",
+               "default": "self",
+               "enum": [
+                  "self",
+                  "other",
+                  "player",
+                  "target",
+                  "parent",
+                  "baby",
+                  "block",
+                  "damager",
+                  "holder",
+                  "item"
+               ]
+            }
+         }
+      },
       "650245378": {
          "title": "IsPregnantDefinition"
       },
@@ -7270,33 +7310,26 @@
                },
                "$ref": "#/definitions/2789112004"
             },
-            "horizontal_hit_angle_scale": {
-               "type": "number",
-               "default": 0
-            },
             "horizontal_power": {
                "type": "number",
                "default": 1
             },
-            "scale_previous_velocity": {
-               "type": "number",
-               "default": 0.5,
-               "minimum": 0,
-               "maximum": 1
+            "knockback_mode": {
+               "title": "KnockbackMode",
+               "type": "string",
+               "default": "relative_horizontal",
+               "enum": [
+                  "relative_horizontal",
+                  "hit_direction"
+               ]
             },
             "scale_with_damage": {
                "type": "boolean",
                "default": false
             },
-            "vertical_hit_angle_scale": {
+            "slowdown_scale": {
                "type": "number",
-               "default": 0,
-               "minimum": 0,
-               "maximum": 1
-            },
-            "vertical_position_angle_scale": {
-               "type": "number",
-               "default": 0,
+               "default": 0.5,
                "minimum": 0,
                "maximum": 1
             },
@@ -8434,6 +8467,46 @@
       "1533618432": {
          "title": "IsTamedDefinition"
       },
+      "1580143979": {
+         "title": "minecraft:on_hurt_by_player",
+         "type": "object",
+         "properties": {
+            "event": {
+               "type": "string",
+               "default": ""
+            },
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/2789112004"
+            },
+            "target": {
+               "title": "FilterSubject",
+               "type": "string",
+               "default": "self",
+               "enum": [
+                  "self",
+                  "other",
+                  "player",
+                  "target",
+                  "parent",
+                  "baby",
+                  "block",
+                  "damager",
+                  "holder",
+                  "item"
+               ]
+            }
+         }
+      },
       "1612485739": {
          "title": "minecraft:behavior.float_wander",
          "type": "object",
@@ -8902,6 +8975,46 @@
                "default": 0.019999999552965164,
                "minimum": 0,
                "maximum": 1
+            }
+         }
+      },
+      "1813075194": {
+         "title": "minecraft:on_friendly_anger",
+         "type": "object",
+         "properties": {
+            "event": {
+               "type": "string",
+               "default": ""
+            },
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/2789112004"
+            },
+            "target": {
+               "title": "FilterSubject",
+               "type": "string",
+               "default": "self",
+               "enum": [
+                  "self",
+                  "other",
+                  "player",
+                  "target",
+                  "parent",
+                  "baby",
+                  "block",
+                  "damager",
+                  "holder",
+                  "item"
+               ]
             }
          }
       },
@@ -10134,37 +10247,37 @@
                "description": "Dynamic value"
             },
             "minecraft:on_death": {
-               "description": "Dynamic value"
+               "$ref": "#/definitions/3109863522"
             },
             "minecraft:on_equipment_changed": {
                "$ref": "#/definitions/2856578408"
             },
             "minecraft:on_friendly_anger": {
-               "description": "Dynamic value"
+               "$ref": "#/definitions/1813075194"
             },
             "minecraft:on_hurt": {
-               "description": "Dynamic value"
+               "$ref": "#/definitions/3112563747"
             },
             "minecraft:on_hurt_by_player": {
-               "description": "Dynamic value"
+               "$ref": "#/definitions/1580143979"
             },
             "minecraft:on_ignite": {
-               "description": "Dynamic value"
+               "$ref": "#/definitions/2462202360"
             },
             "minecraft:on_start_landing": {
-               "description": "Dynamic value"
+               "$ref": "#/definitions/2666641361"
             },
             "minecraft:on_start_takeoff": {
-               "description": "Dynamic value"
+               "$ref": "#/definitions/2071068474"
             },
             "minecraft:on_target_acquired": {
-               "description": "Dynamic value"
+               "$ref": "#/definitions/2781338975"
             },
             "minecraft:on_target_escape": {
-               "description": "Dynamic value"
+               "$ref": "#/definitions/577169684"
             },
             "minecraft:on_wake_with_owner": {
-               "description": "Dynamic value"
+               "$ref": "#/definitions/2863616463"
             },
             "minecraft:out_of_control": {
                "$ref": "#/definitions/1746067700"
@@ -10743,6 +10856,46 @@
                "type": "integer",
                "default": 0,
                "minimum": 0
+            }
+         }
+      },
+      "2071068474": {
+         "title": "minecraft:on_start_takeoff",
+         "type": "object",
+         "properties": {
+            "event": {
+               "type": "string",
+               "default": ""
+            },
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/2789112004"
+            },
+            "target": {
+               "title": "FilterSubject",
+               "type": "string",
+               "default": "self",
+               "enum": [
+                  "self",
+                  "other",
+                  "player",
+                  "target",
+                  "parent",
+                  "baby",
+                  "block",
+                  "damager",
+                  "holder",
+                  "item"
+               ]
             }
          }
       },
@@ -12080,6 +12233,46 @@
             }
          }
       },
+      "2462202360": {
+         "title": "minecraft:on_ignite",
+         "type": "object",
+         "properties": {
+            "event": {
+               "type": "string",
+               "default": ""
+            },
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/2789112004"
+            },
+            "target": {
+               "title": "FilterSubject",
+               "type": "string",
+               "default": "self",
+               "enum": [
+                  "self",
+                  "other",
+                  "player",
+                  "target",
+                  "parent",
+                  "baby",
+                  "block",
+                  "damager",
+                  "holder",
+                  "item"
+               ]
+            }
+         }
+      },
       "2492648039": {
          "title": "minecraft:behavior.go_home",
          "type": "object",
@@ -12484,6 +12677,46 @@
                "type": "integer",
                "default": 0,
                "minimum": 0
+            }
+         }
+      },
+      "2666641361": {
+         "title": "minecraft:on_start_landing",
+         "type": "object",
+         "properties": {
+            "event": {
+               "type": "string",
+               "default": ""
+            },
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/2789112004"
+            },
+            "target": {
+               "title": "FilterSubject",
+               "type": "string",
+               "default": "self",
+               "enum": [
+                  "self",
+                  "other",
+                  "player",
+                  "target",
+                  "parent",
+                  "baby",
+                  "block",
+                  "damager",
+                  "holder",
+                  "item"
+               ]
             }
          }
       },
@@ -13486,6 +13719,46 @@
             }
          }
       },
+      "2781338975": {
+         "title": "minecraft:on_target_acquired",
+         "type": "object",
+         "properties": {
+            "event": {
+               "type": "string",
+               "default": ""
+            },
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/2789112004"
+            },
+            "target": {
+               "title": "FilterSubject",
+               "type": "string",
+               "default": "self",
+               "enum": [
+                  "self",
+                  "other",
+                  "player",
+                  "target",
+                  "parent",
+                  "baby",
+                  "block",
+                  "damager",
+                  "holder",
+                  "item"
+               ]
+            }
+         }
+      },
       "2789112004": {
          "title": "Filter Group",
          "oneOf": [
@@ -13798,6 +14071,46 @@
                "items": {
                   "$ref": "#/definitions/424549894"
                }
+            }
+         }
+      },
+      "2863616463": {
+         "title": "minecraft:on_wake_with_owner",
+         "type": "object",
+         "properties": {
+            "event": {
+               "type": "string",
+               "default": ""
+            },
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/2789112004"
+            },
+            "target": {
+               "title": "FilterSubject",
+               "type": "string",
+               "default": "self",
+               "enum": [
+                  "self",
+                  "other",
+                  "player",
+                  "target",
+                  "parent",
+                  "baby",
+                  "block",
+                  "damager",
+                  "holder",
+                  "item"
+               ]
             }
          }
       },
@@ -14281,6 +14594,86 @@
                "x-runtime-constraint-description": "Check that a valid block name or expression is provided, and in the latter case verify that there are no block states as well"
             }
          ]
+      },
+      "3109863522": {
+         "title": "minecraft:on_death",
+         "type": "object",
+         "properties": {
+            "event": {
+               "type": "string",
+               "default": ""
+            },
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/2789112004"
+            },
+            "target": {
+               "title": "FilterSubject",
+               "type": "string",
+               "default": "self",
+               "enum": [
+                  "self",
+                  "other",
+                  "player",
+                  "target",
+                  "parent",
+                  "baby",
+                  "block",
+                  "damager",
+                  "holder",
+                  "item"
+               ]
+            }
+         }
+      },
+      "3112563747": {
+         "title": "minecraft:on_hurt",
+         "type": "object",
+         "properties": {
+            "event": {
+               "type": "string",
+               "default": ""
+            },
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/2789112004"
+            },
+            "target": {
+               "title": "FilterSubject",
+               "type": "string",
+               "default": "self",
+               "enum": [
+                  "self",
+                  "other",
+                  "player",
+                  "target",
+                  "parent",
+                  "baby",
+                  "block",
+                  "damager",
+                  "holder",
+                  "item"
+               ]
+            }
+         }
       },
       "3125128504": {
          "title": "CanFlyDefinition"
@@ -16245,13 +16638,13 @@
             },
             "filters": {
                "default": {
-                  "OR": null,
-                  "all": null,
                   "all_of": null,
+                  "all": null,
+                  "OR": null,
                   "AND": null,
                   "any_of": null,
-                  "none_of": null,
                   "any": null,
+                  "none_of": null,
                   "NOT": null
                },
                "$ref": "#/definitions/2789112004"

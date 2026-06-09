@@ -26,6 +26,7 @@ export class AllowList {
 export class AsyncPlayerJoinBeforeEvent {
    public readonly name: string;
    public readonly persistentId: string;
+   public readonly splitScreenSlot?: server.PlayerSplitScreenSlot;
    public allowJoin(): void;
    public disallowJoin(reason?: string): void;
    public disconnect(reason?: string): void;

@@ -530,6 +530,12 @@ export enum PlayerPermissionLevel {
    Operator = 2,
    Visitor = 0,
 }
+export enum PlayerSplitScreenSlot {
+   First = "First",
+   Fourth = "Fourth",
+   Second = "Second",
+   Third = "Third",
+}
 export enum ScoreboardIdentityType {
    Entity = "Entity",
    FakePlayer = "FakePlayer",
@@ -1204,6 +1210,7 @@ export class Block {
    public getComponents(): Array<BlockComponent>;
    public getItemStack(amount?: number, withData?: boolean): (ItemStack | undefined);
    public getLightLevel(): number;
+   public getParts(): (Array<Block> | undefined);
    public getRedstonePower(): (number | undefined);
    public getSkyLightLevel(): number;
    public getTags(): Array<string>;

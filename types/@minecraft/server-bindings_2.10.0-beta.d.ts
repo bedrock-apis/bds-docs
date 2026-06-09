@@ -226,7 +226,6 @@ export enum EntityComponentTypes {
    FireImmune = "minecraft:fire_immune",
    FloatsInLiquid = "minecraft:floats_in_liquid",
    FlyingSpeed = "minecraft:flying_speed",
-   Fog = "minecraft:player.fog",
    FrictionModifier = "minecraft:friction_modifier",
    Healable = "minecraft:healable",
    Health = "minecraft:health",
@@ -549,6 +548,12 @@ export enum PlayerPermissionLevel {
    Member = 1,
    Operator = 2,
    Visitor = 0,
+}
+export enum PlayerSplitScreenSlot {
+   First = "First",
+   Fourth = "Fourth",
+   Second = "Second",
+   Third = "Third",
 }
 export enum PlayerWaypointsMode {
    Everyone = "Everyone",
@@ -1584,6 +1589,8 @@ export class BlockVolumeBase {
    public getBlockLocationIterator(): BlockLocationIterator;
    public getBoundingBox(): BlockBoundingBox;
    public getCapacity(): number;
+   public getClosest(count: number, location: Vector3): Array<Vector3>;
+   public getFarthest(count: number, location: Vector3): Array<Vector3>;
    public getMax(): Vector3;
    public getMin(): Vector3;
    public getSpan(): Vector3;
@@ -2120,17 +2127,6 @@ export class EntityFlyingSpeedComponent extends EntityComponent {
    private constructor();
 }
 //@ts-ignore
-export class EntityFogComponent extends EntityComponent {
-   public static readonly componentId = "minecraft:player.fog";
-   public applyStack(fogIds: Array<string>, tag?: string): void;
-   public getStack(): Array<string>;
-   public getTags(): Array<string>;
-   public pop(tag?: string): (string | undefined);
-   public push(fogId: string, tag?: string): number;
-   public remove(tag?: string): boolean;
-   private constructor();
-}
-//@ts-ignore
 export class EntityFrictionModifierComponent extends EntityComponent {
    public static readonly componentId = "minecraft:friction_modifier";
    public readonly value: number;
@@ -2662,6 +2658,17 @@ export class EntityTamedAfterEventSignal {
    public unsubscribe(callback: (arg0: EntityTamedAfterEvent)=>void): void;
    private constructor();
 }
+export class EntityTamedBeforeEvent {
+   public cancel: boolean;
+   public readonly entity: Entity;
+   public readonly tamingEntity: Entity;
+   private constructor();
+}
+export class EntityTamedBeforeEventSignal {
+   public subscribe(callback: (arg0: EntityTamedBeforeEvent)=>void, options?: EntityTamedEventFilter): (arg0: EntityTamedBeforeEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityTamedBeforeEvent)=>void): void;
+   private constructor();
+}
 //@ts-ignore
 export class EntityTameMountComponent extends EntityComponent {
    public static readonly componentId = "minecraft:tamemount";
@@ -2776,6 +2783,15 @@ export class FillContainerFunction extends LootItemFunction {
 export class FluidContainer {
    public static readonly maxFillLevel = 6;
    public static readonly minFillLevel = 0;
+   private constructor();
+}
+export class FogSettings {
+   public getStack(): Array<string>;
+   public getTags(): Array<string>;
+   public pop(tag?: string): (string | undefined);
+   public push(fogId: string, tag?: string): number;
+   public remove(tag?: string): boolean;
+   public setStack(fogIds: Array<string>, tag?: string): void;
    private constructor();
 }
 export class GameRuleChangeAfterEvent {
@@ -3307,6 +3323,7 @@ export class Player extends Entity {
    public chatNameSuffix?: string;
    public readonly clientSystemInfo: ClientSystemInfo;
    public commandPermissionLevel: CommandPermissionLevel;
+   public readonly fogSettings: FogSettings;
    public readonly graphicsMode: GraphicsMode;
    public readonly inputInfo: InputInfo;
    public readonly inputPermissions: PlayerInputPermissions;
@@ -3318,8 +3335,8 @@ export class Player extends Entity {
    public readonly locatorBar: LocatorBar;
    public readonly name: string;
    public readonly onScreenDisplay: ScreenDisplay;
+   public readonly persistentId: string;
    public readonly playerPermissionLevel: PlayerPermissionLevel;
-   public readonly playfabId: string;
    public selectedSlotIndex: number;
    public readonly totalXpNeededForNextLevel: number;
    public readonly xpEarnedAtCurrentLevel: number;
@@ -3333,6 +3350,7 @@ export class Player extends Entity {
    public getItemCooldown(cooldownCategory: string): number;
    public getPing(): number;
    public getSpawnPoint(): (DimensionLocation | undefined);
+   public getSplitScreenSlot(): (PlayerSplitScreenSlot | undefined);
    public getTotalXp(): number;
    public playMusic(trackId: string, musicOptions?: MusicOptions): void;
    public playSound(soundId: string, soundOptions?: PlayerSoundOptions): SoundInstance;
@@ -4263,6 +4281,7 @@ export class WorldBeforeEvents {
    public readonly entityHurt: EntityHurtBeforeEventSignal;
    public readonly entityItemPickup: EntityItemPickupBeforeEventSignal;
    public readonly entityRemove: EntityRemoveBeforeEventSignal;
+   public readonly entityTamed: EntityTamedBeforeEventSignal;
    public readonly explosion: ExplosionBeforeEventSignal;
    public readonly itemUse: ItemUseBeforeEventSignal;
    public readonly playerBreakBlock: PlayerBreakBlockBeforeEventSignal;
@@ -4372,11 +4391,11 @@ export class EnchantmentTypeUnknownIdError extends Error {
    private constructor();
 }
 //@ts-ignore
-export class EntityFogComponentError extends Error {
+export class EntitySpawnError extends Error {
    private constructor();
 }
 //@ts-ignore
-export class EntitySpawnError extends Error {
+export class FogSettingsError extends Error {
    private constructor();
 }
 //@ts-ignore
