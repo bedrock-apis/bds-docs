@@ -1,0 +1,70 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "501036390",
+   "x-format-version": "MISSING VERSION",
+   "x-protocol-version": 1001,
+   "definitions": {
+      "1930608923": {
+         "title": "(anonymous namespace)::MapInfoRequestPacketAnon::ClientPixelsProxy",
+         "type": "object",
+         "properties": {
+            "index": {
+               "type": "integer",
+               "x-underlying-type": "uint16",
+               "x-ordinal-index": 1,
+               "minimum": 0
+            },
+            "pixel": {
+               "type": "integer",
+               "x-underlying-type": "uint32",
+               "x-ordinal-index": 0,
+               "minimum": 0
+            }
+         },
+         "required": [
+            "index",
+            "pixel"
+         ]
+      },
+      "4257541248": {
+         "title": "ActorUniqueID",
+         "type": "object",
+         "properties": {
+            "Actor Unique ID": {
+               "type": "integer",
+               "x-underlying-type": "int64",
+               "x-serialization-options": [
+                  "Compression"
+               ],
+               "x-ordinal-index": 0
+            }
+         },
+         "required": [
+            "Actor Unique ID"
+         ]
+      }
+   },
+   "title": "MapInfoRequestPacket",
+   "type": "object",
+   "properties": {
+      "Client Pixels List": {
+         "type": "array",
+         "items": {
+            "$ref": "#/definitions/1930608923"
+         },
+         "x-serialization-options": [
+            "No size compression"
+         ],
+         "x-ordinal-index": 1,
+         "maxItems": 16384
+      },
+      "Map Unique ID": {
+         "$ref": "#/definitions/4257541248",
+         "x-ordinal-index": 0
+      }
+   },
+   "required": [
+      "Client Pixels List",
+      "Map Unique ID"
+   ]
+}

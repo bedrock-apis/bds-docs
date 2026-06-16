@@ -127,3 +127,7 @@ export function getBiomeAtmospherics(biome: server.BiomeType): BiomeAtmospherics
 export function getBiomeColorGrading(biome: server.BiomeType): BiomeColorGrading;
 export function getBiomeLighting(biome: server.BiomeType): BiomeLighting;
 export function getBiomeWater(biome: server.BiomeType): BiomeWater;
+export function getPlayerAtmospherics(biome: server.BiomeType, player: server.Player): BiomeAtmospherics;
+export function getPlayerColorGrading(biome: server.BiomeType, player: server.Player): BiomeColorGrading;
+export function getPlayerLighting(biome: server.BiomeType, player: server.Player): BiomeLighting;
+export function getPlayerWater(biome: server.BiomeType, player: server.Player): BiomeWater;

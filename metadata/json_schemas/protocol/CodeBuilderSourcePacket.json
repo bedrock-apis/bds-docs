@@ -1,0 +1,61 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "713124654",
+   "x-format-version": "MISSING VERSION",
+   "x-protocol-version": 1001,
+   "title": "CodeBuilderSourcePacket",
+   "type": "object",
+   "properties": {
+      "Category": {
+         "title": "CodeBuilderStorageQueryOptions Category",
+         "type": "string",
+         "enum": [
+            "None",
+            "CodeStatus",
+            "Instantiation"
+         ],
+         "x-underlying-type": "uint8",
+         "x-serialization-options": [
+            "Enum-as-Value"
+         ],
+         "x-ordinal-index": 1
+      },
+      "CodeStatus": {
+         "title": "CodeBuilderExecutionState CodeStatus",
+         "type": "string",
+         "enum": [
+            "None",
+            "NotStarted",
+            "InProgress",
+            "Paused",
+            "Error",
+            "Succeeded"
+         ],
+         "x-underlying-type": "uint8",
+         "x-serialization-options": [
+            "Enum-as-Value"
+         ],
+         "x-ordinal-index": 2
+      },
+      "Operation": {
+         "title": "CodeBuilderStorageQueryOptions Operation",
+         "type": "string",
+         "enum": [
+            "None",
+            "Get",
+            "Set",
+            "Reset"
+         ],
+         "x-underlying-type": "uint8",
+         "x-serialization-options": [
+            "Enum-as-Value"
+         ],
+         "x-ordinal-index": 0
+      }
+   },
+   "required": [
+      "Category",
+      "CodeStatus",
+      "Operation"
+   ]
+}

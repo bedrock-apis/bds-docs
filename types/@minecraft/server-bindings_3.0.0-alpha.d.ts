@@ -5,6 +5,7 @@ export enum AimAssistTargetMode {
    Distance = "Distance",
 }
 export enum BlockComponentTypes {
+   DynamicProperties = "minecraft:dynamic_properties",
    FluidContainer = "minecraft:fluid_container",
    Inventory = "minecraft:inventory",
    MapColor = "minecraft:map_color",
@@ -220,6 +221,7 @@ export enum EntityComponentTypes {
    FireImmune = "minecraft:fire_immune",
    FloatsInLiquid = "minecraft:floats_in_liquid",
    FlyingSpeed = "minecraft:flying_speed",
+   Fog = "minecraft:player.fog",
    FrictionModifier = "minecraft:friction_modifier",
    Healable = "minecraft:healable",
    Health = "minecraft:health",
@@ -377,11 +379,11 @@ export enum GameRule {
    FreezeDamage = "freezeDamage",
    FunctionCommandLimit = "functionCommandLimit",
    KeepInventory = "keepInventory",
-   LocatorBar = "locatorBar",
    MaxCommandChainLength = "maxCommandChainLength",
    MobGriefing = "mobGriefing",
    NaturalRegeneration = "naturalRegeneration",
    PlayersSleepingPercentage = "playersSleepingPercentage",
+   PlayerWaypoints = "playerWaypoints",
    ProjectilesCanBreakBlocks = "projectilesCanBreakBlocks",
    Pvp = "pvp",
    RandomTickSpeed = "randomTickSpeed",
@@ -540,6 +542,10 @@ export enum PlayerPermissionLevel {
    Member = 1,
    Operator = 2,
    Visitor = 0,
+}
+export enum PlayerWaypointsMode {
+   Everyone = "Everyone",
+   Off = "Off",
 }
 export enum ScoreboardIdentityType {
    Entity = "Entity",
@@ -899,6 +905,9 @@ export interface EntityRaycastOptions extends EntityFilter {
    includePassableBlocks?: boolean;
    maxDistance?: number;
 }
+export interface EntitySneakingChangedEventOptions {
+   entityFilter?: EntityFilter;
+}
 export interface EntityVisibilityRules {
    showDead?: boolean;
    showInvisible?: boolean;
@@ -976,10 +985,6 @@ export interface MusicOptions {
 export interface NotEqualsComparison {
    notEquals: boolean | number | string;
 }
-export interface PartyInfo {
-   isLeader: boolean;
-   partyId: string;
-}
 export interface PlayAnimationOptions {
    blendOutTime?: number;
    controller?: string;
@@ -992,6 +997,10 @@ export interface PlayerAimAssistSettings {
    presetId: string;
    targetMode?: AimAssistTargetMode;
    viewAngle?: Vector2;
+}
+export interface PlayerBreakingBlockEventOptions {
+   blockFilter?: BlockFilter;
+   playerFilter?: EntityFilter;
 }
 export interface PlayerSoundOptions {
    location?: Vector3;
@@ -1378,6 +1387,14 @@ export class BlockCustomComponentInstance extends BlockComponent {
    public readonly customComponentParameters: CustomComponentParameters;
    private constructor();
 }
+//@ts-ignore
+export class BlockDynamicPropertiesComponent extends BlockComponent {
+   public static readonly componentId = "minecraft:dynamic_properties";
+   public get(key: string): (boolean | number | number | string | Vector3 | undefined);
+   public set(key: string, value?: boolean | number | number | string | Vector3): void;
+   public totalByteCount(): number;
+   private constructor();
+}
 export class BlockEvent {
    public readonly block: Block;
    public readonly dimension: Dimension;
@@ -1733,7 +1750,7 @@ export class Dimension {
    public isChunkLoaded(location: Vector3): boolean;
    public placeFeature(featureName: string, location: Vector3, shouldThrow?: boolean): boolean;
    public placeFeatureRule(featureRuleName: string, location: Vector3): boolean;
-   public playSound(soundId: string, location: Vector3, soundOptions?: WorldSoundOptions): void;
+   public playSound(soundId: string, location: Vector3, soundOptions?: WorldSoundOptions): SoundInstance;
    public runCommand(commandString: string): CommandResult;
    public setBlockPermutation(location: Vector3, permutation: BlockPermutation): void;
    public setBlockType(location: Vector3, blockType: BlockType | string): void;
@@ -2055,6 +2072,17 @@ export class EntityFloatsInLiquidComponent extends EntityComponent {
 export class EntityFlyingSpeedComponent extends EntityComponent {
    public static readonly componentId = "minecraft:flying_speed";
    public value: number;
+   private constructor();
+}
+//@ts-ignore
+export class EntityFogComponent extends EntityComponent {
+   public static readonly componentId = "minecraft:player.fog";
+   public applyStack(fogIds: Array<string>, tag?: string): void;
+   public getStack(): Array<string>;
+   public getTags(): Array<string>;
+   public pop(tag?: string): (string | undefined);
+   public push(fogId: string, tag?: string): number;
+   public remove(tag?: string): boolean;
    private constructor();
 }
 //@ts-ignore
@@ -2543,6 +2571,15 @@ export class EntitySpawnAfterEventSignal {
    public unsubscribe(callback: (arg0: EntitySpawnAfterEvent)=>void): void;
    private constructor();
 }
+export class EntityStartSneakingAfterEvent {
+   public readonly entity: Entity;
+   private constructor();
+}
+export class EntityStartSneakingAfterEventSignal {
+   public subscribe(callback: (arg0: EntityStartSneakingAfterEvent)=>void, options?: EntitySneakingChangedEventOptions): (arg0: EntityStartSneakingAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityStartSneakingAfterEvent)=>void): void;
+   private constructor();
+}
 //@ts-ignore
 export class EntityStrengthComponent extends EntityComponent {
    public static readonly componentId = "minecraft:strength";
@@ -2592,6 +2629,17 @@ export class EntityTypes {
 //@ts-ignore
 export class EntityUnderwaterMovementComponent extends EntityAttributeComponent {
    public static readonly componentId = "minecraft:underwater_movement";
+   private constructor();
+}
+export class EntityUpgradeAfterEvent {
+   public readonly entity: Entity;
+   public readonly upgradeId: string;
+   public getModifiers(): Array<DefinitionModifier>;
+   private constructor();
+}
+export class EntityUpgradeAfterEventSignal {
+   public subscribe(callback: (arg0: EntityUpgradeAfterEvent)=>void, options?: EntityDataDrivenTriggerEventOptions): (arg0: EntityUpgradeAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityUpgradeAfterEvent)=>void): void;
    private constructor();
 }
 //@ts-ignore
@@ -2695,11 +2743,11 @@ export class GameRules {
    public freezeDamage: boolean;
    public functionCommandLimit: number;
    public keepInventory: boolean;
-   public locatorBar: boolean;
    public maxCommandChainLength: number;
    public mobGriefing: boolean;
    public naturalRegeneration: boolean;
    public playersSleepingPercentage: number;
+   public playerWaypoints: PlayerWaypointsMode;
    public projectilesCanBreakBlocks: boolean;
    public pvp: boolean;
    public randomTickSpeed: number;
@@ -2726,6 +2774,9 @@ export class InputInfo {
 }
 //@ts-ignore
 export class IsBabyCondition extends LootItemCondition {
+   private constructor();
+}
+export class ISerializable {
    private constructor();
 }
 //@ts-ignore
@@ -3068,6 +3119,7 @@ export class LootingEnchantFunction extends LootItemFunction {
 }
 //@ts-ignore
 export class LootItem extends LootPoolEntry {
+   public readonly conditions: Array<LootItemCondition>;
    public readonly functions: Array<LootItemFunction>;
    public readonly name?: ItemType;
    private constructor();
@@ -3195,8 +3247,8 @@ export class Player extends Entity {
    public readonly locatorBar: LocatorBar;
    public readonly name: string;
    public readonly onScreenDisplay: ScreenDisplay;
-   public readonly partyInfo?: PartyInfo;
    public readonly playerPermissionLevel: PlayerPermissionLevel;
+   public readonly playfabId: string;
    public selectedSlotIndex: number;
    public readonly totalXpNeededForNextLevel: number;
    public readonly xpEarnedAtCurrentLevel: number;
@@ -3208,10 +3260,11 @@ export class Player extends Entity {
    public getControlScheme(): ControlScheme;
    public getGameMode(): GameMode;
    public getItemCooldown(cooldownCategory: string): number;
+   public getPing(): number;
    public getSpawnPoint(): (DimensionLocation | undefined);
    public getTotalXp(): number;
    public playMusic(trackId: string, musicOptions?: MusicOptions): void;
-   public playSound(soundId: string, soundOptions?: PlayerSoundOptions): void;
+   public playSound(soundId: string, soundOptions?: PlayerSoundOptions): SoundInstance;
    public postClientMessage(id: string, value: string): void;
    public queueMusic(trackId: string, musicOptions?: MusicOptions): void;
    public removePropertyOverrideForEntity(targetEntity: Entity, identifier: string): void;
@@ -3267,6 +3320,20 @@ export class PlayerButtonInputAfterEvent {
 export class PlayerButtonInputAfterEventSignal {
    public subscribe(callback: (arg0: PlayerButtonInputAfterEvent)=>void, options?: InputEventOptions): (arg0: PlayerButtonInputAfterEvent)=>void;
    public unsubscribe(callback: (arg0: PlayerButtonInputAfterEvent)=>void): void;
+   private constructor();
+}
+//@ts-ignore
+export class PlayerCancelBreakingBlockAfterEvent extends BlockEvent {
+   public readonly blockPermutation: BlockPermutation;
+   public readonly breakProgress: number;
+   public readonly face: Direction;
+   public readonly heldItemStack?: ItemStack;
+   public readonly player: Player;
+   private constructor();
+}
+export class PlayerCancelBreakingBlockAfterEventSignal {
+   public subscribe(callback: (arg0: PlayerCancelBreakingBlockAfterEvent)=>void, options?: PlayerBreakingBlockEventOptions): (arg0: PlayerCancelBreakingBlockAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: PlayerCancelBreakingBlockAfterEvent)=>void): void;
    private constructor();
 }
 //@ts-ignore
@@ -3489,6 +3556,19 @@ export class PlayerSpawnAfterEvent {
 export class PlayerSpawnAfterEventSignal {
    public subscribe(callback: (arg0: PlayerSpawnAfterEvent)=>void): (arg0: PlayerSpawnAfterEvent)=>void;
    public unsubscribe(callback: (arg0: PlayerSpawnAfterEvent)=>void): void;
+   private constructor();
+}
+//@ts-ignore
+export class PlayerStartBreakingBlockAfterEvent extends BlockEvent {
+   public readonly blockPermutation: BlockPermutation;
+   public readonly face: Direction;
+   public readonly heldItemStack?: ItemStack;
+   public readonly player: Player;
+   private constructor();
+}
+export class PlayerStartBreakingBlockAfterEventSignal {
+   public subscribe(callback: (arg0: PlayerStartBreakingBlockAfterEvent)=>void, options?: PlayerBreakingBlockEventOptions): (arg0: PlayerStartBreakingBlockAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: PlayerStartBreakingBlockAfterEvent)=>void): void;
    private constructor();
 }
 export class PlayerSwingStartAfterEvent {
@@ -3803,6 +3883,10 @@ export class ShutdownEvent {
 export class SmeltItemFunction extends LootItemFunction {
    private constructor();
 }
+export class SoundInstance {
+   public stop(): void;
+   private constructor();
+}
 //@ts-ignore
 export class SpecificEnchantFunction extends LootItemFunction {
    public readonly enchantments: Array<EnchantInfo>;
@@ -3820,7 +3904,8 @@ export class StartupEvent {
    public readonly itemComponentRegistry: ItemComponentRegistry;
    private constructor();
 }
-export class Structure {
+//@ts-ignore
+export class Structure extends ISerializable {
    public readonly id: string;
    public readonly isValid: boolean;
    public readonly size: Vector3;
@@ -4028,6 +4113,8 @@ export class WorldAfterEvents {
    public readonly entityLoad: EntityLoadAfterEventSignal;
    public readonly entityRemove: EntityRemoveAfterEventSignal;
    public readonly entitySpawn: EntitySpawnAfterEventSignal;
+   public readonly entityStartSneaking: EntityStartSneakingAfterEventSignal;
+   public readonly entityUpgrade: EntityUpgradeAfterEventSignal;
    public readonly explosion: ExplosionAfterEventSignal;
    public readonly gameRuleChange: GameRuleChangeAfterEventSignal;
    public readonly itemCompleteUse: ItemCompleteUseAfterEventSignal;
@@ -4043,6 +4130,7 @@ export class WorldAfterEvents {
    public readonly pistonActivate: PistonActivateAfterEventSignal;
    public readonly playerBreakBlock: PlayerBreakBlockAfterEventSignal;
    public readonly playerButtonInput: PlayerButtonInputAfterEventSignal;
+   public readonly playerCancelBreakingBlock: PlayerCancelBreakingBlockAfterEventSignal;
    public readonly playerDimensionChange: PlayerDimensionChangeAfterEventSignal;
    public readonly playerEmote: PlayerEmoteAfterEventSignal;
    public readonly playerGameModeChange: PlayerGameModeChangeAfterEventSignal;
@@ -4056,6 +4144,7 @@ export class WorldAfterEvents {
    public readonly playerLeave: PlayerLeaveAfterEventSignal;
    public readonly playerPlaceBlock: PlayerPlaceBlockAfterEventSignal;
    public readonly playerSpawn: PlayerSpawnAfterEventSignal;
+   public readonly playerStartBreakingBlock: PlayerStartBreakingBlockAfterEventSignal;
    public readonly playerSwingStart: PlayerSwingStartAfterEventSignal;
    public readonly playerUseNameTag: PlayerUseNameTagAfterEventSignal;
    public readonly pressurePlatePop: PressurePlatePopAfterEventSignal;
@@ -4183,6 +4272,10 @@ export class EnchantmentTypeNotCompatibleError extends Error {
 }
 //@ts-ignore
 export class EnchantmentTypeUnknownIdError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class EntityFogComponentError extends Error {
    private constructor();
 }
 //@ts-ignore

@@ -1,0 +1,154 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "2626587125",
+   "x-format-version": "MISSING VERSION",
+   "x-protocol-version": 1001,
+   "definitions": {
+      "505749491": {
+         "title": "VoxelShapes::SerializableVoxelShape",
+         "type": "object",
+         "properties": {
+            "Cells": {
+               "$ref": "#/definitions/2442930327",
+               "x-ordinal-index": 0
+            },
+            "X Coordinates": {
+               "type": "array",
+               "items": {
+                  "type": "number",
+                  "x-underlying-type": "float"
+               },
+               "x-ordinal-index": 1,
+               "minItems": 1,
+               "maxItems": 128
+            },
+            "Y Coordinates": {
+               "type": "array",
+               "items": {
+                  "type": "number",
+                  "x-underlying-type": "float"
+               },
+               "x-ordinal-index": 2,
+               "minItems": 1,
+               "maxItems": 128
+            },
+            "Z Coordinates": {
+               "type": "array",
+               "items": {
+                  "type": "number",
+                  "x-underlying-type": "float"
+               },
+               "x-ordinal-index": 3,
+               "minItems": 1,
+               "maxItems": 128
+            }
+         },
+         "required": [
+            "Cells",
+            "X Coordinates",
+            "Y Coordinates",
+            "Z Coordinates"
+         ]
+      },
+      "2442930327": {
+         "title": "VoxelShapes::SerializableCells",
+         "type": "object",
+         "properties": {
+            "Storage": {
+               "type": "array",
+               "items": {
+                  "type": "integer",
+                  "x-underlying-type": "uint8",
+                  "minimum": 0,
+                  "maximum": 255
+               },
+               "x-ordinal-index": 3,
+               "maxItems": 256048
+            },
+            "X Size": {
+               "type": "integer",
+               "x-underlying-type": "uint8",
+               "x-ordinal-index": 0,
+               "minimum": 0,
+               "maximum": 127
+            },
+            "Y Size": {
+               "type": "integer",
+               "x-underlying-type": "uint8",
+               "x-ordinal-index": 1,
+               "minimum": 0,
+               "maximum": 127
+            },
+            "Z Size": {
+               "type": "integer",
+               "x-underlying-type": "uint8",
+               "x-ordinal-index": 2,
+               "minimum": 0,
+               "maximum": 127
+            }
+         },
+         "required": [
+            "Storage",
+            "X Size",
+            "Y Size",
+            "Z Size"
+         ]
+      },
+      "3030285956": {
+         "title": "VoxelShapes::RegistryHandle",
+         "type": "object",
+         "properties": {
+            "Value": {
+               "type": "integer",
+               "x-underlying-type": "uint16",
+               "x-ordinal-index": 0,
+               "minimum": 0
+            }
+         },
+         "required": [
+            "Value"
+         ]
+      },
+      "3381141713": {
+         "title": "hashed_string",
+         "type": "string"
+      }
+   },
+   "title": "VoxelShapesPacket",
+   "type": "object",
+   "properties": {
+      "Custom Shape Count": {
+         "type": "integer",
+         "x-underlying-type": "uint16",
+         "x-ordinal-index": 2,
+         "minimum": 0
+      },
+      "Name Map": {
+         "type": "object",
+         "additionalProperties": {
+            "type": "object",
+            "properties": {
+               "key": {
+                  "$ref": "#/definitions/3381141713"
+               },
+               "value": {
+                  "$ref": "#/definitions/3030285956"
+               }
+            }
+         },
+         "x-ordinal-index": 1
+      },
+      "Shapes": {
+         "type": "array",
+         "items": {
+            "$ref": "#/definitions/505749491"
+         },
+         "x-ordinal-index": 0
+      }
+   },
+   "required": [
+      "Custom Shape Count",
+      "Name Map",
+      "Shapes"
+   ]
+}

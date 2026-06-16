@@ -1,0 +1,40 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "2173087661",
+   "x-format-version": "MISSING VERSION",
+   "x-protocol-version": 1001,
+   "title": "UpdateSoftEnumPacket",
+   "type": "object",
+   "properties": {
+      "Enum Name": {
+         "type": "string",
+         "x-ordinal-index": 0
+      },
+      "Update Type": {
+         "title": "SoftEnumUpdateType",
+         "type": "string",
+         "enum": [
+            "Add",
+            "Remove",
+            "Replace"
+         ],
+         "x-underlying-type": "uint8",
+         "x-serialization-options": [
+            "Enum-as-Value"
+         ],
+         "x-ordinal-index": 2
+      },
+      "Values": {
+         "type": "array",
+         "items": {
+            "type": "string"
+         },
+         "x-ordinal-index": 1
+      }
+   },
+   "required": [
+      "Enum Name",
+      "Update Type",
+      "Values"
+   ]
+}

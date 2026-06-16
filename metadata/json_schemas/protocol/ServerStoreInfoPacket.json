@@ -1,0 +1,37 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "1880765715",
+   "x-format-version": "MISSING VERSION",
+   "x-protocol-version": 1001,
+   "definitions": {
+      "3908890004": {
+         "title": "clientStoreEntryPointConfig",
+         "type": "object",
+         "properties": {
+            "storeId": {
+               "type": "string",
+               "x-ordinal-index": 0
+            },
+            "storeName": {
+               "type": "string",
+               "x-ordinal-index": 1
+            }
+         },
+         "required": [
+            "storeId",
+            "storeName"
+         ]
+      }
+   },
+   "title": "ServerStoreInfoPacket",
+   "type": "object",
+   "properties": {
+      "client_store_entry_point_configuration": {
+         "$ref": "#/definitions/3908890004",
+         "x-ordinal-index": 0
+      }
+   },
+   "required": [
+      "client_store_entry_point_configuration"
+   ]
+}

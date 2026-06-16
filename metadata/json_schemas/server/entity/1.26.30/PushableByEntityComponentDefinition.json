@@ -1,0 +1,224 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "1021664143",
+   "x-format-version": "1.26.30",
+   "definitions": {
+      "100089226": {
+         "title": "Filter Group Map",
+         "type": "object",
+         "properties": {
+            "AND": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "NOT": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "OR": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "all_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "any_of": {
+               "$ref": "#/definitions/2789112004"
+            },
+            "none_of": {
+               "$ref": "#/definitions/2789112004"
+            }
+         }
+      },
+      "2457665045": {
+         "title": "Filter Test",
+         "type": "object",
+         "properties": {
+            "domain": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "operator": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "subject": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            },
+            "test": {
+               "type": "string"
+            },
+            "value": {
+               "oneOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "integer"
+                  },
+                  {
+                     "type": "number"
+                  },
+                  {
+                     "type": "string"
+                  }
+               ]
+            }
+         },
+         "required": [
+            "test"
+         ]
+      },
+      "2778658844": {
+         "title": "PushableByEntityPreset",
+         "type": "object",
+         "properties": {
+            "filters": {
+               "default": {
+                  "OR": null,
+                  "all": null,
+                  "all_of": null,
+                  "AND": null,
+                  "any_of": null,
+                  "none_of": null,
+                  "any": null,
+                  "NOT": null
+               },
+               "$ref": "#/definitions/2789112004"
+            },
+            "kick_speed_scale": {
+               "type": "number",
+               "default": 2
+            },
+            "max_distance": {
+               "type": "number",
+               "default": 3.4028234663852886e+38,
+               "minimum": 0
+            },
+            "max_kick_speed": {
+               "type": "number",
+               "default": 0.5
+            },
+            "min_distance": {
+               "type": "number",
+               "default": 0.009999999776482582,
+               "minimum": 0
+            },
+            "min_kick_speed": {
+               "type": "number",
+               "default": 0
+            },
+            "play_sound": {
+               "type": "boolean",
+               "default": false
+            },
+            "play_sound_cooldown_in_seconds": {
+               "type": "number",
+               "default": 0.20000000298023224,
+               "minimum": 0
+            },
+            "play_sound_impulse_threshold": {
+               "type": "number",
+               "default": 0.20000000298023224,
+               "minimum": 0
+            },
+            "push_mode": {
+               "title": "PushMode",
+               "type": "string",
+               "default": "default",
+               "enum": [
+                  "none",
+                  "default",
+                  "legacy_boat",
+                  "legacy_minecart",
+                  "ball"
+               ]
+            },
+            "push_scale_other": {
+               "type": "number",
+               "default": 1
+            },
+            "push_scale_self": {
+               "type": "number",
+               "default": 1
+            },
+            "strength_multiplier": {
+               "type": "number",
+               "default": 0.05000000074505806
+            },
+            "vertical_kick_multiplier": {
+               "type": "number",
+               "default": 0.30000001192092896
+            }
+         }
+      },
+      "2789112004": {
+         "title": "Filter Group",
+         "oneOf": [
+            {
+               "$ref": "#/definitions/2457665045"
+            },
+            {
+               "type": "array",
+               "items": {
+                  "$ref": "#/definitions/2789112004"
+               }
+            },
+            {
+               "$ref": "#/definitions/100089226"
+            }
+         ]
+      }
+   },
+   "title": "minecraft:pushable_by_entity",
+   "type": "object",
+   "properties": {
+      "presets": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "#/definitions/2778658844"
+         }
+      }
+   }
+}

@@ -1,0 +1,60 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "59439424",
+   "x-format-version": "MISSING VERSION",
+   "x-protocol-version": 1001,
+   "definitions": {
+      "1488572312": {
+         "title": "BlockPos",
+         "type": "object",
+         "properties": {
+            "X": {
+               "type": "integer",
+               "x-underlying-type": "int32",
+               "x-serialization-options": [
+                  "Compression"
+               ],
+               "x-ordinal-index": 0
+            },
+            "Y": {
+               "type": "integer",
+               "x-underlying-type": "int32",
+               "x-serialization-options": [
+                  "Compression"
+               ],
+               "x-ordinal-index": 1
+            },
+            "Z": {
+               "type": "integer",
+               "x-underlying-type": "int32",
+               "x-serialization-options": [
+                  "Compression"
+               ],
+               "x-ordinal-index": 2
+            }
+         },
+         "required": [
+            "X",
+            "Y",
+            "Z"
+         ]
+      }
+   },
+   "title": "OpenSignPacket",
+   "type": "object",
+   "properties": {
+      "Is Front Side": {
+         "type": "boolean",
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 1
+      },
+      "Pos": {
+         "$ref": "#/definitions/1488572312",
+         "x-ordinal-index": 0
+      }
+   },
+   "required": [
+      "Is Front Side",
+      "Pos"
+   ]
+}

@@ -128,7 +128,8 @@
                   "enum": [
                      "minecraft:cardinal_direction",
                      "minecraft:corner_and_cardinal_direction",
-                     "minecraft:facing_direction"
+                     "minecraft:facing_direction",
+                     "minecraft:sixteen_way_rotation"
                   ]
                },
                "minItems": 1
@@ -284,6 +285,15 @@
                "type": "integer",
                "default": 20,
                "minimum": 0
+            },
+            "lava_flammable": {
+               "title": "Lava Flammable",
+               "type": "string",
+               "default": "never",
+               "enum": [
+                  "always",
+                  "never"
+               ]
             }
          }
       },
@@ -530,7 +540,7 @@
                   "none",
                   "obstruct_rain",
                   "obstruct_rain_accumulate_snow",
-                  "snow_log_no_collision"
+                  "snowlogging"
                ]
             }
          },
@@ -745,7 +755,7 @@
             },
             {
                "$ref": "#/definitions/3078929707",
-               "x-runtime-constraint-description": "Cannot use bone visibility feature with Vanilla geometries"
+               "x-runtime-constraint-description": "Cannot use bone visibility feature with minecraft:geometry.cross or minecraft:geometry.full_block"
             }
          ]
       },
@@ -853,11 +863,64 @@
             "CEREAL_EDITOR_SCHEMA_TAG": "type:color"
          }
       },
+      "2165468200": {
+         "title": "Instrument Sound",
+         "type": "object",
+         "propertyNames": {
+            "type": "string",
+            "pattern": "^(up|down)$"
+         },
+         "additionalProperties": {
+            "title": "Instrument",
+            "type": "string",
+            "enum": [
+               "note.harp",
+               "note.bd",
+               "note.snare",
+               "note.hat",
+               "note.bassattack",
+               "note.flute",
+               "note.bell",
+               "note.guitar",
+               "note.chime",
+               "note.xylophone",
+               "note.iron_xylophone",
+               "note.cow_bell",
+               "note.didgeridoo",
+               "note.bit",
+               "note.banjo",
+               "note.pling",
+               "note.trumpet",
+               "note.trumpet_exposed",
+               "note.trumpet_weathered",
+               "note.trumpet_oxidized",
+               "note.zombie",
+               "note.skeleton",
+               "note.creeper",
+               "note.enderdragon",
+               "note.witherskeleton",
+               "note.piglin",
+               "note.none"
+            ]
+         },
+         "minProperties": 1,
+         "maxProperties": 2
+      },
       "2192817374": {
          "title": "Block Breathability Component"
       },
       "2394613889": {
          "title": "Block Unit Cube Component"
+      },
+      "2527690833": {
+         "title": "block_entity",
+         "type": "object",
+         "properties": {
+            "dynamic_properties": {
+               "type": "boolean",
+               "default": false
+            }
+         }
       },
       "2529973620": {
          "title": "Molang string",
@@ -886,6 +949,9 @@
          "title": "Components",
          "type": "object",
          "properties": {
+            "minecraft:block_entity": {
+               "$ref": "#/definitions/2527690833"
+            },
             "minecraft:breathability": {
                "deprecated": true,
                "$ref": "#/definitions/2192817374"
@@ -931,6 +997,9 @@
             },
             "minecraft:geometry": {
                "$ref": "#/definitions/1857376691"
+            },
+            "minecraft:instrument_sound": {
+               "$ref": "#/definitions/2165468200"
             },
             "minecraft:item_visual": {
                "$ref": "#/definitions/4065594530"
@@ -1192,6 +1261,9 @@
                "type": "string",
                "maxLength": 256
             },
+            "n_way_visual_rotation": {
+               "$ref": "#/definitions/3924251301"
+            },
             "uv_lock": {
                "default": false,
                "oneOf": [
@@ -1420,6 +1492,27 @@
             "crafting_tags"
          ]
       },
+      "3924251301": {
+         "title": "NWayVisualRotation",
+         "type": "object",
+         "properties": {
+            "x": {
+               "type": "string",
+               "default": "",
+               "maxLength": 256
+            },
+            "y": {
+               "type": "string",
+               "default": "",
+               "maxLength": 256
+            },
+            "z": {
+               "type": "string",
+               "default": "",
+               "maxLength": 256
+            }
+         }
+      },
       "3964809843": {
          "title": "Permutation",
          "type": "object",
@@ -1427,10 +1520,10 @@
             "components": {
                "propertyNames": {
                   "type": "string",
-                  "pattern": "^(?!(minecraft:flower_pottable|minecraft:on_fall_on|minecraft:redstone_consumer|minecraft:embedded_visual|minecraft:on_placed|minecraft:support|minecraft:item_visual|minecraft:on_interact|minecraft:breathability|minecraft:on_player_destroyed|minecraft:on_player_placing|minecraft:on_step_off|minecraft:on_step_on|minecraft:queued_ticking|minecraft:random_ticking|minecraft:unit_cube)$)"
+                  "pattern": "^(?!(minecraft:redstone_consumer|minecraft:block_entity|minecraft:on_placed|minecraft:support|minecraft:embedded_visual|minecraft:flower_pottable|minecraft:on_fall_on|minecraft:item_visual|minecraft:breathability|minecraft:on_interact|minecraft:on_player_destroyed|minecraft:on_player_placing|minecraft:queued_ticking|minecraft:random_ticking|minecraft:on_step_off|minecraft:on_step_on|minecraft:unit_cube)$)"
                },
                "$ref": "#/definitions/2556852513",
-               "x-runtime-constraint-description": "Blocks with precipitation interactions \"snow_log_no_collision\" must have collision box disabled"
+               "x-runtime-constraint-description": "Blocks with precipitation interactions \"snowlogging\" must have collision box disabled"
             },
             "condition": {
                "$ref": "#/definitions/2014847524"

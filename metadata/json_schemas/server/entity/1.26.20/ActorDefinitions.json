@@ -506,6 +506,7 @@
                   "record.ward",
                   "record.11",
                   "record.wait",
+                  "record.null",
                   "record.pigstep",
                   "record.precipice",
                   "record.relic",
@@ -918,6 +919,16 @@
                   "reset_growth",
                   "pushed_by_player",
                   "bounce",
+                  "slime_landing",
+                  "absorb_block",
+                  "eject_block",
+                  "geyser_eruption_start",
+                  "geyser_eruption_active",
+                  "record.bounce",
+                  "bucket.fill.land_animal",
+                  "bucket.empty.land_animal",
+                  "geyser_continuous_eruption_start",
+                  "geyser_continuous_eruption_active",
                   "undefined"
                ]
             },
@@ -952,13 +963,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "all_of": null,
-                     "all": null,
                      "OR": null,
+                     "all": null,
+                     "all_of": null,
                      "AND": null,
                      "any_of": null,
-                     "any": null,
                      "none_of": null,
+                     "any": null,
                      "NOT": null
                   }
                },
@@ -1163,13 +1174,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "all_of": null,
-                     "all": null,
                      "OR": null,
+                     "all": null,
+                     "all_of": null,
                      "AND": null,
                      "any_of": null,
-                     "any": null,
                      "none_of": null,
+                     "any": null,
                      "NOT": null
                   }
                },
@@ -1180,13 +1191,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "all_of": null,
-                     "all": null,
                      "OR": null,
+                     "all": null,
+                     "all_of": null,
                      "AND": null,
                      "any_of": null,
-                     "any": null,
                      "none_of": null,
+                     "any": null,
                      "NOT": null
                   }
                },
@@ -1197,13 +1208,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "all_of": null,
-                     "all": null,
                      "OR": null,
+                     "all": null,
+                     "all_of": null,
                      "AND": null,
                      "any_of": null,
-                     "any": null,
                      "none_of": null,
+                     "any": null,
                      "NOT": null
                   }
                },
@@ -1214,13 +1225,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "all_of": null,
-                     "all": null,
                      "OR": null,
+                     "all": null,
+                     "all_of": null,
                      "AND": null,
                      "any_of": null,
-                     "any": null,
                      "none_of": null,
+                     "any": null,
                      "NOT": null
                   }
                },
@@ -1231,13 +1242,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "all_of": null,
-                     "all": null,
                      "OR": null,
+                     "all": null,
+                     "all_of": null,
                      "AND": null,
                      "any_of": null,
-                     "any": null,
                      "none_of": null,
+                     "any": null,
                      "NOT": null
                   }
                },
@@ -1248,13 +1259,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "all_of": null,
-                     "all": null,
                      "OR": null,
+                     "all": null,
+                     "all_of": null,
                      "AND": null,
                      "any_of": null,
-                     "any": null,
                      "none_of": null,
+                     "any": null,
                      "NOT": null
                   }
                },
@@ -1387,8 +1398,29 @@
       "355630026": {
          "title": "BodyRotationAlwaysFollowsHeadDefinition"
       },
-      "359329739": {
-         "title": "minecraft:pushable_by_entity"
+      "408549500": {
+         "title": "minecraft:memory_behavior.move_to_position",
+         "type": "object",
+         "properties": {
+            "control_flags": {
+               "type": "array",
+               "default": [],
+               "items": {
+                  "title": "Goal's control flags",
+                  "type": "string",
+                  "enum": [
+                     "move",
+                     "look",
+                     "jump"
+                  ]
+               }
+            },
+            "priority": {
+               "type": "integer",
+               "default": 0,
+               "minimum": 0
+            }
+         }
       },
       "424549894": {
          "title": "OnEquipmentChangedSlotEntryDescriptor",
@@ -1726,6 +1758,7 @@
                   "record.ward",
                   "record.11",
                   "record.wait",
+                  "record.null",
                   "record.pigstep",
                   "record.precipice",
                   "record.relic",
@@ -2138,6 +2171,16 @@
                   "reset_growth",
                   "pushed_by_player",
                   "bounce",
+                  "slime_landing",
+                  "absorb_block",
+                  "eject_block",
+                  "geyser_eruption_start",
+                  "geyser_eruption_active",
+                  "record.bounce",
+                  "bucket.fill.land_animal",
+                  "bucket.empty.land_animal",
+                  "geyser_continuous_eruption_start",
+                  "geyser_continuous_eruption_active",
                   "undefined"
                ]
             },
@@ -2585,6 +2628,7 @@
                   "record.ward",
                   "record.11",
                   "record.wait",
+                  "record.null",
                   "record.pigstep",
                   "record.precipice",
                   "record.relic",
@@ -2997,6 +3041,16 @@
                   "reset_growth",
                   "pushed_by_player",
                   "bounce",
+                  "slime_landing",
+                  "absorb_block",
+                  "eject_block",
+                  "geyser_eruption_start",
+                  "geyser_eruption_active",
+                  "record.bounce",
+                  "bucket.fill.land_animal",
+                  "bucket.empty.land_animal",
+                  "geyser_continuous_eruption_start",
+                  "geyser_continuous_eruption_active",
                   "undefined"
                ]
             },
@@ -3157,6 +3211,7 @@
                   "record.ward",
                   "record.11",
                   "record.wait",
+                  "record.null",
                   "record.pigstep",
                   "record.precipice",
                   "record.relic",
@@ -3569,6 +3624,16 @@
                   "reset_growth",
                   "pushed_by_player",
                   "bounce",
+                  "slime_landing",
+                  "absorb_block",
+                  "eject_block",
+                  "geyser_eruption_start",
+                  "geyser_eruption_active",
+                  "record.bounce",
+                  "bucket.fill.land_animal",
+                  "bucket.empty.land_animal",
+                  "geyser_continuous_eruption_start",
+                  "geyser_continuous_eruption_active",
                   "undefined"
                ]
             },
@@ -3760,6 +3825,7 @@
                   "record.ward",
                   "record.11",
                   "record.wait",
+                  "record.null",
                   "record.pigstep",
                   "record.precipice",
                   "record.relic",
@@ -4172,6 +4238,16 @@
                   "reset_growth",
                   "pushed_by_player",
                   "bounce",
+                  "slime_landing",
+                  "absorb_block",
+                  "eject_block",
+                  "geyser_eruption_start",
+                  "geyser_eruption_active",
+                  "record.bounce",
+                  "bucket.fill.land_animal",
+                  "bucket.empty.land_animal",
+                  "geyser_continuous_eruption_start",
+                  "geyser_continuous_eruption_active",
                   "undefined"
                ]
             },
@@ -4722,6 +4798,7 @@
                   "record.ward",
                   "record.11",
                   "record.wait",
+                  "record.null",
                   "record.pigstep",
                   "record.precipice",
                   "record.relic",
@@ -5134,6 +5211,16 @@
                   "reset_growth",
                   "pushed_by_player",
                   "bounce",
+                  "slime_landing",
+                  "absorb_block",
+                  "eject_block",
+                  "geyser_eruption_start",
+                  "geyser_eruption_active",
+                  "record.bounce",
+                  "bucket.fill.land_animal",
+                  "bucket.empty.land_animal",
+                  "geyser_continuous_eruption_start",
+                  "geyser_continuous_eruption_active",
                   "undefined"
                ]
             },
@@ -5546,6 +5633,7 @@
                   "record.ward",
                   "record.11",
                   "record.wait",
+                  "record.null",
                   "record.pigstep",
                   "record.precipice",
                   "record.relic",
@@ -5958,6 +6046,16 @@
                   "reset_growth",
                   "pushed_by_player",
                   "bounce",
+                  "slime_landing",
+                  "absorb_block",
+                  "eject_block",
+                  "geyser_eruption_start",
+                  "geyser_eruption_active",
+                  "record.bounce",
+                  "bucket.fill.land_animal",
+                  "bucket.empty.land_animal",
+                  "geyser_continuous_eruption_start",
+                  "geyser_continuous_eruption_active",
                   "undefined"
                ]
             },
@@ -7088,13 +7186,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "OR": null,
-                     "all": null,
                      "all_of": null,
+                     "all": null,
+                     "OR": null,
                      "AND": null,
                      "any_of": null,
-                     "none_of": null,
                      "any": null,
+                     "none_of": null,
                      "NOT": null
                   }
                },
@@ -7105,13 +7203,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "OR": null,
-                     "all": null,
                      "all_of": null,
+                     "all": null,
+                     "OR": null,
                      "AND": null,
                      "any_of": null,
-                     "none_of": null,
                      "any": null,
+                     "none_of": null,
                      "NOT": null
                   }
                },
@@ -8648,6 +8746,7 @@
                   "record.ward",
                   "record.11",
                   "record.wait",
+                  "record.null",
                   "record.pigstep",
                   "record.precipice",
                   "record.relic",
@@ -9060,6 +9159,16 @@
                   "reset_growth",
                   "pushed_by_player",
                   "bounce",
+                  "slime_landing",
+                  "absorb_block",
+                  "eject_block",
+                  "geyser_eruption_start",
+                  "geyser_eruption_active",
+                  "record.bounce",
+                  "bucket.fill.land_animal",
+                  "bucket.empty.land_animal",
+                  "geyser_continuous_eruption_start",
+                  "geyser_continuous_eruption_active",
                   "undefined"
                ]
             },
@@ -9957,6 +10066,9 @@
             }
          }
       },
+      "3175925500": {
+         "title": "minecraft:pushable_by_entity"
+      },
       "3195159286": {
          "title": "minecraft:behavior.delayed_attack",
          "type": "object",
@@ -10022,13 +10134,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "OR": null,
-                     "all": null,
                      "all_of": null,
+                     "all": null,
+                     "OR": null,
                      "AND": null,
                      "any_of": null,
-                     "none_of": null,
                      "any": null,
+                     "none_of": null,
                      "NOT": null
                   }
                },
@@ -10039,13 +10151,13 @@
                   "event": "",
                   "target": "self",
                   "filters": {
-                     "OR": null,
-                     "all": null,
                      "all_of": null,
+                     "all": null,
+                     "OR": null,
                      "AND": null,
                      "any_of": null,
-                     "none_of": null,
                      "any": null,
+                     "none_of": null,
                      "NOT": null
                   }
                },
@@ -10238,6 +10350,7 @@
                   "record.ward",
                   "record.11",
                   "record.wait",
+                  "record.null",
                   "record.pigstep",
                   "record.precipice",
                   "record.relic",
@@ -10650,6 +10763,16 @@
                   "reset_growth",
                   "pushed_by_player",
                   "bounce",
+                  "slime_landing",
+                  "absorb_block",
+                  "eject_block",
+                  "geyser_eruption_start",
+                  "geyser_eruption_active",
+                  "record.bounce",
+                  "bucket.fill.land_animal",
+                  "bucket.empty.land_animal",
+                  "geyser_continuous_eruption_start",
+                  "geyser_continuous_eruption_active",
                   "undefined"
                ]
             },
@@ -12305,6 +12428,7 @@
                   "record.ward",
                   "record.11",
                   "record.wait",
+                  "record.null",
                   "record.pigstep",
                   "record.precipice",
                   "record.relic",
@@ -12717,6 +12841,16 @@
                   "reset_growth",
                   "pushed_by_player",
                   "bounce",
+                  "slime_landing",
+                  "absorb_block",
+                  "eject_block",
+                  "geyser_eruption_start",
+                  "geyser_eruption_active",
+                  "record.bounce",
+                  "bucket.fill.land_animal",
+                  "bucket.empty.land_animal",
+                  "geyser_continuous_eruption_start",
+                  "geyser_continuous_eruption_active",
                   "undefined"
                ]
             },
@@ -13780,15 +13914,6 @@
       "minecraft:memory_behavior.follow_target": {
          "description": "Dynamic value"
       },
-      "minecraft:memory_behavior.move_to_position": {
-         "description": "Dynamic value"
-      },
-      "minecraft:memory_sensor.find_nearest_block": {
-         "description": "Dynamic value"
-      },
-      "minecraft:memory_sensor.find_nearest_block_from": {
-         "description": "Dynamic value"
-      },
       "minecraft:memory_sensor.find_nearest_entity": {
          "description": "Dynamic value"
       },
@@ -13949,7 +14074,7 @@
          "description": "Dynamic value"
       },
       "minecraft:pushable_by_entity": {
-         "$ref": "#/definitions/359329739"
+         "$ref": "#/definitions/3175925500"
       },
       "minecraft:raid_trigger": {
          "description": "Dynamic value"
@@ -14100,6 +14225,11 @@
       },
       "minecraft:wither_target_highest_damage": {
          "description": "Dynamic value"
+      }
+   },
+   "patternProperties": {
+      "^minecraft:memory_behavior.move_to_position\\.[A-Za-z0-9_]{1,32}$": {
+         "$ref": "#/definitions/408549500"
       }
    }
 }

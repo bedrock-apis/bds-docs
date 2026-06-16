@@ -50,6 +50,20 @@ export class DebugBox extends DebugShape {
 export class DebugCircle extends DebugShape {
    public constructor(location: server.DimensionLocation | server.Vector3);
 }
+//@ts-ignore
+export class DebugCone extends DebugShape {
+   public height: number;
+   public numSegments: number;
+   public radii: server.Vector2;
+   public constructor(location: server.DimensionLocation | server.Vector3);
+}
+//@ts-ignore
+export class DebugCylinder extends DebugShape {
+   public height: number;
+   public numSegments: number;
+   public radii: server.Vector2;
+   public constructor(location: server.DimensionLocation | server.Vector3);
+}
 export class DebugDrawer {
    public addShape(shape: DebugShape, dimension?: server.Dimension): void;
    public removeAll(): void;
@@ -57,9 +71,22 @@ export class DebugDrawer {
    private constructor();
 }
 //@ts-ignore
+export class DebugEllipsoid extends DebugShape {
+   public radii: server.Vector3;
+   public segmentsPerAxis: number;
+   public constructor(location: server.DimensionLocation | server.Vector3);
+}
+//@ts-ignore
 export class DebugLine extends DebugShape {
    public endLocation: server.Vector3;
    public constructor(location: server.DimensionLocation | server.Vector3, endLocation: server.Vector3);
+}
+//@ts-ignore
+export class DebugPyramid extends DebugShape {
+   public depth?: number;
+   public height: number;
+   public width: number;
+   public constructor(location: server.DimensionLocation | server.Vector3);
 }
 export class DebugShape {
    public attachedTo?: server.Entity;

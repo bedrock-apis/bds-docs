@@ -1,0 +1,35 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "1970607585",
+   "x-format-version": "MISSING VERSION",
+   "x-protocol-version": 1001,
+   "title": "PlayStatusPacket",
+   "type": "object",
+   "properties": {
+      "Status": {
+         "title": "PlayStatus",
+         "type": "string",
+         "enum": [
+            "LoginSuccess",
+            "LoginFailed_ClientOld",
+            "LoginFailed_ServerOld",
+            "PlayerSpawn",
+            "LoginFailed_InvalidTenant",
+            "LoginFailed_EditionMismatchEduToVanilla",
+            "LoginFailed_EditionMismatchVanillaToEdu",
+            "LoginFailed_ServerFullSubClient",
+            "LoginFailed_EditorMismatchEditorToVanilla",
+            "LoginFailed_EditorMismatchVanillaToEditor"
+         ],
+         "x-underlying-type": "int32",
+         "x-serialization-options": [
+            "Big Endian",
+            "Enum-as-Value"
+         ],
+         "x-ordinal-index": 0
+      }
+   },
+   "required": [
+      "Status"
+   ]
+}
