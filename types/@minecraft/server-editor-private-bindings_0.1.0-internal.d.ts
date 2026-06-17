@@ -12,6 +12,7 @@ export enum EditorRealmsServiceAvailability {
 }
 export enum FilePickerError {
    AccessDenied = "access-denied",
+   Busy = "file-selector-busy",
    Cancelled = "cancelled",
    FileTooLarge = "file-too-large",
 }

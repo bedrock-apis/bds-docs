@@ -3,6 +3,22 @@
    "$id": "1708704753",
    "x-format-version": "1.21.0",
    "definitions": {
+      "785860864": {
+         "title": "Molang expression (object representation)",
+         "type": "object",
+         "properties": {
+            "expression": {
+               "type": "string"
+            },
+            "version": {
+               "type": "integer"
+            }
+         },
+         "required": [
+            "expression",
+            "version"
+         ]
+      },
       "976998696": {
          "title": "particle_curve_bezier_chain node_proxy",
          "type": "object",
@@ -83,19 +99,7 @@
                "type": "string"
             },
             {
-               "type": "object",
-               "properties": {
-                  "expression": {
-                     "type": "string"
-                  },
-                  "version": {
-                     "type": "integer"
-                  }
-               },
-               "required": [
-                  "expression",
-                  "version"
-               ]
+               "$ref": "#/definitions/785860864"
             }
          ]
       },

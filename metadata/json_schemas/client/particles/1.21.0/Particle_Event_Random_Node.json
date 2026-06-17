@@ -30,6 +30,22 @@
             "type"
          ]
       },
+      "785860864": {
+         "title": "Molang expression (object representation)",
+         "type": "object",
+         "properties": {
+            "expression": {
+               "type": "string"
+            },
+            "version": {
+               "type": "integer"
+            }
+         },
+         "required": [
+            "expression",
+            "version"
+         ]
+      },
       "1418631460": {
          "title": "particle_sound_effect_event",
          "type": "object",
@@ -60,19 +76,7 @@
                "type": "string"
             },
             {
-               "type": "object",
-               "properties": {
-                  "expression": {
-                     "type": "string"
-                  },
-                  "version": {
-                     "type": "integer"
-                  }
-               },
-               "required": [
-                  "expression",
-                  "version"
-               ]
+               "$ref": "#/definitions/785860864"
             }
          ]
       },

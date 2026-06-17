@@ -1,7 +1,7 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
    "$id": "46186561",
-   "x-format-version": "1.21.110",
+   "x-format-version": "1.26.20",
    "definitions": {
       "16572169": {
          "title": "Embedded Visual",
@@ -42,7 +42,7 @@
          }
       },
       "202983454": {
-         "title": "Detailed Flammable",
+         "title": "Flammable Component",
          "oneOf": [
             {
                "type": "boolean"
@@ -123,7 +123,7 @@
             "enabled_states": {
                "type": "array",
                "items": {
-                  "title": "Placement Position Enabled State",
+                  "title": "Placement Direction Enabled State",
                   "type": "string",
                   "enum": [
                      "minecraft:cardinal_direction",
@@ -356,6 +356,22 @@
             }
          ]
       },
+      "785860864": {
+         "title": "Molang expression (object representation)",
+         "type": "object",
+         "properties": {
+            "expression": {
+               "type": "string"
+            },
+            "version": {
+               "type": "integer"
+            }
+         },
+         "required": [
+            "expression",
+            "version"
+         ]
+      },
       "815070892": {
          "title": "Fall On Component"
       },
@@ -557,7 +573,11 @@
                "type": "string",
                "enum": [
                   "down",
-                  "up"
+                  "up",
+                  "north",
+                  "south",
+                  "west",
+                  "east"
                ]
             },
             "enabled_states": {
@@ -929,19 +949,7 @@
                "type": "string"
             },
             {
-               "type": "object",
-               "properties": {
-                  "expression": {
-                     "type": "string"
-                  },
-                  "version": {
-                     "type": "integer"
-                  }
-               },
-               "required": [
-                  "expression",
-                  "version"
-               ]
+               "$ref": "#/definitions/785860864"
             }
          ]
       },
@@ -1335,7 +1343,7 @@
          }
       },
       "3296186770": {
-         "title": "File Reference",
+         "title": "FileReference 17",
          "type": "string",
          "maxLength": 256
       },
@@ -1434,7 +1442,7 @@
          "title": "Random Ticking Component"
       },
       "3729244302": {
-         "title": "Reference",
+         "title": "Reference 4",
          "type": "string"
       },
       "3803259128": {

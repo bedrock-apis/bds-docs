@@ -2911,6 +2911,7 @@ export class ISerializable {
 export class ItemBlockDynamicPropertiesComponent extends ItemComponent {
    public static readonly componentId = "minecraft:block_actor_dynamic_properties";
    public get(key: string): (boolean | number | number | string | Vector3 | undefined);
+   public set(key: string, value?: boolean | number | number | string | Vector3): void;
    public totalByteCount(): number;
    private constructor();
 }

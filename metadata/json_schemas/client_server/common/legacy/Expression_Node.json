@@ -3,6 +3,22 @@
    "$id": "2014847524",
    "x-format-version": "MISSING VERSION",
    "definitions": {
+      "785860864": {
+         "title": "Molang expression (object representation)",
+         "type": "object",
+         "properties": {
+            "expression": {
+               "type": "string"
+            },
+            "version": {
+               "type": "integer"
+            }
+         },
+         "required": [
+            "expression",
+            "version"
+         ]
+      },
       "2529973620": {
          "title": "Molang string",
          "oneOf": [
@@ -10,19 +26,7 @@
                "type": "string"
             },
             {
-               "type": "object",
-               "properties": {
-                  "expression": {
-                     "type": "string"
-                  },
-                  "version": {
-                     "type": "integer"
-                  }
-               },
-               "required": [
-                  "expression",
-                  "version"
-               ]
+               "$ref": "#/definitions/785860864"
             }
          ]
       }

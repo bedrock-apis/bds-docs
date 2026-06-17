@@ -2,12 +2,9 @@
    "$schema": "http://json-schema.org/draft-07/schema#",
    "$id": "2529973620",
    "x-format-version": "MISSING VERSION",
-   "title": "Molang string",
-   "oneOf": [
-      {
-         "type": "string"
-      },
-      {
+   "definitions": {
+      "785860864": {
+         "title": "Molang expression (object representation)",
          "type": "object",
          "properties": {
             "expression": {
@@ -21,6 +18,15 @@
             "expression",
             "version"
          ]
+      }
+   },
+   "title": "Molang string",
+   "oneOf": [
+      {
+         "type": "string"
+      },
+      {
+         "$ref": "#/definitions/785860864"
       }
    ]
 }

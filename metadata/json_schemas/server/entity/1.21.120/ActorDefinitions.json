@@ -1596,6 +1596,22 @@
       "763299284": {
          "title": "CanClimbDefinition"
       },
+      "785860864": {
+         "title": "Molang expression (object representation)",
+         "type": "object",
+         "properties": {
+            "expression": {
+               "type": "string"
+            },
+            "version": {
+               "type": "integer"
+            }
+         },
+         "required": [
+            "expression",
+            "version"
+         ]
+      },
       "855125494": {
          "title": "BlockDescriptorProxy",
          "type": "object",
@@ -1953,17 +1969,11 @@
          "type": "object",
          "properties": {
             "on_bred": {
-               "default": {
-                  "expression": "",
-                  "version": -1
-               },
+               "default": "",
                "$ref": "#/definitions/2014847524"
             },
             "on_death": {
-               "default": {
-                  "expression": "",
-                  "version": -1
-               },
+               "default": "",
                "$ref": "#/definitions/2014847524"
             }
          }
@@ -2418,19 +2428,7 @@
                "type": "string"
             },
             {
-               "type": "object",
-               "properties": {
-                  "expression": {
-                     "type": "string"
-                  },
-                  "version": {
-                     "type": "integer"
-                  }
-               },
-               "required": [
-                  "expression",
-                  "version"
-               ]
+               "$ref": "#/definitions/785860864"
             }
          ]
       },
@@ -4539,9 +4537,6 @@
          "description": "Dynamic value"
       },
       "minecraft:memory_sensor.find_nearest_poi": {
-         "description": "Dynamic value"
-      },
-      "minecraft:memory_sensor.in_range_of_block": {
          "description": "Dynamic value"
       },
       "minecraft:memory_sensor.in_range_of_entity": {

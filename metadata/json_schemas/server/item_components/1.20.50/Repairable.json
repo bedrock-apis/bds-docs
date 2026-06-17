@@ -3,6 +3,22 @@
    "$id": "138513870",
    "x-format-version": "1.20.50",
    "definitions": {
+      "785860864": {
+         "title": "Molang expression (object representation)",
+         "type": "object",
+         "properties": {
+            "expression": {
+               "type": "string"
+            },
+            "version": {
+               "type": "integer"
+            }
+         },
+         "required": [
+            "expression",
+            "version"
+         ]
+      },
       "1429287564": {
          "title": "Item Descriptor",
          "oneOf": [
@@ -35,19 +51,7 @@
                "type": "string"
             },
             {
-               "type": "object",
-               "properties": {
-                  "expression": {
-                     "type": "string"
-                  },
-                  "version": {
-                     "type": "integer"
-                  }
-               },
-               "required": [
-                  "expression",
-                  "version"
-               ]
+               "$ref": "#/definitions/785860864"
             }
          ]
       },
@@ -70,10 +74,7 @@
                      }
                   },
                   "repair_amount": {
-                     "default": {
-                        "expression": "",
-                        "version": -1
-                     },
+                     "default": "",
                      "$ref": "#/definitions/2014847524"
                   }
                },

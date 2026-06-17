@@ -3,6 +3,22 @@
    "$id": "793392137",
    "x-format-version": "1.26.0",
    "definitions": {
+      "785860864": {
+         "title": "Molang expression (object representation)",
+         "type": "object",
+         "properties": {
+            "expression": {
+               "type": "string"
+            },
+            "version": {
+               "type": "integer"
+            }
+         },
+         "required": [
+            "expression",
+            "version"
+         ]
+      },
       "2014847524": {
          "title": "Molang expression",
          "oneOf": [
@@ -21,19 +37,7 @@
                "type": "string"
             },
             {
-               "type": "object",
-               "properties": {
-                  "expression": {
-                     "type": "string"
-                  },
-                  "version": {
-                     "type": "integer"
-                  }
-               },
-               "required": [
-                  "expression",
-                  "version"
-               ]
+               "$ref": "#/definitions/785860864"
             }
          ]
       }
@@ -42,17 +46,11 @@
    "type": "object",
    "properties": {
       "on_bred": {
-         "default": {
-            "expression": "",
-            "version": -1
-         },
+         "default": "",
          "$ref": "#/definitions/2014847524"
       },
       "on_death": {
-         "default": {
-            "expression": "",
-            "version": -1
-         },
+         "default": "",
          "$ref": "#/definitions/2014847524"
       }
    }

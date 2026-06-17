@@ -971,6 +971,10 @@ export interface PlayerAimAssistSettings {
    targetMode?: AimAssistTargetMode;
    viewAngle?: Vector2;
 }
+export interface PlayerBreakingBlockEventOptions {
+   blockFilter?: BlockFilter;
+   playerFilter?: EntityFilter;
+}
 export interface PlayerSoundOptions {
    location?: Vector3;
    pitch?: number;
@@ -3154,6 +3158,20 @@ export class PlayerButtonInputAfterEventSignal {
    private constructor();
 }
 //@ts-ignore
+export class PlayerCancelBreakingBlockAfterEvent extends BlockEvent {
+   public readonly blockPermutation: BlockPermutation;
+   public readonly breakProgress: number;
+   public readonly face: Direction;
+   public readonly heldItemStack?: ItemStack;
+   public readonly player: Player;
+   private constructor();
+}
+export class PlayerCancelBreakingBlockAfterEventSignal {
+   public subscribe(callback: (arg0: PlayerCancelBreakingBlockAfterEvent)=>void, options?: PlayerBreakingBlockEventOptions): (arg0: PlayerCancelBreakingBlockAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: PlayerCancelBreakingBlockAfterEvent)=>void): void;
+   private constructor();
+}
+//@ts-ignore
 export class PlayerCursorInventoryComponent extends EntityComponent {
    public static readonly componentId = "minecraft:cursor_inventory";
    public readonly item?: ItemStack;
@@ -3359,6 +3377,19 @@ export class PlayerSpawnAfterEvent {
 export class PlayerSpawnAfterEventSignal {
    public subscribe(callback: (arg0: PlayerSpawnAfterEvent)=>void): (arg0: PlayerSpawnAfterEvent)=>void;
    public unsubscribe(callback: (arg0: PlayerSpawnAfterEvent)=>void): void;
+   private constructor();
+}
+//@ts-ignore
+export class PlayerStartBreakingBlockAfterEvent extends BlockEvent {
+   public readonly blockPermutation: BlockPermutation;
+   public readonly face: Direction;
+   public readonly heldItemStack?: ItemStack;
+   public readonly player: Player;
+   private constructor();
+}
+export class PlayerStartBreakingBlockAfterEventSignal {
+   public subscribe(callback: (arg0: PlayerStartBreakingBlockAfterEvent)=>void, options?: PlayerBreakingBlockEventOptions): (arg0: PlayerStartBreakingBlockAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: PlayerStartBreakingBlockAfterEvent)=>void): void;
    private constructor();
 }
 export class PlayerSwingStartAfterEvent {
@@ -3884,6 +3915,7 @@ export class WorldAfterEvents {
    public readonly pistonActivate: PistonActivateAfterEventSignal;
    public readonly playerBreakBlock: PlayerBreakBlockAfterEventSignal;
    public readonly playerButtonInput: PlayerButtonInputAfterEventSignal;
+   public readonly playerCancelBreakingBlock: PlayerCancelBreakingBlockAfterEventSignal;
    public readonly playerDimensionChange: PlayerDimensionChangeAfterEventSignal;
    public readonly playerEmote: PlayerEmoteAfterEventSignal;
    public readonly playerGameModeChange: PlayerGameModeChangeAfterEventSignal;
@@ -3897,6 +3929,7 @@ export class WorldAfterEvents {
    public readonly playerLeave: PlayerLeaveAfterEventSignal;
    public readonly playerPlaceBlock: PlayerPlaceBlockAfterEventSignal;
    public readonly playerSpawn: PlayerSpawnAfterEventSignal;
+   public readonly playerStartBreakingBlock: PlayerStartBreakingBlockAfterEventSignal;
    public readonly playerSwingStart: PlayerSwingStartAfterEventSignal;
    public readonly pressurePlatePop: PressurePlatePopAfterEventSignal;
    public readonly pressurePlatePush: PressurePlatePushAfterEventSignal;
