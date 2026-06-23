@@ -2,7 +2,7 @@
    "$schema": "http://json-schema.org/draft-07/schema#",
    "$id": "1897955869",
    "x-format-version": "MISSING VERSION",
-   "x-protocol-version": 2144,
+   "x-protocol-version": 2164,
    "definitions": {
       "725374594": {
          "title": "Vec3",
@@ -152,23 +152,6 @@
             "Slot",
             "Target Block Id",
             "Trigger Type"
-         ]
-      },
-      "1433098745": {
-         "title": "ItemStackNetId",
-         "type": "object",
-         "properties": {
-            "ID": {
-               "type": "integer",
-               "x-underlying-type": "int32",
-               "x-serialization-options": [
-                  "Compression"
-               ],
-               "x-ordinal-index": 0
-            }
-         },
-         "required": [
-            "ID"
          ]
       },
       "1488572312": {
@@ -542,6 +525,9 @@
             },
             "Net Id Variant": {
                "$ref": "#/definitions/4138486877",
+               "x-serialization-options": [
+                  "Compression"
+               ],
                "x-ordinal-index": 3
             },
             "Stack size": {
@@ -575,23 +561,6 @@
          },
          "required": [
             "Actions"
-         ]
-      },
-      "3359047935": {
-         "title": "ItemStackRequestId",
-         "type": "object",
-         "properties": {
-            "ID": {
-               "type": "integer",
-               "x-underlying-type": "int32",
-               "x-serialization-options": [
-                  "Compression"
-               ],
-               "x-ordinal-index": 0
-            }
-         },
-         "required": [
-            "ID"
          ]
       },
       "4019127450": {
@@ -646,30 +615,8 @@
       },
       "4138486877": {
          "title": "ItemStackNetIdVariant",
-         "type": "object",
-         "properties": {
-            "Item stack net ID variant": {
-               "oneOf": [
-                  {
-                     "$ref": "#/definitions/1433098745",
-                     "x-ordinal-index": 0
-                  },
-                  {
-                     "$ref": "#/definitions/3359047935",
-                     "x-ordinal-index": 1
-                  },
-                  {
-                     "$ref": "#/definitions/2707715806",
-                     "x-ordinal-index": 2
-                  }
-               ],
-               "x-control-value-type": "uint32",
-               "x-ordinal-index": 0
-            }
-         },
-         "required": [
-            "Item stack net ID variant"
-         ]
+         "type": "integer",
+         "x-underlying-type": "int32"
       }
    },
    "title": "InventoryTransactionPacket",
@@ -716,5 +663,9 @@
    "required": [
       "Legacy Request ID",
       "Transaction"
-   ]
+   ],
+   "$metaProperties": {
+      "[cereal:packet]": 30,
+      "[cereal:packet_details]": ""
+   }
 }

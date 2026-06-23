@@ -625,6 +625,9 @@ export interface BiomeFilter {
    includeBiomes?: Array<string>;
    includeTags?: Array<string>;
 }
+export interface BiomeSearchOptions {
+   boundingSize?: Vector3;
+}
 export interface BlockBoundingBox {
    max: Vector3;
    min: Vector3;
@@ -1627,6 +1630,7 @@ export class Dimension {
    public readonly heightRange: common.NumberRange;
    public readonly id: string;
    public readonly localizationKey: string;
+   public calculateClosestBiomeFromSeed(pos: Vector3, biomeToFind: BiomeType | string, options?: BiomeSearchOptions): (Vector3 | undefined);
    public containsBiomes(volume: BlockVolumeBase, biomeFilter: BiomeFilter, isSuperset: boolean): boolean;
    public containsBlock(volume: BlockVolumeBase, filter: BlockFilter, allowUnloadedChunks?: boolean): boolean;
    public createExplosion(location: Vector3, radius: number, explosionOptions?: ExplosionOptions): boolean;

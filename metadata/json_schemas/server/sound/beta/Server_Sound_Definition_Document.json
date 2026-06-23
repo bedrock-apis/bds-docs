@@ -3,6 +3,46 @@
    "$id": "4115391460",
    "x-format-version": "beta",
    "definitions": {
+      "507846529": {
+         "title": "Server Sound Music Info",
+         "type": "object",
+         "properties": {
+            "artist": {
+               "type": "string"
+            },
+            "genres": {
+               "type": "array",
+               "items": {
+                  "type": "string"
+               }
+            },
+            "moods": {
+               "type": "array",
+               "items": {
+                  "type": "string"
+               }
+            },
+            "title": {
+               "type": "string"
+            }
+         }
+      },
+      "2036701363": {
+         "title": "Server Sound Tag Value List",
+         "oneOf": [
+            {
+               "type": "array",
+               "items": {
+                  "type": "string",
+                  "pattern": "^\\S+$"
+               }
+            },
+            {
+               "type": "string",
+               "pattern": "^\\S+$"
+            }
+         ]
+      },
       "2103472662": {
          "title": "Server Sound Duration Info",
          "type": "object",
@@ -31,10 +71,23 @@
             "duration_info": {
                "$ref": "#/definitions/2103472662"
             },
+            "music_info": {
+               "$ref": "#/definitions/507846529"
+            },
             "sound_event_name": {
                "type": "string",
                "pattern": "^\\S+$",
                "x-regex-flags": "ECMAScript,icase"
+            },
+            "tags": {
+               "type": "object",
+               "propertyNames": {
+                  "type": "string",
+                  "pattern": "^\\S+$"
+               },
+               "additionalProperties": {
+                  "$ref": "#/definitions/2036701363"
+               }
             }
          },
          "required": [

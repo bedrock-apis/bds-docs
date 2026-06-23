@@ -1124,6 +1124,24 @@ export interface ScoreboardObjectiveDisplayOptions {
 export interface ScriptEventMessageFilterOptions {
    namespaces: Array<string>;
 }
+export interface SoundDefinitionDurationInfo {
+   duration: number;
+}
+export interface SoundDefinitionFilter {
+   artists?: Array<string>;
+   genres?: Array<string>;
+   maxDuration?: number;
+   minDuration?: number;
+   moods?: Array<string>;
+   tags?: Record<string,Array<string>>;
+   titles?: Array<string>;
+}
+export interface SoundDefinitionMusicInfo {
+   artist?: string;
+   genres?: Array<string>;
+   moods?: Array<string>;
+   title?: string;
+}
 export interface SpawnEntityOptions {
    initialPersistence?: boolean;
    initialRotation?: number;
@@ -1810,11 +1828,11 @@ export class Dimension {
    public readonly heightRange: common.NumberRange;
    public readonly id: string;
    public readonly localizationKey: string;
+   public calculateClosestBiomeFromSeed(pos: Vector3, biomeToFind: BiomeType | string, options?: BiomeSearchOptions): (Vector3 | undefined);
    public containsBiomes(volume: BlockVolumeBase, biomeFilter: BiomeFilter, isSuperset: boolean): boolean;
    public containsBlock(volume: BlockVolumeBase, filter: BlockFilter, allowUnloadedChunks?: boolean): boolean;
    public createExplosion(location: Vector3, radius: number, explosionOptions?: ExplosionOptions): boolean;
    public fillBlocks(volume: BlockVolumeBase, block: BlockPermutation | BlockType | string, options?: BlockFillOptions): ListBlockVolume;
-   public findClosestBiome(pos: Vector3, biomeToFind: BiomeType | string, options?: BiomeSearchOptions): (Vector3 | undefined);
    public getBiome(location: Vector3): BiomeType;
    public getBlock(location: Vector3): (Block | undefined);
    public getBlockAbove(location: Vector3, options?: BlockRaycastOptions): (Block | undefined);
@@ -3408,7 +3426,7 @@ export class Player extends Entity {
    public getSplitScreenSlot(): (PlayerSplitScreenSlot | undefined);
    public getTotalXp(): number;
    public playMusic(trackId: string, musicOptions?: MusicOptions): void;
-   public playSound(soundId: string, soundOptions?: PlayerSoundOptions): SoundInstance;
+   public playSound(soundId: SoundDefinition | string, soundOptions?: PlayerSoundOptions): SoundInstance;
    public postClientMessage(id: string, value: string): void;
    public queueMusic(trackId: string, musicOptions?: MusicOptions): void;
    public removePropertyOverrideForEntity(targetEntity: Entity, identifier: string): void;
@@ -4036,6 +4054,17 @@ export class SoundCompletedAfterEventSignal {
    public unsubscribe(callback: (arg0: SoundCompletedAfterEvent)=>void): void;
    private constructor();
 }
+export class SoundDefinition {
+   public readonly durationInfo?: SoundDefinitionDurationInfo;
+   public readonly musicInfo?: SoundDefinitionMusicInfo;
+   public readonly soundEventId: string;
+   public readonly tags?: Record<string,Array<string>>;
+   private constructor();
+}
+export class SoundDefinitionRegistry {
+   public getDefinitions(filter?: SoundDefinitionFilter): Array<SoundDefinition>;
+   private constructor();
+}
 export class SoundDurationInfo {
    public readonly duration: number;
    public readonly isActive: boolean;
@@ -4235,6 +4264,7 @@ export class World {
    public readonly primitiveShapesManager: PrimitiveShapesManager;
    public readonly scoreboard: Scoreboard;
    public readonly seed: string;
+   public readonly soundDefinitionRegistry: SoundDefinitionRegistry;
    public readonly structureManager: StructureManager;
    public readonly tickingAreaManager: TickingAreaManager;
    public broadcastClientMessage(id: string, value: string): void;

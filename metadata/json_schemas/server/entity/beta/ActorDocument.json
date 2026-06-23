@@ -901,7 +901,20 @@
             },
             "eat_and_replace_block_pairs": {
                "type": "array",
-               "default": [],
+               "default": [
+                  {
+                     "eat_block": "grass",
+                     "replace_block": "dirt"
+                  },
+                  {
+                     "eat_block": "short_grass",
+                     "replace_block": "air"
+                  },
+                  {
+                     "eat_block": "fern",
+                     "replace_block": "air"
+                  }
+               ],
                "items": {
                   "$ref": "#/definitions/2030678645"
                }
@@ -3160,6 +3173,10 @@
                "default": 0
             }
          }
+      },
+      "530117858": {
+         "title": "Game Event Sensor Component Definition",
+         "type": "object"
       },
       "544590182": {
          "title": "minecraft:behavior.circle_around_anchor",
@@ -8722,6 +8739,28 @@
             }
          }
       },
+      "1691946651": {
+         "title": "JumpDataDefinition",
+         "type": "object",
+         "properties": {
+            "animation_duration": {
+               "type": "integer",
+               "default": 1
+            },
+            "distance_scale": {
+               "type": "number",
+               "default": 1
+            },
+            "height": {
+               "type": "number",
+               "default": 0.10000000149011612
+            },
+            "jump_delay": {
+               "type": "integer",
+               "default": 30
+            }
+         }
+      },
       "1716327736": {
          "title": "minecraft:behavior.aquatic_charge_attack",
          "type": "object",
@@ -10149,10 +10188,10 @@
                "$ref": "#/definitions/2618324724"
             },
             "minecraft:jump.dynamic": {
-               "description": "Dynamic value"
+               "$ref": "#/definitions/2777369782"
             },
             "minecraft:jump.static": {
-               "description": "Dynamic value"
+               "$ref": "#/definitions/2897391435"
             },
             "minecraft:knockback_resistance": {
                "description": "Dynamic value"
@@ -10187,8 +10226,8 @@
             "minecraft:memory_behavior.follow_target": {
                "description": "Dynamic value"
             },
-            "minecraft:memory_sensor.find_nearest_poi": {
-               "description": "Dynamic value"
+            "minecraft:memory_sensor.game_event": {
+               "$ref": "#/definitions/530117858"
             },
             "minecraft:memory_sensor.in_range_of_entity": {
                "description": "Dynamic value"
@@ -10258,6 +10297,9 @@
             },
             "minecraft:navigation.walk": {
                "description": "Dynamic value"
+            },
+            "minecraft:not_pickable_from_inside": {
+               "$ref": "#/definitions/4157830479"
             },
             "minecraft:npc": {
                "description": "Dynamic value"
@@ -13729,6 +13771,30 @@
             }
          }
       },
+      "2777369782": {
+         "title": "minecraft:jump.dynamic",
+         "type": "object",
+         "properties": {
+            "fast_skip_data": {
+               "default": {
+                  "distance_scale": 1,
+                  "animation_duration": 1,
+                  "height": 0.10000000149011612,
+                  "jump_delay": 30
+               },
+               "$ref": "#/definitions/1691946651"
+            },
+            "regular_skip_data": {
+               "default": {
+                  "distance_scale": 1,
+                  "animation_duration": 1,
+                  "height": 0.10000000149011612,
+                  "jump_delay": 30
+               },
+               "$ref": "#/definitions/1691946651"
+            }
+         }
+      },
       "2781338975": {
          "title": "minecraft:on_target_acquired",
          "type": "object",
@@ -14280,6 +14346,16 @@
       },
       "2885091915": {
          "title": "IsChargedDefinition"
+      },
+      "2897391435": {
+         "title": "minecraft:jump.static",
+         "type": "object",
+         "properties": {
+            "jump_power": {
+               "type": "number",
+               "default": 0.41999998688697815
+            }
+         }
       },
       "2909051087": {
          "title": "minecraft:behavior.run_around_like_crazy",
@@ -18468,6 +18544,9 @@
                "$ref": "#/definitions/2566306602"
             }
          }
+      },
+      "4157830479": {
+         "title": "NotPickableFromInsideDefinition"
       },
       "4182987204": {
          "title": "minecraft:behavior.work",

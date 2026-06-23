@@ -2,7 +2,7 @@
    "$schema": "http://json-schema.org/draft-07/schema#",
    "$id": "1727225415",
    "x-format-version": "MISSING VERSION",
-   "x-protocol-version": 2144,
+   "x-protocol-version": 2164,
    "definitions": {
       "866683631": {
          "title": "DisconnectPacketMessages",
@@ -188,7 +188,10 @@
             "EditorJoinIntentPolicyFailure",
             "NetherNetIdentityNotAllowed",
             "InvalidName",
-            "ExpiredToken"
+            "ExpiredToken",
+            "HostAcceptsNoTypeOfAuth",
+            "NotAuthenticatedFastFail",
+            "EditorNotAllowed"
          ],
          "x-underlying-type": "int32",
          "x-serialization-options": [
@@ -201,5 +204,9 @@
    "required": [
       "Messages",
       "Reason"
-   ]
+   ],
+   "$metaProperties": {
+      "[cereal:packet]": 5,
+      "[cereal:packet_details]": ""
+   }
 }

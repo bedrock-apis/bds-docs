@@ -321,6 +321,10 @@ export enum WidgetGizmoEventType {
    OriginMoved = "OriginMoved",
    OriginReleased = "OriginReleased",
 }
+export enum WidgetGizmoScaleMode {
+   Screen = 1,
+   World = 0,
+}
 export enum WidgetGroupSelectionMode {
    Multiple = "Multiple",
    None = "None",
@@ -535,6 +539,7 @@ export interface WidgetComponentBoundingBoxOptions extends WidgetComponentBaseOp
    normalizedOrigin?: server.Vector3;
    outlineColor?: server.RGBA;
    rotation?: server.StructureRotation;
+   scaleMode?: WidgetGizmoScaleMode;
    showWorldIntersections?: boolean;
    stateChangeEvent?: (arg0: WidgetComponentBoundingBoxStateChangeEventParameters)=>void;
    visibleHull?: boolean;
@@ -562,6 +567,7 @@ export interface WidgetComponentGizmoOptions extends WidgetComponentBaseOptions 
    axes?: Axis;
    enablePlanes?: boolean;
    normalizedAutoOffset?: server.Vector3;
+   scaleMode?: WidgetGizmoScaleMode;
    stateChangeEvent?: (arg0: WidgetComponentGizmoStateChangeEventParameters)=>void;
 }
 //@ts-ignore
@@ -1196,6 +1202,9 @@ export class WidgetComponentGizmo extends WidgetComponentBase {
    public activated: boolean;
    public enabledAxes: Axis;
    public normalizedOffsetOverride?: server.Vector3;
+   public scaleMode: WidgetGizmoScaleMode;
+   public screenScale: number;
+   public worldScale: number;
    public setStateChangeEvent(eventFunction?: (arg0: WidgetComponentGizmoStateChangeEventParameters)=>void): void;
    private constructor();
 }

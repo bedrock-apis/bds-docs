@@ -2,7 +2,7 @@
    "$schema": "http://json-schema.org/draft-07/schema#",
    "$id": "1289969989",
    "x-format-version": "MISSING VERSION",
-   "x-protocol-version": 2144,
+   "x-protocol-version": 2164,
    "title": "ClientCacheBlobStatusPacket",
    "type": "object",
    "properties": {
@@ -30,5 +30,9 @@
    "required": [
       "Found Ids",
       "Missing Ids"
-   ]
+   ],
+   "$metaProperties": {
+      "[cereal:packet]": 135,
+      "[cereal:packet_details]": "Sent periodically by the client to update the server on which blob it has (ACK) and which blobs it is lacking (MISS)."
+   }
 }
