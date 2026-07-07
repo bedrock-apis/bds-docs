@@ -1,128 +1,17 @@
 {
-   "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "195357529",
-   "x-format-version": "1.21.50",
-   "definitions": {
-      "84316499": {
-         "title": "CameraAimAssistCategory Identifier",
-         "type": "string"
-      },
-      "1414832143": {
-         "title": "CameraAimAssistCategoryPriorities",
-         "type": "object",
-         "properties": {
-            "block_default": {
-               "type": "integer",
-               "minimum": 0,
-               "maximum": 100
-            },
-            "block_tags": {
-               "type": "object",
-               "additionalProperties": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 100
-               },
-               "default": {}
-            },
-            "blocks": {
-               "type": "object",
-               "additionalProperties": {
-                  "type": "object",
-                  "properties": {
-                     "key": {
-                        "$ref": "#/definitions/3152646801"
-                     },
-                     "value": {
-                        "type": "integer"
-                     }
-                  },
-                  "minimum": 0,
-                  "maximum": 100
-               },
-               "default": []
-            },
-            "entities": {
-               "type": "object",
-               "additionalProperties": {
-                  "type": "object",
-                  "properties": {
-                     "key": {
-                        "$ref": "#/definitions/2033610203"
-                     },
-                     "value": {
-                        "type": "integer"
-                     }
-                  },
-                  "minimum": 0,
-                  "maximum": 100
-               },
-               "default": []
-            },
-            "entity_default": {
-               "type": "integer",
-               "minimum": 0,
-               "maximum": 100
-            },
-            "entity_type_families": {
-               "type": "object",
-               "additionalProperties": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 100
-               },
-               "default": {}
-            }
-         }
-      },
-      "2033610203": {
-         "title": "Entity Reference",
-         "type": "string"
-      },
-      "2242964250": {
-         "title": "CameraAimAssistCategoriesDefinition",
-         "type": "object",
-         "properties": {
-            "categories": {
-               "type": "array",
-               "items": {
-                  "$ref": "#/definitions/3012995618"
-               }
-            }
-         },
-         "required": [
-            "categories"
-         ]
-      },
-      "3012995618": {
-         "title": "CameraAimAssistCategoryDefinition",
-         "type": "object",
-         "properties": {
-            "name": {
-               "$ref": "#/definitions/84316499"
-            },
-            "priorities": {
-               "$ref": "#/definitions/1414832143"
-            }
-         },
-         "required": [
-            "name",
-            "priorities"
-         ]
-      },
-      "3152646801": {
-         "title": "Block Reference",
-         "type": "string"
-      }
-   },
    "title": "minecraft:aim_assist_categories",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/camera/1.21.50/Camera%20Aim-Assist%20Categories.json",
+   "x-format-version": "1.21.50",
    "type": "object",
    "properties": {
       "format_version": {
-         "type": "string"
+         "type": "string",
+         "x-ordinal-index": 0
       },
       "minecraft:aim_assist_categories": {
-         "$ref": "#/definitions/2242964250"
+         "$ref": "./CameraAimAssistCategoriesDefinition.json",
+         "x-ordinal-index": 1
       }
    },
    "required": [

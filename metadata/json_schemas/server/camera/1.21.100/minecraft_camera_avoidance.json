@@ -1,0 +1,39 @@
+{
+   "title": "minecraft:camera_avoidance",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/camera/1.21.100/minecraft_camera_avoidance.json",
+   "x-format-version": "1.21.100",
+   "type": "object",
+   "properties": {
+      "avoidance_rays_horizontal": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "./ray.json"
+         },
+         "x-ordinal-index": 2
+      },
+      "avoidance_rays_vertical": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "./ray.json"
+         },
+         "x-ordinal-index": 3
+      },
+      "distance_constraint_min": {
+         "type": "number",
+         "default": 0,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 1,
+         "minimum": 0
+      },
+      "relax_distance_smoothing_spring": {
+         "type": "number",
+         "default": 4,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 0,
+         "minimum": 0
+      }
+   }
+}

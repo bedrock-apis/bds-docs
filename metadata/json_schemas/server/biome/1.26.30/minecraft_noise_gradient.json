@@ -1,0 +1,39 @@
+{
+   "title": "minecraft:noise_gradient",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/biome/1.26.30/minecraft_noise_gradient.json",
+   "x-format-version": "1.26.30",
+   "type": "object",
+   "properties": {
+      "noise_block_specifiers": {
+         "type": "array",
+         "items": {
+            "$ref": "./NoiseBlockSpecifier.json"
+         },
+         "x-ordinal-index": 3,
+         "minItems": 1
+      },
+      "noise_descriptor": {
+         "$ref": "./NoiseDescriptor.json",
+         "x-ordinal-index": 0
+      },
+      "non_replaceable_blocks": {
+         "type": "array",
+         "items": {
+            "$ref": "../../../client_server/common/1.21.20/Block%20Specifier.json"
+         },
+         "x-ordinal-index": 2
+      },
+      "type": {
+         "const": "minecraft:noise_gradient",
+         "$ref": "../1.21.110/SurfaceBuilderType.json",
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 1
+      }
+   },
+   "required": [
+      "noise_block_specifiers",
+      "noise_descriptor",
+      "type"
+   ]
+}

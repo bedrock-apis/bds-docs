@@ -1,0 +1,77 @@
+{
+   "title": "minecraft:behavior.timer_flag_1",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/entity/1.26.0/minecraft_behavior.timer_flag_1.json",
+   "x-format-version": "1.26.0",
+   "type": "object",
+   "properties": {
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "../1.21.90/Goal's%20control%20flags.json",
+            "x-underlying-type": "int32"
+         },
+         "x-ordinal-index": 5
+      },
+      "cooldown_range": {
+         "default": {
+            "min": 0,
+            "max": 0
+         },
+         "$ref": "../../../client_server/common/legacy/FloatRange.json",
+         "x-ordinal-index": 1
+      },
+      "duration_range": {
+         "default": {
+            "min": 0,
+            "max": 0
+         },
+         "$ref": "../../../client_server/common/legacy/FloatRange.json",
+         "x-ordinal-index": 0
+      },
+      "on_end": {
+         "default": {
+            "event": "",
+            "target": "self",
+            "filters": {
+               "OR": null,
+               "all": null,
+               "all_of": null,
+               "AND": null,
+               "any_of": null,
+               "none_of": null,
+               "any": null,
+               "NOT": null
+            }
+         },
+         "$ref": "../1.21.120/ActorDefinitionTrigger.json",
+         "x-ordinal-index": 3
+      },
+      "on_start": {
+         "default": {
+            "event": "",
+            "target": "self",
+            "filters": {
+               "OR": null,
+               "all": null,
+               "all_of": null,
+               "AND": null,
+               "any_of": null,
+               "none_of": null,
+               "any": null,
+               "NOT": null
+            }
+         },
+         "$ref": "../1.21.120/ActorDefinitionTrigger.json",
+         "x-ordinal-index": 2
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 4,
+         "minimum": 0
+      }
+   }
+}

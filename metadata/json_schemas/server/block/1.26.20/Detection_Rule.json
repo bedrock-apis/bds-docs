@@ -1,0 +1,38 @@
+{
+   "title": "Detection Rule",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/block/1.26.20/Detection%20Rule.json",
+   "x-format-version": "1.26.20",
+   "type": "object",
+   "properties": {
+      "can_contain_liquid": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 1
+      },
+      "liquid_type": {
+         "default": "water",
+         "$ref": "./Liquid%20Type.json",
+         "x-underlying-type": "uint8",
+         "x-ordinal-index": 0
+      },
+      "on_liquid_touches": {
+         "default": "blocking",
+         "$ref": "./Liquid%20Reaction.json",
+         "x-underlying-type": "uint8",
+         "x-ordinal-index": 2
+      },
+      "stops_liquid_flowing_from_direction": {
+         "default": [],
+         "$ref": "./Blocked%20Directions.json",
+         "x-ordinal-index": 3
+      },
+      "use_liquid_clipping": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 4
+      }
+   }
+}

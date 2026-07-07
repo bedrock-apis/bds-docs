@@ -1,192 +1,37 @@
 {
-   "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "3171614992",
-   "x-format-version": "1.21.40",
-   "definitions": {
-      "330384673": {
-         "title": "minecraft:ambient_sounds",
-         "type": "object",
-         "properties": {
-            "addition": {
-               "default": "",
-               "$ref": "#/definitions/2659174151"
-            },
-            "loop": {
-               "default": "",
-               "$ref": "#/definitions/2659174151"
-            },
-            "mood": {
-               "default": "",
-               "$ref": "#/definitions/2659174151"
-            }
-         }
-      },
-      "870255959": {
-         "title": "Foliage Color Map",
-         "type": "object",
-         "properties": {
-            "color_map": {
-               "title": "Foliage Colormap",
-               "type": "string",
-               "enum": [
-                  "foliage",
-                  "birch",
-                  "evergreen",
-                  "mangrove_swamp_foliage",
-                  "swamp_foliage"
-               ]
-            }
-         },
-         "required": [
-            "color_map"
-         ]
-      },
-      "1383421789": {
-         "title": "Grass Color Map",
-         "type": "object",
-         "properties": {
-            "color_map": {
-               "title": "Grass Colormap",
-               "type": "string",
-               "enum": [
-                  "grass",
-                  "swamp_grass"
-               ]
-            }
-         },
-         "required": [
-            "color_map"
-         ]
-      },
-      "2022750183": {
-         "title": "Color255RGB",
-         "oneOf": [
-            {
-               "type": "string",
-               "pattern": "^#[a-fA-F0-9]{6}$"
-            },
-            {
-               "type": "array",
-               "items": {
-                  "type": "integer"
-               },
-               "minItems": 3,
-               "maxItems": 3
-            }
-         ],
-         "$metaProperties": {
-            "CEREAL_EDITOR_SCHEMA_TAG": "type:color"
-         }
-      },
-      "2098133709": {
-         "title": "minecraft:grass_appearance",
-         "type": "object",
-         "properties": {
-            "color": {
-               "oneOf": [
-                  {
-                     "$ref": "#/definitions/2022750183"
-                  },
-                  {
-                     "$ref": "#/definitions/1383421789"
-                  }
-               ]
-            }
-         }
-      },
-      "2108919008": {
-         "title": "minecraft:water_appearance",
-         "type": "object",
-         "properties": {
-            "surface_color": {
-               "$ref": "#/definitions/2022750183"
-            },
-            "surface_opacity": {
-               "type": "number"
-            }
-         }
-      },
-      "2659174151": {
-         "title": "Sound Reference",
-         "type": "string"
-      },
-      "2743734287": {
-         "title": "minecraft:fog_appearance",
-         "type": "object",
-         "properties": {
-            "fog_identifier": {
-               "$ref": "#/definitions/2902448198"
-            }
-         },
-         "required": [
-            "fog_identifier"
-         ]
-      },
-      "2902448198": {
-         "title": "Fog Reference",
-         "type": "string"
-      },
-      "3162481886": {
-         "title": "minecraft:biome_music",
-         "type": "object",
-         "properties": {
-            "volume_multiplier": {
-               "type": "number"
-            }
-         }
-      },
-      "3912488947": {
-         "title": "minecraft:sky_color",
-         "type": "object",
-         "properties": {
-            "sky_color": {
-               "$ref": "#/definitions/2022750183"
-            }
-         },
-         "required": [
-            "sky_color"
-         ]
-      },
-      "4162492920": {
-         "title": "minecraft:foliage_appearance",
-         "type": "object",
-         "properties": {
-            "color": {
-               "oneOf": [
-                  {
-                     "$ref": "#/definitions/2022750183"
-                  },
-                  {
-                     "$ref": "#/definitions/870255959"
-                  }
-               ]
-            }
-         }
-      }
-   },
    "title": "Client Biome Components",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client/biome/1.21.40/Client%20Biome%20Components.json",
+   "x-format-version": "1.21.40",
    "type": "object",
    "properties": {
       "minecraft:ambient_sounds": {
-         "$ref": "#/definitions/330384673"
+         "$ref": "./minecraft_ambient_sounds.json",
+         "x-ordinal-index": 0
       },
       "minecraft:biome_music": {
-         "$ref": "#/definitions/3162481886"
+         "$ref": "./minecraft_biome_music.json",
+         "x-ordinal-index": 4
       },
       "minecraft:fog_appearance": {
-         "$ref": "#/definitions/2743734287"
+         "$ref": "./minecraft_fog_appearance.json",
+         "x-ordinal-index": 1
       },
       "minecraft:foliage_appearance": {
-         "$ref": "#/definitions/4162492920"
+         "$ref": "./minecraft_foliage_appearance.json",
+         "x-ordinal-index": 2
       },
       "minecraft:grass_appearance": {
-         "$ref": "#/definitions/2098133709"
+         "$ref": "./minecraft_grass_appearance.json",
+         "x-ordinal-index": 3
       },
       "minecraft:sky_color": {
-         "$ref": "#/definitions/3912488947"
+         "$ref": "./minecraft_sky_color.json",
+         "x-ordinal-index": 5
       },
       "minecraft:water_appearance": {
-         "$ref": "#/definitions/2108919008",
+         "$ref": "./minecraft_water_appearance.json",
+         "x-ordinal-index": 6,
          "x-runtime-constraint-description": "Make sure that at least either the surface color or the opacity is specified"
       }
    }

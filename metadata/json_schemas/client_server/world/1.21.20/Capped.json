@@ -1,0 +1,52 @@
+{
+   "title": "Capped",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client_server/world/1.21.20/Capped.json",
+   "x-format-version": "1.21.20",
+   "type": "object",
+   "properties": {
+      "delegate": {
+         "oneOf": [
+            {
+               "$ref": "./BlockRules.json"
+            },
+            {
+               "$ref": "./BlockIgnore.json"
+            },
+            {
+               "$ref": "./Protected%20Block.json"
+            }
+         ],
+         "x-control-value-type": "uint32",
+         "x-ordinal-index": 1
+      },
+      "limit": {
+         "oneOf": [
+            {
+               "type": "integer",
+               "x-underlying-type": "int32",
+               "x-ordinal-index": 0
+            },
+            {
+               "$ref": "./ConstantIntProvider.json"
+            },
+            {
+               "$ref": "./UniformIntProvider.json"
+            }
+         ],
+         "x-control-value-type": "uint32",
+         "x-ordinal-index": 2
+      },
+      "processor_type": {
+         "const": "minecraft:capped",
+         "$ref": "./Jigsaw%20Processro%20Type.json",
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 0
+      }
+   },
+   "required": [
+      "delegate",
+      "limit",
+      "processor_type"
+   ]
+}

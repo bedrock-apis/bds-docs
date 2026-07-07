@@ -1,100 +1,24 @@
 {
-   "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "473143217",
-   "x-format-version": "1.21.20",
-   "definitions": {
-      "325860804": {
-         "title": "Structure",
-         "type": "object",
-         "properties": {
-            "structure": {
-               "$ref": "#/definitions/1130472626"
-            },
-            "weight": {
-               "type": "integer",
-               "minimum": 1,
-               "maximum": 200
-            }
-         },
-         "required": [
-            "structure",
-            "weight"
-         ]
-      },
-      "1130472626": {
-         "title": "JigsawStructure Reference",
-         "type": "string"
-      },
-      "1429402238": {
-         "title": "RandomSpreadPlacement",
-         "type": "object",
-         "properties": {
-            "salt": {
-               "type": "integer"
-            },
-            "separation": {
-               "type": "integer",
-               "minimum": 0
-            },
-            "spacing": {
-               "type": "integer",
-               "minimum": 1
-            },
-            "spread_type": {
-               "title": "SpreadType",
-               "type": "string",
-               "default": "linear",
-               "enum": [
-                  "linear",
-                  "triangular"
-               ]
-            },
-            "type": {
-               "title": "PlacementType",
-               "type": "string",
-               "enum": [
-                  "minecraft:random_spread"
-               ]
-            }
-         },
-         "required": [
-            "salt",
-            "separation",
-            "spacing",
-            "type"
-         ]
-      },
-      "2045490702": {
-         "title": "JigsawStructureSet Identifier",
-         "type": "string"
-      },
-      "3424758051": {
-         "title": "Jigsaw Structure Set Description",
-         "type": "object",
-         "properties": {
-            "identifier": {
-               "$ref": "#/definitions/2045490702"
-            }
-         },
-         "required": [
-            "identifier"
-         ]
-      }
-   },
    "title": "A Jigsaw Structure Set is a collection of Jigsaw Structures that are placed according to a set of rules.",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client_server/world/1.21.20/Structure%20Set.json",
+   "x-format-version": "1.21.20",
    "type": "object",
    "properties": {
       "description": {
-         "$ref": "#/definitions/3424758051"
+         "$ref": "./Jigsaw%20Structure%20Set%20Description.json",
+         "x-ordinal-index": 0
       },
       "placement": {
-         "$ref": "#/definitions/1429402238"
+         "$ref": "./RandomSpreadPlacement.json",
+         "x-ordinal-index": 1
       },
       "structures": {
          "type": "array",
          "items": {
-            "$ref": "#/definitions/325860804"
-         }
+            "$ref": "./Structure.json"
+         },
+         "x-ordinal-index": 2
       }
    },
    "required": [

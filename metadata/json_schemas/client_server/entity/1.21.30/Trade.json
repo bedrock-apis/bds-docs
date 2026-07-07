@@ -1,0 +1,55 @@
+{
+   "title": "Trade",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client_server/entity/1.21.30/Trade.json",
+   "x-format-version": "1.21.30",
+   "type": "object",
+   "properties": {
+      "gives": {
+         "type": "array",
+         "items": {
+            "$ref": "./TradeItemList.json"
+         },
+         "x-ordinal-index": 1,
+         "minItems": 1
+      },
+      "max_uses": {
+         "type": "integer",
+         "default": 7,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 3
+      },
+      "reward_exp": {
+         "type": "boolean",
+         "default": true,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 4
+      },
+      "trader_exp": {
+         "type": "integer",
+         "default": 1,
+         "x-underlying-type": "uint32",
+         "x-ordinal-index": 2,
+         "minimum": 0
+      },
+      "wants": {
+         "type": "array",
+         "items": {
+            "$ref": "./TradeItemList.json"
+         },
+         "x-ordinal-index": 0,
+         "minItems": 1
+      },
+      "weight": {
+         "type": "integer",
+         "default": 1,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 5,
+         "minimum": 1
+      }
+   },
+   "required": [
+      "gives",
+      "wants"
+   ]
+}

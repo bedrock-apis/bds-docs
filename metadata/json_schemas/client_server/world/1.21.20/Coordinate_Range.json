@@ -1,0 +1,46 @@
+{
+   "title": "Coordinate Range",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client_server/world/1.21.20/Coordinate%20Range.json",
+   "x-format-version": "1.21.20",
+   "oneOf": [
+      {
+         "$ref": "../../common/legacy/Expression%20Node.json"
+      },
+      {
+         "type": "object",
+         "properties": {
+            "distribution": {
+               "$ref": "./Random%20Distribution%20Type.json",
+               "x-underlying-type": "int32",
+               "x-ordinal-index": 0
+            },
+            "extent": {
+               "type": "array",
+               "items": {
+                  "$ref": "../../common/legacy/Expression%20Node.json"
+               },
+               "x-ordinal-index": 3,
+               "minItems": 2,
+               "maxItems": 2
+            },
+            "grid_offset": {
+               "type": "integer",
+               "x-underlying-type": "int32",
+               "x-ordinal-index": 2,
+               "minimum": 0
+            },
+            "step_size": {
+               "type": "integer",
+               "x-underlying-type": "int32",
+               "x-ordinal-index": 1,
+               "minimum": 1
+            }
+         },
+         "required": [
+            "distribution",
+            "extent"
+         ]
+      }
+   ]
+}

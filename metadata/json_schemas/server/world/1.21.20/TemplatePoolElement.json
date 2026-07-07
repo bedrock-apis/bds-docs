@@ -1,0 +1,35 @@
+{
+   "title": "TemplatePoolElement",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/world/1.21.20/TemplatePoolElement.json",
+   "x-format-version": "1.21.20",
+   "type": "object",
+   "properties": {
+      "element": {
+         "oneOf": [
+            {
+               "$ref": "./EmptyPoolElement.json"
+            },
+            {
+               "$ref": "./SinglePoolElement.json"
+            },
+            {
+               "$ref": "./FeaturePoolElement.json"
+            }
+         ],
+         "x-control-value-type": "uint32",
+         "x-ordinal-index": 0
+      },
+      "weight": {
+         "type": "integer",
+         "default": 1,
+         "x-underlying-type": "uint8",
+         "x-ordinal-index": 1,
+         "minimum": 1,
+         "maximum": 200
+      }
+   },
+   "required": [
+      "element"
+   ]
+}

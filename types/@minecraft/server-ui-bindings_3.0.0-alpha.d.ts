@@ -44,6 +44,8 @@ export interface DropdownOptions {
    visible?: boolean | ObservableBoolean;
 }
 export interface ImageOptions {
+   onClick?: ()=>void;
+   tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
    visible?: boolean | ObservableBoolean;
    width?: number | ObservableNumber;
 }

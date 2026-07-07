@@ -1,0 +1,29 @@
+{
+   "title": "JigsawStructureMetadataRegistry",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client_server/structure/1.21.50/JigsawStructureMetadataRegistry.json",
+   "x-format-version": "1.21.50",
+   "type": "object",
+   "properties": {
+      "metadata": {
+         "type": "object",
+         "additionalProperties": {
+            "type": "object",
+            "properties": {
+               "key": {
+                  "type": "integer",
+                  "x-underlying-type": "uint64",
+                  "minimum": 0
+               },
+               "value": {
+                  "$ref": "./JigsawStructureMetadata.json"
+               }
+            }
+         },
+         "x-ordinal-index": 0
+      }
+   },
+   "required": [
+      "metadata"
+   ]
+}

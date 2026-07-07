@@ -347,6 +347,14 @@ export interface BlockMaskList {
    blockList: Array<server.BlockPermutation | server.BlockType | string>;
    maskType: BlockMaskListType;
 }
+export interface BlockUtilityManifest {
+   entries: Array<BlockUtilityManifestEntry>;
+   totalBlocks: number;
+}
+export interface BlockUtilityManifestEntry {
+   blockIdentifier: string;
+   count: number;
+}
 export interface ClipboardWriteOptions {
    excludeAirBlocks?: boolean;
    mirror?: server.StructureMirrorAxis;
@@ -678,9 +686,9 @@ export class BlockPaletteSelectedItemChangeAfterEventSignal {
    private constructor();
 }
 export class BlockUtilities {
-   public fillVolume(volume: server.BlockVolumeBase | server.CompoundBlockVolume | RelativeVolumeListBlockVolume, block?: server.BlockPermutation | server.BlockType | string): void;
+   public fillVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, block?: server.BlockPermutation | server.BlockType | string): void;
    public findObscuredBlocksWithinVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume): RelativeVolumeListBlockVolume;
-   public getContiguousSelection(properties?: ContiguousSelectionProperties): server.CompoundBlockVolume;
+   public getContiguousSelection(properties?: ContiguousSelectionProperties): RelativeVolumeListBlockVolume;
    public getDimensionLocationBoundingBox(): server.BlockBoundingBox;
    public getDimensionMaxLocation(): server.Vector3;
    public getDimensionMinLocation(): server.Vector3;
@@ -689,6 +697,15 @@ export class BlockUtilities {
    public quickExtrude(properties?: QuickExtrudeProperties): void;
    public shrinkWrapVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume): RelativeVolumeListBlockVolume;
    public trimVolumeToFitContents(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, retainMarqueeAfterTrimming: boolean, ignoreLiquid: boolean, ignoreNoCollision: boolean, blockMask?: BlockMaskList): RelativeVolumeListBlockVolume;
+   private constructor();
+}
+export class BlockUtilityTasks {
+   public fillVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, block?: server.BlockPermutation | server.BlockType | string, maxBlocksPerTick?: number): Promise<number>;
+   public findObscuredBlocksWithinVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, maxBlocksPerTick?: number): Promise<RelativeVolumeListBlockVolume>;
+   public generateManifest(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, maxBlocksPerTick?: number): Promise<BlockUtilityManifest>;
+   public replaceBlocksInSelection(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, fromBlockIdentifier: string, toBlock?: server.BlockPermutation | server.BlockType | string, maxBlocksPerTick?: number): Promise<number>;
+   public shrinkWrapVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, maxBlocksPerTick?: number): Promise<RelativeVolumeListBlockVolume>;
+   public trimVolumeToFitContents(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, retainMarqueeAfterTrimming: boolean, ignoreLiquid: boolean, ignoreNoCollision: boolean, blockMask?: BlockMaskList, maxBlocksPerTick?: number): Promise<RelativeVolumeListBlockVolume>;
    private constructor();
 }
 export class BrushShapeManager {
@@ -719,6 +736,7 @@ export class BrushShapeManager {
    public setFlattenSmoothing(flattenSmoothing: number): void;
    public setFloorBlockOverride(floorBlockOverride: boolean): void;
    public setInverseEraseMode(inverseEraseMode: boolean): void;
+   public setPendingTransaction(pendingTransaction?: PendingTransaction): void;
    public setTerrainStrength(terrainStrength: number): void;
    public singlePaint(onComplete: (arg0: PaintCompletionState)=>void): void;
    public switchBrushPaintMode(paintMode: PaintMode): void;
@@ -744,7 +762,7 @@ export class ClipboardItem {
    public getPredictedWriteVolume(location: server.Vector3, options?: ClipboardWriteOptions): RelativeVolumeListBlockVolume;
    public readFromStructure(structure: EditorStructure): void;
    public readFromWorld(source: server.BlockVolumeBase | RelativeVolumeListBlockVolume): void;
-   public writeToWorld(location: server.Vector3, options?: ClipboardWriteOptions): boolean;
+   public writeToWorld(location: server.Vector3, options?: ClipboardWriteOptions, transaction?: PendingTransaction): boolean;
    private constructor();
 }
 export class ClipboardManager {
@@ -855,6 +873,7 @@ export class ExtensionContext {
    public readonly afterEvents: ExtensionContextAfterEvents;
    public readonly blockPalette: BlockPaletteManager;
    public readonly blockUtilities: BlockUtilities;
+   public readonly blockUtilityTasks: BlockUtilityTasks;
    public readonly brushShapeManager: BrushShapeManager;
    public readonly clipboardManager: ClipboardManager;
    public readonly cursor: Cursor;
@@ -962,6 +981,19 @@ export class ModeChangeAfterEvent {
 export class ModeChangeAfterEventSignal {
    public subscribe(callback: (arg0: ModeChangeAfterEvent)=>void): (arg0: ModeChangeAfterEvent)=>void;
    public unsubscribe(callback: (arg0: ModeChangeAfterEvent)=>void): void;
+   private constructor();
+}
+export class PendingTransaction {
+   public addEntityOperation(entity: server.Entity, type: EntityOperationType): boolean;
+   public addUserDefinedOperation(transactionHandlerId: UserDefinedTransactionHandlerId, operationData: string, operationName?: string): void;
+   public commitTrackedChanges(): number;
+   public discard(): void;
+   public discardTrackedChanges(): number;
+   public isValid(): boolean;
+   public submit(): void;
+   public trackBlockChangeArea(from: server.Vector3, to: server.Vector3): boolean;
+   public trackBlockChangeList(locations: Array<server.Vector3>): boolean;
+   public trackBlockChangeVolume(blockVolume: server.BlockVolumeBase): boolean;
    private constructor();
 }
 export class PlaytestManager {
@@ -1085,20 +1117,10 @@ export class ThemeSettings {
    private constructor();
 }
 export class TransactionManager {
-   public addEntityOperation(entity: server.Entity, type: EntityOperationType): boolean;
-   public addUserDefinedOperation(transactionHandlerId: UserDefinedTransactionHandlerId, operationData: string, operationName?: string): void;
-   public commitOpenTransaction(): boolean;
-   public commitTrackedChanges(): number;
+   public createPendingTransaction(name: string): PendingTransaction;
    public createUserDefinedTransactionHandler(undoClosure: (arg0: string)=>void, redoClosure: (arg0: string)=>void): UserDefinedTransactionHandlerId;
-   public discardOpenTransaction(): boolean;
-   public discardTrackedChanges(): number;
-   public isBusy(): boolean;
-   public openTransaction(name: string): boolean;
    public redo(): void;
    public redoSize(): number;
-   public trackBlockChangeArea(from: server.Vector3, to: server.Vector3): boolean;
-   public trackBlockChangeList(locations: Array<server.Vector3>): boolean;
-   public trackBlockChangeVolume(blockVolume: server.BlockVolumeBase): boolean;
    public undo(): void;
    public undoSize(): number;
    private constructor();

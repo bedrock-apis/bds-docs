@@ -1,177 +1,139 @@
 {
-   "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "2974466276",
-   "x-format-version": "1.21.90",
-   "definitions": {
-      "742152213": {
-         "title": "Vec2",
-         "oneOf": [
-            {
-               "type": "array",
-               "items": {
-                  "type": "number"
-               },
-               "minItems": 2,
-               "maxItems": 2
-            },
-            {
-               "type": "object",
-               "properties": {
-                  "x": {
-                     "type": "number",
-                     "default": 0
-                  },
-                  "y": {
-                     "type": "number",
-                     "default": 0
-                  }
-               }
-            }
-         ]
-      },
-      "1649996674": {
-         "title": "CameraPreset Identifier",
-         "type": "string"
-      },
-      "2305420650": {
-         "title": "CameraAimAssistCommandPresetDefinition",
-         "type": "object",
-         "properties": {
-            "angle": {
-               "$ref": "#/definitions/742152213"
-            },
-            "distance": {
-               "type": "number"
-            },
-            "preset": {
-               "$ref": "#/definitions/2897196339"
-            },
-            "target_mode": {
-               "title": "Aim-Assist Target Mode",
-               "type": "string",
-               "enum": [
-                  "angle",
-                  "distance"
-               ]
-            }
-         }
-      },
-      "2897196339": {
-         "title": "CameraAimAssist Reference",
-         "type": "string"
-      },
-      "3905427926": {
-         "title": "CameraPreset Reference",
-         "type": "string"
-      }
-   },
    "title": "Camera Preset",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client_server/camera/1.21.90/Camera%20Preset.json",
+   "x-format-version": "1.21.90",
    "type": "object",
    "properties": {
       "aim_assist": {
-         "$ref": "#/definitions/2305420650"
+         "$ref": "../1.21.60/CameraAimAssistCommandPresetDefinition.json",
+         "x-ordinal-index": 20
       },
       "continue_targeting": {
-         "type": "boolean"
+         "type": "boolean",
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 11
       },
       "control_scheme": {
-         "title": "Control Scheme",
-         "type": "string",
-         "enum": [
-            "locked_player_relative_strafe",
-            "camera_relative",
-            "camera_relative_strafe",
-            "player_relative",
-            "player_relative_strafe"
-         ]
+         "$ref": "../1.21.80/Control%20Scheme.json",
+         "x-underlying-type": "uint8",
+         "x-ordinal-index": 21
       },
       "entity_offset": {
          "type": "array",
          "items": {
             "type": "number",
+            "x-underlying-type": "float",
             "minimum": -64,
             "maximum": 64
          },
+         "x-ordinal-index": 14,
          "minItems": 3,
          "maxItems": 3
       },
       "horizontal_rotation_limit": {
-         "$ref": "#/definitions/742152213",
+         "$ref": "../../common/1.21.60/Vec2.json",
+         "x-ordinal-index": 9,
          "minimum": 0,
          "maximum": 360,
          "x-runtime-constraint-description": "Verify that vector elements added together are not greater than a given total"
       },
       "identifier": {
-         "$ref": "#/definitions/1649996674",
+         "$ref": "../../common/legacy/Identifier%207.json",
+         "x-ordinal-index": 0,
          "pattern": "^(\\w+:\\w+)?$"
       },
       "inherit_from": {
          "default": "",
-         "$ref": "#/definitions/3905427926",
+         "$ref": "../../common/legacy/Reference%207.json",
+         "x-ordinal-index": 1,
          "pattern": "^(\\w+:\\w+)?$"
       },
       "listener": {
-         "title": "Audio Listener",
-         "type": "string",
-         "enum": [
-            "camera",
-            "player"
-         ]
+         "$ref": "./Audio%20Listener.json",
+         "x-underlying-type": "uint8",
+         "x-ordinal-index": 18
       },
       "player_effects": {
-         "type": "boolean"
+         "type": "boolean",
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 19
       },
       "pos_x": {
-         "type": "number"
+         "type": "number",
+         "x-underlying-type": "float",
+         "x-ordinal-index": 2
       },
       "pos_y": {
-         "type": "number"
+         "type": "number",
+         "x-underlying-type": "float",
+         "x-ordinal-index": 3
       },
       "pos_z": {
-         "type": "number"
+         "type": "number",
+         "x-underlying-type": "float",
+         "x-ordinal-index": 4
       },
       "radius": {
          "type": "number",
+         "x-underlying-type": "float",
+         "x-ordinal-index": 15,
          "minimum": 0.10000000149011612,
          "maximum": 64
       },
       "rot_x": {
          "type": "number",
+         "x-underlying-type": "float",
+         "x-ordinal-index": 5,
          "minimum": -90,
          "maximum": 90
       },
       "rot_y": {
-         "type": "number"
+         "type": "number",
+         "x-underlying-type": "float",
+         "x-ordinal-index": 6
       },
       "rotation_speed": {
          "type": "number",
+         "x-underlying-type": "float",
+         "x-ordinal-index": 7,
          "minimum": 0,
          "maximum": 360
       },
       "snap_to_target": {
-         "type": "boolean"
+         "type": "boolean",
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 8
       },
       "tracking_radius": {
-         "type": "number"
+         "type": "number",
+         "x-underlying-type": "float",
+         "x-ordinal-index": 12
       },
       "vertical_rotation_limit": {
-         "$ref": "#/definitions/742152213",
+         "$ref": "../../common/1.21.60/Vec2.json",
+         "x-ordinal-index": 10,
          "minimum": 0,
          "maximum": 180,
          "x-runtime-constraint-description": "Check that x is less than y"
       },
       "view_offset": {
-         "$ref": "#/definitions/742152213",
+         "$ref": "../../common/1.21.60/Vec2.json",
+         "x-ordinal-index": 13,
          "minimum": -64,
          "maximum": 64
       },
       "yaw_limits_max": {
          "type": "number",
+         "x-underlying-type": "float",
+         "x-ordinal-index": 17,
          "minimum": -179.89999389648438,
          "maximum": 180
       },
       "yaw_limits_min": {
          "type": "number",
+         "x-underlying-type": "float",
+         "x-ordinal-index": 16,
          "minimum": -180,
          "maximum": 179.89999389648438
       }

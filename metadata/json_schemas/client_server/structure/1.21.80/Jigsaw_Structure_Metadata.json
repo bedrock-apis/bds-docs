@@ -1,78 +1,20 @@
 {
-   "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "3041614038",
-   "x-format-version": "1.21.80",
-   "definitions": {
-      "1488572312": {
-         "title": "block_pos",
-         "type": "array",
-         "items": {
-            "type": "integer"
-         },
-         "minItems": 3,
-         "maxItems": 3
-      },
-      "2081791706": {
-         "title": "Jigsaw Block Metadata",
-         "type": "object",
-         "properties": {
-            "block": {
-               "type": "string"
-            },
-            "final_block": {
-               "type": "string"
-            },
-            "joint_type": {
-               "title": "Jigsaw Joint Type",
-               "type": "string",
-               "enum": [
-                  "rollable",
-                  "aligned"
-               ]
-            },
-            "name": {
-               "type": "string"
-            },
-            "placement_priority": {
-               "type": "integer"
-            },
-            "pool": {
-               "type": "string"
-            },
-            "pos": {
-               "$ref": "#/definitions/1488572312"
-            },
-            "selection_priority": {
-               "type": "integer"
-            },
-            "target": {
-               "type": "string"
-            }
-         },
-         "required": [
-            "block",
-            "final_block",
-            "joint_type",
-            "name",
-            "placement_priority",
-            "pool",
-            "pos",
-            "selection_priority",
-            "target"
-         ]
-      }
-   },
    "title": "Jigsaw Structure Metadata",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client_server/structure/1.21.80/Jigsaw%20Structure%20Metadata.json",
+   "x-format-version": "1.21.80",
    "type": "object",
    "properties": {
       "markers": {
          "type": "array",
          "items": {
-            "$ref": "#/definitions/2081791706"
-         }
+            "$ref": "./Jigsaw%20Block%20Metadata.json"
+         },
+         "x-ordinal-index": 1
       },
       "size": {
-         "$ref": "#/definitions/1488572312"
+         "$ref": "../1.21.50/block_pos.json",
+         "x-ordinal-index": 0
       }
    },
    "required": [

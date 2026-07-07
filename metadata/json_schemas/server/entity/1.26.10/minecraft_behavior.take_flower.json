@@ -1,0 +1,108 @@
+{
+   "title": "minecraft:behavior.take_flower",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/entity/1.26.10/minecraft_behavior.take_flower.json",
+   "x-format-version": "1.26.10",
+   "type": "object",
+   "properties": {
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "../1.21.90/Goal's%20control%20flags.json",
+            "x-underlying-type": "int32"
+         },
+         "x-ordinal-index": 10
+      },
+      "filters": {
+         "default": {
+            "all_of": null,
+            "all": null,
+            "OR": null,
+            "AND": null,
+            "any_of": null,
+            "any": null,
+            "none_of": null,
+            "NOT": null
+         },
+         "$ref": "../../../client_server/common/1.21.20/Filter%20Group.json",
+         "x-ordinal-index": 1
+      },
+      "max_head_rotation_y": {
+         "type": "number",
+         "default": 30,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 6,
+         "exclusiveMinimum": 0
+      },
+      "max_rotation_x": {
+         "type": "number",
+         "default": 30,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 5,
+         "exclusiveMinimum": 0
+      },
+      "max_wait_time": {
+         "type": "number",
+         "default": 20,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 3,
+         "minimum": 0
+      },
+      "min_distance_to_target": {
+         "type": "number",
+         "default": 2,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 7,
+         "exclusiveMinimum": 0
+      },
+      "min_wait_time": {
+         "type": "number",
+         "default": 4,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 2,
+         "minimum": 0
+      },
+      "on_take_flower": {
+         "default": {
+            "event": "",
+            "target": "self",
+            "filters": {
+               "all_of": null,
+               "all": null,
+               "OR": null,
+               "AND": null,
+               "any_of": null,
+               "any": null,
+               "none_of": null,
+               "NOT": null
+            }
+         },
+         "$ref": "../1.21.120/ActorDefinitionTrigger.json",
+         "x-ordinal-index": 8
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 9,
+         "minimum": 0
+      },
+      "search_area": {
+         "default": [
+            6,
+            2,
+            6
+         ],
+         "$ref": "../../common/1.21.100/vec3.json",
+         "x-ordinal-index": 4
+      },
+      "speed_multiplier": {
+         "type": "number",
+         "default": 0.5,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 0,
+         "minimum": 0
+      }
+   }
+}

@@ -1,0 +1,46 @@
+{
+   "title": "particle_motion_collision",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client/particles/1.21.10/particle_motion_collision.json",
+   "x-format-version": "1.21.10",
+   "type": "object",
+   "properties": {
+      "coefficient_of_restitution": {
+         "type": "number",
+         "default": 0,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 2
+      },
+      "collision_drag": {
+         "type": "number",
+         "default": 0,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 1
+      },
+      "collision_radius": {
+         "type": "number",
+         "x-underlying-type": "float",
+         "x-ordinal-index": 3,
+         "minimum": 0,
+         "maximum": 0.5
+      },
+      "enabled": {
+         "default": 1,
+         "$ref": "../../../client_server/common/legacy/Expression%20Node.json",
+         "x-ordinal-index": 0
+      },
+      "events": {
+         "$ref": "./particle_motion_collision_event_vector.json",
+         "x-ordinal-index": 5
+      },
+      "expire_on_contact": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 4
+      }
+   },
+   "required": [
+      "collision_radius"
+   ]
+}

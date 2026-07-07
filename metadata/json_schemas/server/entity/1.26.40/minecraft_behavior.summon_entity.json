@@ -1,0 +1,33 @@
+{
+   "title": "minecraft:behavior.summon_entity",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/entity/1.26.40/minecraft_behavior.summon_entity.json",
+   "x-format-version": "1.26.40",
+   "type": "object",
+   "properties": {
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "../1.21.90/Goal's%20control%20flags.json",
+            "x-underlying-type": "int32"
+         },
+         "x-ordinal-index": 2
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 1,
+         "minimum": 0
+      },
+      "summon_choices": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "./SummonActorGoalDefinition__SpellData.json"
+         },
+         "x-ordinal-index": 0
+      }
+   }
+}

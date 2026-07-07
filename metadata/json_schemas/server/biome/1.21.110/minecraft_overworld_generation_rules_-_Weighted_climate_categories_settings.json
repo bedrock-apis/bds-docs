@@ -1,0 +1,24 @@
+{
+   "title": "minecraft:overworld_generation_rules - Weighted climate categories settings",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/biome/1.21.110/minecraft_overworld_generation_rules%20-%20Weighted%20climate%20categories%20settings.json",
+   "x-format-version": "1.21.110",
+   "type": "array",
+   "items": {
+      "oneOf": [
+         {
+            "$ref": "../../../client_server/common/legacy/BiomeTemperatureCategory.json",
+            "x-underlying-type": "uint8"
+         },
+         {
+            "type": "integer",
+            "x-underlying-type": "uint32",
+            "x-ordinal-index": 1,
+            "minimum": 0
+         }
+      ],
+      "x-control-value-type": "uint32"
+   },
+   "minItems": 2,
+   "maxItems": 2
+}

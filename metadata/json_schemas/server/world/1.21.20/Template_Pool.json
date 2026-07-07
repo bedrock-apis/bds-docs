@@ -1,163 +1,25 @@
 {
-   "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "3393725763",
-   "x-format-version": "1.21.20",
-   "definitions": {
-      "265903687": {
-         "title": "Structure FileReference",
-         "type": "string",
-         "maxLength": 256
-      },
-      "2952003949": {
-         "title": "JigsawProcessorList Reference",
-         "type": "string"
-      },
-      "3250870955": {
-         "title": "TemplatePoolElement",
-         "type": "object",
-         "properties": {
-            "element": {
-               "oneOf": [
-                  {
-                     "$ref": "#/definitions/3844268972"
-                  },
-                  {
-                     "$ref": "#/definitions/3713756641"
-                  },
-                  {
-                     "$ref": "#/definitions/3298877405"
-                  }
-               ]
-            },
-            "weight": {
-               "type": "integer",
-               "default": 1,
-               "minimum": 1,
-               "maximum": 200
-            }
-         },
-         "required": [
-            "element"
-         ]
-      },
-      "3298877405": {
-         "title": "FeaturePoolElement",
-         "type": "object",
-         "properties": {
-            "element_type": {
-               "title": "ElementType",
-               "type": "string",
-               "const": "minecraft:feature_pool_element",
-               "enum": [
-                  "minecraft:empty_pool_element",
-                  "minecraft:single_pool_element",
-                  "minecraft:feature_pool_element"
-               ]
-            },
-            "feature": {
-               "$ref": "#/definitions/3456235324"
-            }
-         },
-         "required": [
-            "element_type",
-            "feature"
-         ]
-      },
-      "3415839975": {
-         "title": "JigsawTemplatePool Identifier",
-         "type": "string"
-      },
-      "3456235324": {
-         "title": "Feature Reference",
-         "type": "string"
-      },
-      "3511582345": {
-         "title": "Jigsaw Template Pool Description",
-         "type": "object",
-         "properties": {
-            "identifier": {
-               "$ref": "#/definitions/3415839975"
-            }
-         },
-         "required": [
-            "identifier"
-         ]
-      },
-      "3634282923": {
-         "title": "JigsawTemplatePool Reference",
-         "type": "string"
-      },
-      "3713756641": {
-         "title": "SinglePoolElement",
-         "type": "object",
-         "properties": {
-            "element_type": {
-               "title": "ElementType",
-               "type": "string",
-               "const": "minecraft:single_pool_element",
-               "enum": [
-                  "minecraft:empty_pool_element",
-                  "minecraft:single_pool_element",
-                  "minecraft:feature_pool_element"
-               ]
-            },
-            "location": {
-               "$ref": "#/definitions/265903687"
-            },
-            "processors": {
-               "default": "",
-               "$ref": "#/definitions/2952003949"
-            },
-            "projection": {
-               "title": "Projection",
-               "type": "string",
-               "default": "rigid",
-               "enum": [
-                  "rigid",
-                  "terrain_matching"
-               ]
-            }
-         },
-         "required": [
-            "element_type",
-            "location"
-         ]
-      },
-      "3844268972": {
-         "title": "EmptyPoolElement",
-         "type": "object",
-         "properties": {
-            "element_type": {
-               "title": "ElementType",
-               "type": "string",
-               "const": "minecraft:empty_pool_element",
-               "enum": [
-                  "minecraft:empty_pool_element",
-                  "minecraft:single_pool_element",
-                  "minecraft:feature_pool_element"
-               ]
-            }
-         },
-         "required": [
-            "element_type"
-         ]
-      }
-   },
    "title": "Used to pair block rules with Structure Templates and to randomly place Structure Templates using a weighted list.",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/world/1.21.20/Template%20Pool.json",
+   "x-format-version": "1.21.20",
    "type": "object",
    "properties": {
       "description": {
-         "$ref": "#/definitions/3511582345"
+         "$ref": "./Jigsaw%20Template%20Pool%20Description.json",
+         "x-ordinal-index": 0
       },
       "elements": {
          "type": "array",
          "items": {
-            "$ref": "#/definitions/3250870955"
-         }
+            "$ref": "./TemplatePoolElement.json"
+         },
+         "x-ordinal-index": 1
       },
       "fallback": {
          "default": "minecraft:empty",
-         "$ref": "#/definitions/3634282923"
+         "$ref": "../../../client_server/common/legacy/Reference%2015.json",
+         "x-ordinal-index": 2
       }
    },
    "required": [

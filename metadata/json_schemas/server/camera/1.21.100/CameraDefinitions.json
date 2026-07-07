@@ -1,581 +1,102 @@
 {
-   "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "3566783039",
-   "x-format-version": "1.21.100",
-   "definitions": {
-      "206964898": {
-         "title": "minecraft:extend_player_rendering"
-      },
-      "324330451": {
-         "title": "minecraft:camera_render_first_person_objects"
-      },
-      "613286587": {
-         "title": "minecraft:camera_perspective_option",
-         "type": "object",
-         "properties": {
-            "view_mode": {
-               "title": "view_mode",
-               "type": "string",
-               "enum": [
-                  "first_person",
-                  "third_person",
-                  "third_person_front"
-               ]
-            }
-         },
-         "required": [
-            "view_mode"
-         ]
-      },
-      "645229909": {
-         "title": "ray",
-         "type": "object",
-         "properties": {
-            "angle": {
-               "type": "number",
-               "default": 0
-            },
-            "weight": {
-               "type": "number",
-               "default": 0
-            }
-         }
-      },
-      "668388985": {
-         "title": "minecraft:default_input_camera"
-      },
-      "723592380": {
-         "title": "minecraft:camera_direct_look",
-         "type": "object",
-         "properties": {
-            "pitch_max": {
-               "type": "number",
-               "default": 90
-            },
-            "pitch_min": {
-               "type": "number",
-               "default": -90
-            }
-         }
-      },
-      "725374594": {
-         "title": "vec3",
-         "oneOf": [
-            {
-               "type": "array",
-               "items": {
-                  "type": "number"
-               },
-               "minItems": 3,
-               "maxItems": 3
-            },
-            {
-               "type": "object",
-               "properties": {
-                  "x": {
-                     "type": "number",
-                     "default": 0
-                  },
-                  "y": {
-                     "type": "number",
-                     "default": 0
-                  },
-                  "z": {
-                     "type": "number",
-                     "default": 0
-                  }
-               }
-            }
-         ]
-      },
-      "742152213": {
-         "title": "Vec2",
-         "oneOf": [
-            {
-               "type": "array",
-               "items": {
-                  "type": "number"
-               },
-               "minItems": 2,
-               "maxItems": 2
-            },
-            {
-               "type": "object",
-               "properties": {
-                  "x": {
-                     "type": "number",
-                     "default": 0
-                  },
-                  "y": {
-                     "type": "number",
-                     "default": 0
-                  }
-               }
-            }
-         ]
-      },
-      "1020434575": {
-         "title": "minecraft:camera_attach_to_player",
-         "type": "object",
-         "properties": {
-            "locator": {
-               "default": "",
-               "$ref": "#/definitions/3381141713"
-            }
-         }
-      },
-      "1117958091": {
-         "title": "minecraft:camera_player_bob"
-      },
-      "1316188006": {
-         "title": "minecraft:target",
-         "type": "object",
-         "properties": {
-            "continue_targeting": {
-               "type": "boolean",
-               "default": false
-            },
-            "horizontal_rotation_limit": {
-               "type": "array",
-               "items": {
-                  "type": "number",
-                  "exclusiveMinimum": 0,
-                  "exclusiveMaximum": 360
-               },
-               "minItems": 2,
-               "maxItems": 2
-            },
-            "rotation_speed": {
-               "type": "number",
-               "default": 0,
-               "minimum": 0,
-               "maximum": 360
-            },
-            "snap_to_target": {
-               "type": "boolean",
-               "default": false
-            },
-            "tracking_radius": {
-               "type": "number",
-               "default": 50
-            },
-            "vertical_rotation_limit": {
-               "type": "array",
-               "items": {
-                  "type": "number",
-                  "minimum": 0,
-                  "maximum": 180
-               },
-               "minItems": 2,
-               "maxItems": 2
-            }
-         }
-      },
-      "1325421859": {
-         "title": "vec2",
-         "oneOf": [
-            {
-               "type": "array",
-               "items": {
-                  "type": "number"
-               },
-               "minItems": 2,
-               "maxItems": 2
-            },
-            {
-               "type": "object",
-               "properties": {
-                  "x": {
-                     "type": "number",
-                     "default": 0
-                  },
-                  "y": {
-                     "type": "number",
-                     "default": 0
-                  }
-               }
-            }
-         ]
-      },
-      "1444670269": {
-         "title": "minecraft:camera_player_sleep_vignette"
-      },
-      "1505177209": {
-         "title": "minecraft:camera_offset",
-         "type": "object",
-         "properties": {
-            "entity": {
-               "type": "array",
-               "default": [
-                  0,
-                  0,
-                  0
-               ],
-               "items": {
-                  "type": "number",
-                  "minimum": -100,
-                  "maximum": 100
-               },
-               "minItems": 3,
-               "maxItems": 3
-            },
-            "view": {
-               "type": "array",
-               "default": [
-                  0,
-                  0
-               ],
-               "items": {
-                  "type": "number",
-                  "minimum": -100,
-                  "maximum": 100
-               },
-               "minItems": 2,
-               "maxItems": 2
-            }
-         }
-      },
-      "1782305231": {
-         "title": "minecraft:camera_third_person_boom",
-         "type": "object",
-         "properties": {
-            "rotation_space": {
-               "title": "rotation_space",
-               "type": "string",
-               "default": "local",
-               "enum": [
-                  "local",
-                  "world"
-               ]
-            },
-            "starting_radius": {
-               "type": "number",
-               "default": 0
-            },
-            "starting_rot": {
-               "default": [
-                  0,
-                  0
-               ],
-               "$ref": "#/definitions/1325421859"
-            }
-         }
-      },
-      "1979005569": {
-         "title": "minecraft:player_state_affects_rendering"
-      },
-      "2263907124": {
-         "title": "minecraft:redirect_camera_input"
-      },
-      "2543792214": {
-         "title": "minecraft:camera",
-         "type": "object",
-         "properties": {
-            "far_clipping_plane": {
-               "type": "number",
-               "default": 2500
-            },
-            "field_of_view": {
-               "type": "number"
-            },
-            "near_clipping_plane": {
-               "type": "number",
-               "default": 0.02500000037252903
-            }
-         },
-         "required": [
-            "field_of_view"
-         ]
-      },
-      "2598855955": {
-         "title": "minecraft:camera_shake",
-         "type": "object",
-         "properties": {
-            "amplitude": {
-               "type": "number",
-               "default": 0
-            },
-            "frequency": {
-               "type": "number",
-               "default": 0
-            },
-            "noise_multiplier": {
-               "type": "number",
-               "default": 0
-            }
-         }
-      },
-      "2879197463": {
-         "title": "minecraft:camera_portal_distortion"
-      },
-      "2882885468": {
-         "title": "minecraft:camera_third_person"
-      },
-      "2957379594": {
-         "title": "minecraft:update_player_from_camera",
-         "type": "object",
-         "properties": {
-            "look_mode": {
-               "title": "look_mode",
-               "type": "string",
-               "default": "along_camera",
-               "enum": [
-                  "along_camera",
-                  "at_camera"
-               ]
-            }
-         }
-      },
-      "3188030808": {
-         "title": "minecraft:stationary_camera",
-         "type": "object",
-         "properties": {
-            "pos": {
-               "default": [
-                  0,
-                  0,
-                  0
-               ],
-               "$ref": "#/definitions/725374594"
-            },
-            "rot": {
-               "default": [
-                  0,
-                  0
-               ],
-               "$ref": "#/definitions/742152213"
-            }
-         }
-      },
-      "3257245592": {
-         "title": "minecraft:death_camera_component"
-      },
-      "3266395958": {
-         "title": "minecraft:camera_render_player_model"
-      },
-      "3320047840": {
-         "title": "minecraft:camera_fly_move",
-         "type": "object",
-         "properties": {
-            "speed": {
-               "type": "number",
-               "default": 1
-            },
-            "sprint_speed": {
-               "type": "number"
-            }
-         }
-      },
-      "3346632211": {
-         "title": "minecraft:camera_fixed_boom"
-      },
-      "3381141713": {
-         "title": "hashed_string",
-         "type": "string"
-      },
-      "3490078136": {
-         "title": "minecraft:gameplay_affects_fov"
-      },
-      "3554098225": {
-         "title": "minecraft:camera_liquid_offset"
-      },
-      "3614287865": {
-         "title": "minecraft:vr_comfort_move"
-      },
-      "3689981896": {
-         "title": "minecraft:camera_look_at_player"
-      },
-      "3744581296": {
-         "title": "minecraft:camera_orbit",
-         "type": "object",
-         "properties": {
-            "azimuth_smoothing_spring": {
-               "type": "number",
-               "default": 4,
-               "minimum": 0
-            },
-            "distance_smoothing_spring": {
-               "type": "number",
-               "default": 4,
-               "minimum": 0
-            },
-            "invert_x_input": {
-               "type": "boolean",
-               "default": false
-            },
-            "invert_y_input": {
-               "type": "boolean",
-               "default": false
-            },
-            "polar_angle_max": {
-               "type": "number",
-               "default": 65,
-               "minimum": 0,
-               "maximum": 180
-            },
-            "polar_angle_min": {
-               "type": "number",
-               "default": 4.999999523162842,
-               "minimum": 0,
-               "maximum": 180
-            },
-            "polar_angle_smoothing_spring": {
-               "type": "number",
-               "default": 4,
-               "minimum": 0
-            },
-            "radius": {
-               "type": "number",
-               "default": 1,
-               "minimum": 0.10000000149011612,
-               "maximum": 64
-            },
-            "yaw_angle_max": {
-               "type": "number",
-               "default": 180,
-               "minimum": -180,
-               "maximum": 180
-            },
-            "yaw_angle_min": {
-               "type": "number",
-               "default": -180,
-               "minimum": -180,
-               "maximum": 180
-            }
-         }
-      },
-      "3910929375": {
-         "title": "minecraft:allow_inside_block"
-      },
-      "4140121574": {
-         "title": "minecraft:camera_avoidance",
-         "type": "object",
-         "properties": {
-            "avoidance_rays_horizontal": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "$ref": "#/definitions/645229909"
-               }
-            },
-            "avoidance_rays_vertical": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "$ref": "#/definitions/645229909"
-               }
-            },
-            "distance_constraint_min": {
-               "type": "number",
-               "default": 0,
-               "minimum": 0
-            },
-            "relax_distance_smoothing_spring": {
-               "type": "number",
-               "default": 4,
-               "minimum": 0
-            }
-         }
-      },
-      "4237845251": {
-         "title": "minecraft:camera_first_person"
-      }
-   },
    "title": "Camera component definitions",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/camera/1.21.100/CameraDefinitions.json",
+   "x-format-version": "1.21.100",
    "type": "object",
    "properties": {
       "minecraft:allow_inside_block": {
-         "$ref": "#/definitions/3910929375"
+         "$ref": "./minecraft_allow_inside_block.json"
       },
       "minecraft:camera": {
-         "$ref": "#/definitions/2543792214"
+         "$ref": "./minecraft_camera.json"
       },
       "minecraft:camera_attach_to_player": {
-         "$ref": "#/definitions/1020434575"
+         "$ref": "./minecraft_camera_attach_to_player.json"
       },
       "minecraft:camera_avoidance": {
-         "$ref": "#/definitions/4140121574"
+         "$ref": "./minecraft_camera_avoidance.json"
       },
       "minecraft:camera_direct_look": {
-         "$ref": "#/definitions/723592380"
+         "$ref": "./minecraft_camera_direct_look.json"
       },
       "minecraft:camera_first_person": {
-         "$ref": "#/definitions/4237845251"
+         "$ref": "./minecraft_camera_first_person.json"
       },
       "minecraft:camera_fixed_boom": {
-         "$ref": "#/definitions/3346632211"
+         "$ref": "./minecraft_camera_fixed_boom.json"
       },
       "minecraft:camera_fly_move": {
-         "$ref": "#/definitions/3320047840"
+         "$ref": "./minecraft_camera_fly_move.json"
       },
       "minecraft:camera_liquid_offset": {
-         "$ref": "#/definitions/3554098225"
+         "$ref": "./minecraft_camera_liquid_offset.json"
       },
       "minecraft:camera_look_at_player": {
-         "$ref": "#/definitions/3689981896"
+         "$ref": "./minecraft_camera_look_at_player.json"
       },
       "minecraft:camera_offset": {
-         "$ref": "#/definitions/1505177209"
+         "$ref": "./minecraft_camera_offset.json"
       },
       "minecraft:camera_orbit": {
-         "$ref": "#/definitions/3744581296"
+         "$ref": "./minecraft_camera_orbit.json"
       },
       "minecraft:camera_perspective_option": {
-         "$ref": "#/definitions/613286587"
+         "$ref": "./minecraft_camera_perspective_option.json"
       },
       "minecraft:camera_player_bob": {
-         "$ref": "#/definitions/1117958091"
+         "$ref": "./minecraft_camera_player_bob.json"
       },
       "minecraft:camera_player_sleep_vignette": {
-         "$ref": "#/definitions/1444670269"
+         "$ref": "./minecraft_camera_player_sleep_vignette.json"
       },
       "minecraft:camera_portal_distortion": {
-         "$ref": "#/definitions/2879197463"
+         "$ref": "./minecraft_camera_portal_distortion.json"
       },
       "minecraft:camera_render_first_person_objects": {
-         "$ref": "#/definitions/324330451"
+         "$ref": "./minecraft_camera_render_first_person_objects.json"
       },
       "minecraft:camera_render_player_model": {
-         "$ref": "#/definitions/3266395958"
+         "$ref": "./minecraft_camera_render_player_model.json"
       },
       "minecraft:camera_shake": {
-         "$ref": "#/definitions/2598855955"
+         "$ref": "./minecraft_camera_shake.json"
       },
       "minecraft:camera_third_person": {
-         "$ref": "#/definitions/2882885468"
+         "$ref": "./minecraft_camera_third_person.json"
       },
       "minecraft:camera_third_person_boom": {
-         "$ref": "#/definitions/1782305231"
+         "$ref": "./minecraft_camera_third_person_boom.json"
       },
       "minecraft:death_camera_component": {
-         "$ref": "#/definitions/3257245592"
+         "$ref": "./minecraft_death_camera_component.json"
       },
       "minecraft:default_input_camera": {
-         "$ref": "#/definitions/668388985"
+         "$ref": "./minecraft_default_input_camera.json"
       },
       "minecraft:extend_player_rendering": {
-         "$ref": "#/definitions/206964898"
+         "$ref": "./minecraft_extend_player_rendering.json"
       },
       "minecraft:gameplay_affects_fov": {
-         "$ref": "#/definitions/3490078136"
+         "$ref": "./minecraft_gameplay_affects_fov.json"
       },
       "minecraft:player_state_affects_rendering": {
-         "$ref": "#/definitions/1979005569"
+         "$ref": "./minecraft_player_state_affects_rendering.json"
       },
       "minecraft:redirect_camera_input": {
-         "$ref": "#/definitions/2263907124"
+         "$ref": "./minecraft_redirect_camera_input.json"
       },
       "minecraft:stationary_camera": {
-         "$ref": "#/definitions/3188030808"
+         "$ref": "./minecraft_stationary_camera.json"
       },
       "minecraft:target": {
-         "$ref": "#/definitions/1316188006"
+         "$ref": "./minecraft_target.json"
       },
       "minecraft:update_player_from_camera": {
-         "$ref": "#/definitions/2957379594"
+         "$ref": "./minecraft_update_player_from_camera.json"
       },
       "minecraft:vr_comfort_move": {
-         "$ref": "#/definitions/3614287865"
+         "$ref": "./minecraft_vr_comfort_move.json"
       }
    }
 }

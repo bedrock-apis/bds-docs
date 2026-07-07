@@ -1,0 +1,87 @@
+{
+   "title": "minecraft:behavior.circle_around_anchor",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/entity/1.21.100/minecraft_behavior.circle_around_anchor.json",
+   "x-format-version": "1.21.100",
+   "type": "object",
+   "properties": {
+      "angle_change": {
+         "type": "number",
+         "default": 15,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 5
+      },
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "../1.21.90/Goal's%20control%20flags.json",
+            "x-underlying-type": "int32"
+         },
+         "x-ordinal-index": 10
+      },
+      "goal_radius": {
+         "type": "number",
+         "default": 0.5,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 3
+      },
+      "height_above_target_range": {
+         "default": {
+            "min": 0,
+            "max": 0
+         },
+         "$ref": "../../../client_server/common/legacy/FloatRange.json",
+         "x-ordinal-index": 8,
+         "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
+      },
+      "height_adjustment_chance": {
+         "type": "number",
+         "default": 0.0028570001013576984,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 2
+      },
+      "height_offset_range": {
+         "default": {
+            "min": 0,
+            "max": 0
+         },
+         "$ref": "../../../client_server/common/legacy/FloatRange.json",
+         "x-ordinal-index": 7
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 9,
+         "minimum": 0
+      },
+      "radius_adjustment_chance": {
+         "type": "number",
+         "default": 0.004000000189989805,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 1
+      },
+      "radius_change": {
+         "type": "number",
+         "default": 1,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 0
+      },
+      "radius_range": {
+         "default": {
+            "min": 5,
+            "max": 15
+         },
+         "$ref": "../../../client_server/common/legacy/FloatRange.json",
+         "x-ordinal-index": 6,
+         "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
+      },
+      "speed_multiplier": {
+         "type": "number",
+         "default": 1,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 4
+      }
+   }
+}

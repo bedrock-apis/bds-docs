@@ -1,0 +1,35 @@
+{
+   "title": "ToggleSetting",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client_server/packaging/3.0.0/ToggleSetting.json",
+   "x-format-version": "3.0.0",
+   "type": "object",
+   "properties": {
+      "default": {
+         "type": "boolean",
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 3
+      },
+      "name": {
+         "type": "string",
+         "x-ordinal-index": 1,
+         "pattern": "^(?:(?!^(minecraft):).)+:(?:.)+$",
+         "x-regex-flags": "ECMAScript,icase"
+      },
+      "text": {
+         "type": "string",
+         "x-ordinal-index": 2
+      },
+      "type": {
+         "$ref": "./SettingType.json",
+         "x-underlying-type": "uint8",
+         "x-ordinal-index": 0
+      }
+   },
+   "required": [
+      "default",
+      "name",
+      "text",
+      "type"
+   ]
+}

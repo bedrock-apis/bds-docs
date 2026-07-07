@@ -1,0 +1,26 @@
+{
+   "title": "Detailed Mining Speed",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/block/1.26.20/Detailed%20Mining%20Speed.json",
+   "x-format-version": "1.26.20",
+   "type": "object",
+   "properties": {
+      "item_specific_speeds": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "./Item%20Specific%20Speed.json"
+         },
+         "x-ordinal-index": 1
+      },
+      "seconds_to_destroy": {
+         "type": "number",
+         "x-underlying-type": "float",
+         "x-ordinal-index": 0,
+         "minimum": 0
+      }
+   },
+   "required": [
+      "seconds_to_destroy"
+   ]
+}

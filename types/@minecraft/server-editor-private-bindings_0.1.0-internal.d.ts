@@ -10,6 +10,10 @@ export enum EditorRealmsServiceAvailability {
    Success = 4,
    Unknown = 5,
 }
+export enum FeatureFlagCategory {
+   Client = 1,
+   Server = 0,
+}
 export enum FilePickerError {
    AccessDenied = "access-denied",
    Busy = "file-selector-busy",
@@ -41,6 +45,10 @@ export enum JigsawJsonType {
    Structure = 1,
    StructureSet = 2,
    TemplatePool = 3,
+}
+export enum MeshColorSourceKind {
+   MaterialBaseColor = "material-base-color",
+   VertexColor = "vertex-color",
 }
 export enum MeshLoadError {
    AccessDenied = "access-denied",
@@ -181,10 +189,22 @@ export interface JigsawBlockData {
    target: string;
    targetPool: string;
 }
+export interface MeshColorEntry {
+   color: server.RGBA;
+   id: string;
+   suggestedBlockType: string;
+   weight: number;
+}
+export interface MeshColorSource {
+   colors: Array<MeshColorEntry>;
+   displayName: string;
+   id: string;
+   kind: MeshColorSourceKind;
+}
 export interface MeshInfo {
+   colorSources: Array<MeshColorSource>;
    id: string;
    length: number;
-   materialCount: number;
    maxBounds: server.Vector3;
    minBounds: server.Vector3;
    name: string;
@@ -419,6 +439,16 @@ export class DataTransferRequestResponse {
    public readonly schema: string;
    private constructor();
 }
+export class FeatureFlagManager {
+   public readonly isHost: boolean;
+   public getFlag(name: string): boolean;
+   public getFlagCategory(name: string): string;
+   public getFlagDescription(name: string): string;
+   public getFlagNames(): Array<string>;
+   public registerFlag(name: string, defaultValue: boolean, category: string, description: string): void;
+   public setFlag(name: string, value: boolean): void;
+   private constructor();
+}
 export class InputService {
    public focusViewport(): void;
    public getKeyBindingProcessingState(contextId: string, bindingId: string): (number | undefined);
@@ -447,6 +477,7 @@ export class InternalPlayerServiceContext {
    public readonly clientFilesystem: ClientFilesystem;
    public readonly dataStore: DataStore;
    public readonly dataTransfer: DataTransferManager;
+   public readonly featureFlags: FeatureFlagManager;
    public readonly input: InputService;
    public readonly internalPersistenceManager: InternalPersistenceManager;
    public readonly jigsawService: JigsawService;
@@ -454,6 +485,7 @@ export class InternalPlayerServiceContext {
    public readonly prefabManager: PrefabManager;
    public readonly realmsService: RealmsService;
    public readonly regionManager: PlayerProjectRegionManager;
+   public runCoroutineWatchdogStressTest(): void;
    private constructor();
 }
 export class JigsawService {
@@ -471,6 +503,7 @@ export class JigsawService {
 export class MeshCacheManager {
    public cancelPlacement(requestId: string): void;
    public commitToWorld(meshId: string, options: MeshPlacementOptions): Promise<MeshPlacementResult>;
+   public getColorSources(meshId: string, maxColorCount: number): Array<MeshColorSource>;
    public getMeshList(): Array<MeshInfo>;
    public loadMesh(filePath: string, options?: MeshLoadOptions): Promise<MeshInfo>;
    public unloadMesh(meshId: string): void;
@@ -481,7 +514,7 @@ export class MinecraftEditorInternal {
    public readonly isNewLevel: boolean;
    public readonly regionManager: ProjectRegionManager;
    public createCustomBiomeSource(config: CustomBiomeSourceConfig): CustomBiomeSource;
-   public fillBiomes(dimension: server.Dimension, volume: server.BlockVolumeBase | server.CompoundBlockVolume, biome: server.BiomeType, options?: BiomeFillOptions): void;
+   public fillBiomes(dimension: server.Dimension, volume: server.BlockVolumeBase | server_editor.RelativeVolumeListBlockVolume, biome: server.BiomeType, options?: BiomeFillOptions): void;
    public fireTelemetryEvent(player: server.Player, source: string, eventName: string, metadata: string): void;
    public getPlayerServices(player: server.Player): InternalPlayerServiceContext;
    public registerExtension(extensionName: string, activationFunction: (arg0: server_editor.ExtensionContext)=>void, shutdownFunction: (arg0: server_editor.ExtensionContext)=>void, options?: server_editor.ExtensionOptionalParameters): server_editor.Extension;

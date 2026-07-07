@@ -1,0 +1,46 @@
+{
+   "title": "InventoryTransactionPacketPayload",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/InventoryTransactionPacketPayload.json",
+   "x-format-version": "MISSING VERSION",
+   "x-protocol-version": 2168,
+   "type": "object",
+   "properties": {
+      "Legacy Request ID": {
+         "$ref": "./ItemStackLegacyRequestId.json",
+         "x-ordinal-index": 0
+      },
+      "Legacy Set Item Slots": {
+         "type": "array",
+         "items": {
+            "$ref": "./LegacySetSlot.json"
+         },
+         "x-ordinal-index": 1
+      },
+      "Transaction": {
+         "oneOf": [
+            {
+               "$ref": "./NormalTransactionData.json"
+            },
+            {
+               "$ref": "./InventoryMismatchData.json"
+            },
+            {
+               "$ref": "./ItemUseInventoryTransaction.json"
+            },
+            {
+               "$ref": "./ItemUseOnActorInventoryTransaction.json"
+            },
+            {
+               "$ref": "./ItemReleaseInventoryTransaction.json"
+            }
+         ],
+         "x-control-value-type": "uint32",
+         "x-ordinal-index": 2
+      }
+   },
+   "required": [
+      "Legacy Request ID",
+      "Transaction"
+   ]
+}

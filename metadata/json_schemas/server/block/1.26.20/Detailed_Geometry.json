@@ -1,0 +1,72 @@
+{
+   "title": "Detailed Geometry",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/block/1.26.20/Detailed%20Geometry.json",
+   "x-format-version": "1.26.20",
+   "type": "object",
+   "properties": {
+      "bone_visibility": {
+         "type": "object",
+         "additionalProperties": {
+            "$ref": "../../../client_server/common/legacy/Expression%20Node.json"
+         },
+         "default": {},
+         "x-ordinal-index": 4,
+         "maxProperties": 64
+      },
+      "culling": {
+         "type": "string",
+         "default": "",
+         "x-ordinal-index": 1,
+         "maxLength": 256
+      },
+      "culling_layer": {
+         "type": "string",
+         "x-ordinal-index": 3,
+         "minLength": 1,
+         "maxLength": 256,
+         "pattern": "^(?:minecraft:culling_layer.undefined|minecraft:culling_layer.leaves|(?!minecraft:)[a-z0-9].*[a-z0-9])$",
+         "x-regex-flags": "ECMAScript,icase"
+      },
+      "culling_shape": {
+         "type": "string",
+         "default": "",
+         "x-ordinal-index": 2,
+         "maxLength": 256,
+         "pattern": "^(?:minecraft:empty|minecraft:unit_cube|(?!minecraft:)[a-z0-9].*[a-z0-9])$",
+         "x-regex-flags": "ECMAScript,icase"
+      },
+      "identifier": {
+         "type": "string",
+         "x-ordinal-index": 0,
+         "maxLength": 256
+      },
+      "n_way_visual_rotation": {
+         "$ref": "./NWayVisualRotation.json",
+         "x-ordinal-index": 6
+      },
+      "uv_lock": {
+         "default": false,
+         "oneOf": [
+            {
+               "type": "boolean",
+               "x-underlying-type": "boolean",
+               "x-ordinal-index": 0
+            },
+            {
+               "type": "array",
+               "items": {
+                  "type": "string"
+               },
+               "x-ordinal-index": 1,
+               "maxItems": 64
+            }
+         ],
+         "x-control-value-type": "uint32",
+         "x-ordinal-index": 5
+      }
+   },
+   "required": [
+      "identifier"
+   ]
+}

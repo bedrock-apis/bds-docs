@@ -1,35 +1,23 @@
 {
-   "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "1548912550",
-   "x-format-version": "1.26.0",
-   "definitions": {
-      "2566306602": {
-         "title": "FloatRange",
-         "type": "object",
-         "properties": {
-            "max": {
-               "type": "number",
-               "default": 0
-            },
-            "min": {
-               "type": "number",
-               "default": 0
-            }
-         }
-      }
-   },
    "title": "LookAtActorBaseGoalDefinition",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/entity/1.26.0/LookAtActorBaseGoalDefinition.json",
+   "x-format-version": "1.26.0",
    "type": "object",
    "properties": {
       "angle_of_view_horizontal": {
          "type": "integer",
          "default": 360,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 1,
          "minimum": 0,
          "maximum": 360
       },
       "angle_of_view_vertical": {
          "type": "integer",
          "default": 360,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 0,
          "minimum": 0,
          "maximum": 360
       },
@@ -37,18 +25,16 @@
          "type": "array",
          "default": [],
          "items": {
-            "title": "Goal's control flags",
-            "type": "string",
-            "enum": [
-               "move",
-               "look",
-               "jump"
-            ]
-         }
+            "$ref": "../1.21.90/Goal's%20control%20flags.json",
+            "x-underlying-type": "int32"
+         },
+         "x-ordinal-index": 6
       },
       "look_distance": {
          "type": "number",
          "default": 8,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 3,
          "minimum": 0
       },
       "look_time": {
@@ -56,16 +42,21 @@
             "min": 2,
             "max": 4
          },
-         "$ref": "#/definitions/2566306602"
+         "$ref": "../../../client_server/common/legacy/FloatRange.json",
+         "x-ordinal-index": 2
       },
       "priority": {
          "type": "integer",
          "default": 0,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 5,
          "minimum": 0
       },
       "probability": {
          "type": "number",
          "default": 0.019999999552965164,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 4,
          "minimum": 0,
          "maximum": 1
       }

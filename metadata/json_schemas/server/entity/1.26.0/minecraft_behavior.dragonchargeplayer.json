@@ -1,0 +1,61 @@
+{
+   "title": "minecraft:behavior.dragonchargeplayer",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/entity/1.26.0/minecraft_behavior.dragonchargeplayer.json",
+   "x-format-version": "1.26.0",
+   "type": "object",
+   "properties": {
+      "active_speed": {
+         "type": "number",
+         "default": 3,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 1,
+         "minimum": 0
+      },
+      "continue_charge_threshold_time": {
+         "type": "number",
+         "default": 0.5,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 0,
+         "exclusiveMinimum": 0
+      },
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "../1.21.90/Goal's%20control%20flags.json",
+            "x-underlying-type": "int32"
+         },
+         "x-ordinal-index": 6
+      },
+      "flight_speed": {
+         "type": "number",
+         "default": 0.6000000238418579,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 2,
+         "minimum": 0
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 5,
+         "minimum": 0
+      },
+      "target_zone": {
+         "default": {
+            "min": 10,
+            "max": 150
+         },
+         "$ref": "../../../client_server/common/legacy/FloatRange.json",
+         "x-ordinal-index": 4
+      },
+      "turn_speed": {
+         "type": "number",
+         "default": 0.699999988079071,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 3,
+         "minimum": 0
+      }
+   }
+}

@@ -2985,6 +2985,7 @@ export class LootingEnchantFunction extends LootItemFunction {
 }
 //@ts-ignore
 export class LootItem extends LootPoolEntry {
+   public readonly conditions: Array<LootItemCondition>;
    public readonly functions: Array<LootItemFunction>;
    public readonly name?: ItemType;
    private constructor();

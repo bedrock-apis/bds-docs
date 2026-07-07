@@ -41,6 +41,11 @@ export enum CameraShakeType {
    Positional = "Positional",
    Rotational = "Rotational",
 }
+export enum CloneMode {
+   Copy = 0,
+   ForceCopy = 1,
+   Move = 2,
+}
 export enum CommandPermissionLevel {
    Admin = 2,
    Any = 0,
@@ -1077,6 +1082,12 @@ export interface PlayerVisibilityRules extends EntityVisibilityRules {
    showSpectator?: boolean;
    showSpectatorToSpectator?: boolean;
 }
+export interface PrimitiveShapeQueryOptions {
+   attachedTo?: Entity;
+   location?: Vector3;
+   maxDistance?: number;
+   minDistance?: number;
+}
 export interface ProgressKeyFrame {
    alpha: number;
    easingFunc?: EasingType;
@@ -1829,6 +1840,7 @@ export class Dimension {
    public readonly id: string;
    public readonly localizationKey: string;
    public calculateClosestBiomeFromSeed(pos: Vector3, biomeToFind: BiomeType | string, options?: BiomeSearchOptions): (Vector3 | undefined);
+   public cloneBlocks(beginLocation: Vector3, endLocation: Vector3, destination: Vector3, cloneMode: CloneMode, filter?: BlockFilter): void;
    public containsBiomes(volume: BlockVolumeBase, biomeFilter: BiomeFilter, isSuperset: boolean): boolean;
    public containsBlock(volume: BlockVolumeBase, filter: BlockFilter, allowUnloadedChunks?: boolean): boolean;
    public createExplosion(location: Vector3, radius: number, explosionOptions?: ExplosionOptions): boolean;
@@ -3820,6 +3832,7 @@ export class PrimitiveShape {
 export class PrimitiveShapesManager {
    public readonly maxShapes: number;
    public addText(text: TextPrimitive, dimension?: Dimension): void;
+   public getShapes(options?: PrimitiveShapeQueryOptions): Array<PrimitiveShape>;
    public removeAll(): void;
    public removeText(text: TextPrimitive): void;
    private constructor();

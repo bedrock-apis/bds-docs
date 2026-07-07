@@ -1,0 +1,30 @@
+{
+   "title": "Menu Category",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/block/1.26.20/Menu%20Category.json",
+   "x-format-version": "1.26.20",
+   "type": "object",
+   "properties": {
+      "category": {
+         "$ref": "../../common/1.26.20/CreativeItemCategory.json",
+         "x-underlying-type": "uint8",
+         "x-ordinal-index": 0
+      },
+      "group": {
+         "type": "string",
+         "default": "",
+         "x-ordinal-index": 1,
+         "pattern": "^\\S+$",
+         "x-regex-flags": "ECMAScript,icase"
+      },
+      "is_hidden_in_commands": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 2
+      }
+   },
+   "required": [
+      "category"
+   ]
+}

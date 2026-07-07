@@ -1,37 +1,23 @@
 {
-   "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "618005950",
-   "x-format-version": "MISSING VERSION",
    "title": "commands",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/server_config/legacy/commands.json",
+   "x-format-version": "legacy",
    "type": "object",
    "properties": {
       "default_permission_level": {
-         "title": "command_permission_level",
-         "type": "string",
-         "enum": [
-            "any",
-            "game_directors",
-            "admin",
-            "host",
-            "owner",
-            "internal"
-         ]
+         "$ref": "./command_permission_level.json",
+         "x-underlying-type": "uint8",
+         "x-ordinal-index": 0
       },
       "permission_levels": {
          "type": "object",
          "additionalProperties": {
-            "title": "command_permission_level",
-            "type": "string",
-            "enum": [
-               "any",
-               "game_directors",
-               "admin",
-               "host",
-               "owner",
-               "internal"
-            ]
+            "$ref": "./command_permission_level.json",
+            "x-underlying-type": "uint8"
          },
-         "default": {}
+         "default": {},
+         "x-ordinal-index": 1
       }
    }
 }

@@ -1,80 +1,17 @@
 {
-   "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "4034986970",
-   "x-format-version": "1.21.50",
-   "definitions": {
-      "448013909": {
-         "title": "CameraAimAssistPresetDefinition",
-         "type": "object",
-         "properties": {
-            "default_item_settings": {
-               "$ref": "#/definitions/1330773719"
-            },
-            "exclusion_list": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "$ref": "#/definitions/3661763395"
-               }
-            },
-            "hand_settings": {
-               "$ref": "#/definitions/1330773719"
-            },
-            "identifier": {
-               "$ref": "#/definitions/453697823"
-            },
-            "item_settings": {
-               "type": "object",
-               "additionalProperties": {
-                  "type": "object",
-                  "properties": {
-                     "key": {
-                        "$ref": "#/definitions/1550212535"
-                     },
-                     "value": {
-                        "$ref": "#/definitions/1330773719"
-                     }
-                  }
-               },
-               "default": []
-            },
-            "liquid_targeting_list": {
-               "type": "array",
-               "default": [],
-               "items": {
-                  "$ref": "#/definitions/1550212535"
-               }
-            }
-         },
-         "required": [
-            "identifier"
-         ]
-      },
-      "453697823": {
-         "title": "CameraAimAssist Identifier",
-         "type": "string"
-      },
-      "1330773719": {
-         "title": "CameraAimAssistCategory Reference",
-         "type": "string"
-      },
-      "1550212535": {
-         "title": "Item Reference",
-         "type": "string"
-      },
-      "3661763395": {
-         "title": "BlockOrEntity Reference",
-         "type": "string"
-      }
-   },
    "title": "minecraft:aim_assist_preset",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client_server/camera/1.21.50/Camera%20Aim-Assist%20Preset.json",
+   "x-format-version": "1.21.50",
    "type": "object",
    "properties": {
       "format_version": {
-         "type": "string"
+         "type": "string",
+         "x-ordinal-index": 0
       },
       "minecraft:aim_assist_preset": {
-         "$ref": "#/definitions/448013909"
+         "$ref": "./CameraAimAssistPresetDefinition.json",
+         "x-ordinal-index": 1
       }
    },
    "required": [

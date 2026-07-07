@@ -1,0 +1,47 @@
+{
+   "title": "emitter_shape_disc",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client/particles/1.21.10/emitter_shape_disc.json",
+   "x-format-version": "1.21.10",
+   "type": "object",
+   "properties": {
+      "direction": {
+         "$ref": "./particle_emitter_direction.json",
+         "x-ordinal-index": 3
+      },
+      "offset": {
+         "type": "array",
+         "default": [
+            0,
+            0,
+            0
+         ],
+         "items": {
+            "$ref": "../../../client_server/common/legacy/Expression%20Node.json"
+         },
+         "x-ordinal-index": 0,
+         "minItems": 3,
+         "maxItems": 3
+      },
+      "plane_normal": {
+         "default": [
+            0,
+            1,
+            0
+         ],
+         "$ref": "./particle_plane_normal.json",
+         "x-ordinal-index": 4
+      },
+      "radius": {
+         "default": 1,
+         "$ref": "../../../client_server/common/legacy/Expression%20Node.json",
+         "x-ordinal-index": 1
+      },
+      "surface_only": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 2
+      }
+   }
+}

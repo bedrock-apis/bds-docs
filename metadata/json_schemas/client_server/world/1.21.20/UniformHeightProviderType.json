@@ -1,0 +1,56 @@
+{
+   "title": "UniformHeightProviderType",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client_server/world/1.21.20/UniformHeightProviderType.json",
+   "x-format-version": "1.21.20",
+   "type": "object",
+   "properties": {
+      "max": {
+         "oneOf": [
+            {
+               "$ref": "./AnchorAbsolute.json"
+            },
+            {
+               "$ref": "./AnchorAboveBottom.json"
+            },
+            {
+               "$ref": "./AnchorBelowTop.json"
+            },
+            {
+               "$ref": "./AnchorFromSea.json"
+            }
+         ],
+         "x-control-value-type": "uint32",
+         "x-ordinal-index": 1
+      },
+      "min": {
+         "oneOf": [
+            {
+               "$ref": "./AnchorAbsolute.json"
+            },
+            {
+               "$ref": "./AnchorAboveBottom.json"
+            },
+            {
+               "$ref": "./AnchorBelowTop.json"
+            },
+            {
+               "$ref": "./AnchorFromSea.json"
+            }
+         ],
+         "x-control-value-type": "uint32",
+         "x-ordinal-index": 2
+      },
+      "type": {
+         "const": "uniform",
+         "$ref": "./HeightProviderType.json",
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 0
+      }
+   },
+   "required": [
+      "max",
+      "min",
+      "type"
+   ]
+}

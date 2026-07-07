@@ -1,0 +1,33 @@
+{
+   "title": "Rule",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client/block/1.21.80/Rule.json",
+   "x-format-version": "1.21.80",
+   "type": "object",
+   "properties": {
+      "condition": {
+         "$ref": "./Rule%20Condition.json",
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 0
+      },
+      "cull_against_full_and_opaque": {
+         "type": "boolean",
+         "default": true,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 1
+      },
+      "direction": {
+         "$ref": "../../../client_server/block/1.20.60/Facing.json",
+         "x-underlying-type": "int16",
+         "x-ordinal-index": 3
+      },
+      "geometry_part": {
+         "$ref": "../1.20.60/Rule%20Geometry%20Part.json",
+         "x-ordinal-index": 2
+      }
+   },
+   "required": [
+      "direction",
+      "geometry_part"
+   ]
+}
