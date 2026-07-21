@@ -53,14 +53,6 @@ export enum CommandPermissionLevel {
    Host = 3,
    Owner = 4,
 }
-export enum CompoundBlockVolumeAction {
-   Add = 0,
-   Subtract = 1,
-}
-export enum CompoundBlockVolumePositionRelativity {
-   Absolute = 1,
-   Relative = 0,
-}
 export enum ContainerRulesErrorReason {
    BannedItem = "BannedItem",
    NestedStorageItem = "NestedStorageItem",
@@ -336,37 +328,6 @@ export enum EntityInitializationCause {
    Loaded = "Loaded",
    Spawned = "Spawned",
    Transformed = "Transformed",
-}
-export enum EntitySpawnCategory {
-   Ambient = "Ambient",
-   Axolotls = "Axolotls",
-   Creature = "Creature",
-   Misc = "Misc",
-   Monster = "Monster",
-   UndergroundWaterCreature = "UndergroundWaterCreature",
-   WaterAmbient = "WaterAmbient",
-   WaterCreature = "WaterCreature",
-}
-export enum EntitySpawnReason {
-   Breeding = "Breeding",
-   Bucket = "Bucket",
-   ChunkGeneration = "ChunkGeneration",
-   Command = "Command",
-   Conversion = "Conversion",
-   DimensionTravel = "DimensionTravel",
-   Dispenser = "Dispenser",
-   Event = "Event",
-   Jockey = "Jockey",
-   Load = "Load",
-   MobSummoned = "MobSummoned",
-   Natural = "Natural",
-   Patrol = "Patrol",
-   Reinforcement = "Reinforcement",
-   SpawnEgg = "SpawnEgg",
-   Spawner = "Spawner",
-   Structure = "Structure",
-   TrialSpawner = "TrialSpawner",
-   Triggered = "Triggered",
 }
 export enum EntitySwingSource {
    Attack = "Attack",
@@ -801,11 +762,6 @@ export interface CameraTargetOptions {
    offsetFromTargetCenter?: Vector3;
    targetEntity: Entity;
 }
-export interface CompoundBlockVolumeItem {
-   action?: CompoundBlockVolumeAction;
-   locationRelativity?: CompoundBlockVolumePositionRelativity;
-   volume: BlockVolume;
-}
 export interface ContainerAccessSource {
    entity?: Entity;
 }
@@ -968,7 +924,7 @@ export interface EntityRaycastOptions extends EntityFilter {
 export interface EntitySneakingChangedEventOptions {
    entityFilter?: EntityFilter;
 }
-export interface EntityTamedEventFilter {
+export interface EntityTamedEventOptions {
    entityFilter?: EntityFilter;
    tamingEntityFilter?: EntityFilter;
 }
@@ -1729,27 +1685,6 @@ export class Component {
    public readonly isValid: boolean;
    public readonly typeId: string;
    private constructor();
-}
-export class CompoundBlockVolume {
-   public readonly capacity: number;
-   public readonly items: Array<CompoundBlockVolumeItem>;
-   public readonly itemsAbsolute: Array<CompoundBlockVolumeItem>;
-   public readonly volumeCount: number;
-   public clear(): void;
-   public constructor(origin?: Vector3);
-   public getBlockLocationIterator(): BlockLocationIterator;
-   public getBoundingBox(): BlockBoundingBox;
-   public getMax(): Vector3;
-   public getMin(): Vector3;
-   public getOrigin(): Vector3;
-   public isEmpty(): boolean;
-   public isInside(worldLocation: Vector3): boolean;
-   public peekLastVolume(forceRelativity?: CompoundBlockVolumePositionRelativity): (CompoundBlockVolumeItem | undefined);
-   public popVolume(): boolean;
-   public pushVolume(item: CompoundBlockVolumeItem): void;
-   public replaceOrAddLastVolume(item: CompoundBlockVolumeItem): boolean;
-   public setOrigin(position: Vector3, preserveExistingVolumes?: boolean): void;
-   public translateOrigin(delta: Vector3, preserveExistingVolumes?: boolean): void;
 }
 export class Container {
    public readonly containerRules?: ContainerRules;
@@ -2673,23 +2608,6 @@ export class EntitySpawnAfterEventSignal {
    public unsubscribe(callback: (arg0: EntitySpawnAfterEvent)=>void): void;
    private constructor();
 }
-export class EntitySpawnCallbackArgs {
-   public readonly dimensionLocation: DimensionLocation;
-   public readonly spawnReason: EntitySpawnReason;
-   public readonly spawnType: EntitySpawnType;
-   private constructor();
-}
-export class EntitySpawnType {
-   public readonly entityId: string;
-   public readonly height: number;
-   public readonly isImmuneFire: boolean;
-   public readonly isSummonable: boolean;
-   public readonly spawnCategory: EntitySpawnCategory;
-   public readonly width: number;
-   public getSpawnAABB(position: Vector3): AABB;
-   public isBlockDangerous(block: Block): boolean;
-   private constructor();
-}
 export class EntityStartSneakingAfterEvent {
    public readonly entity: Entity;
    private constructor();
@@ -2732,7 +2650,7 @@ export class EntityTamedAfterEvent {
    private constructor();
 }
 export class EntityTamedAfterEventSignal {
-   public subscribe(callback: (arg0: EntityTamedAfterEvent)=>void, options?: EntityTamedEventFilter): (arg0: EntityTamedAfterEvent)=>void;
+   public subscribe(callback: (arg0: EntityTamedAfterEvent)=>void, options?: EntityTamedEventOptions): (arg0: EntityTamedAfterEvent)=>void;
    public unsubscribe(callback: (arg0: EntityTamedAfterEvent)=>void): void;
    private constructor();
 }
@@ -2743,7 +2661,7 @@ export class EntityTamedBeforeEvent {
    private constructor();
 }
 export class EntityTamedBeforeEventSignal {
-   public subscribe(callback: (arg0: EntityTamedBeforeEvent)=>void, options?: EntityTamedEventFilter): (arg0: EntityTamedBeforeEvent)=>void;
+   public subscribe(callback: (arg0: EntityTamedBeforeEvent)=>void, options?: EntityTamedEventOptions): (arg0: EntityTamedBeforeEvent)=>void;
    public unsubscribe(callback: (arg0: EntityTamedBeforeEvent)=>void): void;
    private constructor();
 }
@@ -3366,12 +3284,6 @@ export class MolangVariableMap {
    public setFloat(variableName: string, number: number): void;
    public setSpeedAndDirection(variableName: string, speed: number, direction: Vector3): void;
    public setVector3(variableName: string, vector: Vector3): void;
-}
-export class ObstructionCallbackArgs {
-   public readonly dimension: Dimension;
-   public readonly entity: Entity;
-   public readonly spawnType: EntitySpawnType;
-   private constructor();
 }
 export class PackSettingChangeAfterEvent {
    public readonly settingName: string;
@@ -4098,11 +4010,6 @@ export class SoundInstance {
    public stop(): void;
    private constructor();
 }
-export class SpawnRulesRegistry {
-   public registerEntitySpawnCallback(id: string, callback: (arg0: EntitySpawnCallbackArgs)=>boolean): void;
-   public registerObstructionCallback(id: string, callback: (arg0: ObstructionCallbackArgs)=>boolean): void;
-   private constructor();
-}
 //@ts-ignore
 export class SpecificEnchantFunction extends LootItemFunction {
    public readonly enchantments: Array<EnchantInfo>;
@@ -4118,7 +4025,6 @@ export class StartupEvent {
    public readonly customCommandRegistry: CustomCommandRegistry;
    public readonly dimensionRegistry: DimensionRegistry;
    public readonly itemComponentRegistry: ItemComponentRegistry;
-   public getSpawnRulesRegistry(): SpawnRulesRegistry;
    private constructor();
 }
 //@ts-ignore
@@ -4193,6 +4099,7 @@ export class TextPrimitive extends PrimitiveShape {
    public backfaceVisible: boolean;
    public backgroundColorOverride?: RGBA;
    public depthTest: boolean;
+   public lineGapHeight: number;
    public readonly text: RawMessage | string;
    public textBackfaceVisible: boolean;
    public useRotation: boolean;
@@ -4408,7 +4315,6 @@ export class WorldLoadAfterEventSignal {
 
 export const HudElementsCount = 13;
 export const HudVisibilityCount = 2;
-export const isInternal = true;
 export const MoonPhaseCount = 8;
 export const TicksPerDay = 24000;
 export const TicksPerSecond = 20;
@@ -4598,10 +4504,6 @@ export class PrimitiveShapeError extends Error {
 }
 //@ts-ignore
 export class RawMessageError extends Error {
-   private constructor();
-}
-//@ts-ignore
-export class SpawnRulesInvalidRegistryError extends Error {
    private constructor();
 }
 //@ts-ignore

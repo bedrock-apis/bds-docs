@@ -27,6 +27,7 @@ export enum TextFilteringError {
 
 export interface ButtonOptions {
    disabled?: boolean | ObservableBoolean;
+   imageDetails?: ImageDetails;
    tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
    visible?: boolean | ObservableBoolean;
 }
@@ -41,13 +42,22 @@ export interface DropdownItemData {
 export interface DropdownOptions {
    description?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
    disabled?: boolean | ObservableBoolean;
+   tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
    visible?: boolean | ObservableBoolean;
+}
+export interface ImageDetails {
+   imagePackId: ObservableString | string;
+   imageSrc: ObservableString | string;
 }
 export interface ImageOptions {
    onClick?: ()=>void;
    tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
    visible?: boolean | ObservableBoolean;
    width?: number | ObservableNumber;
+}
+export interface MessageBoxButtonOptions {
+   imageDetails?: ImageDetails;
+   tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
 }
 export interface MessageBoxResult {
    closeReason: DataDrivenScreenClosedReason;
@@ -76,7 +86,9 @@ export interface ObservableOptions {
 export interface SliderOptions {
    description?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
    disabled?: boolean | ObservableBoolean;
+   fixedFormatDigits?: number | ObservableNumber;
    step?: number | ObservableNumber;
+   tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
    visible?: boolean | ObservableBoolean;
 }
 export interface SpacingOptions {
@@ -85,14 +97,17 @@ export interface SpacingOptions {
 export interface TextFieldOptions {
    description?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
    disabled?: boolean | ObservableBoolean;
+   tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
    visible?: boolean | ObservableBoolean;
 }
 export interface TextOptions {
+   tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
    visible?: boolean | ObservableBoolean;
 }
 export interface ToggleOptions {
    description?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
    disabled?: boolean | ObservableBoolean;
+   tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
    visible?: boolean | ObservableBoolean;
 }
 export interface UIRawMessage {
@@ -142,7 +157,9 @@ export class FormResponse {
 export class MessageBox {
    public body(body: ObservableString | ObservableUIRawMessage | string | UIRawMessage): MessageBox;
    public button1(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage): MessageBox;
+   public button1WithOptions(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, options?: MessageBoxButtonOptions): MessageBox;
    public button2(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage): MessageBox;
+   public button2WithOptions(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, options?: MessageBoxButtonOptions): MessageBox;
    public close(): void;
    public constructor(player: server.Player, title: ObservableString | ObservableUIRawMessage | string | UIRawMessage);
    public isShowing(): boolean;

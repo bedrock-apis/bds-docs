@@ -1,0 +1,34 @@
+{
+   "title": "minecraft:poi_tag",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/world/1.26.40/PoiTagDocment.json",
+   "x-format-version": "1.26.40",
+   "type": "object",
+   "properties": {
+      "children": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "type": "string",
+            "pattern": "^\\w+:\\w+$"
+         },
+         "x-ordinal-index": 1
+      },
+      "description": {
+         "$ref": "./PoiTagDescription.json",
+         "x-ordinal-index": 0
+      },
+      "parents": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "type": "string",
+            "pattern": "^\\w+:\\w+$"
+         },
+         "x-ordinal-index": 2
+      }
+   },
+   "required": [
+      "description"
+   ]
+}

@@ -113,6 +113,7 @@ export class DebugText extends DebugShape {
    public backfaceVisible: boolean;
    public backgroundColorOverride?: server.RGBA;
    public depthTest: boolean;
+   public lineGapHeight: number;
    public readonly text: server.RawMessage | string;
    public textBackfaceVisible: boolean;
    public useRotation: boolean;

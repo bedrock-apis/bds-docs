@@ -20,6 +20,21 @@ export enum BlockPaletteItemType {
    Probability = 1,
    Simple = 0,
 }
+export enum BlockUtilityExtrudeDirection {
+   Down = 0,
+   East = 5,
+   North = 2,
+   South = 3,
+   Up = 1,
+   West = 4,
+}
+export enum BlockUtilityFloodMatchCriteria {
+   Custom = 3,
+   NonAir = 0,
+   SameBlockType = 1,
+   SameBlockTypeAndStates = 4,
+   Solid = 2,
+}
 export enum BrushDirectionalPlacementMode {
    CameraFromAbove = 5,
    CameraFromBelow = 6,
@@ -292,6 +307,10 @@ export enum ThemeSettingsColorKey {
    TitleBarBackground = "TitleBarBackground",
    ViewportOutline = "ViewportOutline",
    Warning = "Warning",
+}
+export enum TransactionProcessState {
+   Ended = "Ended",
+   Started = "Started",
 }
 export enum WidgetCollisionType {
    Bounds = 2,
@@ -700,8 +719,10 @@ export class BlockUtilities {
    private constructor();
 }
 export class BlockUtilityTasks {
+   public extrude(location: server.Vector3, direction?: BlockUtilityExtrudeDirection, faceRadius?: number, layerCount?: number, isShrink?: boolean, criteria?: BlockUtilityFloodMatchCriteria, customBlockList?: Array<string>, maxBlocksPerTick?: number, buildGeometry?: boolean, tolerance?: number, faceVolume?: server.BlockVolumeBase | RelativeVolumeListBlockVolume): Promise<RelativeVolumeListBlockVolume>;
    public fillVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, block?: server.BlockPermutation | server.BlockType | string, maxBlocksPerTick?: number): Promise<number>;
    public findObscuredBlocksWithinVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, maxBlocksPerTick?: number): Promise<RelativeVolumeListBlockVolume>;
+   public floodSearch(location: server.Vector3, criteria?: BlockUtilityFloodMatchCriteria, radius?: number, customBlockList?: Array<string>, maxResultBlocks?: number, maxBlocksPerTick?: number): Promise<RelativeVolumeListBlockVolume>;
    public generateManifest(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, maxBlocksPerTick?: number): Promise<BlockUtilityManifest>;
    public replaceBlocksInSelection(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, fromBlockIdentifier: string, toBlock?: server.BlockPermutation | server.BlockType | string, maxBlocksPerTick?: number): Promise<number>;
    public shrinkWrapVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, maxBlocksPerTick?: number): Promise<RelativeVolumeListBlockVolume>;
@@ -985,12 +1006,13 @@ export class ModeChangeAfterEventSignal {
 }
 export class PendingTransaction {
    public addEntityOperation(entity: server.Entity, type: EntityOperationType): boolean;
-   public addUserDefinedOperation(transactionHandlerId: UserDefinedTransactionHandlerId, operationData: string, operationName?: string): void;
+   public addUserDefinedOperation(transactionHandler: UserDefinedTransactionOperationHandler, operationData: string, operationName?: string): void;
+   public addVolumeListOperation(operationHandler: VolumeListTransactionOperationHandler, previous: Array<RelativeVolumeListBlockVolume>, current: Array<RelativeVolumeListBlockVolume>): void;
    public commitTrackedChanges(): number;
    public discard(): void;
    public discardTrackedChanges(): number;
    public isValid(): boolean;
-   public submit(): void;
+   public submit(transactionHandler?: TransactionHandler): void;
    public trackBlockChangeArea(from: server.Vector3, to: server.Vector3): boolean;
    public trackBlockChangeList(locations: Array<server.Vector3>): boolean;
    public trackBlockChangeVolume(blockVolume: server.BlockVolumeBase): boolean;
@@ -1019,6 +1041,7 @@ export class RelativeVolumeListBlockVolume extends server.BlockVolumeBase {
    public readonly volumeCount: number;
    public add(toAdd: Array<server.Vector3> | server.BlockVolume | server.BlockVolumeBase | RelativeVolumeListBlockVolume | server.Vector3): void;
    public clear(): void;
+   public clone(): RelativeVolumeListBlockVolume;
    public constructor(origin?: server.Vector3);
    public getVolumeList(): Array<server.BlockVolume>;
    public hasAdjacent(location: server.Vector3, normalizedOffset: server.Vector3): boolean;
@@ -1116,16 +1139,38 @@ export class ThemeSettings {
    public updateThemeColor(id: string, key: ThemeSettingsColorKey, newColor: server.RGBA): void;
    private constructor();
 }
+export class TransactionEvent {
+   public readonly error?: unknown;
+   public readonly isUndo: boolean;
+   public readonly state: TransactionProcessState;
+   private constructor();
+}
+export class TransactionHandler {
+   public readonly id: string;
+   public addUserDefinedOperationHandler(payloadClosure: (arg0: string)=>void): UserDefinedTransactionOperationHandler;
+   public addVolumeListOperationHandler(closure: (arg0: Array<RelativeVolumeListBlockVolume>)=>void): VolumeListTransactionOperationHandler;
+   public isValid(): boolean;
+   public unregister(): void;
+   private constructor();
+}
 export class TransactionManager {
    public createPendingTransaction(name: string): PendingTransaction;
-   public createUserDefinedTransactionHandler(undoClosure: (arg0: string)=>void, redoClosure: (arg0: string)=>void): UserDefinedTransactionHandlerId;
    public redo(): void;
    public redoSize(): number;
+   public registerTransactionHandler(onEvent?: (arg0: TransactionEvent)=>void): TransactionHandler;
    public undo(): void;
    public undoSize(): number;
    private constructor();
 }
-export class UserDefinedTransactionHandlerId {
+export class TransactionOperationHandler {
+   private constructor();
+}
+//@ts-ignore
+export class UserDefinedTransactionOperationHandler extends TransactionOperationHandler {
+   private constructor();
+}
+//@ts-ignore
+export class VolumeListTransactionOperationHandler extends TransactionOperationHandler {
    private constructor();
 }
 export class Widget {

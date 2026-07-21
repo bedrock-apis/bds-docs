@@ -1,0 +1,213 @@
+{
+   "title": "minecraft:projectile",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/entity/1.26.50/minecraft_projectile.json",
+   "x-format-version": "1.26.50",
+   "type": "object",
+   "properties": {
+      "anchor": {
+         "default": "origin",
+         "$ref": "./ProjectileAnchor.json",
+         "x-underlying-type": "uint8",
+         "x-ordinal-index": 1
+      },
+      "angle_offset": {
+         "type": "number",
+         "default": 0,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 3
+      },
+      "catch_fire": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 27
+      },
+      "crit_particle_on_hurt": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 22
+      },
+      "destroy_on_hurt": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 20
+      },
+      "gravity": {
+         "type": "number",
+         "default": 0.05000000074505806,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 7
+      },
+      "hit_ground_sound": {
+         "type": "string",
+         "default": "",
+         "x-ordinal-index": 26
+      },
+      "hit_nearest_passenger": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 14
+      },
+      "hit_sound": {
+         "type": "string",
+         "default": "",
+         "x-ordinal-index": 25
+      },
+      "hit_water": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 33
+      },
+      "homing": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 11
+      },
+      "ignored_entities": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "../../../client_server/common/legacy/Reference%201.json"
+         },
+         "x-ordinal-index": 15
+      },
+      "inertia": {
+         "type": "number",
+         "default": 0.9900000095367432,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 8
+      },
+      "is_dangerous": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 17
+      },
+      "isolated_physics": {
+         "type": "boolean",
+         "default": true,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 10
+      },
+      "lightning": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 29
+      },
+      "liquid_inertia": {
+         "type": "number",
+         "default": 0.6000000238418579,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 9
+      },
+      "multiple_targets": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 13
+      },
+      "offset": {
+         "default": [
+            0,
+            0,
+            0
+         ],
+         "$ref": "../../common/1.21.100/vec3.json",
+         "x-ordinal-index": 0
+      },
+      "on_fire_time": {
+         "type": "number",
+         "default": 5,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 28
+      },
+      "on_hit": {
+         "$ref": "./OnHitCommandsStorage.json",
+         "x-ordinal-index": 32
+      },
+      "owner_launch_immunity_ticks": {
+         "type": "integer",
+         "default": 5,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 16
+      },
+      "particle": {
+         "default": "iconcrack",
+         "$ref": "../../../client/particles/legacy/ParticleType.json",
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 23
+      },
+      "potion_effect": {
+         "type": "integer",
+         "default": -1,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 30
+      },
+      "power": {
+         "type": "number",
+         "default": 1.2999999523162842,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 2
+      },
+      "reflect_immunity": {
+         "type": "number",
+         "default": 0,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 19
+      },
+      "reflect_on_hurt": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 18
+      },
+      "shoot_sound": {
+         "type": "string",
+         "default": "",
+         "x-ordinal-index": 24
+      },
+      "shoot_target": {
+         "type": "boolean",
+         "default": true,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 6
+      },
+      "should_bounce": {
+         "default": "no",
+         "$ref": "./ShouldBounce.json",
+         "x-underlying-type": "uint8",
+         "x-ordinal-index": 12
+      },
+      "splash_range": {
+         "type": "number",
+         "default": 4,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 31
+      },
+      "stop_on_hurt": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 21
+      },
+      "uncertainty_base": {
+         "type": "number",
+         "default": 0,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 4
+      },
+      "uncertainty_multiplier": {
+         "type": "number",
+         "default": 0,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 5
+      }
+   }
+}

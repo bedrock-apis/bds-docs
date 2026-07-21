@@ -53,14 +53,6 @@ export enum CommandPermissionLevel {
    Host = 3,
    Owner = 4,
 }
-export enum CompoundBlockVolumeAction {
-   Add = 0,
-   Subtract = 1,
-}
-export enum CompoundBlockVolumePositionRelativity {
-   Absolute = 1,
-   Relative = 0,
-}
 export enum ContainerRulesErrorReason {
    BannedItem = "BannedItem",
    NestedStorageItem = "NestedStorageItem",
@@ -768,11 +760,6 @@ export interface CameraTargetOptions {
    offsetFromTargetCenter?: Vector3;
    targetEntity: Entity;
 }
-export interface CompoundBlockVolumeItem {
-   action?: CompoundBlockVolumeAction;
-   locationRelativity?: CompoundBlockVolumePositionRelativity;
-   volume: BlockVolume;
-}
 export interface ContainerAccessSource {
    entity?: Entity;
 }
@@ -935,7 +922,7 @@ export interface EntityRaycastOptions extends EntityFilter {
 export interface EntitySneakingChangedEventOptions {
    entityFilter?: EntityFilter;
 }
-export interface EntityTamedEventFilter {
+export interface EntityTamedEventOptions {
    entityFilter?: EntityFilter;
    tamingEntityFilter?: EntityFilter;
 }
@@ -1690,27 +1677,6 @@ export class Component {
    public readonly isValid: boolean;
    public readonly typeId: string;
    private constructor();
-}
-export class CompoundBlockVolume {
-   public readonly capacity: number;
-   public readonly items: Array<CompoundBlockVolumeItem>;
-   public readonly itemsAbsolute: Array<CompoundBlockVolumeItem>;
-   public readonly volumeCount: number;
-   public clear(): void;
-   public constructor(origin?: Vector3);
-   public getBlockLocationIterator(): BlockLocationIterator;
-   public getBoundingBox(): BlockBoundingBox;
-   public getMax(): Vector3;
-   public getMin(): Vector3;
-   public getOrigin(): Vector3;
-   public isEmpty(): boolean;
-   public isInside(worldLocation: Vector3): boolean;
-   public peekLastVolume(forceRelativity?: CompoundBlockVolumePositionRelativity): (CompoundBlockVolumeItem | undefined);
-   public popVolume(): boolean;
-   public pushVolume(item: CompoundBlockVolumeItem): void;
-   public replaceOrAddLastVolume(item: CompoundBlockVolumeItem): boolean;
-   public setOrigin(position: Vector3, preserveExistingVolumes?: boolean): void;
-   public translateOrigin(delta: Vector3, preserveExistingVolumes?: boolean): void;
 }
 export class Container {
    public readonly containerRules?: ContainerRules;
@@ -2676,7 +2642,7 @@ export class EntityTamedAfterEvent {
    private constructor();
 }
 export class EntityTamedAfterEventSignal {
-   public subscribe(callback: (arg0: EntityTamedAfterEvent)=>void, options?: EntityTamedEventFilter): (arg0: EntityTamedAfterEvent)=>void;
+   public subscribe(callback: (arg0: EntityTamedAfterEvent)=>void, options?: EntityTamedEventOptions): (arg0: EntityTamedAfterEvent)=>void;
    public unsubscribe(callback: (arg0: EntityTamedAfterEvent)=>void): void;
    private constructor();
 }
@@ -2687,7 +2653,7 @@ export class EntityTamedBeforeEvent {
    private constructor();
 }
 export class EntityTamedBeforeEventSignal {
-   public subscribe(callback: (arg0: EntityTamedBeforeEvent)=>void, options?: EntityTamedEventFilter): (arg0: EntityTamedBeforeEvent)=>void;
+   public subscribe(callback: (arg0: EntityTamedBeforeEvent)=>void, options?: EntityTamedEventOptions): (arg0: EntityTamedBeforeEvent)=>void;
    public unsubscribe(callback: (arg0: EntityTamedBeforeEvent)=>void): void;
    private constructor();
 }
@@ -4125,6 +4091,7 @@ export class TextPrimitive extends PrimitiveShape {
    public backfaceVisible: boolean;
    public backgroundColorOverride?: RGBA;
    public depthTest: boolean;
+   public lineGapHeight: number;
    public readonly text: RawMessage | string;
    public textBackfaceVisible: boolean;
    public useRotation: boolean;

@@ -486,6 +486,9 @@ export class InternalPlayerServiceContext {
    public readonly realmsService: RealmsService;
    public readonly regionManager: PlayerProjectRegionManager;
    public runCoroutineWatchdogStressTest(): void;
+   public runLongRunningTaskBurstTest(durationSeconds: number, taskCount: number, maxStaggerSeconds: number): void;
+   public runLongRunningTaskTest(durationSeconds: number): void;
+   public runLongRunningTaskTestClient(durationSeconds: number): void;
    private constructor();
 }
 export class JigsawService {

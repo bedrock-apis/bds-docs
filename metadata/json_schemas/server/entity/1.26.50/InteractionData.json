@@ -1,0 +1,166 @@
+{
+   "title": "InteractionData",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/entity/1.26.50/InteractionData.json",
+   "x-format-version": "1.26.50",
+   "type": "object",
+   "properties": {
+      "add_items": {
+         "default": {
+            "table": ""
+         },
+         "$ref": "./AddItemsData.json",
+         "x-ordinal-index": 16
+      },
+      "admire": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 5
+      },
+      "barter": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 4
+      },
+      "cooldown": {
+         "type": "number",
+         "default": 0,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 0
+      },
+      "cooldown_after_being_attacked": {
+         "type": "number",
+         "default": 0,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 1
+      },
+      "drop_item_slot": {
+         "type": "string",
+         "x-ordinal-index": 11
+      },
+      "drop_item_y_offset": {
+         "type": "number",
+         "default": 0,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 12
+      },
+      "equip_item_slot": {
+         "type": "string",
+         "x-ordinal-index": 10
+      },
+      "give_item": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 6
+      },
+      "health_amount": {
+         "type": "integer",
+         "default": 0,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 9
+      },
+      "hurt_item": {
+         "type": "integer",
+         "default": 0,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 8
+      },
+      "interact_text": {
+         "type": "string",
+         "default": "",
+         "x-ordinal-index": 15
+      },
+      "on_interact": {
+         "default": {
+            "event": "",
+            "target": "self",
+            "filters": {
+               "all_of": null,
+               "all": null,
+               "OR": null,
+               "AND": null,
+               "any_of": null,
+               "any": null,
+               "none_of": null,
+               "NOT": null
+            }
+         },
+         "$ref": "../1.21.120/ActorDefinitionTrigger.json",
+         "x-ordinal-index": 22
+      },
+      "particle_on_start": {
+         "default": {
+            "particle_type": "none",
+            "particle_offset_towards_interactor": false,
+            "particle_y_offset": 0,
+            "copper_event": "none"
+         },
+         "$ref": "./InteractParticleData.json",
+         "x-ordinal-index": 18
+      },
+      "play_sounds": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "type": "string"
+         },
+         "x-ordinal-index": 20
+      },
+      "repair_entity_item": {
+         "default": {
+            "slot": null,
+            "amount": 1
+         },
+         "$ref": "./RepairEntityItemData.json",
+         "x-ordinal-index": 13
+      },
+      "spawn_entities": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "../../../client_server/common/legacy/Reference%201.json"
+         },
+         "x-ordinal-index": 21
+      },
+      "spawn_items": {
+         "default": {
+            "table": "",
+            "y_offset": 1
+         },
+         "$ref": "./SpawnItemsData.json",
+         "x-ordinal-index": 17
+      },
+      "swing": {
+         "type": "boolean",
+         "default": true,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 2
+      },
+      "take_item": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 7
+      },
+      "transform_to_item": {
+         "default": "",
+         "$ref": "../../../client_server/common/legacy/Reference%2010.json",
+         "x-ordinal-index": 14
+      },
+      "use_item": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 3
+      },
+      "vibration": {
+         "default": "entity_interact",
+         "$ref": "./InteractVibrationType.json",
+         "x-underlying-type": "uint32",
+         "x-ordinal-index": 19
+      }
+   }
+}
