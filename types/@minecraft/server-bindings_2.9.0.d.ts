@@ -1069,6 +1069,7 @@ export interface TeleportOptions {
    checkForBlocks?: boolean;
    dimension?: Dimension;
    facingLocation?: Vector3;
+   forceProvidedPositionOnDimensionChange?: boolean;
    keepVelocity?: boolean;
    rotation?: Vector2;
 }

@@ -5,6 +5,7 @@ export enum AimAssistTargetMode {
    Distance = "Distance",
 }
 export enum BlockComponentTypes {
+   DynamicProperties = "minecraft:dynamic_properties",
    FluidContainer = "minecraft:fluid_container",
    Instrument = "minecraft:instrument_sound",
    Inventory = "minecraft:inventory",
@@ -444,6 +445,7 @@ export enum InputPermissionCategory {
    Sneak = 5,
 }
 export enum ItemComponentTypes {
+   BlockDynamicProperties = "minecraft:block_actor_dynamic_properties",
    Book = "minecraft:book",
    Compostable = "minecraft:compostable",
    Cooldown = "minecraft:cooldown",
@@ -900,6 +902,9 @@ export interface EntityRaycastOptions extends EntityFilter {
    includePassableBlocks?: boolean;
    maxDistance?: number;
 }
+export interface EntitySneakingChangedEventOptions {
+   entityFilter?: EntityFilter;
+}
 export interface EntityTamedEventOptions {
    entityFilter?: EntityFilter;
    tamingEntityFilter?: EntityFilter;
@@ -1089,6 +1094,7 @@ export interface TeleportOptions {
    checkForBlocks?: boolean;
    dimension?: Dimension;
    facingLocation?: Vector3;
+   forceProvidedPositionOnDimensionChange?: boolean;
    keepVelocity?: boolean;
    rotation?: Vector2;
 }
@@ -1363,6 +1369,14 @@ export class BlockContainerOpenedAfterEventSignal {
 //@ts-ignore
 export class BlockCustomComponentInstance extends BlockComponent {
    public readonly customComponentParameters: CustomComponentParameters;
+   private constructor();
+}
+//@ts-ignore
+export class BlockDynamicPropertiesComponent extends BlockComponent {
+   public static readonly componentId = "minecraft:dynamic_properties";
+   public get(key: string): (boolean | number | number | string | Vector3 | undefined);
+   public set(key: string, value?: boolean | number | number | string | Vector3): void;
+   public totalByteCount(): number;
    private constructor();
 }
 export class BlockEvent {
@@ -2478,6 +2492,24 @@ export class EntitySpawnAfterEventSignal {
    public unsubscribe(callback: (arg0: EntitySpawnAfterEvent)=>void): void;
    private constructor();
 }
+export class EntityStartSneakingAfterEvent {
+   public readonly entity: Entity;
+   private constructor();
+}
+export class EntityStartSneakingAfterEventSignal {
+   public subscribe(callback: (arg0: EntityStartSneakingAfterEvent)=>void, options?: EntitySneakingChangedEventOptions): (arg0: EntityStartSneakingAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityStartSneakingAfterEvent)=>void): void;
+   private constructor();
+}
+export class EntityStopSneakingAfterEvent {
+   public readonly entity: Entity;
+   private constructor();
+}
+export class EntityStopSneakingAfterEventSignal {
+   public subscribe(callback: (arg0: EntityStopSneakingAfterEvent)=>void, options?: EntitySneakingChangedEventOptions): (arg0: EntityStopSneakingAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityStopSneakingAfterEvent)=>void): void;
+   private constructor();
+}
 //@ts-ignore
 export class EntityStrengthComponent extends EntityComponent {
    public static readonly componentId = "minecraft:strength";
@@ -2633,6 +2665,15 @@ export class FluidContainer {
    public static readonly minFillLevel = 0;
    private constructor();
 }
+export class FogSettings {
+   public getStack(): Array<string>;
+   public getTags(): Array<string>;
+   public pop(tag?: string): (string | undefined);
+   public push(fogId: string, tag?: string): number;
+   public remove(tag?: string): boolean;
+   public setStack(fogIds: Array<string>, tag?: string): void;
+   private constructor();
+}
 export class GameRuleChangeAfterEvent {
    public readonly rule: GameRule;
    public readonly value: boolean | number;
@@ -2695,6 +2736,14 @@ export class IsBabyCondition extends LootItemCondition {
    private constructor();
 }
 export class ISerializable {
+   private constructor();
+}
+//@ts-ignore
+export class ItemBlockDynamicPropertiesComponent extends ItemComponent {
+   public static readonly componentId = "minecraft:block_actor_dynamic_properties";
+   public get(key: string): (boolean | number | number | string | Vector3 | undefined);
+   public set(key: string, value?: boolean | number | number | string | Vector3): void;
+   public totalByteCount(): number;
    private constructor();
 }
 //@ts-ignore
@@ -3134,6 +3183,7 @@ export class Player extends Entity {
    public readonly camera: Camera;
    public readonly clientSystemInfo: ClientSystemInfo;
    public commandPermissionLevel: CommandPermissionLevel;
+   public readonly fogSettings: FogSettings;
    public readonly graphicsMode: GraphicsMode;
    public readonly inputInfo: InputInfo;
    public readonly inputPermissions: PlayerInputPermissions;
@@ -3977,6 +4027,8 @@ export class WorldAfterEvents {
    public readonly entityLoad: EntityLoadAfterEventSignal;
    public readonly entityRemove: EntityRemoveAfterEventSignal;
    public readonly entitySpawn: EntitySpawnAfterEventSignal;
+   public readonly entityStartSneaking: EntityStartSneakingAfterEventSignal;
+   public readonly entityStopSneaking: EntityStopSneakingAfterEventSignal;
    public readonly entityTamed: EntityTamedAfterEventSignal;
    public readonly entityUpgrade: EntityUpgradeAfterEventSignal;
    public readonly explosion: ExplosionAfterEventSignal;
@@ -4135,6 +4187,10 @@ export class EnchantmentTypeUnknownIdError extends Error {
 }
 //@ts-ignore
 export class EntitySpawnError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class FogSettingsError extends Error {
    private constructor();
 }
 //@ts-ignore

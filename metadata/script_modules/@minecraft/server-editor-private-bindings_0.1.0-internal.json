@@ -5485,6 +5485,22 @@
                "arguments": [],
                "call_privilege": [
                   {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "collectMetrics",
+               "return_type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "ProjectRegionGlobalMetrics"
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
                      "name": "default"
                   }
                ],
@@ -6086,6 +6102,61 @@
                   "is_bind_type": true,
                   "is_errorable": true,
                   "name": "PrefabTemplate"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "templateOrMetadata",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "variant",
+                        "variant_types": [
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "PrefabTemplate"
+                           },
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "PrefabTemplateMetadata"
+                           }
+                        ]
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getTemplateInstances",
+               "return_type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "PrefabTemplateInstanceLocation"
+                  },
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabErrorInvalidInstance"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabServiceError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "array"
                }
             },
             {
@@ -6778,6 +6849,33 @@
                   "is_bind_type": false,
                   "is_errorable": false,
                   "name": "string"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "size",
+               "type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabErrorInvalidTemplate"
+                     }
+                  ],
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.11.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "Vector3"
                }
             },
             {
@@ -11392,6 +11490,42 @@
       },
       {
          "base_types": [],
+         "name": "PrefabTemplateInstanceLocation",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "instance",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PrefabTemplateInstance"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "location",
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.11.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Vector3"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "PrefabTemplateInstanceLocation"
+         }
+      },
+      {
+         "base_types": [],
          "name": "PrefabTemplateMetadata",
          "properties": [
             {
@@ -11557,6 +11691,186 @@
       },
       {
          "base_types": [],
+         "name": "ProjectRegionGlobalMetrics",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "availableChunkCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "availableUniqueChunkCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "chunkCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "loadedAvailableChunkCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "loadedChunkCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "loadedRegionCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "playerMetrics",
+               "type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "ProjectRegionPlayerMetrics"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "array"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "regionCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "tickingAvailableChunkCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "tickingChunkCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "tickingRegionCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "uniqueChunkCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "ProjectRegionGlobalMetrics"
+         }
+      },
+      {
+         "base_types": [],
          "name": "ProjectRegionManagerChunkProcessingState",
          "properties": [
             {
@@ -11644,6 +11958,191 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "ProjectRegionOptions"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "ProjectRegionPlayerMetrics",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "availableChunkCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "availableUniqueChunkCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "chunkCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "loadedAvailableChunkCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "loadedChunkCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "loadedRegionCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "playerId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "playerName",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "regionCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "tickingAvailableChunkCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "tickingChunkCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "tickingRegionCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "uniqueChunkCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "ProjectRegionPlayerMetrics"
          }
       }
    ],

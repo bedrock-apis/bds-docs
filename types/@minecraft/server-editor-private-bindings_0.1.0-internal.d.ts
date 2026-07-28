@@ -260,6 +260,10 @@ export interface PrefabTemplateCreateInstanceOptions {
    mirror?: server.StructureMirrorAxis;
    rotation?: server.StructureRotation;
 }
+export interface PrefabTemplateInstanceLocation {
+   instance: PrefabTemplateInstance;
+   location: server.Vector3;
+}
 export interface PrefabTemplateMetadata {
    description: string;
    displayName: string;
@@ -276,6 +280,20 @@ export interface ProjectRegionExtents {
    x: common.NumberRange;
    z: common.NumberRange;
 }
+export interface ProjectRegionGlobalMetrics {
+   availableChunkCount: number;
+   availableUniqueChunkCount: number;
+   chunkCount: number;
+   loadedAvailableChunkCount: number;
+   loadedChunkCount: number;
+   loadedRegionCount: number;
+   playerMetrics: Array<ProjectRegionPlayerMetrics>;
+   regionCount: number;
+   tickingAvailableChunkCount: number;
+   tickingChunkCount: number;
+   tickingRegionCount: number;
+   uniqueChunkCount: number;
+}
 export interface ProjectRegionManagerChunkProcessingState {
    chunksProcessed: number;
    isCompleted: boolean;
@@ -284,6 +302,21 @@ export interface ProjectRegionOptions {
    availabilityMode?: ProjectRegionAvailabilityMode;
    extentX: common.NumberRange;
    extentZ: common.NumberRange;
+}
+export interface ProjectRegionPlayerMetrics {
+   availableChunkCount: number;
+   availableUniqueChunkCount: number;
+   chunkCount: number;
+   loadedAvailableChunkCount: number;
+   loadedChunkCount: number;
+   loadedRegionCount: number;
+   playerId: string;
+   playerName: string;
+   regionCount: number;
+   tickingAvailableChunkCount: number;
+   tickingChunkCount: number;
+   tickingRegionCount: number;
+   uniqueChunkCount: number;
 }
 
 export class ClientFilesystem {
@@ -544,6 +577,7 @@ export class PersistenceGroupItem {
    private constructor();
 }
 export class PlayerProjectRegionManager {
+   public collectMetrics(): ProjectRegionGlobalMetrics;
    public disposeAllRegions(): void;
    public disposeRegion(id: string): boolean;
    public getCursorRegion(): ProjectRegion;
@@ -568,6 +602,7 @@ export class PrefabManager {
    public deselectInstance(instance: PrefabTemplateInstance): void;
    public endCapturingMouseClicks(): void;
    public getTemplate(searchMetadata_or_fullyQualifiedName: PrefabTemplateMetadata | string): PrefabTemplate;
+   public getTemplateInstances(templateOrMetadata: PrefabTemplate | PrefabTemplateMetadata): Array<PrefabTemplateInstanceLocation>;
    public getTemplateList(): Array<PrefabTemplateMetadata>;
    public selectInstance(instance: PrefabTemplateInstance, append: boolean): void;
    private constructor();
@@ -583,6 +618,7 @@ export class PrefabTemplate {
    public readonly instanceCount: number;
    public readonly name: string;
    public notes: string;
+   public readonly size: server.Vector3;
    public readonly source: PrefabSource;
    public addStructure(structure: server_editor.EditorStructure, options?: PrefabTemplateAddStructureOptions): PrefabTemplateStructure;
    public createInstance(location: server.Vector3, options?: PrefabTemplateCreateInstanceOptions): PrefabTemplateInstance;

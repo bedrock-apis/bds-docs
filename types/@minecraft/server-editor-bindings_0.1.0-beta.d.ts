@@ -1006,7 +1006,7 @@ export class ModeChangeAfterEventSignal {
 }
 export class PendingTransaction {
    public addEntityOperation(entity: server.Entity, type: EntityOperationType): boolean;
-   public addUserDefinedOperation(transactionHandler: UserDefinedTransactionOperationHandler, operationData: string, operationName?: string): void;
+   public addUserDefinedOperation(transactionHandler: UserDefinedTransactionOperationHandler, prevData: string, currentData: string, operationName?: string): void;
    public addVolumeListOperation(operationHandler: VolumeListTransactionOperationHandler, previous: Array<RelativeVolumeListBlockVolume>, current: Array<RelativeVolumeListBlockVolume>): void;
    public commitTrackedChanges(): number;
    public discard(): void;

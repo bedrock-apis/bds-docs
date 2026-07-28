@@ -43,6 +43,12 @@ export interface DropdownOptions {
    disabled?: boolean | ObservableBoolean;
    visible?: boolean | ObservableBoolean;
 }
+export interface ImageOptions {
+   onClick?: ()=>void;
+   tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
+   visible?: boolean | ObservableBoolean;
+   width?: number | ObservableNumber;
+}
 export interface MessageBoxResult {
    closeReason: DataDrivenScreenClosedReason;
    selection?: number;
@@ -119,6 +125,7 @@ export class CustomForm {
    public divider(options?: DividerOptions): CustomForm;
    public dropdown(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, value: ObservableNumber, items: Array<DropdownItemData>, options?: DropdownOptions): CustomForm;
    public header(text: ObservableString | ObservableUIRawMessage | string | UIRawMessage, options?: TextOptions): CustomForm;
+   public image(src: ObservableString | string, pack: ObservableString | string, options?: ImageOptions): CustomForm;
    public isShowing(): boolean;
    public label(text: ObservableString | ObservableUIRawMessage | string | UIRawMessage, options?: TextOptions): CustomForm;
    public show(): Promise<DataDrivenScreenClosedReason>;

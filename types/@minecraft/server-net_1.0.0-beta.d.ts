@@ -260,6 +260,7 @@ export enum PacketId {
    SetHudPacket = "SetHudPacket",
    SetLastHurtByPacket = "SetLastHurtByPacket",
    SetLocalPlayerAsInitializedPacket = "SetLocalPlayerAsInitializedPacket",
+   SetPlayerFurnaceOptionsPacket = "SetPlayerFurnaceOptionsPacket",
    SetPlayerGameTypePacket = "SetPlayerGameTypePacket",
    SetPlayerInventoryOptionsPacket = "SetPlayerInventoryOptionsPacket",
    SetScoreboardIdentityPacket = "SetScoreboardIdentityPacket",
