@@ -1,95 +1,13 @@
 {
-   "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "3152900197",
-   "x-format-version": "1.21.60",
-   "definitions": {
-      "846838674": {
-         "title": "Description",
-         "type": "object",
-         "properties": {
-            "identifier": {
-               "type": "string"
-            }
-         },
-         "required": [
-            "identifier"
-         ]
-      },
-      "1336804412": {
-         "title": "Components",
-         "type": "object",
-         "properties": {
-            "minecraft:dimension_bounds": {
-               "default": {
-                  "min": 0,
-                  "max": 0
-               },
-               "$ref": "#/definitions/2004589657"
-            },
-            "minecraft:generation": {
-               "$ref": "#/definitions/3256507006"
-            }
-         },
-         "required": [
-            "minecraft:generation"
-         ]
-      },
-      "2004589657": {
-         "title": "Bounds",
-         "type": "object",
-         "properties": {
-            "max": {
-               "type": "integer",
-               "multipleOf": 16,
-               "minimum": -512,
-               "maximum": 512
-            },
-            "min": {
-               "type": "integer",
-               "multipleOf": 16,
-               "minimum": -512,
-               "maximum": 512
-            }
-         },
-         "required": [
-            "max",
-            "min"
-         ]
-      },
-      "3256507006": {
-         "title": "Generation",
-         "type": "object",
-         "properties": {
-            "generator_type": {
-               "type": "string"
-            }
-         },
-         "required": [
-            "generator_type"
-         ]
-      },
-      "4235864708": {
-         "title": "Dimension",
-         "type": "object",
-         "properties": {
-            "components": {
-               "$ref": "#/definitions/1336804412"
-            },
-            "description": {
-               "$ref": "#/definitions/846838674"
-            }
-         },
-         "required": [
-            "components",
-            "description"
-         ]
-      }
-   },
    "title": "DimensionDocument",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client_server/dimension/1.21.60/Dimensions.json",
+   "x-format-version": "1.21.60",
    "type": "object",
    "properties": {
       "minecraft:dimension": {
-         "$ref": "#/definitions/4235864708"
+         "$ref": "./Dimension.json",
+         "x-ordinal-index": 0
       }
    },
    "required": [

@@ -1,0 +1,83 @@
+{
+   "title": "Context.List",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client/ddui/1.21.130/Context.List.json",
+   "x-format-version": "1.21.130",
+   "type": "object",
+   "properties": {
+      "attribs": {
+         "description": "Dynamic value",
+         "x-ordinal-index": 1
+      },
+      "children": {
+         "type": "array",
+         "items": {
+            "oneOf": [
+               {
+                  "$ref": "./Container.Slot.json"
+               },
+               {
+                  "$ref": "./Container.FixedGridLayout.json"
+               },
+               {
+                  "$ref": "./Container.TextField.json"
+               },
+               {
+                  "$ref": "./Form.Button.json"
+               },
+               {
+                  "$ref": "./Form.Divider.json"
+               },
+               {
+                  "$ref": "./Form.Dropdown.json"
+               },
+               {
+                  "$ref": "./Form.Image.json"
+               },
+               {
+                  "$ref": "./Form.ScrollView.json"
+               },
+               {
+                  "$ref": "./Form.Slider.json"
+               },
+               {
+                  "$ref": "./Form.Switch.json"
+               },
+               {
+                  "$ref": "./Form.TextField.json"
+               },
+               {
+                  "$ref": "./Panel.Decoration.json"
+               },
+               {
+                  "$ref": "./Panel.Spacing.json"
+               },
+               {
+                  "$ref": "./Context.List.json"
+               },
+               {
+                  "$ref": "./ScrollableGridLayout.json"
+               },
+               {
+                  "$ref": "./Panel.Text.json"
+               },
+               {
+                  "$ref": "./Visibility.json"
+               }
+            ],
+            "x-control-value-type": "uint32"
+         },
+         "x-ordinal-index": 2
+      },
+      "component": {
+         "const": "context.list",
+         "$ref": "./ComponentType.json",
+         "x-underlying-type": "uint8",
+         "x-ordinal-index": 0
+      }
+   },
+   "required": [
+      "children",
+      "component"
+   ]
+}

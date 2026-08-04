@@ -1,408 +1,58 @@
 {
-   "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "3093534518",
-   "x-format-version": "3.0.0",
-   "definitions": {
-      "121699317": {
-         "title": "NativeModuleDependency",
-         "type": "object",
-         "properties": {
-            "module_name": {
-               "type": "string"
-            },
-            "optional": {
-               "type": "boolean",
-               "default": false
-            },
-            "version": {
-               "oneOf": [
-                  {
-                     "title": "VersionSelectType",
-                     "type": "string",
-                     "enum": [
-                        "alpha",
-                        "beta",
-                        "internal"
-                     ]
-                  },
-                  {
-                     "$ref": "#/definitions/2198276819"
-                  }
-               ]
-            }
-         },
-         "required": [
-            "module_name",
-            "version"
-         ]
-      },
-      "234962571": {
-         "title": "UUID",
-         "type": "string"
-      },
-      "476920027": {
-         "title": "DropdownOption",
-         "type": "object",
-         "properties": {
-            "name": {
-               "type": "string",
-               "minLength": 1
-            },
-            "text": {
-               "type": "string",
-               "minLength": 1
-            }
-         },
-         "required": [
-            "name",
-            "text"
-         ]
-      },
-      "570548258": {
-         "title": "DropdownSetting",
-         "type": "object",
-         "properties": {
-            "default": {
-               "type": "string",
-               "minLength": 1
-            },
-            "name": {
-               "type": "string",
-               "pattern": "^(?:(?!^(minecraft):).)+:(?:.)+$",
-               "x-regex-flags": "ECMAScript,icase"
-            },
-            "options": {
-               "type": "array",
-               "items": {
-                  "$ref": "#/definitions/476920027"
-               },
-               "minItems": 2,
-               "maxItems": 20
-            },
-            "text": {
-               "type": "string"
-            },
-            "type": {
-               "title": "SettingType",
-               "type": "string",
-               "enum": [
-                  "label",
-                  "slider",
-                  "toggle",
-                  "dropdown"
-               ]
-            }
-         },
-         "required": [
-            "default",
-            "name",
-            "options",
-            "text",
-            "type"
-         ]
-      },
-      "1029402515": {
-         "title": "Module",
-         "type": "object",
-         "properties": {
-            "description": {
-               "type": "string"
-            },
-            "entry": {
-               "type": "string"
-            },
-            "language": {
-               "type": "string"
-            },
-            "type": {
-               "type": "string"
-            },
-            "uuid": {
-               "$ref": "#/definitions/234962571",
-               "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
-            },
-            "version": {
-               "$ref": "#/definitions/2145775940"
-            }
-         },
-         "required": [
-            "type",
-            "uuid",
-            "version"
-         ]
-      },
-      "1294356741": {
-         "title": "LabelSetting",
-         "type": "object",
-         "properties": {
-            "text": {
-               "type": "string"
-            },
-            "type": {
-               "title": "SettingType",
-               "type": "string",
-               "enum": [
-                  "label",
-                  "slider",
-                  "toggle",
-                  "dropdown"
-               ]
-            }
-         },
-         "required": [
-            "text",
-            "type"
-         ]
-      },
-      "1302329431": {
-         "title": "PackDependency",
-         "type": "object",
-         "properties": {
-            "uuid": {
-               "$ref": "#/definitions/234962571",
-               "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
-            },
-            "version": {
-               "$ref": "#/definitions/2145775940"
-            }
-         },
-         "required": [
-            "uuid",
-            "version"
-         ]
-      },
-      "2099554186": {
-         "title": "Metadata",
-         "type": "object",
-         "properties": {
-            "authors": {
-               "type": "array",
-               "items": {
-                  "type": "string"
-               }
-            },
-            "generated_with": {
-               "type": "object",
-               "additionalProperties": {
-                  "type": "array",
-                  "items": {
-                     "$ref": "#/definitions/2198276819"
-                  }
-               }
-            },
-            "license": {
-               "type": "string"
-            },
-            "product_type": {
-               "type": "string"
-            },
-            "url": {
-               "type": "string"
-            }
-         }
-      },
-      "2145775940": {
-         "title": "SemVersion",
-         "$ref": "#/definitions/2658482576",
-         "pattern": "^(0|[1-9]\\d{0,4})(\\.(0|[1-9]\\d{0,4})(\\.(0|[1-9]\\d{0,4})(?:\\-((?:(?:(?:(?:0[0-9]*[A-Za-z-])|[1-9A-Za-z-])[0-9A-Za-z-]*)|0)(?:\\.(?:(?:(?:(?:0[0-9]*[A-Za-z-])|[1-9A-Za-z-])[0-9A-Za-z-]*)|0))*))?(?:\\+([0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?)?)?"
-      },
-      "2192054374": {
-         "title": "Subpack",
-         "type": "object",
-         "properties": {
-            "folder_name": {
-               "type": "string"
-            },
-            "memory_performance_tier": {
-               "type": "integer",
-               "minimum": 0,
-               "maximum": 5
-            },
-            "name": {
-               "type": "string"
-            }
-         },
-         "required": [
-            "folder_name",
-            "memory_performance_tier",
-            "name"
-         ]
-      },
-      "2198276819": {
-         "title": "RelaxedSemVersion",
-         "type": "string"
-      },
-      "2237970794": {
-         "title": "SliderSetting",
-         "type": "object",
-         "properties": {
-            "default": {
-               "type": "number"
-            },
-            "max": {
-               "type": "number"
-            },
-            "min": {
-               "type": "number"
-            },
-            "name": {
-               "type": "string",
-               "pattern": "^(?:(?!^(minecraft):).)+:(?:.)+$",
-               "x-regex-flags": "ECMAScript,icase"
-            },
-            "step": {
-               "type": "number",
-               "exclusiveMinimum": 0
-            },
-            "text": {
-               "type": "string"
-            },
-            "type": {
-               "title": "SettingType",
-               "type": "string",
-               "enum": [
-                  "label",
-                  "slider",
-                  "toggle",
-                  "dropdown"
-               ]
-            }
-         },
-         "required": [
-            "default",
-            "max",
-            "min",
-            "name",
-            "step",
-            "text",
-            "type"
-         ]
-      },
-      "2658482576": {
-         "title": "SemVersionProxy",
-         "type": "string"
-      },
-      "3439089054": {
-         "title": "Header",
-         "type": "object",
-         "properties": {
-            "allow_random_seed": {
-               "type": "boolean"
-            },
-            "base_game_version": {
-               "type": "string"
-            },
-            "description": {
-               "type": "string"
-            },
-            "lock_template_options": {
-               "type": "boolean"
-            },
-            "min_engine_version": {
-               "type": "string"
-            },
-            "name": {
-               "type": "string",
-               "minLength": 1
-            },
-            "pack_optimization_version": {
-               "$ref": "#/definitions/2198276819"
-            },
-            "pack_scope": {
-               "type": "string"
-            },
-            "platform_locked": {
-               "type": "boolean"
-            },
-            "uuid": {
-               "$ref": "#/definitions/234962571",
-               "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
-            },
-            "version": {
-               "$ref": "#/definitions/2145775940"
-            }
-         },
-         "required": [
-            "name",
-            "uuid",
-            "version"
-         ]
-      },
-      "4231382625": {
-         "title": "ToggleSetting",
-         "type": "object",
-         "properties": {
-            "default": {
-               "type": "boolean"
-            },
-            "name": {
-               "type": "string",
-               "pattern": "^(?:(?!^(minecraft):).)+:(?:.)+$",
-               "x-regex-flags": "ECMAScript,icase"
-            },
-            "text": {
-               "type": "string"
-            },
-            "type": {
-               "title": "SettingType",
-               "type": "string",
-               "enum": [
-                  "label",
-                  "slider",
-                  "toggle",
-                  "dropdown"
-               ]
-            }
-         },
-         "required": [
-            "default",
-            "name",
-            "text",
-            "type"
-         ]
-      }
-   },
    "title": "PackManifestDocument",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client_server/packaging/3.0.0/Manifest.json",
+   "x-format-version": "3.0.0",
    "type": "object",
    "properties": {
       "capabilities": {
          "type": "array",
          "items": {
             "type": "string"
-         }
+         },
+         "x-ordinal-index": 6
       },
       "dependencies": {
          "type": "array",
          "items": {
             "oneOf": [
                {
-                  "$ref": "#/definitions/1302329431"
+                  "$ref": "./PackDependency.json"
                },
                {
-                  "$ref": "#/definitions/121699317"
+                  "$ref": "./NativeModuleDependency.json"
                }
-            ]
-         }
+            ],
+            "x-control-value-type": "uint32"
+         },
+         "x-ordinal-index": 3
       },
       "format_version": {
          "type": "integer",
+         "x-underlying-type": "uint8",
+         "x-ordinal-index": 0,
          "minimum": 0,
          "maximum": 255
       },
       "has_education_metadata": {
-         "type": "boolean"
+         "type": "boolean",
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 8
       },
       "header": {
-         "$ref": "#/definitions/3439089054"
+         "$ref": "./Header.json",
+         "x-ordinal-index": 1
       },
       "metadata": {
-         "$ref": "#/definitions/2099554186"
+         "$ref": "./Metadata.json",
+         "x-ordinal-index": 7
       },
       "modules": {
          "type": "array",
          "items": {
-            "$ref": "#/definitions/1029402515"
+            "$ref": "./Module.json"
          },
+         "x-ordinal-index": 2,
          "minItems": 1
       },
       "settings": {
@@ -410,27 +60,30 @@
          "items": {
             "oneOf": [
                {
-                  "$ref": "#/definitions/1294356741"
+                  "$ref": "./LabelSetting.json"
                },
                {
-                  "$ref": "#/definitions/2237970794"
+                  "$ref": "./SliderSetting.json"
                },
                {
-                  "$ref": "#/definitions/4231382625"
+                  "$ref": "./ToggleSetting.json"
                },
                {
-                  "$ref": "#/definitions/570548258"
+                  "$ref": "./DropdownSetting.json"
                }
-            ]
+            ],
+            "x-control-value-type": "uint32"
          },
+         "x-ordinal-index": 4,
          "minItems": 1,
          "maxItems": 50
       },
       "subpacks": {
          "type": "array",
          "items": {
-            "$ref": "#/definitions/2192054374"
-         }
+            "$ref": "./Subpack.json"
+         },
+         "x-ordinal-index": 5
       }
    },
    "required": [

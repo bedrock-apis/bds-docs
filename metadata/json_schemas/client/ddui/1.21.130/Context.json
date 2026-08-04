@@ -1,0 +1,41 @@
+{
+   "title": "Context",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client/ddui/1.21.130/Context.json",
+   "x-format-version": "1.21.130",
+   "type": "object",
+   "properties": {
+      "attribs": {
+         "description": "Dynamic value",
+         "x-ordinal-index": 1
+      },
+      "children": {
+         "type": "array",
+         "items": {
+            "oneOf": [
+               {
+                  "$ref": "./Container.Layout.json"
+               },
+               {
+                  "$ref": "./Context.json"
+               },
+               {
+                  "$ref": "./Panel.json"
+               }
+            ],
+            "x-control-value-type": "uint32"
+         },
+         "x-ordinal-index": 2
+      },
+      "component": {
+         "const": "context",
+         "$ref": "./ComponentType.json",
+         "x-underlying-type": "uint8",
+         "x-ordinal-index": 0
+      }
+   },
+   "required": [
+      "children",
+      "component"
+   ]
+}

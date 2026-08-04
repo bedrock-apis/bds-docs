@@ -1,0 +1,24 @@
+{
+   "title": "Material Instances Component",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/block/1.26.20/Material%20Instances%20Component.json",
+   "x-format-version": "1.26.20",
+   "type": "object",
+   "propertyNames": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9_.:*]+$"
+   },
+   "additionalProperties": {
+      "oneOf": [
+         {
+            "type": "string",
+            "x-ordinal-index": 0
+         },
+         {
+            "$ref": "./Material%20Instance.json"
+         }
+      ],
+      "x-control-value-type": "uint32"
+   },
+   "maxProperties": 64
+}

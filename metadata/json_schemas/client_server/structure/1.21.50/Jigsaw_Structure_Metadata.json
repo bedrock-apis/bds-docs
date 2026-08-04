@@ -1,122 +1,17 @@
 {
-   "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "3295877247",
-   "x-format-version": "1.21.50",
-   "definitions": {
-      "646828202": {
-         "title": "JigsawStructureMetadataRegistry",
-         "type": "object",
-         "properties": {
-            "metadata": {
-               "type": "object",
-               "additionalProperties": {
-                  "type": "object",
-                  "properties": {
-                     "key": {
-                        "type": "integer",
-                        "minimum": 0
-                     },
-                     "value": {
-                        "$ref": "#/definitions/3305064473"
-                     }
-                  }
-               }
-            }
-         },
-         "required": [
-            "metadata"
-         ]
-      },
-      "1488572312": {
-         "title": "block_pos",
-         "type": "array",
-         "items": {
-            "type": "integer"
-         },
-         "minItems": 3,
-         "maxItems": 3
-      },
-      "1542770173": {
-         "title": "JigsawBlockMetadata",
-         "type": "object",
-         "properties": {
-            "block": {
-               "type": "string"
-            },
-            "final_block": {
-               "type": "string"
-            },
-            "joint_type": {
-               "title": "Jigsaw Joint Type",
-               "type": "string",
-               "enum": [
-                  "rollable",
-                  "aligned"
-               ]
-            },
-            "name": {
-               "type": "string"
-            },
-            "placement_priority": {
-               "type": "integer"
-            },
-            "pool": {
-               "type": "string"
-            },
-            "pos": {
-               "$ref": "#/definitions/1488572312"
-            },
-            "selection_priority": {
-               "type": "integer"
-            },
-            "target": {
-               "type": "string"
-            }
-         },
-         "required": [
-            "block",
-            "final_block",
-            "joint_type",
-            "name",
-            "placement_priority",
-            "pool",
-            "pos",
-            "selection_priority",
-            "target"
-         ]
-      },
-      "3305064473": {
-         "title": "JigsawStructureMetadata",
-         "type": "object",
-         "properties": {
-            "markers": {
-               "type": "array",
-               "items": {
-                  "$ref": "#/definitions/1542770173"
-               }
-            },
-            "size": {
-               "$ref": "#/definitions/1488572312"
-            },
-            "use_legacy_rotation": {
-               "type": "boolean",
-               "default": false
-            }
-         },
-         "required": [
-            "markers",
-            "size"
-         ]
-      }
-   },
    "title": "minecraft:jigsaw_structure_metadata",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client_server/structure/1.21.50/Jigsaw%20Structure%20Metadata.json",
+   "x-format-version": "1.21.50",
    "type": "object",
    "properties": {
       "format_version": {
-         "type": "string"
+         "type": "string",
+         "x-ordinal-index": 0
       },
       "minecraft:jigsaw_structure_metadata": {
-         "$ref": "#/definitions/646828202"
+         "$ref": "./JigsawStructureMetadataRegistry.json",
+         "x-ordinal-index": 1
       }
    },
    "required": [

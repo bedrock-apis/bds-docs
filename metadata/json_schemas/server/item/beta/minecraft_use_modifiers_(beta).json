@@ -1,0 +1,39 @@
+{
+   "title": "minecraft:use_modifiers (beta)",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/item/beta/minecraft_use_modifiers%20(beta).json",
+   "x-format-version": "beta",
+   "type": "object",
+   "properties": {
+      "emit_vibrations": {
+         "type": "boolean",
+         "default": true,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 1
+      },
+      "movement_modifier": {
+         "type": "number",
+         "x-underlying-type": "float",
+         "x-ordinal-index": 3,
+         "minimum": 0,
+         "maximum": 1
+      },
+      "start_sound": {
+         "$ref": "./SoundEventName.json",
+         "x-ordinal-index": 2
+      },
+      "start_using": {
+         "default": "if_first",
+         "$ref": "../1.26.30/StartUsing.json",
+         "x-underlying-type": "uint8",
+         "x-ordinal-index": 4
+      },
+      "use_duration": {
+         "type": "number",
+         "default": 0,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 0,
+         "minimum": 0
+      }
+   }
+}

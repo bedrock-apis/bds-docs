@@ -1557,7 +1557,7 @@ export class Dimension {
    public isChunkLoaded(location: Vector3): boolean;
    public placeFeature(featureName: string, location: Vector3, shouldThrow?: boolean): boolean;
    public placeFeatureRule(featureRuleName: string, location: Vector3): boolean;
-   public playSound(soundId: string, location: Vector3, soundOptions?: WorldSoundOptions): void;
+   public playSound(soundId: string, location: Vector3, soundOptions?: WorldSoundOptions): SoundInstance;
    public runCommand(commandString: string): CommandResult;
    public setBlockPermutation(location: Vector3, permutation: BlockPermutation): void;
    public setBlockType(location: Vector3, blockType: BlockType | string): void;
@@ -2947,7 +2947,7 @@ export class Player extends Entity {
    public getSpawnPoint(): (DimensionLocation | undefined);
    public getTotalXp(): number;
    public playMusic(trackId: string, musicOptions?: MusicOptions): void;
-   public playSound(soundId: string, soundOptions?: PlayerSoundOptions): void;
+   public playSound(soundId: string, soundOptions?: PlayerSoundOptions): SoundInstance;
    public queueMusic(trackId: string, musicOptions?: MusicOptions): void;
    public removePropertyOverrideForEntity(targetEntity: Entity, identifier: string): void;
    public resetLevel(): void;
@@ -3473,6 +3473,9 @@ export class ShutdownEvent {
 }
 //@ts-ignore
 export class SmeltItemFunction extends LootItemFunction {
+   private constructor();
+}
+export class SoundInstance {
    private constructor();
 }
 //@ts-ignore

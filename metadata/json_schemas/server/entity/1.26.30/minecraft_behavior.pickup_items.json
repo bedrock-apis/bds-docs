@@ -1,0 +1,135 @@
+{
+   "title": "minecraft:behavior.pickup_items",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/entity/1.26.30/minecraft_behavior.pickup_items.json",
+   "x-format-version": "1.26.30",
+   "type": "object",
+   "properties": {
+      "can_pickup_any_item": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 7
+      },
+      "can_pickup_to_hand_or_equipment": {
+         "type": "boolean",
+         "default": true,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 9
+      },
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "../1.21.90/Goal's%20control%20flags.json",
+            "x-underlying-type": "int32"
+         },
+         "x-ordinal-index": 15
+      },
+      "cooldown_after_being_attacked": {
+         "type": "integer",
+         "default": 0,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 8
+      },
+      "excluded_items": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "../../common/1.20.50/Item%20Descriptor.json"
+         },
+         "x-ordinal-index": 13
+      },
+      "goal_radius": {
+         "type": "number",
+         "default": 0.5,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 5
+      },
+      "max_dist": {
+         "type": "integer",
+         "default": 1,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 3
+      },
+      "on_pickup_item_end": {
+         "default": {
+            "event": "",
+            "target": "self",
+            "filters": {
+               "OR": null,
+               "all": null,
+               "all_of": null,
+               "AND": null,
+               "any_of": null,
+               "none_of": null,
+               "any": null,
+               "NOT": null
+            }
+         },
+         "$ref": "../1.21.120/ActorDefinitionTrigger.json",
+         "x-ordinal-index": 12
+      },
+      "on_pickup_item_start": {
+         "default": {
+            "event": "",
+            "target": "self",
+            "filters": {
+               "OR": null,
+               "all": null,
+               "all_of": null,
+               "AND": null,
+               "any_of": null,
+               "none_of": null,
+               "any": null,
+               "NOT": null
+            }
+         },
+         "$ref": "../1.21.120/ActorDefinitionTrigger.json",
+         "x-ordinal-index": 11
+      },
+      "pickup_based_on_chance": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 6
+      },
+      "pickup_same_items_as_in_hand": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 10
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 14,
+         "minimum": 0
+      },
+      "search_height": {
+         "type": "integer",
+         "default": 1,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 4
+      },
+      "speed_multiplier": {
+         "type": "number",
+         "default": 1,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 1
+      },
+      "stop_if_holding_item": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 0
+      },
+      "track_target": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 2
+      }
+   }
+}

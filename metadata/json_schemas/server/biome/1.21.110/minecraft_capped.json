@@ -1,0 +1,50 @@
+{
+   "title": "minecraft:capped",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/biome/1.21.110/minecraft_capped.json",
+   "x-format-version": "1.21.110",
+   "type": "object",
+   "properties": {
+      "beach_material": {
+         "$ref": "../../../client_server/common/1.21.20/Block%20Specifier.json",
+         "x-ordinal-index": 5
+      },
+      "ceiling_materials": {
+         "type": "array",
+         "items": {
+            "$ref": "../../../client_server/common/1.21.20/Block%20Specifier.json"
+         },
+         "x-ordinal-index": 2,
+         "minItems": 1
+      },
+      "floor_materials": {
+         "type": "array",
+         "items": {
+            "$ref": "../../../client_server/common/1.21.20/Block%20Specifier.json"
+         },
+         "x-ordinal-index": 1,
+         "minItems": 1
+      },
+      "foundation_material": {
+         "$ref": "../../../client_server/common/1.21.20/Block%20Specifier.json",
+         "x-ordinal-index": 4
+      },
+      "sea_material": {
+         "$ref": "../../../client_server/common/1.21.20/Block%20Specifier.json",
+         "x-ordinal-index": 3
+      },
+      "type": {
+         "const": "minecraft:capped",
+         "$ref": "./SurfaceBuilderType.json",
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 0
+      }
+   },
+   "required": [
+      "ceiling_materials",
+      "floor_materials",
+      "foundation_material",
+      "sea_material",
+      "type"
+   ]
+}

@@ -1,52 +1,38 @@
 {
-   "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "3724742262",
-   "x-format-version": "1.26.0",
-   "definitions": {
-      "2566306602": {
-         "title": "FloatRange",
-         "type": "object",
-         "properties": {
-            "max": {
-               "type": "number",
-               "default": 0
-            },
-            "min": {
-               "type": "number",
-               "default": 0
-            }
-         }
-      }
-   },
    "title": "DragonBaseGoalDefinition",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/entity/1.26.0/DragonBaseGoalDefinition.json",
+   "x-format-version": "1.26.0",
    "type": "object",
    "properties": {
       "active_speed": {
          "type": "number",
          "default": 1,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 0,
          "minimum": 0
       },
       "control_flags": {
          "type": "array",
          "default": [],
          "items": {
-            "title": "Goal's control flags",
-            "type": "string",
-            "enum": [
-               "move",
-               "look",
-               "jump"
-            ]
-         }
+            "$ref": "../1.21.90/Goal's%20control%20flags.json",
+            "x-underlying-type": "int32"
+         },
+         "x-ordinal-index": 5
       },
       "flight_speed": {
          "type": "number",
          "default": 0.6000000238418579,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 1,
          "minimum": 0
       },
       "priority": {
          "type": "integer",
          "default": 0,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 4,
          "minimum": 0
       },
       "target_zone": {
@@ -54,11 +40,14 @@
             "min": 10,
             "max": 150
          },
-         "$ref": "#/definitions/2566306602"
+         "$ref": "../../../client_server/common/legacy/FloatRange.json",
+         "x-ordinal-index": 3
       },
       "turn_speed": {
          "type": "number",
          "default": 0.699999988079071,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 2,
          "minimum": 0
       }
    }

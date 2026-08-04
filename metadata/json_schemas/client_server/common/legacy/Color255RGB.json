@@ -1,0 +1,24 @@
+{
+   "title": "Color255RGB",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client_server/common/legacy/Color255RGB.json",
+   "x-format-version": "legacy",
+   "oneOf": [
+      {
+         "type": "string",
+         "pattern": "^#[a-fA-F0-9]{6}$"
+      },
+      {
+         "type": "array",
+         "items": {
+            "type": "integer",
+            "x-underlying-type": "int32"
+         },
+         "minItems": 3,
+         "maxItems": 3
+      }
+   ],
+   "$metaProperties": {
+      "CEREAL_EDITOR_SCHEMA_TAG": "type:color"
+   }
+}

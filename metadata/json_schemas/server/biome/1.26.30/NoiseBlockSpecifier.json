@@ -1,0 +1,37 @@
+{
+   "title": "NoiseBlockSpecifier",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/biome/1.26.30/NoiseBlockSpecifier.json",
+   "x-format-version": "1.26.30",
+   "type": "object",
+   "properties": {
+      "block": {
+         "$ref": "../../../client_server/common/1.21.20/Block%20Specifier.json",
+         "x-ordinal-index": 3
+      },
+      "noise": {
+         "type": "string",
+         "default": "",
+         "x-ordinal-index": 0,
+         "pattern": "^\\S+$",
+         "x-regex-flags": "ECMAScript,icase"
+      },
+      "range": {
+         "default": {
+            "min": 0,
+            "max": 0
+         },
+         "$ref": "../../../client_server/common/legacy/FloatRange.json",
+         "x-ordinal-index": 2
+      },
+      "threshold": {
+         "type": "number",
+         "default": 0,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 1
+      }
+   },
+   "required": [
+      "block"
+   ]
+}

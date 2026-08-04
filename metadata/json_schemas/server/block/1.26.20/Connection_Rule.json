@@ -1,0 +1,30 @@
+{
+   "title": "Connection Rule",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/block/1.26.20/Connection%20Rule.json",
+   "x-format-version": "1.26.20",
+   "type": "object",
+   "properties": {
+      "accepts_connections_from": {
+         "default": "all",
+         "$ref": "./Connection%20Type.json",
+         "x-underlying-type": "uint8",
+         "x-ordinal-index": 0
+      },
+      "enabled_directions": {
+         "type": "array",
+         "default": [
+            "south",
+            "north",
+            "east",
+            "west"
+         ],
+         "items": {
+            "$ref": "./Direction.json",
+            "x-underlying-type": "uint8"
+         },
+         "x-ordinal-index": 1,
+         "x-unique-values": true
+      }
+   }
+}

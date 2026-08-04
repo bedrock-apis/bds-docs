@@ -2,6 +2,10 @@ import * as common from "@minecraft/common";
 import * as server from "@minecraft/server";
 
 
+export interface AllowListEntry {
+   name?: string;
+   xuid?: string;
+}
 export interface TransferPlayerIpPortOptions {
    hostname: string;
    port: number;
@@ -16,15 +20,18 @@ export class AdminBeforeEvents {
 }
 export class AllowList {
    public enabled: boolean;
-   public add(player: server.Player | string): void;
-   public contains(player: server.Player | string): boolean;
+   public readonly entries: Array<AllowListEntry>;
+   public add(player: AllowListEntry | server.Player): void;
+   public clear(): void;
+   public contains(player: AllowListEntry | server.Player): boolean;
    public reloadFile(): void;
-   public remove(player: server.Player | string): void;
+   public remove(player: AllowListEntry | server.Player): void;
    private constructor();
 }
 export class AsyncPlayerJoinBeforeEvent {
    public readonly name: string;
    public readonly persistentId: string;
+   public readonly splitScreenSlot?: server.PlayerSplitScreenSlot;
    public allowJoin(): void;
    public disallowJoin(reason?: string): void;
    public disconnect(reason?: string): void;

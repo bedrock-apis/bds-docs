@@ -1,0 +1,46 @@
+{
+   "title": "particle_event_node",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client/particles/1.21.10/particle_event_node.json",
+   "x-format-version": "1.21.10",
+   "type": "object",
+   "properties": {
+      "expression": {
+         "default": 0,
+         "$ref": "../../../client_server/common/legacy/Expression%20Node.json",
+         "x-ordinal-index": 0
+      },
+      "log": {
+         "type": "string",
+         "default": "",
+         "x-ordinal-index": 3
+      },
+      "particle_effect": {
+         "default": {
+            "effect": "",
+            "type": null,
+            "pre_effect_expression": 0
+         },
+         "$ref": "./particle_visual_effect_event.json",
+         "x-ordinal-index": 1
+      },
+      "randomize": {
+         "type": "array",
+         "items": {
+            "$ref": "./particle_event_random_node.json"
+         },
+         "x-ordinal-index": 5
+      },
+      "sequence": {
+         "type": "array",
+         "items": {
+            "$ref": "./particle_event_node.json"
+         },
+         "x-ordinal-index": 4
+      },
+      "sound_effect": {
+         "$ref": "./particle_sound_effect_event.json",
+         "x-ordinal-index": 2
+      }
+   }
+}

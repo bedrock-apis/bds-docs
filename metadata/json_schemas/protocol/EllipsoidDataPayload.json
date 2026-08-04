@@ -1,0 +1,25 @@
+{
+   "title": "EllipsoidDataPayload",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/EllipsoidDataPayload.json",
+   "x-format-version": "MISSING VERSION",
+   "x-protocol-version": 2168,
+   "type": "object",
+   "properties": {
+      "Radii": {
+         "$ref": "./Vec3.json",
+         "x-ordinal-index": 0
+      },
+      "Segments Per Axis": {
+         "type": "integer",
+         "x-underlying-type": "uint8",
+         "x-ordinal-index": 1,
+         "minimum": 0,
+         "maximum": 255
+      }
+   },
+   "required": [
+      "Radii",
+      "Segments Per Axis"
+   ]
+}

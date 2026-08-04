@@ -73,7 +73,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -93,7 +93,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": true,
@@ -149,7 +149,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -2219,6 +2219,69 @@
       {
          "base_types": [],
          "constants": [],
+         "functions": [],
+         "name": "DataTransferExportConfigsResponse",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "message",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "packPath",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "success",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "DataTransferExportConfigsResponse"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
          "functions": [
             {
                "arguments": [
@@ -2345,6 +2408,37 @@
                      "is_bind_type": true,
                      "is_errorable": false,
                      "name": "DataTransferCreateSettingResponse"
+                  }
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "packName",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "exportAllConfigsToPack",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "DataTransferExportConfigsResponse"
                   }
                }
             },
@@ -2741,6 +2835,222 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "DataTransferRequestResponse"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "name",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getFlag",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "boolean"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "name",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getFlagCategory",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "string"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "name",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getFlagDescription",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "string"
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getFlagNames",
+               "return_type": {
+                  "element_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "array"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "name",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "defaultValue",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "category",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "description",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "registerFlag",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "name",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "value",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "setFlag",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "FeatureFlagManager",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "isHost",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "FeatureFlagManager"
          }
       },
       {
@@ -3487,7 +3797,24 @@
       {
          "base_types": [],
          "constants": [],
-         "functions": [],
+         "functions": [
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "runCoroutineWatchdogStressTest",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            }
+         ],
          "name": "InternalPlayerServiceContext",
          "properties": [
             {
@@ -3533,6 +3860,21 @@
                   "is_bind_type": true,
                   "is_errorable": false,
                   "name": "DataTransferManager"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "featureFlags",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "FeatureFlagManager"
                }
             },
             {
@@ -3713,7 +4055,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -3845,7 +4187,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -3938,7 +4280,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -4141,6 +4483,50 @@
                }
             },
             {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "meshId",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "maxColorCount",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "int32",
+                        "valid_range": {
+                           "max": 2147483647,
+                           "min": -2147483648
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getColorSources",
+               "return_type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "MeshColorSource"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "array"
+               }
+            },
+            {
                "arguments": [],
                "call_privilege": [
                   {
@@ -4282,7 +4668,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -4301,7 +4687,7 @@
                               "from_module": {
                                  "name": "@minecraft/server-bindings",
                                  "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                                 "version": "2.9.0-internal"
+                                 "version": "2.10.0-internal"
                               },
                               "is_bind_type": true,
                               "is_errorable": false,
@@ -4309,13 +4695,13 @@
                            },
                            {
                               "from_module": {
-                                 "name": "@minecraft/server-bindings",
-                                 "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                                 "version": "2.9.0-internal"
+                                 "name": "@minecraft/server-editor-bindings",
+                                 "uuid": "8518d9c7-a1f5-4bf3-acc7-78e87df595fc",
+                                 "version": "0.1.0-internal"
                               },
                               "is_bind_type": true,
                               "is_errorable": false,
-                              "name": "CompoundBlockVolume"
+                              "name": "RelativeVolumeListBlockVolume"
                            }
                         ]
                      }
@@ -4327,7 +4713,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -4374,7 +4760,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -4432,7 +4818,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -5884,7 +6270,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -6426,7 +6812,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -6451,7 +6837,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -6476,7 +6862,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -6553,7 +6939,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -6578,7 +6964,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -6677,7 +7063,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -6702,7 +7088,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -6727,7 +7113,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -6754,7 +7140,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": true,
@@ -6781,7 +7167,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": true,
@@ -6808,7 +7194,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": true,
@@ -6851,7 +7237,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -6865,7 +7251,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -6885,7 +7271,7 @@
                            "from_module": {
                               "name": "@minecraft/server-bindings",
                               "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                              "version": "2.9.0-internal"
+                              "version": "2.10.0-internal"
                            },
                            "is_bind_type": true,
                            "is_errorable": false,
@@ -6910,7 +7296,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.9.0-internal"
+                        "version": "2.10.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -6927,7 +7313,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -6951,7 +7337,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.9.0-internal"
+                        "version": "2.10.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -6968,7 +7354,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -6988,7 +7374,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": true,
@@ -7004,7 +7390,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -7024,7 +7410,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": true,
@@ -7040,7 +7426,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -7076,7 +7462,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": true,
@@ -7092,7 +7478,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -7123,7 +7509,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -7170,7 +7556,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -7201,7 +7587,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -7232,7 +7618,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -7263,7 +7649,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -7311,7 +7697,7 @@
                                  "from_module": {
                                     "name": "@minecraft/server-bindings",
                                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                                    "version": "2.9.0-internal"
+                                    "version": "2.10.0-internal"
                                  },
                                  "is_bind_type": true,
                                  "is_errorable": false,
@@ -7461,7 +7847,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -7497,7 +7883,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -7516,7 +7902,7 @@
                               "from_module": {
                                  "name": "@minecraft/server-bindings",
                                  "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                                 "version": "2.9.0-internal"
+                                 "version": "2.10.0-internal"
                               },
                               "is_bind_type": true,
                               "is_errorable": false,
@@ -7554,7 +7940,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -7599,7 +7985,7 @@
                               "from_module": {
                                  "name": "@minecraft/server-bindings",
                                  "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                                 "version": "2.9.0-internal"
+                                 "version": "2.10.0-internal"
                               },
                               "is_bind_type": true,
                               "is_errorable": false,
@@ -7620,7 +8006,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -7662,7 +8048,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -7687,7 +8073,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -7697,7 +8083,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": true,
@@ -7734,7 +8120,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.9.0-internal"
+                           "version": "2.10.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -8283,6 +8669,33 @@
             {
                "is_read_only": true,
                "is_static": true,
+               "name": "Client",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "FeatureFlagCategory"
+               },
+               "value": 1
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Server",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "FeatureFlagCategory"
+               },
+               "value": 0
+            }
+         ],
+         "name": "FeatureFlagCategory"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
                "name": "AccessDenied",
                "type": {
                   "is_bind_type": false,
@@ -8290,6 +8703,17 @@
                   "name": "string"
                },
                "value": "access-denied"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Busy",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "file-selector-busy"
             },
             {
                "is_read_only": true,
@@ -8325,7 +8749,7 @@
                "type": {
                   "is_bind_type": true,
                   "is_errorable": false,
-                  "name": "GeneralInputBindingCategory"
+                  "name": "GeneralInputBindingPriority"
                },
                "value": 8
             },
@@ -8336,7 +8760,7 @@
                "type": {
                   "is_bind_type": true,
                   "is_errorable": false,
-                  "name": "GeneralInputBindingCategory"
+                  "name": "GeneralInputBindingPriority"
                },
                "value": 6
             },
@@ -8347,7 +8771,7 @@
                "type": {
                   "is_bind_type": true,
                   "is_errorable": false,
-                  "name": "GeneralInputBindingCategory"
+                  "name": "GeneralInputBindingPriority"
                },
                "value": 3
             },
@@ -8358,7 +8782,7 @@
                "type": {
                   "is_bind_type": true,
                   "is_errorable": false,
-                  "name": "GeneralInputBindingCategory"
+                  "name": "GeneralInputBindingPriority"
                },
                "value": 2
             },
@@ -8369,7 +8793,7 @@
                "type": {
                   "is_bind_type": true,
                   "is_errorable": false,
-                  "name": "GeneralInputBindingCategory"
+                  "name": "GeneralInputBindingPriority"
                },
                "value": 5
             },
@@ -8380,7 +8804,7 @@
                "type": {
                   "is_bind_type": true,
                   "is_errorable": false,
-                  "name": "GeneralInputBindingCategory"
+                  "name": "GeneralInputBindingPriority"
                },
                "value": 7
             },
@@ -8391,7 +8815,7 @@
                "type": {
                   "is_bind_type": true,
                   "is_errorable": false,
-                  "name": "GeneralInputBindingCategory"
+                  "name": "GeneralInputBindingPriority"
                },
                "value": 9
             },
@@ -8402,7 +8826,7 @@
                "type": {
                   "is_bind_type": true,
                   "is_errorable": false,
-                  "name": "GeneralInputBindingCategory"
+                  "name": "GeneralInputBindingPriority"
                },
                "value": 4
             },
@@ -8413,7 +8837,7 @@
                "type": {
                   "is_bind_type": true,
                   "is_errorable": false,
-                  "name": "GeneralInputBindingCategory"
+                  "name": "GeneralInputBindingPriority"
                },
                "value": 1
             },
@@ -8424,7 +8848,7 @@
                "type": {
                   "is_bind_type": true,
                   "is_errorable": false,
-                  "name": "GeneralInputBindingCategory"
+                  "name": "GeneralInputBindingPriority"
                },
                "value": 10
             },
@@ -8435,7 +8859,7 @@
                "type": {
                   "is_bind_type": true,
                   "is_errorable": false,
-                  "name": "GeneralInputBindingCategory"
+                  "name": "GeneralInputBindingPriority"
                },
                "value": 11
             },
@@ -8446,7 +8870,7 @@
                "type": {
                   "is_bind_type": true,
                   "is_errorable": false,
-                  "name": "GeneralInputBindingCategory"
+                  "name": "GeneralInputBindingPriority"
                },
                "value": 13
             },
@@ -8457,7 +8881,7 @@
                "type": {
                   "is_bind_type": true,
                   "is_errorable": false,
-                  "name": "GeneralInputBindingCategory"
+                  "name": "GeneralInputBindingPriority"
                },
                "value": 12
             },
@@ -8468,12 +8892,12 @@
                "type": {
                   "is_bind_type": true,
                   "is_errorable": false,
-                  "name": "GeneralInputBindingCategory"
+                  "name": "GeneralInputBindingPriority"
                },
                "value": 0
             }
          ],
-         "name": "GeneralInputBindingCategory"
+         "name": "GeneralInputBindingPriority"
       },
       {
          "constants": [
@@ -8550,6 +8974,33 @@
             }
          ],
          "name": "JigsawJsonType"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "MaterialBaseColor",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "material-base-color"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "VertexColor",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "vertex-color"
+            }
+         ],
+         "name": "MeshColorSourceKind"
       },
       {
          "constants": [
@@ -9288,7 +9739,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.9.0-internal"
+                        "version": "2.10.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -9385,7 +9836,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -9429,7 +9880,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.9.0-internal"
+                        "version": "2.10.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -9628,7 +10079,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -9643,7 +10094,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -9658,7 +10109,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -10035,8 +10486,139 @@
       },
       {
          "base_types": [],
+         "name": "MeshColorEntry",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "color",
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.10.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "RGBA"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "id",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "suggestedBlockType",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "weight",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "float",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "MeshColorEntry"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "MeshColorSource",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "colors",
+               "type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "MeshColorEntry"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "array"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "displayName",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "id",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "kind",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "MeshColorSourceKind"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "MeshColorSource"
+         }
+      },
+      {
+         "base_types": [],
          "name": "MeshInfo",
          "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "colorSources",
+               "type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "MeshColorSource"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "array"
+               }
+            },
             {
                "is_baked": false,
                "is_read_only": false,
@@ -10064,26 +10646,12 @@
             {
                "is_baked": false,
                "is_read_only": false,
-               "name": "materialCount",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "int32",
-                  "valid_range": {
-                     "max": 2147483647,
-                     "min": -2147483648
-                  }
-               }
-            },
-            {
-               "is_baked": false,
-               "is_read_only": false,
                "name": "maxBounds",
                "type": {
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -10098,7 +10666,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -10188,7 +10756,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -10218,7 +10786,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -10237,7 +10805,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.9.0-internal"
+                        "version": "2.10.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -10494,7 +11062,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.9.0-internal"
+                     "version": "2.10.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -10600,7 +11168,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.9.0-internal"
+                        "version": "2.10.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -10620,7 +11188,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.9.0-internal"
+                        "version": "2.10.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -10640,7 +11208,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.9.0-internal"
+                        "version": "2.10.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -10671,7 +11239,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.9.0-internal"
+                        "version": "2.10.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -10691,7 +11259,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.9.0-internal"
+                        "version": "2.10.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -10992,10 +11560,10 @@
          "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
          "versions": [
             {
-               "version": "2.9.0-beta"
+               "version": "2.10.0-beta"
             },
             {
-               "version": "2.9.0-internal"
+               "version": "2.10.0-internal"
             }
          ]
       }

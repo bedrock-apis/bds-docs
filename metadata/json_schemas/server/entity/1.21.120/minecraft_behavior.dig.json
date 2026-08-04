@@ -1,0 +1,79 @@
+{
+   "title": "minecraft:behavior.dig",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/entity/1.21.120/minecraft_behavior.dig.json",
+   "x-format-version": "1.21.120",
+   "type": "object",
+   "properties": {
+      "allow_dig_when_named": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 2
+      },
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "../1.21.90/Goal's%20control%20flags.json",
+            "x-underlying-type": "int32"
+         },
+         "x-ordinal-index": 8
+      },
+      "digs_in_daylight": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 5
+      },
+      "duration": {
+         "type": "number",
+         "default": 0,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 0
+      },
+      "idle_time": {
+         "type": "number",
+         "default": 0,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 1
+      },
+      "on_start": {
+         "default": {
+            "event": "",
+            "target": "self",
+            "filters": {
+               "OR": null,
+               "all": null,
+               "all_of": null,
+               "AND": null,
+               "any_of": null,
+               "none_of": null,
+               "any": null,
+               "NOT": null
+            }
+         },
+         "$ref": "./ActorDefinitionTrigger.json",
+         "x-ordinal-index": 6
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 7,
+         "minimum": 0
+      },
+      "suspicion_is_disturbance": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 4
+      },
+      "vibration_is_disturbance": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 3
+      }
+   }
+}

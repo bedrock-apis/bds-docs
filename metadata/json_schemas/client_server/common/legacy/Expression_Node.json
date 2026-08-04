@@ -1,39 +1,16 @@
 {
-   "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "2014847524",
-   "x-format-version": "MISSING VERSION",
-   "definitions": {
-      "2529973620": {
-         "title": "Molang string",
-         "oneOf": [
-            {
-               "type": "string"
-            },
-            {
-               "type": "object",
-               "properties": {
-                  "expression": {
-                     "type": "string"
-                  },
-                  "version": {
-                     "type": "integer"
-                  }
-               },
-               "required": [
-                  "expression",
-                  "version"
-               ]
-            }
-         ]
-      }
-   },
    "title": "Molang expression",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client_server/common/legacy/Expression%20Node.json",
+   "x-format-version": "legacy",
    "oneOf": [
       {
-         "$ref": "#/definitions/2529973620"
+         "$ref": "./Molang%20string.json"
       },
       {
-         "type": "number"
+         "type": "number",
+         "x-underlying-type": "float",
+         "x-ordinal-index": 1
       }
    ]
 }

@@ -1,0 +1,36 @@
+{
+   "title": "minecraft:surface_builder",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/biome/1.21.110/minecraft_surface_builder.json",
+   "x-format-version": "1.21.110",
+   "type": "object",
+   "properties": {
+      "builder": {
+         "oneOf": [
+            {
+               "$ref": "./minecraft_overworld.json"
+            },
+            {
+               "$ref": "./minecraft_frozen_ocean.json"
+            },
+            {
+               "$ref": "./minecraft_mesa.json"
+            },
+            {
+               "$ref": "./minecraft_swamp.json"
+            },
+            {
+               "$ref": "./minecraft_capped.json"
+            },
+            {
+               "$ref": "./minecraft_the_end.json"
+            }
+         ],
+         "x-control-value-type": "uint32",
+         "x-ordinal-index": 0
+      }
+   },
+   "required": [
+      "builder"
+   ]
+}

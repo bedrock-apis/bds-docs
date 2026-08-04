@@ -818,7 +818,7 @@ export class Dimension {
    public getEntitiesAtBlockLocation(location: Vector3): Array<Entity>;
    public getEntitiesFromRay(location: Vector3, direction: Vector3, options?: EntityRaycastOptions): Array<EntityRaycastHit>;
    public getPlayers(options?: EntityQueryOptions): Array<Player>;
-   public playSound(soundId: string, location: Vector3, soundOptions?: WorldSoundOptions): void;
+   public playSound(soundId: string, location: Vector3, soundOptions?: WorldSoundOptions): SoundInstance;
    public runCommand(commandString: string): CommandResult;
    public runCommandAsync(commandString: string): Promise<CommandResult>;
    public setWeather(weatherType: WeatherType, duration?: number): void;
@@ -1779,7 +1779,7 @@ export class Player extends Entity {
    public getSpawnPoint(): (DimensionLocation | undefined);
    public getTotalXp(): number;
    public playMusic(trackId: string, musicOptions?: MusicOptions): void;
-   public playSound(soundId: string, soundOptions?: PlayerSoundOptions): void;
+   public playSound(soundId: string, soundOptions?: PlayerSoundOptions): SoundInstance;
    public queueMusic(trackId: string, musicOptions?: MusicOptions): void;
    public resetLevel(): void;
    public sendMessage(message: Array<RawMessage | string> | RawMessage | string): void;
@@ -2066,6 +2066,9 @@ export class Seat {
    public readonly minRiderCount: number;
    public readonly position: Vector3;
    public readonly seatRotation: number;
+   private constructor();
+}
+export class SoundInstance {
    private constructor();
 }
 //@ts-ignore

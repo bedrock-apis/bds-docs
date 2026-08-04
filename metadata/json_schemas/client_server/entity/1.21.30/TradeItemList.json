@@ -1,0 +1,26 @@
+{
+   "title": "TradeItemList",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client_server/entity/1.21.30/TradeItemList.json",
+   "x-format-version": "1.21.30",
+   "oneOf": [
+      {
+         "$ref": "./TradeItem.json"
+      },
+      {
+         "type": "object",
+         "properties": {
+            "choice": {
+               "type": "array",
+               "items": {
+                  "$ref": "./TradeItem.json"
+               },
+               "x-ordinal-index": 0
+            }
+         },
+         "required": [
+            "choice"
+         ]
+      }
+   ]
+}

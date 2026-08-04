@@ -7,6 +7,7 @@ export enum AimAssistTargetMode {
 export enum BlockComponentTypes {
    DynamicProperties = "minecraft:dynamic_properties",
    FluidContainer = "minecraft:fluid_container",
+   Instrument = "minecraft:instrument_sound",
    Inventory = "minecraft:inventory",
    MapColor = "minecraft:map_color",
    Movable = "minecraft:movable",
@@ -35,6 +36,15 @@ export enum BookErrorReason {
 export enum ButtonState {
    Pressed = "Pressed",
    Released = "Released",
+}
+export enum CameraShakeType {
+   Positional = "Positional",
+   Rotational = "Rotational",
+}
+export enum CloneMode {
+   Copy = 0,
+   ForceCopy = 1,
+   Move = 2,
 }
 export enum CommandPermissionLevel {
    Admin = 2,
@@ -221,7 +231,6 @@ export enum EntityComponentTypes {
    FireImmune = "minecraft:fire_immune",
    FloatsInLiquid = "minecraft:floats_in_liquid",
    FlyingSpeed = "minecraft:flying_speed",
-   Fog = "minecraft:player.fog",
    FrictionModifier = "minecraft:friction_modifier",
    Healable = "minecraft:healable",
    Health = "minecraft:health",
@@ -452,6 +461,7 @@ export enum InputPermissionCategory {
    Sneak = 5,
 }
 export enum ItemComponentTypes {
+   BlockDynamicProperties = "minecraft:block_actor_dynamic_properties",
    Book = "minecraft:book",
    Compostable = "minecraft:compostable",
    Cooldown = "minecraft:cooldown",
@@ -542,6 +552,12 @@ export enum PlayerPermissionLevel {
    Member = 1,
    Operator = 2,
    Visitor = 0,
+}
+export enum PlayerSplitScreenSlot {
+   First = "First",
+   Fourth = "Fourth",
+   Second = "Second",
+   Third = "Third",
 }
 export enum PlayerWaypointsMode {
    Everyone = "Everyone",
@@ -686,6 +702,12 @@ export interface BlockHitInformation {
    face: Direction;
    faceLocation: Vector3;
 }
+//@ts-ignore
+export interface BlockQueryOptions extends BlockFilter {
+   closest?: number;
+   farthest?: number;
+   location?: Vector3;
+}
 export interface BlockRaycastHit {
    block: Block;
    face: Direction;
@@ -736,6 +758,11 @@ export interface CameraSetRotOptions {
    easeOptions?: EaseOptions;
    location?: Vector3;
    rotation: Vector2;
+}
+export interface CameraShakeOptions {
+   duration: number;
+   intensity: number;
+   type: CameraShakeType;
 }
 export interface CameraTargetOptions {
    offsetFromTargetCenter?: Vector3;
@@ -908,6 +935,10 @@ export interface EntityRaycastOptions extends EntityFilter {
 export interface EntitySneakingChangedEventOptions {
    entityFilter?: EntityFilter;
 }
+export interface EntityTamedEventFilter {
+   entityFilter?: EntityFilter;
+   tamingEntityFilter?: EntityFilter;
+}
 export interface EntityVisibilityRules {
    showDead?: boolean;
    showInvisible?: boolean;
@@ -1004,6 +1035,7 @@ export interface PlayerBreakingBlockEventOptions {
 }
 export interface PlayerSoundOptions {
    location?: Vector3;
+   loopCount?: number;
    pitch?: number;
    volume?: number;
 }
@@ -1016,6 +1048,12 @@ export interface PlayerVisibilityRules extends EntityVisibilityRules {
    showHidden?: boolean;
    showSpectator?: boolean;
    showSpectatorToSpectator?: boolean;
+}
+export interface PrimitiveShapeQueryOptions {
+   attachedTo?: Entity;
+   location?: Vector3;
+   maxDistance?: number;
+   minDistance?: number;
 }
 export interface ProgressKeyFrame {
    alpha: number;
@@ -1063,6 +1101,24 @@ export interface ScoreboardObjectiveDisplayOptions {
 }
 export interface ScriptEventMessageFilterOptions {
    namespaces: Array<string>;
+}
+export interface SoundDefinitionDurationInfo {
+   duration: number;
+}
+export interface SoundDefinitionFilter {
+   artists?: Array<string>;
+   genres?: Array<string>;
+   maxDuration?: number;
+   minDuration?: number;
+   moods?: Array<string>;
+   tags?: Record<string,Array<string>>;
+   titles?: Array<string>;
+}
+export interface SoundDefinitionMusicInfo {
+   artist?: string;
+   genres?: Array<string>;
+   moods?: Array<string>;
+   title?: string;
 }
 export interface SpawnEntityOptions {
    initialPersistence?: boolean;
@@ -1136,6 +1192,7 @@ export interface WaypointTextureSelector {
    textureBoundsList: Array<WaypointTextureBounds>;
 }
 export interface WorldSoundOptions {
+   loopCount?: number;
    pitch?: number;
    volume?: number;
 }
@@ -1423,6 +1480,13 @@ export class BlockFluidContainerComponent extends BlockComponent {
    private constructor();
 }
 //@ts-ignore
+export class BlockInstrumentComponent extends BlockComponent {
+   public static readonly componentId = "minecraft:instrument_sound";
+   public getInstrumentName(face: Direction): string;
+   public playInstrumentSound(face: Direction, soundOptions?: WorldSoundOptions): void;
+   private constructor();
+}
+//@ts-ignore
 export class BlockInventoryComponent extends BlockComponent {
    public static readonly componentId = "minecraft:inventory";
    public readonly container?: Container;
@@ -1546,6 +1610,8 @@ export class BlockVolumeBase {
    public getBlockLocationIterator(): BlockLocationIterator;
    public getBoundingBox(): BlockBoundingBox;
    public getCapacity(): number;
+   public getClosest(count: number, location: Vector3): Array<Vector3>;
+   public getFarthest(count: number, location: Vector3): Array<Vector3>;
    public getMax(): Vector3;
    public getMin(): Vector3;
    public getSpan(): Vector3;
@@ -1565,6 +1631,7 @@ export class ButtonPushAfterEventSignal {
 }
 export class Camera {
    public readonly isValid: boolean;
+   public addShake(shakeCameraOptions: CameraShakeOptions): void;
    public attachToEntity(attachCameraOptions?: CameraAttachOptions): void;
    public clear(): void;
    public fade(fadeCameraOptions?: CameraFadeOptions): void;
@@ -1573,6 +1640,12 @@ export class Camera {
    public setCameraWithEase(cameraPreset: string, easeOptions: EaseOptions): void;
    public setDefaultCamera(cameraPreset: string, easeOptions?: EaseOptions): void;
    public setFov(fovCameraOptions?: CameraFovOptions): void;
+   public stopShaking(): void;
+   private constructor();
+}
+//@ts-ignore
+export class CarryOverBlockEntityDataFunction extends LootItemFunction {
+   public readonly dynamicProperties: boolean;
    private constructor();
 }
 export class CatmullRomSpline {
@@ -1727,17 +1800,18 @@ export class Dimension {
    public readonly heightRange: common.NumberRange;
    public readonly id: string;
    public readonly localizationKey: string;
+   public calculateClosestBiomeFromSeed(pos: Vector3, biomeToFind: BiomeType | string, options?: BiomeSearchOptions): (Vector3 | undefined);
+   public cloneBlocks(beginLocation: Vector3, endLocation: Vector3, destination: Vector3, cloneMode: CloneMode, filter?: BlockFilter): void;
    public containsBiomes(volume: BlockVolumeBase, biomeFilter: BiomeFilter, isSuperset: boolean): boolean;
    public containsBlock(volume: BlockVolumeBase, filter: BlockFilter, allowUnloadedChunks?: boolean): boolean;
    public createExplosion(location: Vector3, radius: number, explosionOptions?: ExplosionOptions): boolean;
    public fillBlocks(volume: BlockVolumeBase, block: BlockPermutation | BlockType | string, options?: BlockFillOptions): ListBlockVolume;
-   public findClosestBiome(pos: Vector3, biomeToFind: BiomeType | string, options?: BiomeSearchOptions): (Vector3 | undefined);
    public getBiome(location: Vector3): BiomeType;
    public getBlock(location: Vector3): (Block | undefined);
    public getBlockAbove(location: Vector3, options?: BlockRaycastOptions): (Block | undefined);
    public getBlockBelow(location: Vector3, options?: BlockRaycastOptions): (Block | undefined);
    public getBlockFromRay(location: Vector3, direction: Vector3, options?: BlockRaycastOptions): (BlockRaycastHit | undefined);
-   public getBlocks(volume: BlockVolumeBase, filter: BlockFilter, allowUnloadedChunks?: boolean): ListBlockVolume;
+   public getBlocks(volume: BlockVolumeBase, options: BlockQueryOptions, allowUnloadedChunks?: boolean): ListBlockVolume;
    public getEntities(options?: EntityQueryOptions): Array<Entity>;
    public getEntitiesAtBlockLocation(location: Vector3): Array<Entity>;
    public getEntitiesFromRay(location: Vector3, direction: Vector3, options?: EntityRaycastOptions): Array<EntityRaycastHit>;
@@ -2072,17 +2146,6 @@ export class EntityFloatsInLiquidComponent extends EntityComponent {
 export class EntityFlyingSpeedComponent extends EntityComponent {
    public static readonly componentId = "minecraft:flying_speed";
    public value: number;
-   private constructor();
-}
-//@ts-ignore
-export class EntityFogComponent extends EntityComponent {
-   public static readonly componentId = "minecraft:player.fog";
-   public applyStack(fogIds: Array<string>, tag?: string): void;
-   public getStack(): Array<string>;
-   public getTags(): Array<string>;
-   public pop(tag?: string): (string | undefined);
-   public push(fogId: string, tag?: string): number;
-   public remove(tag?: string): boolean;
    private constructor();
 }
 //@ts-ignore
@@ -2580,6 +2643,15 @@ export class EntityStartSneakingAfterEventSignal {
    public unsubscribe(callback: (arg0: EntityStartSneakingAfterEvent)=>void): void;
    private constructor();
 }
+export class EntityStopSneakingAfterEvent {
+   public readonly entity: Entity;
+   private constructor();
+}
+export class EntityStopSneakingAfterEventSignal {
+   public subscribe(callback: (arg0: EntityStopSneakingAfterEvent)=>void, options?: EntitySneakingChangedEventOptions): (arg0: EntityStopSneakingAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityStopSneakingAfterEvent)=>void): void;
+   private constructor();
+}
 //@ts-ignore
 export class EntityStrengthComponent extends EntityComponent {
    public static readonly componentId = "minecraft:strength";
@@ -2596,6 +2668,27 @@ export class EntityTameableComponent extends EntityComponent {
    public readonly tamedToPlayer?: Player;
    public readonly tamedToPlayerId?: string;
    public tame(player: Player): boolean;
+   private constructor();
+}
+export class EntityTamedAfterEvent {
+   public readonly entity: Entity;
+   public readonly tamingEntity: Entity;
+   private constructor();
+}
+export class EntityTamedAfterEventSignal {
+   public subscribe(callback: (arg0: EntityTamedAfterEvent)=>void, options?: EntityTamedEventFilter): (arg0: EntityTamedAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityTamedAfterEvent)=>void): void;
+   private constructor();
+}
+export class EntityTamedBeforeEvent {
+   public cancel: boolean;
+   public readonly entity: Entity;
+   public readonly tamingEntity: Entity;
+   private constructor();
+}
+export class EntityTamedBeforeEventSignal {
+   public subscribe(callback: (arg0: EntityTamedBeforeEvent)=>void, options?: EntityTamedEventFilter): (arg0: EntityTamedBeforeEvent)=>void;
+   public unsubscribe(callback: (arg0: EntityTamedBeforeEvent)=>void): void;
    private constructor();
 }
 //@ts-ignore
@@ -2714,6 +2807,15 @@ export class FluidContainer {
    public static readonly minFillLevel = 0;
    private constructor();
 }
+export class FogSettings {
+   public getStack(): Array<string>;
+   public getTags(): Array<string>;
+   public pop(tag?: string): (string | undefined);
+   public push(fogId: string, tag?: string): number;
+   public remove(tag?: string): boolean;
+   public setStack(fogIds: Array<string>, tag?: string): void;
+   private constructor();
+}
 export class GameRuleChangeAfterEvent {
    public readonly rule: GameRule;
    public readonly value: boolean | number;
@@ -2777,6 +2879,14 @@ export class IsBabyCondition extends LootItemCondition {
    private constructor();
 }
 export class ISerializable {
+   private constructor();
+}
+//@ts-ignore
+export class ItemBlockDynamicPropertiesComponent extends ItemComponent {
+   public static readonly componentId = "minecraft:block_actor_dynamic_properties";
+   public get(key: string): (boolean | number | number | string | Vector3 | undefined);
+   public set(key: string, value?: boolean | number | number | string | Vector3): void;
+   public totalByteCount(): number;
    private constructor();
 }
 //@ts-ignore
@@ -3236,6 +3346,7 @@ export class Player extends Entity {
    public chatNameSuffix?: string;
    public readonly clientSystemInfo: ClientSystemInfo;
    public commandPermissionLevel: CommandPermissionLevel;
+   public readonly fogSettings: FogSettings;
    public readonly graphicsMode: GraphicsMode;
    public readonly inputInfo: InputInfo;
    public readonly inputPermissions: PlayerInputPermissions;
@@ -3247,8 +3358,8 @@ export class Player extends Entity {
    public readonly locatorBar: LocatorBar;
    public readonly name: string;
    public readonly onScreenDisplay: ScreenDisplay;
+   public readonly persistentId: string;
    public readonly playerPermissionLevel: PlayerPermissionLevel;
-   public readonly playfabId: string;
    public selectedSlotIndex: number;
    public readonly totalXpNeededForNextLevel: number;
    public readonly xpEarnedAtCurrentLevel: number;
@@ -3262,9 +3373,10 @@ export class Player extends Entity {
    public getItemCooldown(cooldownCategory: string): number;
    public getPing(): number;
    public getSpawnPoint(): (DimensionLocation | undefined);
+   public getSplitScreenSlot(): (PlayerSplitScreenSlot | undefined);
    public getTotalXp(): number;
    public playMusic(trackId: string, musicOptions?: MusicOptions): void;
-   public playSound(soundId: string, soundOptions?: PlayerSoundOptions): SoundInstance;
+   public playSound(soundId: SoundDefinition | string, soundOptions?: PlayerSoundOptions): SoundInstance;
    public postClientMessage(id: string, value: string): void;
    public queueMusic(trackId: string, musicOptions?: MusicOptions): void;
    public removePropertyOverrideForEntity(targetEntity: Entity, identifier: string): void;
@@ -3658,6 +3770,7 @@ export class PrimitiveShape {
 export class PrimitiveShapesManager {
    public readonly maxShapes: number;
    public addText(text: TextPrimitive, dimension?: Dimension): void;
+   public getShapes(options?: PrimitiveShapeQueryOptions): Array<PrimitiveShape>;
    public removeAll(): void;
    public removeText(text: TextPrimitive): void;
    private constructor();
@@ -3883,7 +3996,43 @@ export class ShutdownEvent {
 export class SmeltItemFunction extends LootItemFunction {
    private constructor();
 }
+export class SoundCompletedAfterEvent {
+   public readonly soundInstanceId: string;
+   private constructor();
+}
+export class SoundCompletedAfterEventSignal {
+   public subscribe(callback: (arg0: SoundCompletedAfterEvent)=>void): (arg0: SoundCompletedAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: SoundCompletedAfterEvent)=>void): void;
+   private constructor();
+}
+export class SoundDefinition {
+   public readonly durationInfo?: SoundDefinitionDurationInfo;
+   public readonly musicInfo?: SoundDefinitionMusicInfo;
+   public readonly soundEventId: string;
+   public readonly tags?: Record<string,Array<string>>;
+   private constructor();
+}
+export class SoundDefinitionRegistry {
+   public getDefinitions(filter?: SoundDefinitionFilter): Array<SoundDefinition>;
+   private constructor();
+}
+export class SoundDurationInfo {
+   public readonly duration: number;
+   public readonly isActive: boolean;
+   public getPlaybackPosition(): number;
+   private constructor();
+}
 export class SoundInstance {
+   public readonly durationInfo?: SoundDurationInfo;
+   public readonly id: string;
+   public readonly recipient?: Player;
+   public readonly soundEventId: string;
+   public fade(duration: number, targetVolume: number): void;
+   public pause(): void;
+   public resume(): void;
+   public seekTo(seconds: number): void;
+   public setPitch(pitch: number): void;
+   public setVolume(volume: number): void;
    public stop(): void;
    private constructor();
 }
@@ -4060,6 +4209,7 @@ export class World {
    public readonly primitiveShapesManager: PrimitiveShapesManager;
    public readonly scoreboard: Scoreboard;
    public readonly seed: string;
+   public readonly soundDefinitionRegistry: SoundDefinitionRegistry;
    public readonly structureManager: StructureManager;
    public readonly tickingAreaManager: TickingAreaManager;
    public broadcastClientMessage(id: string, value: string): void;
@@ -4114,6 +4264,8 @@ export class WorldAfterEvents {
    public readonly entityRemove: EntityRemoveAfterEventSignal;
    public readonly entitySpawn: EntitySpawnAfterEventSignal;
    public readonly entityStartSneaking: EntityStartSneakingAfterEventSignal;
+   public readonly entityStopSneaking: EntityStopSneakingAfterEventSignal;
+   public readonly entityTamed: EntityTamedAfterEventSignal;
    public readonly entityUpgrade: EntityUpgradeAfterEventSignal;
    public readonly explosion: ExplosionAfterEventSignal;
    public readonly gameRuleChange: GameRuleChangeAfterEventSignal;
@@ -4151,6 +4303,7 @@ export class WorldAfterEvents {
    public readonly pressurePlatePush: PressurePlatePushAfterEventSignal;
    public readonly projectileHitBlock: ProjectileHitBlockAfterEventSignal;
    public readonly projectileHitEntity: ProjectileHitEntityAfterEventSignal;
+   public readonly soundCompleted: SoundCompletedAfterEventSignal;
    public readonly targetBlockHit: TargetBlockHitAfterEventSignal;
    public readonly tripWireTrip: TripWireTripAfterEventSignal;
    public readonly weatherChange: WeatherChangeAfterEventSignal;
@@ -4164,6 +4317,7 @@ export class WorldBeforeEvents {
    public readonly entityHurt: EntityHurtBeforeEventSignal;
    public readonly entityItemPickup: EntityItemPickupBeforeEventSignal;
    public readonly entityRemove: EntityRemoveBeforeEventSignal;
+   public readonly entityTamed: EntityTamedBeforeEventSignal;
    public readonly explosion: ExplosionBeforeEventSignal;
    public readonly itemUse: ItemUseBeforeEventSignal;
    public readonly playerBreakBlock: PlayerBreakBlockBeforeEventSignal;
@@ -4275,11 +4429,11 @@ export class EnchantmentTypeUnknownIdError extends Error {
    private constructor();
 }
 //@ts-ignore
-export class EntityFogComponentError extends Error {
+export class EntitySpawnError extends Error {
    private constructor();
 }
 //@ts-ignore
-export class EntitySpawnError extends Error {
+export class FogSettingsError extends Error {
    private constructor();
 }
 //@ts-ignore

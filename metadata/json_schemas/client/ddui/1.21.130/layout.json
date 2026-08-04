@@ -1,0 +1,31 @@
+{
+   "title": "layout",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client/ddui/1.21.130/layout.json",
+   "x-format-version": "1.21.130",
+   "type": "object",
+   "properties": {
+      "markup": {
+         "type": "array",
+         "items": {
+            "oneOf": [
+               {
+                  "$ref": "./Container.Layout.json"
+               },
+               {
+                  "$ref": "./Context.json"
+               },
+               {
+                  "$ref": "./Panel.json"
+               }
+            ],
+            "x-control-value-type": "uint32"
+         },
+         "x-ordinal-index": 0,
+         "minItems": 1
+      }
+   },
+   "required": [
+      "markup"
+   ]
+}

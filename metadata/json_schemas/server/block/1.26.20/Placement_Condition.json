@@ -1,0 +1,30 @@
+{
+   "title": "Placement Condition",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/block/1.26.20/Placement%20Condition.json",
+   "x-format-version": "1.26.20",
+   "type": "object",
+   "properties": {
+      "allowed_faces": {
+         "default": [
+            "down",
+            "up",
+            "north",
+            "south",
+            "west",
+            "east"
+         ],
+         "$ref": "./Blocked%20Directions.json",
+         "x-ordinal-index": 0
+      },
+      "block_filter": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "../../common/1.20.50/Block%20Descriptor.json"
+         },
+         "x-ordinal-index": 1,
+         "maxItems": 64
+      }
+   }
+}

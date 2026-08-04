@@ -1,52 +1,48 @@
 {
-   "$schema": "http://json-schema.org/draft-07/schema#",
-   "$id": "2081791706",
-   "x-format-version": "1.21.80",
-   "definitions": {
-      "1488572312": {
-         "title": "block_pos",
-         "type": "array",
-         "items": {
-            "type": "integer"
-         },
-         "minItems": 3,
-         "maxItems": 3
-      }
-   },
    "title": "Jigsaw Block Metadata",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client_server/structure/1.21.80/Jigsaw%20Block%20Metadata.json",
+   "x-format-version": "1.21.80",
    "type": "object",
    "properties": {
       "block": {
-         "type": "string"
+         "type": "string",
+         "x-ordinal-index": 3
       },
       "final_block": {
-         "type": "string"
+         "type": "string",
+         "x-ordinal-index": 4
       },
       "joint_type": {
-         "title": "Jigsaw Joint Type",
-         "type": "string",
-         "enum": [
-            "rollable",
-            "aligned"
-         ]
+         "$ref": "../1.21.50/Jigsaw%20Joint%20Type.json",
+         "x-underlying-type": "uint8",
+         "x-ordinal-index": 5
       },
       "name": {
-         "type": "string"
+         "type": "string",
+         "x-ordinal-index": 0
       },
       "placement_priority": {
-         "type": "integer"
+         "type": "integer",
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 8
       },
       "pool": {
-         "type": "string"
+         "type": "string",
+         "x-ordinal-index": 1
       },
       "pos": {
-         "$ref": "#/definitions/1488572312"
+         "$ref": "../1.21.50/block_pos.json",
+         "x-ordinal-index": 6
       },
       "selection_priority": {
-         "type": "integer"
+         "type": "integer",
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 7
       },
       "target": {
-         "type": "string"
+         "type": "string",
+         "x-ordinal-index": 2
       }
    },
    "required": [

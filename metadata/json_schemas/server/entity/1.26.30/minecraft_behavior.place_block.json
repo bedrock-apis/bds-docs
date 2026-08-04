@@ -1,0 +1,103 @@
+{
+   "title": "minecraft:behavior.place_block",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/entity/1.26.30/minecraft_behavior.place_block.json",
+   "x-format-version": "1.26.30",
+   "type": "object",
+   "properties": {
+      "affected_by_griefing_rule": {
+         "type": "boolean",
+         "default": true,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 7
+      },
+      "can_place": {
+         "default": {
+            "OR": null,
+            "all": null,
+            "all_of": null,
+            "AND": null,
+            "any_of": null,
+            "none_of": null,
+            "any": null,
+            "NOT": null
+         },
+         "$ref": "../../../client_server/common/1.21.20/Filter%20Group.json",
+         "x-ordinal-index": 2
+      },
+      "chance": {
+         "type": "number",
+         "default": 1,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 6,
+         "minimum": 0,
+         "maximum": 1
+      },
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "../1.21.90/Goal's%20control%20flags.json",
+            "x-underlying-type": "int32"
+         },
+         "x-ordinal-index": 9
+      },
+      "on_place": {
+         "default": {
+            "event": "",
+            "target": "self",
+            "filters": {
+               "OR": null,
+               "all": null,
+               "all_of": null,
+               "AND": null,
+               "any_of": null,
+               "none_of": null,
+               "any": null,
+               "NOT": null
+            }
+         },
+         "$ref": "../1.21.120/ActorDefinitionTrigger.json",
+         "x-ordinal-index": 3
+      },
+      "placeable_carried_blocks": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "../../common/1.20.50/Block%20Descriptor.json"
+         },
+         "x-ordinal-index": 0
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 8,
+         "minimum": 0
+      },
+      "randomly_placeable_blocks": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "./PlaceBlockGoalWeightedBlockDescriptor.json"
+         },
+         "x-ordinal-index": 1
+      },
+      "xz_range": {
+         "default": {
+            "min": -2,
+            "max": 2
+         },
+         "$ref": "../../common/1.20.50/IntRange.json",
+         "x-ordinal-index": 4
+      },
+      "y_range": {
+         "default": {
+            "min": 0,
+            "max": 3
+         },
+         "$ref": "../../common/1.20.50/IntRange.json",
+         "x-ordinal-index": 5
+      }
+   }
+}

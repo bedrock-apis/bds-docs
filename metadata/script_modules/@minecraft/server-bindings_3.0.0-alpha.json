@@ -5590,6 +5590,149 @@
                   "is_errorable": false,
                   "name": "string"
                },
+               "value": "minecraft:instrument_sound"
+            }
+         ],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "face",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Direction"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getInstrumentName",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidArgumentError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationInUnloadedChunkError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationOutOfWorldBoundariesError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "string"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "face",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Direction"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "soundOptions",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "WorldSoundOptions"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "playInstrumentSound",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidArgumentError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationInUnloadedChunkError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationOutOfWorldBoundariesError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "BlockInstrumentComponent",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "BlockInstrumentComponent"
+         }
+      },
+      {
+         "base_types": [
+            {
+               "is_bind_type": true,
+               "is_errorable": false,
+               "name": "BlockComponent"
+            }
+         ],
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "componentId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
                "value": "minecraft:inventory"
             }
          ],
@@ -7618,6 +7761,118 @@
                }
             },
             {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "count",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "uint32",
+                        "valid_range": {
+                           "max": 2147483647,
+                           "min": -2147483648
+                        }
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "location",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getClosest",
+               "return_type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "Vector3"
+                  },
+                  "error_types": [
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "ArgumentOutOfBoundsError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "array"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "count",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "uint32",
+                        "valid_range": {
+                           "max": 2147483647,
+                           "min": -2147483648
+                        }
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "location",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getFarthest",
+               "return_type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "Vector3"
+                  },
+                  "error_types": [
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "ArgumentOutOfBoundsError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "array"
+               }
+            },
+            {
                "arguments": [],
                "call_privilege": [
                   {
@@ -7880,6 +8135,49 @@
          "base_types": [],
          "constants": [],
          "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "shakeCameraOptions",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "CameraShakeOptions"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "addShake",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "ArgumentOutOfBoundsError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidEntityError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
             {
                "arguments": [
                   {
@@ -8192,6 +8490,29 @@
                   "is_errorable": true,
                   "name": "undefined"
                }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "stopShaking",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidEntityError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
             }
          ],
          "name": "Camera",
@@ -8216,6 +8537,40 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "Camera"
+         }
+      },
+      {
+         "base_types": [
+            {
+               "is_bind_type": true,
+               "is_errorable": false,
+               "name": "LootItemFunction"
+            }
+         ],
+         "constants": [],
+         "functions": [],
+         "name": "CarryOverBlockEntityDataFunction",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "dynamicProperties",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "CarryOverBlockEntityDataFunction"
          }
       },
       {
@@ -11485,6 +11840,172 @@
                "arguments": [
                   {
                      "details": null,
+                     "name": "pos",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "biomeToFind",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "variant",
+                        "variant_types": [
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "BiomeType"
+                           },
+                           {
+                              "is_bind_type": false,
+                              "is_errorable": false,
+                              "name": "string"
+                           }
+                        ]
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "BiomeSearchOptions"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "calculateClosestBiomeFromSeed",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "EngineError"
+                     },
+                     {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "Error"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "Vector3"
+                  }
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "beginLocation",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "endLocation",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "destination",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "cloneMode",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "CloneMode"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "filter",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "BlockFilter"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "cloneBlocks",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "Error"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationOutOfWorldBoundariesError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
                      "name": "volume",
                      "type": {
                         "is_bind_type": true,
@@ -11779,91 +12300,6 @@
                "arguments": [
                   {
                      "details": null,
-                     "name": "pos",
-                     "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "Vector3"
-                     }
-                  },
-                  {
-                     "details": null,
-                     "name": "biomeToFind",
-                     "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "variant",
-                        "variant_types": [
-                           {
-                              "is_bind_type": true,
-                              "is_errorable": false,
-                              "name": "BiomeType"
-                           },
-                           {
-                              "is_bind_type": false,
-                              "is_errorable": false,
-                              "name": "string"
-                           }
-                        ]
-                     }
-                  },
-                  {
-                     "details": {
-                        "default_value": "null"
-                     },
-                     "name": "options",
-                     "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                           "is_bind_type": true,
-                           "is_errorable": false,
-                           "name": "BiomeSearchOptions"
-                        }
-                     }
-                  }
-               ],
-               "call_privilege": [
-                  {
-                     "name": "restricted_execution"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "findClosestBiome",
-               "return_type": {
-                  "error_types": [
-                     {
-                        "from_module": {
-                           "name": "@minecraft/common",
-                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
-                           "version": "1.2.0"
-                        },
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "EngineError"
-                     },
-                     {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "Error"
-                     }
-                  ],
-                  "is_bind_type": false,
-                  "is_errorable": true,
-                  "name": "optional",
-                  "optional_type": {
-                     "is_bind_type": true,
-                     "is_errorable": false,
-                     "name": "Vector3"
-                  }
-               }
-            },
-            {
-               "arguments": [
-                  {
-                     "details": null,
                      "name": "location",
                      "type": {
                         "is_bind_type": true,
@@ -12104,11 +12540,11 @@
                   },
                   {
                      "details": null,
-                     "name": "filter",
+                     "name": "options",
                      "type": {
                         "is_bind_type": true,
                         "is_errorable": false,
-                        "name": "BlockFilter"
+                        "name": "BlockQueryOptions"
                      }
                   },
                   {
@@ -12134,9 +12570,29 @@
                "return_type": {
                   "error_types": [
                      {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "ArgumentOutOfBoundsError"
+                     },
+                     {
                         "is_bind_type": false,
                         "is_errorable": false,
                         "name": "Error"
+                     },
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidArgumentError"
                      },
                      {
                         "is_bind_type": true,
@@ -18867,295 +19323,6 @@
                   "is_errorable": false,
                   "name": "string"
                },
-               "value": "minecraft:player.fog"
-            }
-         ],
-         "functions": [
-            {
-               "arguments": [
-                  {
-                     "details": null,
-                     "name": "fogIds",
-                     "type": {
-                        "element_type": {
-                           "is_bind_type": false,
-                           "is_errorable": false,
-                           "name": "string"
-                        },
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "array"
-                     }
-                  },
-                  {
-                     "details": {
-                        "default_value": "null"
-                     },
-                     "name": "tag",
-                     "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                           "is_bind_type": false,
-                           "is_errorable": false,
-                           "name": "string"
-                        }
-                     }
-                  }
-               ],
-               "call_privilege": [
-                  {
-                     "name": "default"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "applyStack",
-               "return_type": {
-                  "error_types": [
-                     {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "EntityFogComponentError"
-                     },
-                     {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "InvalidEntityError"
-                     }
-                  ],
-                  "is_bind_type": false,
-                  "is_errorable": true,
-                  "name": "undefined"
-               }
-            },
-            {
-               "arguments": [],
-               "call_privilege": [
-                  {
-                     "name": "default"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "getStack",
-               "return_type": {
-                  "element_type": {
-                     "is_bind_type": false,
-                     "is_errorable": false,
-                     "name": "string"
-                  },
-                  "error_types": [
-                     {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "InvalidEntityError"
-                     }
-                  ],
-                  "is_bind_type": false,
-                  "is_errorable": true,
-                  "name": "array"
-               }
-            },
-            {
-               "arguments": [],
-               "call_privilege": [
-                  {
-                     "name": "default"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "getTags",
-               "return_type": {
-                  "element_type": {
-                     "is_bind_type": false,
-                     "is_errorable": false,
-                     "name": "string"
-                  },
-                  "error_types": [
-                     {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "InvalidEntityError"
-                     }
-                  ],
-                  "is_bind_type": false,
-                  "is_errorable": true,
-                  "name": "array"
-               }
-            },
-            {
-               "arguments": [
-                  {
-                     "details": {
-                        "default_value": "null"
-                     },
-                     "name": "tag",
-                     "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                           "is_bind_type": false,
-                           "is_errorable": false,
-                           "name": "string"
-                        }
-                     }
-                  }
-               ],
-               "call_privilege": [
-                  {
-                     "name": "default"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "pop",
-               "return_type": {
-                  "error_types": [
-                     {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "InvalidEntityError"
-                     }
-                  ],
-                  "is_bind_type": false,
-                  "is_errorable": true,
-                  "name": "optional",
-                  "optional_type": {
-                     "is_bind_type": false,
-                     "is_errorable": false,
-                     "name": "string"
-                  }
-               }
-            },
-            {
-               "arguments": [
-                  {
-                     "details": null,
-                     "name": "fogId",
-                     "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                     }
-                  },
-                  {
-                     "details": {
-                        "default_value": "null"
-                     },
-                     "name": "tag",
-                     "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                           "is_bind_type": false,
-                           "is_errorable": false,
-                           "name": "string"
-                        }
-                     }
-                  }
-               ],
-               "call_privilege": [
-                  {
-                     "name": "default"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "push",
-               "return_type": {
-                  "error_types": [
-                     {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "EntityFogComponentError"
-                     },
-                     {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "InvalidEntityError"
-                     }
-                  ],
-                  "is_bind_type": false,
-                  "is_errorable": true,
-                  "name": "uint8",
-                  "valid_range": {
-                     "max": 2147483647,
-                     "min": -2147483648
-                  }
-               }
-            },
-            {
-               "arguments": [
-                  {
-                     "details": {
-                        "default_value": "null"
-                     },
-                     "name": "tag",
-                     "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                           "is_bind_type": false,
-                           "is_errorable": false,
-                           "name": "string"
-                        }
-                     }
-                  }
-               ],
-               "call_privilege": [
-                  {
-                     "name": "default"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "remove",
-               "return_type": {
-                  "error_types": [
-                     {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "InvalidEntityError"
-                     }
-                  ],
-                  "is_bind_type": false,
-                  "is_errorable": true,
-                  "name": "boolean"
-               }
-            }
-         ],
-         "name": "EntityFogComponent",
-         "properties": [],
-         "type": {
-            "is_bind_type": true,
-            "is_errorable": false,
-            "name": "EntityFogComponent"
-         }
-      },
-      {
-         "base_types": [
-            {
-               "is_bind_type": true,
-               "is_errorable": false,
-               "name": "EntityComponent"
-            }
-         ],
-         "constants": [
-            {
-               "is_read_only": true,
-               "is_static": true,
-               "name": "componentId",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "string"
-               },
                "value": "minecraft:friction_modifier"
             }
          ],
@@ -24977,6 +25144,166 @@
          }
       },
       {
+         "base_types": [],
+         "constants": [],
+         "functions": [],
+         "name": "EntityStopSneakingAfterEvent",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "entity",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Entity"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "EntityStopSneakingAfterEvent"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "EntityStopSneakingAfterEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "default"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "EntitySneakingChangedEventOptions"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "subscribe",
+               "return_type": {
+                  "closure_type": {
+                     "argument_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "EntityStopSneakingAfterEvent"
+                        }
+                     ],
+                     "call_privilege": {
+                        "name": "default"
+                     },
+                     "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                     }
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "closure"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "EntityStopSneakingAfterEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "default"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "unsubscribe",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "EntityStopSneakingAfterEventSignal",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "EntityStopSneakingAfterEventSignal"
+         }
+      },
+      {
          "base_types": [
             {
                "is_bind_type": true,
@@ -25195,6 +25522,376 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "EntityTameableComponent"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [],
+         "name": "EntityTamedAfterEvent",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "entity",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Entity"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "tamingEntity",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Entity"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "EntityTamedAfterEvent"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "EntityTamedAfterEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "default"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "EntityTamedEventFilter"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "subscribe",
+               "return_type": {
+                  "closure_type": {
+                     "argument_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "EntityTamedAfterEvent"
+                        }
+                     ],
+                     "call_privilege": {
+                        "name": "default"
+                     },
+                     "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                     }
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "closure"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "EntityTamedAfterEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "default"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "unsubscribe",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "EntityTamedAfterEventSignal",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "EntityTamedAfterEventSignal"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [],
+         "name": "EntityTamedBeforeEvent",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "cancel",
+               "set_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "entity",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Entity"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "tamingEntity",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Entity"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "EntityTamedBeforeEvent"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "EntityTamedBeforeEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "restricted_execution"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "EntityTamedEventFilter"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "subscribe",
+               "return_type": {
+                  "closure_type": {
+                     "argument_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "EntityTamedBeforeEvent"
+                        }
+                     ],
+                     "call_privilege": {
+                        "name": "restricted_execution"
+                     },
+                     "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                     }
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "closure"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "EntityTamedBeforeEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "restricted_execution"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "unsubscribe",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "EntityTamedBeforeEventSignal",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "EntityTamedBeforeEventSignal"
          }
       },
       {
@@ -26672,6 +27369,277 @@
       {
          "base_types": [],
          "constants": [],
+         "functions": [
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getStack",
+               "return_type": {
+                  "element_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  },
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidEntityError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "array"
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getTags",
+               "return_type": {
+                  "element_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  },
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidEntityError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "array"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "tag",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "pop",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidEntityError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  }
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "fogId",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "tag",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "push",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "FogSettingsError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidEntityError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "uint8",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "tag",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "remove",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidEntityError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "boolean"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "fogIds",
+                     "type": {
+                        "element_type": {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "array"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "tag",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "setStack",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "FogSettingsError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidEntityError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "FogSettings",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "FogSettings"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
          "functions": [],
          "name": "GameRuleChangeAfterEvent",
          "properties": [
@@ -27799,6 +28767,231 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "ISerializable"
+         }
+      },
+      {
+         "base_types": [
+            {
+               "is_bind_type": true,
+               "is_errorable": false,
+               "name": "ItemComponent"
+            }
+         ],
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "componentId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "minecraft:block_actor_dynamic_properties"
+            }
+         ],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "key",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "get",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "Error"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidItemStackError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "variant",
+                     "variant_types": [
+                        {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "boolean"
+                        },
+                        {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "double",
+                           "valid_range": {
+                              "max": 2147483647,
+                              "min": -2147483648
+                           }
+                        },
+                        {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "float",
+                           "valid_range": {
+                              "max": 2147483647,
+                              "min": -2147483648
+                           }
+                        },
+                        {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        },
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "Vector3"
+                        }
+                     ]
+                  }
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "key",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "value",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "variant",
+                           "variant_types": [
+                              {
+                                 "is_bind_type": false,
+                                 "is_errorable": false,
+                                 "name": "boolean"
+                              },
+                              {
+                                 "is_bind_type": false,
+                                 "is_errorable": false,
+                                 "name": "double",
+                                 "valid_range": {
+                                    "max": 2147483647,
+                                    "min": -2147483648
+                                 }
+                              },
+                              {
+                                 "is_bind_type": false,
+                                 "is_errorable": false,
+                                 "name": "float",
+                                 "valid_range": {
+                                    "max": 2147483647,
+                                    "min": -2147483648
+                                 }
+                              },
+                              {
+                                 "is_bind_type": false,
+                                 "is_errorable": false,
+                                 "name": "string"
+                              },
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "Vector3"
+                              }
+                           ]
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "set",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "Error"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidItemStackError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "totalByteCount",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidItemStackError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            }
+         ],
+         "name": "ItemBlockDynamicPropertiesComponent",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "ItemBlockDynamicPropertiesComponent"
          }
       },
       {
@@ -35408,7 +36601,7 @@
                "arguments": [],
                "call_privilege": [
                   {
-                     "name": "default"
+                     "name": "restricted_execution"
                   }
                ],
                "is_constructor": false,
@@ -35459,6 +36652,44 @@
                      "is_bind_type": true,
                      "is_errorable": false,
                      "name": "DimensionLocation"
+                  }
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getSplitScreenSlot",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "EngineError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidEntityError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "PlayerSplitScreenSlot"
                   }
                }
             },
@@ -35532,7 +36763,19 @@
                      "type": {
                         "is_bind_type": false,
                         "is_errorable": false,
-                        "name": "string"
+                        "name": "variant",
+                        "variant_types": [
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "SoundDefinition"
+                           },
+                           {
+                              "is_bind_type": false,
+                              "is_errorable": false,
+                              "name": "string"
+                           }
+                        ]
                      }
                   },
                   {
@@ -36326,6 +37569,21 @@
                ],
                "is_baked": false,
                "is_read_only": true,
+               "name": "fogSettings",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "FogSettings"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
                "name": "graphicsMode",
                "type": {
                   "error_types": [
@@ -36502,29 +37760,7 @@
                ],
                "is_baked": false,
                "is_read_only": true,
-               "name": "playerPermissionLevel",
-               "type": {
-                  "error_types": [
-                     {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "InvalidEntityError"
-                     }
-                  ],
-                  "is_bind_type": true,
-                  "is_errorable": true,
-                  "name": "PlayerPermissionLevel"
-               }
-            },
-            {
-               "get_privilege": [
-                  {
-                     "name": "restricted_execution"
-                  }
-               ],
-               "is_baked": false,
-               "is_read_only": true,
-               "name": "playfabId",
+               "name": "persistentId",
                "type": {
                   "error_types": [
                      {
@@ -36546,6 +37782,28 @@
                   "is_bind_type": false,
                   "is_errorable": true,
                   "name": "string"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "playerPermissionLevel",
+               "type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidEntityError"
+                     }
+                  ],
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "PlayerPermissionLevel"
                }
             },
             {
@@ -42945,6 +44203,44 @@
                }
             },
             {
+               "arguments": [
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "PrimitiveShapeQueryOptions"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getShapes",
+               "return_type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "PrimitiveShape"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "array"
+               }
+            },
+            {
                "arguments": [],
                "call_privilege": [
                   {
@@ -46145,7 +47441,575 @@
       {
          "base_types": [],
          "constants": [],
+         "functions": [],
+         "name": "SoundCompletedAfterEvent",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "soundInstanceId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "SoundCompletedAfterEvent"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
          "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "SoundCompletedAfterEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "default"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "subscribe",
+               "return_type": {
+                  "closure_type": {
+                     "argument_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "SoundCompletedAfterEvent"
+                        }
+                     ],
+                     "call_privilege": {
+                        "name": "default"
+                     },
+                     "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                     }
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "closure"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "SoundCompletedAfterEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "default"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "unsubscribe",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "SoundCompletedAfterEventSignal",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "SoundCompletedAfterEventSignal"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [],
+         "name": "SoundDefinition",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "durationInfo",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "SoundDefinitionDurationInfo"
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "musicInfo",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "SoundDefinitionMusicInfo"
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "soundEventId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "tags",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "key_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     },
+                     "name": "map",
+                     "value_type": {
+                        "element_type": {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "array"
+                     }
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "SoundDefinition"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "filter",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "SoundDefinitionFilter"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getDefinitions",
+               "return_type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "SoundDefinition"
+                  },
+                  "error_types": [
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidArgumentError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "array"
+               }
+            }
+         ],
+         "name": "SoundDefinitionRegistry",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "SoundDefinitionRegistry"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getPlaybackPosition",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "float",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            }
+         ],
+         "name": "SoundDurationInfo",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "duration",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "float",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "isActive",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "SoundDurationInfo"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": {
+                        "min_value": 0
+                     },
+                     "name": "duration",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "float",
+                        "valid_range": {
+                           "max": 2147483647,
+                           "min": -2147483648
+                        }
+                     }
+                  },
+                  {
+                     "details": {
+                        "min_value": 0
+                     },
+                     "name": "targetVolume",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "float",
+                        "valid_range": {
+                           "max": 2147483647,
+                           "min": -2147483648
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "fade",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "pause",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "resume",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": {
+                        "max_value": 107374184,
+                        "min_value": 0
+                     },
+                     "name": "seconds",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "float",
+                        "valid_range": {
+                           "max": 2147483647,
+                           "min": -2147483648
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "seekTo",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "ArgumentOutOfBoundsError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": {
+                        "max_value": 10,
+                        "min_value": 0.009999999776482582
+                     },
+                     "name": "pitch",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "float",
+                        "valid_range": {
+                           "max": 2147483647,
+                           "min": -2147483648
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "setPitch",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": {
+                        "max_value": 10,
+                        "min_value": 0
+                     },
+                     "name": "volume",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "float",
+                        "valid_range": {
+                           "max": 2147483647,
+                           "min": -2147483648
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "setVolume",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            },
             {
                "arguments": [],
                "call_privilege": [
@@ -46164,7 +48028,78 @@
             }
          ],
          "name": "SoundInstance",
-         "properties": [],
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "durationInfo",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "SoundDurationInfo"
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "id",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "recipient",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "Player"
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "soundEventId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            }
+         ],
          "type": {
             "is_bind_type": true,
             "is_errorable": false,
@@ -50762,6 +52697,21 @@
                ],
                "is_baked": false,
                "is_read_only": true,
+               "name": "soundDefinitionRegistry",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "SoundDefinitionRegistry"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
                "name": "structureManager",
                "type": {
                   "is_bind_type": true,
@@ -51173,6 +53123,42 @@
                   "is_bind_type": true,
                   "is_errorable": false,
                   "name": "EntityStartSneakingAfterEventSignal"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  },
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "entityStopSneaking",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "EntityStopSneakingAfterEventSignal"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  },
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "entityTamed",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "EntityTamedAfterEventSignal"
                }
             },
             {
@@ -51852,6 +53838,24 @@
                ],
                "is_baked": false,
                "is_read_only": true,
+               "name": "soundCompleted",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "SoundCompletedAfterEventSignal"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  },
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
                "name": "targetBlockHit",
                "type": {
                   "is_bind_type": true,
@@ -52032,6 +54036,24 @@
                   "is_bind_type": true,
                   "is_errorable": false,
                   "name": "EntityRemoveBeforeEventSignal"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  },
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "entityTamed",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "EntityTamedBeforeEventSignal"
                }
             },
             {
@@ -52487,6 +54509,17 @@
             {
                "is_read_only": true,
                "is_static": true,
+               "name": "Instrument",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "minecraft:instrument_sound"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
                "name": "Inventory",
                "type": {
                   "is_bind_type": false,
@@ -52726,6 +54759,71 @@
             }
          ],
          "name": "ButtonState"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Positional",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "Positional"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Rotational",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "Rotational"
+            }
+         ],
+         "name": "CameraShakeType"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Copy",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "CloneMode"
+               },
+               "value": 0
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "ForceCopy",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "CloneMode"
+               },
+               "value": 1
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Move",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "CloneMode"
+               },
+               "value": 2
+            }
+         ],
+         "name": "CloneMode"
       },
       {
          "constants": [
@@ -54463,17 +56561,6 @@
                   "name": "string"
                },
                "value": "minecraft:flying_speed"
-            },
-            {
-               "is_read_only": true,
-               "is_static": true,
-               "name": "Fog",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "string"
-               },
-               "value": "minecraft:player.fog"
             },
             {
                "is_read_only": true,
@@ -56736,6 +58823,17 @@
             {
                "is_read_only": true,
                "is_static": true,
+               "name": "BlockDynamicProperties",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "minecraft:block_actor_dynamic_properties"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
                "name": "Book",
                "type": {
                   "is_bind_type": false,
@@ -57504,6 +59602,55 @@
             }
          ],
          "name": "PlayerPermissionLevel"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "First",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "First"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Fourth",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "Fourth"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Second",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "Second"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Third",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "Third"
+            }
+         ],
+         "name": "PlayerSplitScreenSlot"
       },
       {
          "constants": [
@@ -58453,22 +60600,22 @@
       },
       {
          "functions": [],
-         "name": "EntityFogComponentError",
-         "properties": [],
-         "type": {
-            "is_bind_type": true,
-            "is_errorable": false,
-            "name": "EntityFogComponentError"
-         }
-      },
-      {
-         "functions": [],
          "name": "EntitySpawnError",
          "properties": [],
          "type": {
             "is_bind_type": true,
             "is_errorable": false,
             "name": "EntitySpawnError"
+         }
+      },
+      {
+         "functions": [],
+         "name": "FogSettingsError",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "FogSettingsError"
          }
       },
       {
@@ -59812,6 +61959,76 @@
          }
       },
       {
+         "base_types": [
+            {
+               "is_bind_type": true,
+               "is_errorable": false,
+               "name": "BlockFilter"
+            }
+         ],
+         "name": "BlockQueryOptions",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "closest",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "uint32",
+                     "valid_range": {
+                        "max": 2147483647,
+                        "min": -2147483648
+                     }
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "farthest",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "uint32",
+                     "valid_range": {
+                        "max": 2147483647,
+                        "min": -2147483648
+                     }
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "location",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "Vector3"
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "BlockQueryOptions"
+         }
+      },
+      {
          "base_types": [],
          "name": "BlockRaycastHit",
          "properties": [
@@ -60316,6 +62533,55 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "CameraSetRotOptions"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "CameraShakeOptions",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "duration",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "float",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "intensity",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "float",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "type",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "CameraShakeType"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "CameraShakeOptions"
          }
       },
       {
@@ -62375,6 +64641,47 @@
       },
       {
          "base_types": [],
+         "name": "EntityTamedEventFilter",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "entityFilter",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "EntityFilter"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "tamingEntityFilter",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "EntityFilter"
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "EntityTamedEventFilter"
+         }
+      },
+      {
+         "base_types": [],
          "name": "EntityVisibilityRules",
          "properties": [
             {
@@ -63687,6 +65994,25 @@
             {
                "is_baked": false,
                "is_read_only": false,
+               "name": "loopCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "int32",
+                     "valid_range": {
+                        "max": 2147483647,
+                        "min": -2147483648
+                     }
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
                "name": "pitch",
                "type": {
                   "is_bind_type": false,
@@ -63830,6 +66156,85 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "PlayerVisibilityRules"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "PrimitiveShapeQueryOptions",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "attachedTo",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "Entity"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "location",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "Vector3"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "maxDistance",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "float",
+                     "valid_range": {
+                        "max": 2147483647,
+                        "min": -2147483648
+                     }
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "minDistance",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "float",
+                     "valid_range": {
+                        "max": 2147483647,
+                        "min": -2147483648
+                     }
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "PrimitiveShapeQueryOptions"
          }
       },
       {
@@ -64329,6 +66734,271 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "ScriptEventMessageFilterOptions"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "SoundDefinitionDurationInfo",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "duration",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "float",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "SoundDefinitionDurationInfo"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "SoundDefinitionFilter",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "artists",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "element_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     },
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "array"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "genres",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "element_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     },
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "array"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "maxDuration",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "float",
+                     "valid_range": {
+                        "max": 2147483647,
+                        "min": -2147483648
+                     }
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "minDuration",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "float",
+                     "valid_range": {
+                        "max": 2147483647,
+                        "min": -2147483648
+                     }
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "moods",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "element_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     },
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "array"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "tags",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "key_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     },
+                     "name": "map",
+                     "value_type": {
+                        "element_type": {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "array"
+                     }
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "titles",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "element_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     },
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "array"
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "SoundDefinitionFilter"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "SoundDefinitionMusicInfo",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "artist",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "genres",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "element_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     },
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "array"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "moods",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "element_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     },
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "array"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "title",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "SoundDefinitionMusicInfo"
          }
       },
       {
@@ -65168,6 +67838,25 @@
             {
                "is_baked": false,
                "is_read_only": false,
+               "name": "loopCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "int32",
+                     "valid_range": {
+                        "max": 2147483647,
+                        "min": -2147483648
+                     }
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
                "name": "pitch",
                "type": {
                   "is_bind_type": false,
@@ -65257,6 +67946,10 @@
             {
                "name": "minecraft:fluid_container",
                "value": "BlockFluidContainerComponent"
+            },
+            {
+               "name": "minecraft:instrument_sound",
+               "value": "BlockInstrumentComponent"
             },
             {
                "name": "minecraft:inventory",
@@ -65518,10 +68211,6 @@
                "value": "EntityExhaustionComponent"
             },
             {
-               "name": "minecraft:player.fog",
-               "value": "EntityFogComponent"
-            },
-            {
                "name": "minecraft:player.hunger",
                "value": "EntityHungerComponent"
             },
@@ -65592,6 +68281,10 @@
       {
          "alias_type": "type_map",
          "mappings": [
+            {
+               "name": "minecraft:block_actor_dynamic_properties",
+               "value": "ItemBlockDynamicPropertiesComponent"
+            },
             {
                "name": "minecraft:book",
                "value": "ItemBookComponent"

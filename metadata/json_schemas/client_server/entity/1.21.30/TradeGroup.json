@@ -1,0 +1,26 @@
+{
+   "title": "TradeGroup",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client_server/entity/1.21.30/TradeGroup.json",
+   "x-format-version": "1.21.30",
+   "type": "object",
+   "properties": {
+      "num_to_select": {
+         "type": "integer",
+         "default": 0,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 0
+      },
+      "trades": {
+         "type": "array",
+         "items": {
+            "$ref": "./Trade.json"
+         },
+         "x-ordinal-index": 1,
+         "minItems": 1
+      }
+   },
+   "required": [
+      "trades"
+   ]
+}
