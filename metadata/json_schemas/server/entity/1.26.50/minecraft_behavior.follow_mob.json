@@ -1,0 +1,67 @@
+{
+   "title": "minecraft:behavior.follow_mob",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/entity/1.26.50/minecraft_behavior.follow_mob.json",
+   "x-format-version": "1.26.50",
+   "type": "object",
+   "properties": {
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "../1.21.90/Goal's%20control%20flags.json",
+            "x-underlying-type": "int32"
+         },
+         "x-ordinal-index": 7
+      },
+      "filters": {
+         "default": {
+            "all_of": null,
+            "all": null,
+            "OR": null,
+            "AND": null,
+            "any_of": null,
+            "any": null,
+            "none_of": null,
+            "NOT": null
+         },
+         "$ref": "../../../client_server/common/1.21.20/Filter%20Group.json",
+         "x-ordinal-index": 5
+      },
+      "preferred_actor_type": {
+         "type": "string",
+         "default": "",
+         "x-ordinal-index": 4
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 6,
+         "minimum": 0
+      },
+      "search_range": {
+         "type": "integer",
+         "default": 0,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 2
+      },
+      "speed_multiplier": {
+         "type": "number",
+         "default": 1,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 0
+      },
+      "stop_distance": {
+         "type": "number",
+         "x-underlying-type": "float",
+         "x-ordinal-index": 1
+      },
+      "use_home_position_restriction": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 3
+      }
+   }
+}

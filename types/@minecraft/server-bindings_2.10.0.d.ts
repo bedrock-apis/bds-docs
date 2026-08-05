@@ -1065,6 +1065,24 @@ export interface ScoreboardObjectiveDisplayOptions {
 export interface ScriptEventMessageFilterOptions {
    namespaces: Array<string>;
 }
+export interface SoundDefinitionDurationInfo {
+   duration: number;
+}
+export interface SoundDefinitionFilter {
+   artists?: Array<string>;
+   genres?: Array<string>;
+   maxDuration?: number;
+   minDuration?: number;
+   moods?: Array<string>;
+   tags?: Record<string,Array<string>>;
+   titles?: Array<string>;
+}
+export interface SoundDefinitionMusicInfo {
+   artist?: string;
+   genres?: Array<string>;
+   moods?: Array<string>;
+   title?: string;
+}
 export interface SpawnEntityOptions {
    initialPersistence?: boolean;
    initialRotation?: number;
@@ -3209,7 +3227,7 @@ export class Player extends Entity {
    public getSpawnPoint(): (DimensionLocation | undefined);
    public getTotalXp(): number;
    public playMusic(trackId: string, musicOptions?: MusicOptions): void;
-   public playSound(soundId: string, soundOptions?: PlayerSoundOptions): SoundInstance;
+   public playSound(soundId: SoundDefinition | string, soundOptions?: PlayerSoundOptions): SoundInstance;
    public queueMusic(trackId: string, musicOptions?: MusicOptions): void;
    public removePropertyOverrideForEntity(targetEntity: Entity, identifier: string): void;
    public resetLevel(): void;
@@ -3801,6 +3819,17 @@ export class SoundCompletedAfterEventSignal {
    public unsubscribe(callback: (arg0: SoundCompletedAfterEvent)=>void): void;
    private constructor();
 }
+export class SoundDefinition {
+   public readonly durationInfo?: SoundDefinitionDurationInfo;
+   public readonly musicInfo?: SoundDefinitionMusicInfo;
+   public readonly soundEventId: string;
+   public readonly tags?: Record<string,Array<string>>;
+   private constructor();
+}
+export class SoundDefinitionRegistry {
+   public getDefinitions(filter?: SoundDefinitionFilter): Array<SoundDefinition>;
+   private constructor();
+}
 export class SoundDurationInfo {
    public readonly duration: number;
    public readonly isActive: boolean;
@@ -3976,6 +4005,7 @@ export class World {
    public readonly primitiveShapesManager: PrimitiveShapesManager;
    public readonly scoreboard: Scoreboard;
    public readonly seed: string;
+   public readonly soundDefinitionRegistry: SoundDefinitionRegistry;
    public readonly structureManager: StructureManager;
    public readonly tickingAreaManager: TickingAreaManager;
    public clearDynamicProperties(): void;

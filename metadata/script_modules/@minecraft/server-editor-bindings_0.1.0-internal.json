@@ -1585,14 +1585,9 @@
                "is_static": false,
                "name": "extrude",
                "return_type": {
-                  "is_bind_type": false,
+                  "is_bind_type": true,
                   "is_errorable": true,
-                  "name": "promise",
-                  "promise_type": {
-                     "is_bind_type": true,
-                     "is_errorable": false,
-                     "name": "RelativeVolumeListBlockVolume"
-                  }
+                  "name": "VolumeTaskPromise"
                }
             },
             {
@@ -1696,18 +1691,9 @@
                "is_static": false,
                "name": "fillVolume",
                "return_type": {
-                  "is_bind_type": false,
+                  "is_bind_type": true,
                   "is_errorable": true,
-                  "name": "promise",
-                  "promise_type": {
-                     "is_bind_type": false,
-                     "is_errorable": false,
-                     "name": "uint32",
-                     "valid_range": {
-                        "max": 2147483647,
-                        "min": -2147483648
-                     }
-                  }
+                  "name": "NumberTaskPromise"
                }
             },
             {
@@ -1768,14 +1754,9 @@
                "is_static": false,
                "name": "findObscuredBlocksWithinVolume",
                "return_type": {
-                  "is_bind_type": false,
+                  "is_bind_type": true,
                   "is_errorable": true,
-                  "name": "promise",
-                  "promise_type": {
-                     "is_bind_type": true,
-                     "is_errorable": false,
-                     "name": "RelativeVolumeListBlockVolume"
-                  }
+                  "name": "VolumeTaskPromise"
                }
             },
             {
@@ -1890,6 +1871,26 @@
                            }
                         }
                      }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "directionMask",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "int32",
+                           "valid_range": {
+                              "max": 2147483647,
+                              "min": -2147483648
+                           }
+                        }
+                     }
                   }
                ],
                "call_privilege": [
@@ -1901,14 +1902,9 @@
                "is_static": false,
                "name": "floodSearch",
                "return_type": {
-                  "is_bind_type": false,
+                  "is_bind_type": true,
                   "is_errorable": true,
-                  "name": "promise",
-                  "promise_type": {
-                     "is_bind_type": true,
-                     "is_errorable": false,
-                     "name": "RelativeVolumeListBlockVolume"
-                  }
+                  "name": "VolumeTaskPromise"
                }
             },
             {
@@ -1969,14 +1965,9 @@
                "is_static": false,
                "name": "generateManifest",
                "return_type": {
-                  "is_bind_type": false,
+                  "is_bind_type": true,
                   "is_errorable": true,
-                  "name": "promise",
-                  "promise_type": {
-                     "is_bind_type": true,
-                     "is_errorable": false,
-                     "name": "BlockUtilityManifest"
-                  }
+                  "name": "ManifestTaskPromise"
                }
             },
             {
@@ -2089,18 +2080,9 @@
                "is_static": false,
                "name": "replaceBlocksInSelection",
                "return_type": {
-                  "is_bind_type": false,
+                  "is_bind_type": true,
                   "is_errorable": true,
-                  "name": "promise",
-                  "promise_type": {
-                     "is_bind_type": false,
-                     "is_errorable": false,
-                     "name": "uint32",
-                     "valid_range": {
-                        "max": 2147483647,
-                        "min": -2147483648
-                     }
-                  }
+                  "name": "NumberTaskPromise"
                }
             },
             {
@@ -2161,14 +2143,9 @@
                "is_static": false,
                "name": "shrinkWrapVolume",
                "return_type": {
-                  "is_bind_type": false,
+                  "is_bind_type": true,
                   "is_errorable": true,
-                  "name": "promise",
-                  "promise_type": {
-                     "is_bind_type": true,
-                     "is_errorable": false,
-                     "name": "RelativeVolumeListBlockVolume"
-                  }
+                  "name": "VolumeTaskPromise"
                }
             },
             {
@@ -2272,14 +2249,9 @@
                "is_static": false,
                "name": "trimVolumeToFitContents",
                "return_type": {
-                  "is_bind_type": false,
+                  "is_bind_type": true,
                   "is_errorable": true,
-                  "name": "promise",
-                  "promise_type": {
-                     "is_bind_type": true,
-                     "is_errorable": false,
-                     "name": "RelativeVolumeListBlockVolume"
-                  }
+                  "name": "VolumeTaskPromise"
                }
             }
          ],
@@ -6998,6 +6970,45 @@
          }
       },
       {
+         "base_types": [
+            {
+               "is_bind_type": true,
+               "is_errorable": false,
+               "name": "TaskPromiseBase"
+            }
+         ],
+         "constants": [],
+         "functions": [],
+         "name": "ManifestTaskPromise",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "promise",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "BlockUtilityManifest"
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "ManifestTaskPromise"
+         }
+      },
+      {
          "base_types": [],
          "constants": [],
          "functions": [],
@@ -8052,6 +8063,49 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "ModeChangeAfterEventSignal"
+         }
+      },
+      {
+         "base_types": [
+            {
+               "is_bind_type": true,
+               "is_errorable": false,
+               "name": "TaskPromiseBase"
+            }
+         ],
+         "constants": [],
+         "functions": [],
+         "name": "NumberTaskPromise",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "promise",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "uint32",
+                     "valid_range": {
+                        "max": 2147483647,
+                        "min": -2147483648
+                     }
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "NumberTaskPromise"
          }
       },
       {
@@ -10523,6 +10577,70 @@
          "constants": [],
          "functions": [
             {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "cancel",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "TaskPromiseBase",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "cancelled",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "progress",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "float",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "TaskPromiseBase"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
                "arguments": [
                   {
                      "details": null,
@@ -11302,6 +11420,45 @@
             {
                "is_bind_type": true,
                "is_errorable": false,
+               "name": "TaskPromiseBase"
+            }
+         ],
+         "constants": [],
+         "functions": [],
+         "name": "VoidTaskPromise",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "promise",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "undefined"
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "VoidTaskPromise"
+         }
+      },
+      {
+         "base_types": [
+            {
+               "is_bind_type": true,
+               "is_errorable": false,
                "name": "TransactionOperationHandler"
             }
          ],
@@ -11313,6 +11470,45 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "VolumeListTransactionOperationHandler"
+         }
+      },
+      {
+         "base_types": [
+            {
+               "is_bind_type": true,
+               "is_errorable": false,
+               "name": "TaskPromiseBase"
+            }
+         ],
+         "constants": [],
+         "functions": [],
+         "name": "VolumeTaskPromise",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "promise",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "RelativeVolumeListBlockVolume"
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "VolumeTaskPromise"
          }
       },
       {
@@ -21039,6 +21235,16 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "InvalidWidgetGroupError"
+         }
+      },
+      {
+         "functions": [],
+         "name": "TaskCancelledError",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "TaskCancelledError"
          }
       },
       {

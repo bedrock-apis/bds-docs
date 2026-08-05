@@ -1,7 +1,36 @@
 import * as common from "@minecraft/common";
 import * as server from "@minecraft/server";
 
+export enum DiagnosticsChartDisplayType {
+   LineChart = 0,
+   StackedBarChart = 2,
+   StackedLineChart = 1,
+}
+export enum DiagnosticsErrorReason {
+   AlreadyRegistered = "AlreadyRegistered",
+   InvalidData = "InvalidData",
+   InvalidName = "InvalidName",
+}
+export enum DiagnosticsTableDisplayType {
+   MultiColumnTable = 1,
+   Table = 0,
+}
 
+export interface DiagnosticsChartViewOptions {
+   chartType: DiagnosticsChartDisplayType;
+   targetValue?: number;
+   tickRange?: number;
+   yAxisLabel?: string;
+}
+export interface DiagnosticsStat {
+   name: string;
+   values?: Array<number | string>;
+}
+export interface DiagnosticsTableViewOptions {
+   keyLabel?: string;
+   tableType: DiagnosticsTableDisplayType;
+   valueLabels?: Array<string>;
+}
 export interface HandleCounts {
    handleCounts: Record<string,number>;
    name: string;
@@ -120,10 +149,39 @@ export class DebugText extends DebugShape {
    public constructor(location: server.DimensionLocation | server.Vector3, text: server.RawMessage | string);
    public setText(text: server.RawMessage | string): void;
 }
+export class DiagnosticsManager {
+   public readonly tabs: Array<DiagnosticsTab>;
+   public addTab(tab: DiagnosticsTab): void;
+   public containsTab(tab: DiagnosticsTab): boolean;
+   public containsView(view: DiagnosticsView): boolean;
+   public createTab(tabName: string): DiagnosticsTab;
+   public createView(statName: string, options?: DiagnosticsChartViewOptions | DiagnosticsTableViewOptions): DiagnosticsView;
+   public removeTab(tab: DiagnosticsTab): void;
+   private constructor();
+}
+export class DiagnosticsTab {
+   public readonly tabName: string;
+   public readonly views: Array<DiagnosticsView>;
+   public addView(view: DiagnosticsView): void;
+   public containsView(view: DiagnosticsView): boolean;
+   public removeView(view: DiagnosticsView): void;
+   private constructor();
+}
+export class DiagnosticsView {
+   public pushStats(stats: Array<DiagnosticsStat>): void;
+   private constructor();
+}
 
 
 export const debugDrawer: DebugDrawer;
+export const diagnosticsManager: DiagnosticsManager;
 
 export function collectPluginStats(): PluginStats;
 export function collectRuntimeStats(): RuntimeStats;
 export function disableWatchdogTimingWarnings(disable: boolean): void;
+
+//@ts-ignore
+export class DiagnosticsError extends Error {
+   public readonly reason: DiagnosticsErrorReason;
+   private constructor();
+}

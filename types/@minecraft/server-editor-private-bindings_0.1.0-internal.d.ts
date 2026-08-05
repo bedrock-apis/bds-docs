@@ -166,6 +166,14 @@ export interface EditorRegistryFile {
    fileJson: string;
    fileName: string;
 }
+export interface ExtrudeInteractiveToolOptions {
+   criteria: server_editor.BlockUtilityFloodMatchCriteria;
+   customBlockList: Array<string>;
+   faceSize: number;
+   isShrink: boolean;
+   layerCount: number;
+   tolerance: number;
+}
 export interface FileSelectorOptions {
    extensions: Array<string>;
    maxFileSize: number;
@@ -213,8 +221,13 @@ export interface MeshInfo {
 export interface MeshLoadOptions {
    maxTriangleCount?: number;
 }
+export interface MeshPlacementBlockMapping {
+   blockType: string;
+   colorEntryId: string;
+}
 export interface MeshPlacementOptions {
    blockType: string;
+   colorBlockMappings?: Array<MeshPlacementBlockMapping>;
    location: server.Vector3;
    requestId?: string;
    rotation: server.Vector3;
@@ -318,9 +331,28 @@ export interface ProjectRegionPlayerMetrics {
    tickingRegionCount: number;
    uniqueChunkCount: number;
 }
+export interface SmartFillInteractiveToolOptions {
+   limitToSelection: boolean;
+   onlyFillExposedSurface: boolean;
+   radius: number;
+}
 
 export class ClientFilesystem {
    public chooseFile(options: FileSelectorOptions): Promise<string>;
+   private constructor();
+}
+export class ClientInteractiveTools {
+   public activateExtrude(options: ExtrudeInteractiveToolOptions): Promise<void>;
+   public activateSmartFill(options: SmartFillInteractiveToolOptions): Promise<void>;
+   public applyExtrude(result: ExtrudeInteractiveToolResult): Promise<void>;
+   public commitExtrude(target: server.Vector3, face: number): Promise<ExtrudeInteractiveToolResult>;
+   public commitSmartFill(target: server.Vector3, face: number): Promise<server_editor.RelativeVolumeListBlockVolume>;
+   public deactivate(): Promise<void>;
+   public resume(): Promise<void>;
+   public supportsExtrude(): Promise<boolean>;
+   public supportsSmartFill(): Promise<boolean>;
+   public updateExtrude(options: ExtrudeInteractiveToolOptions): Promise<void>;
+   public updateSmartFill(options: SmartFillInteractiveToolOptions): Promise<void>;
    private constructor();
 }
 export class CustomBiomeSource {
@@ -472,6 +504,10 @@ export class DataTransferRequestResponse {
    public readonly schema: string;
    private constructor();
 }
+export class ExtrudeInteractiveToolResult {
+   public readonly affectedVolume: server_editor.RelativeVolumeListBlockVolume;
+   private constructor();
+}
 export class FeatureFlagManager {
    public readonly isHost: boolean;
    public getFlag(name: string): boolean;
@@ -508,6 +544,7 @@ export class InternalPersistenceManager {
 }
 export class InternalPlayerServiceContext {
    public readonly clientFilesystem: ClientFilesystem;
+   public readonly clientInteractiveTools: ClientInteractiveTools;
    public readonly dataStore: DataStore;
    public readonly dataTransfer: DataTransferManager;
    public readonly featureFlags: FeatureFlagManager;
@@ -518,9 +555,9 @@ export class InternalPlayerServiceContext {
    public readonly prefabManager: PrefabManager;
    public readonly realmsService: RealmsService;
    public readonly regionManager: PlayerProjectRegionManager;
-   public runCoroutineWatchdogStressTest(): void;
-   public runLongRunningTaskBurstTest(durationSeconds: number, taskCount: number, maxStaggerSeconds: number): void;
-   public runLongRunningTaskTest(durationSeconds: number): void;
+   public runCoroutineWatchdogStressTest(): server_editor.VoidTaskPromise;
+   public runLongRunningTaskBurstTest(durationSeconds: number, taskCount: number, maxStaggerSeconds: number): server_editor.VoidTaskPromise;
+   public runLongRunningTaskTest(durationSeconds: number): server_editor.VoidTaskPromise;
    public runLongRunningTaskTestClient(durationSeconds: number): void;
    private constructor();
 }
@@ -553,7 +590,7 @@ export class MinecraftEditorInternal {
    public fillBiomes(dimension: server.Dimension, volume: server.BlockVolumeBase | server_editor.RelativeVolumeListBlockVolume, biome: server.BiomeType, options?: BiomeFillOptions): void;
    public fireTelemetryEvent(player: server.Player, source: string, eventName: string, metadata: string): void;
    public getPlayerServices(player: server.Player): InternalPlayerServiceContext;
-   public registerExtension(extensionName: string, activationFunction: (arg0: server_editor.ExtensionContext)=>void, shutdownFunction: (arg0: server_editor.ExtensionContext)=>void, options?: server_editor.ExtensionOptionalParameters): server_editor.Extension;
+   public registerExtension(extensionName: string, activationFunction: (arg0: server_editor.ExtensionContext)=>void, sessionLifecycleFunction: (arg0: server_editor.ExtensionContext)=>void, shutdownFunction: (arg0: server_editor.ExtensionContext)=>void, options?: server_editor.ExtensionOptionalParameters): server_editor.Extension;
    public reloadEditor(): void;
    private constructor();
 }

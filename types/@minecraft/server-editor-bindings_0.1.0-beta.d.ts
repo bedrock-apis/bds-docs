@@ -719,14 +719,14 @@ export class BlockUtilities {
    private constructor();
 }
 export class BlockUtilityTasks {
-   public extrude(location: server.Vector3, direction?: BlockUtilityExtrudeDirection, faceRadius?: number, layerCount?: number, isShrink?: boolean, criteria?: BlockUtilityFloodMatchCriteria, customBlockList?: Array<string>, maxBlocksPerTick?: number, buildGeometry?: boolean, tolerance?: number, faceVolume?: server.BlockVolumeBase | RelativeVolumeListBlockVolume): Promise<RelativeVolumeListBlockVolume>;
-   public fillVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, block?: server.BlockPermutation | server.BlockType | string, maxBlocksPerTick?: number): Promise<number>;
-   public findObscuredBlocksWithinVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, maxBlocksPerTick?: number): Promise<RelativeVolumeListBlockVolume>;
-   public floodSearch(location: server.Vector3, criteria?: BlockUtilityFloodMatchCriteria, radius?: number, customBlockList?: Array<string>, maxResultBlocks?: number, maxBlocksPerTick?: number): Promise<RelativeVolumeListBlockVolume>;
-   public generateManifest(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, maxBlocksPerTick?: number): Promise<BlockUtilityManifest>;
-   public replaceBlocksInSelection(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, fromBlockIdentifier: string, toBlock?: server.BlockPermutation | server.BlockType | string, maxBlocksPerTick?: number): Promise<number>;
-   public shrinkWrapVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, maxBlocksPerTick?: number): Promise<RelativeVolumeListBlockVolume>;
-   public trimVolumeToFitContents(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, retainMarqueeAfterTrimming: boolean, ignoreLiquid: boolean, ignoreNoCollision: boolean, blockMask?: BlockMaskList, maxBlocksPerTick?: number): Promise<RelativeVolumeListBlockVolume>;
+   public extrude(location: server.Vector3, direction?: BlockUtilityExtrudeDirection, faceRadius?: number, layerCount?: number, isShrink?: boolean, criteria?: BlockUtilityFloodMatchCriteria, customBlockList?: Array<string>, maxBlocksPerTick?: number, buildGeometry?: boolean, tolerance?: number, faceVolume?: server.BlockVolumeBase | RelativeVolumeListBlockVolume): VolumeTaskPromise;
+   public fillVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, block?: server.BlockPermutation | server.BlockType | string, maxBlocksPerTick?: number): NumberTaskPromise;
+   public findObscuredBlocksWithinVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, maxBlocksPerTick?: number): VolumeTaskPromise;
+   public floodSearch(location: server.Vector3, criteria?: BlockUtilityFloodMatchCriteria, radius?: number, customBlockList?: Array<string>, maxResultBlocks?: number, maxBlocksPerTick?: number, directionMask?: number): VolumeTaskPromise;
+   public generateManifest(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, maxBlocksPerTick?: number): ManifestTaskPromise;
+   public replaceBlocksInSelection(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, fromBlockIdentifier: string, toBlock?: server.BlockPermutation | server.BlockType | string, maxBlocksPerTick?: number): NumberTaskPromise;
+   public shrinkWrapVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, maxBlocksPerTick?: number): VolumeTaskPromise;
+   public trimVolumeToFitContents(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, retainMarqueeAfterTrimming: boolean, ignoreLiquid: boolean, ignoreNoCollision: boolean, blockMask?: BlockMaskList, maxBlocksPerTick?: number): VolumeTaskPromise;
    private constructor();
 }
 export class BrushShapeManager {
@@ -954,6 +954,11 @@ export class Logger {
    public warning(message: LocalizationEntry | string, properties?: LogProperties): void;
    private constructor();
 }
+//@ts-ignore
+export class ManifestTaskPromise extends TaskPromiseBase {
+   public readonly promise: Promise<BlockUtilityManifest>;
+   private constructor();
+}
 export class MinecraftEditor {
    public readonly afterEvents: ProjectAfterEvents;
    public readonly constants: EditorConstants;
@@ -1002,6 +1007,11 @@ export class ModeChangeAfterEvent {
 export class ModeChangeAfterEventSignal {
    public subscribe(callback: (arg0: ModeChangeAfterEvent)=>void): (arg0: ModeChangeAfterEvent)=>void;
    public unsubscribe(callback: (arg0: ModeChangeAfterEvent)=>void): void;
+   private constructor();
+}
+//@ts-ignore
+export class NumberTaskPromise extends TaskPromiseBase {
+   public readonly promise: Promise<number>;
    private constructor();
 }
 export class PendingTransaction {
@@ -1125,6 +1135,12 @@ export class SpeedSettings {
    public setAll(properties: Record<string,number | undefined>): void;
    private constructor();
 }
+export class TaskPromiseBase {
+   public readonly cancelled: boolean;
+   public readonly progress: number;
+   public cancel(): void;
+   private constructor();
+}
 export class ThemeSettings {
    public addNewTheme(id: string, name?: string, sourceThemeId?: string): void;
    public canThemeBeModified(id: string): boolean;
@@ -1170,7 +1186,17 @@ export class UserDefinedTransactionOperationHandler extends TransactionOperation
    private constructor();
 }
 //@ts-ignore
+export class VoidTaskPromise extends TaskPromiseBase {
+   public readonly promise: Promise<undefined>;
+   private constructor();
+}
+//@ts-ignore
 export class VolumeListTransactionOperationHandler extends TransactionOperationHandler {
+   private constructor();
+}
+//@ts-ignore
+export class VolumeTaskPromise extends TaskPromiseBase {
+   public readonly promise: Promise<RelativeVolumeListBlockVolume>;
    private constructor();
 }
 export class Widget {
@@ -1483,6 +1509,10 @@ export class InvalidWidgetError extends Error {
 }
 //@ts-ignore
 export class InvalidWidgetGroupError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class TaskCancelledError extends Error {
    private constructor();
 }
 //@ts-ignore

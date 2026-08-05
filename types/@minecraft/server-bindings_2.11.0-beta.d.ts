@@ -4026,6 +4026,7 @@ export class StartupEvent {
    public readonly customCommandRegistry: CustomCommandRegistry;
    public readonly dimensionRegistry: DimensionRegistry;
    public readonly itemComponentRegistry: ItemComponentRegistry;
+   public readonly worldClockRegistry: WorldClockRegistry;
    private constructor();
 }
 //@ts-ignore
@@ -4193,6 +4194,7 @@ export class World {
    public getAbsoluteTime(): number;
    public getAimAssist(): AimAssistRegistry;
    public getAllPlayers(): Array<Player>;
+   public getClock(name: string): WorldClock;
    public getDay(): number;
    public getDefaultSpawnLocation(): Vector3;
    public getDifficulty(): Difficulty;
@@ -4303,6 +4305,16 @@ export class WorldBeforeEvents {
    public readonly playerLeave: PlayerLeaveBeforeEventSignal;
    public readonly playerPlaceBlock: PlayerPlaceBlockBeforeEventSignal;
    public readonly weatherChange: WeatherChangeBeforeEventSignal;
+   private constructor();
+}
+export class WorldClock {
+   public isPaused: boolean;
+   public readonly name: string;
+   public time: number;
+   private constructor();
+}
+export class WorldClockRegistry {
+   public registerClock(name: string): void;
    private constructor();
 }
 export class WorldLoadAfterEvent {
@@ -4514,5 +4526,21 @@ export class TickingAreaError extends Error {
 }
 //@ts-ignore
 export class UnloadedChunksError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class WorldClockInvalidRegistryError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class WorldClockNotFoundError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class WorldClockRegistrationError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class WorldClockReloadNewWorldClockError extends Error {
    private constructor();
 }
