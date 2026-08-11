@@ -587,6 +587,11 @@ export enum PlayerWaypointsMode {
    Everyone = "Everyone",
    Off = "Off",
 }
+export enum PoiBlockOccupancyFilter {
+   Any = "Any",
+   Full = "Full",
+   HasVacancy = "HasVacancy",
+}
 export enum ScoreboardIdentityType {
    Entity = "Entity",
    FakePlayer = "FakePlayer",
@@ -1069,6 +1074,16 @@ export interface PlayerVisibilityRules extends EntityVisibilityRules {
    showSpectator?: boolean;
    showSpectatorToSpectator?: boolean;
 }
+export interface PoiDistancePair {
+   distance: number;
+   poi: PoiBlockInstance;
+}
+export interface PoiNameFilter {
+   name: string;
+}
+export interface PoiTagFilter {
+   tags: Array<string>;
+}
 export interface PrimitiveShapeQueryOptions {
    attachedTo?: Entity;
    location?: Vector3;
@@ -1213,6 +1228,7 @@ export interface WaypointTextureSelector {
    textureBoundsList: Array<WaypointTextureBounds>;
 }
 export interface WorldSoundOptions {
+   isBroadcast?: boolean;
    loopCount?: number;
    pitch?: number;
    volume?: number;
@@ -1806,6 +1822,7 @@ export class Dimension {
    public readonly heightRange: common.NumberRange;
    public readonly id: string;
    public readonly localizationKey: string;
+   public readonly poiManager: PoiManager;
    public calculateClosestBiomeFromSeed(pos: Vector3, biomeToFind: BiomeType | string, options?: BiomeSearchOptions): (Vector3 | undefined);
    public cloneBlocks(beginLocation: Vector3, endLocation: Vector3, destination: Vector3, cloneMode: CloneMode, filter?: BlockFilter): void;
    public containsBiomes(volume: BlockVolumeBase, biomeFilter: BiomeFilter, isSuperset: boolean): boolean;
@@ -3342,7 +3359,7 @@ export class ObstructionCallbackArgs {
 }
 export class PackSettingChangeAfterEvent {
    public readonly settingName: string;
-   public readonly settingValue: boolean | number | string;
+   public readonly settingValue: Array<string> | boolean | number | string;
    private constructor();
 }
 export class PackSettingChangeAfterEventSignal {
@@ -3739,6 +3756,36 @@ export class PlayerUseNameTagAfterEventSignal {
 export class PlayerWaypoint extends EntityWaypoint {
    public readonly playerRules: PlayerVisibilityRules;
    public constructor(player: Player, textureSelector: WaypointTextureSelector, playerRules: PlayerVisibilityRules, color?: RGB);
+}
+export class PoiBlockInstance {
+   public readonly position: Vector3;
+   public readonly tickets: number;
+   public readonly type: PoiBlockType;
+   private constructor();
+}
+export class PoiBlockManager {
+   public addTemporary(position: Vector3, poi: PoiBlockType | string | number): void;
+   public at(position: Vector3): (PoiBlockType | undefined);
+   public exists(position: Vector3, filter: (arg0: PoiBlockType)=>boolean | PoiNameFilter | PoiTagFilter): boolean;
+   public getInRange(filter: (arg0: PoiBlockType)=>boolean | PoiNameFilter | PoiTagFilter, center: Vector3, blockRadius: number, occupancyFilter?: PoiBlockOccupancyFilter): Array<PoiBlockInstance>;
+   public getInRangeSorted(filter: (arg0: PoiBlockType)=>boolean | PoiNameFilter | PoiTagFilter, center: Vector3, blockRadius: number, occupancyFilter?: PoiBlockOccupancyFilter): Array<PoiDistancePair>;
+   public getInSquare(filter: (arg0: PoiBlockType)=>boolean | PoiNameFilter | PoiTagFilter, center: Vector3, blockRadius: number, occupancyFilter?: PoiBlockOccupancyFilter): Array<PoiBlockInstance>;
+   public release(center: Vector3): boolean;
+   public take(filter: (arg0: PoiBlockType)=>boolean | PoiNameFilter | PoiTagFilter, center: Vector3, blockRadius: number): (Vector3 | undefined);
+   private constructor();
+}
+export class PoiBlockType {
+   public readonly id: number;
+   public readonly name: string;
+   public readonly tickets: number;
+   public readonly usableRange: number;
+   public equals(other: PoiBlockType): boolean;
+   public has(tag: string): boolean;
+   private constructor();
+}
+export class PoiManager {
+   public readonly blocks: PoiBlockManager;
+   private constructor();
 }
 export class PotionDeliveryType {
    public readonly id: string;
@@ -4265,7 +4312,7 @@ export class World {
    public getEntity(id: string): (Entity | undefined);
    public getLootTableManager(): LootTableManager;
    public getMoonPhase(): MoonPhase;
-   public getPackSettings(): Record<string,boolean | number | string>;
+   public getPackSettings(): Record<string,Array<string> | boolean | number | string>;
    public getPlayers(options?: EntityQueryOptions): Array<Player>;
    public getTimeOfDay(): number;
    public playMusic(trackId: string, musicOptions?: MusicOptions): void;

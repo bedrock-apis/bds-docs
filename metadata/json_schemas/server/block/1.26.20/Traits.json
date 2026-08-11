@@ -6,35 +6,19 @@
    "type": "object",
    "properties": {
       "minecraft:connection": {
-         "default": {
-            "enabled_states": []
-         },
          "$ref": "./Connection.json",
          "x-ordinal-index": 0
       },
       "minecraft:multi_block": {
-         "default": {
-            "enabled_states": [],
-            "parts": 2,
-            "direction": "up"
-         },
          "$ref": "./Multi%20Block.json",
          "x-ordinal-index": 1
       },
       "minecraft:placement_direction": {
-         "default": {
-            "enabled_states": [],
-            "y_rotation_offset": null,
-            "blocks_to_corner_with": []
-         },
          "$ref": "./Placement%20Direction.json",
          "x-ordinal-index": 2,
          "x-runtime-constraint-description": "\"y_rotation_offset\" can only be used when \"minecraft:cardinal_direction\", \"minecraft:facing_direction\", and/or \"minecraft:sixteen_way_rotation\" are enabled in \"enabled_states\". and \"blocks_to_corner_with\" can only be used when \"minecraft:corner_and_cardinal_direction\" is enabled in \"enabled_states\"."
       },
       "minecraft:placement_position": {
-         "default": {
-            "enabled_states": []
-         },
          "$ref": "./Placement%20Position.json",
          "x-ordinal-index": 3
       }

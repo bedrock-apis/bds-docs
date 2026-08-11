@@ -219,6 +219,7 @@ export enum PacketId {
    PositionTrackingDBServerBroadcastPacket = "PositionTrackingDBServerBroadcastPacket",
    PrimitiveShapesPacket = "PrimitiveShapesPacket",
    PurchaseReceiptPacket = "PurchaseReceiptPacket",
+   RecordStartedPacket = "RecordStartedPacket",
    RefreshEntitlementsPacket = "RefreshEntitlementsPacket",
    RemoveActorPacket = "RemoveActorPacket",
    RemoveObjectivePacket = "RemoveObjectivePacket",
