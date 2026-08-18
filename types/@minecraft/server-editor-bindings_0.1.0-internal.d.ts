@@ -718,7 +718,23 @@ export class BlockUtilities {
    public trimVolumeToFitContents(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, retainMarqueeAfterTrimming: boolean, ignoreLiquid: boolean, ignoreNoCollision: boolean, blockMask?: BlockMaskList): RelativeVolumeListBlockVolume;
    private constructor();
 }
+export class BlockUtilityShapeVolumeOptionsCone {
+   public constructor(width: number, height: number, depth: number, rotX?: number, rotY?: number, rotZ?: number, isHollow?: boolean, thickness?: number);
+}
+export class BlockUtilityShapeVolumeOptionsCuboid {
+   public constructor(width: number, height: number, depth: number, rotX?: number, rotY?: number, rotZ?: number, isHollow?: boolean, thickness?: number);
+}
+export class BlockUtilityShapeVolumeOptionsCylinder {
+   public constructor(width: number, height: number, depth: number, rotX?: number, rotY?: number, rotZ?: number, isHollow?: boolean, thickness?: number);
+}
+export class BlockUtilityShapeVolumeOptionsEllipsoid {
+   public constructor(width: number, height: number, depth: number, rotX?: number, rotY?: number, rotZ?: number, isHollow?: boolean, thickness?: number);
+}
+export class BlockUtilityShapeVolumeOptionsPyramid {
+   public constructor(width: number, height: number, depth: number, rotX?: number, rotY?: number, rotZ?: number, isHollow?: boolean, thickness?: number);
+}
 export class BlockUtilityTasks {
+   public createShapeVolume(options: BlockUtilityShapeVolumeOptionsCone | BlockUtilityShapeVolumeOptionsCuboid | BlockUtilityShapeVolumeOptionsCylinder | BlockUtilityShapeVolumeOptionsEllipsoid | BlockUtilityShapeVolumeOptionsPyramid, maxBlocksPerTick?: number): VolumeTaskPromise;
    public extrude(location: server.Vector3, direction?: BlockUtilityExtrudeDirection, faceRadius?: number, layerCount?: number, isShrink?: boolean, criteria?: BlockUtilityFloodMatchCriteria, customBlockList?: Array<string>, maxBlocksPerTick?: number, buildGeometry?: boolean, tolerance?: number, faceVolume?: server.BlockVolumeBase | RelativeVolumeListBlockVolume): VolumeTaskPromise;
    public fillVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, block?: server.BlockPermutation | server.BlockType | string, maxBlocksPerTick?: number): NumberTaskPromise;
    public findObscuredBlocksWithinVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, maxBlocksPerTick?: number): VolumeTaskPromise;
@@ -996,8 +1012,8 @@ export class MinimapManager {
    public destroyMinimap(minimapId: string): void;
    public getAllMinimapIds(): Array<string>;
    public getMinimap(minimapId: string): MinimapItem;
-   public setVanillaBiomeColorMap(colorMap: Record<string,server.RGB>): void;
-   public updateVanillaColorMap(biomeType: server.BiomeType, color: server.RGB): void;
+   public setVanillaBiomeColorMap(minimapId: string, colorMap: Record<string,server.RGB>): void;
+   public updateVanillaColorMap(minimapId: string, biomeType: server.BiomeType, color: server.RGB): void;
    private constructor();
 }
 export class ModeChangeAfterEvent {

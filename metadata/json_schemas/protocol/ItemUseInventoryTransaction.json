@@ -3,7 +3,7 @@
    "$schema": "http://json-schema.org/draft-07/schema#",
    "$id": "/ItemUseInventoryTransaction.json",
    "x-format-version": "MISSING VERSION",
-   "x-protocol-version": 2187,
+   "x-protocol-version": 2192,
    "type": "object",
    "properties": {
       "Action Type": {
@@ -21,7 +21,7 @@
       },
       "Click Position": {
          "$ref": "./Vec3.json",
-         "x-ordinal-index": 8
+         "x-ordinal-index": 9
       },
       "Client Cooldown State": {
          "$ref": "./ItemUseClientCooldownState.json",
@@ -29,7 +29,7 @@
          "x-serialization-options": [
             "Enum-as-Value"
          ],
-         "x-ordinal-index": 11
+         "x-ordinal-index": 12
       },
       "Client Interact Prediction": {
          "$ref": "./ItemUsePredictedResult.json",
@@ -37,7 +37,7 @@
          "x-serialization-options": [
             "Enum-as-Value"
          ],
-         "x-ordinal-index": 10
+         "x-ordinal-index": 11
       },
       "Face": {
          "type": "integer",
@@ -51,11 +51,20 @@
       },
       "From Position": {
          "$ref": "./Vec3.json",
-         "x-ordinal-index": 7
+         "x-ordinal-index": 8
+      },
+      "Hand": {
+         "$ref": "./HandSlot.json",
+         "x-underlying-type": "uint8",
+         "x-serialization-options": [
+            "Compression",
+            "Enum-as-Value"
+         ],
+         "x-ordinal-index": 6
       },
       "Item": {
          "$ref": "./NetworkItemStackDescriptor.json",
-         "x-ordinal-index": 6
+         "x-ordinal-index": 7
       },
       "Position": {
          "$ref": "./BlockPos.json",
@@ -75,7 +84,7 @@
          "x-serialization-options": [
             "Compression"
          ],
-         "x-ordinal-index": 9,
+         "x-ordinal-index": 10,
          "minimum": 0
       },
       "Trigger Type": {
@@ -96,6 +105,7 @@
       "Client Interact Prediction",
       "Face",
       "From Position",
+      "Hand",
       "Item",
       "Position",
       "Slot",

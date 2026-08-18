@@ -1169,6 +1169,11 @@ export interface TickingAreaOptions {
    from: Vector3;
    to: Vector3;
 }
+export interface TimeMarkerOptions {
+   name: string;
+   period?: number;
+   time: number;
+}
 export interface TitleDisplayOptions {
    fadeInDuration: number;
    fadeOutDuration: number;
@@ -1195,6 +1200,16 @@ export interface WaypointTextureBounds {
 }
 export interface WaypointTextureSelector {
    textureBoundsList: Array<WaypointTextureBounds>;
+}
+export interface WorldClockEventOptions {
+   clock: string;
+}
+export interface WorldClockRegistrationOptions {
+   timeMarkers?: Array<TimeMarkerOptions>;
+}
+export interface WorldClockTimeMarkerEventOptions {
+   clock: string;
+   timeMarker?: string;
 }
 export interface WorldSoundOptions {
    isBroadcast?: boolean;
@@ -2331,6 +2346,8 @@ export class EntityIsStunnedComponent extends EntityComponent {
 //@ts-ignore
 export class EntityIsTamedComponent extends EntityComponent {
    public static readonly componentId = "minecraft:is_tamed";
+   public readonly tamedToPlayer?: Player;
+   public readonly tamedToPlayerId?: string;
    private constructor();
 }
 //@ts-ignore
@@ -4167,6 +4184,12 @@ export class TickingAreaManager {
    public removeTickingArea(identifier: string | TickingArea): void;
    private constructor();
 }
+export class TimeMarker {
+   public readonly name: string;
+   public readonly period?: number;
+   public readonly time: number;
+   private constructor();
+}
 export class Trigger {
    public eventName: string;
    public constructor(eventName: string);
@@ -4332,6 +4355,10 @@ export class WorldAfterEvents {
    public readonly targetBlockHit: TargetBlockHitAfterEventSignal;
    public readonly tripWireTrip: TripWireTripAfterEventSignal;
    public readonly weatherChange: WeatherChangeAfterEventSignal;
+   public readonly worldClockOnPaused: WorldClockOnPausedAfterEventSignal;
+   public readonly worldClockOnResumed: WorldClockOnResumedAfterEventSignal;
+   public readonly worldClockOnTimeMarker: WorldClockOnTimeMarkerAfterEventSignal;
+   public readonly worldClockOnTimeModified: WorldClockOnTimeModifiedAfterEventSignal;
    public readonly worldLoad: WorldLoadAfterEventSignal;
    private constructor();
 }
@@ -4352,16 +4379,71 @@ export class WorldBeforeEvents {
    public readonly playerLeave: PlayerLeaveBeforeEventSignal;
    public readonly playerPlaceBlock: PlayerPlaceBlockBeforeEventSignal;
    public readonly weatherChange: WeatherChangeBeforeEventSignal;
+   public readonly worldClockOnRestart: WorldClockOnRestartBeforeEventSignal;
    private constructor();
 }
 export class WorldClock {
    public isPaused: boolean;
    public readonly name: string;
    public time: number;
+   public readonly timeMarkers: Array<TimeMarker>;
+   public addTimeMarker(timeMarkerOptions: TimeMarkerOptions): void;
+   public removeTimeMarker(timeMarker: string | TimeMarker): void;
+   public rewindTo(timeMarker: string | TimeMarker): void;
+   public set(timeMarker: string | TimeMarker): void;
+   public skipTo(timeMarker: string | TimeMarker): void;
+   private constructor();
+}
+export class WorldClockOnPausedAfterEvent {
+   public readonly clock: WorldClock;
+   private constructor();
+}
+export class WorldClockOnPausedAfterEventSignal {
+   public subscribe(callback: (arg0: WorldClockOnPausedAfterEvent)=>void, options?: WorldClockEventOptions): (arg0: WorldClockOnPausedAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: WorldClockOnPausedAfterEvent)=>void): void;
+   private constructor();
+}
+export class WorldClockOnRestartBeforeEvent {
+   public cancel: boolean;
+   public readonly clock: WorldClock;
+   public newTime: number;
+   private constructor();
+}
+export class WorldClockOnRestartBeforeEventSignal {
+   public subscribe(callback: (arg0: WorldClockOnRestartBeforeEvent)=>void, options?: WorldClockEventOptions): (arg0: WorldClockOnRestartBeforeEvent)=>void;
+   public unsubscribe(callback: (arg0: WorldClockOnRestartBeforeEvent)=>void): void;
+   private constructor();
+}
+export class WorldClockOnResumedAfterEvent {
+   public readonly clock: WorldClock;
+   private constructor();
+}
+export class WorldClockOnResumedAfterEventSignal {
+   public subscribe(callback: (arg0: WorldClockOnResumedAfterEvent)=>void, options?: WorldClockEventOptions): (arg0: WorldClockOnResumedAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: WorldClockOnResumedAfterEvent)=>void): void;
+   private constructor();
+}
+export class WorldClockOnTimeMarkerAfterEvent {
+   public readonly clock: WorldClock;
+   public readonly timeMarker: TimeMarker;
+   private constructor();
+}
+export class WorldClockOnTimeMarkerAfterEventSignal {
+   public subscribe(callback: (arg0: WorldClockOnTimeMarkerAfterEvent)=>void, options?: WorldClockTimeMarkerEventOptions): (arg0: WorldClockOnTimeMarkerAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: WorldClockOnTimeMarkerAfterEvent)=>void): void;
+   private constructor();
+}
+export class WorldClockOnTimeModifiedAfterEvent {
+   public readonly clock: WorldClock;
+   private constructor();
+}
+export class WorldClockOnTimeModifiedAfterEventSignal {
+   public subscribe(callback: (arg0: WorldClockOnTimeModifiedAfterEvent)=>void, options?: WorldClockEventOptions): (arg0: WorldClockOnTimeModifiedAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: WorldClockOnTimeModifiedAfterEvent)=>void): void;
    private constructor();
 }
 export class WorldClockRegistry {
-   public registerClock(name: string): void;
+   public registerClock(name: string, registrationOptions?: WorldClockRegistrationOptions): void;
    private constructor();
 }
 export class WorldLoadAfterEvent {
@@ -4576,7 +4658,15 @@ export class UnloadedChunksError extends Error {
    private constructor();
 }
 //@ts-ignore
+export class WorldClockAddTimeMarkerError extends Error {
+   private constructor();
+}
+//@ts-ignore
 export class WorldClockInvalidRegistryError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class WorldClockInvalidTimeMarkerError extends Error {
    private constructor();
 }
 //@ts-ignore
@@ -4589,5 +4679,21 @@ export class WorldClockRegistrationError extends Error {
 }
 //@ts-ignore
 export class WorldClockReloadNewWorldClockError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class WorldClockReloadTimeMarkerError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class WorldClockRemoveMinecraftTimeMarkerError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class WorldClockRewindError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class WorldClockTimeMarkerNotFoundError extends Error {
    private constructor();
 }

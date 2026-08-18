@@ -628,8 +628,20 @@ export class PrefabInstanceInteractionEvent {
    public readonly instance: PrefabTemplateInstance;
    private constructor();
 }
+export class PrefabInstanceTransactionOperation {
+   public addCreateOperation(operationHandler: PrefabInstanceTransactionOperationHandler, instance: PrefabTemplateInstance): void;
+   public addDeleteOperation(operationHandler: PrefabInstanceTransactionOperationHandler, instance: PrefabTemplateInstance): void;
+   public addOperationHandler(transactionHandler: server_editor.TransactionHandler, closure: (arg0: string, arg1?: string)=>void): PrefabInstanceTransactionOperationHandler;
+   public constructor(prefabManager: PrefabManager, pendingTransaction: server_editor.PendingTransaction);
+   public trackChange(operationHandler: PrefabInstanceTransactionOperationHandler, instance: PrefabTemplateInstance): boolean;
+}
+//@ts-ignore
+export class PrefabInstanceTransactionOperationHandler extends server_editor.TransactionOperationHandler {
+   private constructor();
+}
 export class PrefabManager {
    public readonly instanceInteractionEvents: PrefabServiceInstanceInteractionEvent;
+   public addPrefabInstanceOperationHandler(transactionHandler: server_editor.TransactionHandler, closure: (arg0: string, arg1?: string)=>void): PrefabInstanceTransactionOperationHandler;
    public beginCapturingMouseClicks(): void;
    public clearSelectedInstances(): void;
    public cloneTemplate(templateOrMetadataToClone: PrefabTemplate | PrefabTemplateMetadata, newName: string, optionalNewDisplayName?: string): PrefabTemplate;
@@ -638,6 +650,7 @@ export class PrefabManager {
    public deleteTemplate(templateOrMetadata: PrefabTemplate | PrefabTemplateMetadata): void;
    public deselectInstance(instance: PrefabTemplateInstance): void;
    public endCapturingMouseClicks(): void;
+   public getInstanceById(instanceId: string): (PrefabTemplateInstance | undefined);
    public getTemplate(searchMetadata_or_fullyQualifiedName: PrefabTemplateMetadata | string): PrefabTemplate;
    public getTemplateInstances(templateOrMetadata: PrefabTemplate | PrefabTemplateMetadata): Array<PrefabTemplateInstanceLocation>;
    public getTemplateList(): Array<PrefabTemplateMetadata>;
