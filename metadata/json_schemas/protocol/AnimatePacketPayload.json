@@ -3,7 +3,7 @@
    "$schema": "http://json-schema.org/draft-07/schema#",
    "$id": "/AnimatePacketPayload.json",
    "x-format-version": "MISSING VERSION",
-   "x-protocol-version": 2192,
+   "x-protocol-version": 2207,
    "type": "object",
    "properties": {
       "Action": {
@@ -18,6 +18,16 @@
          "type": "number",
          "x-underlying-type": "float",
          "x-ordinal-index": 2
+      },
+      "Hand": {
+         "default": "mainhand",
+         "$ref": "./HandSlot.json",
+         "x-underlying-type": "uint8",
+         "x-serialization-options": [
+            "Compression",
+            "Enum-as-Value"
+         ],
+         "x-ordinal-index": 4
       },
       "Swing Source": {
          "$ref": "./ActorSwingSource.json",

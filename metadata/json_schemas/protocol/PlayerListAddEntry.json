@@ -3,7 +3,7 @@
    "$schema": "http://json-schema.org/draft-07/schema#",
    "$id": "/PlayerListAddEntry.json",
    "x-format-version": "MISSING VERSION",
-   "x-protocol-version": 2192,
+   "x-protocol-version": 2207,
    "type": "object",
    "properties": {
       "Action": {
@@ -15,7 +15,10 @@
          "x-serialization-options": [
             "Enum-as-Value"
          ],
-         "x-ordinal-index": 0
+         "x-ordinal-index": 0,
+         "x-enum-binary-value": [
+            0
+         ]
       },
       "Actor Unique ID": {
          "$ref": "./ActorUniqueID.json",
@@ -27,30 +30,34 @@
          "x-serialization-options": [
             "Enum-as-Value"
          ],
-         "x-ordinal-index": 6
+         "x-ordinal-index": 7
       },
       "Is Host": {
          "type": "boolean",
          "x-underlying-type": "boolean",
-         "x-ordinal-index": 9
+         "x-ordinal-index": 10
       },
       "Is SubClient": {
          "type": "boolean",
          "x-underlying-type": "boolean",
-         "x-ordinal-index": 10
+         "x-ordinal-index": 11
       },
       "Is Teacher": {
          "type": "boolean",
          "x-underlying-type": "boolean",
-         "x-ordinal-index": 8
+         "x-ordinal-index": 9
       },
       "Platform Online ID": {
+         "type": "string",
+         "x-ordinal-index": 6
+      },
+      "PlayFab ID": {
          "type": "string",
          "x-ordinal-index": 5
       },
       "Player Color": {
          "$ref": "./Color.json",
-         "x-ordinal-index": 11
+         "x-ordinal-index": 12
       },
       "Player Name": {
          "type": "string",
@@ -58,7 +65,7 @@
       },
       "Serialized Skin": {
          "$ref": "./SerializedSkin.json",
-         "x-ordinal-index": 7
+         "x-ordinal-index": 8
       },
       "UUID": {
          "$ref": "./mce__UUID.json",
@@ -77,6 +84,7 @@
       "Is SubClient",
       "Is Teacher",
       "Platform Online ID",
+      "PlayFab ID",
       "Player Color",
       "Player Name",
       "Serialized Skin",

@@ -1,0 +1,33 @@
+{
+   "title": "minecraft:panel_text",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client/ddui/beta/minecraft_panel_text.json",
+   "x-format-version": "beta",
+   "type": "object",
+   "properties": {
+      "color": {
+         "default": [
+            0,
+            0,
+            0,
+            255
+         ],
+         "oneOf": [
+            {
+               "$ref": "../../../client_server/common/legacy/Color255RGBA.json"
+            },
+            {
+               "$ref": "../../../client_server/common/legacy/Color255RGB.json"
+            }
+         ],
+         "x-control-value-type": "uint32",
+         "x-ordinal-index": 0
+      },
+      "shadow": {
+         "type": "boolean",
+         "default": true,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 1
+      }
+   }
+}

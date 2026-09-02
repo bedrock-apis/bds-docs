@@ -13,6 +13,7 @@ export enum BlockComponentTypes {
    Movable = "minecraft:movable",
    Piston = "minecraft:piston",
    PrecipitationInteractions = "minecraft:precipitation_interactions",
+   RecipeCrafting = "minecraft:recipe_crafting",
    RecordPlayer = "minecraft:record_player",
    RedstoneProducer = "minecraft:redstone_producer",
    Sign = "minecraft:sign",
@@ -1025,6 +1026,11 @@ export interface PlayerBreakingBlockEventOptions {
    blockFilter?: BlockFilter;
    playerFilter?: EntityFilter;
 }
+export interface PlayerCraftRecipeEventOptions {
+   blockFilter?: BlockFilter;
+   itemFilter?: ItemFilter;
+   playerFilter?: EntityFilter;
+}
 export interface PlayerSoundOptions {
    location?: Vector3;
    loopCount?: number;
@@ -1563,6 +1569,13 @@ export class BlockPrecipitationInteractionsComponent extends BlockComponent {
    public accumulatesSnow(): boolean;
    public isSnowLoggable(): boolean;
    public obstructsRain(): boolean;
+   private constructor();
+}
+//@ts-ignore
+export class BlockRecipeCraftingComponent extends BlockComponent {
+   public static readonly componentId = "minecraft:recipe_crafting";
+   public readonly players: Array<Player>;
+   public getCraftingContext(player: Player): (RecipeCraftingContext | undefined);
    private constructor();
 }
 //@ts-ignore
@@ -3454,6 +3467,17 @@ export class PlayerCancelBreakingBlockAfterEventSignal {
    public unsubscribe(callback: (arg0: PlayerCancelBreakingBlockAfterEvent)=>void): void;
    private constructor();
 }
+export class PlayerCraftRecipeAfterEvent {
+   public readonly block?: Block;
+   public readonly itemStack?: ItemStack;
+   public readonly player: Player;
+   private constructor();
+}
+export class PlayerCraftRecipeAfterEventSignal {
+   public subscribe(callback: (arg0: PlayerCraftRecipeAfterEvent)=>void, options?: PlayerCraftRecipeEventOptions): (arg0: PlayerCraftRecipeAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: PlayerCraftRecipeAfterEvent)=>void): void;
+   private constructor();
+}
 //@ts-ignore
 export class PlayerCursorInventoryComponent extends EntityComponent {
    public static readonly componentId = "minecraft:cursor_inventory";
@@ -3873,6 +3897,16 @@ export class RandomDyeFunction extends LootItemFunction {
 //@ts-ignore
 export class RandomRegionalDifficultyChanceCondition extends LootItemCondition {
    public readonly maxChance: number;
+   private constructor();
+}
+export class RecipeCraftingContext {
+   public readonly inputSlotCount: number;
+   public readonly isValid: boolean;
+   public readonly validRecipes: Array<string>;
+   public getInputItem(slot: number): (ItemStack | undefined);
+   public getOutputItem(): (ItemStack | undefined);
+   public setInputItem(slot: number, item?: ItemStack): void;
+   public setSelectedRecipe(recipeId: string): void;
    private constructor();
 }
 export class Scoreboard {
@@ -4328,6 +4362,7 @@ export class WorldAfterEvents {
    public readonly playerBreakBlock: PlayerBreakBlockAfterEventSignal;
    public readonly playerButtonInput: PlayerButtonInputAfterEventSignal;
    public readonly playerCancelBreakingBlock: PlayerCancelBreakingBlockAfterEventSignal;
+   public readonly playerCraftRecipe: PlayerCraftRecipeAfterEventSignal;
    public readonly playerDimensionChange: PlayerDimensionChangeAfterEventSignal;
    public readonly playerEmote: PlayerEmoteAfterEventSignal;
    public readonly playerGameModeChange: PlayerGameModeChangeAfterEventSignal;
@@ -4587,6 +4622,11 @@ export class InvalidPotionDeliveryTypeError extends Error {
 }
 //@ts-ignore
 export class InvalidPotionEffectTypeError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class InvalidRecipeError extends Error {
+   public readonly recipeId: string;
    private constructor();
 }
 //@ts-ignore

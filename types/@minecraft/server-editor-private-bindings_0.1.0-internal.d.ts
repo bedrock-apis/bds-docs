@@ -2,6 +2,28 @@ import * as server_editor from "@minecraft/server-editor-bindings";
 import * as common from "@minecraft/common";
 import * as server from "@minecraft/server";
 
+export enum AnnotationAnchorOrientation {
+   BottomCenter = 7,
+   BottomLeft = 6,
+   BottomRight = 8,
+   Center = 4,
+   CenterLeft = 3,
+   CenterRight = 5,
+   TopCenter = 1,
+   TopLeft = 0,
+   TopRight = 2,
+}
+export enum AnnotationFacing {
+   Camera = 0,
+   Manual = 1,
+}
+export enum AnnotationType {
+   CommentBlock = 4,
+   Drawing = 1,
+   Image = 2,
+   Invalid = 0,
+   Text = 3,
+}
 export enum EditorRealmsServiceAvailability {
    DedicatedServer = 2,
    NoRealmsSubscription = 1,
@@ -19,6 +41,11 @@ export enum FilePickerError {
    Busy = "file-selector-busy",
    Cancelled = "cancelled",
    FileTooLarge = "file-too-large",
+}
+export enum FloodOperation {
+   Lower = 2,
+   None = 0,
+   Raise = 1,
 }
 export enum GeneralInputBindingPriority {
    ApplyFlood = 8,
@@ -61,6 +88,7 @@ export enum MeshLoadError {
    UnknownFormat = "unknown-format",
 }
 export enum MeshPlacementError {
+   BatchedPlacementFailure = "batched-placement-failure",
    Cancelled = "cancelled",
    CommitInProgress = "commit-in-progress",
    GridAxisExceeded = "grid-axis-exceeded",
@@ -112,6 +140,11 @@ export enum RealmsWorldUploadResult {
    WorldUploadBusy = 5,
 }
 
+export interface AnnotationSettings {
+   name?: string;
+   tags?: Array<string>;
+   visible?: boolean;
+}
 export interface BindingCategoryInfo {
    label: string;
    order: number;
@@ -273,6 +306,10 @@ export interface PrefabTemplateCreateInstanceOptions {
    mirror?: server.StructureMirrorAxis;
    rotation?: server.StructureRotation;
 }
+export interface PrefabTemplateInstanceBounds {
+   max: server.Vector3;
+   min: server.Vector3;
+}
 export interface PrefabTemplateInstanceLocation {
    instance: PrefabTemplateInstance;
    location: server.Vector3;
@@ -336,7 +373,49 @@ export interface SmartFillInteractiveToolOptions {
    onlyFillExposedSurface: boolean;
    radius: number;
 }
+//@ts-ignore
+export interface TextAnnotationSettings extends AnnotationSettings {
+   anchorOrientation?: AnnotationAnchorOrientation;
+   body?: string;
+   bodyTextColor?: server.RGBA;
+   facing?: AnnotationFacing;
+   showBody?: boolean;
+   showTitle?: boolean;
+   titleColor?: server.RGBA;
+   titleTextSize?: number;
+   widthLimit?: number;
+}
 
+export class AnnotationInstance {
+   public readonly isValid: boolean;
+   public readonly metadata: AnnotationMetadata;
+   private constructor();
+}
+export class AnnotationManager {
+   public createTextAnnotation(dimension: server.Dimension, location: server.Vector3, settings?: TextAnnotationSettings): (AnnotationMetadata | undefined);
+   public deleteAnnotation(id: string): void;
+   public deleteAnnotations(ids: Array<string>): void;
+   public getAllMetadata(): Array<AnnotationMetadata>;
+   public getInstance(id: string): (AnnotationInstance | undefined);
+   public getMetadata(id: string): (AnnotationMetadata | undefined);
+   public hasInstance(id: string): boolean;
+   private constructor();
+}
+export class AnnotationMetadata {
+   public readonly dimension: string;
+   public readonly id: string;
+   public readonly isValid: boolean;
+   public readonly location: server.Vector3;
+   public readonly name: string;
+   public readonly tags: Array<string>;
+   public readonly type: AnnotationType;
+   public readonly visible: boolean;
+   public setLocation(location: server.Vector3): void;
+   public setName(name: string): void;
+   public setTags(tags: Array<string>): void;
+   public setVisible(visible: boolean): void;
+   private constructor();
+}
 export class ClientFilesystem {
    public chooseFile(options: FileSelectorOptions): Promise<string>;
    private constructor();
@@ -518,6 +597,32 @@ export class FeatureFlagManager {
    public setFlag(name: string, value: boolean): void;
    private constructor();
 }
+export class FloodResult {
+   public readonly blockCount: number;
+   public readonly blockLimitReached: boolean;
+   public readonly loweringWater: boolean;
+   public readonly max: server.Vector3;
+   public readonly min: server.Vector3;
+   public readonly operation: FloodOperation;
+   public readonly targetLocation: server.Vector3;
+   public readonly valid: boolean;
+   private constructor();
+}
+//@ts-ignore
+export class FloodResultTaskPromise extends server_editor.TaskPromiseBase {
+   public readonly promise: Promise<FloodResult>;
+   private constructor();
+}
+export class FloodSession {
+   public apply(result: FloodResult, applyLava: boolean, allowTruncatedResult: boolean, transactionName: string, maxBlocksPerTick?: number): server_editor.VoidTaskPromise;
+   public calculate(targetLocation: server.Vector3, currentWaterLevel: number, maxBlocksPerTick?: number): FloodResultTaskPromise;
+   public dispose(): void;
+   private constructor();
+}
+export class FloodTools {
+   public createSession(location: server.Vector3): FloodSession;
+   private constructor();
+}
 export class InputService {
    public focusViewport(): void;
    public getKeyBindingProcessingState(contextId: string, bindingId: string): (number | undefined);
@@ -543,11 +648,13 @@ export class InternalPersistenceManager {
    private constructor();
 }
 export class InternalPlayerServiceContext {
+   public readonly annotationManager: AnnotationManager;
    public readonly clientFilesystem: ClientFilesystem;
    public readonly clientInteractiveTools: ClientInteractiveTools;
    public readonly dataStore: DataStore;
    public readonly dataTransfer: DataTransferManager;
    public readonly featureFlags: FeatureFlagManager;
+   public readonly floodTool: FloodTools;
    public readonly input: InputService;
    public readonly internalPersistenceManager: InternalPersistenceManager;
    public readonly jigsawService: JigsawService;
@@ -681,12 +788,15 @@ export class PrefabTemplate {
    private constructor();
 }
 export class PrefabTemplateInstance {
+   public readonly id: string;
    public instanceMirror: server.StructureMirrorAxis;
    public instanceRotation: server.StructureRotation;
+   public readonly isValid: boolean;
    public location: server.Vector3;
    public bakeInstance(): void;
    public getStructureRefs(): Array<PrefabTemplateInstanceStructure>;
    public getTemplate(): PrefabTemplate;
+   public getWorldBounds(): PrefabTemplateInstanceBounds;
    private constructor();
 }
 export class PrefabTemplateInstanceStructure {

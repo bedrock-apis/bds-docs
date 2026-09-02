@@ -110,12 +110,14 @@ export enum GamePublishSetting {
 }
 export enum GraphicsSettingsProperty {
    DisableBlockEntityRendering = "DisableBlockEntityRendering",
+   DisableCloudRendering = "DisableCloudRendering",
    DisableEntityRendering = "DisableEntityRendering",
    DisableParticleRendering = "DisableParticleRendering",
    DisableTerrainRendering = "DisableTerrainRendering",
    DisableWeatherRendering = "DisableWeatherRendering",
    GraphicsMode = "GraphicsMode",
    NightVision = "NightVision",
+   ShowChat = "ShowChat",
    ShowChunkBoundaries = "ShowChunkBoundaries",
    ShowCompass = "ShowCompass",
    ShowInvisibleBlocks = "ShowInvisibleBlocks",
@@ -492,6 +494,7 @@ export interface LocalizationEntry {
    props?: Array<string>;
 }
 export interface LogProperties {
+   alert?: boolean;
    channelMask?: LogChannel;
    player?: server.Player;
    subMessage?: LocalizationEntry | string;
@@ -712,6 +715,7 @@ export class BlockUtilities {
    public getDimensionMaxLocation(): server.Vector3;
    public getDimensionMinLocation(): server.Vector3;
    public getFacePreviewSelection(properties?: QuickExtrudeProperties): server.ListBlockVolume;
+   public isHighPriorityFillBlock(block: server.BlockPermutation | server.BlockType | string, location: server.Vector3): boolean;
    public isLocationInsideCurrentDimensionBounds(locationOrVolumeOrBounds: server.BlockBoundingBox | server.BlockVolumeBase | RelativeVolumeListBlockVolume | server.Vector3): boolean;
    public quickExtrude(properties?: QuickExtrudeProperties): void;
    public shrinkWrapVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume): RelativeVolumeListBlockVolume;

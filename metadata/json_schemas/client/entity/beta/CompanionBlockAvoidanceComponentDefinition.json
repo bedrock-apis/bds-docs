@@ -1,0 +1,32 @@
+{
+   "title": "minecraft:companion_block_avoidance",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client/entity/beta/CompanionBlockAvoidanceComponentDefinition.json",
+   "x-format-version": "beta",
+   "type": "object",
+   "properties": {
+      "anchor_switch_cooldown": {
+         "type": "integer",
+         "default": 10,
+         "x-underlying-type": "uint16",
+         "x-ordinal-index": 2,
+         "minimum": 0
+      },
+      "backup_anchor_offsets": {
+         "type": "array",
+         "items": {
+            "$ref": "../../../client_server/common/1.21.100/vec3.json"
+         },
+         "x-ordinal-index": 0
+      },
+      "require_hidden_before_fallback": {
+         "type": "boolean",
+         "default": true,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 1
+      }
+   },
+   "required": [
+      "backup_anchor_offsets"
+   ]
+}

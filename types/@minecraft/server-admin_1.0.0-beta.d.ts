@@ -58,9 +58,9 @@ export class DedicatedServerUtils {
    private constructor();
 }
 export class LevelStorage {
-   public saveHold(): void;
-   public saveQuery(): Array<LevelStorageQuerySnapshotFile>;
-   public saveResume(): void;
+   public saveHold(): Promise<void>;
+   public saveQuery(): Promise<Array<LevelStorageQuerySnapshotFile>>;
+   public saveResume(): Promise<void>;
    private constructor();
 }
 export class LevelStorageQuerySnapshotFile {

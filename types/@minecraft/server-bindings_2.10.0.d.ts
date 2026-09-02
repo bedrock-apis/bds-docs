@@ -1167,6 +1167,7 @@ export interface WaypointTextureSelector {
    textureBoundsList: Array<WaypointTextureBounds>;
 }
 export interface WorldSoundOptions {
+   isBroadcast?: boolean;
    pitch?: number;
    volume?: number;
 }
