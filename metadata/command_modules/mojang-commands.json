@@ -43799,25 +43799,16 @@
          ]
       },
       {
-         "name": "TimeSpec",
+         "name": "TimeMarkerOccurrence",
          "values": [
             {
-               "value": "day"
+               "value": "next"
             },
             {
-               "value": "sunrise"
+               "value": "previous"
             },
             {
-               "value": "noon"
-            },
-            {
-               "value": "sunset"
-            },
-            {
-               "value": "night"
-            },
-            {
-               "value": "midnight"
+               "value": "stay"
             }
          ]
       },
@@ -43830,8 +43821,11 @@
          ]
       },
       {
-         "name": "TimeQuery",
+         "name": "TimeQuery2",
          "values": [
+            {
+               "value": "time"
+            },
             {
                "value": "daytime"
             },
@@ -43840,6 +43834,22 @@
             },
             {
                "value": "day"
+            }
+         ]
+      },
+      {
+         "name": "TimeModePause",
+         "values": [
+            {
+               "value": "pause"
+            }
+         ]
+      },
+      {
+         "name": "TimeModeResume",
+         "values": [
+            {
+               "value": "resume"
             }
          ]
       },
@@ -43860,64 +43870,10 @@
          ]
       },
       {
-         "name": "TimeOfModeAdd",
-         "values": [
-            {
-               "value": "add"
-            }
-         ]
-      },
-      {
-         "name": "TimeOfModeSet",
-         "values": [
-            {
-               "value": "set"
-            }
-         ]
-      },
-      {
-         "name": "TimeMarkerOccurence",
-         "values": [
-            {
-               "value": "next"
-            },
-            {
-               "value": "previous"
-            },
-            {
-               "value": "stay"
-            }
-         ]
-      },
-      {
-         "name": "TimeOfModeQuery",
-         "values": [
-            {
-               "value": "query"
-            }
-         ]
-      },
-      {
          "name": "ClockTimeQuery",
          "values": [
             {
                "value": "time"
-            }
-         ]
-      },
-      {
-         "name": "TimeOfModePause",
-         "values": [
-            {
-               "value": "pause"
-            }
-         ]
-      },
-      {
-         "name": "TimeOfModeResume",
-         "values": [
-            {
-               "value": "resume"
             }
          ]
       },
@@ -53881,7 +53837,7 @@
                ]
             },
             {
-               "name": "3",
+               "name": "4",
                "params": [
                   {
                      "is_optional": false,
@@ -53892,15 +53848,22 @@
                   },
                   {
                      "is_optional": false,
-                     "name": "time",
+                     "name": "timeMarkerName",
                      "type": {
-                        "name": "TIMESPEC"
+                        "name": "CLOCK_TIMEMARKER_NAME"
+                     }
+                  },
+                  {
+                     "is_optional": true,
+                     "name": "timeMarkerOccurrence",
+                     "type": {
+                        "name": "TIMEMARKEROCCURRENCE"
                      }
                   }
                ]
             },
             {
-               "name": "4",
+               "name": "6",
                "params": [
                   {
                      "is_optional": false,
@@ -53913,73 +53876,7 @@
                      "is_optional": false,
                      "name": "time",
                      "type": {
-                        "name": "TIMEQUERY"
-                     }
-                  }
-               ]
-            },
-            {
-               "name": "5",
-               "params": [
-                  {
-                     "is_optional": false,
-                     "name": "command",
-                     "type": {
-                        "name": "TIMEOFCOMMAND"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "clockName",
-                     "type": {
-                        "name": "WORLDCLOCKS"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "mode",
-                     "type": {
-                        "name": "TIMEOFMODEADD"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "amount",
-                     "type": {
-                        "name": "INT"
-                     }
-                  }
-               ]
-            },
-            {
-               "name": "6",
-               "params": [
-                  {
-                     "is_optional": false,
-                     "name": "command",
-                     "type": {
-                        "name": "TIMEOFCOMMAND"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "clockName",
-                     "type": {
-                        "name": "WORLDCLOCKS"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "mode",
-                     "type": {
-                        "name": "TIMEOFMODESET"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "amount",
-                     "type": {
-                        "name": "INT"
+                        "name": "TIMEQUERY2"
                      }
                   }
                ]
@@ -53989,37 +53886,9 @@
                "params": [
                   {
                      "is_optional": false,
-                     "name": "command",
-                     "type": {
-                        "name": "TIMEOFCOMMAND"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "clockName",
-                     "type": {
-                        "name": "WORLDCLOCKS"
-                     }
-                  },
-                  {
-                     "is_optional": false,
                      "name": "mode",
                      "type": {
-                        "name": "TIMEOFMODESET"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "timeMarkerName",
-                     "type": {
-                        "name": "CLOCK_TIMEMARKER_NAME"
-                     }
-                  },
-                  {
-                     "is_optional": true,
-                     "name": "timeMarkerOccurence",
-                     "type": {
-                        "name": "TIMEMARKEROCCURENCE"
+                        "name": "TIMEMODEPAUSE"
                      }
                   }
                ]
@@ -54029,30 +53898,9 @@
                "params": [
                   {
                      "is_optional": false,
-                     "name": "command",
-                     "type": {
-                        "name": "TIMEOFCOMMAND"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "clockName",
-                     "type": {
-                        "name": "WORLDCLOCKS"
-                     }
-                  },
-                  {
-                     "is_optional": false,
                      "name": "mode",
                      "type": {
-                        "name": "TIMEOFMODEQUERY"
-                     }
-                  },
-                  {
-                     "is_optional": false,
-                     "name": "clockQuery",
-                     "type": {
-                        "name": "CLOCKTIMEQUERY"
+                        "name": "TIMEMODERESUME"
                      }
                   }
                ]
@@ -54078,7 +53926,14 @@
                      "is_optional": false,
                      "name": "mode",
                      "type": {
-                        "name": "TIMEOFMODEPAUSE"
+                        "name": "TIMEMODEADD"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "amount",
+                     "type": {
+                        "name": "INT"
                      }
                   }
                ]
@@ -54104,7 +53959,139 @@
                      "is_optional": false,
                      "name": "mode",
                      "type": {
-                        "name": "TIMEOFMODERESUME"
+                        "name": "TIMEMODESET"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "amount",
+                     "type": {
+                        "name": "INT"
+                     }
+                  }
+               ]
+            },
+            {
+               "name": "11",
+               "params": [
+                  {
+                     "is_optional": false,
+                     "name": "command",
+                     "type": {
+                        "name": "TIMEOFCOMMAND"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "clockName",
+                     "type": {
+                        "name": "WORLDCLOCKS"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "mode",
+                     "type": {
+                        "name": "TIMEMODESET"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "timeMarkerName",
+                     "type": {
+                        "name": "CLOCK_TIMEMARKER_NAME"
+                     }
+                  },
+                  {
+                     "is_optional": true,
+                     "name": "timeMarkerOccurrence",
+                     "type": {
+                        "name": "TIMEMARKEROCCURRENCE"
+                     }
+                  }
+               ]
+            },
+            {
+               "name": "12",
+               "params": [
+                  {
+                     "is_optional": false,
+                     "name": "command",
+                     "type": {
+                        "name": "TIMEOFCOMMAND"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "clockName",
+                     "type": {
+                        "name": "WORLDCLOCKS"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "mode",
+                     "type": {
+                        "name": "TIMEMODEQUERY"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "clockQuery",
+                     "type": {
+                        "name": "CLOCKTIMEQUERY"
+                     }
+                  }
+               ]
+            },
+            {
+               "name": "13",
+               "params": [
+                  {
+                     "is_optional": false,
+                     "name": "command",
+                     "type": {
+                        "name": "TIMEOFCOMMAND"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "clockName",
+                     "type": {
+                        "name": "WORLDCLOCKS"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "mode",
+                     "type": {
+                        "name": "TIMEMODEPAUSE"
+                     }
+                  }
+               ]
+            },
+            {
+               "name": "14",
+               "params": [
+                  {
+                     "is_optional": false,
+                     "name": "command",
+                     "type": {
+                        "name": "TIMEOFCOMMAND"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "clockName",
+                     "type": {
+                        "name": "WORLDCLOCKS"
+                     }
+                  },
+                  {
+                     "is_optional": false,
+                     "name": "mode",
+                     "type": {
+                        "name": "TIMEMODERESUME"
                      }
                   }
                ]

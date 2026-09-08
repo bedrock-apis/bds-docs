@@ -1,0 +1,118 @@
+{
+   "title": "TemptGoalBaseDefinition",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/entity/1.26.60/TemptGoalBaseDefinition.json",
+   "x-format-version": "1.26.60",
+   "type": "object",
+   "properties": {
+      "can_get_scared": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 1
+      },
+      "can_tempt_vertically": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 2
+      },
+      "can_tempt_while_ridden": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 3
+      },
+      "control_flags": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "../1.21.90/Goal's%20control%20flags.json",
+            "x-underlying-type": "int32"
+         },
+         "x-ordinal-index": 12
+      },
+      "items": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "../../common/1.20.50/Item%20Descriptor.json"
+         },
+         "x-ordinal-index": 6
+      },
+      "on_tempt_end": {
+         "default": {
+            "event": "",
+            "target": "self",
+            "filters": {
+               "all_of": null,
+               "all": null,
+               "OR": null,
+               "AND": null,
+               "any_of": null,
+               "any": null,
+               "none_of": null,
+               "NOT": null
+            }
+         },
+         "$ref": "../1.21.120/ActorDefinitionTrigger.json",
+         "x-ordinal-index": 10
+      },
+      "on_tempt_start": {
+         "default": {
+            "event": "",
+            "target": "self",
+            "filters": {
+               "all_of": null,
+               "all": null,
+               "OR": null,
+               "AND": null,
+               "any_of": null,
+               "any": null,
+               "none_of": null,
+               "NOT": null
+            }
+         },
+         "$ref": "../1.21.120/ActorDefinitionTrigger.json",
+         "x-ordinal-index": 9
+      },
+      "priority": {
+         "type": "integer",
+         "default": 0,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 11,
+         "minimum": 0
+      },
+      "sound_interval": {
+         "default": {
+            "min": 0,
+            "max": 0
+         },
+         "$ref": "../../../client_server/common/legacy/FloatRange.json",
+         "x-ordinal-index": 5
+      },
+      "speed_multiplier": {
+         "type": "number",
+         "default": 1,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 0
+      },
+      "stop_distance": {
+         "type": "number",
+         "x-underlying-type": "float",
+         "x-ordinal-index": 8
+      },
+      "tempt_sound": {
+         "default": "undefined",
+         "$ref": "../../common/1.20.50/LevelSoundEvent.json",
+         "x-underlying-type": "uint32",
+         "x-ordinal-index": 4
+      },
+      "within_radius": {
+         "type": "number",
+         "default": 0,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 7
+      }
+   }
+}

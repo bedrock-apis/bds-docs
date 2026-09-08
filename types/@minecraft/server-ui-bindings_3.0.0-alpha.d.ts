@@ -25,6 +25,11 @@ export enum TextFilteringError {
    Unknown = "Unknown",
 }
 
+export interface ButtonData {
+   label: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
+   onClick: ()=>void;
+   options?: ButtonOptions;
+}
 export interface ButtonOptions {
    disabled?: boolean | ObservableBoolean;
    imageDetails?: ImageDetails;
@@ -79,6 +84,9 @@ export interface ModalFormDataTextFieldOptions {
 export interface ModalFormDataToggleOptions {
    defaultValue?: boolean;
    tooltip?: server.RawMessage | string;
+}
+export interface MultiButtonRowOptions {
+   visible?: boolean | ObservableBoolean;
 }
 export interface ObservableOptions {
    clientWritable: boolean;
@@ -143,6 +151,7 @@ export class CustomForm {
    public image(src: ObservableString | string, pack: ObservableString | string, options?: ImageOptions): CustomForm;
    public isShowing(): boolean;
    public label(text: ObservableString | ObservableUIRawMessage | string | UIRawMessage, options?: TextOptions): CustomForm;
+   public multiButtonRow(buttons: Array<ButtonData>, options?: MultiButtonRowOptions): CustomForm;
    public show(): Promise<DataDrivenScreenClosedReason>;
    public slider(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, value: ObservableNumber, min: number | ObservableNumber, max: number | ObservableNumber, options?: SliderOptions): CustomForm;
    public spacer(options?: SpacingOptions): CustomForm;
