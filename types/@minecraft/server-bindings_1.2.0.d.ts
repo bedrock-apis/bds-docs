@@ -441,8 +441,11 @@ export class MinecraftDimensionTypes {
 //@ts-ignore
 export class Player extends Entity {
    public readonly name: string;
-   public playSound(soundId: string, soundOptions?: PlayerSoundOptions): SoundInstance;
+   public playSound(soundId: SoundDefinition | string, soundOptions?: PlayerSoundOptions): SoundInstance;
    public sendMessage(message: Array<RawMessage | string> | RawMessage | string): void;
+   private constructor();
+}
+export class SoundDefinition {
    private constructor();
 }
 export class SoundInstance {

@@ -166,6 +166,14 @@ export interface EditorRegistryFile {
    fileJson: string;
    fileName: string;
 }
+export interface ExtrudeInteractiveToolOptions {
+   criteria: server_editor.BlockUtilityFloodMatchCriteria;
+   customBlockList: Array<string>;
+   faceSize: number;
+   isShrink: boolean;
+   layerCount: number;
+   tolerance: number;
+}
 export interface FileSelectorOptions {
    extensions: Array<string>;
    maxFileSize: number;
@@ -213,8 +221,13 @@ export interface MeshInfo {
 export interface MeshLoadOptions {
    maxTriangleCount?: number;
 }
+export interface MeshPlacementBlockMapping {
+   blockType: string;
+   colorEntryId: string;
+}
 export interface MeshPlacementOptions {
    blockType: string;
+   colorBlockMappings?: Array<MeshPlacementBlockMapping>;
    location: server.Vector3;
    requestId?: string;
    rotation: server.Vector3;
@@ -260,6 +273,10 @@ export interface PrefabTemplateCreateInstanceOptions {
    mirror?: server.StructureMirrorAxis;
    rotation?: server.StructureRotation;
 }
+export interface PrefabTemplateInstanceLocation {
+   instance: PrefabTemplateInstance;
+   location: server.Vector3;
+}
 export interface PrefabTemplateMetadata {
    description: string;
    displayName: string;
@@ -276,6 +293,20 @@ export interface ProjectRegionExtents {
    x: common.NumberRange;
    z: common.NumberRange;
 }
+export interface ProjectRegionGlobalMetrics {
+   availableChunkCount: number;
+   availableUniqueChunkCount: number;
+   chunkCount: number;
+   loadedAvailableChunkCount: number;
+   loadedChunkCount: number;
+   loadedRegionCount: number;
+   playerMetrics: Array<ProjectRegionPlayerMetrics>;
+   regionCount: number;
+   tickingAvailableChunkCount: number;
+   tickingChunkCount: number;
+   tickingRegionCount: number;
+   uniqueChunkCount: number;
+}
 export interface ProjectRegionManagerChunkProcessingState {
    chunksProcessed: number;
    isCompleted: boolean;
@@ -285,9 +316,43 @@ export interface ProjectRegionOptions {
    extentX: common.NumberRange;
    extentZ: common.NumberRange;
 }
+export interface ProjectRegionPlayerMetrics {
+   availableChunkCount: number;
+   availableUniqueChunkCount: number;
+   chunkCount: number;
+   loadedAvailableChunkCount: number;
+   loadedChunkCount: number;
+   loadedRegionCount: number;
+   playerId: string;
+   playerName: string;
+   regionCount: number;
+   tickingAvailableChunkCount: number;
+   tickingChunkCount: number;
+   tickingRegionCount: number;
+   uniqueChunkCount: number;
+}
+export interface SmartFillInteractiveToolOptions {
+   limitToSelection: boolean;
+   onlyFillExposedSurface: boolean;
+   radius: number;
+}
 
 export class ClientFilesystem {
    public chooseFile(options: FileSelectorOptions): Promise<string>;
+   private constructor();
+}
+export class ClientInteractiveTools {
+   public activateExtrude(options: ExtrudeInteractiveToolOptions): Promise<void>;
+   public activateSmartFill(options: SmartFillInteractiveToolOptions): Promise<void>;
+   public applyExtrude(result: ExtrudeInteractiveToolResult): Promise<void>;
+   public commitExtrude(target: server.Vector3, face: number): Promise<ExtrudeInteractiveToolResult>;
+   public commitSmartFill(target: server.Vector3, face: number): Promise<server_editor.RelativeVolumeListBlockVolume>;
+   public deactivate(): Promise<void>;
+   public resume(): Promise<void>;
+   public supportsExtrude(): Promise<boolean>;
+   public supportsSmartFill(): Promise<boolean>;
+   public updateExtrude(options: ExtrudeInteractiveToolOptions): Promise<void>;
+   public updateSmartFill(options: SmartFillInteractiveToolOptions): Promise<void>;
    private constructor();
 }
 export class CustomBiomeSource {
@@ -439,6 +504,10 @@ export class DataTransferRequestResponse {
    public readonly schema: string;
    private constructor();
 }
+export class ExtrudeInteractiveToolResult {
+   public readonly affectedVolume: server_editor.RelativeVolumeListBlockVolume;
+   private constructor();
+}
 export class FeatureFlagManager {
    public readonly isHost: boolean;
    public getFlag(name: string): boolean;
@@ -475,6 +544,7 @@ export class InternalPersistenceManager {
 }
 export class InternalPlayerServiceContext {
    public readonly clientFilesystem: ClientFilesystem;
+   public readonly clientInteractiveTools: ClientInteractiveTools;
    public readonly dataStore: DataStore;
    public readonly dataTransfer: DataTransferManager;
    public readonly featureFlags: FeatureFlagManager;
@@ -485,7 +555,10 @@ export class InternalPlayerServiceContext {
    public readonly prefabManager: PrefabManager;
    public readonly realmsService: RealmsService;
    public readonly regionManager: PlayerProjectRegionManager;
-   public runCoroutineWatchdogStressTest(): void;
+   public runCoroutineWatchdogStressTest(): server_editor.VoidTaskPromise;
+   public runLongRunningTaskBurstTest(durationSeconds: number, taskCount: number, maxStaggerSeconds: number): server_editor.VoidTaskPromise;
+   public runLongRunningTaskTest(durationSeconds: number): server_editor.VoidTaskPromise;
+   public runLongRunningTaskTestClient(durationSeconds: number): void;
    private constructor();
 }
 export class JigsawService {
@@ -517,7 +590,7 @@ export class MinecraftEditorInternal {
    public fillBiomes(dimension: server.Dimension, volume: server.BlockVolumeBase | server_editor.RelativeVolumeListBlockVolume, biome: server.BiomeType, options?: BiomeFillOptions): void;
    public fireTelemetryEvent(player: server.Player, source: string, eventName: string, metadata: string): void;
    public getPlayerServices(player: server.Player): InternalPlayerServiceContext;
-   public registerExtension(extensionName: string, activationFunction: (arg0: server_editor.ExtensionContext)=>void, shutdownFunction: (arg0: server_editor.ExtensionContext)=>void, options?: server_editor.ExtensionOptionalParameters): server_editor.Extension;
+   public registerExtension(extensionName: string, activationFunction: (arg0: server_editor.ExtensionContext)=>void, sessionLifecycleFunction: (arg0: server_editor.ExtensionContext)=>void, shutdownFunction: (arg0: server_editor.ExtensionContext)=>void, options?: server_editor.ExtensionOptionalParameters): server_editor.Extension;
    public reloadEditor(): void;
    private constructor();
 }
@@ -541,6 +614,7 @@ export class PersistenceGroupItem {
    private constructor();
 }
 export class PlayerProjectRegionManager {
+   public collectMetrics(): ProjectRegionGlobalMetrics;
    public disposeAllRegions(): void;
    public disposeRegion(id: string): boolean;
    public getCursorRegion(): ProjectRegion;
@@ -554,8 +628,20 @@ export class PrefabInstanceInteractionEvent {
    public readonly instance: PrefabTemplateInstance;
    private constructor();
 }
+export class PrefabInstanceTransactionOperation {
+   public addCreateOperation(operationHandler: PrefabInstanceTransactionOperationHandler, instance: PrefabTemplateInstance): void;
+   public addDeleteOperation(operationHandler: PrefabInstanceTransactionOperationHandler, instance: PrefabTemplateInstance): void;
+   public addOperationHandler(transactionHandler: server_editor.TransactionHandler, closure: (arg0: string, arg1?: string)=>void): PrefabInstanceTransactionOperationHandler;
+   public constructor(prefabManager: PrefabManager, pendingTransaction: server_editor.PendingTransaction);
+   public trackChange(operationHandler: PrefabInstanceTransactionOperationHandler, instance: PrefabTemplateInstance): boolean;
+}
+//@ts-ignore
+export class PrefabInstanceTransactionOperationHandler extends server_editor.TransactionOperationHandler {
+   private constructor();
+}
 export class PrefabManager {
    public readonly instanceInteractionEvents: PrefabServiceInstanceInteractionEvent;
+   public addPrefabInstanceOperationHandler(transactionHandler: server_editor.TransactionHandler, closure: (arg0: string, arg1?: string)=>void): PrefabInstanceTransactionOperationHandler;
    public beginCapturingMouseClicks(): void;
    public clearSelectedInstances(): void;
    public cloneTemplate(templateOrMetadataToClone: PrefabTemplate | PrefabTemplateMetadata, newName: string, optionalNewDisplayName?: string): PrefabTemplate;
@@ -564,7 +650,9 @@ export class PrefabManager {
    public deleteTemplate(templateOrMetadata: PrefabTemplate | PrefabTemplateMetadata): void;
    public deselectInstance(instance: PrefabTemplateInstance): void;
    public endCapturingMouseClicks(): void;
+   public getInstanceById(instanceId: string): (PrefabTemplateInstance | undefined);
    public getTemplate(searchMetadata_or_fullyQualifiedName: PrefabTemplateMetadata | string): PrefabTemplate;
+   public getTemplateInstances(templateOrMetadata: PrefabTemplate | PrefabTemplateMetadata): Array<PrefabTemplateInstanceLocation>;
    public getTemplateList(): Array<PrefabTemplateMetadata>;
    public selectInstance(instance: PrefabTemplateInstance, append: boolean): void;
    private constructor();
@@ -580,6 +668,7 @@ export class PrefabTemplate {
    public readonly instanceCount: number;
    public readonly name: string;
    public notes: string;
+   public readonly size: server.Vector3;
    public readonly source: PrefabSource;
    public addStructure(structure: server_editor.EditorStructure, options?: PrefabTemplateAddStructureOptions): PrefabTemplateStructure;
    public createInstance(location: server.Vector3, options?: PrefabTemplateCreateInstanceOptions): PrefabTemplateInstance;

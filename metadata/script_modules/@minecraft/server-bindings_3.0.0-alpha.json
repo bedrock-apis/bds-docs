@@ -8874,8 +8874,13 @@
                   }
                ],
                "is_baked": false,
-               "is_read_only": true,
+               "is_read_only": false,
                "name": "targets",
+               "set_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
                "type": {
                   "is_bind_type": false,
                   "is_errorable": false,
@@ -9156,458 +9161,6 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "Component"
-         }
-      },
-      {
-         "base_types": [],
-         "constants": [],
-         "functions": [
-            {
-               "arguments": [],
-               "call_privilege": [
-                  {
-                     "name": "default"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "clear",
-               "return_type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "undefined"
-               }
-            },
-            {
-               "arguments": [
-                  {
-                     "details": {
-                        "default_value": "null"
-                     },
-                     "name": "origin",
-                     "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                           "is_bind_type": true,
-                           "is_errorable": false,
-                           "name": "Vector3"
-                        }
-                     }
-                  }
-               ],
-               "call_privilege": [
-                  {
-                     "name": "restricted_execution"
-                  }
-               ],
-               "is_constructor": true,
-               "name": "constructor",
-               "return_type": {
-                  "is_bind_type": true,
-                  "is_errorable": false,
-                  "name": "CompoundBlockVolume"
-               }
-            },
-            {
-               "arguments": [],
-               "call_privilege": [
-                  {
-                     "name": "default"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "getBlockLocationIterator",
-               "return_type": {
-                  "is_bind_type": true,
-                  "is_errorable": false,
-                  "name": "BlockLocationIterator"
-               }
-            },
-            {
-               "arguments": [],
-               "call_privilege": [
-                  {
-                     "name": "default"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "getBoundingBox",
-               "return_type": {
-                  "is_bind_type": true,
-                  "is_errorable": false,
-                  "name": "BlockBoundingBox"
-               }
-            },
-            {
-               "arguments": [],
-               "call_privilege": [
-                  {
-                     "name": "default"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "getMax",
-               "return_type": {
-                  "is_bind_type": true,
-                  "is_errorable": false,
-                  "name": "Vector3"
-               }
-            },
-            {
-               "arguments": [],
-               "call_privilege": [
-                  {
-                     "name": "default"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "getMin",
-               "return_type": {
-                  "is_bind_type": true,
-                  "is_errorable": false,
-                  "name": "Vector3"
-               }
-            },
-            {
-               "arguments": [],
-               "call_privilege": [
-                  {
-                     "name": "default"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "getOrigin",
-               "return_type": {
-                  "is_bind_type": true,
-                  "is_errorable": false,
-                  "name": "Vector3"
-               }
-            },
-            {
-               "arguments": [],
-               "call_privilege": [
-                  {
-                     "name": "default"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "isEmpty",
-               "return_type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "boolean"
-               }
-            },
-            {
-               "arguments": [
-                  {
-                     "details": null,
-                     "name": "worldLocation",
-                     "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "Vector3"
-                     }
-                  }
-               ],
-               "call_privilege": [
-                  {
-                     "name": "default"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "isInside",
-               "return_type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "boolean"
-               }
-            },
-            {
-               "arguments": [
-                  {
-                     "details": {
-                        "default_value": "null"
-                     },
-                     "name": "forceRelativity",
-                     "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                           "is_bind_type": true,
-                           "is_errorable": false,
-                           "name": "CompoundBlockVolumePositionRelativity"
-                        }
-                     }
-                  }
-               ],
-               "call_privilege": [
-                  {
-                     "name": "default"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "peekLastVolume",
-               "return_type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "optional",
-                  "optional_type": {
-                     "is_bind_type": true,
-                     "is_errorable": false,
-                     "name": "CompoundBlockVolumeItem"
-                  }
-               }
-            },
-            {
-               "arguments": [],
-               "call_privilege": [
-                  {
-                     "name": "default"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "popVolume",
-               "return_type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "boolean"
-               }
-            },
-            {
-               "arguments": [
-                  {
-                     "details": null,
-                     "name": "item",
-                     "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "CompoundBlockVolumeItem"
-                     }
-                  }
-               ],
-               "call_privilege": [
-                  {
-                     "name": "default"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "pushVolume",
-               "return_type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "undefined"
-               }
-            },
-            {
-               "arguments": [
-                  {
-                     "details": null,
-                     "name": "item",
-                     "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "CompoundBlockVolumeItem"
-                     }
-                  }
-               ],
-               "call_privilege": [
-                  {
-                     "name": "default"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "replaceOrAddLastVolume",
-               "return_type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "boolean"
-               }
-            },
-            {
-               "arguments": [
-                  {
-                     "details": null,
-                     "name": "position",
-                     "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "Vector3"
-                     }
-                  },
-                  {
-                     "details": {
-                        "default_value": "null"
-                     },
-                     "name": "preserveExistingVolumes",
-                     "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                           "is_bind_type": false,
-                           "is_errorable": false,
-                           "name": "boolean"
-                        }
-                     }
-                  }
-               ],
-               "call_privilege": [
-                  {
-                     "name": "default"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "setOrigin",
-               "return_type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "undefined"
-               }
-            },
-            {
-               "arguments": [
-                  {
-                     "details": null,
-                     "name": "delta",
-                     "type": {
-                        "is_bind_type": true,
-                        "is_errorable": false,
-                        "name": "Vector3"
-                     }
-                  },
-                  {
-                     "details": {
-                        "default_value": "null"
-                     },
-                     "name": "preserveExistingVolumes",
-                     "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "optional",
-                        "optional_type": {
-                           "is_bind_type": false,
-                           "is_errorable": false,
-                           "name": "boolean"
-                        }
-                     }
-                  }
-               ],
-               "call_privilege": [
-                  {
-                     "name": "default"
-                  }
-               ],
-               "is_constructor": false,
-               "is_static": false,
-               "name": "translateOrigin",
-               "return_type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "undefined"
-               }
-            }
-         ],
-         "name": "CompoundBlockVolume",
-         "properties": [
-            {
-               "get_privilege": [
-                  {
-                     "name": "restricted_execution"
-                  }
-               ],
-               "is_baked": false,
-               "is_read_only": true,
-               "name": "capacity",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "uint64",
-                  "valid_range": {
-                     "max": 2147483647,
-                     "min": -2147483648
-                  }
-               }
-            },
-            {
-               "get_privilege": [
-                  {
-                     "name": "restricted_execution"
-                  }
-               ],
-               "is_baked": false,
-               "is_read_only": true,
-               "name": "items",
-               "type": {
-                  "element_type": {
-                     "is_bind_type": true,
-                     "is_errorable": false,
-                     "name": "CompoundBlockVolumeItem"
-                  },
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "array"
-               }
-            },
-            {
-               "get_privilege": [
-                  {
-                     "name": "restricted_execution"
-                  }
-               ],
-               "is_baked": false,
-               "is_read_only": true,
-               "name": "itemsAbsolute",
-               "type": {
-                  "element_type": {
-                     "is_bind_type": true,
-                     "is_errorable": false,
-                     "name": "CompoundBlockVolumeItem"
-                  },
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "array"
-               }
-            },
-            {
-               "get_privilege": [
-                  {
-                     "name": "restricted_execution"
-                  }
-               ],
-               "is_baked": false,
-               "is_read_only": true,
-               "name": "volumeCount",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "uint64",
-                  "valid_range": {
-                     "max": 2147483647,
-                     "min": -2147483648
-                  }
-               }
-            }
-         ],
-         "type": {
-            "is_bind_type": true,
-            "is_errorable": false,
-            "name": "CompoundBlockVolume"
          }
       },
       {
@@ -13807,6 +13360,21 @@
                   "is_errorable": false,
                   "name": "string"
                }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "poiManager",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PoiManager"
+               }
             }
          ],
          "type": {
@@ -13996,6 +13564,95 @@
       {
          "base_types": [],
          "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "duration",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "int32",
+                           "valid_range": {
+                              "max": 2147483647,
+                              "min": -2147483648
+                           }
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": true,
+               "name": "constructor",
+               "return_type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Duration"
+               }
+            }
+         ],
+         "name": "Duration",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "isInfinite",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "value",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "int32",
+                     "valid_range": {
+                        "max": 2147483647,
+                        "min": -2147483648
+                     }
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "Duration"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
          "functions": [],
          "name": "Effect",
          "properties": [
@@ -14043,13 +13700,9 @@
                "is_read_only": true,
                "name": "duration",
                "type": {
-                  "is_bind_type": false,
+                  "is_bind_type": true,
                   "is_errorable": true,
-                  "name": "int32",
-                  "valid_range": {
-                     "max": 2147483647,
-                     "min": -2147483648
-                  }
+                  "name": "Duration"
                }
             },
             {
@@ -14305,13 +13958,9 @@
                   }
                ],
                "type": {
-                  "is_bind_type": false,
+                  "is_bind_type": true,
                   "is_errorable": false,
-                  "name": "int32",
-                  "valid_range": {
-                     "max": 2147483647,
-                     "min": -2147483648
-                  }
+                  "name": "Duration"
                }
             },
             {
@@ -14514,7 +14163,7 @@
                ],
                "call_privilege": [
                   {
-                     "name": "default"
+                     "name": "restricted_execution"
                   }
                ],
                "is_constructor": false,
@@ -14535,7 +14184,7 @@
                "arguments": [],
                "call_privilege": [
                   {
-                     "name": "default"
+                     "name": "restricted_execution"
                   }
                ],
                "is_constructor": false,
@@ -14919,19 +14568,28 @@
                      }
                   },
                   {
-                     "details": {
-                        "max_value": 20000000,
-                        "min_value": 1
-                     },
+                     "details": null,
                      "name": "duration",
                      "type": {
                         "is_bind_type": false,
                         "is_errorable": false,
-                        "name": "int32",
-                        "valid_range": {
-                           "max": 2147483647,
-                           "min": -2147483648
-                        }
+                        "name": "variant",
+                        "variant_types": [
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "Duration"
+                           },
+                           {
+                              "is_bind_type": false,
+                              "is_errorable": false,
+                              "name": "int32",
+                              "valid_range": {
+                                 "max": 2147483647,
+                                 "min": -2147483648
+                              }
+                           }
+                        ]
                      }
                   },
                   {
@@ -16904,6 +16562,11 @@
                "return_type": {
                   "error_types": [
                      {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "Error"
+                     },
+                     {
                         "is_bind_type": true,
                         "is_errorable": false,
                         "name": "InvalidEntityError"
@@ -17005,6 +16668,11 @@
                "name": "tryTeleport",
                "return_type": {
                   "error_types": [
+                     {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "Error"
+                     },
                      {
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -21525,7 +21193,62 @@
          ],
          "functions": [],
          "name": "EntityIsTamedComponent",
-         "properties": [],
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "tamedToPlayer",
+               "type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidEntityError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "Player"
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "tamedToPlayerId",
+               "type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidEntityError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  }
+               }
+            }
+         ],
          "type": {
             "is_bind_type": true,
             "is_errorable": false,
@@ -25611,7 +25334,7 @@
                         "optional_type": {
                            "is_bind_type": true,
                            "is_errorable": false,
-                           "name": "EntityTamedEventFilter"
+                           "name": "EntityTamedEventOptions"
                         }
                      }
                   }
@@ -25806,7 +25529,7 @@
                         "optional_type": {
                            "is_bind_type": true,
                            "is_errorable": false,
-                           "name": "EntityTamedEventFilter"
+                           "name": "EntityTamedEventOptions"
                         }
                      }
                   }
@@ -27258,13 +26981,9 @@
                "is_read_only": true,
                "name": "duration",
                "type": {
-                  "is_bind_type": false,
+                  "is_bind_type": true,
                   "is_errorable": false,
-                  "name": "int32",
-                  "valid_range": {
-                     "max": 2147483647,
-                     "min": -2147483648
-                  }
+                  "name": "Duration"
                }
             },
             {
@@ -36021,6 +35740,16 @@
                   "name": "variant",
                   "variant_types": [
                      {
+                        "element_type": {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "array"
+                     },
+                     {
                         "is_bind_type": false,
                         "is_errorable": false,
                         "name": "boolean"
@@ -43180,6 +42909,837 @@
          "base_types": [],
          "constants": [],
          "functions": [],
+         "name": "PoiBlockInstance",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "position",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Vector3"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "tickets",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "uint8",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "type",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PoiBlockType"
+               }
+            }
+         ],
+         "runtime_conditions": [
+            "Poi"
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "PoiBlockInstance"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "position",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "poi",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "variant",
+                        "variant_types": [
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "PoiBlockType"
+                           },
+                           {
+                              "is_bind_type": false,
+                              "is_errorable": false,
+                              "name": "string"
+                           },
+                           {
+                              "is_bind_type": false,
+                              "is_errorable": false,
+                              "name": "uint16",
+                              "valid_range": {
+                                 "max": 2147483647,
+                                 "min": -2147483648
+                              }
+                           }
+                        ]
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "addTemporary",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "position",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "at",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "PoiBlockType"
+                  }
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "position",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "filter",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "variant",
+                        "variant_types": [
+                           {
+                              "closure_type": {
+                                 "argument_types": [
+                                    {
+                                       "is_bind_type": true,
+                                       "is_errorable": false,
+                                       "name": "PoiBlockType"
+                                    }
+                                 ],
+                                 "call_privilege": {
+                                    "name": "default"
+                                 },
+                                 "return_type": {
+                                    "is_bind_type": false,
+                                    "is_errorable": true,
+                                    "name": "boolean"
+                                 }
+                              },
+                              "is_bind_type": false,
+                              "is_errorable": false,
+                              "name": "closure"
+                           },
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "PoiNameFilter"
+                           },
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "PoiTagFilter"
+                           }
+                        ]
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "exists",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "filter",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "variant",
+                        "variant_types": [
+                           {
+                              "closure_type": {
+                                 "argument_types": [
+                                    {
+                                       "is_bind_type": true,
+                                       "is_errorable": false,
+                                       "name": "PoiBlockType"
+                                    }
+                                 ],
+                                 "call_privilege": {
+                                    "name": "default"
+                                 },
+                                 "return_type": {
+                                    "is_bind_type": false,
+                                    "is_errorable": true,
+                                    "name": "boolean"
+                                 }
+                              },
+                              "is_bind_type": false,
+                              "is_errorable": false,
+                              "name": "closure"
+                           },
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "PoiNameFilter"
+                           },
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "PoiTagFilter"
+                           }
+                        ]
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "center",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "blockRadius",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "uint16",
+                        "valid_range": {
+                           "max": 2147483647,
+                           "min": -2147483648
+                        }
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "occupancyFilter",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "PoiBlockOccupancyFilter"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getInRange",
+               "return_type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "PoiBlockInstance"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "array"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "filter",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "variant",
+                        "variant_types": [
+                           {
+                              "closure_type": {
+                                 "argument_types": [
+                                    {
+                                       "is_bind_type": true,
+                                       "is_errorable": false,
+                                       "name": "PoiBlockType"
+                                    }
+                                 ],
+                                 "call_privilege": {
+                                    "name": "default"
+                                 },
+                                 "return_type": {
+                                    "is_bind_type": false,
+                                    "is_errorable": true,
+                                    "name": "boolean"
+                                 }
+                              },
+                              "is_bind_type": false,
+                              "is_errorable": false,
+                              "name": "closure"
+                           },
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "PoiNameFilter"
+                           },
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "PoiTagFilter"
+                           }
+                        ]
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "center",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "blockRadius",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "uint16",
+                        "valid_range": {
+                           "max": 2147483647,
+                           "min": -2147483648
+                        }
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "occupancyFilter",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "PoiBlockOccupancyFilter"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getInRangeSorted",
+               "return_type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "PoiDistancePair"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "array"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "filter",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "variant",
+                        "variant_types": [
+                           {
+                              "closure_type": {
+                                 "argument_types": [
+                                    {
+                                       "is_bind_type": true,
+                                       "is_errorable": false,
+                                       "name": "PoiBlockType"
+                                    }
+                                 ],
+                                 "call_privilege": {
+                                    "name": "default"
+                                 },
+                                 "return_type": {
+                                    "is_bind_type": false,
+                                    "is_errorable": true,
+                                    "name": "boolean"
+                                 }
+                              },
+                              "is_bind_type": false,
+                              "is_errorable": false,
+                              "name": "closure"
+                           },
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "PoiNameFilter"
+                           },
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "PoiTagFilter"
+                           }
+                        ]
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "center",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "blockRadius",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "uint16",
+                        "valid_range": {
+                           "max": 2147483647,
+                           "min": -2147483648
+                        }
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "occupancyFilter",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "PoiBlockOccupancyFilter"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getInSquare",
+               "return_type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "PoiBlockInstance"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "array"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "center",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "release",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "filter",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "variant",
+                        "variant_types": [
+                           {
+                              "closure_type": {
+                                 "argument_types": [
+                                    {
+                                       "is_bind_type": true,
+                                       "is_errorable": false,
+                                       "name": "PoiBlockType"
+                                    }
+                                 ],
+                                 "call_privilege": {
+                                    "name": "default"
+                                 },
+                                 "return_type": {
+                                    "is_bind_type": false,
+                                    "is_errorable": true,
+                                    "name": "boolean"
+                                 }
+                              },
+                              "is_bind_type": false,
+                              "is_errorable": false,
+                              "name": "closure"
+                           },
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "PoiNameFilter"
+                           },
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "PoiTagFilter"
+                           }
+                        ]
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "center",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "blockRadius",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "uint16",
+                        "valid_range": {
+                           "max": 2147483647,
+                           "min": -2147483648
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "take",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "Vector3"
+                  }
+               }
+            }
+         ],
+         "name": "PoiBlockManager",
+         "properties": [],
+         "runtime_conditions": [
+            "Poi"
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "PoiBlockManager"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "other",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PoiBlockType"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "equals",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "tag",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "has",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            }
+         ],
+         "name": "PoiBlockType",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "id",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "uint16",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "name",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "tickets",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "uint8",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "usableRange",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "uint8",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            }
+         ],
+         "runtime_conditions": [
+            "Poi"
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "PoiBlockType"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [],
+         "name": "PoiManager",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "blocks",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PoiBlockManager"
+               }
+            }
+         ],
+         "runtime_conditions": [
+            "Poi"
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "PoiManager"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [],
          "name": "PotionDeliveryType",
          "properties": [
             {
@@ -48338,6 +48898,24 @@
                   "is_errorable": false,
                   "name": "ItemComponentRegistry"
                }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  },
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "worldClockRegistry",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "WorldClockRegistry"
+               }
             }
          ],
          "type": {
@@ -50244,6 +50822,30 @@
                   }
                ],
                "is_baked": false,
+               "is_read_only": false,
+               "name": "lineGapHeight",
+               "set_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "float",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
                "is_read_only": true,
                "name": "text",
                "type": {
@@ -50641,6 +51243,91 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "TickingAreaManager"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [],
+         "name": "TimeMarker",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "name",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "period",
+               "type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "WorldClockInvalidTimeMarkerError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "int32",
+                     "valid_range": {
+                        "max": 2147483647,
+                        "min": -2147483648
+                     }
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "time",
+               "type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "WorldClockInvalidTimeMarkerError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "TimeMarker"
          }
       },
       {
@@ -51686,6 +52373,39 @@
                }
             },
             {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "name",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getClock",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "WorldClockNotFoundError"
+                     }
+                  ],
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "WorldClock"
+               }
+            },
+            {
                "arguments": [],
                "call_privilege": [
                   {
@@ -51960,6 +52680,16 @@
                      "is_errorable": false,
                      "name": "variant",
                      "variant_types": [
+                        {
+                           "element_type": {
+                              "is_bind_type": false,
+                              "is_errorable": false,
+                              "name": "string"
+                           },
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "array"
+                        },
                         {
                            "is_bind_type": false,
                            "is_errorable": false,
@@ -53910,6 +54640,78 @@
                ],
                "is_baked": false,
                "is_read_only": true,
+               "name": "worldClockOnPaused",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "WorldClockOnPausedAfterEventSignal"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  },
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "worldClockOnResumed",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "WorldClockOnResumedAfterEventSignal"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  },
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "worldClockOnTimeMarker",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "WorldClockOnTimeMarkerAfterEventSignal"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  },
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "worldClockOnTimeModified",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "WorldClockOnTimeModifiedAfterEventSignal"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  },
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
                "name": "worldLoad",
                "type": {
                   "is_bind_type": true,
@@ -54217,12 +55019,1287 @@
                   "is_errorable": false,
                   "name": "WeatherChangeBeforeEventSignal"
                }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  },
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "worldClockOnRestart",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "WorldClockOnRestartBeforeEventSignal"
+               }
             }
          ],
          "type": {
             "is_bind_type": true,
             "is_errorable": false,
             "name": "WorldBeforeEvents"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "timeMarkerOptions",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "TimeMarkerOptions"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "addTimeMarker",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "WorldClockAddTimeMarkerError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "timeMarker",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "variant",
+                        "variant_types": [
+                           {
+                              "is_bind_type": false,
+                              "is_errorable": false,
+                              "name": "string"
+                           },
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "TimeMarker"
+                           }
+                        ]
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "removeTimeMarker",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "WorldClockRemoveMinecraftTimeMarkerError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "WorldClockTimeMarkerNotFoundError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "timeMarker",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "variant",
+                        "variant_types": [
+                           {
+                              "is_bind_type": false,
+                              "is_errorable": false,
+                              "name": "string"
+                           },
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "TimeMarker"
+                           }
+                        ]
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "rewindTo",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "WorldClockRewindError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "WorldClockTimeMarkerNotFoundError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "timeMarker",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "variant",
+                        "variant_types": [
+                           {
+                              "is_bind_type": false,
+                              "is_errorable": false,
+                              "name": "string"
+                           },
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "TimeMarker"
+                           }
+                        ]
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "set",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "WorldClockTimeMarkerNotFoundError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "timeMarker",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "variant",
+                        "variant_types": [
+                           {
+                              "is_bind_type": false,
+                              "is_errorable": false,
+                              "name": "string"
+                           },
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "TimeMarker"
+                           }
+                        ]
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "skipTo",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "WorldClockTimeMarkerNotFoundError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "WorldClock",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "isPaused",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "name",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "min_value": 0,
+               "name": "time",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "timeMarkers",
+               "type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "TimeMarker"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "array"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClock"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [],
+         "name": "WorldClockOnPausedAfterEvent",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "clock",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "WorldClock"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClockOnPausedAfterEvent"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "WorldClockOnPausedAfterEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "default"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "WorldClockEventOptions"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "subscribe",
+               "return_type": {
+                  "closure_type": {
+                     "argument_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "WorldClockOnPausedAfterEvent"
+                        }
+                     ],
+                     "call_privilege": {
+                        "name": "default"
+                     },
+                     "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                     }
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "closure"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "WorldClockOnPausedAfterEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "default"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "unsubscribe",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "WorldClockOnPausedAfterEventSignal",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClockOnPausedAfterEventSignal"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [],
+         "name": "WorldClockOnRestartBeforeEvent",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "cancel",
+               "set_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "clock",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "WorldClock"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "min_value": 0,
+               "name": "newTime",
+               "set_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClockOnRestartBeforeEvent"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "WorldClockOnRestartBeforeEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "restricted_execution"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "WorldClockEventOptions"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "subscribe",
+               "return_type": {
+                  "closure_type": {
+                     "argument_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "WorldClockOnRestartBeforeEvent"
+                        }
+                     ],
+                     "call_privilege": {
+                        "name": "restricted_execution"
+                     },
+                     "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                     }
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "closure"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "WorldClockOnRestartBeforeEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "restricted_execution"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "unsubscribe",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "WorldClockOnRestartBeforeEventSignal",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClockOnRestartBeforeEventSignal"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [],
+         "name": "WorldClockOnResumedAfterEvent",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "clock",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "WorldClock"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClockOnResumedAfterEvent"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "WorldClockOnResumedAfterEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "default"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "WorldClockEventOptions"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "subscribe",
+               "return_type": {
+                  "closure_type": {
+                     "argument_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "WorldClockOnResumedAfterEvent"
+                        }
+                     ],
+                     "call_privilege": {
+                        "name": "default"
+                     },
+                     "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                     }
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "closure"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "WorldClockOnResumedAfterEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "default"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "unsubscribe",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "WorldClockOnResumedAfterEventSignal",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClockOnResumedAfterEventSignal"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [],
+         "name": "WorldClockOnTimeMarkerAfterEvent",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "clock",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "WorldClock"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "timeMarker",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "TimeMarker"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClockOnTimeMarkerAfterEvent"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "WorldClockOnTimeMarkerAfterEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "default"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "WorldClockTimeMarkerEventOptions"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "subscribe",
+               "return_type": {
+                  "closure_type": {
+                     "argument_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "WorldClockOnTimeMarkerAfterEvent"
+                        }
+                     ],
+                     "call_privilege": {
+                        "name": "default"
+                     },
+                     "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                     }
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "closure"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "WorldClockOnTimeMarkerAfterEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "default"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "unsubscribe",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "WorldClockOnTimeMarkerAfterEventSignal",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClockOnTimeMarkerAfterEventSignal"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [],
+         "name": "WorldClockOnTimeModifiedAfterEvent",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "clock",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "WorldClock"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClockOnTimeModifiedAfterEvent"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "WorldClockOnTimeModifiedAfterEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "default"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "WorldClockEventOptions"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "subscribe",
+               "return_type": {
+                  "closure_type": {
+                     "argument_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "WorldClockOnTimeModifiedAfterEvent"
+                        }
+                     ],
+                     "call_privilege": {
+                        "name": "default"
+                     },
+                     "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                     }
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "closure"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "WorldClockOnTimeModifiedAfterEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "default"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "unsubscribe",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "WorldClockOnTimeModifiedAfterEventSignal",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClockOnTimeModifiedAfterEventSignal"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "name",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "registrationOptions",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "WorldClockRegistrationOptions"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  },
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "registerClock",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "WorldClockInvalidRegistryError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "WorldClockRegistrationError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "WorldClockReloadNewWorldClockError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "WorldClockReloadTimeMarkerError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "WorldClockRegistry",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClockRegistry"
          }
       },
       {
@@ -54884,60 +56961,6 @@
             }
          ],
          "name": "CommandPermissionLevel"
-      },
-      {
-         "constants": [
-            {
-               "is_read_only": true,
-               "is_static": true,
-               "name": "Add",
-               "type": {
-                  "is_bind_type": true,
-                  "is_errorable": false,
-                  "name": "CompoundBlockVolumeAction"
-               },
-               "value": 0
-            },
-            {
-               "is_read_only": true,
-               "is_static": true,
-               "name": "Subtract",
-               "type": {
-                  "is_bind_type": true,
-                  "is_errorable": false,
-                  "name": "CompoundBlockVolumeAction"
-               },
-               "value": 1
-            }
-         ],
-         "name": "CompoundBlockVolumeAction"
-      },
-      {
-         "constants": [
-            {
-               "is_read_only": true,
-               "is_static": true,
-               "name": "Absolute",
-               "type": {
-                  "is_bind_type": true,
-                  "is_errorable": false,
-                  "name": "CompoundBlockVolumePositionRelativity"
-               },
-               "value": 1
-            },
-            {
-               "is_read_only": true,
-               "is_static": true,
-               "name": "Relative",
-               "type": {
-                  "is_bind_type": true,
-                  "is_errorable": false,
-                  "name": "CompoundBlockVolumePositionRelativity"
-               },
-               "value": 0
-            }
-         ],
-         "name": "CompoundBlockVolumePositionRelativity"
       },
       {
          "constants": [
@@ -59684,6 +61707,44 @@
             {
                "is_read_only": true,
                "is_static": true,
+               "name": "Any",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "Any"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Full",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "Full"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "HasVacancy",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "HasVacancy"
+            }
+         ],
+         "name": "PoiBlockOccupancyFilter"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
                "name": "Entity",
                "type": {
                   "is_bind_type": false,
@@ -60979,6 +63040,106 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "UnloadedChunksError"
+         }
+      },
+      {
+         "functions": [],
+         "name": "WorldClockAddTimeMarkerError",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClockAddTimeMarkerError"
+         }
+      },
+      {
+         "functions": [],
+         "name": "WorldClockInvalidRegistryError",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClockInvalidRegistryError"
+         }
+      },
+      {
+         "functions": [],
+         "name": "WorldClockInvalidTimeMarkerError",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClockInvalidTimeMarkerError"
+         }
+      },
+      {
+         "functions": [],
+         "name": "WorldClockNotFoundError",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClockNotFoundError"
+         }
+      },
+      {
+         "functions": [],
+         "name": "WorldClockRegistrationError",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClockRegistrationError"
+         }
+      },
+      {
+         "functions": [],
+         "name": "WorldClockReloadNewWorldClockError",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClockReloadNewWorldClockError"
+         }
+      },
+      {
+         "functions": [],
+         "name": "WorldClockReloadTimeMarkerError",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClockReloadTimeMarkerError"
+         }
+      },
+      {
+         "functions": [],
+         "name": "WorldClockRemoveMinecraftTimeMarkerError",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClockRemoveMinecraftTimeMarkerError"
+         }
+      },
+      {
+         "functions": [],
+         "name": "WorldClockRewindError",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClockRewindError"
+         }
+      },
+      {
+         "functions": [],
+         "name": "WorldClockTimeMarkerNotFoundError",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClockTimeMarkerNotFoundError"
          }
       }
    ],
@@ -62618,57 +64779,6 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "CameraTargetOptions"
-         }
-      },
-      {
-         "base_types": [],
-         "name": "CompoundBlockVolumeItem",
-         "properties": [
-            {
-               "is_baked": false,
-               "is_read_only": false,
-               "name": "action",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "optional",
-                  "optional_type": {
-                     "is_bind_type": true,
-                     "is_errorable": false,
-                     "name": "CompoundBlockVolumeAction"
-                  }
-               }
-            },
-            {
-               "is_baked": false,
-               "is_read_only": false,
-               "name": "locationRelativity",
-               "type": {
-                  "is_bind_type": false,
-                  "is_errorable": false,
-                  "name": "optional",
-                  "optional_type": {
-                     "is_bind_type": true,
-                     "is_errorable": false,
-                     "name": "CompoundBlockVolumePositionRelativity"
-                  }
-               }
-            },
-            {
-               "is_baked": false,
-               "is_read_only": false,
-               "name": "volume",
-               "type": {
-                  "is_bind_type": true,
-                  "is_errorable": false,
-                  "name": "BlockVolume"
-               }
-            }
-         ],
-         "type": {
-            "is_bind_type": true,
-            "is_errorable": false,
-            "name": "CompoundBlockVolumeItem"
          }
       },
       {
@@ -64641,7 +66751,7 @@
       },
       {
          "base_types": [],
-         "name": "EntityTamedEventFilter",
+         "name": "EntityTamedEventOptions",
          "properties": [
             {
                "is_baked": false,
@@ -64677,7 +66787,7 @@
          "type": {
             "is_bind_type": true,
             "is_errorable": false,
-            "name": "EntityTamedEventFilter"
+            "name": "EntityTamedEventOptions"
          }
       },
       {
@@ -66160,6 +68270,88 @@
       },
       {
          "base_types": [],
+         "name": "PoiDistancePair",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "distance",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "float",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "poi",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PoiBlockInstance"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "PoiDistancePair"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "PoiNameFilter",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "name",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "PoiNameFilter"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "PoiTagFilter",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "tags",
+               "type": {
+                  "element_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "array"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "PoiTagFilter"
+         }
+      },
+      {
+         "base_types": [],
          "name": "PrimitiveShapeQueryOptions",
          "properties": [
             {
@@ -67364,6 +69556,21 @@
             {
                "is_baked": false,
                "is_read_only": false,
+               "name": "forceProvidedPositionOnDimensionChange",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "boolean"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
                "name": "keepVelocity",
                "type": {
                   "is_bind_type": false,
@@ -67502,6 +69709,62 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "TickingAreaOptions"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "TimeMarkerOptions",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "name",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "min_value": 0,
+               "name": "period",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "int32",
+                     "valid_range": {
+                        "max": 2147483647,
+                        "min": -2147483648
+                     }
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "min_value": 0,
+               "name": "time",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "TimeMarkerOptions"
          }
       },
       {
@@ -67833,8 +70096,111 @@
       },
       {
          "base_types": [],
+         "name": "WorldClockEventOptions",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "clock",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClockEventOptions"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "WorldClockRegistrationOptions",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "timeMarkers",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "element_type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "TimeMarkerOptions"
+                     },
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "array"
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClockRegistrationOptions"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "WorldClockTimeMarkerEventOptions",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "clock",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "timeMarker",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WorldClockTimeMarkerEventOptions"
+         }
+      },
+      {
+         "base_types": [],
          "name": "WorldSoundOptions",
          "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "isBroadcast",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "boolean"
+                  }
+               }
+            },
             {
                "is_baked": false,
                "is_read_only": false,

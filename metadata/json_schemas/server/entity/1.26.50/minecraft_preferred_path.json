@@ -1,0 +1,35 @@
+{
+   "title": "minecraft:preferred_path",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/entity/1.26.50/minecraft_preferred_path.json",
+   "x-format-version": "1.26.50",
+   "type": "object",
+   "properties": {
+      "default_block_cost": {
+         "type": "number",
+         "default": 0,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 2
+      },
+      "jump_cost": {
+         "type": "number",
+         "default": 0,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 1
+      },
+      "max_fall_blocks": {
+         "type": "integer",
+         "default": 3,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 0
+      },
+      "preferred_path_blocks": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "./PreferredPath%20BlockSet.json"
+         },
+         "x-ordinal-index": 3
+      }
+   }
+}

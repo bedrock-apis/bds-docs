@@ -1059,7 +1059,7 @@ export class Player extends Entity {
    public addLevels(amount: number): number;
    public getSpawnPoint(): (DimensionLocation | undefined);
    public getTotalXp(): number;
-   public playSound(soundId: string, soundOptions?: PlayerSoundOptions): SoundInstance;
+   public playSound(soundId: SoundDefinition | string, soundOptions?: PlayerSoundOptions): SoundInstance;
    public resetLevel(): void;
    public sendMessage(message: Array<RawMessage | string> | RawMessage | string): void;
    public setSpawnPoint(spawnPoint?: DimensionLocation): void;
@@ -1247,6 +1247,9 @@ export class ScriptEventCommandMessageAfterEvent {
 export class ScriptEventCommandMessageAfterEventSignal {
    public subscribe(callback: (arg0: ScriptEventCommandMessageAfterEvent)=>void, options?: ScriptEventMessageFilterOptions): (arg0: ScriptEventCommandMessageAfterEvent)=>void;
    public unsubscribe(callback: (arg0: ScriptEventCommandMessageAfterEvent)=>void): void;
+   private constructor();
+}
+export class SoundDefinition {
    private constructor();
 }
 export class SoundInstance {

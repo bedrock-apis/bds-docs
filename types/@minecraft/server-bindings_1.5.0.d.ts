@@ -873,7 +873,7 @@ export class Player extends Entity {
    public readonly name: string;
    public readonly onScreenDisplay: ScreenDisplay;
    public getSpawnPoint(): (DimensionLocation | undefined);
-   public playSound(soundId: string, soundOptions?: PlayerSoundOptions): SoundInstance;
+   public playSound(soundId: SoundDefinition | string, soundOptions?: PlayerSoundOptions): SoundInstance;
    public sendMessage(message: Array<RawMessage | string> | RawMessage | string): void;
    public setSpawnPoint(spawnPoint?: DimensionLocation): void;
    private constructor();
@@ -1012,6 +1012,9 @@ export class ScriptEventCommandMessageAfterEvent {
 export class ScriptEventCommandMessageAfterEventSignal {
    public subscribe(callback: (arg0: ScriptEventCommandMessageAfterEvent)=>void, options?: ScriptEventMessageFilterOptions): (arg0: ScriptEventCommandMessageAfterEvent)=>void;
    public unsubscribe(callback: (arg0: ScriptEventCommandMessageAfterEvent)=>void): void;
+   private constructor();
+}
+export class SoundDefinition {
    private constructor();
 }
 export class SoundInstance {

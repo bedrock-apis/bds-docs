@@ -2244,7 +2244,7 @@ export class Player extends Entity {
    public getSpawnPoint(): (DimensionLocation | undefined);
    public getTotalXp(): number;
    public playMusic(trackId: string, musicOptions?: MusicOptions): void;
-   public playSound(soundId: string, soundOptions?: PlayerSoundOptions): SoundInstance;
+   public playSound(soundId: SoundDefinition | string, soundOptions?: PlayerSoundOptions): SoundInstance;
    public queueMusic(trackId: string, musicOptions?: MusicOptions): void;
    public removePropertyOverrideForEntity(targetEntity: Entity, identifier: string): void;
    public resetLevel(): void;
@@ -2595,6 +2595,9 @@ export class Seat {
    public readonly minRiderCount: number;
    public readonly position: Vector3;
    public readonly seatRotation: number;
+   private constructor();
+}
+export class SoundDefinition {
    private constructor();
 }
 export class SoundInstance {

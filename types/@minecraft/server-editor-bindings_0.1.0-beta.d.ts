@@ -20,6 +20,21 @@ export enum BlockPaletteItemType {
    Probability = 1,
    Simple = 0,
 }
+export enum BlockUtilityExtrudeDirection {
+   Down = 0,
+   East = 5,
+   North = 2,
+   South = 3,
+   Up = 1,
+   West = 4,
+}
+export enum BlockUtilityFloodMatchCriteria {
+   Custom = 3,
+   NonAir = 0,
+   SameBlockType = 1,
+   SameBlockTypeAndStates = 4,
+   Solid = 2,
+}
 export enum BrushDirectionalPlacementMode {
    CameraFromAbove = 5,
    CameraFromBelow = 6,
@@ -292,6 +307,10 @@ export enum ThemeSettingsColorKey {
    TitleBarBackground = "TitleBarBackground",
    ViewportOutline = "ViewportOutline",
    Warning = "Warning",
+}
+export enum TransactionProcessState {
+   Ended = "Ended",
+   Started = "Started",
 }
 export enum WidgetCollisionType {
    Bounds = 2,
@@ -699,13 +718,31 @@ export class BlockUtilities {
    public trimVolumeToFitContents(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, retainMarqueeAfterTrimming: boolean, ignoreLiquid: boolean, ignoreNoCollision: boolean, blockMask?: BlockMaskList): RelativeVolumeListBlockVolume;
    private constructor();
 }
+export class BlockUtilityShapeVolumeOptionsCone {
+   public constructor(width: number, height: number, depth: number, rotX?: number, rotY?: number, rotZ?: number, isHollow?: boolean, thickness?: number);
+}
+export class BlockUtilityShapeVolumeOptionsCuboid {
+   public constructor(width: number, height: number, depth: number, rotX?: number, rotY?: number, rotZ?: number, isHollow?: boolean, thickness?: number);
+}
+export class BlockUtilityShapeVolumeOptionsCylinder {
+   public constructor(width: number, height: number, depth: number, rotX?: number, rotY?: number, rotZ?: number, isHollow?: boolean, thickness?: number);
+}
+export class BlockUtilityShapeVolumeOptionsEllipsoid {
+   public constructor(width: number, height: number, depth: number, rotX?: number, rotY?: number, rotZ?: number, isHollow?: boolean, thickness?: number);
+}
+export class BlockUtilityShapeVolumeOptionsPyramid {
+   public constructor(width: number, height: number, depth: number, rotX?: number, rotY?: number, rotZ?: number, isHollow?: boolean, thickness?: number);
+}
 export class BlockUtilityTasks {
-   public fillVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, block?: server.BlockPermutation | server.BlockType | string, maxBlocksPerTick?: number): Promise<number>;
-   public findObscuredBlocksWithinVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, maxBlocksPerTick?: number): Promise<RelativeVolumeListBlockVolume>;
-   public generateManifest(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, maxBlocksPerTick?: number): Promise<BlockUtilityManifest>;
-   public replaceBlocksInSelection(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, fromBlockIdentifier: string, toBlock?: server.BlockPermutation | server.BlockType | string, maxBlocksPerTick?: number): Promise<number>;
-   public shrinkWrapVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, maxBlocksPerTick?: number): Promise<RelativeVolumeListBlockVolume>;
-   public trimVolumeToFitContents(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, retainMarqueeAfterTrimming: boolean, ignoreLiquid: boolean, ignoreNoCollision: boolean, blockMask?: BlockMaskList, maxBlocksPerTick?: number): Promise<RelativeVolumeListBlockVolume>;
+   public createShapeVolume(options: BlockUtilityShapeVolumeOptionsCone | BlockUtilityShapeVolumeOptionsCuboid | BlockUtilityShapeVolumeOptionsCylinder | BlockUtilityShapeVolumeOptionsEllipsoid | BlockUtilityShapeVolumeOptionsPyramid, maxBlocksPerTick?: number): VolumeTaskPromise;
+   public extrude(location: server.Vector3, direction?: BlockUtilityExtrudeDirection, faceRadius?: number, layerCount?: number, isShrink?: boolean, criteria?: BlockUtilityFloodMatchCriteria, customBlockList?: Array<string>, maxBlocksPerTick?: number, buildGeometry?: boolean, tolerance?: number, faceVolume?: server.BlockVolumeBase | RelativeVolumeListBlockVolume): VolumeTaskPromise;
+   public fillVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, block?: server.BlockPermutation | server.BlockType | string, maxBlocksPerTick?: number): NumberTaskPromise;
+   public findObscuredBlocksWithinVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, maxBlocksPerTick?: number): VolumeTaskPromise;
+   public floodSearch(location: server.Vector3, criteria?: BlockUtilityFloodMatchCriteria, radius?: number, customBlockList?: Array<string>, maxResultBlocks?: number, maxBlocksPerTick?: number, directionMask?: number): VolumeTaskPromise;
+   public generateManifest(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, maxBlocksPerTick?: number): ManifestTaskPromise;
+   public replaceBlocksInSelection(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, fromBlockIdentifier: string, toBlock?: server.BlockPermutation | server.BlockType | string, maxBlocksPerTick?: number): NumberTaskPromise;
+   public shrinkWrapVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, maxBlocksPerTick?: number): VolumeTaskPromise;
+   public trimVolumeToFitContents(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume, retainMarqueeAfterTrimming: boolean, ignoreLiquid: boolean, ignoreNoCollision: boolean, blockMask?: BlockMaskList, maxBlocksPerTick?: number): VolumeTaskPromise;
    private constructor();
 }
 export class BrushShapeManager {
@@ -933,6 +970,11 @@ export class Logger {
    public warning(message: LocalizationEntry | string, properties?: LogProperties): void;
    private constructor();
 }
+//@ts-ignore
+export class ManifestTaskPromise extends TaskPromiseBase {
+   public readonly promise: Promise<BlockUtilityManifest>;
+   private constructor();
+}
 export class MinecraftEditor {
    public readonly afterEvents: ProjectAfterEvents;
    public readonly constants: EditorConstants;
@@ -970,8 +1012,8 @@ export class MinimapManager {
    public destroyMinimap(minimapId: string): void;
    public getAllMinimapIds(): Array<string>;
    public getMinimap(minimapId: string): MinimapItem;
-   public setVanillaBiomeColorMap(colorMap: Record<string,server.RGB>): void;
-   public updateVanillaColorMap(biomeType: server.BiomeType, color: server.RGB): void;
+   public setVanillaBiomeColorMap(minimapId: string, colorMap: Record<string,server.RGB>): void;
+   public updateVanillaColorMap(minimapId: string, biomeType: server.BiomeType, color: server.RGB): void;
    private constructor();
 }
 export class ModeChangeAfterEvent {
@@ -983,14 +1025,20 @@ export class ModeChangeAfterEventSignal {
    public unsubscribe(callback: (arg0: ModeChangeAfterEvent)=>void): void;
    private constructor();
 }
+//@ts-ignore
+export class NumberTaskPromise extends TaskPromiseBase {
+   public readonly promise: Promise<number>;
+   private constructor();
+}
 export class PendingTransaction {
    public addEntityOperation(entity: server.Entity, type: EntityOperationType): boolean;
-   public addUserDefinedOperation(transactionHandlerId: UserDefinedTransactionHandlerId, operationData: string, operationName?: string): void;
+   public addUserDefinedOperation(transactionHandler: UserDefinedTransactionOperationHandler, prevData: string, currentData: string, operationName?: string): void;
+   public addVolumeListOperation(operationHandler: VolumeListTransactionOperationHandler, previous: Array<RelativeVolumeListBlockVolume>, current: Array<RelativeVolumeListBlockVolume>): void;
    public commitTrackedChanges(): number;
    public discard(): void;
    public discardTrackedChanges(): number;
    public isValid(): boolean;
-   public submit(): void;
+   public submit(transactionHandler?: TransactionHandler): void;
    public trackBlockChangeArea(from: server.Vector3, to: server.Vector3): boolean;
    public trackBlockChangeList(locations: Array<server.Vector3>): boolean;
    public trackBlockChangeVolume(blockVolume: server.BlockVolumeBase): boolean;
@@ -1019,6 +1067,7 @@ export class RelativeVolumeListBlockVolume extends server.BlockVolumeBase {
    public readonly volumeCount: number;
    public add(toAdd: Array<server.Vector3> | server.BlockVolume | server.BlockVolumeBase | RelativeVolumeListBlockVolume | server.Vector3): void;
    public clear(): void;
+   public clone(): RelativeVolumeListBlockVolume;
    public constructor(origin?: server.Vector3);
    public getVolumeList(): Array<server.BlockVolume>;
    public hasAdjacent(location: server.Vector3, normalizedOffset: server.Vector3): boolean;
@@ -1102,6 +1151,12 @@ export class SpeedSettings {
    public setAll(properties: Record<string,number | undefined>): void;
    private constructor();
 }
+export class TaskPromiseBase {
+   public readonly cancelled: boolean;
+   public readonly progress: number;
+   public cancel(): void;
+   private constructor();
+}
 export class ThemeSettings {
    public addNewTheme(id: string, name?: string, sourceThemeId?: string): void;
    public canThemeBeModified(id: string): boolean;
@@ -1116,16 +1171,48 @@ export class ThemeSettings {
    public updateThemeColor(id: string, key: ThemeSettingsColorKey, newColor: server.RGBA): void;
    private constructor();
 }
+export class TransactionEvent {
+   public readonly error?: unknown;
+   public readonly isUndo: boolean;
+   public readonly state: TransactionProcessState;
+   private constructor();
+}
+export class TransactionHandler {
+   public readonly id: string;
+   public addUserDefinedOperationHandler(payloadClosure: (arg0: string)=>void): UserDefinedTransactionOperationHandler;
+   public addVolumeListOperationHandler(closure: (arg0: Array<RelativeVolumeListBlockVolume>)=>void): VolumeListTransactionOperationHandler;
+   public isValid(): boolean;
+   public unregister(): void;
+   private constructor();
+}
 export class TransactionManager {
    public createPendingTransaction(name: string): PendingTransaction;
-   public createUserDefinedTransactionHandler(undoClosure: (arg0: string)=>void, redoClosure: (arg0: string)=>void): UserDefinedTransactionHandlerId;
    public redo(): void;
    public redoSize(): number;
+   public registerTransactionHandler(onEvent?: (arg0: TransactionEvent)=>void): TransactionHandler;
    public undo(): void;
    public undoSize(): number;
    private constructor();
 }
-export class UserDefinedTransactionHandlerId {
+export class TransactionOperationHandler {
+   private constructor();
+}
+//@ts-ignore
+export class UserDefinedTransactionOperationHandler extends TransactionOperationHandler {
+   private constructor();
+}
+//@ts-ignore
+export class VoidTaskPromise extends TaskPromiseBase {
+   public readonly promise: Promise<undefined>;
+   private constructor();
+}
+//@ts-ignore
+export class VolumeListTransactionOperationHandler extends TransactionOperationHandler {
+   private constructor();
+}
+//@ts-ignore
+export class VolumeTaskPromise extends TaskPromiseBase {
+   public readonly promise: Promise<RelativeVolumeListBlockVolume>;
    private constructor();
 }
 export class Widget {
@@ -1438,6 +1525,10 @@ export class InvalidWidgetError extends Error {
 }
 //@ts-ignore
 export class InvalidWidgetGroupError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class TaskCancelledError extends Error {
    private constructor();
 }
 //@ts-ignore

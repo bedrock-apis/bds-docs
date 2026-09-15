@@ -53,14 +53,6 @@ export enum CommandPermissionLevel {
    Host = 3,
    Owner = 4,
 }
-export enum CompoundBlockVolumeAction {
-   Add = 0,
-   Subtract = 1,
-}
-export enum CompoundBlockVolumePositionRelativity {
-   Absolute = 1,
-   Relative = 0,
-}
 export enum ContainerRulesErrorReason {
    BannedItem = "BannedItem",
    NestedStorageItem = "NestedStorageItem",
@@ -563,6 +555,11 @@ export enum PlayerWaypointsMode {
    Everyone = "Everyone",
    Off = "Off",
 }
+export enum PoiBlockOccupancyFilter {
+   Any = "Any",
+   Full = "Full",
+   HasVacancy = "HasVacancy",
+}
 export enum ScoreboardIdentityType {
    Entity = "Entity",
    FakePlayer = "FakePlayer",
@@ -768,11 +765,6 @@ export interface CameraTargetOptions {
    offsetFromTargetCenter?: Vector3;
    targetEntity: Entity;
 }
-export interface CompoundBlockVolumeItem {
-   action?: CompoundBlockVolumeAction;
-   locationRelativity?: CompoundBlockVolumePositionRelativity;
-   volume: BlockVolume;
-}
 export interface ContainerAccessSource {
    entity?: Entity;
 }
@@ -935,7 +927,7 @@ export interface EntityRaycastOptions extends EntityFilter {
 export interface EntitySneakingChangedEventOptions {
    entityFilter?: EntityFilter;
 }
-export interface EntityTamedEventFilter {
+export interface EntityTamedEventOptions {
    entityFilter?: EntityFilter;
    tamingEntityFilter?: EntityFilter;
 }
@@ -1049,6 +1041,16 @@ export interface PlayerVisibilityRules extends EntityVisibilityRules {
    showSpectator?: boolean;
    showSpectatorToSpectator?: boolean;
 }
+export interface PoiDistancePair {
+   distance: number;
+   poi: PoiBlockInstance;
+}
+export interface PoiNameFilter {
+   name: string;
+}
+export interface PoiTagFilter {
+   tags: Array<string>;
+}
 export interface PrimitiveShapeQueryOptions {
    attachedTo?: Entity;
    location?: Vector3;
@@ -1149,6 +1151,7 @@ export interface TeleportOptions {
    checkForBlocks?: boolean;
    dimension?: Dimension;
    facingLocation?: Vector3;
+   forceProvidedPositionOnDimensionChange?: boolean;
    keepVelocity?: boolean;
    rotation?: Vector2;
 }
@@ -1163,6 +1166,11 @@ export interface TickingAreaOptions {
    dimension: Dimension;
    from: Vector3;
    to: Vector3;
+}
+export interface TimeMarkerOptions {
+   name: string;
+   period?: number;
+   time: number;
 }
 export interface TitleDisplayOptions {
    fadeInDuration: number;
@@ -1191,7 +1199,18 @@ export interface WaypointTextureBounds {
 export interface WaypointTextureSelector {
    textureBoundsList: Array<WaypointTextureBounds>;
 }
+export interface WorldClockEventOptions {
+   clock: string;
+}
+export interface WorldClockRegistrationOptions {
+   timeMarkers?: Array<TimeMarkerOptions>;
+}
+export interface WorldClockTimeMarkerEventOptions {
+   clock: string;
+   timeMarker?: string;
+}
 export interface WorldSoundOptions {
+   isBroadcast?: boolean;
    loopCount?: number;
    pitch?: number;
    volume?: number;
@@ -1667,7 +1686,7 @@ export class ChatSendBeforeEvent {
    public cancel: boolean;
    public readonly message: string;
    public readonly sender: Player;
-   public readonly targets?: Array<Player>;
+   public targets?: Array<Player>;
    private constructor();
 }
 export class ChatSendBeforeEventSignal {
@@ -1690,27 +1709,6 @@ export class Component {
    public readonly isValid: boolean;
    public readonly typeId: string;
    private constructor();
-}
-export class CompoundBlockVolume {
-   public readonly capacity: number;
-   public readonly items: Array<CompoundBlockVolumeItem>;
-   public readonly itemsAbsolute: Array<CompoundBlockVolumeItem>;
-   public readonly volumeCount: number;
-   public clear(): void;
-   public constructor(origin?: Vector3);
-   public getBlockLocationIterator(): BlockLocationIterator;
-   public getBoundingBox(): BlockBoundingBox;
-   public getMax(): Vector3;
-   public getMin(): Vector3;
-   public getOrigin(): Vector3;
-   public isEmpty(): boolean;
-   public isInside(worldLocation: Vector3): boolean;
-   public peekLastVolume(forceRelativity?: CompoundBlockVolumePositionRelativity): (CompoundBlockVolumeItem | undefined);
-   public popVolume(): boolean;
-   public pushVolume(item: CompoundBlockVolumeItem): void;
-   public replaceOrAddLastVolume(item: CompoundBlockVolumeItem): boolean;
-   public setOrigin(position: Vector3, preserveExistingVolumes?: boolean): void;
-   public translateOrigin(delta: Vector3, preserveExistingVolumes?: boolean): void;
 }
 export class Container {
    public readonly containerRules?: ContainerRules;
@@ -1800,6 +1798,7 @@ export class Dimension {
    public readonly heightRange: common.NumberRange;
    public readonly id: string;
    public readonly localizationKey: string;
+   public readonly poiManager: PoiManager;
    public calculateClosestBiomeFromSeed(pos: Vector3, biomeToFind: BiomeType | string, options?: BiomeSearchOptions): (Vector3 | undefined);
    public cloneBlocks(beginLocation: Vector3, endLocation: Vector3, destination: Vector3, cloneMode: CloneMode, filter?: BlockFilter): void;
    public containsBiomes(volume: BlockVolumeBase, biomeFilter: BiomeFilter, isSuperset: boolean): boolean;
@@ -1850,10 +1849,15 @@ export class DimensionTypes {
    public static getAll(): Array<DimensionType>;
    private constructor();
 }
+export class Duration {
+   public readonly isInfinite: boolean;
+   public readonly value?: number;
+   public constructor(duration?: number);
+}
 export class Effect {
    public readonly amplifier: number;
    public readonly displayName: string;
-   public readonly duration: number;
+   public readonly duration: Duration;
    public readonly isValid: boolean;
    public readonly typeId: string;
    private constructor();
@@ -1870,7 +1874,7 @@ export class EffectAddAfterEventSignal {
 }
 export class EffectAddBeforeEvent {
    public cancel: boolean;
-   public duration: number;
+   public duration: Duration;
    public readonly effectType: string;
    public readonly entity: Entity;
    private constructor();
@@ -1944,7 +1948,7 @@ export class Entity {
    public readonly scoreboardIdentity?: ScoreboardIdentity;
    public readonly target?: Entity;
    public readonly typeId: string;
-   public addEffect(effectType: EffectType | string, duration: number, options?: EntityEffectOptions): (Effect | undefined);
+   public addEffect(effectType: EffectType | string, duration: Duration | number, options?: EntityEffectOptions): (Effect | undefined);
    public addItem(itemStack: ItemStack): (ItemStack | undefined);
    public addTag(tag: string): boolean;
    public applyDamage(amount: number, options?: EntityApplyDamageByProjectileOptions | EntityApplyDamageOptions): boolean;
@@ -2339,6 +2343,8 @@ export class EntityIsStunnedComponent extends EntityComponent {
 //@ts-ignore
 export class EntityIsTamedComponent extends EntityComponent {
    public static readonly componentId = "minecraft:is_tamed";
+   public readonly tamedToPlayer?: Player;
+   public readonly tamedToPlayerId?: string;
    private constructor();
 }
 //@ts-ignore
@@ -2676,7 +2682,7 @@ export class EntityTamedAfterEvent {
    private constructor();
 }
 export class EntityTamedAfterEventSignal {
-   public subscribe(callback: (arg0: EntityTamedAfterEvent)=>void, options?: EntityTamedEventFilter): (arg0: EntityTamedAfterEvent)=>void;
+   public subscribe(callback: (arg0: EntityTamedAfterEvent)=>void, options?: EntityTamedEventOptions): (arg0: EntityTamedAfterEvent)=>void;
    public unsubscribe(callback: (arg0: EntityTamedAfterEvent)=>void): void;
    private constructor();
 }
@@ -2687,7 +2693,7 @@ export class EntityTamedBeforeEvent {
    private constructor();
 }
 export class EntityTamedBeforeEventSignal {
-   public subscribe(callback: (arg0: EntityTamedBeforeEvent)=>void, options?: EntityTamedEventFilter): (arg0: EntityTamedBeforeEvent)=>void;
+   public subscribe(callback: (arg0: EntityTamedBeforeEvent)=>void, options?: EntityTamedEventOptions): (arg0: EntityTamedBeforeEvent)=>void;
    public unsubscribe(callback: (arg0: EntityTamedBeforeEvent)=>void): void;
    private constructor();
 }
@@ -2793,7 +2799,7 @@ export class FeedItem {
 export class FeedItemEffect {
    public readonly amplifier: number;
    public readonly chance: number;
-   public readonly duration: number;
+   public readonly duration: Duration;
    public readonly name: string;
    private constructor();
 }
@@ -3313,7 +3319,7 @@ export class MolangVariableMap {
 }
 export class PackSettingChangeAfterEvent {
    public readonly settingName: string;
-   public readonly settingValue: boolean | number | string;
+   public readonly settingValue: Array<string> | boolean | number | string;
    private constructor();
 }
 export class PackSettingChangeAfterEventSignal {
@@ -3711,6 +3717,36 @@ export class PlayerWaypoint extends EntityWaypoint {
    public readonly playerRules: PlayerVisibilityRules;
    public constructor(player: Player, textureSelector: WaypointTextureSelector, playerRules: PlayerVisibilityRules, color?: RGB);
 }
+export class PoiBlockInstance {
+   public readonly position: Vector3;
+   public readonly tickets: number;
+   public readonly type: PoiBlockType;
+   private constructor();
+}
+export class PoiBlockManager {
+   public addTemporary(position: Vector3, poi: PoiBlockType | string | number): void;
+   public at(position: Vector3): (PoiBlockType | undefined);
+   public exists(position: Vector3, filter: (arg0: PoiBlockType)=>boolean | PoiNameFilter | PoiTagFilter): boolean;
+   public getInRange(filter: (arg0: PoiBlockType)=>boolean | PoiNameFilter | PoiTagFilter, center: Vector3, blockRadius: number, occupancyFilter?: PoiBlockOccupancyFilter): Array<PoiBlockInstance>;
+   public getInRangeSorted(filter: (arg0: PoiBlockType)=>boolean | PoiNameFilter | PoiTagFilter, center: Vector3, blockRadius: number, occupancyFilter?: PoiBlockOccupancyFilter): Array<PoiDistancePair>;
+   public getInSquare(filter: (arg0: PoiBlockType)=>boolean | PoiNameFilter | PoiTagFilter, center: Vector3, blockRadius: number, occupancyFilter?: PoiBlockOccupancyFilter): Array<PoiBlockInstance>;
+   public release(center: Vector3): boolean;
+   public take(filter: (arg0: PoiBlockType)=>boolean | PoiNameFilter | PoiTagFilter, center: Vector3, blockRadius: number): (Vector3 | undefined);
+   private constructor();
+}
+export class PoiBlockType {
+   public readonly id: number;
+   public readonly name: string;
+   public readonly tickets: number;
+   public readonly usableRange: number;
+   public equals(other: PoiBlockType): boolean;
+   public has(tag: string): boolean;
+   private constructor();
+}
+export class PoiManager {
+   public readonly blocks: PoiBlockManager;
+   private constructor();
+}
 export class PotionDeliveryType {
    public readonly id: string;
    private constructor();
@@ -4051,6 +4087,7 @@ export class StartupEvent {
    public readonly customCommandRegistry: CustomCommandRegistry;
    public readonly dimensionRegistry: DimensionRegistry;
    public readonly itemComponentRegistry: ItemComponentRegistry;
+   public readonly worldClockRegistry: WorldClockRegistry;
    private constructor();
 }
 //@ts-ignore
@@ -4125,6 +4162,7 @@ export class TextPrimitive extends PrimitiveShape {
    public backfaceVisible: boolean;
    public backgroundColorOverride?: RGBA;
    public depthTest: boolean;
+   public lineGapHeight: number;
    public readonly text: RawMessage | string;
    public textBackfaceVisible: boolean;
    public useRotation: boolean;
@@ -4141,6 +4179,12 @@ export class TickingAreaManager {
    public hasTickingArea(identifier: string): boolean;
    public removeAllTickingAreas(): void;
    public removeTickingArea(identifier: string | TickingArea): void;
+   private constructor();
+}
+export class TimeMarker {
+   public readonly name: string;
+   public readonly period?: number;
+   public readonly time: number;
    private constructor();
 }
 export class Trigger {
@@ -4217,6 +4261,7 @@ export class World {
    public getAbsoluteTime(): number;
    public getAimAssist(): AimAssistRegistry;
    public getAllPlayers(): Array<Player>;
+   public getClock(name: string): WorldClock;
    public getDay(): number;
    public getDefaultSpawnLocation(): Vector3;
    public getDifficulty(): Difficulty;
@@ -4227,7 +4272,7 @@ export class World {
    public getEntity(id: string): (Entity | undefined);
    public getLootTableManager(): LootTableManager;
    public getMoonPhase(): MoonPhase;
-   public getPackSettings(): Record<string,boolean | number | string>;
+   public getPackSettings(): Record<string,Array<string> | boolean | number | string>;
    public getPlayers(options?: EntityQueryOptions): Array<Player>;
    public getTimeOfDay(): number;
    public playMusic(trackId: string, musicOptions?: MusicOptions): void;
@@ -4307,6 +4352,10 @@ export class WorldAfterEvents {
    public readonly targetBlockHit: TargetBlockHitAfterEventSignal;
    public readonly tripWireTrip: TripWireTripAfterEventSignal;
    public readonly weatherChange: WeatherChangeAfterEventSignal;
+   public readonly worldClockOnPaused: WorldClockOnPausedAfterEventSignal;
+   public readonly worldClockOnResumed: WorldClockOnResumedAfterEventSignal;
+   public readonly worldClockOnTimeMarker: WorldClockOnTimeMarkerAfterEventSignal;
+   public readonly worldClockOnTimeModified: WorldClockOnTimeModifiedAfterEventSignal;
    public readonly worldLoad: WorldLoadAfterEventSignal;
    private constructor();
 }
@@ -4327,6 +4376,71 @@ export class WorldBeforeEvents {
    public readonly playerLeave: PlayerLeaveBeforeEventSignal;
    public readonly playerPlaceBlock: PlayerPlaceBlockBeforeEventSignal;
    public readonly weatherChange: WeatherChangeBeforeEventSignal;
+   public readonly worldClockOnRestart: WorldClockOnRestartBeforeEventSignal;
+   private constructor();
+}
+export class WorldClock {
+   public isPaused: boolean;
+   public readonly name: string;
+   public time: number;
+   public readonly timeMarkers: Array<TimeMarker>;
+   public addTimeMarker(timeMarkerOptions: TimeMarkerOptions): void;
+   public removeTimeMarker(timeMarker: string | TimeMarker): void;
+   public rewindTo(timeMarker: string | TimeMarker): void;
+   public set(timeMarker: string | TimeMarker): void;
+   public skipTo(timeMarker: string | TimeMarker): void;
+   private constructor();
+}
+export class WorldClockOnPausedAfterEvent {
+   public readonly clock: WorldClock;
+   private constructor();
+}
+export class WorldClockOnPausedAfterEventSignal {
+   public subscribe(callback: (arg0: WorldClockOnPausedAfterEvent)=>void, options?: WorldClockEventOptions): (arg0: WorldClockOnPausedAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: WorldClockOnPausedAfterEvent)=>void): void;
+   private constructor();
+}
+export class WorldClockOnRestartBeforeEvent {
+   public cancel: boolean;
+   public readonly clock: WorldClock;
+   public newTime: number;
+   private constructor();
+}
+export class WorldClockOnRestartBeforeEventSignal {
+   public subscribe(callback: (arg0: WorldClockOnRestartBeforeEvent)=>void, options?: WorldClockEventOptions): (arg0: WorldClockOnRestartBeforeEvent)=>void;
+   public unsubscribe(callback: (arg0: WorldClockOnRestartBeforeEvent)=>void): void;
+   private constructor();
+}
+export class WorldClockOnResumedAfterEvent {
+   public readonly clock: WorldClock;
+   private constructor();
+}
+export class WorldClockOnResumedAfterEventSignal {
+   public subscribe(callback: (arg0: WorldClockOnResumedAfterEvent)=>void, options?: WorldClockEventOptions): (arg0: WorldClockOnResumedAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: WorldClockOnResumedAfterEvent)=>void): void;
+   private constructor();
+}
+export class WorldClockOnTimeMarkerAfterEvent {
+   public readonly clock: WorldClock;
+   public readonly timeMarker: TimeMarker;
+   private constructor();
+}
+export class WorldClockOnTimeMarkerAfterEventSignal {
+   public subscribe(callback: (arg0: WorldClockOnTimeMarkerAfterEvent)=>void, options?: WorldClockTimeMarkerEventOptions): (arg0: WorldClockOnTimeMarkerAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: WorldClockOnTimeMarkerAfterEvent)=>void): void;
+   private constructor();
+}
+export class WorldClockOnTimeModifiedAfterEvent {
+   public readonly clock: WorldClock;
+   private constructor();
+}
+export class WorldClockOnTimeModifiedAfterEventSignal {
+   public subscribe(callback: (arg0: WorldClockOnTimeModifiedAfterEvent)=>void, options?: WorldClockEventOptions): (arg0: WorldClockOnTimeModifiedAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: WorldClockOnTimeModifiedAfterEvent)=>void): void;
+   private constructor();
+}
+export class WorldClockRegistry {
+   public registerClock(name: string, registrationOptions?: WorldClockRegistrationOptions): void;
    private constructor();
 }
 export class WorldLoadAfterEvent {
@@ -4540,5 +4654,45 @@ export class TickingAreaError extends Error {
 }
 //@ts-ignore
 export class UnloadedChunksError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class WorldClockAddTimeMarkerError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class WorldClockInvalidRegistryError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class WorldClockInvalidTimeMarkerError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class WorldClockNotFoundError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class WorldClockRegistrationError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class WorldClockReloadNewWorldClockError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class WorldClockReloadTimeMarkerError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class WorldClockRemoveMinecraftTimeMarkerError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class WorldClockRewindError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class WorldClockTimeMarkerNotFoundError extends Error {
    private constructor();
 }

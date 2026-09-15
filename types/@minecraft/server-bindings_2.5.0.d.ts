@@ -1357,7 +1357,6 @@ export class Dimension {
    public getBlockAbove(location: Vector3, options?: BlockRaycastOptions): (Block | undefined);
    public getBlockBelow(location: Vector3, options?: BlockRaycastOptions): (Block | undefined);
    public getBlockFromRay(location: Vector3, direction: Vector3, options?: BlockRaycastOptions): (BlockRaycastHit | undefined);
-   public getBlocks(volume: BlockVolumeBase, filter: BlockFilter, allowUnloadedChunks?: boolean): ListBlockVolume;
    public getEntities(options?: EntityQueryOptions): Array<Entity>;
    public getEntitiesAtBlockLocation(location: Vector3): Array<Entity>;
    public getEntitiesFromRay(location: Vector3, direction: Vector3, options?: EntityRaycastOptions): Array<EntityRaycastHit>;
@@ -2672,7 +2671,7 @@ export class Player extends Entity {
    public getSpawnPoint(): (DimensionLocation | undefined);
    public getTotalXp(): number;
    public playMusic(trackId: string, musicOptions?: MusicOptions): void;
-   public playSound(soundId: string, soundOptions?: PlayerSoundOptions): SoundInstance;
+   public playSound(soundId: SoundDefinition | string, soundOptions?: PlayerSoundOptions): SoundInstance;
    public queueMusic(trackId: string, musicOptions?: MusicOptions): void;
    public removePropertyOverrideForEntity(targetEntity: Entity, identifier: string): void;
    public resetLevel(): void;
@@ -3193,6 +3192,9 @@ export class ShutdownEvent {
 }
 //@ts-ignore
 export class SmeltItemFunction extends LootItemFunction {
+   private constructor();
+}
+export class SoundDefinition {
    private constructor();
 }
 export class SoundInstance {

@@ -3,6 +3,11 @@ import * as server from "@minecraft/server";
 
 
 export interface AllowListEntry {
+   ignoresPlayerLimit: boolean;
+   name?: string;
+   xuid?: string;
+}
+export interface AllowListEntryNameInfo {
    name?: string;
    xuid?: string;
 }
@@ -21,11 +26,11 @@ export class AdminBeforeEvents {
 export class AllowList {
    public enabled: boolean;
    public readonly entries: Array<AllowListEntry>;
-   public add(player: AllowListEntry | server.Player): void;
+   public add(playerDetails: AllowListEntryNameInfo | server.Player, ignorePlayerLimit?: boolean): void;
    public clear(): void;
-   public contains(player: AllowListEntry | server.Player): boolean;
+   public contains(playerDetails: AllowListEntryNameInfo | server.Player): boolean;
    public reloadFile(): void;
-   public remove(player: AllowListEntry | server.Player): void;
+   public remove(playerDetails: AllowListEntryNameInfo | server.Player): void;
    private constructor();
 }
 export class AsyncPlayerJoinBeforeEvent {
