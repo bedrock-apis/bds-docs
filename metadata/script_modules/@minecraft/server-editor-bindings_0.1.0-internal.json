@@ -14691,6 +14691,21 @@
                   }
                ],
                "is_baked": false,
+               "is_read_only": true,
+               "name": "rotation",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "WidgetGizmoRotation"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
                "is_read_only": false,
                "name": "scaleMode",
                "set_privilege": [
@@ -18421,6 +18436,274 @@
             {
                "arguments": [
                   {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "eventFunction",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "closure_type": {
+                              "argument_types": [
+                                 {
+                                    "is_bind_type": true,
+                                    "is_errorable": false,
+                                    "name": "WidgetGizmoRotationEvent"
+                                 }
+                              ],
+                              "call_privilege": {
+                                 "name": "default"
+                              },
+                              "return_type": {
+                                 "is_bind_type": false,
+                                 "is_errorable": true,
+                                 "name": "undefined"
+                              }
+                           },
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "closure"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "setStateChangeEvent",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "WidgetGizmoRotation",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "preferredRingRadius",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "float",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "rotationAxes",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Axis"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "rotationOriginOffset",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.12.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Vector3"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "visualStepDegrees",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "float",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WidgetGizmoRotation"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [],
+         "name": "WidgetGizmoRotationEvent",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "axis",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Axis"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "component",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "WidgetComponentGizmo"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "deltaDegrees",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "float",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "eventType",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "WidgetGizmoRotationEventType"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "totalDegrees",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "float",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "widget",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Widget"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "WidgetGizmoRotationEvent"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
                      "details": null,
                      "name": "location",
                      "type": {
@@ -21977,6 +22260,55 @@
             {
                "is_read_only": true,
                "is_static": true,
+               "name": "Cancelled",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "Cancelled"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Grabbed",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "Grabbed"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Moved",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "Moved"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Released",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "Released"
+            }
+         ],
+         "name": "WidgetGizmoRotationEventType"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
                "name": "Screen",
                "type": {
                   "is_bind_type": true,
@@ -22036,6 +22368,99 @@
             }
          ],
          "name": "WidgetGroupSelectionMode"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "All",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "WidgetGuideSensorDirection"
+               },
+               "value": 63
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "NegativeX",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "WidgetGuideSensorDirection"
+               },
+               "value": 32
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "NegativeY",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "WidgetGuideSensorDirection"
+               },
+               "value": 2
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "NegativeZ",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "WidgetGuideSensorDirection"
+               },
+               "value": 8
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "None",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "WidgetGuideSensorDirection"
+               },
+               "value": 0
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "PositiveX",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "WidgetGuideSensorDirection"
+               },
+               "value": 16
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "PositiveY",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "WidgetGuideSensorDirection"
+               },
+               "value": 1
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "PositiveZ",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "WidgetGuideSensorDirection"
+               },
+               "value": 4
+            }
+         ],
+         "name": "WidgetGuideSensorDirection"
       },
       {
          "constants": [
@@ -25400,6 +25825,21 @@
             {
                "is_baked": false,
                "is_read_only": false,
+               "name": "rotationAxes",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "Axis"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
                "name": "scaleMode",
                "type": {
                   "is_bind_type": false,
@@ -25552,7 +25992,23 @@
             }
          ],
          "name": "WidgetComponentGuideOptions",
-         "properties": [],
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "directions",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "WidgetGuideSensorDirection"
+                  }
+               }
+            }
+         ],
          "type": {
             "is_bind_type": true,
             "is_errorable": false,

@@ -1010,6 +1010,7 @@ export interface PlayerBreakingBlockEventOptions {
 }
 export interface PlayerSoundOptions {
    location?: Vector3;
+   loopCount?: number;
    pitch?: number;
    volume?: number;
 }
@@ -1168,6 +1169,7 @@ export interface WaypointTextureSelector {
 }
 export interface WorldSoundOptions {
    isBroadcast?: boolean;
+   loopCount?: number;
    pitch?: number;
    volume?: number;
 }
@@ -3856,6 +3858,12 @@ export class SoundInstance {
    public readonly id: string;
    public readonly recipient?: Player;
    public readonly soundEventId: string;
+   public fade(duration: number, targetVolume: number): void;
+   public pause(): void;
+   public resume(): void;
+   public seekTo(seconds: number): void;
+   public setPitch(pitch: number): void;
+   public setVolume(volume: number): void;
    public stop(): void;
    private constructor();
 }

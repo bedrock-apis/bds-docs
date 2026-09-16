@@ -342,6 +342,12 @@ export enum WidgetGizmoEventType {
    OriginMoved = "OriginMoved",
    OriginReleased = "OriginReleased",
 }
+export enum WidgetGizmoRotationEventType {
+   Cancelled = "Cancelled",
+   Grabbed = "Grabbed",
+   Moved = "Moved",
+   Released = "Released",
+}
 export enum WidgetGizmoScaleMode {
    Screen = 1,
    World = 0,
@@ -350,6 +356,16 @@ export enum WidgetGroupSelectionMode {
    Multiple = "Multiple",
    None = "None",
    Single = "Single",
+}
+export enum WidgetGuideSensorDirection {
+   All = 63,
+   NegativeX = 32,
+   NegativeY = 2,
+   NegativeZ = 8,
+   None = 0,
+   PositiveX = 16,
+   PositiveY = 1,
+   PositiveZ = 4,
 }
 export enum WidgetMouseButtonActionType {
    Drag = 2,
@@ -597,6 +613,7 @@ export interface WidgetComponentGizmoOptions extends WidgetComponentBaseOptions 
    axes?: Axis;
    enablePlanes?: boolean;
    normalizedAutoOffset?: server.Vector3;
+   rotationAxes?: Axis;
    scaleMode?: WidgetGizmoScaleMode;
    stateChangeEvent?: (arg0: WidgetComponentGizmoStateChangeEventParameters)=>void;
 }
@@ -609,6 +626,7 @@ export interface WidgetComponentGridOptions extends WidgetComponentBaseOptions {
 }
 //@ts-ignore
 export interface WidgetComponentGuideOptions extends WidgetComponentBaseOptions {
+   directions?: WidgetGuideSensorDirection;
 }
 //@ts-ignore
 export interface WidgetComponentRenderPlaneOptions extends WidgetComponentBaseOptions {
@@ -1315,6 +1333,7 @@ export class WidgetComponentGizmo extends WidgetComponentBase {
    public activated: boolean;
    public enabledAxes: Axis;
    public normalizedOffsetOverride?: server.Vector3;
+   public readonly rotation: WidgetGizmoRotation;
    public scaleMode: WidgetGizmoScaleMode;
    public screenScale: number;
    public worldScale: number;
@@ -1480,6 +1499,23 @@ export class WidgetComponentVolumeOutline extends WidgetComponentBase {
    public volumeOffset: server.Vector3;
    public getVolume(): (RelativeVolumeListBlockVolume | undefined);
    public setVolume(volumeToSet?: Array<server.Vector3> | server.BlockVolume | server.BlockVolumeBase | RelativeVolumeListBlockVolume | server.Vector3): void;
+   private constructor();
+}
+export class WidgetGizmoRotation {
+   public preferredRingRadius: number;
+   public rotationAxes: Axis;
+   public rotationOriginOffset: server.Vector3;
+   public visualStepDegrees: number;
+   public setStateChangeEvent(eventFunction?: (arg0: WidgetGizmoRotationEvent)=>void): void;
+   private constructor();
+}
+export class WidgetGizmoRotationEvent {
+   public readonly axis: Axis;
+   public readonly component: WidgetComponentGizmo;
+   public readonly deltaDegrees: number;
+   public readonly eventType: WidgetGizmoRotationEventType;
+   public readonly totalDegrees: number;
+   public readonly widget: Widget;
    private constructor();
 }
 export class WidgetGroup {

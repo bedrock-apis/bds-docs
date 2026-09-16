@@ -114,6 +114,7 @@ export enum PersistenceScope {
 export enum PrefabInstanceInteractionEventType {
    Clicked = "Clicked",
    Moved = "Moved",
+   MoveRejected = "MoveRejected",
 }
 export enum PrefabSource {
    Global = "Global",
@@ -212,6 +213,11 @@ export interface FileSelectorOptions {
    maxFileSize: number;
    title?: string;
 }
+export interface FloodInteractiveToolOptions {
+   allowTruncatedResult: boolean;
+   applyLava: boolean;
+   currentLevel: number;
+}
 export interface InputBindingInfo {
    actionId?: string;
    bindingCategory?: string;
@@ -290,6 +296,16 @@ export interface PrefabInstanceInteractionEventClicked {
 }
 export interface PrefabInstanceInteractionEventMoved {
    location: server.Vector3;
+}
+export interface PrefabInstanceInteractionEventMoveRejected {
+   attemptedLocation: server.Vector3;
+   authoritativeLocation: server.Vector3;
+   conflictingInstanceIds: Array<string>;
+}
+export interface PrefabPlacementValidation {
+   bounds: PrefabTemplateInstanceBounds;
+   conflictingInstanceIds: Array<string>;
+   valid: boolean;
 }
 export interface PrefabServiceCreateTemplateOptions {
    description?: string;
@@ -385,6 +401,13 @@ export interface TextAnnotationSettings extends AnnotationSettings {
    titleTextSize?: number;
    widthLimit?: number;
 }
+export interface ValidateInstancePlacementOptions {
+   excludedInstanceId?: string;
+   options?: PrefabTemplateCreateInstanceOptions;
+}
+export interface ValidatePlacedInstanceBoundsOptions {
+   options?: PrefabTemplateCreateInstanceOptions;
+}
 
 export class AnnotationInstance {
    public readonly isValid: boolean;
@@ -422,6 +445,7 @@ export class ClientFilesystem {
 }
 export class ClientInteractiveTools {
    public activateExtrude(options: ExtrudeInteractiveToolOptions): Promise<void>;
+   public activateFlood(targetLocation: server.Vector3, options: FloodInteractiveToolOptions): Promise<void>;
    public activateSmartFill(options: SmartFillInteractiveToolOptions): Promise<void>;
    public applyExtrude(result: ExtrudeInteractiveToolResult): Promise<void>;
    public commitExtrude(target: server.Vector3, face: number): Promise<ExtrudeInteractiveToolResult>;
@@ -429,8 +453,10 @@ export class ClientInteractiveTools {
    public deactivate(): Promise<void>;
    public resume(): Promise<void>;
    public supportsExtrude(): Promise<boolean>;
+   public supportsFlood(): Promise<boolean>;
    public supportsSmartFill(): Promise<boolean>;
    public updateExtrude(options: ExtrudeInteractiveToolOptions): Promise<void>;
+   public updateFlood(targetLocation: server.Vector3, options: FloodInteractiveToolOptions): Promise<void>;
    public updateSmartFill(options: SmartFillInteractiveToolOptions): Promise<void>;
    private constructor();
 }
@@ -616,6 +642,7 @@ export class FloodResultTaskPromise extends server_editor.TaskPromiseBase {
 export class FloodSession {
    public apply(result: FloodResult, applyLava: boolean, allowTruncatedResult: boolean, transactionName: string, maxBlocksPerTick?: number): server_editor.VoidTaskPromise;
    public calculate(targetLocation: server.Vector3, currentWaterLevel: number, maxBlocksPerTick?: number): FloodResultTaskPromise;
+   public commit(targetLocation: server.Vector3, currentWaterLevel: number): Promise<FloodResult>;
    public dispose(): void;
    private constructor();
 }
@@ -730,7 +757,7 @@ export class PlayerProjectRegionManager {
    private constructor();
 }
 export class PrefabInstanceInteractionEvent {
-   public readonly eventData: PrefabInstanceInteractionEventClicked | PrefabInstanceInteractionEventMoved;
+   public readonly eventData: PrefabInstanceInteractionEventClicked | PrefabInstanceInteractionEventMoved | PrefabInstanceInteractionEventMoveRejected;
    public readonly eventType: PrefabInstanceInteractionEventType;
    public readonly instance: PrefabTemplateInstance;
    private constructor();
@@ -762,6 +789,9 @@ export class PrefabManager {
    public getTemplateInstances(templateOrMetadata: PrefabTemplate | PrefabTemplateMetadata): Array<PrefabTemplateInstanceLocation>;
    public getTemplateList(): Array<PrefabTemplateMetadata>;
    public selectInstance(instance: PrefabTemplateInstance, append: boolean): void;
+   public validateInstancePlacement(templateOrMetadata: PrefabTemplate | PrefabTemplateMetadata, location: server.Vector3, options?: ValidateInstancePlacementOptions): PrefabPlacementValidation;
+   public validatePlacedInstanceBounds(instance: PrefabTemplateInstance): PrefabPlacementValidation;
+   public validatePlacedInstanceBoundsAt(instance: PrefabTemplateInstance, location: server.Vector3, options?: PrefabTemplateCreateInstanceOptions): PrefabPlacementValidation;
    private constructor();
 }
 export class PrefabServiceInstanceInteractionEvent {
@@ -784,6 +814,7 @@ export class PrefabTemplate {
    public getTemplateStructures(): Array<PrefabTemplateStructure>;
    public removeStructure(templateStructure: PrefabTemplateStructure): void;
    public setName(newName: string): void;
+   public setStructureOrder(structureIds: Array<string>): void;
    public setTags(newTags: Array<string>): void;
    private constructor();
 }

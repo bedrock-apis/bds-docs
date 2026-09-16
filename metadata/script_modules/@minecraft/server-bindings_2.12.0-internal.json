@@ -2483,6 +2483,44 @@
                "arguments": [
                   {
                      "details": null,
+                     "name": "eventName",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "hasScheduledNamedTick",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationInUnloadedChunkError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationOutOfWorldBoundariesError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "boolean"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
                      "name": "tag",
                      "type": {
                         "is_bind_type": false,
@@ -2830,6 +2868,102 @@
                      "is_errorable": false,
                      "name": "Block"
                   }
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "eventName",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "removeScheduledNamedTick",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationInUnloadedChunkError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationOutOfWorldBoundariesError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "eventName",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  },
+                  {
+                     "details": {
+                        "min_value": 1
+                     },
+                     "name": "tickDelay",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "uint32",
+                        "valid_range": {
+                           "max": 2147483647,
+                           "min": -2147483648
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "scheduleNamedTick",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "Error"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationInUnloadedChunkError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationOutOfWorldBoundariesError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
                }
             },
             {
@@ -4070,6 +4204,51 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "BlockComponentEntityFallOnEvent"
+         }
+      },
+      {
+         "base_types": [
+            {
+               "is_bind_type": true,
+               "is_errorable": false,
+               "name": "BlockEvent"
+            }
+         ],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "eventName",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "isName",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            }
+         ],
+         "name": "BlockComponentNamedTickEvent",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "BlockComponentNamedTickEvent"
          }
       },
       {
@@ -45057,6 +45236,26 @@
                   }
                ],
                "is_baked": false,
+               "is_read_only": false,
+               "name": "defaultVisibleToAll",
+               "set_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
                "is_read_only": true,
                "name": "dimension",
                "type": {
@@ -45078,6 +45277,31 @@
                   "is_bind_type": false,
                   "is_errorable": false,
                   "name": "boolean"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "hiddenFrom",
+               "set_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "Player"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "array"
                }
             },
             {
@@ -64986,6 +65210,43 @@
                               "is_bind_type": true,
                               "is_errorable": false,
                               "name": "BlockComponentEntityFallOnEvent"
+                           },
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "CustomComponentParameters"
+                           }
+                        ],
+                        "call_privilege": {
+                           "name": "default"
+                        },
+                        "return_type": {
+                           "is_bind_type": false,
+                           "is_errorable": true,
+                           "name": "undefined"
+                        }
+                     },
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "closure"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "onNamedTick",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "closure_type": {
+                        "argument_types": [
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "BlockComponentNamedTickEvent"
                            },
                            {
                               "is_bind_type": true,

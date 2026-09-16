@@ -672,6 +672,7 @@ export interface BlockCustomComponent {
    onBreak?: (arg0: BlockComponentBlockBreakEvent, arg1: CustomComponentParameters)=>void;
    onEntity?: (arg0: BlockComponentEntityEvent, arg1: CustomComponentParameters)=>void;
    onEntityFallOn?: (arg0: BlockComponentEntityFallOnEvent, arg1: CustomComponentParameters)=>void;
+   onNamedTick?: (arg0: BlockComponentNamedTickEvent, arg1: CustomComponentParameters)=>void;
    onPlace?: (arg0: BlockComponentOnPlaceEvent, arg1: CustomComponentParameters)=>void;
    onPlayerBreak?: (arg0: BlockComponentPlayerBreakEvent, arg1: CustomComponentParameters)=>void;
    onPlayerInteract?: (arg0: BlockComponentPlayerInteractEvent, arg1: CustomComponentParameters)=>void;
@@ -1338,6 +1339,7 @@ export class Block {
    public getSkyLightLevel(): number;
    public getTags(): Array<string>;
    public hasComponent(componentId: string): boolean;
+   public hasScheduledNamedTick(eventName: string): boolean;
    public hasTag(tag: string): boolean;
    public isLiquidBlocking(liquidType: LiquidType): boolean;
    public liquidCanFlowFromDirection(liquidType: LiquidType, flowDirection: Direction): boolean;
@@ -1345,6 +1347,8 @@ export class Block {
    public matches(blockName: string, states?: Record<string,boolean | number | string>): boolean;
    public north(steps?: number): (Block | undefined);
    public offset(offset: Vector3): (Block | undefined);
+   public removeScheduledNamedTick(eventName: string): void;
+   public scheduleNamedTick(eventName: string, tickDelay: number): void;
    public setPermutation(permutation: BlockPermutation): void;
    public setType(blockType: BlockType | string): void;
    public setWaterlogged(isWaterlogged: boolean): void;
@@ -1395,6 +1399,11 @@ export class BlockComponentEntityEvent extends BlockEvent {
 export class BlockComponentEntityFallOnEvent extends BlockEvent {
    public readonly entity?: Entity;
    public readonly fallDistance: number;
+   private constructor();
+}
+//@ts-ignore
+export class BlockComponentNamedTickEvent extends BlockEvent {
+   public isName(eventName: string): boolean;
    private constructor();
 }
 //@ts-ignore
@@ -3817,8 +3826,10 @@ export class PressurePlatePushAfterEventSignal {
 export class PrimitiveShape {
    public attachedTo?: Entity;
    public color: RGBA;
+   public defaultVisibleToAll: boolean;
    public readonly dimension: Dimension;
    public readonly hasDuration: boolean;
+   public hiddenFrom: Array<Player>;
    public readonly location: Vector3;
    public maximumRenderDistance?: number;
    public rotation: Vector3;

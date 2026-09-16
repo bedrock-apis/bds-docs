@@ -1,0 +1,82 @@
+{
+   "title": "minecraft:rideable",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/entity/1.26.60/minecraft_rideable.json",
+   "x-format-version": "1.26.60",
+   "type": "object",
+   "properties": {
+      "controlling_seat": {
+         "type": "integer",
+         "default": 0,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 1
+      },
+      "crouching_skip_interact": {
+         "type": "boolean",
+         "default": true,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 2
+      },
+      "dismount_mode": {
+         "default": "default",
+         "$ref": "./DismountMode.json",
+         "x-underlying-type": "uint8",
+         "x-ordinal-index": 8
+      },
+      "family_types": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "type": "string"
+         },
+         "x-ordinal-index": 6
+      },
+      "interact_text": {
+         "type": "string",
+         "default": "",
+         "x-ordinal-index": 7
+      },
+      "on_rider_enter_event": {
+         "type": "string",
+         "default": "",
+         "x-ordinal-index": 9
+      },
+      "on_rider_exit_event": {
+         "type": "string",
+         "default": "",
+         "x-ordinal-index": 10
+      },
+      "passenger_max_width": {
+         "type": "number",
+         "default": 0,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 5
+      },
+      "pull_in_entities": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 3
+      },
+      "rider_can_interact": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 4
+      },
+      "seat_count": {
+         "type": "integer",
+         "default": 1,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 0
+      },
+      "seats": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "./SeatDescription.json"
+         },
+         "x-ordinal-index": 11
+      }
+   }
+}

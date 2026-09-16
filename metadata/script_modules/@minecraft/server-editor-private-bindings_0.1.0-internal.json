@@ -629,6 +629,51 @@
                "arguments": [
                   {
                      "details": null,
+                     "name": "targetLocation",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-bindings",
+                           "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                           "version": "2.12.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "FloodInteractiveToolOptions"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "activateFlood",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "undefined"
+                  }
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
                      "name": "options",
                      "type": {
                         "is_bind_type": true,
@@ -862,6 +907,27 @@
                ],
                "is_constructor": false,
                "is_static": false,
+               "name": "supportsFlood",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "boolean"
+                  }
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
                "name": "supportsSmartFill",
                "return_type": {
                   "is_bind_type": false,
@@ -894,6 +960,51 @@
                "is_constructor": false,
                "is_static": false,
                "name": "updateExtrude",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "undefined"
+                  }
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "targetLocation",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-bindings",
+                           "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                           "version": "2.12.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "FloodInteractiveToolOptions"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "updateFlood",
                "return_type": {
                   "is_bind_type": false,
                   "is_errorable": true,
@@ -4330,6 +4441,55 @@
                }
             },
             {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "targetLocation",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-bindings",
+                           "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                           "version": "2.12.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "currentWaterLevel",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "int32",
+                        "valid_range": {
+                           "max": 2147483647,
+                           "min": -2147483648
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "commit",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "FloodResult"
+                  }
+               }
+            },
+            {
                "arguments": [],
                "call_privilege": [
                   {
@@ -7071,6 +7231,11 @@
                         "is_bind_type": true,
                         "is_errorable": false,
                         "name": "PrefabInstanceInteractionEventMoved"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabInstanceInteractionEventMoveRejected"
                      }
                   ]
                }
@@ -8021,6 +8186,202 @@
                   "is_errorable": true,
                   "name": "undefined"
                }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "templateOrMetadata",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "variant",
+                        "variant_types": [
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "PrefabTemplate"
+                           },
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "PrefabTemplateMetadata"
+                           }
+                        ]
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "location",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-bindings",
+                           "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                           "version": "2.12.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "ValidateInstancePlacementOptions"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "validateInstancePlacement",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "Error"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabErrorInvalidInstance"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabErrorInvalidTemplate"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabServiceError"
+                     }
+                  ],
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "PrefabPlacementValidation"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "instance",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabTemplateInstance"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "validatePlacedInstanceBounds",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabErrorInvalidInstance"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabServiceError"
+                     }
+                  ],
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "PrefabPlacementValidation"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "instance",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabTemplateInstance"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "location",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-bindings",
+                           "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                           "version": "2.12.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "PrefabTemplateCreateInstanceOptions"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "validatePlacedInstanceBoundsAt",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabErrorInvalidInstance"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabServiceError"
+                     }
+                  ],
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "PrefabPlacementValidation"
+               }
             }
          ],
          "name": "PrefabManager",
@@ -8468,6 +8829,49 @@
                         "is_bind_type": true,
                         "is_errorable": false,
                         "name": "PrefabTemplateExists"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "structureIds",
+                     "type": {
+                        "element_type": {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "array"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "setStructureOrder",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabErrorInvalidTemplate"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabErrorInvalidTemplateStructure"
                      }
                   ],
                   "is_bind_type": false,
@@ -11622,6 +12026,17 @@
                   "name": "string"
                },
                "value": "Moved"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "MoveRejected",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "MoveRejected"
             }
          ],
          "name": "PrefabInstanceInteractionEventType"
@@ -12743,6 +13158,51 @@
       },
       {
          "base_types": [],
+         "name": "FloodInteractiveToolOptions",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "allowTruncatedResult",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "applyLava",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "currentLevel",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "FloodInteractiveToolOptions"
+         }
+      },
+      {
+         "base_types": [],
          "name": "InputBindingInfo",
          "properties": [
             {
@@ -13581,6 +14041,108 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "PrefabInstanceInteractionEventMoved"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "PrefabInstanceInteractionEventMoveRejected",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "attemptedLocation",
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.12.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Vector3"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "authoritativeLocation",
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.12.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Vector3"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "conflictingInstanceIds",
+               "type": {
+                  "element_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "array"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "PrefabInstanceInteractionEventMoveRejected"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "PrefabPlacementValidation",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "bounds",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PrefabTemplateInstanceBounds"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "conflictingInstanceIds",
+               "type": {
+                  "element_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "array"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "valid",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "PrefabPlacementValidation"
          }
       },
       {
@@ -14692,6 +15254,73 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "TextAnnotationSettings"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "ValidateInstancePlacementOptions",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "excludedInstanceId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "options",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "PrefabTemplateCreateInstanceOptions"
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "ValidateInstancePlacementOptions"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "ValidatePlacedInstanceBoundsOptions",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "options",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "PrefabTemplateCreateInstanceOptions"
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "ValidatePlacedInstanceBoundsOptions"
          }
       }
    ],
