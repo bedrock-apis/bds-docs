@@ -17,29 +17,25 @@
          "x-control-value-type": "uint32",
          "x-ordinal-index": 1
       },
-      "color": {
-         "oneOf": [
-            {
-               "$ref": "../../../client_server/common/legacy/Color255RGBA.json"
-            },
-            {
-               "$ref": "../../../client_server/common/legacy/Color255RGB.json"
-            }
-         ],
-         "x-control-value-type": "uint32",
-         "x-ordinal-index": 0
+      "default_border_image": {
+         "$ref": "../../../client_server/common/legacy/FileReference%2021.json",
+         "x-ordinal-index": 4
       },
-      "color_disabled": {
-         "oneOf": [
-            {
-               "$ref": "../../../client_server/common/legacy/Color255RGBA.json"
-            },
-            {
-               "$ref": "../../../client_server/common/legacy/Color255RGB.json"
-            }
-         ],
-         "x-control-value-type": "uint32",
-         "x-ordinal-index": 3
+      "disabled_border_image": {
+         "$ref": "../../../client_server/common/legacy/FileReference%2021.json",
+         "x-ordinal-index": 6
+      },
+      "focused_border_image": {
+         "$ref": "../../../client_server/common/legacy/FileReference%2021.json",
+         "x-ordinal-index": 7
+      },
+      "hovered_border_image": {
+         "$ref": "../../../client_server/common/legacy/FileReference%2021.json",
+         "x-ordinal-index": 5
+      },
+      "panel_border_image": {
+         "$ref": "../../../client_server/common/legacy/FileReference%2021.json",
+         "x-ordinal-index": 8
       },
       "selection_background_color": {
          "oneOf": [
@@ -52,12 +48,36 @@
          ],
          "x-control-value-type": "uint32",
          "x-ordinal-index": 2
+      },
+      "text_color": {
+         "oneOf": [
+            {
+               "$ref": "../../../client_server/common/legacy/Color255RGBA.json"
+            },
+            {
+               "$ref": "../../../client_server/common/legacy/Color255RGB.json"
+            }
+         ],
+         "x-control-value-type": "uint32",
+         "x-ordinal-index": 0
+      },
+      "text_color_disabled": {
+         "oneOf": [
+            {
+               "$ref": "../../../client_server/common/legacy/Color255RGBA.json"
+            },
+            {
+               "$ref": "../../../client_server/common/legacy/Color255RGB.json"
+            }
+         ],
+         "x-control-value-type": "uint32",
+         "x-ordinal-index": 3
       }
    },
    "required": [
       "caret_color",
-      "color",
-      "color_disabled",
-      "selection_background_color"
+      "selection_background_color",
+      "text_color",
+      "text_color_disabled"
    ]
 }

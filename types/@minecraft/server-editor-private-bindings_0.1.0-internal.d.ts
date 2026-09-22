@@ -422,6 +422,8 @@ export class AnnotationManager {
    public getInstance(id: string): (AnnotationInstance | undefined);
    public getMetadata(id: string): (AnnotationMetadata | undefined);
    public hasInstance(id: string): boolean;
+   public leaseInstance(id: string): Promise<LeasedAnnotationInstance>;
+   public setShowAnnotations(showAnnotations: boolean): void;
    private constructor();
 }
 export class AnnotationMetadata {
@@ -707,6 +709,11 @@ export class JigsawService {
    public setRegistryData(registryName: string, processorData: Array<EditorRegistryFile>, structureData: Array<EditorRegistryFile>, structureSetData: Array<EditorRegistryFile>, templatePoolData: Array<EditorRegistryFile>): Promise<Array<string>>;
    private constructor();
 }
+export class LeasedAnnotationInstance {
+   public readonly instance: AnnotationInstance;
+   public dispose(): void;
+   private constructor();
+}
 export class MeshCacheManager {
    public cancelPlacement(requestId: string): void;
    public commitToWorld(meshId: string, options: MeshPlacementOptions): Promise<MeshPlacementResult>;
@@ -891,6 +898,19 @@ export class RealmsService {
    public getServiceStatus(): RealmsServiceStatus;
    public getSlots(worldId: string): Promise<Array<EditorRealmsWorldSlot>>;
    public isRealmsServiceAvailable(): EditorRealmsServiceAvailability;
+   private constructor();
+}
+//@ts-ignore
+export class TextAnnotationInstance extends AnnotationInstance {
+   public anchorOrientation: AnnotationAnchorOrientation;
+   public body: string;
+   public bodyTextColor: server.RGBA;
+   public facing: AnnotationFacing;
+   public showBody: boolean;
+   public showTitle: boolean;
+   public titleColor: server.RGBA;
+   public titleTextSize: number;
+   public widthLimit: number;
    private constructor();
 }
 

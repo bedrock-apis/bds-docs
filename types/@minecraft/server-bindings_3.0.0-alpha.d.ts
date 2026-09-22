@@ -6,6 +6,7 @@ export enum AimAssistTargetMode {
 }
 export enum BlockComponentTypes {
    DynamicProperties = "minecraft:dynamic_properties",
+   EntityStorage = "minecraft:entity_storage",
    FluidContainer = "minecraft:fluid_container",
    Instrument = "minecraft:instrument_sound",
    Inventory = "minecraft:inventory",
@@ -1484,6 +1485,21 @@ export class BlockDynamicPropertiesComponent extends BlockComponent {
    public get(key: string): (boolean | number | number | string | Vector3 | undefined);
    public set(key: string, value?: boolean | number | number | string | Vector3): void;
    public totalByteCount(): number;
+   private constructor();
+}
+//@ts-ignore
+export class BlockEntityStorageComponent extends BlockComponent {
+   public static readonly componentId = "minecraft:entity_storage";
+   public getEntities(): Array<BlockEntityStorageInfo>;
+   public release(entityId: string): Entity;
+   public size(): number;
+   public store(entity: Entity): string;
+   public transfer(entityId: string, targetBlock: Block): void;
+   private constructor();
+}
+export class BlockEntityStorageInfo {
+   public readonly definitionId: string;
+   public readonly uniqueId: string;
    private constructor();
 }
 export class BlockEvent {
@@ -3773,7 +3789,7 @@ export class PoiBlockType {
    public readonly tickets: number;
    public readonly usableRange: number;
    public equals(other: PoiBlockType): boolean;
-   public has(tag: string): boolean;
+   public hasTag(tag: string): boolean;
    private constructor();
 }
 export class PoiManager {

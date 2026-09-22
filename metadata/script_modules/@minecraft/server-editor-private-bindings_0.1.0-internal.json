@@ -278,6 +278,63 @@
                   "is_errorable": false,
                   "name": "boolean"
                }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "id",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "leaseInstance",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "LeasedAnnotationInstance"
+                  }
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "showAnnotations",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "setShowAnnotations",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
             }
          ],
          "name": "AnnotationManager",
@@ -6098,6 +6155,51 @@
          "constants": [],
          "functions": [
             {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "dispose",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "LeasedAnnotationInstance",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "instance",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationInstance"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "LeasedAnnotationInstance"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
                "arguments": [
                   {
                      "details": null,
@@ -11040,6 +11142,223 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "RealmsService"
+         }
+      },
+      {
+         "base_types": [
+            {
+               "is_bind_type": true,
+               "is_errorable": false,
+               "name": "AnnotationInstance"
+            }
+         ],
+         "constants": [],
+         "functions": [],
+         "name": "TextAnnotationInstance",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "anchorOrientation",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationAnchorOrientation"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "body",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "bodyTextColor",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.12.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "RGBA"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "facing",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationFacing"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "showBody",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "showTitle",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "titleColor",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.12.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "RGBA"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "titleTextSize",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "float",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "widthLimit",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "float",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "TextAnnotationInstance"
          }
       }
    ],

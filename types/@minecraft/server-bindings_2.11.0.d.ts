@@ -2239,6 +2239,8 @@ export class EntityIsStunnedComponent extends EntityComponent {
 //@ts-ignore
 export class EntityIsTamedComponent extends EntityComponent {
    public static readonly componentId = "minecraft:is_tamed";
+   public readonly tamedToPlayer?: Player;
+   public readonly tamedToPlayerId?: string;
    private constructor();
 }
 //@ts-ignore
