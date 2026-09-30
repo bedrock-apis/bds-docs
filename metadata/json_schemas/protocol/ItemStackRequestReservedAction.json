@@ -1,0 +1,36 @@
+{
+   "title": "ItemStackRequestReservedAction",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/ItemStackRequestReservedAction.json",
+   "x-format-version": "MISSING VERSION",
+   "x-protocol-version": 2223,
+   "type": "object",
+   "properties": {
+      "Action type": {
+         "const": "craftreservedaction",
+         "$ref": "./ItemStackRequestActionType.json",
+         "x-underlying-type": "uint8",
+         "x-serialization-options": [
+            "Enum-as-Value"
+         ],
+         "x-ordinal-index": 0
+      },
+      "Num Crafts": {
+         "type": "integer",
+         "x-underlying-type": "uint8",
+         "x-ordinal-index": 2,
+         "minimum": 1,
+         "maximum": 255
+      },
+      "Reserved Id": {
+         "type": "string",
+         "x-ordinal-index": 1,
+         "maxLength": 256
+      }
+   },
+   "required": [
+      "Action type",
+      "Num Crafts",
+      "Reserved Id"
+   ]
+}

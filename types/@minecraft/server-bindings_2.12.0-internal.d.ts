@@ -15,9 +15,11 @@ export enum BlockComponentTypes {
    Piston = "minecraft:piston",
    PrecipitationInteractions = "minecraft:precipitation_interactions",
    RecipeCrafting = "minecraft:recipe_crafting",
+   RecipeProcessing = "minecraft:recipe_processing",
    RecordPlayer = "minecraft:record_player",
    RedstoneProducer = "minecraft:redstone_producer",
    Sign = "minecraft:sign",
+   VibrationProperties = "minecraft:vibration_properties",
 }
 export enum BlockPistonState {
    Expanded = "Expanded",
@@ -705,6 +707,7 @@ export interface BlockCustomComponent {
    onEntity?: (arg0: BlockComponentEntityEvent, arg1: CustomComponentParameters)=>void;
    onEntityFallOn?: (arg0: BlockComponentEntityFallOnEvent, arg1: CustomComponentParameters)=>void;
    onNamedTick?: (arg0: BlockComponentNamedTickEvent, arg1: CustomComponentParameters)=>void;
+   onNeighborChanged?: (arg0: BlockComponentNeighborChangedAfterEvent, arg1: CustomComponentParameters)=>void;
    onPlace?: (arg0: BlockComponentOnPlaceEvent, arg1: CustomComponentParameters)=>void;
    onPlayerBreak?: (arg0: BlockComponentPlayerBreakEvent, arg1: CustomComponentParameters)=>void;
    onPlayerInteract?: (arg0: BlockComponentPlayerInteractEvent, arg1: CustomComponentParameters)=>void;
@@ -1040,6 +1043,11 @@ export interface MusicOptions {
    fade?: number;
    loop?: boolean;
    volume?: number;
+}
+export interface NeighborChange {
+   blockPermutation: BlockPermutation;
+   direction: Direction;
+   previousPermutation: BlockPermutation;
 }
 export interface NotEqualsComparison {
    notEquals: boolean | number | string;
@@ -1439,6 +1447,11 @@ export class BlockComponentNamedTickEvent extends BlockEvent {
    private constructor();
 }
 //@ts-ignore
+export class BlockComponentNeighborChangedAfterEvent extends BlockEvent {
+   public getChanges(): Array<NeighborChange>;
+   private constructor();
+}
+//@ts-ignore
 export class BlockComponentOnPlaceEvent extends BlockEvent {
    public readonly previousBlock: BlockPermutation;
    private constructor();
@@ -1643,6 +1656,17 @@ export class BlockRecipeCraftingComponent extends BlockComponent {
    private constructor();
 }
 //@ts-ignore
+export class BlockRecipeProcessingComponent extends BlockComponent {
+   public static readonly componentId = "minecraft:recipe_processing";
+   public readonly inputSlotCount: number;
+   public getInputItem(slot: number): (ItemStack | undefined);
+   public getInputSlotEnabled(slot: number): boolean;
+   public getOutputItem(): (ItemStack | undefined);
+   public setInputItem(slot: number, item?: ItemStack): void;
+   public setInputSlotEnabled(slot: number, enabled: boolean): void;
+   private constructor();
+}
+//@ts-ignore
 export class BlockRecordPlayerComponent extends BlockComponent {
    public static readonly componentId = "minecraft:record_player";
    public ejectRecord(): void;
@@ -1691,6 +1715,13 @@ export class BlockType {
 export class BlockTypes {
    public static get(typeName: string): (BlockType | undefined);
    public static getAll(): Array<BlockType>;
+   private constructor();
+}
+//@ts-ignore
+export class BlockVibrationPropertiesComponent extends BlockComponent {
+   public static readonly componentId = "minecraft:vibration_properties";
+   public getCanDampenVibrations(): boolean;
+   public getCanOccludeVibrations(): boolean;
    private constructor();
 }
 //@ts-ignore
@@ -3567,6 +3598,26 @@ export class PlayerCursorInventoryComponent extends EntityComponent {
    public clear(): void;
    private constructor();
 }
+export class PlayerCursorItemGrabAfterEvent {
+   public readonly item: ItemStack;
+   public readonly player: Player;
+   private constructor();
+}
+export class PlayerCursorItemGrabAfterEventSignal {
+   public subscribe(callback: (arg0: PlayerCursorItemGrabAfterEvent)=>void): (arg0: PlayerCursorItemGrabAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: PlayerCursorItemGrabAfterEvent)=>void): void;
+   private constructor();
+}
+export class PlayerCursorItemReleaseAfterEvent {
+   public readonly item: ItemStack;
+   public readonly player: Player;
+   private constructor();
+}
+export class PlayerCursorItemReleaseAfterEventSignal {
+   public subscribe(callback: (arg0: PlayerCursorItemReleaseAfterEvent)=>void): (arg0: PlayerCursorItemReleaseAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: PlayerCursorItemReleaseAfterEvent)=>void): void;
+   private constructor();
+}
 export class PlayerDimensionChangeAfterEvent {
    public readonly fromDimension: Dimension;
    public readonly fromLocation: Vector3;
@@ -3717,6 +3768,19 @@ export class PlayerInventoryItemChangeAfterEvent {
 export class PlayerInventoryItemChangeAfterEventSignal {
    public subscribe(callback: (arg0: PlayerInventoryItemChangeAfterEvent)=>void, options?: InventoryItemEventOptions): (arg0: PlayerInventoryItemChangeAfterEvent)=>void;
    public unsubscribe(callback: (arg0: PlayerInventoryItemChangeAfterEvent)=>void): void;
+   private constructor();
+}
+export class PlayerItemAttackEntityBeforeEvent {
+   public readonly aimDirection?: Vector3;
+   public cancel: boolean;
+   public readonly itemStack?: ItemStack;
+   public readonly player: Player;
+   public readonly target: Entity;
+   private constructor();
+}
+export class PlayerItemAttackEntityBeforeEventSignal {
+   public subscribe(callback: (arg0: PlayerItemAttackEntityBeforeEvent)=>void): (arg0: PlayerItemAttackEntityBeforeEvent)=>void;
+   public unsubscribe(callback: (arg0: PlayerItemAttackEntityBeforeEvent)=>void): void;
    private constructor();
 }
 export class PlayerJoinAfterEvent {
@@ -4453,6 +4517,8 @@ export class WorldAfterEvents {
    public readonly playerButtonInput: PlayerButtonInputAfterEventSignal;
    public readonly playerCancelBreakingBlock: PlayerCancelBreakingBlockAfterEventSignal;
    public readonly playerCraftRecipe: PlayerCraftRecipeAfterEventSignal;
+   public readonly playerCursorItemGrab: PlayerCursorItemGrabAfterEventSignal;
+   public readonly playerCursorItemRelease: PlayerCursorItemReleaseAfterEventSignal;
    public readonly playerDimensionChange: PlayerDimensionChangeAfterEventSignal;
    public readonly playerEmote: PlayerEmoteAfterEventSignal;
    public readonly playerGameModeChange: PlayerGameModeChangeAfterEventSignal;
@@ -4498,6 +4564,7 @@ export class WorldBeforeEvents {
    public readonly playerGameModeChange: PlayerGameModeChangeBeforeEventSignal;
    public readonly playerInteractWithBlock: PlayerInteractWithBlockBeforeEventSignal;
    public readonly playerInteractWithEntity: PlayerInteractWithEntityBeforeEventSignal;
+   public readonly playerItemAttackEntity: PlayerItemAttackEntityBeforeEventSignal;
    public readonly playerLeave: PlayerLeaveBeforeEventSignal;
    public readonly playerPlaceBlock: PlayerPlaceBlockBeforeEventSignal;
    public readonly weatherChange: WeatherChangeBeforeEventSignal;

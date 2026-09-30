@@ -2464,6 +2464,195 @@
       {
          "base_types": [],
          "constants": [],
+         "functions": [],
+         "name": "DataStoreModalToolChangeRequestedEvent",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "cancel",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "nextToolId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "previousToolId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "DataStoreModalToolChangeRequestedEvent"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "DataStoreModalToolChangeRequestedEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "default"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "subscribe",
+               "return_type": {
+                  "closure_type": {
+                     "argument_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "DataStoreModalToolChangeRequestedEvent"
+                        }
+                     ],
+                     "call_privilege": {
+                        "name": "default"
+                     },
+                     "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                     }
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "closure"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "DataStoreModalToolChangeRequestedEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "default"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "unsubscribe",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "DataStoreModalToolChangeRequestedEventSignal",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "DataStoreModalToolChangeRequestedEventSignal"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
          "functions": [
             {
                "arguments": [],
@@ -2906,6 +3095,21 @@
                   "is_bind_type": true,
                   "is_errorable": false,
                   "name": "DataStoreModalToolActivationChangedEventSignal"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "toolChangeRequested",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "DataStoreModalToolChangeRequestedEventSignal"
                }
             }
          ],
@@ -3904,6 +4108,125 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "DataTransferRequestResponse"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "options",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-editor-bindings",
+                           "uuid": "8518d9c7-a1f5-4bf3-acc7-78e87df595fc",
+                           "version": "0.1.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "GameOptions"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "beginExportProject",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "ExportResult"
+                  }
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "canExportProject",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "boolean"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "useDefault",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "boolean"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getGameOptions",
+               "return_type": {
+                  "from_module": {
+                     "name": "@minecraft/server-editor-bindings",
+                     "uuid": "8518d9c7-a1f5-4bf3-acc7-78e87df595fc",
+                     "version": "0.1.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "GameOptions"
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getGameVersion",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "string"
+               }
+            }
+         ],
+         "name": "ExportManager",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "ExportManager"
          }
       },
       {
@@ -5593,6 +5916,21 @@
                ],
                "is_baked": false,
                "is_read_only": true,
+               "name": "exportManager",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "ExportManager"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
                "name": "featureFlags",
                "type": {
                   "is_bind_type": true,
@@ -5673,6 +6011,21 @@
                   "is_bind_type": true,
                   "is_errorable": false,
                   "name": "MeshCacheManager"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "playtest",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestManager"
                }
             },
             {
@@ -7302,6 +7655,71 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "PlayerProjectRegionManager"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "options",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-editor-bindings",
+                           "uuid": "8518d9c7-a1f5-4bf3-acc7-78e87df595fc",
+                           "version": "0.1.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "GameOptions"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "beginPlaytest",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "PlaytestSessionResult"
+                  }
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getPlaytestSessionAvailability",
+               "return_type": {
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "PlaytestSessionResult"
+               }
+            }
+         ],
+         "name": "PlaytestManager",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "PlaytestManager"
          }
       },
       {
@@ -11645,6 +12063,99 @@
             {
                "is_read_only": true,
                "is_static": true,
+               "name": "EditorSystemFailure",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "ExportResult"
+               },
+               "value": 7
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "FileArchiverFetchFailed",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "ExportResult"
+               },
+               "value": 2
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "LevelFetchFailed",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "ExportResult"
+               },
+               "value": 1
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "PlayerNotFound",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "ExportResult"
+               },
+               "value": 4
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "ProjectConverterFetchFailed",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "ExportResult"
+               },
+               "value": 3
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "ValidWorldExport",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "ExportResult"
+               },
+               "value": 0
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "WorldExportBusy",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "ExportResult"
+               },
+               "value": 6
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "WorldExportFailed",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "ExportResult"
+               },
+               "value": 5
+            }
+         ],
+         "name": "ExportResult"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
                "name": "Client",
                "type": {
                   "is_bind_type": true,
@@ -12321,6 +12832,143 @@
             }
          ],
          "name": "PersistenceScope"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "EditorSystemFailure",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestSessionResult"
+               },
+               "value": 7
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "InvalidLevelId",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestSessionResult"
+               },
+               "value": 8
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "InvalidSessionHandle",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestSessionResult"
+               },
+               "value": 1
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "OK",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestSessionResult"
+               },
+               "value": 0
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "PlayerNotFound",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestSessionResult"
+               },
+               "value": 9
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "ResponseTimeout",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestSessionResult"
+               },
+               "value": 10
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "SessionInfoNotFound",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestSessionResult"
+               },
+               "value": 2
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "TooManyPlayers",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestSessionResult"
+               },
+               "value": 3
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "UnspecifiedError",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestSessionResult"
+               },
+               "value": 11
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "UnsupportedScenario",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestSessionResult"
+               },
+               "value": 6
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "WorldExportBusy",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestSessionResult"
+               },
+               "value": 5
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "WorldExportFailed",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestSessionResult"
+               },
+               "value": 4
+            }
+         ],
+         "name": "PlaytestSessionResult"
       },
       {
          "constants": [
@@ -13247,6 +13895,16 @@
             {
                "is_baked": false,
                "is_read_only": false,
+               "name": "isPro",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
                "name": "name",
                "type": {
                   "is_bind_type": false,
@@ -13502,6 +14160,40 @@
             {
                "is_baked": false,
                "is_read_only": false,
+               "name": "cliffDetection",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "boolean"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "cliffDetectionDepth",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "int32",
+                     "valid_range": {
+                        "max": 2147483647,
+                        "min": -2147483648
+                     }
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
                "name": "currentLevel",
                "type": {
                   "is_bind_type": false,
@@ -13510,6 +14202,26 @@
                   "valid_range": {
                      "max": 2147483647,
                      "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "selectionVolume",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "from_module": {
+                        "name": "@minecraft/server-bindings",
+                        "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                        "version": "2.12.0-internal"
+                     },
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "BlockVolumeBase"
                   }
                }
             }

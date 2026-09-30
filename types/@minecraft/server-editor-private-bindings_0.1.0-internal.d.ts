@@ -32,6 +32,16 @@ export enum EditorRealmsServiceAvailability {
    Success = 4,
    Unknown = 5,
 }
+export enum ExportResult {
+   EditorSystemFailure = 7,
+   FileArchiverFetchFailed = 2,
+   LevelFetchFailed = 1,
+   PlayerNotFound = 4,
+   ProjectConverterFetchFailed = 3,
+   ValidWorldExport = 0,
+   WorldExportBusy = 6,
+   WorldExportFailed = 5,
+}
 export enum FeatureFlagCategory {
    Client = 1,
    Server = 0,
@@ -110,6 +120,20 @@ export enum PersistenceScope {
    ClientProject = 0,
    ServerGlobal = 3,
    ServerProject = 2,
+}
+export enum PlaytestSessionResult {
+   EditorSystemFailure = 7,
+   InvalidLevelId = 8,
+   InvalidSessionHandle = 1,
+   OK = 0,
+   PlayerNotFound = 9,
+   ResponseTimeout = 10,
+   SessionInfoNotFound = 2,
+   TooManyPlayers = 3,
+   UnspecifiedError = 11,
+   UnsupportedScenario = 6,
+   WorldExportBusy = 5,
+   WorldExportFailed = 4,
 }
 export enum PrefabInstanceInteractionEventType {
    Clicked = "Clicked",
@@ -190,6 +214,7 @@ export interface EditorJigsawSection {
 }
 export interface EditorRealmsWorld {
    id: string;
+   isPro: boolean;
    name: string;
 }
 export interface EditorRealmsWorldSlot {
@@ -216,7 +241,10 @@ export interface FileSelectorOptions {
 export interface FloodInteractiveToolOptions {
    allowTruncatedResult: boolean;
    applyLava: boolean;
+   cliffDetection?: boolean;
+   cliffDetectionDepth?: number;
    currentLevel: number;
+   selectionVolume?: server.BlockVolumeBase;
 }
 export interface InputBindingInfo {
    actionId?: string;
@@ -533,8 +561,20 @@ export class DataStoreModalToolActivationChangedEventSignal {
    public unsubscribe(callback: (arg0: DataStoreModalToolActivationChangedEvent)=>void): void;
    private constructor();
 }
+export class DataStoreModalToolChangeRequestedEvent {
+   public cancel: boolean;
+   public readonly nextToolId?: string;
+   public readonly previousToolId?: string;
+   private constructor();
+}
+export class DataStoreModalToolChangeRequestedEventSignal {
+   public subscribe(callback: (arg0: DataStoreModalToolChangeRequestedEvent)=>void): (arg0: DataStoreModalToolChangeRequestedEvent)=>void;
+   public unsubscribe(callback: (arg0: DataStoreModalToolChangeRequestedEvent)=>void): void;
+   private constructor();
+}
 export class DataStoreModalToolContainer {
    public readonly toolActivationChanged: DataStoreModalToolActivationChangedEventSignal;
+   public readonly toolChangeRequested: DataStoreModalToolChangeRequestedEventSignal;
    public getSelectedTool(): (string | undefined);
    public getSortOrder(groupId: string): (Array<string> | undefined);
    public getToolPayload(id: string): string;
@@ -611,6 +651,13 @@ export class DataTransferRequestResponse {
    public readonly schema: string;
    private constructor();
 }
+export class ExportManager {
+   public beginExportProject(options: server_editor.GameOptions): Promise<ExportResult>;
+   public canExportProject(): boolean;
+   public getGameOptions(useDefault?: boolean): server_editor.GameOptions;
+   public getGameVersion(): string;
+   private constructor();
+}
 export class ExtrudeInteractiveToolResult {
    public readonly affectedVolume: server_editor.RelativeVolumeListBlockVolume;
    private constructor();
@@ -682,12 +729,14 @@ export class InternalPlayerServiceContext {
    public readonly clientInteractiveTools: ClientInteractiveTools;
    public readonly dataStore: DataStore;
    public readonly dataTransfer: DataTransferManager;
+   public readonly exportManager: ExportManager;
    public readonly featureFlags: FeatureFlagManager;
    public readonly floodTool: FloodTools;
    public readonly input: InputService;
    public readonly internalPersistenceManager: InternalPersistenceManager;
    public readonly jigsawService: JigsawService;
    public readonly meshCacheManager: MeshCacheManager;
+   public readonly playtest: PlaytestManager;
    public readonly prefabManager: PrefabManager;
    public readonly realmsService: RealmsService;
    public readonly regionManager: PlayerProjectRegionManager;
@@ -761,6 +810,11 @@ export class PlayerProjectRegionManager {
    public getCursorRegion(): ProjectRegion;
    public getSelectionRegion(): ProjectRegion;
    public leaseRegion(options: ProjectRegionOptions): ProjectRegion;
+   private constructor();
+}
+export class PlaytestManager {
+   public beginPlaytest(options: server_editor.GameOptions): Promise<PlaytestSessionResult>;
+   public getPlaytestSessionAvailability(): PlaytestSessionResult;
    private constructor();
 }
 export class PrefabInstanceInteractionEvent {

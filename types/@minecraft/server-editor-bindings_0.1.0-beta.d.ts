@@ -86,16 +86,6 @@ export enum EntityOperationType {
    Create = 0,
    Delete = 1,
 }
-export enum ExportResult {
-   EditorSystemFailure = 7,
-   FileArchiverFetchFailed = 2,
-   LevelFetchFailed = 1,
-   PlayerNotFound = 4,
-   ProjectConverterFetchFailed = 3,
-   ValidWorldExport = 0,
-   WorldExportBusy = 6,
-   WorldExportFailed = 5,
-}
 export enum FlattenMode {
    Both = 0,
    Down = 1,
@@ -179,20 +169,6 @@ export enum Plane {
    XY = 1,
    XZ = 2,
    YZ = 4,
-}
-export enum PlaytestSessionResult {
-   EditorSystemFailure = 7,
-   InvalidLevelId = 8,
-   InvalidSessionHandle = 1,
-   OK = 0,
-   PlayerNotFound = 9,
-   ResponseTimeout = 10,
-   SessionInfoNotFound = 2,
-   TooManyPlayers = 3,
-   UnspecifiedError = 11,
-   UnsupportedScenario = 6,
-   WorldExportBusy = 5,
-   WorldExportFailed = 4,
 }
 export enum PrimitiveType {
    AxialSphere = 5,
@@ -914,13 +890,6 @@ export class EditorStructureManager {
    public searchStructures(options?: EditorStructureSearchOptions): Array<EditorStructure>;
    private constructor();
 }
-export class ExportManager {
-   public beginExportProject(options: GameOptions): Promise<ExportResult>;
-   public canExportProject(): boolean;
-   public getGameOptions(useDefault?: boolean): GameOptions;
-   public getGameVersion(): string;
-   private constructor();
-}
 export class Extension {
    public readonly defaultToolGroupId: string;
    public readonly description: string;
@@ -936,12 +905,10 @@ export class ExtensionContext {
    public readonly brushShapeManager: BrushShapeManager;
    public readonly clipboardManager: ClipboardManager;
    public readonly cursor: Cursor;
-   public readonly exportManager: ExportManager;
    public readonly extensionInfo: Extension;
    public readonly guidePlaneManager: GuidePlaneManager;
    public readonly minimapManager: MinimapManager;
    public readonly player: server.Player;
-   public readonly playtest: PlaytestManager;
    public readonly selectionManager: SelectionManager;
    public readonly settings: SettingsManager;
    public readonly structureManager: EditorStructureManager;
@@ -1064,11 +1031,6 @@ export class PendingTransaction {
    public trackBlockChangeArea(from: server.Vector3, to: server.Vector3): boolean;
    public trackBlockChangeList(locations: Array<server.Vector3>): boolean;
    public trackBlockChangeVolume(blockVolume: server.BlockVolumeBase): boolean;
-   private constructor();
-}
-export class PlaytestManager {
-   public beginPlaytest(options: GameOptions): Promise<PlaytestSessionResult>;
-   public getPlaytestSessionAvailability(): PlaytestSessionResult;
    private constructor();
 }
 //@ts-ignore

@@ -3,7 +3,7 @@
    "$schema": "http://json-schema.org/draft-07/schema#",
    "$id": "/AddPlayerPacketPayload.json",
    "x-format-version": "MISSING VERSION",
-   "x-protocol-version": 2216,
+   "x-protocol-version": 2223,
    "type": "object",
    "properties": {
       "Abilities Data": {
@@ -23,7 +23,7 @@
          "x-serialization-options": [
             "Enum-as-Value"
          ],
-         "x-ordinal-index": 15
+         "x-ordinal-index": 16
       },
       "Carried Item": {
          "$ref": "./NetworkItemStackDescriptor.json",
@@ -31,11 +31,15 @@
       },
       "Device Id": {
          "type": "string",
-         "x-ordinal-index": 14
+         "x-ordinal-index": 15
       },
       "Entity Data": {
          "$ref": "./SynchedActorDataList.json",
          "x-ordinal-index": 10
+      },
+      "Passenger Block Data": {
+         "$ref": "./PassengerOfBlockArguments.json",
+         "x-ordinal-index": 14
       },
       "Platform Chat Id": {
          "type": "string",
