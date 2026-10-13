@@ -1,0 +1,98 @@
+{
+   "title": "minecraft:form_panel",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client/ddui/1.21.130/minecraft_form_panel.json",
+   "x-format-version": "1.21.130",
+   "type": "object",
+   "properties": {
+      "attribs": {
+         "description": "Dynamic value",
+         "x-ordinal-index": 1
+      },
+      "children": {
+         "type": "array",
+         "items": {
+            "oneOf": [
+               {
+                  "$ref": "./Container.FixedGridLayout.json"
+               },
+               {
+                  "$ref": "./Container.TextField.json"
+               },
+               {
+                  "$ref": "./minecraft_extension_point.json"
+               },
+               {
+                  "$ref": "./minecraft_form_button.json"
+               },
+               {
+                  "$ref": "./minecraft_form_close_button.json"
+               },
+               {
+                  "$ref": "./minecraft_form_divider.json"
+               },
+               {
+                  "$ref": "./minecraft_form_dropdown.json"
+               },
+               {
+                  "$ref": "./minecraft_form_image.json"
+               },
+               {
+                  "$ref": "./minecraft_form_scroll_view.json"
+               },
+               {
+                  "$ref": "./minecraft_form_slider.json"
+               },
+               {
+                  "$ref": "./minecraft_form_spacing.json"
+               },
+               {
+                  "$ref": "./minecraft_form_switch.json"
+               },
+               {
+                  "$ref": "./minecraft_form_text.json"
+               },
+               {
+                  "$ref": "./minecraft_form_textfield.json"
+               },
+               {
+                  "$ref": "./Panel.CloseButton.json"
+               },
+               {
+                  "$ref": "./Panel.Decoration.json"
+               },
+               {
+                  "$ref": "./Panel.Spacing.json"
+               },
+               {
+                  "$ref": "./minecraft_context_list.json"
+               },
+               {
+                  "$ref": "./ScrollableGridLayout.json"
+               },
+               {
+                  "$ref": "./Panel.Text.json"
+               },
+               {
+                  "$ref": "./minecraft_visibility.json"
+               },
+               {
+                  "$ref": "./minecraft_form_horizontal_stack.json"
+               }
+            ],
+            "x-control-value-type": "uint32"
+         },
+         "x-ordinal-index": 2
+      },
+      "component": {
+         "const": "minecraft:form_panel",
+         "$ref": "./ComponentType.json",
+         "x-underlying-type": "uint8",
+         "x-ordinal-index": 0
+      }
+   },
+   "required": [
+      "children",
+      "component"
+   ]
+}

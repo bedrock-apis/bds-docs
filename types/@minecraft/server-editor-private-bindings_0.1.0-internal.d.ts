@@ -17,6 +17,10 @@ export enum AnnotationFacing {
    Camera = 0,
    Manual = 1,
 }
+export enum AnnotationInteractionMode {
+   Drawing = 1,
+   None = 0,
+}
 export enum AnnotationType {
    CommentBlock = 4,
    Drawing = 1,
@@ -165,6 +169,10 @@ export enum RealmsWorldUploadResult {
    WorldUploadBusy = 5,
 }
 
+export interface AnnotationDrawingSettings {
+   color: server.RGBA;
+   thickness: number;
+}
 export interface AnnotationSettings {
    name?: string;
    tags?: Array<string>;
@@ -438,25 +446,39 @@ export interface ValidatePlacedInstanceBoundsOptions {
 }
 
 export class AnnotationInstance {
+   public readonly isLocked: boolean;
    public readonly isValid: boolean;
    public readonly metadata: AnnotationMetadata;
    private constructor();
 }
 export class AnnotationManager {
+   public acquireAnnotationLock(id: string, lockId?: string): void;
+   public createCommentEntityAnnotation(dimension: server.Dimension, location: server.Vector3, settings?: AnnotationSettings): (AnnotationMetadata | undefined);
    public createTextAnnotation(dimension: server.Dimension, location: server.Vector3, settings?: TextAnnotationSettings): (AnnotationMetadata | undefined);
-   public deleteAnnotation(id: string): void;
-   public deleteAnnotations(ids: Array<string>): void;
+   public deleteAnnotation(id: string): boolean;
+   public deleteAnnotations(ids: Array<string>): boolean;
    public getAllMetadata(): Array<AnnotationMetadata>;
    public getInstance(id: string): (AnnotationInstance | undefined);
+   public getInteractionMode(): AnnotationInteractionMode;
    public getMetadata(id: string): (AnnotationMetadata | undefined);
+   public getPlayerVisibleAnnotations(): Array<string>;
    public hasInstance(id: string): boolean;
+   public isAnnotationLocked(id: string): boolean;
+   public isAnnotationLockedByMe(id: string): boolean;
+   public isAnnotationVisible(id: string): boolean;
    public leaseInstance(id: string): Promise<LeasedAnnotationInstance>;
+   public releaseAnnotationLock(id: string, lockId?: string): boolean;
+   public setDrawingDistanceScalingEnabled(enabled: boolean): void;
+   public setInteractionMode(mode: AnnotationInteractionMode): void;
    public setShowAnnotations(showAnnotations: boolean): void;
+   public updateDrawingSettings(settings: AnnotationDrawingSettings): void;
    private constructor();
 }
 export class AnnotationMetadata {
+   public readonly creationDate: number;
    public readonly dimension: string;
    public readonly id: string;
+   public readonly isLocked: boolean;
    public readonly isValid: boolean;
    public readonly location: server.Vector3;
    public readonly name: string;

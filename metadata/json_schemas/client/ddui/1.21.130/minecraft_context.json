@@ -1,0 +1,44 @@
+{
+   "title": "minecraft:context",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client/ddui/1.21.130/minecraft_context.json",
+   "x-format-version": "1.21.130",
+   "type": "object",
+   "properties": {
+      "attribs": {
+         "description": "Dynamic value",
+         "x-ordinal-index": 1
+      },
+      "children": {
+         "type": "array",
+         "items": {
+            "oneOf": [
+               {
+                  "$ref": "./Container.Layout.json"
+               },
+               {
+                  "$ref": "./minecraft_context.json"
+               },
+               {
+                  "$ref": "./minecraft_form_panel.json"
+               },
+               {
+                  "$ref": "./Panel.json"
+               }
+            ],
+            "x-control-value-type": "uint32"
+         },
+         "x-ordinal-index": 2
+      },
+      "component": {
+         "const": "minecraft:context",
+         "$ref": "./ComponentType.json",
+         "x-underlying-type": "uint8",
+         "x-ordinal-index": 0
+      }
+   },
+   "required": [
+      "children",
+      "component"
+   ]
+}

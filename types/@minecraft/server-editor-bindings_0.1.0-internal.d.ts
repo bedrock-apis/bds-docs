@@ -333,6 +333,11 @@ export enum WidgetGroupSelectionMode {
    None = "None",
    Single = "Single",
 }
+export enum WidgetGuideSensorBlockFilter {
+   Any = 0,
+   Collidable = 1,
+   FullBlocks = 2,
+}
 export enum WidgetGuideSensorDirection {
    All = 63,
    NegativeX = 32,
@@ -587,6 +592,7 @@ export interface WidgetComponentEntityOptions extends WidgetComponentBaseOptions
 //@ts-ignore
 export interface WidgetComponentGizmoOptions extends WidgetComponentBaseOptions {
    axes?: Axis;
+   constrainToBlockCenters?: boolean;
    enablePlanes?: boolean;
    normalizedAutoOffset?: server.Vector3;
    rotationAxes?: Axis;
@@ -602,6 +608,7 @@ export interface WidgetComponentGridOptions extends WidgetComponentBaseOptions {
 }
 //@ts-ignore
 export interface WidgetComponentGuideOptions extends WidgetComponentBaseOptions {
+   blockFilter?: WidgetGuideSensorBlockFilter;
    directions?: WidgetGuideSensorDirection;
 }
 //@ts-ignore
@@ -746,7 +753,7 @@ export class BlockUtilityTasks {
 export class BrushShapeManager {
    public readonly activeBrushVolume?: RelativeVolumeListBlockVolume;
    public activateBrushTool(): void;
-   public beginPainting(onComplete: (arg0: PaintCompletionState)=>void): void;
+   public beginPainting(onComplete: (arg0: PaintCompletionState)=>void, pendingTransaction?: PendingTransaction): void;
    public clearBlockStateOverrides(): void;
    public deactivateBrushTool(): void;
    public disableItemPlacement(): void;
@@ -773,7 +780,7 @@ export class BrushShapeManager {
    public setInverseEraseMode(inverseEraseMode: boolean): void;
    public setPendingTransaction(pendingTransaction?: PendingTransaction): void;
    public setTerrainStrength(terrainStrength: number): void;
-   public singlePaint(onComplete: (arg0: PaintCompletionState)=>void): void;
+   public singlePaint(onComplete: (arg0: PaintCompletionState)=>void, pendingTransaction?: PendingTransaction): void;
    public switchBrushPaintMode(paintMode: PaintMode): void;
    private constructor();
 }

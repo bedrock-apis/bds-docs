@@ -458,6 +458,7 @@ export enum InputPermissionCategory {
 }
 export enum ItemComponentTypes {
    BlockDynamicProperties = "minecraft:block_actor_dynamic_properties",
+   BlockEntityStorage = "minecraft:block_entity_storage",
    Book = "minecraft:book",
    Compostable = "minecraft:compostable",
    Cooldown = "minecraft:cooldown",
@@ -533,6 +534,11 @@ export enum PaletteColor {
    Silver = 8,
    White = 0,
    Yellow = 4,
+}
+export enum PassengerOfBlockEmoteType {
+   Laying = "Laying",
+   Riding = "Riding",
+   Standing = "Standing",
 }
 export enum PlatformType {
    Console = "Console",
@@ -797,7 +803,7 @@ export interface CustomCommandParameter {
    type: CustomCommandParamType;
 }
 export interface CustomCommandResult {
-   message?: string;
+   message?: RawMessage | string;
    status: CustomCommandStatus;
 }
 export interface CustomTexture {
@@ -1113,6 +1119,10 @@ export interface RotationKeyFrame {
    rotation: Vector3;
    timeSeconds: number;
 }
+export interface ScheduledNamedTick {
+   eventName: string;
+   tickDelay: number;
+}
 export interface ScoreboardObjectiveDisplayOptions {
    objective: ScoreboardObjective;
    sortOrder?: ObjectiveSortOrder;
@@ -1336,6 +1346,7 @@ export class Block {
    public canPlace(blockToPlace: BlockPermutation | BlockType | string, faceToPlaceOn?: Direction): boolean;
    public center(): Vector3;
    public east(steps?: number): (Block | undefined);
+   public getAllScheduledNamedTicks(): Array<ScheduledNamedTick>;
    public getComponent(componentId: string): (BlockComponent | undefined);
    public getComponents(): Array<BlockComponent>;
    public getItemStack(amount?: number, withData?: boolean): (ItemStack | undefined);
@@ -1343,6 +1354,7 @@ export class Block {
    public getMapColor(): RGBA;
    public getParts(): (Array<Block> | undefined);
    public getRedstonePower(): (number | undefined);
+   public getScheduledNamedTickCount(): number;
    public getSkyLightLevel(): number;
    public getTags(): Array<string>;
    public hasComponent(componentId: string): boolean;
@@ -1354,7 +1366,7 @@ export class Block {
    public matches(blockName: string, states?: Record<string,boolean | number | string>): boolean;
    public north(steps?: number): (Block | undefined);
    public offset(offset: Vector3): (Block | undefined);
-   public removeScheduledNamedTick(eventName: string): void;
+   public removeScheduledNamedTicks(eventName: string): void;
    public scheduleNamedTick(eventName: string, tickDelay: number): void;
    public setPermutation(permutation: BlockPermutation): void;
    public setType(blockType: BlockType | string): void;
@@ -1410,7 +1422,8 @@ export class BlockComponentEntityFallOnEvent extends BlockEvent {
 }
 //@ts-ignore
 export class BlockComponentNamedTickEvent extends BlockEvent {
-   public isName(eventName: string): boolean;
+   public readonly name: string;
+   public isMine(): boolean;
    private constructor();
 }
 //@ts-ignore
@@ -1734,6 +1747,7 @@ export class Camera {
 //@ts-ignore
 export class CarryOverBlockEntityDataFunction extends LootItemFunction {
    public readonly dynamicProperties: boolean;
+   public readonly entityStorage: boolean;
    private constructor();
 }
 export class CatmullRomSpline {
@@ -2004,6 +2018,7 @@ export class Entity {
    public readonly isFalling: boolean;
    public readonly isInWater: boolean;
    public readonly isOnGround: boolean;
+   public readonly isPassengerOfBlock: boolean;
    public readonly isSleeping: boolean;
    public isSneaking: boolean;
    public readonly isSprinting: boolean;
@@ -2060,6 +2075,8 @@ export class Entity {
    public setOnFire(seconds: number, useEffects?: boolean): boolean;
    public setProperty(identifier: string, value: boolean | number | string): void;
    public setRotation(rotation: Vector2): void;
+   public startPassengerOfBlock(blockPosition: Vector3, offset: Vector3, rotation: number, rotationLimit: number, emote: PassengerOfBlockEmoteType): void;
+   public stopPassengerOfBlock(): void;
    public teleport(location: Vector3, teleportOptions?: TeleportOptions): void;
    public triggerEvent(eventName: string): void;
    public tryTeleport(location: Vector3, teleportOptions?: TeleportOptions): boolean;
@@ -2965,6 +2982,16 @@ export class ItemBlockDynamicPropertiesComponent extends ItemComponent {
    private constructor();
 }
 //@ts-ignore
+export class ItemBlockEntityStorageComponent extends ItemComponent {
+   public static readonly componentId = "minecraft:block_entity_storage";
+   public getEntities(): Array<BlockEntityStorageInfo>;
+   public release(entityId: string, location: DimensionLocation): Entity;
+   public size(): number;
+   public store(entity: Entity): string;
+   public transfer(entityId: string, targetBlock: Block): void;
+   private constructor();
+}
+//@ts-ignore
 export class ItemBookComponent extends ItemComponent {
    public static readonly componentId = "minecraft:book";
    public readonly author?: string;
@@ -3450,7 +3477,7 @@ export class Player extends Entity {
    public getSpawnPoint(): (DimensionLocation | undefined);
    public getSplitScreenSlot(): (PlayerSplitScreenSlot | undefined);
    public getTotalXp(): number;
-   public playMusic(trackId: string, musicOptions?: MusicOptions): void;
+   public playMusic(trackId: SoundDefinition | string, musicOptions?: MusicOptions): (SoundInstance | undefined);
    public playSound(soundId: SoundDefinition | string, soundOptions?: PlayerSoundOptions): SoundInstance;
    public postClientMessage(id: string, value: string): void;
    public queueMusic(trackId: string, musicOptions?: MusicOptions): void;
@@ -4400,7 +4427,7 @@ export class World {
    public getPackSettings(): Record<string,Array<string> | boolean | number | string>;
    public getPlayers(options?: EntityQueryOptions): Array<Player>;
    public getTimeOfDay(): number;
-   public playMusic(trackId: string, musicOptions?: MusicOptions): void;
+   public playMusic(trackId: SoundDefinition | string, musicOptions?: MusicOptions): (SoundInstance | undefined);
    public queueMusic(trackId: string, musicOptions?: MusicOptions): void;
    public sendMessage(message: Array<RawMessage | string> | RawMessage | string): void;
    public setAbsoluteTime(absoluteTime: number): void;

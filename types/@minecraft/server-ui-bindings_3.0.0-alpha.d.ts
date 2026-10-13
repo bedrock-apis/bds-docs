@@ -39,6 +39,7 @@ export interface ButtonOptions {
 }
 export interface CustomFormOptions {
    styleId?: ObservableString | string;
+   topCloseButtonVisible?: boolean | ObservableBoolean;
 }
 export interface DividerOptions {
    styleId?: ObservableString | string;
@@ -176,6 +177,12 @@ export class CustomForm {
    public spacer(options?: SpacingOptions): CustomForm;
    public textField(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, text: ObservableString, options?: TextFieldOptions): CustomForm;
    public toggle(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, toggled: ObservableBoolean, options?: ToggleOptions): CustomForm;
+}
+export class Form {
+   public constructor(player: server.Player, id: string);
+   public hide(): void;
+   public isShowing(): boolean;
+   public show(): Promise<void>;
 }
 export class FormResponse {
    public readonly cancelationReason?: FormCancelationReason;

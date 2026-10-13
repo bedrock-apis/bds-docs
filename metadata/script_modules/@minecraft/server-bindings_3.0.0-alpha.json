@@ -2094,6 +2094,39 @@
                }
             },
             {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getAllScheduledNamedTicks",
+               "return_type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "ScheduledNamedTick"
+                  },
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationInUnloadedChunkError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationOutOfWorldBoundariesError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "array"
+               }
+            },
+            {
                "arguments": [
                   {
                      "details": null,
@@ -2368,6 +2401,38 @@
                         "max": 2147483647,
                         "min": -2147483648
                      }
+                  }
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getScheduledNamedTickCount",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationInUnloadedChunkError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationOutOfWorldBoundariesError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
                   }
                }
             },
@@ -2889,7 +2954,7 @@
                ],
                "is_constructor": false,
                "is_static": false,
-               "name": "removeScheduledNamedTick",
+               "name": "removeScheduledNamedTicks",
                "return_type": {
                   "error_types": [
                      {
@@ -4217,17 +4282,7 @@
          "constants": [],
          "functions": [
             {
-               "arguments": [
-                  {
-                     "details": null,
-                     "name": "eventName",
-                     "type": {
-                        "is_bind_type": false,
-                        "is_errorable": false,
-                        "name": "string"
-                     }
-                  }
-               ],
+               "arguments": [],
                "call_privilege": [
                   {
                      "name": "restricted_execution"
@@ -4235,7 +4290,7 @@
                ],
                "is_constructor": false,
                "is_static": false,
-               "name": "isName",
+               "name": "isMine",
                "return_type": {
                   "is_bind_type": false,
                   "is_errorable": false,
@@ -4244,7 +4299,23 @@
             }
          ],
          "name": "BlockComponentNamedTickEvent",
-         "properties": [],
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "name",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            }
+         ],
          "type": {
             "is_bind_type": true,
             "is_errorable": false,
@@ -9607,6 +9678,21 @@
                   "is_errorable": false,
                   "name": "boolean"
                }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "entityStorage",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
             }
          ],
          "type": {
@@ -12090,6 +12176,11 @@
                         "is_bind_type": true,
                         "is_errorable": false,
                         "name": "NamespaceNameError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "RawMessageError"
                      }
                   ],
                   "is_bind_type": false,
@@ -12152,6 +12243,11 @@
                         "is_bind_type": true,
                         "is_errorable": false,
                         "name": "NamespaceNameError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "RawMessageError"
                      }
                   ],
                   "is_bind_type": false,
@@ -17569,6 +17665,106 @@
                "arguments": [
                   {
                      "details": null,
+                     "name": "blockPosition",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "offset",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "rotation",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "float",
+                        "valid_range": {
+                           "max": 2147483647,
+                           "min": -2147483648
+                        }
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "rotationLimit",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "float",
+                        "valid_range": {
+                           "max": 2147483647,
+                           "min": -2147483648
+                        }
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "emote",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PassengerOfBlockEmoteType"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "startPassengerOfBlock",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidEntityError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "stopPassengerOfBlock",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidEntityError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
                      "name": "location",
                      "type": {
                         "is_bind_type": true,
@@ -17861,6 +18057,28 @@
                "is_baked": false,
                "is_read_only": true,
                "name": "isOnGround",
+               "type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidEntityError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "boolean"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "isPassengerOfBlock",
                "type": {
                   "error_types": [
                      {
@@ -29773,6 +29991,254 @@
                   "is_errorable": false,
                   "name": "string"
                },
+               "value": "minecraft:block_entity_storage"
+            }
+         ],
+         "functions": [
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getEntities",
+               "return_type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "BlockEntityStorageInfo"
+                  },
+                  "error_types": [
+                     {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "Error"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidItemStackError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "array"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "entityId",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "location",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "DimensionLocation"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "release",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "Error"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidItemStackError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationInUnloadedChunkError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationOutOfWorldBoundariesError"
+                     }
+                  ],
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "Entity"
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "size",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "Error"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidItemStackError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "entity",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Entity"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "store",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "Error"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidItemStackError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "string"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "entityId",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "targetBlock",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Block"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "transfer",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "Error"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidItemStackError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationInUnloadedChunkError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationOutOfWorldBoundariesError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "ItemBlockEntityStorageComponent",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "ItemBlockEntityStorageComponent"
+         }
+      },
+      {
+         "base_types": [
+            {
+               "is_bind_type": true,
+               "is_errorable": false,
+               "name": "ItemComponent"
+            }
+         ],
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "componentId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
                "value": "minecraft:book"
             }
          ],
@@ -37492,7 +37958,19 @@
                      "type": {
                         "is_bind_type": false,
                         "is_errorable": false,
-                        "name": "string"
+                        "name": "variant",
+                        "variant_types": [
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "SoundDefinition"
+                           },
+                           {
+                              "is_bind_type": false,
+                              "is_errorable": false,
+                              "name": "string"
+                           }
+                        ]
                      }
                   },
                   {
@@ -37521,9 +37999,36 @@
                "is_static": false,
                "name": "playMusic",
                "return_type": {
+                  "error_types": [
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "EngineError"
+                     },
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PropertyOutOfBoundsError"
+                     }
+                  ],
                   "is_bind_type": false,
                   "is_errorable": true,
-                  "name": "undefined"
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "SoundInstance"
+                  }
                }
             },
             {
@@ -44740,9 +45245,6 @@
                }
             }
          ],
-         "runtime_conditions": [
-            "Poi"
-         ],
          "type": {
             "is_bind_type": true,
             "is_errorable": false,
@@ -45334,9 +45836,6 @@
          ],
          "name": "PoiBlockManager",
          "properties": [],
-         "runtime_conditions": [
-            "Poi"
-         ],
          "type": {
             "is_bind_type": true,
             "is_errorable": false,
@@ -45475,9 +45974,6 @@
                }
             }
          ],
-         "runtime_conditions": [
-            "Poi"
-         ],
          "type": {
             "is_bind_type": true,
             "is_errorable": false,
@@ -45505,9 +46001,6 @@
                   "name": "PoiBlockManager"
                }
             }
-         ],
-         "runtime_conditions": [
-            "Poi"
          ],
          "type": {
             "is_bind_type": true,
@@ -54923,7 +55416,19 @@
                      "type": {
                         "is_bind_type": false,
                         "is_errorable": false,
-                        "name": "string"
+                        "name": "variant",
+                        "variant_types": [
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "SoundDefinition"
+                           },
+                           {
+                              "is_bind_type": false,
+                              "is_errorable": false,
+                              "name": "string"
+                           }
+                        ]
                      }
                   },
                   {
@@ -54961,12 +55466,27 @@
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
+                        "name": "EngineError"
+                     },
+                     {
+                        "from_module": {
+                           "name": "@minecraft/common",
+                           "uuid": "77ec12b4-1b2b-4c98-8d34-d1cd63f849d5",
+                           "version": "1.2.0"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
                         "name": "PropertyOutOfBoundsError"
                      }
                   ],
                   "is_bind_type": false,
                   "is_errorable": true,
-                  "name": "undefined"
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "SoundInstance"
+                  }
                }
             },
             {
@@ -63100,6 +63620,17 @@
             {
                "is_read_only": true,
                "is_static": true,
+               "name": "BlockEntityStorage",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "minecraft:block_entity_storage"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
                "name": "Book",
                "type": {
                   "is_bind_type": false,
@@ -63754,6 +64285,44 @@
             }
          ],
          "name": "PaletteColor"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Laying",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "Laying"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Riding",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "Riding"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Standing",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "Standing"
+            }
+         ],
+         "name": "PassengerOfBlockEmoteType"
       },
       {
          "constants": [
@@ -67406,7 +67975,19 @@
                   "optional_type": {
                      "is_bind_type": false,
                      "is_errorable": false,
-                     "name": "string"
+                     "name": "variant",
+                     "variant_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "RawMessage"
+                        },
+                        {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        }
+                     ]
                   }
                }
             },
@@ -71311,6 +71892,41 @@
       },
       {
          "base_types": [],
+         "name": "ScheduledNamedTick",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "eventName",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "tickDelay",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int64",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "ScheduledNamedTick"
+         }
+      },
+      {
+         "base_types": [],
          "name": "ScoreboardObjectiveDisplayOptions",
          "properties": [
             {
@@ -73109,6 +73725,10 @@
             {
                "name": "minecraft:block_actor_dynamic_properties",
                "value": "ItemBlockDynamicPropertiesComponent"
+            },
+            {
+               "name": "minecraft:block_entity_storage",
+               "value": "ItemBlockEntityStorageComponent"
             },
             {
                "name": "minecraft:book",
