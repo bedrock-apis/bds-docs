@@ -432,6 +432,7 @@ export enum InputButton {
 }
 export enum InputMode {
    Gamepad = "Gamepad",
+   GamepadAndMouse = "GamepadAndMouse",
    KeyboardAndMouse = "KeyboardAndMouse",
    MotionController = "MotionController",
    Touch = "Touch",
@@ -450,7 +451,7 @@ export enum InputPermissionCategory {
    Sneak = 5,
 }
 export enum ItemComponentTypes {
-   BlockDynamicProperties = "minecraft:block_actor_dynamic_properties",
+   BlockDynamicProperties = "minecraft:block_dynamic_properties",
    Book = "minecraft:book",
    Compostable = "minecraft:compostable",
    Cooldown = "minecraft:cooldown",
@@ -547,6 +548,11 @@ export enum PlayerSplitScreenSlot {
    Fourth = "Fourth",
    Second = "Second",
    Third = "Third",
+}
+export enum PoiBlockOccupancyFilter {
+   Any = "Any",
+   Full = "Full",
+   HasVacancy = "HasVacancy",
 }
 export enum ScoreboardIdentityType {
    Entity = "Entity",
@@ -697,6 +703,12 @@ export interface BlockRaycastHit {
 }
 //@ts-ignore
 export interface BlockRaycastOptions extends BlockFilter {
+   includeLiquidBlocks?: boolean;
+   includePassableBlocks?: boolean;
+   maxDistance?: number;
+}
+//@ts-ignore
+export interface BlockSearchOptions extends BlockFilter {
    includeLiquidBlocks?: boolean;
    includePassableBlocks?: boolean;
    maxDistance?: number;
@@ -1023,6 +1035,16 @@ export interface PlayerVisibilityRules extends EntityVisibilityRules {
    showHidden?: boolean;
    showSpectator?: boolean;
    showSpectatorToSpectator?: boolean;
+}
+export interface PoiDistancePair {
+   distance: number;
+   poi: PoiBlockInstance;
+}
+export interface PoiNameFilter {
+   name: string;
+}
+export interface PoiTagFilter {
+   tags: Array<string>;
 }
 export interface PrimitiveShapeQueryOptions {
    attachedTo?: Entity;
@@ -1722,6 +1744,7 @@ export class Dimension {
    public readonly heightRange: common.NumberRange;
    public readonly id: string;
    public readonly localizationKey: string;
+   public readonly poiManager: PoiManager;
    public calculateClosestBiomeFromSeed(pos: Vector3, biomeToFind: BiomeType | string, options?: BiomeSearchOptions): (Vector3 | undefined);
    public cloneBlocks(beginLocation: Vector3, endLocation: Vector3, destination: Vector3, cloneMode: CloneMode, filter?: BlockFilter): void;
    public containsBiomes(volume: BlockVolumeBase, biomeFilter: BiomeFilter, isSuperset: boolean): boolean;
@@ -1730,8 +1753,8 @@ export class Dimension {
    public fillBlocks(volume: BlockVolumeBase, block: BlockPermutation | BlockType | string, options?: BlockFillOptions): ListBlockVolume;
    public getBiome(location: Vector3): BiomeType;
    public getBlock(location: Vector3): (Block | undefined);
-   public getBlockAbove(location: Vector3, options?: BlockRaycastOptions): (Block | undefined);
-   public getBlockBelow(location: Vector3, options?: BlockRaycastOptions): (Block | undefined);
+   public getBlockAbove(location: Vector3, options?: BlockSearchOptions): (Block | undefined);
+   public getBlockBelow(location: Vector3, options?: BlockSearchOptions): (Block | undefined);
    public getBlockFromRay(location: Vector3, direction: Vector3, options?: BlockRaycastOptions): (BlockRaycastHit | undefined);
    public getBlocks(volume: BlockVolumeBase, options: BlockQueryOptions, allowUnloadedChunks?: boolean): ListBlockVolume;
    public getEntities(options?: EntityQueryOptions): Array<Entity>;
@@ -2791,7 +2814,7 @@ export class ISerializable {
 }
 //@ts-ignore
 export class ItemBlockDynamicPropertiesComponent extends ItemComponent {
-   public static readonly componentId = "minecraft:block_actor_dynamic_properties";
+   public static readonly componentId = "minecraft:block_dynamic_properties";
    public get(key: string): (boolean | number | number | string | Vector3 | undefined);
    public set(key: string, value?: boolean | number | number | string | Vector3): void;
    public totalByteCount(): number;
@@ -3566,6 +3589,36 @@ export class PlayerWaypoint extends EntityWaypoint {
    public readonly playerRules: PlayerVisibilityRules;
    public constructor(player: Player, textureSelector: WaypointTextureSelector, playerRules: PlayerVisibilityRules, color?: RGB);
 }
+export class PoiBlockInstance {
+   public readonly position: Vector3;
+   public readonly tickets: number;
+   public readonly type: PoiBlockType;
+   private constructor();
+}
+export class PoiBlockManager {
+   public addTemporary(position: Vector3, poi: PoiBlockType | string | number): void;
+   public at(position: Vector3): (PoiBlockType | undefined);
+   public exists(position: Vector3, filter: (arg0: PoiBlockType)=>boolean | PoiNameFilter | PoiTagFilter): boolean;
+   public getInRange(filter: (arg0: PoiBlockType)=>boolean | PoiNameFilter | PoiTagFilter, center: Vector3, blockRadius: number, occupancyFilter?: PoiBlockOccupancyFilter): Array<PoiBlockInstance>;
+   public getInRangeSorted(filter: (arg0: PoiBlockType)=>boolean | PoiNameFilter | PoiTagFilter, center: Vector3, blockRadius: number, occupancyFilter?: PoiBlockOccupancyFilter): Array<PoiDistancePair>;
+   public getInSquare(filter: (arg0: PoiBlockType)=>boolean | PoiNameFilter | PoiTagFilter, center: Vector3, blockRadius: number, occupancyFilter?: PoiBlockOccupancyFilter): Array<PoiBlockInstance>;
+   public release(center: Vector3): boolean;
+   public take(filter: (arg0: PoiBlockType)=>boolean | PoiNameFilter | PoiTagFilter, center: Vector3, blockRadius: number): (Vector3 | undefined);
+   private constructor();
+}
+export class PoiBlockType {
+   public readonly id: number;
+   public readonly name: string;
+   public readonly tickets: number;
+   public readonly usableRange: number;
+   public equals(other: PoiBlockType): boolean;
+   public hasTag(tag: string): boolean;
+   private constructor();
+}
+export class PoiManager {
+   public readonly blocks: PoiBlockManager;
+   private constructor();
+}
 export class PotionDeliveryType {
    public readonly id: string;
    private constructor();
@@ -3609,8 +3662,10 @@ export class PressurePlatePushAfterEventSignal {
 export class PrimitiveShape {
    public attachedTo?: Entity;
    public color: RGBA;
+   public defaultVisibleToAll: boolean;
    public readonly dimension: Dimension;
    public readonly hasDuration: boolean;
+   public hiddenFrom: Array<Player>;
    public readonly location: Vector3;
    public maximumRenderDistance?: number;
    public rotation: Vector3;

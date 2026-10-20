@@ -325,6 +325,12 @@ export interface PersistenceQueryGroupOptions {
    scope?: PersistenceScope;
    version?: number;
 }
+export interface PrefabBakeResult {
+   baked: number;
+   failed: number;
+   skipped: number;
+   total: number;
+}
 export interface PrefabInstanceInteractionEventClicked {
    altPressed: boolean;
    ctrlPressed: boolean;
@@ -367,9 +373,11 @@ export interface PrefabTemplateInstanceLocation {
    location: server.Vector3;
 }
 export interface PrefabTemplateMetadata {
+   creationTime: number;
    description: string;
    displayName: string;
    instanceReferenceCount: number;
+   modifiedTime: number;
    name: string;
    notes: string;
    readOnly: boolean;
@@ -430,7 +438,9 @@ export interface TextAnnotationSettings extends AnnotationSettings {
    anchorOrientation?: AnnotationAnchorOrientation;
    body?: string;
    bodyTextColor?: server.RGBA;
+   bodyTextSize?: number;
    facing?: AnnotationFacing;
+   rotation?: server.Vector3;
    showBody?: boolean;
    showTitle?: boolean;
    titleColor?: server.RGBA;
@@ -839,6 +849,11 @@ export class PlaytestManager {
    public getPlaytestSessionAvailability(): PlaytestSessionResult;
    private constructor();
 }
+//@ts-ignore
+export class PrefabBakeTaskPromise extends server_editor.TaskPromiseBase {
+   public readonly promise: Promise<PrefabBakeResult>;
+   private constructor();
+}
 export class PrefabInstanceInteractionEvent {
    public readonly eventData: PrefabInstanceInteractionEventClicked | PrefabInstanceInteractionEventMoved | PrefabInstanceInteractionEventMoveRejected;
    public readonly eventType: PrefabInstanceInteractionEventType;
@@ -859,6 +874,8 @@ export class PrefabInstanceTransactionOperationHandler extends server_editor.Tra
 export class PrefabManager {
    public readonly instanceInteractionEvents: PrefabServiceInstanceInteractionEvent;
    public addPrefabInstanceOperationHandler(transactionHandler: server_editor.TransactionHandler, closure: (arg0: string, arg1?: string)=>void): PrefabInstanceTransactionOperationHandler;
+   public bakeAllInstances(): PrefabBakeTaskPromise;
+   public bakeInstances(instances: Array<PrefabTemplateInstance>): PrefabBakeTaskPromise;
    public beginCapturingMouseClicks(): void;
    public clearSelectedInstances(): void;
    public cloneTemplate(templateOrMetadataToClone: PrefabTemplate | PrefabTemplateMetadata, newName: string, optionalNewDisplayName?: string): PrefabTemplate;
@@ -867,10 +884,12 @@ export class PrefabManager {
    public deleteTemplate(templateOrMetadata: PrefabTemplate | PrefabTemplateMetadata): void;
    public deselectInstance(instance: PrefabTemplateInstance): void;
    public endCapturingMouseClicks(): void;
+   public getChangeRevision(): number;
    public getInstanceById(instanceId: string): (PrefabTemplateInstance | undefined);
    public getTemplate(searchMetadata_or_fullyQualifiedName: PrefabTemplateMetadata | string): PrefabTemplate;
    public getTemplateInstances(templateOrMetadata: PrefabTemplate | PrefabTemplateMetadata): Array<PrefabTemplateInstanceLocation>;
    public getTemplateList(): Array<PrefabTemplateMetadata>;
+   public isBakeInProgress(): boolean;
    public selectInstance(instance: PrefabTemplateInstance, append: boolean): void;
    public validateInstancePlacement(templateOrMetadata: PrefabTemplate | PrefabTemplateMetadata, location: server.Vector3, options?: ValidateInstancePlacementOptions): PrefabPlacementValidation;
    public validatePlacedInstanceBounds(instance: PrefabTemplateInstance): PrefabPlacementValidation;
@@ -907,7 +926,6 @@ export class PrefabTemplateInstance {
    public instanceRotation: server.StructureRotation;
    public readonly isValid: boolean;
    public location: server.Vector3;
-   public bakeInstance(): void;
    public getStructureRefs(): Array<PrefabTemplateInstanceStructure>;
    public getTemplate(): PrefabTemplate;
    public getWorldBounds(): PrefabTemplateInstanceBounds;
@@ -981,7 +999,9 @@ export class TextAnnotationInstance extends AnnotationInstance {
    public anchorOrientation: AnnotationAnchorOrientation;
    public body: string;
    public bodyTextColor: server.RGBA;
+   public bodyTextSize: number;
    public facing: AnnotationFacing;
+   public rotation?: server.Vector3;
    public showBody: boolean;
    public showTitle: boolean;
    public titleColor: server.RGBA;

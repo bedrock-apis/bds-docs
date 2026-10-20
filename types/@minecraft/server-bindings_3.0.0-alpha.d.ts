@@ -440,6 +440,7 @@ export enum InputButton {
 }
 export enum InputMode {
    Gamepad = "Gamepad",
+   GamepadAndMouse = "GamepadAndMouse",
    KeyboardAndMouse = "KeyboardAndMouse",
    Touch = "Touch",
 }
@@ -457,7 +458,7 @@ export enum InputPermissionCategory {
    Sneak = 5,
 }
 export enum ItemComponentTypes {
-   BlockDynamicProperties = "minecraft:block_actor_dynamic_properties",
+   BlockDynamicProperties = "minecraft:block_dynamic_properties",
    BlockEntityStorage = "minecraft:block_entity_storage",
    Book = "minecraft:book",
    Compostable = "minecraft:compostable",
@@ -727,6 +728,13 @@ export interface BlockRaycastOptions extends BlockFilter {
    includeLiquidBlocks?: boolean;
    includePassableBlocks?: boolean;
    maxDistance?: number;
+   usePreciseRaycast?: boolean;
+}
+//@ts-ignore
+export interface BlockSearchOptions extends BlockFilter {
+   includeLiquidBlocks?: boolean;
+   includePassableBlocks?: boolean;
+   maxDistance?: number;
 }
 export interface CameraAttachOptions {
    entity: Entity;
@@ -935,6 +943,7 @@ export interface EntityRaycastOptions extends EntityFilter {
    includeLiquidBlocks?: boolean;
    includePassableBlocks?: boolean;
    maxDistance?: number;
+   usePreciseRaycast?: boolean;
 }
 export interface EntitySneakingChangedEventOptions {
    entityFilter?: EntityFilter;
@@ -1890,8 +1899,8 @@ export class Dimension {
    public fillBlocks(volume: BlockVolumeBase, block: BlockPermutation | BlockType | string, options?: BlockFillOptions): ListBlockVolume;
    public getBiome(location: Vector3): BiomeType;
    public getBlock(location: Vector3): (Block | undefined);
-   public getBlockAbove(location: Vector3, options?: BlockRaycastOptions): (Block | undefined);
-   public getBlockBelow(location: Vector3, options?: BlockRaycastOptions): (Block | undefined);
+   public getBlockAbove(location: Vector3, options?: BlockSearchOptions): (Block | undefined);
+   public getBlockBelow(location: Vector3, options?: BlockSearchOptions): (Block | undefined);
    public getBlockFromRay(location: Vector3, direction: Vector3, options?: BlockRaycastOptions): (BlockRaycastHit | undefined);
    public getBlocks(volume: BlockVolumeBase, options: BlockQueryOptions, allowUnloadedChunks?: boolean): ListBlockVolume;
    public getEntities(options?: EntityQueryOptions): Array<Entity>;
@@ -2975,7 +2984,7 @@ export class ISerializable {
 }
 //@ts-ignore
 export class ItemBlockDynamicPropertiesComponent extends ItemComponent {
-   public static readonly componentId = "minecraft:block_actor_dynamic_properties";
+   public static readonly componentId = "minecraft:block_dynamic_properties";
    public get(key: string): (boolean | number | number | string | Vector3 | undefined);
    public set(key: string, value?: boolean | number | number | string | Vector3): void;
    public totalByteCount(): number;

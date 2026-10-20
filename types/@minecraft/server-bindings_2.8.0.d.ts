@@ -674,6 +674,12 @@ export interface BlockRaycastOptions extends BlockFilter {
    includePassableBlocks?: boolean;
    maxDistance?: number;
 }
+//@ts-ignore
+export interface BlockSearchOptions extends BlockFilter {
+   includeLiquidBlocks?: boolean;
+   includePassableBlocks?: boolean;
+   maxDistance?: number;
+}
 export interface CameraAttachOptions {
    entity: Entity;
    locator: EntityAttachPoint;
@@ -1622,8 +1628,8 @@ export class Dimension {
    public fillBlocks(volume: BlockVolumeBase, block: BlockPermutation | BlockType | string, options?: BlockFillOptions): ListBlockVolume;
    public getBiome(location: Vector3): BiomeType;
    public getBlock(location: Vector3): (Block | undefined);
-   public getBlockAbove(location: Vector3, options?: BlockRaycastOptions): (Block | undefined);
-   public getBlockBelow(location: Vector3, options?: BlockRaycastOptions): (Block | undefined);
+   public getBlockAbove(location: Vector3, options?: BlockSearchOptions): (Block | undefined);
+   public getBlockBelow(location: Vector3, options?: BlockSearchOptions): (Block | undefined);
    public getBlockFromRay(location: Vector3, direction: Vector3, options?: BlockRaycastOptions): (BlockRaycastHit | undefined);
    public getEntities(options?: EntityQueryOptions): Array<Entity>;
    public getEntitiesAtBlockLocation(location: Vector3): Array<Entity>;

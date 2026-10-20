@@ -59,6 +59,8 @@ export interface MessageBoxButtonOptions {
    imageDetails?: ImageDetails;
    tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
 }
+export interface MessageBoxOptions {
+}
 export interface MessageBoxResult {
    closeReason: DataDrivenScreenClosedReason;
    selection?: number;
@@ -160,7 +162,7 @@ export class MessageBox {
    public button2(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage): MessageBox;
    public button2WithOptions(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, options?: MessageBoxButtonOptions): MessageBox;
    public close(): void;
-   public constructor(player: server.Player, title: ObservableString | ObservableUIRawMessage | string | UIRawMessage);
+   public constructor(player: server.Player, title: ObservableString | ObservableUIRawMessage | string | UIRawMessage, options?: MessageBoxOptions);
    public isShowing(): boolean;
    public show(): Promise<MessageBoxResult>;
 }
