@@ -2,6 +2,28 @@ import * as server_editor from "@minecraft/server-editor-bindings";
 import * as common from "@minecraft/common";
 import * as server from "@minecraft/server";
 
+export enum AnnotationAnchorOrientation {
+   BottomCenter = 7,
+   BottomLeft = 6,
+   BottomRight = 8,
+   Center = 4,
+   CenterLeft = 3,
+   CenterRight = 5,
+   TopCenter = 1,
+   TopLeft = 0,
+   TopRight = 2,
+}
+export enum AnnotationFacing {
+   Camera = 0,
+   Manual = 1,
+}
+export enum AnnotationType {
+   CommentBlock = 4,
+   Drawing = 1,
+   Image = 2,
+   Invalid = 0,
+   Text = 3,
+}
 export enum EditorRealmsServiceAvailability {
    DedicatedServer = 2,
    NoRealmsSubscription = 1,
@@ -9,6 +31,16 @@ export enum EditorRealmsServiceAvailability {
    NotServerHost = 3,
    Success = 4,
    Unknown = 5,
+}
+export enum ExportResult {
+   EditorSystemFailure = 7,
+   FileArchiverFetchFailed = 2,
+   LevelFetchFailed = 1,
+   PlayerNotFound = 4,
+   ProjectConverterFetchFailed = 3,
+   ValidWorldExport = 0,
+   WorldExportBusy = 6,
+   WorldExportFailed = 5,
 }
 export enum FeatureFlagCategory {
    Client = 1,
@@ -19,6 +51,11 @@ export enum FilePickerError {
    Busy = "file-selector-busy",
    Cancelled = "cancelled",
    FileTooLarge = "file-too-large",
+}
+export enum FloodOperation {
+   Lower = 2,
+   None = 0,
+   Raise = 1,
 }
 export enum GeneralInputBindingPriority {
    ApplyFlood = 8,
@@ -61,6 +98,7 @@ export enum MeshLoadError {
    UnknownFormat = "unknown-format",
 }
 export enum MeshPlacementError {
+   BatchedPlacementFailure = "batched-placement-failure",
    Cancelled = "cancelled",
    CommitInProgress = "commit-in-progress",
    GridAxisExceeded = "grid-axis-exceeded",
@@ -83,9 +121,24 @@ export enum PersistenceScope {
    ServerGlobal = 3,
    ServerProject = 2,
 }
+export enum PlaytestSessionResult {
+   EditorSystemFailure = 7,
+   InvalidLevelId = 8,
+   InvalidSessionHandle = 1,
+   OK = 0,
+   PlayerNotFound = 9,
+   ResponseTimeout = 10,
+   SessionInfoNotFound = 2,
+   TooManyPlayers = 3,
+   UnspecifiedError = 11,
+   UnsupportedScenario = 6,
+   WorldExportBusy = 5,
+   WorldExportFailed = 4,
+}
 export enum PrefabInstanceInteractionEventType {
    Clicked = "Clicked",
    Moved = "Moved",
+   MoveRejected = "MoveRejected",
 }
 export enum PrefabSource {
    Global = "Global",
@@ -112,6 +165,11 @@ export enum RealmsWorldUploadResult {
    WorldUploadBusy = 5,
 }
 
+export interface AnnotationSettings {
+   name?: string;
+   tags?: Array<string>;
+   visible?: boolean;
+}
 export interface BindingCategoryInfo {
    label: string;
    order: number;
@@ -156,6 +214,7 @@ export interface EditorJigsawSection {
 }
 export interface EditorRealmsWorld {
    id: string;
+   isPro: boolean;
    name: string;
 }
 export interface EditorRealmsWorldSlot {
@@ -178,6 +237,14 @@ export interface FileSelectorOptions {
    extensions: Array<string>;
    maxFileSize: number;
    title?: string;
+}
+export interface FloodInteractiveToolOptions {
+   allowTruncatedResult: boolean;
+   applyLava: boolean;
+   cliffDetection?: boolean;
+   cliffDetectionDepth?: number;
+   currentLevel: number;
+   selectionVolume?: server.BlockVolumeBase;
 }
 export interface InputBindingInfo {
    actionId?: string;
@@ -258,6 +325,16 @@ export interface PrefabInstanceInteractionEventClicked {
 export interface PrefabInstanceInteractionEventMoved {
    location: server.Vector3;
 }
+export interface PrefabInstanceInteractionEventMoveRejected {
+   attemptedLocation: server.Vector3;
+   authoritativeLocation: server.Vector3;
+   conflictingInstanceIds: Array<string>;
+}
+export interface PrefabPlacementValidation {
+   bounds: PrefabTemplateInstanceBounds;
+   conflictingInstanceIds: Array<string>;
+   valid: boolean;
+}
 export interface PrefabServiceCreateTemplateOptions {
    description?: string;
    displayName?: string;
@@ -272,6 +349,10 @@ export interface PrefabTemplateAddStructureOptions {
 export interface PrefabTemplateCreateInstanceOptions {
    mirror?: server.StructureMirrorAxis;
    rotation?: server.StructureRotation;
+}
+export interface PrefabTemplateInstanceBounds {
+   max: server.Vector3;
+   min: server.Vector3;
 }
 export interface PrefabTemplateInstanceLocation {
    instance: PrefabTemplateInstance;
@@ -336,13 +417,65 @@ export interface SmartFillInteractiveToolOptions {
    onlyFillExposedSurface: boolean;
    radius: number;
 }
+//@ts-ignore
+export interface TextAnnotationSettings extends AnnotationSettings {
+   anchorOrientation?: AnnotationAnchorOrientation;
+   body?: string;
+   bodyTextColor?: server.RGBA;
+   facing?: AnnotationFacing;
+   showBody?: boolean;
+   showTitle?: boolean;
+   titleColor?: server.RGBA;
+   titleTextSize?: number;
+   widthLimit?: number;
+}
+export interface ValidateInstancePlacementOptions {
+   excludedInstanceId?: string;
+   options?: PrefabTemplateCreateInstanceOptions;
+}
+export interface ValidatePlacedInstanceBoundsOptions {
+   options?: PrefabTemplateCreateInstanceOptions;
+}
 
+export class AnnotationInstance {
+   public readonly isValid: boolean;
+   public readonly metadata: AnnotationMetadata;
+   private constructor();
+}
+export class AnnotationManager {
+   public createTextAnnotation(dimension: server.Dimension, location: server.Vector3, settings?: TextAnnotationSettings): (AnnotationMetadata | undefined);
+   public deleteAnnotation(id: string): void;
+   public deleteAnnotations(ids: Array<string>): void;
+   public getAllMetadata(): Array<AnnotationMetadata>;
+   public getInstance(id: string): (AnnotationInstance | undefined);
+   public getMetadata(id: string): (AnnotationMetadata | undefined);
+   public hasInstance(id: string): boolean;
+   public leaseInstance(id: string): Promise<LeasedAnnotationInstance>;
+   public setShowAnnotations(showAnnotations: boolean): void;
+   private constructor();
+}
+export class AnnotationMetadata {
+   public readonly dimension: string;
+   public readonly id: string;
+   public readonly isValid: boolean;
+   public readonly location: server.Vector3;
+   public readonly name: string;
+   public readonly tags: Array<string>;
+   public readonly type: AnnotationType;
+   public readonly visible: boolean;
+   public setLocation(location: server.Vector3): void;
+   public setName(name: string): void;
+   public setTags(tags: Array<string>): void;
+   public setVisible(visible: boolean): void;
+   private constructor();
+}
 export class ClientFilesystem {
    public chooseFile(options: FileSelectorOptions): Promise<string>;
    private constructor();
 }
 export class ClientInteractiveTools {
    public activateExtrude(options: ExtrudeInteractiveToolOptions): Promise<void>;
+   public activateFlood(targetLocation: server.Vector3, options: FloodInteractiveToolOptions): Promise<void>;
    public activateSmartFill(options: SmartFillInteractiveToolOptions): Promise<void>;
    public applyExtrude(result: ExtrudeInteractiveToolResult): Promise<void>;
    public commitExtrude(target: server.Vector3, face: number): Promise<ExtrudeInteractiveToolResult>;
@@ -350,8 +483,10 @@ export class ClientInteractiveTools {
    public deactivate(): Promise<void>;
    public resume(): Promise<void>;
    public supportsExtrude(): Promise<boolean>;
+   public supportsFlood(): Promise<boolean>;
    public supportsSmartFill(): Promise<boolean>;
    public updateExtrude(options: ExtrudeInteractiveToolOptions): Promise<void>;
+   public updateFlood(targetLocation: server.Vector3, options: FloodInteractiveToolOptions): Promise<void>;
    public updateSmartFill(options: SmartFillInteractiveToolOptions): Promise<void>;
    private constructor();
 }
@@ -426,8 +561,20 @@ export class DataStoreModalToolActivationChangedEventSignal {
    public unsubscribe(callback: (arg0: DataStoreModalToolActivationChangedEvent)=>void): void;
    private constructor();
 }
+export class DataStoreModalToolChangeRequestedEvent {
+   public cancel: boolean;
+   public readonly nextToolId?: string;
+   public readonly previousToolId?: string;
+   private constructor();
+}
+export class DataStoreModalToolChangeRequestedEventSignal {
+   public subscribe(callback: (arg0: DataStoreModalToolChangeRequestedEvent)=>void): (arg0: DataStoreModalToolChangeRequestedEvent)=>void;
+   public unsubscribe(callback: (arg0: DataStoreModalToolChangeRequestedEvent)=>void): void;
+   private constructor();
+}
 export class DataStoreModalToolContainer {
    public readonly toolActivationChanged: DataStoreModalToolActivationChangedEventSignal;
+   public readonly toolChangeRequested: DataStoreModalToolChangeRequestedEventSignal;
    public getSelectedTool(): (string | undefined);
    public getSortOrder(groupId: string): (Array<string> | undefined);
    public getToolPayload(id: string): string;
@@ -504,6 +651,13 @@ export class DataTransferRequestResponse {
    public readonly schema: string;
    private constructor();
 }
+export class ExportManager {
+   public beginExportProject(options: server_editor.GameOptions): Promise<ExportResult>;
+   public canExportProject(): boolean;
+   public getGameOptions(useDefault?: boolean): server_editor.GameOptions;
+   public getGameVersion(): string;
+   private constructor();
+}
 export class ExtrudeInteractiveToolResult {
    public readonly affectedVolume: server_editor.RelativeVolumeListBlockVolume;
    private constructor();
@@ -516,6 +670,33 @@ export class FeatureFlagManager {
    public getFlagNames(): Array<string>;
    public registerFlag(name: string, defaultValue: boolean, category: string, description: string): void;
    public setFlag(name: string, value: boolean): void;
+   private constructor();
+}
+export class FloodResult {
+   public readonly blockCount: number;
+   public readonly blockLimitReached: boolean;
+   public readonly loweringWater: boolean;
+   public readonly max: server.Vector3;
+   public readonly min: server.Vector3;
+   public readonly operation: FloodOperation;
+   public readonly targetLocation: server.Vector3;
+   public readonly valid: boolean;
+   private constructor();
+}
+//@ts-ignore
+export class FloodResultTaskPromise extends server_editor.TaskPromiseBase {
+   public readonly promise: Promise<FloodResult>;
+   private constructor();
+}
+export class FloodSession {
+   public apply(result: FloodResult, applyLava: boolean, allowTruncatedResult: boolean, transactionName: string, maxBlocksPerTick?: number): server_editor.VoidTaskPromise;
+   public calculate(targetLocation: server.Vector3, currentWaterLevel: number, maxBlocksPerTick?: number): FloodResultTaskPromise;
+   public commit(targetLocation: server.Vector3, currentWaterLevel: number): Promise<FloodResult>;
+   public dispose(): void;
+   private constructor();
+}
+export class FloodTools {
+   public createSession(location: server.Vector3): FloodSession;
    private constructor();
 }
 export class InputService {
@@ -543,15 +724,19 @@ export class InternalPersistenceManager {
    private constructor();
 }
 export class InternalPlayerServiceContext {
+   public readonly annotationManager: AnnotationManager;
    public readonly clientFilesystem: ClientFilesystem;
    public readonly clientInteractiveTools: ClientInteractiveTools;
    public readonly dataStore: DataStore;
    public readonly dataTransfer: DataTransferManager;
+   public readonly exportManager: ExportManager;
    public readonly featureFlags: FeatureFlagManager;
+   public readonly floodTool: FloodTools;
    public readonly input: InputService;
    public readonly internalPersistenceManager: InternalPersistenceManager;
    public readonly jigsawService: JigsawService;
    public readonly meshCacheManager: MeshCacheManager;
+   public readonly playtest: PlaytestManager;
    public readonly prefabManager: PrefabManager;
    public readonly realmsService: RealmsService;
    public readonly regionManager: PlayerProjectRegionManager;
@@ -571,6 +756,11 @@ export class JigsawService {
    public getRegistryList(): Array<string>;
    public setJigsawBlockData(pos: server.Vector3, jigsawData: JigsawBlockData): void;
    public setRegistryData(registryName: string, processorData: Array<EditorRegistryFile>, structureData: Array<EditorRegistryFile>, structureSetData: Array<EditorRegistryFile>, templatePoolData: Array<EditorRegistryFile>): Promise<Array<string>>;
+   private constructor();
+}
+export class LeasedAnnotationInstance {
+   public readonly instance: AnnotationInstance;
+   public dispose(): void;
    private constructor();
 }
 export class MeshCacheManager {
@@ -622,8 +812,13 @@ export class PlayerProjectRegionManager {
    public leaseRegion(options: ProjectRegionOptions): ProjectRegion;
    private constructor();
 }
+export class PlaytestManager {
+   public beginPlaytest(options: server_editor.GameOptions): Promise<PlaytestSessionResult>;
+   public getPlaytestSessionAvailability(): PlaytestSessionResult;
+   private constructor();
+}
 export class PrefabInstanceInteractionEvent {
-   public readonly eventData: PrefabInstanceInteractionEventClicked | PrefabInstanceInteractionEventMoved;
+   public readonly eventData: PrefabInstanceInteractionEventClicked | PrefabInstanceInteractionEventMoved | PrefabInstanceInteractionEventMoveRejected;
    public readonly eventType: PrefabInstanceInteractionEventType;
    public readonly instance: PrefabTemplateInstance;
    private constructor();
@@ -655,6 +850,9 @@ export class PrefabManager {
    public getTemplateInstances(templateOrMetadata: PrefabTemplate | PrefabTemplateMetadata): Array<PrefabTemplateInstanceLocation>;
    public getTemplateList(): Array<PrefabTemplateMetadata>;
    public selectInstance(instance: PrefabTemplateInstance, append: boolean): void;
+   public validateInstancePlacement(templateOrMetadata: PrefabTemplate | PrefabTemplateMetadata, location: server.Vector3, options?: ValidateInstancePlacementOptions): PrefabPlacementValidation;
+   public validatePlacedInstanceBounds(instance: PrefabTemplateInstance): PrefabPlacementValidation;
+   public validatePlacedInstanceBoundsAt(instance: PrefabTemplateInstance, location: server.Vector3, options?: PrefabTemplateCreateInstanceOptions): PrefabPlacementValidation;
    private constructor();
 }
 export class PrefabServiceInstanceInteractionEvent {
@@ -677,16 +875,20 @@ export class PrefabTemplate {
    public getTemplateStructures(): Array<PrefabTemplateStructure>;
    public removeStructure(templateStructure: PrefabTemplateStructure): void;
    public setName(newName: string): void;
+   public setStructureOrder(structureIds: Array<string>): void;
    public setTags(newTags: Array<string>): void;
    private constructor();
 }
 export class PrefabTemplateInstance {
+   public readonly id: string;
    public instanceMirror: server.StructureMirrorAxis;
    public instanceRotation: server.StructureRotation;
+   public readonly isValid: boolean;
    public location: server.Vector3;
    public bakeInstance(): void;
    public getStructureRefs(): Array<PrefabTemplateInstanceStructure>;
    public getTemplate(): PrefabTemplate;
+   public getWorldBounds(): PrefabTemplateInstanceBounds;
    private constructor();
 }
 export class PrefabTemplateInstanceStructure {
@@ -750,6 +952,19 @@ export class RealmsService {
    public getServiceStatus(): RealmsServiceStatus;
    public getSlots(worldId: string): Promise<Array<EditorRealmsWorldSlot>>;
    public isRealmsServiceAvailable(): EditorRealmsServiceAvailability;
+   private constructor();
+}
+//@ts-ignore
+export class TextAnnotationInstance extends AnnotationInstance {
+   public anchorOrientation: AnnotationAnchorOrientation;
+   public body: string;
+   public bodyTextColor: server.RGBA;
+   public facing: AnnotationFacing;
+   public showBody: boolean;
+   public showTitle: boolean;
+   public titleColor: server.RGBA;
+   public titleTextSize: number;
+   public widthLimit: number;
    private constructor();
 }
 

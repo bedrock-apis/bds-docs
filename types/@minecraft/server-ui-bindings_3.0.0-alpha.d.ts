@@ -25,13 +25,23 @@ export enum TextFilteringError {
    Unknown = "Unknown",
 }
 
+export interface ButtonData {
+   label: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
+   onClick: ()=>void;
+   options?: ButtonOptions;
+}
 export interface ButtonOptions {
    disabled?: boolean | ObservableBoolean;
    imageDetails?: ImageDetails;
+   styleId?: ObservableString | string;
    tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
    visible?: boolean | ObservableBoolean;
 }
+export interface CustomFormOptions {
+   styleId?: ObservableString | string;
+}
 export interface DividerOptions {
+   styleId?: ObservableString | string;
    visible?: boolean | ObservableBoolean;
 }
 export interface DropdownItemData {
@@ -42,6 +52,7 @@ export interface DropdownItemData {
 export interface DropdownOptions {
    description?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
    disabled?: boolean | ObservableBoolean;
+   styleId?: ObservableString | string;
    tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
    visible?: boolean | ObservableBoolean;
 }
@@ -55,9 +66,17 @@ export interface ImageOptions {
    visible?: boolean | ObservableBoolean;
    width?: number | ObservableNumber;
 }
+export interface MessageBoxBodyOptions {
+   styleId?: ObservableString | string;
+}
 export interface MessageBoxButtonOptions {
    imageDetails?: ImageDetails;
+   styleId?: ObservableString | string;
    tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
+}
+export interface MessageBoxOptions {
+   showHorizontalButtons: boolean;
+   styleId?: ObservableString | string;
 }
 export interface MessageBoxResult {
    closeReason: DataDrivenScreenClosedReason;
@@ -80,6 +99,10 @@ export interface ModalFormDataToggleOptions {
    defaultValue?: boolean;
    tooltip?: server.RawMessage | string;
 }
+export interface MultiButtonRowOptions {
+   styleId?: ObservableString | string;
+   visible?: boolean | ObservableBoolean;
+}
 export interface ObservableOptions {
    clientWritable: boolean;
 }
@@ -88,6 +111,7 @@ export interface SliderOptions {
    disabled?: boolean | ObservableBoolean;
    fixedFormatDigits?: number | ObservableNumber;
    step?: number | ObservableNumber;
+   styleId?: ObservableString | string;
    tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
    visible?: boolean | ObservableBoolean;
 }
@@ -97,16 +121,19 @@ export interface SpacingOptions {
 export interface TextFieldOptions {
    description?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
    disabled?: boolean | ObservableBoolean;
+   styleId?: ObservableString | string;
    tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
    visible?: boolean | ObservableBoolean;
 }
 export interface TextOptions {
+   styleId?: ObservableString | string;
    tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
    visible?: boolean | ObservableBoolean;
 }
 export interface ToggleOptions {
    description?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
    disabled?: boolean | ObservableBoolean;
+   styleId?: ObservableString | string;
    tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage;
    visible?: boolean | ObservableBoolean;
 }
@@ -136,13 +163,14 @@ export class CustomForm {
    public button(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, onClick: ()=>void, options?: ButtonOptions): CustomForm;
    public close(): void;
    public closeButton(): CustomForm;
-   public constructor(player: server.Player, title: ObservableString | ObservableUIRawMessage | string | UIRawMessage);
+   public constructor(player: server.Player, title: ObservableString | ObservableUIRawMessage | string | UIRawMessage, options?: CustomFormOptions);
    public divider(options?: DividerOptions): CustomForm;
    public dropdown(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, value: ObservableNumber, items: Array<DropdownItemData>, options?: DropdownOptions): CustomForm;
    public header(text: ObservableString | ObservableUIRawMessage | string | UIRawMessage, options?: TextOptions): CustomForm;
    public image(src: ObservableString | string, pack: ObservableString | string, options?: ImageOptions): CustomForm;
    public isShowing(): boolean;
    public label(text: ObservableString | ObservableUIRawMessage | string | UIRawMessage, options?: TextOptions): CustomForm;
+   public multiButtonRow(buttons: Array<ButtonData>, options?: MultiButtonRowOptions): CustomForm;
    public show(): Promise<DataDrivenScreenClosedReason>;
    public slider(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, value: ObservableNumber, min: number | ObservableNumber, max: number | ObservableNumber, options?: SliderOptions): CustomForm;
    public spacer(options?: SpacingOptions): CustomForm;
@@ -155,13 +183,14 @@ export class FormResponse {
    private constructor();
 }
 export class MessageBox {
-   public body(body: ObservableString | ObservableUIRawMessage | string | UIRawMessage): MessageBox;
+   public body(body: ObservableString | ObservableUIRawMessage | string | UIRawMessage, options?: MessageBoxBodyOptions): MessageBox;
    public button1(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage): MessageBox;
    public button1WithOptions(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, options?: MessageBoxButtonOptions): MessageBox;
    public button2(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, tooltip?: ObservableString | ObservableUIRawMessage | string | UIRawMessage): MessageBox;
    public button2WithOptions(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, options?: MessageBoxButtonOptions): MessageBox;
+   public button3WithOptions(label: ObservableString | ObservableUIRawMessage | string | UIRawMessage, options?: MessageBoxButtonOptions): MessageBox;
    public close(): void;
-   public constructor(player: server.Player, title: ObservableString | ObservableUIRawMessage | string | UIRawMessage);
+   public constructor(player: server.Player, title: ObservableString | ObservableUIRawMessage | string | UIRawMessage, options?: MessageBoxOptions);
    public isShowing(): boolean;
    public show(): Promise<MessageBoxResult>;
 }

@@ -3,6 +3,609 @@
       {
          "base_types": [],
          "constants": [],
+         "functions": [],
+         "name": "AnnotationInstance",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "isValid",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "metadata",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationMetadata"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "AnnotationInstance"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "dimension",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-bindings",
+                           "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                           "version": "2.12.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Dimension"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "location",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-bindings",
+                           "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                           "version": "2.12.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "settings",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "TextAnnotationSettings"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "createTextAnnotation",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "AnnotationMetadata"
+                  }
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "id",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "deleteAnnotation",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "ids",
+                     "type": {
+                        "element_type": {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "array"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "deleteAnnotations",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getAllMetadata",
+               "return_type": {
+                  "element_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "AnnotationMetadata"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "array"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "id",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getInstance",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "AnnotationInstance"
+                  }
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "id",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getMetadata",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "AnnotationMetadata"
+                  }
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "id",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "hasInstance",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "id",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "leaseInstance",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "LeasedAnnotationInstance"
+                  }
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "showAnnotations",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "setShowAnnotations",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "AnnotationManager",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "AnnotationManager"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "location",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-bindings",
+                           "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                           "version": "2.12.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "setLocation",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "name",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "setName",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "tags",
+                     "type": {
+                        "element_type": {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "array"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "setTags",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "visible",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "setVisible",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "AnnotationMetadata",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "dimension",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "id",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "isValid",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "location",
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.12.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Vector3"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "name",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "tags",
+               "type": {
+                  "element_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "array"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "type",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationType"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "visible",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "AnnotationMetadata"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
          "functions": [
             {
                "arguments": [
@@ -68,6 +671,51 @@
                "is_constructor": false,
                "is_static": false,
                "name": "activateExtrude",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "undefined"
+                  }
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "targetLocation",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-bindings",
+                           "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                           "version": "2.12.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "FloodInteractiveToolOptions"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "activateFlood",
                "return_type": {
                   "is_bind_type": false,
                   "is_errorable": true,
@@ -150,7 +798,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -199,7 +847,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -316,6 +964,27 @@
                ],
                "is_constructor": false,
                "is_static": false,
+               "name": "supportsFlood",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "boolean"
+                  }
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
                "name": "supportsSmartFill",
                "return_type": {
                   "is_bind_type": false,
@@ -348,6 +1017,51 @@
                "is_constructor": false,
                "is_static": false,
                "name": "updateExtrude",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "undefined"
+                  }
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "targetLocation",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-bindings",
+                           "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                           "version": "2.12.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "FloodInteractiveToolOptions"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "updateFlood",
                "return_type": {
                   "is_bind_type": false,
                   "is_errorable": true,
@@ -428,7 +1142,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -448,7 +1162,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": true,
@@ -504,7 +1218,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -1750,6 +2464,195 @@
       {
          "base_types": [],
          "constants": [],
+         "functions": [],
+         "name": "DataStoreModalToolChangeRequestedEvent",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "cancel",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "nextToolId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "previousToolId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "DataStoreModalToolChangeRequestedEvent"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "DataStoreModalToolChangeRequestedEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "default"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "subscribe",
+               "return_type": {
+                  "closure_type": {
+                     "argument_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "DataStoreModalToolChangeRequestedEvent"
+                        }
+                     ],
+                     "call_privilege": {
+                        "name": "default"
+                     },
+                     "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                     }
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "closure"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "DataStoreModalToolChangeRequestedEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "default"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "unsubscribe",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "DataStoreModalToolChangeRequestedEventSignal",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "DataStoreModalToolChangeRequestedEventSignal"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
          "functions": [
             {
                "arguments": [],
@@ -2192,6 +3095,21 @@
                   "is_bind_type": true,
                   "is_errorable": false,
                   "name": "DataStoreModalToolActivationChangedEventSignal"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "toolChangeRequested",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "DataStoreModalToolChangeRequestedEventSignal"
                }
             }
          ],
@@ -3195,6 +4113,125 @@
       {
          "base_types": [],
          "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "options",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-editor-bindings",
+                           "uuid": "8518d9c7-a1f5-4bf3-acc7-78e87df595fc",
+                           "version": "0.1.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "GameOptions"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "beginExportProject",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "ExportResult"
+                  }
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "canExportProject",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "boolean"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "useDefault",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "boolean"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getGameOptions",
+               "return_type": {
+                  "from_module": {
+                     "name": "@minecraft/server-editor-bindings",
+                     "uuid": "8518d9c7-a1f5-4bf3-acc7-78e87df595fc",
+                     "version": "0.1.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "GameOptions"
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getGameVersion",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "string"
+               }
+            }
+         ],
+         "name": "ExportManager",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "ExportManager"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
          "functions": [],
          "name": "ExtrudeInteractiveToolResult",
          "properties": [
@@ -3439,6 +4476,466 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "FeatureFlagManager"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [],
+         "name": "FloodResult",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "blockCount",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "uint32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "blockLimitReached",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "loweringWater",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "max",
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.12.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Vector3"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "min",
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.12.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Vector3"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "operation",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "FloodOperation"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "targetLocation",
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.12.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Vector3"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "valid",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "FloodResult"
+         }
+      },
+      {
+         "base_types": [
+            {
+               "from_module": {
+                  "name": "@minecraft/server-editor-bindings",
+                  "uuid": "8518d9c7-a1f5-4bf3-acc7-78e87df595fc",
+                  "version": "0.1.0-internal"
+               },
+               "is_bind_type": true,
+               "is_errorable": false,
+               "name": "TaskPromiseBase"
+            }
+         ],
+         "constants": [],
+         "functions": [],
+         "name": "FloodResultTaskPromise",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "promise",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "FloodResult"
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "FloodResultTaskPromise"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "result",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "FloodResult"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "applyLava",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "allowTruncatedResult",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "boolean"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "transactionName",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "maxBlocksPerTick",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "int32",
+                           "valid_range": {
+                              "max": 2147483647,
+                              "min": -2147483648
+                           }
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "apply",
+               "return_type": {
+                  "from_module": {
+                     "name": "@minecraft/server-editor-bindings",
+                     "uuid": "8518d9c7-a1f5-4bf3-acc7-78e87df595fc",
+                     "version": "0.1.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "VoidTaskPromise"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "targetLocation",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-bindings",
+                           "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                           "version": "2.12.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "currentWaterLevel",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "int32",
+                        "valid_range": {
+                           "max": 2147483647,
+                           "min": -2147483648
+                        }
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "maxBlocksPerTick",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "int32",
+                           "valid_range": {
+                              "max": 2147483647,
+                              "min": -2147483648
+                           }
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "calculate",
+               "return_type": {
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "FloodResultTaskPromise"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "targetLocation",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-bindings",
+                           "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                           "version": "2.12.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "currentWaterLevel",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "int32",
+                        "valid_range": {
+                           "max": 2147483647,
+                           "min": -2147483648
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "commit",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "FloodResult"
+                  }
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "dispose",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "FloodSession",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "FloodSession"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "location",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-bindings",
+                           "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                           "version": "2.12.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "createSession",
+               "return_type": {
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "FloodSession"
+               }
+            }
+         ],
+         "name": "FloodTools",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "FloodTools"
          }
       },
       {
@@ -4344,6 +5841,21 @@
                ],
                "is_baked": false,
                "is_read_only": true,
+               "name": "annotationManager",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationManager"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
                "name": "clientFilesystem",
                "type": {
                   "is_bind_type": true,
@@ -4404,11 +5916,41 @@
                ],
                "is_baked": false,
                "is_read_only": true,
+               "name": "exportManager",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "ExportManager"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
                "name": "featureFlags",
                "type": {
                   "is_bind_type": true,
                   "is_errorable": false,
                   "name": "FeatureFlagManager"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "floodTool",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "FloodTools"
                }
             },
             {
@@ -4469,6 +6011,21 @@
                   "is_bind_type": true,
                   "is_errorable": false,
                   "name": "MeshCacheManager"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "playtest",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestManager"
                }
             },
             {
@@ -4589,7 +6146,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -4721,7 +6278,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -4814,7 +6371,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -4944,6 +6501,51 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "JigsawService"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "dispose",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "LeasedAnnotationInstance",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "instance",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationInstance"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "LeasedAnnotationInstance"
          }
       },
       {
@@ -5202,7 +6804,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -5221,7 +6823,7 @@
                               "from_module": {
                                  "name": "@minecraft/server-bindings",
                                  "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                                 "version": "2.11.0-internal"
+                                 "version": "2.12.0-internal"
                               },
                               "is_bind_type": true,
                               "is_errorable": false,
@@ -5247,7 +6849,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -5294,7 +6896,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -5352,7 +6954,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -6058,6 +7660,71 @@
       {
          "base_types": [],
          "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "options",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-editor-bindings",
+                           "uuid": "8518d9c7-a1f5-4bf3-acc7-78e87df595fc",
+                           "version": "0.1.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "GameOptions"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "beginPlaytest",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "PlaytestSessionResult"
+                  }
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getPlaytestSessionAvailability",
+               "return_type": {
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "PlaytestSessionResult"
+               }
+            }
+         ],
+         "name": "PlaytestManager",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "PlaytestManager"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
          "functions": [],
          "name": "PrefabInstanceInteractionEvent",
          "properties": [
@@ -6084,6 +7751,11 @@
                         "is_bind_type": true,
                         "is_errorable": false,
                         "name": "PrefabInstanceInteractionEventMoved"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabInstanceInteractionEventMoveRejected"
                      }
                   ]
                }
@@ -7034,6 +8706,202 @@
                   "is_errorable": true,
                   "name": "undefined"
                }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "templateOrMetadata",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "variant",
+                        "variant_types": [
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "PrefabTemplate"
+                           },
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "PrefabTemplateMetadata"
+                           }
+                        ]
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "location",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-bindings",
+                           "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                           "version": "2.12.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "ValidateInstancePlacementOptions"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "validateInstancePlacement",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "Error"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabErrorInvalidInstance"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabErrorInvalidTemplate"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabServiceError"
+                     }
+                  ],
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "PrefabPlacementValidation"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "instance",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabTemplateInstance"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "validatePlacedInstanceBounds",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabErrorInvalidInstance"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabServiceError"
+                     }
+                  ],
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "PrefabPlacementValidation"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "instance",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabTemplateInstance"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "location",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-bindings",
+                           "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                           "version": "2.12.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "Vector3"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "PrefabTemplateCreateInstanceOptions"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "validatePlacedInstanceBoundsAt",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabErrorInvalidInstance"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabServiceError"
+                     }
+                  ],
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "PrefabPlacementValidation"
+               }
             }
          ],
          "name": "PrefabManager",
@@ -7258,7 +9126,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -7492,6 +9360,49 @@
                "arguments": [
                   {
                      "details": null,
+                     "name": "structureIds",
+                     "type": {
+                        "element_type": {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "array"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "setStructureOrder",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabErrorInvalidTemplate"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabErrorInvalidTemplateStructure"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
                      "name": "newTags",
                      "type": {
                         "element_type": {
@@ -7672,7 +9583,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": true,
@@ -7805,10 +9716,55 @@
                   "is_errorable": true,
                   "name": "PrefabTemplate"
                }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getWorldBounds",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabErrorInvalidInstance"
+                     }
+                  ],
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "PrefabTemplateInstanceBounds"
+               }
             }
          ],
          "name": "PrefabTemplateInstance",
          "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "id",
+               "type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PrefabErrorInvalidInstance"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "string"
+               }
+            },
             {
                "get_privilege": [
                   {
@@ -7827,7 +9783,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -7852,11 +9808,26 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
                   "name": "StructureRotation"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "isValid",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
                }
             },
             {
@@ -7877,7 +9848,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -7954,7 +9925,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -7979,7 +9950,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -8078,7 +10049,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -8103,7 +10074,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -8128,7 +10099,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -8155,7 +10126,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": true,
@@ -8182,7 +10153,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": true,
@@ -8209,7 +10180,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": true,
@@ -8252,7 +10223,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -8266,7 +10237,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -8286,7 +10257,7 @@
                            "from_module": {
                               "name": "@minecraft/server-bindings",
                               "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                              "version": "2.11.0-internal"
+                              "version": "2.12.0-internal"
                            },
                            "is_bind_type": true,
                            "is_errorable": false,
@@ -8311,7 +10282,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.11.0-internal"
+                        "version": "2.12.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -8328,7 +10299,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -8352,7 +10323,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.11.0-internal"
+                        "version": "2.12.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -8369,7 +10340,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -8389,7 +10360,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": true,
@@ -8405,7 +10376,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -8425,7 +10396,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": true,
@@ -8441,7 +10412,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -8477,7 +10448,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": true,
@@ -8493,7 +10464,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -8524,7 +10495,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -8571,7 +10542,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -8602,7 +10573,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -8633,7 +10604,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -8664,7 +10635,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -8712,7 +10683,7 @@
                                  "from_module": {
                                     "name": "@minecraft/server-bindings",
                                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                                    "version": "2.11.0-internal"
+                                    "version": "2.12.0-internal"
                                  },
                                  "is_bind_type": true,
                                  "is_errorable": false,
@@ -8862,7 +10833,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -8898,7 +10869,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -8917,7 +10888,7 @@
                               "from_module": {
                                  "name": "@minecraft/server-bindings",
                                  "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                                 "version": "2.11.0-internal"
+                                 "version": "2.12.0-internal"
                               },
                               "is_bind_type": true,
                               "is_errorable": false,
@@ -8955,7 +10926,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -9000,7 +10971,7 @@
                               "from_module": {
                                  "name": "@minecraft/server-bindings",
                                  "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                                 "version": "2.11.0-internal"
+                                 "version": "2.12.0-internal"
                               },
                               "is_bind_type": true,
                               "is_errorable": false,
@@ -9021,7 +10992,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -9063,7 +11034,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -9088,7 +11059,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -9098,7 +11069,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": true,
@@ -9135,7 +11106,7 @@
                         "from_module": {
                            "name": "@minecraft/server-bindings",
                            "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                           "version": "2.11.0-internal"
+                           "version": "2.12.0-internal"
                         },
                         "is_bind_type": true,
                         "is_errorable": false,
@@ -9590,6 +11561,223 @@
             "is_errorable": false,
             "name": "RealmsService"
          }
+      },
+      {
+         "base_types": [
+            {
+               "is_bind_type": true,
+               "is_errorable": false,
+               "name": "AnnotationInstance"
+            }
+         ],
+         "constants": [],
+         "functions": [],
+         "name": "TextAnnotationInstance",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "anchorOrientation",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationAnchorOrientation"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "body",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "bodyTextColor",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.12.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "RGBA"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "facing",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationFacing"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "showBody",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "showTitle",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "titleColor",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.12.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "RGBA"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "titleTextSize",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "float",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "widthLimit",
+               "set_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "float",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "TextAnnotationInstance"
+         }
       }
    ],
    "constants": [],
@@ -9608,6 +11796,197 @@
       }
    ],
    "enums": [
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "BottomCenter",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationAnchorOrientation"
+               },
+               "value": 7
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "BottomLeft",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationAnchorOrientation"
+               },
+               "value": 6
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "BottomRight",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationAnchorOrientation"
+               },
+               "value": 8
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Center",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationAnchorOrientation"
+               },
+               "value": 4
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "CenterLeft",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationAnchorOrientation"
+               },
+               "value": 3
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "CenterRight",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationAnchorOrientation"
+               },
+               "value": 5
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "TopCenter",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationAnchorOrientation"
+               },
+               "value": 1
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "TopLeft",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationAnchorOrientation"
+               },
+               "value": 0
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "TopRight",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationAnchorOrientation"
+               },
+               "value": 2
+            }
+         ],
+         "name": "AnnotationAnchorOrientation"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Camera",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationFacing"
+               },
+               "value": 0
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Manual",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationFacing"
+               },
+               "value": 1
+            }
+         ],
+         "name": "AnnotationFacing"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "CommentBlock",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationType"
+               },
+               "value": 4
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Drawing",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationType"
+               },
+               "value": 1
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Image",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationType"
+               },
+               "value": 2
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Invalid",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationType"
+               },
+               "value": 0
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Text",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationType"
+               },
+               "value": 3
+            }
+         ],
+         "name": "AnnotationType"
+      },
       {
          "constants": [
             {
@@ -9684,6 +12063,99 @@
             {
                "is_read_only": true,
                "is_static": true,
+               "name": "EditorSystemFailure",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "ExportResult"
+               },
+               "value": 7
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "FileArchiverFetchFailed",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "ExportResult"
+               },
+               "value": 2
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "LevelFetchFailed",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "ExportResult"
+               },
+               "value": 1
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "PlayerNotFound",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "ExportResult"
+               },
+               "value": 4
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "ProjectConverterFetchFailed",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "ExportResult"
+               },
+               "value": 3
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "ValidWorldExport",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "ExportResult"
+               },
+               "value": 0
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "WorldExportBusy",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "ExportResult"
+               },
+               "value": 6
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "WorldExportFailed",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "ExportResult"
+               },
+               "value": 5
+            }
+         ],
+         "name": "ExportResult"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
                "name": "Client",
                "type": {
                   "is_bind_type": true,
@@ -9754,6 +12226,44 @@
             }
          ],
          "name": "FilePickerError"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Lower",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "FloodOperation"
+               },
+               "value": 2
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "None",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "FloodOperation"
+               },
+               "value": 0
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Raise",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "FloodOperation"
+               },
+               "value": 1
+            }
+         ],
+         "name": "FloodOperation"
       },
       {
          "constants": [
@@ -10115,6 +12625,17 @@
             {
                "is_read_only": true,
                "is_static": true,
+               "name": "BatchedPlacementFailure",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "batched-placement-failure"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
                "name": "Cancelled",
                "type": {
                   "is_bind_type": false,
@@ -10317,6 +12838,143 @@
             {
                "is_read_only": true,
                "is_static": true,
+               "name": "EditorSystemFailure",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestSessionResult"
+               },
+               "value": 7
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "InvalidLevelId",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestSessionResult"
+               },
+               "value": 8
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "InvalidSessionHandle",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestSessionResult"
+               },
+               "value": 1
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "OK",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestSessionResult"
+               },
+               "value": 0
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "PlayerNotFound",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestSessionResult"
+               },
+               "value": 9
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "ResponseTimeout",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestSessionResult"
+               },
+               "value": 10
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "SessionInfoNotFound",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestSessionResult"
+               },
+               "value": 2
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "TooManyPlayers",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestSessionResult"
+               },
+               "value": 3
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "UnspecifiedError",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestSessionResult"
+               },
+               "value": 11
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "UnsupportedScenario",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestSessionResult"
+               },
+               "value": 6
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "WorldExportBusy",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestSessionResult"
+               },
+               "value": 5
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "WorldExportFailed",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlaytestSessionResult"
+               },
+               "value": 4
+            }
+         ],
+         "name": "PlaytestSessionResult"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
                "name": "Clicked",
                "type": {
                   "is_bind_type": false,
@@ -10335,6 +12993,17 @@
                   "name": "string"
                },
                "value": "Moved"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "MoveRejected",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "MoveRejected"
             }
          ],
          "name": "PrefabInstanceInteractionEventType"
@@ -10705,6 +13374,67 @@
    "interfaces": [
       {
          "base_types": [],
+         "name": "AnnotationSettings",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "name",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "tags",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "element_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     },
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "array"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "visible",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "boolean"
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "AnnotationSettings"
+         }
+      },
+      {
+         "base_types": [],
          "name": "BindingCategoryInfo",
          "properties": [
             {
@@ -10754,7 +13484,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.11.0-internal"
+                        "version": "2.12.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -10851,7 +13581,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -10895,7 +13625,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.11.0-internal"
+                        "version": "2.12.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -11094,7 +13824,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -11109,7 +13839,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -11124,7 +13854,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -11160,6 +13890,16 @@
                   "is_bind_type": false,
                   "is_errorable": false,
                   "name": "string"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "isPro",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
                }
             },
             {
@@ -11395,6 +14135,105 @@
       },
       {
          "base_types": [],
+         "name": "FloodInteractiveToolOptions",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "allowTruncatedResult",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "applyLava",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "cliffDetection",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "boolean"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "cliffDetectionDepth",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "int32",
+                     "valid_range": {
+                        "max": 2147483647,
+                        "min": -2147483648
+                     }
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "currentLevel",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "selectionVolume",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "from_module": {
+                        "name": "@minecraft/server-bindings",
+                        "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                        "version": "2.12.0-internal"
+                     },
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "BlockVolumeBase"
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "FloodInteractiveToolOptions"
+         }
+      },
+      {
+         "base_types": [],
          "name": "InputBindingInfo",
          "properties": [
             {
@@ -11604,7 +14443,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -11759,7 +14598,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -11774,7 +14613,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -11915,7 +14754,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -11945,7 +14784,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -11964,7 +14803,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.11.0-internal"
+                        "version": "2.12.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -12221,7 +15060,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -12233,6 +15072,108 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "PrefabInstanceInteractionEventMoved"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "PrefabInstanceInteractionEventMoveRejected",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "attemptedLocation",
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.12.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Vector3"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "authoritativeLocation",
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.12.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Vector3"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "conflictingInstanceIds",
+               "type": {
+                  "element_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "array"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "PrefabInstanceInteractionEventMoveRejected"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "PrefabPlacementValidation",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "bounds",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PrefabTemplateInstanceBounds"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "conflictingInstanceIds",
+               "type": {
+                  "element_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "array"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "valid",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "PrefabPlacementValidation"
          }
       },
       {
@@ -12327,7 +15268,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.11.0-internal"
+                        "version": "2.12.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -12347,7 +15288,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.11.0-internal"
+                        "version": "2.12.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -12367,7 +15308,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.11.0-internal"
+                        "version": "2.12.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -12398,7 +15339,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.11.0-internal"
+                        "version": "2.12.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -12418,7 +15359,7 @@
                      "from_module": {
                         "name": "@minecraft/server-bindings",
                         "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                        "version": "2.11.0-internal"
+                        "version": "2.12.0-internal"
                      },
                      "is_bind_type": true,
                      "is_errorable": false,
@@ -12431,6 +15372,47 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "PrefabTemplateCreateInstanceOptions"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "PrefabTemplateInstanceBounds",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "max",
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.12.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Vector3"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "min",
+               "type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.12.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Vector3"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "PrefabTemplateInstanceBounds"
          }
       },
       {
@@ -12455,7 +15437,7 @@
                   "from_module": {
                      "name": "@minecraft/server-bindings",
                      "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.11.0-internal"
+                     "version": "2.12.0-internal"
                   },
                   "is_bind_type": true,
                   "is_errorable": false,
@@ -13134,6 +16116,243 @@
             "is_errorable": false,
             "name": "SmartFillInteractiveToolOptions"
          }
+      },
+      {
+         "base_types": [
+            {
+               "is_bind_type": true,
+               "is_errorable": false,
+               "name": "AnnotationSettings"
+            }
+         ],
+         "name": "TextAnnotationSettings",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "anchorOrientation",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "AnnotationAnchorOrientation"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "body",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "bodyTextColor",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "from_module": {
+                        "name": "@minecraft/server-bindings",
+                        "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                        "version": "2.12.0-internal"
+                     },
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "RGBA"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "facing",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "AnnotationFacing"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "showBody",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "boolean"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "showTitle",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "boolean"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "titleColor",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "from_module": {
+                        "name": "@minecraft/server-bindings",
+                        "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                        "version": "2.12.0-internal"
+                     },
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "RGBA"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "titleTextSize",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "float",
+                     "valid_range": {
+                        "max": 2147483647,
+                        "min": -2147483648
+                     }
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "widthLimit",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "float",
+                     "valid_range": {
+                        "max": 2147483647,
+                        "min": -2147483648
+                     }
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "TextAnnotationSettings"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "ValidateInstancePlacementOptions",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "excludedInstanceId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "options",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "PrefabTemplateCreateInstanceOptions"
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "ValidateInstancePlacementOptions"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "ValidatePlacedInstanceBoundsOptions",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "options",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "PrefabTemplateCreateInstanceOptions"
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "ValidatePlacedInstanceBoundsOptions"
+         }
       }
    ],
    "module_type": "script",
@@ -13165,10 +16384,10 @@
          "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
          "versions": [
             {
-               "version": "2.11.0-beta"
+               "version": "2.12.0-beta"
             },
             {
-               "version": "2.11.0-internal"
+               "version": "2.12.0-internal"
             }
          ]
       }

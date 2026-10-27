@@ -1,0 +1,83 @@
+{
+   "title": "minecraft:transformation",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/entity/1.26.60/minecraft_transformation.json",
+   "x-format-version": "1.26.60",
+   "type": "object",
+   "properties": {
+      "add": {
+         "default": {
+            "component_groups": []
+         },
+         "$ref": "./TransformationAddComponents.json",
+         "x-ordinal-index": 8
+      },
+      "begin_transform_sound": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "../../common/1.20.50/LevelSoundEvent.json",
+            "x-underlying-type": "uint32"
+         },
+         "x-ordinal-index": 1
+      },
+      "delay": {
+         "default": {
+            "value": 0,
+            "range_min": 0,
+            "range_max": 0,
+            "block_max": 0,
+            "block_chance": 0,
+            "block_assist_chance": 0,
+            "block_radius": 0,
+            "block_types": []
+         },
+         "$ref": "./TransformationDelay.json",
+         "x-ordinal-index": 9
+      },
+      "drop_equipment": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 3
+      },
+      "drop_inventory": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 4
+      },
+      "into": {
+         "default": "",
+         "$ref": "../../../client_server/common/legacy/Reference%201.json",
+         "x-ordinal-index": 0
+      },
+      "keep_level": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 7
+      },
+      "keep_owner": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 6
+      },
+      "preserve_equipment": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 5
+      },
+      "transformation_sound": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "../../common/1.20.50/LevelSoundEvent.json",
+            "x-underlying-type": "uint32"
+         },
+         "x-ordinal-index": 2
+      }
+   }
+}

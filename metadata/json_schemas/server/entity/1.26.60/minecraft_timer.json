@@ -1,0 +1,51 @@
+{
+   "title": "minecraft:timer",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/entity/1.26.60/minecraft_timer.json",
+   "x-format-version": "1.26.60",
+   "type": "object",
+   "properties": {
+      "looping": {
+         "type": "boolean",
+         "default": true,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 0
+      },
+      "randomInterval": {
+         "type": "boolean",
+         "default": true,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 1
+      },
+      "random_time_choices": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "./TimerWeightChoiceEntry.json"
+         },
+         "x-ordinal-index": 4
+      },
+      "time": {
+         "$ref": "../../../client_server/common/legacy/FloatRange.json",
+         "x-ordinal-index": 2
+      },
+      "time_down_event": {
+         "default": {
+            "event": "",
+            "target": "self",
+            "filters": {
+               "all_of": null,
+               "all": null,
+               "OR": null,
+               "AND": null,
+               "any_of": null,
+               "any": null,
+               "none_of": null,
+               "NOT": null
+            }
+         },
+         "$ref": "../1.21.120/ActorDefinitionTrigger.json",
+         "x-ordinal-index": 3
+      }
+   }
+}

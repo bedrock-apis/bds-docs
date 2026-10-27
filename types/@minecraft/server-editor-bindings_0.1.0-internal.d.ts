@@ -86,16 +86,6 @@ export enum EntityOperationType {
    Create = 0,
    Delete = 1,
 }
-export enum ExportResult {
-   EditorSystemFailure = 7,
-   FileArchiverFetchFailed = 2,
-   LevelFetchFailed = 1,
-   PlayerNotFound = 4,
-   ProjectConverterFetchFailed = 3,
-   ValidWorldExport = 0,
-   WorldExportBusy = 6,
-   WorldExportFailed = 5,
-}
 export enum FlattenMode {
    Both = 0,
    Down = 1,
@@ -110,12 +100,14 @@ export enum GamePublishSetting {
 }
 export enum GraphicsSettingsProperty {
    DisableBlockEntityRendering = "DisableBlockEntityRendering",
+   DisableCloudRendering = "DisableCloudRendering",
    DisableEntityRendering = "DisableEntityRendering",
    DisableParticleRendering = "DisableParticleRendering",
    DisableTerrainRendering = "DisableTerrainRendering",
    DisableWeatherRendering = "DisableWeatherRendering",
    GraphicsMode = "GraphicsMode",
    NightVision = "NightVision",
+   ShowChat = "ShowChat",
    ShowChunkBoundaries = "ShowChunkBoundaries",
    ShowCompass = "ShowCompass",
    ShowInvisibleBlocks = "ShowInvisibleBlocks",
@@ -177,20 +169,6 @@ export enum Plane {
    XY = 1,
    XZ = 2,
    YZ = 4,
-}
-export enum PlaytestSessionResult {
-   EditorSystemFailure = 7,
-   InvalidLevelId = 8,
-   InvalidSessionHandle = 1,
-   OK = 0,
-   PlayerNotFound = 9,
-   ResponseTimeout = 10,
-   SessionInfoNotFound = 2,
-   TooManyPlayers = 3,
-   UnspecifiedError = 11,
-   UnsupportedScenario = 6,
-   WorldExportBusy = 5,
-   WorldExportFailed = 4,
 }
 export enum PrimitiveType {
    AxialSphere = 5,
@@ -340,6 +318,12 @@ export enum WidgetGizmoEventType {
    OriginMoved = "OriginMoved",
    OriginReleased = "OriginReleased",
 }
+export enum WidgetGizmoRotationEventType {
+   Cancelled = "Cancelled",
+   Grabbed = "Grabbed",
+   Moved = "Moved",
+   Released = "Released",
+}
 export enum WidgetGizmoScaleMode {
    Screen = 1,
    World = 0,
@@ -348,6 +332,16 @@ export enum WidgetGroupSelectionMode {
    Multiple = "Multiple",
    None = "None",
    Single = "Single",
+}
+export enum WidgetGuideSensorDirection {
+   All = 63,
+   NegativeX = 32,
+   NegativeY = 2,
+   NegativeZ = 8,
+   None = 0,
+   PositiveX = 16,
+   PositiveY = 1,
+   PositiveZ = 4,
 }
 export enum WidgetMouseButtonActionType {
    Drag = 2,
@@ -492,6 +486,7 @@ export interface LocalizationEntry {
    props?: Array<string>;
 }
 export interface LogProperties {
+   alert?: boolean;
    channelMask?: LogChannel;
    player?: server.Player;
    subMessage?: LocalizationEntry | string;
@@ -594,6 +589,7 @@ export interface WidgetComponentGizmoOptions extends WidgetComponentBaseOptions 
    axes?: Axis;
    enablePlanes?: boolean;
    normalizedAutoOffset?: server.Vector3;
+   rotationAxes?: Axis;
    scaleMode?: WidgetGizmoScaleMode;
    stateChangeEvent?: (arg0: WidgetComponentGizmoStateChangeEventParameters)=>void;
 }
@@ -606,6 +602,7 @@ export interface WidgetComponentGridOptions extends WidgetComponentBaseOptions {
 }
 //@ts-ignore
 export interface WidgetComponentGuideOptions extends WidgetComponentBaseOptions {
+   directions?: WidgetGuideSensorDirection;
 }
 //@ts-ignore
 export interface WidgetComponentRenderPlaneOptions extends WidgetComponentBaseOptions {
@@ -712,6 +709,7 @@ export class BlockUtilities {
    public getDimensionMaxLocation(): server.Vector3;
    public getDimensionMinLocation(): server.Vector3;
    public getFacePreviewSelection(properties?: QuickExtrudeProperties): server.ListBlockVolume;
+   public isHighPriorityFillBlock(block: server.BlockPermutation | server.BlockType | string, location: server.Vector3): boolean;
    public isLocationInsideCurrentDimensionBounds(locationOrVolumeOrBounds: server.BlockBoundingBox | server.BlockVolumeBase | RelativeVolumeListBlockVolume | server.Vector3): boolean;
    public quickExtrude(properties?: QuickExtrudeProperties): void;
    public shrinkWrapVolume(volume: server.BlockVolumeBase | RelativeVolumeListBlockVolume): RelativeVolumeListBlockVolume;
@@ -892,13 +890,6 @@ export class EditorStructureManager {
    public searchStructures(options?: EditorStructureSearchOptions): Array<EditorStructure>;
    private constructor();
 }
-export class ExportManager {
-   public beginExportProject(options: GameOptions): Promise<ExportResult>;
-   public canExportProject(): boolean;
-   public getGameOptions(useDefault?: boolean): GameOptions;
-   public getGameVersion(): string;
-   private constructor();
-}
 export class Extension {
    public readonly defaultToolGroupId: string;
    public readonly description: string;
@@ -914,12 +905,10 @@ export class ExtensionContext {
    public readonly brushShapeManager: BrushShapeManager;
    public readonly clipboardManager: ClipboardManager;
    public readonly cursor: Cursor;
-   public readonly exportManager: ExportManager;
    public readonly extensionInfo: Extension;
    public readonly guidePlaneManager: GuidePlaneManager;
    public readonly minimapManager: MinimapManager;
    public readonly player: server.Player;
-   public readonly playtest: PlaytestManager;
    public readonly selectionManager: SelectionManager;
    public readonly settings: SettingsManager;
    public readonly structureManager: EditorStructureManager;
@@ -1042,11 +1031,6 @@ export class PendingTransaction {
    public trackBlockChangeArea(from: server.Vector3, to: server.Vector3): boolean;
    public trackBlockChangeList(locations: Array<server.Vector3>): boolean;
    public trackBlockChangeVolume(blockVolume: server.BlockVolumeBase): boolean;
-   private constructor();
-}
-export class PlaytestManager {
-   public beginPlaytest(options: GameOptions): Promise<PlaytestSessionResult>;
-   public getPlaytestSessionAvailability(): PlaytestSessionResult;
    private constructor();
 }
 //@ts-ignore
@@ -1311,6 +1295,7 @@ export class WidgetComponentGizmo extends WidgetComponentBase {
    public activated: boolean;
    public enabledAxes: Axis;
    public normalizedOffsetOverride?: server.Vector3;
+   public readonly rotation: WidgetGizmoRotation;
    public scaleMode: WidgetGizmoScaleMode;
    public screenScale: number;
    public worldScale: number;
@@ -1476,6 +1461,23 @@ export class WidgetComponentVolumeOutline extends WidgetComponentBase {
    public volumeOffset: server.Vector3;
    public getVolume(): (RelativeVolumeListBlockVolume | undefined);
    public setVolume(volumeToSet?: Array<server.Vector3> | server.BlockVolume | server.BlockVolumeBase | RelativeVolumeListBlockVolume | server.Vector3): void;
+   private constructor();
+}
+export class WidgetGizmoRotation {
+   public preferredRingRadius: number;
+   public rotationAxes: Axis;
+   public rotationOriginOffset: server.Vector3;
+   public visualStepDegrees: number;
+   public setStateChangeEvent(eventFunction?: (arg0: WidgetGizmoRotationEvent)=>void): void;
+   private constructor();
+}
+export class WidgetGizmoRotationEvent {
+   public readonly axis: Axis;
+   public readonly component: WidgetComponentGizmo;
+   public readonly deltaDegrees: number;
+   public readonly eventType: WidgetGizmoRotationEventType;
+   public readonly totalDegrees: number;
+   public readonly widget: Widget;
    private constructor();
 }
 export class WidgetGroup {

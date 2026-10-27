@@ -120,8 +120,10 @@ export class DebugPyramid extends DebugShape {
 export class DebugShape {
    public attachedTo?: server.Entity;
    public color: server.RGBA;
+   public defaultVisibleToAll: boolean;
    public readonly dimension: server.Dimension;
    public readonly hasDuration: boolean;
+   public hiddenFrom: Array<server.Player>;
    public readonly location: server.Vector3;
    public maximumRenderDistance?: number;
    public rotation: server.Vector3;

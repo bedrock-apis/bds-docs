@@ -1,0 +1,59 @@
+{
+   "title": "minecraft:trail",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/entity/1.26.60/TrailComponentDefinition.json",
+   "x-format-version": "1.26.60",
+   "type": "object",
+   "properties": {
+      "block_type": {
+         "type": "string",
+         "default": "air",
+         "x-ordinal-index": 1
+      },
+      "force_replace_matched_blocks": {
+         "type": "boolean",
+         "default": false,
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 5
+      },
+      "radius": {
+         "type": "integer",
+         "default": -1,
+         "x-underlying-type": "int32",
+         "x-ordinal-index": 4,
+         "minimum": -1,
+         "maximum": 16
+      },
+      "replaceable_blocks": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "../../common/1.20.50/Block%20Descriptor.json"
+         },
+         "x-ordinal-index": 3
+      },
+      "spawn_filter": {
+         "default": {
+            "all_of": null,
+            "all": null,
+            "OR": null,
+            "AND": null,
+            "any_of": null,
+            "any": null,
+            "none_of": null,
+            "NOT": null
+         },
+         "$ref": "../../../client_server/common/1.21.20/Filter%20Group.json",
+         "x-ordinal-index": 0
+      },
+      "spawn_offset": {
+         "default": [
+            0,
+            0,
+            0
+         ],
+         "$ref": "../../../client_server/common/1.21.100/vec3.json",
+         "x-ordinal-index": 2
+      }
+   }
+}

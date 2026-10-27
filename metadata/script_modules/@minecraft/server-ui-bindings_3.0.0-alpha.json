@@ -593,6 +593,22 @@
                            }
                         ]
                      }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "CustomFormOptions"
+                        }
+                     }
                   }
                ],
                "call_privilege": [
@@ -991,6 +1007,62 @@
                "is_constructor": false,
                "is_static": false,
                "name": "label",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidFormModificationError"
+                     }
+                  ],
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "CustomForm"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": {
+                        "max_length": 3
+                     },
+                     "name": "buttons",
+                     "type": {
+                        "element_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "ButtonData"
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "array"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "MultiButtonRowOptions"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "multiButtonRow",
                "return_type": {
                   "error_types": [
                      {
@@ -1490,6 +1562,22 @@
                            }
                         ]
                      }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "MessageBoxBodyOptions"
+                        }
+                     }
                   }
                ],
                "call_privilege": [
@@ -1842,6 +1930,77 @@
                }
             },
             {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "label",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "variant",
+                        "variant_types": [
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "ObservableString"
+                           },
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "ObservableUIRawMessage"
+                           },
+                           {
+                              "is_bind_type": false,
+                              "is_errorable": false,
+                              "name": "string"
+                           },
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "UIRawMessage"
+                           }
+                        ]
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "MessageBoxButtonOptions"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "button3WithOptions",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidFormModificationError"
+                     }
+                  ],
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "MessageBox"
+               }
+            },
+            {
                "arguments": [],
                "call_privilege": [
                   {
@@ -1929,6 +2088,22 @@
                               "name": "UIRawMessage"
                            }
                         ]
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "MessageBoxOptions"
+                        }
                      }
                   }
                ],
@@ -4321,6 +4496,85 @@
    "interfaces": [
       {
          "base_types": [],
+         "name": "ButtonData",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "label",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "variant",
+                  "variant_types": [
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "ObservableString"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "ObservableUIRawMessage"
+                     },
+                     {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "UIRawMessage"
+                     }
+                  ]
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "onClick",
+               "type": {
+                  "closure_type": {
+                     "argument_types": [],
+                     "call_privilege": {
+                        "name": "default"
+                     },
+                     "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                     }
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "closure"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "options",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "ButtonOptions"
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "ButtonData"
+         }
+      },
+      {
+         "base_types": [],
          "name": "ButtonOptions",
          "properties": [
             {
@@ -4362,6 +4616,33 @@
                      "is_bind_type": true,
                      "is_errorable": false,
                      "name": "ImageDetails"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "styleId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "variant",
+                     "variant_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "ObservableString"
+                        },
+                        {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        }
+                     ]
                   }
                }
             },
@@ -4438,8 +4719,73 @@
       },
       {
          "base_types": [],
+         "name": "CustomFormOptions",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "styleId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "variant",
+                     "variant_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "ObservableString"
+                        },
+                        {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        }
+                     ]
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "CustomFormOptions"
+         }
+      },
+      {
+         "base_types": [],
          "name": "DividerOptions",
          "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "styleId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "variant",
+                     "variant_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "ObservableString"
+                        },
+                        {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        }
+                     ]
+                  }
+               }
+            },
             {
                "is_baked": false,
                "is_read_only": false,
@@ -4631,6 +4977,33 @@
                            "is_bind_type": true,
                            "is_errorable": false,
                            "name": "ObservableBoolean"
+                        }
+                     ]
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "styleId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "variant",
+                     "variant_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "ObservableString"
+                        },
+                        {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
                         }
                      ]
                   }
@@ -4896,6 +5269,44 @@
       },
       {
          "base_types": [],
+         "name": "MessageBoxBodyOptions",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "styleId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "variant",
+                     "variant_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "ObservableString"
+                        },
+                        {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        }
+                     ]
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "MessageBoxBodyOptions"
+         }
+      },
+      {
+         "base_types": [],
          "name": "MessageBoxButtonOptions",
          "properties": [
             {
@@ -4910,6 +5321,33 @@
                      "is_bind_type": true,
                      "is_errorable": false,
                      "name": "ImageDetails"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "styleId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "variant",
+                     "variant_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "ObservableString"
+                        },
+                        {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        }
+                     ]
                   }
                }
             },
@@ -4955,6 +5393,54 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "MessageBoxButtonOptions"
+         }
+      },
+      {
+         "base_types": [],
+         "name": "MessageBoxOptions",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "showHorizontalButtons",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "styleId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "variant",
+                     "variant_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "ObservableString"
+                        },
+                        {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        }
+                     ]
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "MessageBoxOptions"
          }
       },
       {
@@ -5275,6 +5761,71 @@
       },
       {
          "base_types": [],
+         "name": "MultiButtonRowOptions",
+         "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "styleId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "variant",
+                     "variant_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "ObservableString"
+                        },
+                        {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        }
+                     ]
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "visible",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "variant",
+                     "variant_types": [
+                        {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "boolean"
+                        },
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "ObservableBoolean"
+                        }
+                     ]
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "MultiButtonRowOptions"
+         }
+      },
+      {
+         "base_types": [],
          "name": "ObservableOptions",
          "properties": [
             {
@@ -5419,6 +5970,33 @@
                            "is_bind_type": true,
                            "is_errorable": false,
                            "name": "ObservableNumber"
+                        }
+                     ]
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "styleId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "variant",
+                     "variant_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "ObservableString"
+                        },
+                        {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
                         }
                      ]
                   }
@@ -5604,6 +6182,33 @@
             {
                "is_baked": false,
                "is_read_only": false,
+               "name": "styleId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "variant",
+                     "variant_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "ObservableString"
+                        },
+                        {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        }
+                     ]
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
                "name": "tooltip",
                "type": {
                   "is_bind_type": false,
@@ -5676,6 +6281,33 @@
          "base_types": [],
          "name": "TextOptions",
          "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "styleId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "variant",
+                     "variant_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "ObservableString"
+                        },
+                        {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        }
+                     ]
+                  }
+               }
+            },
             {
                "is_baked": false,
                "is_read_only": false,
@@ -5810,6 +6442,33 @@
                            "is_bind_type": true,
                            "is_errorable": false,
                            "name": "ObservableBoolean"
+                        }
+                     ]
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "styleId",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "variant",
+                     "variant_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "ObservableString"
+                        },
+                        {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
                         }
                      ]
                   }

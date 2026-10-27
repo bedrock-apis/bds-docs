@@ -1,0 +1,33 @@
+{
+   "title": "BlockDefinitionDocument",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/block/1.26.60/Blocks.json",
+   "x-format-version": "1.26.60",
+   "type": "object",
+   "properties": {
+      "components": {
+         "propertyNames": {
+            "type": "string",
+            "pattern": "^(?!(minecraft:on_interact|minecraft:breathability|minecraft:unit_cube|minecraft:on_fall_on|minecraft:on_placed|minecraft:on_player_destroyed|minecraft:on_player_placing|minecraft:on_step_off|minecraft:on_step_on|minecraft:queued_ticking|minecraft:random_ticking)$)"
+         },
+         "$ref": "../../block_components/1.26.60/Block%20Components.json",
+         "x-ordinal-index": 1,
+         "x-runtime-constraint-description": "Block cannot have both a \"container\" in \"minecraft:block_entity\" and a \"minecraft:crafting_table\" component."
+      },
+      "description": {
+         "$ref": "../1.26.20/Description.json",
+         "x-ordinal-index": 0
+      },
+      "permutations": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "$ref": "./Permutation.json"
+         },
+         "x-ordinal-index": 2
+      }
+   },
+   "required": [
+      "description"
+   ]
+}
