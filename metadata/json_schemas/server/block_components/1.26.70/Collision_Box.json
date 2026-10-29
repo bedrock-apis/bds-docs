@@ -1,0 +1,24 @@
+{
+   "title": "Collision Box",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/block_components/1.26.70/Collision%20Box.json",
+   "x-format-version": "1.26.70",
+   "oneOf": [
+      {
+         "type": "boolean",
+         "x-underlying-type": "boolean",
+         "x-ordinal-index": 0
+      },
+      {
+         "type": "array",
+         "items": {
+            "$ref": "./Bounding%20Box%20Data.json",
+            "minProperties": 1
+         },
+         "x-ordinal-index": 1,
+         "minItems": 1,
+         "maxItems": 32,
+         "x-runtime-constraint-description": "The area covered by all boxes must be within Vec3(0,0,0) to Vec3(16,24,16)"
+      }
+   ]
+}

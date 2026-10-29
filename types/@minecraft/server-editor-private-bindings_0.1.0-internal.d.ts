@@ -19,7 +19,12 @@ export enum AnnotationFacing {
 }
 export enum AnnotationInteractionMode {
    Drawing = 1,
+   Erasing = 2,
    None = 0,
+}
+export enum AnnotationNoteType {
+   Csv = "Csv",
+   Text = "Text",
 }
 export enum AnnotationType {
    CommentBlock = 4,
@@ -242,6 +247,7 @@ export interface ExtrudeInteractiveToolOptions {
    tolerance: number;
 }
 export interface FileSelectorOptions {
+   defaultFileName?: string;
    extensions: Array<string>;
    maxFileSize: number;
    title?: string;
@@ -467,6 +473,7 @@ export class AnnotationManager {
    public createTextAnnotation(dimension: server.Dimension, location: server.Vector3, settings?: TextAnnotationSettings): (AnnotationMetadata | undefined);
    public deleteAnnotation(id: string): boolean;
    public deleteAnnotations(ids: Array<string>): boolean;
+   public exportAnnotationNotes(ids: Array<string>, file: SaveFileHandle, format: AnnotationNoteType): Promise<void>;
    public getAllMetadata(): Array<AnnotationMetadata>;
    public getInstance(id: string): (AnnotationInstance | undefined);
    public getInteractionMode(): AnnotationInteractionMode;
@@ -503,6 +510,7 @@ export class AnnotationMetadata {
 }
 export class ClientFilesystem {
    public chooseFile(options: FileSelectorOptions): Promise<string>;
+   public chooseSaveFile(options: FileSelectorOptions): Promise<SaveFileHandle>;
    private constructor();
 }
 export class ClientInteractiveTools {
@@ -992,6 +1000,11 @@ export class RealmsService {
    public getServiceStatus(): RealmsServiceStatus;
    public getSlots(worldId: string): Promise<Array<EditorRealmsWorldSlot>>;
    public isRealmsServiceAvailable(): EditorRealmsServiceAvailability;
+   private constructor();
+}
+export class SaveFileHandle {
+   public readonly path: string;
+   public write(contents: string): Promise<void>;
    private constructor();
 }
 //@ts-ignore

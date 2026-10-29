@@ -3,21 +3,25 @@
    "$schema": "http://json-schema.org/draft-07/schema#",
    "$id": "/ResourcePackStackPacketPayload.json",
    "x-format-version": "MISSING VERSION",
-   "x-protocol-version": 2238,
+   "x-protocol-version": 2239,
    "type": "object",
    "properties": {
       "Base Game Version": {
          "type": "string",
          "x-ordinal-index": 2
       },
+      "Editor Pack Types": {
+         "$ref": "./EditorPackType.json",
+         "x-underlying-type": "uint8",
+         "x-serialization-options": [
+            "Enum-as-Value",
+            "Allow unknown enum values"
+         ],
+         "x-ordinal-index": 4
+      },
       "Experiments": {
          "$ref": "./Experiments.json",
          "x-ordinal-index": 3
-      },
-      "Include Editor Packs": {
-         "type": "boolean",
-         "x-underlying-type": "boolean",
-         "x-ordinal-index": 4
       },
       "Texture Pack List": {
          "type": "array",
@@ -35,8 +39,8 @@
    },
    "required": [
       "Base Game Version",
+      "Editor Pack Types",
       "Experiments",
-      "Include Editor Packs",
       "Texture Pack List",
       "Texture Pack Required"
    ]

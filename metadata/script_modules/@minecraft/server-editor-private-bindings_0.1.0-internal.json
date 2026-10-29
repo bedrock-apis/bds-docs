@@ -294,6 +294,60 @@
                }
             },
             {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "ids",
+                     "type": {
+                        "element_type": {
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "string"
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "array"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "file",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "SaveFileHandle"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "format",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "AnnotationNoteType"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "exportAnnotationNotes",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "undefined"
+                  }
+               }
+            },
+            {
                "arguments": [],
                "call_privilege": [
                   {
@@ -1027,6 +1081,37 @@
                      "is_bind_type": false,
                      "is_errorable": false,
                      "name": "string"
+                  }
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "options",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "FileSelectorOptions"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "chooseSaveFile",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "SaveFileHandle"
                   }
                }
             }
@@ -12049,6 +12134,66 @@
          }
       },
       {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "contents",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "write",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "undefined"
+                  }
+               }
+            }
+         ],
+         "name": "SaveFileHandle",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "path",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "SaveFileHandle"
+         }
+      },
+      {
          "base_types": [
             {
                "is_bind_type": true,
@@ -12483,6 +12628,17 @@
             {
                "is_read_only": true,
                "is_static": true,
+               "name": "Erasing",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationInteractionMode"
+               },
+               "value": 2
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
                "name": "None",
                "type": {
                   "is_bind_type": true,
@@ -12493,6 +12649,33 @@
             }
          ],
          "name": "AnnotationInteractionMode"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Csv",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "Csv"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Text",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "Text"
+            }
+         ],
+         "name": "AnnotationNoteType"
       },
       {
          "constants": [
@@ -14689,6 +14872,21 @@
          "base_types": [],
          "name": "FileSelectorOptions",
          "properties": [
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "defaultFileName",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "string"
+                  }
+               }
+            },
             {
                "is_baked": false,
                "is_read_only": false,

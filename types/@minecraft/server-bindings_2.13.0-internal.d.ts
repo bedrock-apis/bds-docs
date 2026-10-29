@@ -10,6 +10,7 @@ export enum BlockComponentTypes {
    FluidContainer = "minecraft:fluid_container",
    Instrument = "minecraft:instrument_sound",
    Inventory = "minecraft:inventory",
+   ItemFrame = "minecraft:item_frame",
    MapColor = "minecraft:map_color",
    Movable = "minecraft:movable",
    Piston = "minecraft:piston",
@@ -501,6 +502,16 @@ export enum ItemComponentTypes {
    Food = "minecraft:food",
    Inventory = "minecraft:inventory",
    Potion = "minecraft:potion",
+}
+export enum ItemFrameRotation {
+   Clockwise135 = "Clockwise135",
+   Clockwise180 = "Clockwise180",
+   Clockwise225 = "Clockwise225",
+   Clockwise270 = "Clockwise270",
+   Clockwise315 = "Clockwise315",
+   Clockwise45 = "Clockwise45",
+   Clockwise90 = "Clockwise90",
+   None = "None",
 }
 export enum ItemLockMode {
    inventory = "inventory",
@@ -1614,6 +1625,16 @@ export class BlockInstrumentComponent extends BlockComponent {
 export class BlockInventoryComponent extends BlockComponent {
    public static readonly componentId = "minecraft:inventory";
    public readonly container?: Container;
+   private constructor();
+}
+//@ts-ignore
+export class BlockItemFrameComponent extends BlockComponent {
+   public static readonly componentId = "minecraft:item_frame";
+   public dropFramedItem(): void;
+   public getFramedItem(): (ItemStack | undefined);
+   public getRotation(): ItemFrameRotation;
+   public setFramedItem(itemStack?: ItemStack): void;
+   public setRotation(rotation: ItemFrameRotation): void;
    private constructor();
 }
 export class BlockLocationIterator {
