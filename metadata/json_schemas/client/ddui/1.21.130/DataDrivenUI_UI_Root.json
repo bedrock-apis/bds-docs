@@ -14,8 +14,29 @@
          "x-ordinal-index": 1
       },
       "layout": {
-         "$ref": "./layout.json",
-         "x-ordinal-index": 2
+         "type": "array",
+         "items": {
+            "oneOf": [
+               {
+                  "$ref": "./Container.Layout.json"
+               },
+               {
+                  "$ref": "./minecraft_context.json"
+               },
+               {
+                  "$ref": "./minecraft_form_panel.json"
+               },
+               {
+                  "$ref": "./Panel.json"
+               },
+               {
+                  "$ref": "./minecraft_form.panel.json"
+               }
+            ],
+            "x-control-value-type": "uint32"
+         },
+         "x-ordinal-index": 2,
+         "minItems": 1
       }
    },
    "required": [

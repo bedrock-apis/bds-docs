@@ -589,6 +589,12 @@ export enum PlatformType {
    Desktop = "Desktop",
    Mobile = "Mobile",
 }
+export enum PlayerDimensionChangeSource {
+   PlayerRespawn = "PlayerRespawn",
+   Portal = "Portal",
+   TeleportCommand = "TeleportCommand",
+   Unknown = "Unknown",
+}
 export enum PlayerInventoryType {
    Hotbar = "Hotbar",
    Inventory = "Inventory",
@@ -703,8 +709,10 @@ export interface AnimationOptions {
 }
 export interface BiomeFilter {
    excludeBiomes?: Array<string>;
+   excludeNamespaces?: Array<string>;
    excludeTags?: Array<string>;
    includeBiomes?: Array<string>;
+   includeNamespaces?: Array<string>;
    includeTags?: Array<string>;
 }
 export interface BiomeSearchOptions {
@@ -744,9 +752,11 @@ export interface BlockFillOptions {
    ignoreChunkBoundErrors?: boolean;
 }
 export interface BlockFilter {
+   excludeNamespaces?: Array<string>;
    excludePermutations?: Array<BlockPermutation>;
    excludeTags?: Array<string>;
    excludeTypes?: Array<string>;
+   includeNamespaces?: Array<string>;
    includePermutations?: Array<BlockPermutation>;
    includeTags?: Array<string>;
    includeTypes?: Array<string>;
@@ -916,6 +926,7 @@ export interface EntityFilter {
    excludeFamilies?: Array<string>;
    excludeGameModes?: Array<GameMode>;
    excludeNames?: Array<string>;
+   excludeNamespaces?: Array<string>;
    excludeTags?: Array<string>;
    excludeTypes?: Array<string>;
    families?: Array<string>;
@@ -927,6 +938,7 @@ export interface EntityFilter {
    minLevel?: number;
    minVerticalRotation?: number;
    name?: string;
+   namespaces?: Array<string>;
    propertyOptions?: Array<EntityQueryPropertyOptions>;
    scoreOptions?: Array<EntityQueryScoreOptions>;
    tags?: Array<string>;
@@ -1042,6 +1054,7 @@ export interface ItemCustomComponent {
    onConsume?: (arg0: ItemComponentConsumeEvent, arg1: CustomComponentParameters)=>void;
    onHitEntity?: (arg0: ItemComponentHitEntityEvent, arg1: CustomComponentParameters)=>void;
    onMineBlock?: (arg0: ItemComponentMineBlockEvent, arg1: CustomComponentParameters)=>void;
+   onReleaseUse?: (arg0: ItemComponentReleaseUseEvent, arg1: CustomComponentParameters)=>void;
    onUse?: (arg0: ItemComponentUseEvent, arg1: CustomComponentParameters)=>void;
    onUseOn?: (arg0: ItemComponentUseOnEvent, arg1: CustomComponentParameters)=>void;
 }
@@ -1577,8 +1590,10 @@ export class BlockEntityStorageComponent extends BlockComponent {
    public static readonly componentId = "minecraft:entity_storage";
    public getEntities(): Array<BlockEntityStorageInfo>;
    public release(entityId: string): Entity;
+   public remove(entityId: string): void;
    public size(): number;
    public store(entity: Entity): string;
+   public totalSize(): number;
    public transfer(entityId: string, targetBlock: Block): void;
    private constructor();
 }
@@ -3067,8 +3082,10 @@ export class ItemBlockEntityStorageComponent extends ItemComponent {
    public static readonly componentId = "minecraft:block_entity_storage";
    public getEntities(): Array<BlockEntityStorageInfo>;
    public release(entityId: string, location: DimensionLocation): Entity;
+   public remove(entityId: string): void;
    public size(): number;
    public store(entity: Entity): string;
+   public totalSize(): number;
    public transfer(entityId: string, targetBlock: Block): void;
    private constructor();
 }
@@ -3142,6 +3159,12 @@ export class ItemComponentMineBlockEvent {
 }
 export class ItemComponentRegistry {
    public registerCustomComponent(name: string, itemCustomComponent: ItemCustomComponent): void;
+   private constructor();
+}
+export class ItemComponentReleaseUseEvent {
+   public readonly itemStack: ItemStack;
+   public readonly remainingUseDuration: number;
+   public readonly source: Player;
    private constructor();
 }
 export class ItemComponentUseEvent {
@@ -3679,6 +3702,7 @@ export class PlayerDimensionChangeAfterEvent {
    public readonly fromDimension: Dimension;
    public readonly fromLocation: Vector3;
    public readonly player: Player;
+   public readonly source: PlayerDimensionChangeSource;
    public readonly toDimension: Dimension;
    public readonly toLocation: Vector3;
    private constructor();
@@ -3972,6 +3996,17 @@ export class PoiBlockType {
 }
 export class PoiManager {
    public readonly blocks: PoiBlockManager;
+   private constructor();
+}
+export class PortalActivateAfterEvent {
+   public readonly dimension: Dimension;
+   public readonly location: Vector3;
+   public readonly player?: Player;
+   private constructor();
+}
+export class PortalActivateAfterEventSignal {
+   public subscribe(callback: (arg0: PortalActivateAfterEvent)=>void): (arg0: PortalActivateAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: PortalActivateAfterEvent)=>void): void;
    private constructor();
 }
 export class PotionDeliveryType {
@@ -4592,6 +4627,7 @@ export class WorldAfterEvents {
    public readonly playerStartBreakingBlock: PlayerStartBreakingBlockAfterEventSignal;
    public readonly playerSwingStart: PlayerSwingStartAfterEventSignal;
    public readonly playerUseNameTag: PlayerUseNameTagAfterEventSignal;
+   public readonly portalActivate: PortalActivateAfterEventSignal;
    public readonly pressurePlatePop: PressurePlatePopAfterEventSignal;
    public readonly pressurePlatePush: PressurePlatePushAfterEventSignal;
    public readonly projectileHitBlock: ProjectileHitBlockAfterEventSignal;

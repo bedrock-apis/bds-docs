@@ -19,6 +19,12 @@
          "minItems": 1,
          "maxItems": 32,
          "x-runtime-constraint-description": "The area covered by all boxes must be within Vec3(0,0,0) to Vec3(16,24,16)"
+      },
+      {
+         "$ref": "../../../client_server/common/1.21.10/hashed_string.json",
+         "maxLength": 256,
+         "pattern": "^(?:minecraft:empty|minecraft:unit_cube|(?!minecraft:)[a-z0-9].*[a-z0-9])$",
+         "x-regex-flags": "ECMAScript,icase"
       }
    ]
 }

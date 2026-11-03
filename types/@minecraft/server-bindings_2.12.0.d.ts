@@ -16,6 +16,7 @@ export enum BlockComponentTypes {
    RecordPlayer = "minecraft:record_player",
    RedstoneProducer = "minecraft:redstone_producer",
    Sign = "minecraft:sign",
+   VibrationProperties = "minecraft:vibration_properties",
 }
 export enum BlockPistonState {
    Expanded = "Expanded",
@@ -660,6 +661,8 @@ export interface BlockCustomComponent {
    onBreak?: (arg0: BlockComponentBlockBreakEvent, arg1: CustomComponentParameters)=>void;
    onEntity?: (arg0: BlockComponentEntityEvent, arg1: CustomComponentParameters)=>void;
    onEntityFallOn?: (arg0: BlockComponentEntityFallOnEvent, arg1: CustomComponentParameters)=>void;
+   onNamedTick?: (arg0: BlockComponentNamedTickEvent, arg1: CustomComponentParameters)=>void;
+   onNeighborChanged?: (arg0: BlockComponentNeighborChangedAfterEvent, arg1: CustomComponentParameters)=>void;
    onPlace?: (arg0: BlockComponentOnPlaceEvent, arg1: CustomComponentParameters)=>void;
    onPlayerBreak?: (arg0: BlockComponentPlayerBreakEvent, arg1: CustomComponentParameters)=>void;
    onPlayerInteract?: (arg0: BlockComponentPlayerInteractEvent, arg1: CustomComponentParameters)=>void;
@@ -1000,6 +1003,11 @@ export interface MusicOptions {
    loop?: boolean;
    volume?: number;
 }
+export interface NeighborChange {
+   blockPermutation: BlockPermutation;
+   direction: Direction;
+   previousPermutation: BlockPermutation;
+}
 export interface NotEqualsComparison {
    notEquals: boolean | number | string;
 }
@@ -1091,6 +1099,10 @@ export interface RotationKeyFrame {
    easingFunc?: EasingType;
    rotation: Vector3;
    timeSeconds: number;
+}
+export interface ScheduledNamedTick {
+   eventName: string;
+   tickDelay: number;
 }
 export interface ScoreboardObjectiveDisplayOptions {
    objective: ScoreboardObjective;
@@ -1308,15 +1320,18 @@ export class Block {
    public canContainLiquid(liquidType: LiquidType): boolean;
    public center(): Vector3;
    public east(steps?: number): (Block | undefined);
+   public getAllScheduledNamedTicks(): Array<ScheduledNamedTick>;
    public getComponent(componentId: string): (BlockComponent | undefined);
    public getComponents(): Array<BlockComponent>;
    public getItemStack(amount?: number, withData?: boolean): (ItemStack | undefined);
    public getLightLevel(): number;
    public getParts(): (Array<Block> | undefined);
    public getRedstonePower(): (number | undefined);
+   public getScheduledNamedTickCount(): number;
    public getSkyLightLevel(): number;
    public getTags(): Array<string>;
    public hasComponent(componentId: string): boolean;
+   public hasScheduledNamedTick(eventName: string): boolean;
    public hasTag(tag: string): boolean;
    public isLiquidBlocking(liquidType: LiquidType): boolean;
    public liquidCanFlowFromDirection(liquidType: LiquidType, flowDirection: Direction): boolean;
@@ -1324,6 +1339,8 @@ export class Block {
    public matches(blockName: string, states?: Record<string,boolean | number | string>): boolean;
    public north(steps?: number): (Block | undefined);
    public offset(offset: Vector3): (Block | undefined);
+   public removeScheduledNamedTicks(eventName: string): void;
+   public scheduleNamedTick(eventName: string, tickDelay: number): void;
    public setPermutation(permutation: BlockPermutation): void;
    public setType(blockType: BlockType | string): void;
    public setWaterlogged(isWaterlogged: boolean): void;
@@ -1359,6 +1376,17 @@ export class BlockComponentEntityEvent extends BlockEvent {
 export class BlockComponentEntityFallOnEvent extends BlockEvent {
    public readonly entity?: Entity;
    public readonly fallDistance: number;
+   private constructor();
+}
+//@ts-ignore
+export class BlockComponentNamedTickEvent extends BlockEvent {
+   public readonly name: string;
+   public isMine(): boolean;
+   private constructor();
+}
+//@ts-ignore
+export class BlockComponentNeighborChangedAfterEvent extends BlockEvent {
+   public getChanges(): Array<NeighborChange>;
    private constructor();
 }
 //@ts-ignore
@@ -1590,6 +1618,13 @@ export class BlockType {
 export class BlockTypes {
    public static get(typeName: string): (BlockType | undefined);
    public static getAll(): Array<BlockType>;
+   private constructor();
+}
+//@ts-ignore
+export class BlockVibrationPropertiesComponent extends BlockComponent {
+   public static readonly componentId = "minecraft:vibration_properties";
+   public getCanDampenVibrations(): boolean;
+   public getCanOccludeVibrations(): boolean;
    private constructor();
 }
 //@ts-ignore

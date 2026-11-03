@@ -1,0 +1,47 @@
+{
+   "title": "minecraft:form.panel",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/client/ddui/1.21.130/minecraft_form.panel.json",
+   "x-format-version": "1.21.130",
+   "type": "object",
+   "properties": {
+      "children": {
+         "type": "array",
+         "items": {
+            "oneOf": [
+               {
+                  "$ref": "./minecraft_primitive_checkbox.json"
+               },
+               {
+                  "$ref": "./minecraft_form.text.json"
+               },
+               {
+                  "$ref": "./minecraft_form.spacing.json"
+               },
+               {
+                  "$ref": "./minecraft_form.close_button.json"
+               },
+               {
+                  "$ref": "./minecraft_form.textfield.json"
+               }
+            ],
+            "x-control-value-type": "uint32"
+         },
+         "x-ordinal-index": 2
+      },
+      "component": {
+         "const": "minecraft:form.panel",
+         "$ref": "./ComponentType.json",
+         "x-underlying-type": "uint8",
+         "x-ordinal-index": 0
+      },
+      "style_id": {
+         "type": "string",
+         "x-ordinal-index": 1
+      }
+   },
+   "required": [
+      "children",
+      "component"
+   ]
+}

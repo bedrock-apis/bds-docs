@@ -5593,6 +5593,54 @@
                }
             },
             {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "entityId",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "remove",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "Error"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidBlockComponentError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationInUnloadedChunkError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationOutOfWorldBoundariesError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
                "arguments": [],
                "call_privilege": [
                   {
@@ -5680,6 +5728,48 @@
                   "is_bind_type": false,
                   "is_errorable": true,
                   "name": "string"
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "totalSize",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "Error"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidBlockComponentError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationInUnloadedChunkError"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "LocationOutOfWorldBoundariesError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
                }
             },
             {
@@ -30264,6 +30354,44 @@
                }
             },
             {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "entityId",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "remove",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "Error"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidItemStackError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "undefined"
+               }
+            },
+            {
                "arguments": [],
                "call_privilege": [
                   {
@@ -30331,6 +30459,38 @@
                   "is_bind_type": false,
                   "is_errorable": true,
                   "name": "string"
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "totalSize",
+               "return_type": {
+                  "error_types": [
+                     {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "Error"
+                     },
+                     {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "InvalidItemStackError"
+                     }
+                  ],
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
                }
             },
             {
@@ -31671,6 +31831,68 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "ItemComponentRegistry"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [],
+         "name": "ItemComponentReleaseUseEvent",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "itemStack",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "ItemStack"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "remainingUseDuration",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "int32",
+                  "valid_range": {
+                     "max": 2147483647,
+                     "min": -2147483648
+                  }
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "source",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Player"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "ItemComponentReleaseUseEvent"
          }
       },
       {
@@ -40943,6 +41165,21 @@
                      "name": "restricted_execution"
                   }
                ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "source",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PlayerDimensionChangeSource"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
                "is_baked": false,
                "is_read_only": true,
                "name": "toDimension",
@@ -45413,7 +45650,7 @@
                      "name": "restricted_execution"
                   }
                ],
-               "is_baked": true,
+               "is_baked": false,
                "is_read_only": true,
                "name": "type",
                "type": {
@@ -46184,6 +46421,185 @@
             "is_bind_type": true,
             "is_errorable": false,
             "name": "PoiManager"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [],
+         "name": "PortalActivateAfterEvent",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "dimension",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Dimension"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "location",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "Vector3"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "player",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "Player"
+                  }
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "PortalActivateAfterEvent"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "PortalActivateAfterEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "default"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "subscribe",
+               "return_type": {
+                  "closure_type": {
+                     "argument_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "PortalActivateAfterEvent"
+                        }
+                     ],
+                     "call_privilege": {
+                        "name": "default"
+                     },
+                     "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                     }
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "closure"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "PortalActivateAfterEvent"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "default"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "unsubscribe",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "PortalActivateAfterEventSignal",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "PortalActivateAfterEventSignal"
          }
       },
       {
@@ -57375,6 +57791,24 @@
                ],
                "is_baked": false,
                "is_read_only": true,
+               "name": "portalActivate",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "PortalActivateAfterEventSignal"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  },
+                  {
+                     "name": "early_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
                "name": "pressurePlatePop",
                "type": {
                   "is_bind_type": true,
@@ -64660,6 +65094,55 @@
             {
                "is_read_only": true,
                "is_static": true,
+               "name": "PlayerRespawn",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "PlayerRespawn"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Portal",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "Portal"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "TeleportCommand",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "TeleportCommand"
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Unknown",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               },
+               "value": "Unknown"
+            }
+         ],
+         "name": "PlayerDimensionChangeSource"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
                "name": "Hotbar",
                "type": {
                   "is_bind_type": false,
@@ -66372,6 +66855,26 @@
             {
                "is_baked": false,
                "is_read_only": false,
+               "name": "excludeNamespaces",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "element_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     },
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "array"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
                "name": "excludeTags",
                "type": {
                   "is_bind_type": false,
@@ -66393,6 +66896,26 @@
                "is_baked": false,
                "is_read_only": false,
                "name": "includeBiomes",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "element_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     },
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "array"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "includeNamespaces",
                "type": {
                   "is_bind_type": false,
                   "is_errorable": false,
@@ -67162,6 +67685,26 @@
             {
                "is_baked": false,
                "is_read_only": false,
+               "name": "excludeNamespaces",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "element_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     },
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "array"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
                "name": "excludePermutations",
                "type": {
                   "is_bind_type": false,
@@ -67203,6 +67746,26 @@
                "is_baked": false,
                "is_read_only": false,
                "name": "excludeTypes",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "element_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     },
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "array"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "includeNamespaces",
                "type": {
                   "is_bind_type": false,
                   "is_errorable": false,
@@ -69034,6 +69597,26 @@
             {
                "is_baked": false,
                "is_read_only": false,
+               "name": "excludeNamespaces",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "element_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     },
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "array"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
                "name": "excludeTags",
                "type": {
                   "is_bind_type": false,
@@ -69232,6 +69815,26 @@
                      "is_bind_type": false,
                      "is_errorable": false,
                      "name": "string"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "namespaces",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "element_type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     },
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "array"
                   }
                }
             },
@@ -70767,6 +71370,43 @@
                               "is_bind_type": true,
                               "is_errorable": false,
                               "name": "ItemComponentMineBlockEvent"
+                           },
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "CustomComponentParameters"
+                           }
+                        ],
+                        "call_privilege": {
+                           "name": "default"
+                        },
+                        "return_type": {
+                           "is_bind_type": false,
+                           "is_errorable": true,
+                           "name": "undefined"
+                        }
+                     },
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "closure"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "onReleaseUse",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "closure_type": {
+                        "argument_types": [
+                           {
+                              "is_bind_type": true,
+                              "is_errorable": false,
+                              "name": "ItemComponentReleaseUseEvent"
                            },
                            {
                               "is_bind_type": true,

@@ -1,0 +1,32 @@
+{
+   "title": "minecraft:spherical_look_control",
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "/server/entity/beta/SphericalLookControlComponentDefinition.json",
+   "x-format-version": "beta",
+   "type": "object",
+   "properties": {
+      "pitch_limits": {
+         "default": {
+            "min": -90,
+            "max": 90
+         },
+         "$ref": "../../../client_server/common/legacy/FloatRange.json",
+         "x-ordinal-index": 2,
+         "x-runtime-constraint-description": "Check that the limits imposed on the range (minimum, maximum and maximum distance between values) are respected"
+      },
+      "pitch_recovery_speed": {
+         "type": "number",
+         "default": 60,
+         "x-underlying-type": "float",
+         "x-ordinal-index": 0,
+         "minimum": 0,
+         "maximum": 3600
+      },
+      "reference_distance": {
+         "type": "number",
+         "x-underlying-type": "float",
+         "x-ordinal-index": 1,
+         "exclusiveMinimum": 0
+      }
+   }
+}

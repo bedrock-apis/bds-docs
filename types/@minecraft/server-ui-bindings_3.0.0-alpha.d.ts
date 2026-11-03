@@ -40,6 +40,7 @@ export interface ButtonOptions {
 export interface CustomFormOptions {
    styleId?: ObservableString | string;
    topCloseButtonVisible?: boolean | ObservableBoolean;
+   useNewUI?: boolean;
 }
 export interface DividerOptions {
    styleId?: ObservableString | string;

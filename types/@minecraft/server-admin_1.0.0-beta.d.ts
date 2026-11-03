@@ -18,6 +18,15 @@ export interface TransferPlayerIpPortOptions {
 export interface TransferPlayerNetherNetOptions {
    netherNetId: string;
 }
+export interface TransferPlayerUIOptions {
+   bodyText?: server.RawMessage | string;
+   bodyVisible?: boolean;
+   cancelButtonDelaySeconds?: number;
+   cancelButtonText?: server.RawMessage | string;
+   cancelButtonVisible?: boolean;
+   titleText?: server.RawMessage | string;
+   titleVisible?: boolean;
+}
 
 export class AdminBeforeEvents {
    public readonly asyncPlayerJoin: AsyncPlayerJoinBeforeEventSignal;
@@ -91,7 +100,7 @@ export const variables: ServerVariables;
 export function deopPlayer(player: server.Player): void;
 export function kickPlayer(player: server.Player, reason?: string): void;
 export function opPlayer(player: server.Player): void;
-export function transferPlayer(player: server.Player, options: TransferPlayerIpPortOptions | TransferPlayerNetherNetOptions): void;
+export function transferPlayer(player: server.Player, options: TransferPlayerIpPortOptions | TransferPlayerNetherNetOptions, UIOptions?: TransferPlayerUIOptions): void;
 
 //@ts-ignore
 export class AllowListFileReloadError extends Error {

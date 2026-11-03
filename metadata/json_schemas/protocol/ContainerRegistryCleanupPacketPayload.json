@@ -3,7 +3,7 @@
    "$schema": "http://json-schema.org/draft-07/schema#",
    "$id": "/ContainerRegistryCleanupPacketPayload.json",
    "x-format-version": "MISSING VERSION",
-   "x-protocol-version": 2239,
+   "x-protocol-version": 2250,
    "type": "object",
    "properties": {
       "Removed Containers": {
@@ -11,7 +11,8 @@
          "items": {
             "$ref": "./FullContainerName.json"
          },
-         "x-ordinal-index": 0
+         "x-ordinal-index": 0,
+         "maxItems": 1000
       }
    },
    "required": [

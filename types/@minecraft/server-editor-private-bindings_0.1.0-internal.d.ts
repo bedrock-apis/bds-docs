@@ -27,9 +27,8 @@ export enum AnnotationNoteType {
    Text = "Text",
 }
 export enum AnnotationType {
-   CommentBlock = 4,
+   CommentEntity = 4,
    Drawing = 1,
-   Image = 2,
    Invalid = 0,
    Text = 3,
 }
@@ -174,10 +173,6 @@ export enum RealmsWorldUploadResult {
    WorldUploadBusy = 5,
 }
 
-export interface AnnotationDrawingSettings {
-   color: server.RGBA;
-   thickness: number;
-}
 export interface AnnotationSettings {
    name?: string;
    tags?: Array<string>;
@@ -192,6 +187,20 @@ export interface BiomeFillOptions {
    includeContainedPositions?: boolean;
    includePositionsAbove?: boolean;
    includePositionsBelow?: boolean;
+}
+//@ts-ignore
+export interface CommentEntityAnnotationSettings extends AnnotationSettings {
+   anchorOrientation?: AnnotationAnchorOrientation;
+   body?: string;
+   bodyTextColor?: server.RGBA;
+   bodyTextSize?: number;
+   facing?: AnnotationFacing;
+   rotation?: server.Vector3;
+   showBody?: boolean;
+   showTitle?: boolean;
+   titleColor?: server.RGBA;
+   titleTextSize?: number;
+   widthLimit?: number;
 }
 export interface CustomBiomeConfig {
    name: string;
@@ -218,6 +227,28 @@ export interface DataTransferRequestDataOptions {
 export interface DataTransferSendDataOptions {
    identifier?: string;
    lockToBiome?: boolean;
+}
+//@ts-ignore
+export interface DrawingAnnotationCreateSettings extends AnnotationSettings {
+   notes?: string;
+}
+export interface DrawingAnnotationLineSegment {
+   color: server.RGBA;
+   lineWeight: number;
+   points: Array<server.Vector3>;
+}
+export interface DrawingAnnotationLineSegmentSettings {
+   color: server.RGBA;
+   lineWeight: number;
+}
+export interface DrawingAnnotationSegmentSettings {
+   color: server.RGBA;
+   lineWeight: number;
+}
+//@ts-ignore
+export interface DrawingAnnotationSettings extends AnnotationSettings {
+   lineSegments: Array<DrawingAnnotationLineSegment>;
+   notes?: string;
 }
 export interface EditorJigsawSection {
    bounds: server.BlockBoundingBox;
@@ -461,6 +492,22 @@ export interface ValidatePlacedInstanceBoundsOptions {
    options?: PrefabTemplateCreateInstanceOptions;
 }
 
+export class AnnotationDrawingInteractionSettings {
+   public readonly mode: AnnotationInteractionMode;
+   public readonly target?: string;
+   public constructor(target?: string);
+}
+export class AnnotationDrawInteractionResult {
+   public readonly annotationId: string;
+   public readonly isCreation: boolean;
+   public readonly isSuccess: boolean;
+   private constructor();
+}
+export class AnnotationErasingInteractionSettings {
+   public readonly mode: AnnotationInteractionMode;
+   public readonly target?: string;
+   public constructor(target?: string);
+}
 export class AnnotationInstance {
    public readonly isLocked: boolean;
    public readonly isValid: boolean;
@@ -469,10 +516,13 @@ export class AnnotationInstance {
 }
 export class AnnotationManager {
    public acquireAnnotationLock(id: string, lockId?: string): void;
-   public createCommentEntityAnnotation(dimension: server.Dimension, location: server.Vector3, settings?: AnnotationSettings): (AnnotationMetadata | undefined);
+   public beginDrawingInteraction(targetOrCreateSettings: DrawingAnnotationCreateSettings | string, startPosition: server.Vector3, callback: (arg0: AnnotationDrawInteractionResult)=>void, segmentSettings: DrawingAnnotationSegmentSettings): number;
+   public cancelDrawingStroke(): void;
+   public createCommentEntityAnnotation(dimension: server.Dimension, location: server.Vector3, settings?: CommentEntityAnnotationSettings): (AnnotationMetadata | undefined);
    public createTextAnnotation(dimension: server.Dimension, location: server.Vector3, settings?: TextAnnotationSettings): (AnnotationMetadata | undefined);
    public deleteAnnotation(id: string): boolean;
    public deleteAnnotations(ids: Array<string>): boolean;
+   public endDrawingInteraction(requestId: number): void;
    public exportAnnotationNotes(ids: Array<string>, file: SaveFileHandle, format: AnnotationNoteType): Promise<void>;
    public getAllMetadata(): Array<AnnotationMetadata>;
    public getInstance(id: string): (AnnotationInstance | undefined);
@@ -486,9 +536,8 @@ export class AnnotationManager {
    public leaseInstance(id: string): Promise<LeasedAnnotationInstance>;
    public releaseAnnotationLock(id: string, lockId?: string): boolean;
    public setDrawingDistanceScalingEnabled(enabled: boolean): void;
-   public setInteractionMode(mode: AnnotationInteractionMode): void;
+   public setInteractionSettings(settings?: AnnotationDrawingInteractionSettings | AnnotationErasingInteractionSettings): void;
    public setShowAnnotations(showAnnotations: boolean): void;
-   public updateDrawingSettings(settings: AnnotationDrawingSettings): void;
    private constructor();
 }
 export class AnnotationMetadata {
@@ -528,6 +577,21 @@ export class ClientInteractiveTools {
    public updateExtrude(options: ExtrudeInteractiveToolOptions): Promise<void>;
    public updateFlood(targetLocation: server.Vector3, options: FloodInteractiveToolOptions): Promise<void>;
    public updateSmartFill(options: SmartFillInteractiveToolOptions): Promise<void>;
+   private constructor();
+}
+//@ts-ignore
+export class CommentEntityAnnotationInstance extends AnnotationInstance {
+   public anchorOrientation: AnnotationAnchorOrientation;
+   public body: string;
+   public bodyTextColor: server.RGBA;
+   public bodyTextSize: number;
+   public facing: AnnotationFacing;
+   public rotation?: server.Vector3;
+   public showBody: boolean;
+   public showTitle: boolean;
+   public titleColor: server.RGBA;
+   public titleTextSize: number;
+   public widthLimit: number;
    private constructor();
 }
 export class CustomBiomeSource {
@@ -691,6 +755,17 @@ export class DataTransferRequestResponse {
    public readonly schema: string;
    private constructor();
 }
+//@ts-ignore
+export class DrawingAnnotationInstance extends AnnotationInstance {
+   public readonly lineSegments: Array<DrawingAnnotationLineSegment>;
+   public notes: string;
+   public readonly originOffset: server.Vector3;
+   public addLineSegment(segment: DrawingAnnotationLineSegment): boolean;
+   public getBlockBounds(): (server.BlockBoundingBox | undefined);
+   public removeLineSegment(segmentIndex: number): boolean;
+   public updateLineSegment(segmentIndex: number, settings: DrawingAnnotationLineSegmentSettings): boolean;
+   private constructor();
+}
 export class ExportManager {
    public beginExportProject(options: server_editor.GameOptions): Promise<ExportResult>;
    public canExportProject(): boolean;
@@ -704,7 +779,7 @@ export class ExtrudeInteractiveToolResult {
 }
 export class FeatureFlagManager {
    public readonly isHost: boolean;
-   public getFlag(name: string): boolean;
+   public getFlag(name: string): (boolean | undefined);
    public getFlagCategory(name: string): string;
    public getFlagDescription(name: string): string;
    public getFlagNames(): Array<string>;
