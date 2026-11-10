@@ -25,9 +25,11 @@ export class Sentry {
    public addBreadcrumb(level: SentryEventLevel, message: string, category?: string): void;
    public addTag(name: string, value: string): void;
    public captureException(exception: unknown, captureContext?: SentryCaptureContext): void;
+   public getContexts(): Record<string,Record<string,boolean | number | string>>;
    public getTags(): Record<string,string>;
    public init(options: SentryOptions): void;
    public removeTag(name: string): void;
+   public setContext(name: string, context?: Record<string,boolean | number | string>): void;
    private constructor();
 }
 

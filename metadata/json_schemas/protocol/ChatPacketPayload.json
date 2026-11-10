@@ -3,12 +3,17 @@
    "$schema": "http://json-schema.org/draft-07/schema#",
    "$id": "/ChatPacketPayload.json",
    "x-format-version": "MISSING VERSION",
-   "x-protocol-version": 2250,
+   "x-protocol-version": 2259,
    "type": "object",
    "properties": {
       "Formatting": {
          "$ref": "./ChatFormatting.json",
-         "x-ordinal-index": 1
+         "x-ordinal-index": 2
+      },
+      "Room Id": {
+         "type": "string",
+         "x-ordinal-index": 1,
+         "maxLength": 128
       },
       "Signed Chat": {
          "$ref": "./SignedChat.json",

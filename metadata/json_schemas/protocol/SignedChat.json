@@ -3,9 +3,14 @@
    "$schema": "http://json-schema.org/draft-07/schema#",
    "$id": "/SignedChat.json",
    "x-format-version": "MISSING VERSION",
-   "x-protocol-version": 2250,
+   "x-protocol-version": 2259,
    "type": "object",
    "properties": {
+      "Author Name": {
+         "type": "string",
+         "x-ordinal-index": 5,
+         "maxLength": 192
+      },
       "Key Id": {
          "type": "string",
          "x-ordinal-index": 0,
@@ -13,22 +18,17 @@
       },
       "Message Id": {
          "type": "string",
-         "x-ordinal-index": 3,
+         "x-ordinal-index": 2,
          "maxLength": 64
       },
       "Redacted Text": {
          "type": "string",
-         "x-ordinal-index": 5,
+         "x-ordinal-index": 4,
          "maxLength": 512
-      },
-      "Room Id": {
-         "type": "string",
-         "x-ordinal-index": 2,
-         "maxLength": 128
       },
       "Scan Text": {
          "type": "string",
-         "x-ordinal-index": 4,
+         "x-ordinal-index": 3,
          "maxLength": 512
       },
       "Sender Id": {
@@ -43,10 +43,10 @@
       }
    },
    "required": [
+      "Author Name",
       "Key Id",
       "Message Id",
       "Redacted Text",
-      "Room Id",
       "Scan Text",
       "Sender Id",
       "Signature"

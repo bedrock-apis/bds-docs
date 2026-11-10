@@ -1407,6 +1407,105 @@
                "arguments": [
                   {
                      "details": null,
+                     "name": "annotationManager",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "AnnotationManager"
+                     }
+                  },
+                  {
+                     "details": null,
+                     "name": "pendingTransaction",
+                     "type": {
+                        "from_module": {
+                           "name": "@minecraft/server-editor-bindings",
+                           "uuid": "8518d9c7-a1f5-4bf3-acc7-78e87df595fc",
+                           "version": "0.1.0-internal"
+                        },
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "PendingTransaction"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_constructor": true,
+               "name": "constructor",
+               "return_type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationTransactionOperation"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "payload",
+                     "type": {
+                        "is_bind_type": true,
+                        "is_errorable": false,
+                        "name": "AnnotationTransactionPayloadType"
+                     }
+                  },
+                  {
+                     "details": {
+                        "default_value": "null"
+                     },
+                     "name": "annotationIds",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "optional",
+                        "optional_type": {
+                           "element_type": {
+                              "is_bind_type": false,
+                              "is_errorable": false,
+                              "name": "string"
+                           },
+                           "is_bind_type": false,
+                           "is_errorable": false,
+                           "name": "array"
+                        }
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "trackAnnotationChange",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "boolean"
+               }
+            }
+         ],
+         "name": "AnnotationTransactionOperation",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "AnnotationTransactionOperation"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
                      "name": "options",
                      "type": {
                         "is_bind_type": true,
@@ -5381,26 +5480,6 @@
                   "is_errorable": false,
                   "name": "string"
                }
-            },
-            {
-               "get_privilege": [
-                  {
-                     "name": "restricted_execution"
-                  }
-               ],
-               "is_baked": false,
-               "is_read_only": true,
-               "name": "originOffset",
-               "type": {
-                  "from_module": {
-                     "name": "@minecraft/server-bindings",
-                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
-                     "version": "2.13.0-internal"
-                  },
-                  "is_bind_type": true,
-                  "is_errorable": false,
-                  "name": "Vector3"
-               }
             }
          ],
          "type": {
@@ -5667,6 +5746,32 @@
                   "is_bind_type": false,
                   "is_errorable": false,
                   "name": "array"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "name",
+                     "type": {
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "string"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "isFlagReadOnly",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "boolean"
                }
             },
             {
@@ -7376,6 +7481,21 @@
                   "is_errorable": false,
                   "name": "PlayerProjectRegionManager"
                }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "studioBridge",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "StudioBridgeEditSessionManager"
+               }
             }
          ],
          "type": {
@@ -8468,6 +8588,21 @@
                "is_baked": false,
                "is_read_only": true,
                "name": "isNewLevel",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "boolean"
+               }
+            },
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": true,
+               "is_read_only": true,
+               "name": "isRealmsServer",
                "type": {
                   "is_bind_type": false,
                   "is_errorable": false,
@@ -13021,6 +13156,272 @@
          }
       },
       {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "cancel",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "undefined"
+                  }
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "submit",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "promise",
+                  "promise_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "undefined"
+                  }
+               }
+            }
+         ],
+         "name": "StudioBridgeEditSession",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "id",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "string"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "StudioBridgeEditSession"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "getSessionId",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "string"
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "isSessionActive",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": true,
+                  "name": "boolean"
+               }
+            }
+         ],
+         "name": "StudioBridgeEditSessionManager",
+         "properties": [
+            {
+               "get_privilege": [
+                  {
+                     "name": "restricted_execution"
+                  }
+               ],
+               "is_baked": false,
+               "is_read_only": true,
+               "name": "sessionStarted",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "StudioBridgeEditSessionStartedEventSignal"
+               }
+            }
+         ],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "StudioBridgeEditSessionManager"
+         }
+      },
+      {
+         "base_types": [],
+         "constants": [],
+         "functions": [
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "StudioBridgeEditSession"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "default"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "subscribe",
+               "return_type": {
+                  "closure_type": {
+                     "argument_types": [
+                        {
+                           "is_bind_type": true,
+                           "is_errorable": false,
+                           "name": "StudioBridgeEditSession"
+                        }
+                     ],
+                     "call_privilege": {
+                        "name": "default"
+                     },
+                     "return_type": {
+                        "is_bind_type": false,
+                        "is_errorable": true,
+                        "name": "undefined"
+                     }
+                  },
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "closure"
+               }
+            },
+            {
+               "arguments": [
+                  {
+                     "details": null,
+                     "name": "callback",
+                     "type": {
+                        "closure_type": {
+                           "argument_types": [
+                              {
+                                 "is_bind_type": true,
+                                 "is_errorable": false,
+                                 "name": "StudioBridgeEditSession"
+                              }
+                           ],
+                           "call_privilege": {
+                              "name": "default"
+                           },
+                           "return_type": {
+                              "is_bind_type": false,
+                              "is_errorable": true,
+                              "name": "undefined"
+                           }
+                        },
+                        "is_bind_type": false,
+                        "is_errorable": false,
+                        "name": "closure"
+                     }
+                  }
+               ],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
+               "name": "unsubscribe",
+               "return_type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "undefined"
+               }
+            }
+         ],
+         "name": "StudioBridgeEditSessionStartedEventSignal",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "StudioBridgeEditSessionStartedEventSignal"
+         }
+      },
+      {
+         "base_types": [
+            {
+               "is_bind_type": true,
+               "is_errorable": false,
+               "name": "StudioBridgeEditSession"
+            }
+         ],
+         "constants": [],
+         "functions": [],
+         "name": "StudioBridgeStructureEditSession",
+         "properties": [],
+         "type": {
+            "is_bind_type": true,
+            "is_errorable": false,
+            "name": "StudioBridgeStructureEditSession"
+         }
+      },
+      {
          "base_types": [
             {
                "is_bind_type": true,
@@ -13503,6 +13904,55 @@
             }
          ],
          "name": "AnnotationNoteType"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Everything",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationTransactionPayloadType"
+               },
+               "value": 0
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Location",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationTransactionPayloadType"
+               },
+               "value": 1
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Tags",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationTransactionPayloadType"
+               },
+               "value": 3
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Visibility",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "AnnotationTransactionPayloadType"
+               },
+               "value": 2
+            }
+         ],
+         "name": "AnnotationTransactionPayloadType"
       },
       {
          "constants": [

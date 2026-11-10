@@ -26,6 +26,12 @@ export enum AnnotationNoteType {
    Csv = "Csv",
    Text = "Text",
 }
+export enum AnnotationTransactionPayloadType {
+   Everything = 0,
+   Location = 1,
+   Tags = 3,
+   Visibility = 2,
+}
 export enum AnnotationType {
    CommentEntity = 4,
    Drawing = 1,
@@ -557,6 +563,10 @@ export class AnnotationMetadata {
    public setVisible(visible: boolean): void;
    private constructor();
 }
+export class AnnotationTransactionOperation {
+   public constructor(annotationManager: AnnotationManager, pendingTransaction: server_editor.PendingTransaction);
+   public trackAnnotationChange(payload: AnnotationTransactionPayloadType, annotationIds?: Array<string>): boolean;
+}
 export class ClientFilesystem {
    public chooseFile(options: FileSelectorOptions): Promise<string>;
    public chooseSaveFile(options: FileSelectorOptions): Promise<SaveFileHandle>;
@@ -759,7 +769,6 @@ export class DataTransferRequestResponse {
 export class DrawingAnnotationInstance extends AnnotationInstance {
    public readonly lineSegments: Array<DrawingAnnotationLineSegment>;
    public notes: string;
-   public readonly originOffset: server.Vector3;
    public addLineSegment(segment: DrawingAnnotationLineSegment): boolean;
    public getBlockBounds(): (server.BlockBoundingBox | undefined);
    public removeLineSegment(segmentIndex: number): boolean;
@@ -783,6 +792,7 @@ export class FeatureFlagManager {
    public getFlagCategory(name: string): string;
    public getFlagDescription(name: string): string;
    public getFlagNames(): Array<string>;
+   public isFlagReadOnly(name: string): boolean;
    public registerFlag(name: string, defaultValue: boolean, category: string, description: string): void;
    public setFlag(name: string, value: boolean): void;
    private constructor();
@@ -855,6 +865,7 @@ export class InternalPlayerServiceContext {
    public readonly prefabManager: PrefabManager;
    public readonly realmsService: RealmsService;
    public readonly regionManager: PlayerProjectRegionManager;
+   public readonly studioBridge: StudioBridgeEditSessionManager;
    public runCoroutineWatchdogStressTest(): server_editor.VoidTaskPromise;
    public runLongRunningTaskBurstTest(durationSeconds: number, taskCount: number, maxStaggerSeconds: number): server_editor.VoidTaskPromise;
    public runLongRunningTaskTest(durationSeconds: number): server_editor.VoidTaskPromise;
@@ -890,6 +901,7 @@ export class MeshCacheManager {
 export class MinecraftEditorInternal {
    public readonly customDimensionManager: CustomDimensionManager;
    public readonly isNewLevel: boolean;
+   public readonly isRealmsServer: boolean;
    public readonly regionManager: ProjectRegionManager;
    public createCustomBiomeSource(config: CustomBiomeSourceConfig): CustomBiomeSource;
    public fillBiomes(dimension: server.Dimension, volume: server.BlockVolumeBase | server_editor.RelativeVolumeListBlockVolume, biome: server.BiomeType, options?: BiomeFillOptions): void;
@@ -1080,6 +1092,27 @@ export class RealmsService {
 export class SaveFileHandle {
    public readonly path: string;
    public write(contents: string): Promise<void>;
+   private constructor();
+}
+export class StudioBridgeEditSession {
+   public readonly id: string;
+   public cancel(): Promise<void>;
+   public submit(): Promise<void>;
+   private constructor();
+}
+export class StudioBridgeEditSessionManager {
+   public readonly sessionStarted: StudioBridgeEditSessionStartedEventSignal;
+   public getSessionId(): string;
+   public isSessionActive(): boolean;
+   private constructor();
+}
+export class StudioBridgeEditSessionStartedEventSignal {
+   public subscribe(callback: (arg0: StudioBridgeEditSession)=>void): (arg0: StudioBridgeEditSession)=>void;
+   public unsubscribe(callback: (arg0: StudioBridgeEditSession)=>void): void;
+   private constructor();
+}
+//@ts-ignore
+export class StudioBridgeStructureEditSession extends StudioBridgeEditSession {
    private constructor();
 }
 //@ts-ignore

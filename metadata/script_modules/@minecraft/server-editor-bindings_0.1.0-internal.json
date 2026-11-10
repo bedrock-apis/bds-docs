@@ -4891,6 +4891,27 @@
                ],
                "is_constructor": false,
                "is_static": false,
+               "name": "getCollisionPoint",
+               "return_type": {
+                  "from_module": {
+                     "name": "@minecraft/server-bindings",
+                     "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                     "version": "2.13.0-internal"
+                  },
+                  "is_bind_type": true,
+                  "is_errorable": true,
+                  "name": "Vector3"
+               }
+            },
+            {
+               "arguments": [],
+               "call_privilege": [
+                  {
+                     "name": "default"
+                  }
+               ],
+               "is_constructor": false,
+               "is_static": false,
                "name": "getDefaultProperties",
                "return_type": {
                   "is_bind_type": true,
@@ -19621,6 +19642,33 @@
                "type": {
                   "is_bind_type": true,
                   "is_errorable": false,
+                  "name": "CursorPrecisionMode"
+               },
+               "value": 0
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Point",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "CursorPrecisionMode"
+               },
+               "value": 1
+            }
+         ],
+         "name": "CursorPrecisionMode"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Block",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
                   "name": "CursorTargetMode"
                },
                "value": 0
@@ -19676,6 +19724,99 @@
             }
          ],
          "name": "DaylightCycle"
+      },
+      {
+         "constants": [
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "None",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "DirectionAxisLock"
+               },
+               "value": 0
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "X",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "DirectionAxisLock"
+               },
+               "value": 1
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "XY",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "DirectionAxisLock"
+               },
+               "value": 3
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "XYZ",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "DirectionAxisLock"
+               },
+               "value": 7
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "XZ",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "DirectionAxisLock"
+               },
+               "value": 5
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Y",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "DirectionAxisLock"
+               },
+               "value": 2
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "YZ",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "DirectionAxisLock"
+               },
+               "value": 6
+            },
+            {
+               "is_read_only": true,
+               "is_static": true,
+               "name": "Z",
+               "type": {
+                  "is_bind_type": true,
+                  "is_errorable": false,
+                  "name": "DirectionAxisLock"
+               },
+               "value": 4
+            }
+         ],
+         "name": "DirectionAxisLock"
       },
       {
          "constants": [
@@ -22715,6 +22856,21 @@
             {
                "is_baked": false,
                "is_read_only": false,
+               "name": "directionAxisLock",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "DirectionAxisLock"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
                "name": "fillColor",
                "type": {
                   "is_bind_type": false,
@@ -22754,6 +22910,26 @@
             {
                "is_baked": false,
                "is_read_only": false,
+               "name": "offset",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "from_module": {
+                        "name": "@minecraft/server-bindings",
+                        "uuid": "0196a2fa-8fb5-79a7-b29e-ce3cbc644f82",
+                        "version": "2.13.0-internal"
+                     },
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "Vector3"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
                "name": "outlineColor",
                "type": {
                   "is_bind_type": false,
@@ -22768,6 +22944,21 @@
                      "is_bind_type": true,
                      "is_errorable": false,
                      "name": "RGBA"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "precisionMode",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": true,
+                     "is_errorable": false,
+                     "name": "CursorPrecisionMode"
                   }
                }
             },
@@ -23393,6 +23584,21 @@
                "is_baked": false,
                "is_read_only": false,
                "name": "insomnia",
+               "type": {
+                  "is_bind_type": false,
+                  "is_errorable": false,
+                  "name": "optional",
+                  "optional_type": {
+                     "is_bind_type": false,
+                     "is_errorable": false,
+                     "name": "boolean"
+                  }
+               }
+            },
+            {
+               "is_baked": false,
+               "is_read_only": false,
+               "name": "keepAnnotations",
                "type": {
                   "is_bind_type": false,
                   "is_errorable": false,

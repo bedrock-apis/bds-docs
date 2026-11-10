@@ -5,6 +5,7 @@ export enum AimAssistTargetMode {
    Distance = "Distance",
 }
 export enum BlockComponentTypes {
+   ClimbableProperties = "minecraft:climbable",
    DynamicProperties = "minecraft:dynamic_properties",
    EntityStorage = "minecraft:entity_storage",
    FluidContainer = "minecraft:fluid_container",
@@ -652,6 +653,22 @@ export enum TintMethod {
    None = "None",
    Water = "Water",
 }
+export enum VirtualContainerCloseReason {
+   PlayerClosed = "PlayerClosed",
+   PlayerDied = "PlayerDied",
+   PlayerLeft = "PlayerLeft",
+   PlayerSpectating = "PlayerSpectating",
+   ServerClosed = "ServerClosed",
+   UserBusy = "UserBusy",
+}
+export enum VirtualContainerOpenErrorReason {
+   ContainerScreenOpen = "ContainerScreenOpen",
+   PlayerDead = "PlayerDead",
+   PlayerNotReady = "PlayerNotReady",
+   PlayerSleeping = "PlayerSleeping",
+   PlayerSpectating = "PlayerSpectating",
+   PreviousScreenClosing = "PreviousScreenClosing",
+}
 export enum WatchdogTerminateReason {
    Hang = "Hang",
    StackOverflow = "StackOverflow",
@@ -1252,6 +1269,13 @@ export interface VectorXZ {
    x: number;
    z: number;
 }
+export interface VirtualContainerEventOptions {
+   containers?: Array<VirtualContainer>;
+}
+export interface VirtualContainerOptions {
+   size: number;
+   title?: string;
+}
 export interface WaypointTextureBounds {
    lowerBound: number;
    texture: CustomTexture | WaypointTexture;
@@ -1423,6 +1447,13 @@ export class BlockBoundingBoxUtils {
    public static isInside(box: BlockBoundingBox, pos: Vector3): boolean;
    public static isValid(box: BlockBoundingBox): boolean;
    public static translate(box: BlockBoundingBox, delta: Vector3): BlockBoundingBox;
+   private constructor();
+}
+//@ts-ignore
+export class BlockClimbablePropertiesComponent extends BlockComponent {
+   public static readonly componentId = "minecraft:climbable";
+   public readonly canClimb: boolean;
+   public readonly canHoldPositionWhileSneaking: boolean;
    private constructor();
 }
 //@ts-ignore
@@ -1959,7 +1990,7 @@ export class Dimension {
    public isChunkLoaded(location: Vector3): boolean;
    public placeFeature(featureName: string, location: Vector3, shouldThrow?: boolean): boolean;
    public placeFeatureRule(featureRuleName: string, location: Vector3): boolean;
-   public playSound(soundId: string, location: Vector3, soundOptions?: WorldSoundOptions): SoundInstance;
+   public playSound(soundId: string, location: Entity | Vector3, soundOptions?: WorldSoundOptions): SoundInstance;
    public runCommand(commandString: string): CommandResult;
    public setBlockPermutation(location: Vector3, permutation: BlockPermutation): void;
    public setBlockType(location: Vector3, blockType: BlockType | string): void;
@@ -3797,19 +3828,6 @@ export class PlayerInventoryItemChangeAfterEventSignal {
    public unsubscribe(callback: (arg0: PlayerInventoryItemChangeAfterEvent)=>void): void;
    private constructor();
 }
-export class PlayerItemAttackEntityBeforeEvent {
-   public readonly aimDirection?: Vector3;
-   public cancel: boolean;
-   public readonly itemStack?: ItemStack;
-   public readonly player: Player;
-   public readonly target: Entity;
-   private constructor();
-}
-export class PlayerItemAttackEntityBeforeEventSignal {
-   public subscribe(callback: (arg0: PlayerItemAttackEntityBeforeEvent)=>void): (arg0: PlayerItemAttackEntityBeforeEvent)=>void;
-   public unsubscribe(callback: (arg0: PlayerItemAttackEntityBeforeEvent)=>void): void;
-   private constructor();
-}
 export class PlayerJoinAfterEvent {
    public readonly playerId: string;
    public readonly playerName: string;
@@ -4279,6 +4297,7 @@ export class SoundDurationInfo {
    private constructor();
 }
 export class SoundInstance {
+   public readonly attachedEntity?: Entity;
    public readonly durationInfo?: SoundDurationInfo;
    public readonly id: string;
    public readonly recipient?: Player;
@@ -4422,6 +4441,43 @@ export class TripWireTripAfterEventSignal {
    public unsubscribe(callback: (arg0: TripWireTripAfterEvent)=>void): void;
    private constructor();
 }
+//@ts-ignore
+export class VirtualContainer extends Container {
+   public readonly title: string;
+   public close(player?: Player): number;
+   public getViewers(): Array<Player>;
+   public open(player: Player): void;
+   private constructor();
+}
+export class VirtualContainerCloseAfterEvent {
+   public readonly container: VirtualContainer;
+   public readonly items: Array<ItemStack | undefined>;
+   public readonly player: Player;
+   public readonly reason: VirtualContainerCloseReason;
+   private constructor();
+}
+export class VirtualContainerCloseAfterEventSignal {
+   public subscribe(callback: (arg0: VirtualContainerCloseAfterEvent)=>void, options?: VirtualContainerEventOptions): (arg0: VirtualContainerCloseAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: VirtualContainerCloseAfterEvent)=>void): void;
+   private constructor();
+}
+export class VirtualContainerItemChangeAfterEvent {
+   public readonly beforeItemStack?: ItemStack;
+   public readonly container: VirtualContainer;
+   public readonly itemStack?: ItemStack;
+   public readonly player: Player;
+   public readonly slot: number;
+   private constructor();
+}
+export class VirtualContainerItemChangeAfterEventSignal {
+   public subscribe(callback: (arg0: VirtualContainerItemChangeAfterEvent)=>void, options?: VirtualContainerEventOptions): (arg0: VirtualContainerItemChangeAfterEvent)=>void;
+   public unsubscribe(callback: (arg0: VirtualContainerItemChangeAfterEvent)=>void): void;
+   private constructor();
+}
+export class VirtualContainerManager {
+   public create(options: VirtualContainerOptions): VirtualContainer;
+   private constructor();
+}
 export class WatchdogTerminateBeforeEvent {
    public cancel: boolean;
    public readonly terminateReason: WatchdogTerminateReason;
@@ -4476,6 +4532,7 @@ export class World {
    public readonly soundDefinitionRegistry: SoundDefinitionRegistry;
    public readonly structureManager: StructureManager;
    public readonly tickingAreaManager: TickingAreaManager;
+   public readonly virtualContainerManager: VirtualContainerManager;
    public broadcastClientMessage(id: string, value: string): void;
    public clearDynamicProperties(): void;
    public getAbsoluteTime(): number;
@@ -4575,6 +4632,8 @@ export class WorldAfterEvents {
    public readonly soundCompleted: SoundCompletedAfterEventSignal;
    public readonly targetBlockHit: TargetBlockHitAfterEventSignal;
    public readonly tripWireTrip: TripWireTripAfterEventSignal;
+   public readonly virtualContainerClose: VirtualContainerCloseAfterEventSignal;
+   public readonly virtualContainerItemChange: VirtualContainerItemChangeAfterEventSignal;
    public readonly weatherChange: WeatherChangeAfterEventSignal;
    public readonly worldClockOnPaused: WorldClockOnPausedAfterEventSignal;
    public readonly worldClockOnResumed: WorldClockOnResumedAfterEventSignal;
@@ -4597,7 +4656,6 @@ export class WorldBeforeEvents {
    public readonly playerGameModeChange: PlayerGameModeChangeBeforeEventSignal;
    public readonly playerInteractWithBlock: PlayerInteractWithBlockBeforeEventSignal;
    public readonly playerInteractWithEntity: PlayerInteractWithEntityBeforeEventSignal;
-   public readonly playerItemAttackEntity: PlayerItemAttackEntityBeforeEventSignal;
    public readonly playerLeave: PlayerLeaveBeforeEventSignal;
    public readonly playerPlaceBlock: PlayerPlaceBlockBeforeEventSignal;
    public readonly weatherChange: WeatherChangeBeforeEventSignal;
@@ -4882,6 +4940,11 @@ export class TickingAreaError extends Error {
 }
 //@ts-ignore
 export class UnloadedChunksError extends Error {
+   private constructor();
+}
+//@ts-ignore
+export class VirtualContainerOpenError extends Error {
+   public readonly reason: VirtualContainerOpenErrorReason;
    private constructor();
 }
 //@ts-ignore

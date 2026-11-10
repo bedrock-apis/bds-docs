@@ -69,6 +69,10 @@ export enum CursorControlMode {
    KeyboardAndMouse = 2,
    Mouse = 1,
 }
+export enum CursorPrecisionMode {
+   Block = 0,
+   Point = 1,
+}
 export enum CursorTargetMode {
    Block = 0,
    Face = 1,
@@ -77,6 +81,16 @@ export enum DaylightCycle {
    AlwaysDay = 1,
    LockTime = 2,
    Normal = 0,
+}
+export enum DirectionAxisLock {
+   None = 0,
+   X = 1,
+   XY = 3,
+   XYZ = 7,
+   XZ = 5,
+   Y = 2,
+   YZ = 6,
+   Z = 4,
 }
 export enum EditorMode {
    Crosshair = "Crosshair",
@@ -396,9 +410,12 @@ export interface CursorPosition {
 }
 export interface CursorProperties {
    controlMode?: CursorControlMode;
+   directionAxisLock?: DirectionAxisLock;
    fillColor?: server.RGBA;
    fixedModeDistance?: number;
+   offset?: server.Vector3;
    outlineColor?: server.RGBA;
+   precisionMode?: CursorPrecisionMode;
    projectThroughLiquid?: boolean;
    targetMode?: CursorTargetMode;
    visible?: boolean;
@@ -445,6 +462,7 @@ export interface GameOptions {
    hardcore?: boolean;
    immediateRespawn?: boolean;
    insomnia?: boolean;
+   keepAnnotations?: boolean;
    keepInventory?: boolean;
    keepPlayerData?: boolean;
    lanVisibility?: boolean;
@@ -835,6 +853,7 @@ export class Cursor {
    public readonly faceDirection: number;
    public readonly isVisible: boolean;
    public readonly maxViewBlockDistance: number;
+   public getCollisionPoint(): server.Vector3;
    public getDefaultProperties(): CursorProperties;
    public getPosition(): server.Vector3;
    public getProperties(): CursorProperties;
